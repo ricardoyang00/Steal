@@ -22,6 +22,11 @@ use App\Http\Controllers\Auth\RegisterController;
 // Home
 Route::redirect('/', '/login');
 
+// example "Hello world"
+Route::get('/helloworld', function () {
+    return view('pages/helloworld');
+});
+
 // Cards
 Route::controller(CardController::class)->group(function () {
     Route::get('/cards', 'list')->name('cards');
