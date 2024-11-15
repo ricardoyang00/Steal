@@ -28,21 +28,39 @@ class RegisterController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:250',
-            'email' => 'required|email|max:250|unique:users',
-            'password' => 'required|min:8|confirmed'
+            'user_type' => 'required|in:buyer,seller',
+            'username' => 'required|string|max:15|unique:users',
+            'name' => 'required|string|max:30',
+            'email' => 'required|email|max:320|unique:users',
+            'password' => 'required|min:8|confirmed',
+            'birth_date' => 'required_if:user_type,buyer|date|before:today',
         ]);
 
-        User::create([
+        $user = User::create([
+            'username' => $request->username,
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'is_active' => true,
         ]);
+
+        if ($request->user_type == 'buyer') {
+            $user->buyer()->create([
+                'id' => $user->id,
+                'nif' => null,
+                'birth_date' => $request->birth_date,
+                'coins' => 0,
+            ]);
+        } else if ($request->user_type == 'seller') {
+            $user->seller()->create([
+                'id' => $user->id,
+            ]);
+        }
 
         $credentials = $request->only('email', 'password');
         Auth::attempt($credentials);
         $request->session()->regenerate();
-        return redirect()->route('cards')
+        return redirect()->route('helloworld')
             ->withSuccess('You have successfully registered & logged in!');
     }
 }

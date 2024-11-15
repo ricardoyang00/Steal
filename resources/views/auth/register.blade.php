@@ -1,8 +1,53 @@
 @extends('layouts.app')
 
+{{--
+@section('scripts')
+<script src="{{ asset('js/register.js') }}"></script>
+@endsection
+--}}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var userTypeSelect = document.getElementById('user_type');
+      var buyerFields = document.getElementById('buyer_fields');
+  
+      function toggleBuyerFields() {
+          if (userTypeSelect.value === 'buyer') {
+              buyerFields.style.display = 'block';
+          } else {
+              buyerFields.style.display = 'none';
+          }
+      }
+  
+      userTypeSelect.addEventListener('change', toggleBuyerFields);
+  
+      // Initial toggle based on the selected value
+      toggleBuyerFields();
+  });
+</script>
+
 @section('content')
 <form method="POST" action="{{ route('register') }}">
     {{ csrf_field() }}
+
+    <label for="user_type">Register as</label>
+    <select id="user_type" name="user_type" required>
+        <option value="buyer" {{ old('user_type') == 'buyer' ? 'selected' : '' }}>Buyer</option>
+        <option value="seller" {{ old('user_type') == 'seller' ? 'selected' : '' }}>Seller</option>
+    </select>
+    @if ($errors->has('user_type'))
+      <span class="error">
+          {{ $errors->first('user_type') }}
+      </span>
+    @endif
+
+    <label for="username">Username</label>
+    <input id="username" type="text" name="username" value="{{ old('username') }}" required autofocus>
+    @if ($errors->has('username'))
+      <span class="error">
+          {{ $errors->first('username') }}
+      </span>
+    @endif
 
     <label for="name">Name</label>
     <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
@@ -27,13 +72,20 @@
           {{ $errors->first('password') }}
       </span>
     @endif
-
+    
     <label for="password-confirm">Confirm Password</label>
     <input id="password-confirm" type="password" name="password_confirmation" required>
 
-    <button type="submit">
-      Register
-    </button>
-    <a class="button button-outline" href="{{ route('login') }}">Login</a>
+    <div id="buyer_fields">
+        <label for="birth_date">Birth Date</label>
+        <input id="birth_date" type="date" name="birth_date" value="{{ old('birth_date') }}" required>
+        @if ($errors->has('birth_date'))
+          <span class="error">
+              {{ $errors->first('birth_date') }}
+          </span>
+        @endif
+    </div>
+
+    <button type="submit">Register</button>
 </form>
 @endsection

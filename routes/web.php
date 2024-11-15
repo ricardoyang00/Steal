@@ -25,7 +25,7 @@ Route::redirect('/', '/login');
 // example "Hello world"
 Route::get('/helloworld', function () {
     return view('pages/helloworld');
-});
+})->name('helloworld');
 
 // Cards
 Route::controller(CardController::class)->group(function () {

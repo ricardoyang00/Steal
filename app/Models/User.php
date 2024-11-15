@@ -24,9 +24,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'username',
         'name',
         'email',
         'password',
+        'is_active',
     ];
 
     /**
@@ -49,11 +51,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    /**
-     * Get the cards for a user.
-     */
-    public function cards(): HasMany
+    public function buyer()
     {
-        return $this->hasMany(Card::class);
+        return $this->hasOne(Buyer::class, 'id', 'id');
+    }
+
+    public function seller()
+    {
+        return $this->hasOne(Seller::class, 'id', 'id');
     }
 }
