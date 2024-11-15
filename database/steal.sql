@@ -49,7 +49,8 @@ CREATE TABLE Users (
     name TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
-    is_active BOOLEAN DEFAULT TRUE
+    is_active BOOLEAN DEFAULT TRUE,
+    remember_token VARCHAR(100) NULL
 );
 
 CREATE TABLE Administrator(
@@ -57,7 +58,8 @@ CREATE TABLE Administrator(
     username TEXT UNIQUE NOT NULL,
     name TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
-    password TEXT NOT NULL
+    password TEXT NOT NULL,
+    remember_token VARCHAR(100) NULL
 );
 
 CREATE TABLE Buyer (
