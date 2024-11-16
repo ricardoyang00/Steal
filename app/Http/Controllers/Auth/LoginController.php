@@ -41,7 +41,7 @@ class LoginController extends Controller
             if (Auth::guard($guard)->attempt($credentials, $request->filled('remember'))) {
                 $request->session()->regenerate();
                 
-                return redirect()->intended('/helloworld');
+                return redirect()->intended('/home');
             }
         }
 
