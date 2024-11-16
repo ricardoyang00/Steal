@@ -27,6 +27,7 @@
 </script>
 
 @section('content')
+
 <form method="POST" action="{{ route('register') }}">
     {{ csrf_field() }}
 
@@ -88,4 +89,5 @@
 
     <button type="submit">Register</button>
 </form>
+
 @endsection

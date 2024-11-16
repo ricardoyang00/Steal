@@ -8,12 +8,16 @@ class Seller extends Model
 {
     protected $table = 'seller';
 
-    protected $primaryKey = 'id';
-
     public $timestamps  = false;
     
+    protected $primaryKey = 'id';
+    
+    protected $fillable = [
+        'id',
+    ];
+
     public function user()
     {
-        return $this->belongsTo(User::class, 'id');
+        return $this->belongsTo(User::class, 'id', 'id');
     }
 }

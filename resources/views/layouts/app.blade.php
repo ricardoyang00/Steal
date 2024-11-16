@@ -11,6 +11,7 @@
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Styles -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
         <link href="{{ url('css/milligram.min.css') }}" rel="stylesheet">
         <link href="{{ url('css/app.css') }}" rel="stylesheet">
         <script type="text/javascript">
@@ -25,7 +26,12 @@
             <header>
                 <h1><a href="{{ url('/helloworld') }}">Steal!</a></h1>
                 @if (Auth::check())
-                    <a class="button" href="{{ url('/logout') }}"> Logout </a> <span>{{ Auth::user()->name }}</span>
+                    <div class="profile">
+                        <a class="button" href="{{ url('/logout') }}"> Logout </a>
+                        <a class="profile-link" href="{{ url('/profile') }}">
+                            <i class="fas fa-user"></i> <span>{{ Auth::user()->username }}</span>
+                        </a>
+                    </div>
                 @endif
             </header>
             <section id="content">
