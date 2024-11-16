@@ -14,15 +14,15 @@ class GameController extends Controller
         
         $gamesQuery = Game::where('is_active', true);
         
-        if ($filter == 'all') {
-            $gamesQuery->orderBy('name', 'asc');
-        } elseif ($filter == 'new-releases') {
+        if ($filter == 'new-releases') {
             $gamesQuery->orderBy('release_date', 'desc');
-        } elseif ($filter == 'top-selling') { // TODO
+        } /*elseif ($filter == 'top-selling') { // TODO
             $gamesQuery->withCount('purchases')
                ->orderBy('purchases_count', 'desc');
-        } elseif ($filter == 'top-rated') {
+        }*/ elseif ($filter == 'top-rated') {
             $gamesQuery->orderBy('overall_rating', 'desc');
+        } else { // default : all games sorted alphabetically
+            $gamesQuery->orderBy('name', 'asc');
         }
         
         $games = $gamesQuery->paginate(6);

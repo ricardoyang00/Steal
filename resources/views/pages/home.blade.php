@@ -4,13 +4,20 @@
 
 @section('content')
 <form action="{{ url('/home') }}" method="GET" class="mb-4">
-    <select name="filter" class="form-select" onchange="this.form.submit()">
-        <option value="" disabled selected>Select a Filter</option>
-        <option value="all" {{ request('filter') == 'all' ? 'selected' : '' }}>All Items</option>
-        <option value="new-releases" {{ request('filter') == 'new-releases' ? 'selected' : '' }}>New</option>
-        <option value="top-selling" {{ request('filter') == 'top-selling' ? 'selected' : '' }}>Top Selling</option>
-        <option value="top-rated" {{ request('filter') == 'top-rated' ? 'selected' : '' }}>Top Rated</option>
-    </select>
+    <div class="btn-group" role="group" aria-label="Game Filters">
+        <button type="submit" name="filter" value="all" class="btn btn-outline-primary {{ request('filter') == 'all' ? 'active' : '' }}">
+            All Items
+        </button>
+        <button type="submit" name="filter" value="new-releases" class="btn btn-outline-primary {{ request('filter') == 'new-releases' ? 'active' : '' }}">
+            New
+        </button>
+        <button type="submit" name="filter" value="top-selling" class="btn btn-outline-primary {{ request('filter') == 'top-selling' ? 'active' : '' }}">
+            Top Selling
+        </button>
+        <button type="submit" name="filter" value="top-rated" class="btn btn-outline-primary {{ request('filter') == 'top-rated' ? 'active' : '' }}">
+            Top Rated
+        </button>
+    </div>
 </form>
 
 <div class="container py-5">
