@@ -26,10 +26,12 @@
         @endif
 
         <button id="edit-profile-btn">Edit</button>
+        <button id="change-password-btn">Change Password</button>
     </article>
 </section>
 
-<section id="edit-profile" style="display: {{ $errors->any() ? 'block' : 'none' }};">
+<!-- Edit Profile -->
+<section id="edit-profile" style="display: {{ $errors->any() && !$errors->has('current_password') && !$errors->has('new_password') && !$errors->has('new_password_confirmation') ? 'block' : 'none' }};">
     <form method="POST" action="{{ route('profile.update') }}">
         {{ csrf_field() }}
         @method('PUT')
@@ -73,14 +75,62 @@
     </form>
 </section>
 
+<!-- Change Password -->
+<div id="change-password" style="display: {{ $errors->has('current_password') || $errors->has('new_password') || $errors->has('new_password_confirmation') ? 'block' : 'none' }};">
+    <form method="POST" action="{{ route('profile.updatePassword') }}">
+        {{ csrf_field() }}
+        @method('PUT')
+        <label for="current_password">Current Password:</label>
+        <input type="password" id="current_password" name="current_password" required>
+        @if ($errors->has('current_password'))
+            <span class="error">
+                {{ $errors->first('current_password') }}
+            </span>
+        @endif
+
+        <label for="new_password">New Password:</label>
+        <input type="password" id="new_password" name="new_password" required>
+        @if ($errors->has('new_password'))
+            <span class="error">
+                {{ $errors->first('new_password') }}
+            </span>
+        @endif
+
+        <label for="new_password_confirmation">Confirm New Password:</label>
+        <input type="password" id="new_password_confirmation" name="new_password_confirmation" required>
+        
+        <button type="button" id="cancel-change-password-btn">Cancel</button>
+        <button type="submit">Change Password</button>
+    </form>
+</div>
+
 <script>
+    function clearErrors() {
+        const errorElements = document.querySelectorAll('.error');
+        errorElements.forEach(element => {
+            element.innerHTML = '';
+        });
+    }
+
     document.getElementById('edit-profile-btn').addEventListener('click', function() {
         document.getElementById('profile').style.display = 'none';
         document.getElementById('edit-profile').style.display = 'block';
     });
 
     document.getElementById('cancel-edit-btn').addEventListener('click', function() {
+        clearErrors();
         document.getElementById('edit-profile').style.display = 'none';
+        document.getElementById('profile').style.display = 'block';
+    });
+
+    document.getElementById('change-password-btn').addEventListener('click', function() {
+        document.getElementById('profile').style.display = 'none';
+        document.getElementById('change-password').style.display = 'block';
+    });
+
+    document.getElementById('cancel-change-password-btn').addEventListener('click', function() {
+        clearErrors();
+        document.getElementById('change-password').style.display = 'none';
         document.getElementById('profile').style.display = 'block';
     });
 </script>

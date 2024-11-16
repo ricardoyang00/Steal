@@ -62,5 +62,6 @@ Route::controller(RegisterController::class)->group(function () {
 
 Route::controller(ProfileController::class)->group(function () {
     Route::get('/profile', 'showProfile')->name('profile');
-    Route::put('/profile', 'update')->name('profile.update');
+    Route::put('/profile/edit', 'update')->name('profile.update');
+    Route::put('/profile', 'updatePassword')->name('profile.updatePassword');
 });
