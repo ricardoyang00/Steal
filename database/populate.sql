@@ -2,7 +2,7 @@ SET search_path TO lbaw2435;
 
 -- POPULATE DATABASE
 -- USERS
-insert into Users (username, name, email, password, is_active) values ('hbrellin0', 'Hamil Brellin', 'admin@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true);
+insert into Users (username, name, email, password, is_active) values ('hbrellin0', 'Hamil Brellin', 'buyer@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true);
 insert into Users (username, name, email, password, is_active) values ('kpeschmann1', 'Kristo Peschmann', 'kpeschmann1@edublogs.org', '$2a$04$IAuigNcjKssEHMcHFqkTEeNUDoD3IEGVLxwKwIF0lbcoF67NUTM7i', true);
 insert into Users (username, name, email, password, is_active) values ('nspikings2', 'Nickolas Spikings', 'nspikings2@yahoo.co.jp', '$2a$04$ujyEJ1LF7KZNvh4weCUKHuiuAlqYyrvKqC/zh.NFX0EA7iYK2F/Va', true);
 insert into Users (username, name, email, password, is_active) values ('mbatson3', 'Myrilla Batson', 'mbatson3@home.pl', '$2a$04$zwkBwn8fRCLpHpMkuwjwJud/k7BuILroNu3D0NkHWj7NrlX22AB/O', true);
@@ -21,11 +21,11 @@ insert into Users (username, name, email, password, is_active) values ('cpearcef
 insert into Users (username, name, email, password, is_active) values ('sdumbellowg', 'Stu Dumbellow', 'sdumbellowg@yahoo.co.jp', '$2a$04$CezMAYWtb/35/mGX1YgVUeINMJoe9GKGFx4mhAI286RxEiTZ6hyFa', true);
 insert into Users (username, name, email, password, is_active) values ('hcornierh', 'Hewet Cornier', 'hcornierh@alibaba.com', '$2a$04$JpHqsPkrIoAeAjfNnAS64uhepmXO/NeL8fJkQcLwI7z/3RmiBA8Je', true);
 insert into Users (username, name, email, password, is_active) values ('mmainstoni', 'Meaghan Mainston', 'mmainstoni@hao123.com', '$2a$04$z3Gtsn1B.Ds8o2Munu4ZreIrwjVdkkOEuIMG6S6EJ0bcSij8LYaKO', true);
-insert into Users (username, name, email, password, is_active) values ('tschusterlj', 'Thacher Schusterl', 'tschusterlj@state.gov', '$2a$04$13GC2Yq0jYq4Dpq36W7BneEmd1VBy9V6pEbTI8Qh1.421oWy0K0du', true);
+insert into Users (username, name, email, password, is_active) values ('tschusterlj', 'Thacher Schusterl', 'seller@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true);
 
 
 -- ADMINISTRATOR
-insert into Administrator (username, name, email, password) values ('ajeavons0', 'Aryn Jeavons', 'ajeavons0@youtube.com', '$2a$04$8oLFht1q3mBluhr9QmVji.oZ1VboLEL3m3i6Ra2dJnZsVAuKYPNH.');
+insert into Administrator (username, name, email, password) values ('ajeavons0', 'Aryn Jeavons', 'admin@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W');
 insert into Administrator (username, name, email, password) values ('sbeckson1', 'Saxon Beckson', 'sbeckson1@feedburner.com', '$2a$04$irfv6UVFd5wJseTyvBFEq.h6KZ6/EGyPuQuIMC.BvJCNYAyL5naqq');
 insert into Administrator (username, name, email, password) values ('apeffer2', 'Allix Peffer', 'apeffer2@nba.com', '$2a$04$DDqwRdaW5YbhOtfCzLWCVe2nxXZ5IQFD1eVE/UD1cZxNfe9Ouud9y');
 insert into Administrator (username, name, email, password) values ('ebaird3', 'Ely Baird', 'ebaird3@canalblog.com', '$2a$04$w2f140crfq6RhNHkSPbysOTuJbvVUbZxvH6kxGzXeWOcdJdfVYZGG');
