@@ -159,6 +159,7 @@ CREATE TABLE Wishlist(
 
 CREATE TABLE ShoppingCart(
     id SERIAL PRIMARY KEY,
+    quantity INT NOT NULL CHECK (quantity >= 0) DEFAULT 0,
     buyer INT NOT NULL REFERENCES Buyer(id) ON UPDATE CASCADE,
     game INT NOT NULL REFERENCES Game(id) ON UPDATE CASCADE,
     CONSTRAINT buyer_game_pair_2_unique UNIQUE (buyer, game)
