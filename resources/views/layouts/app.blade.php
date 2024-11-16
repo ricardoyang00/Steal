@@ -25,11 +25,11 @@
         <main>
             <header>
                 <h1><a href="{{ url('/helloworld') }}">Steal!</a></h1>
-                @if (Auth::check())
+                @if (Auth::check() || Auth::guard('admin')->check())
                     <div class="profile">
                         <a class="button" href="{{ url('/logout') }}"> Logout </a>
                         <a class="profile-link" href="{{ url('/profile') }}">
-                            <i class="fas fa-user"></i> <span>{{ Auth::user()->username }}</span>
+                            <i class="fas fa-user"></i> <span>{{ auth_user()->username }}</span>
                         </a>
                     </div>
                 @endif

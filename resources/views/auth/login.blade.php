@@ -19,11 +19,17 @@
             {{ $errors->first('password') }}
         </span>
     @endif
-
+    
+    <label for="guard">Login as</label>
+    <select id="guard" name="guard">
+        <option value="web">User</option>
+        <option value="admin">Administrator</option>
+    </select>
+    
     <label>
         <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
     </label>
-
+    
     <button type="submit">
         Login
     </button>

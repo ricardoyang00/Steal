@@ -21,7 +21,7 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        $user = Auth::user();
+        $user = auth_user();
 
         $rules = [
             'username' => 'required|string|max:15|unique:users,username,' . $user->id,
@@ -53,7 +53,7 @@ class ProfileController extends Controller
             'new_password' => 'required|min:8|confirmed',
         ]);
 
-        $user = Auth::user();
+        $user = auth_user();
 
         if (!Hash::check($request->input('current_password'), $user->password)) {
             return back()->withErrors(['current_password' => 'Current password is incorrect']);

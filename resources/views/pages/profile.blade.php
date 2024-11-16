@@ -13,16 +13,18 @@
 
     <article>
         <h1>Profile</h1>
-        <p><strong>Username:</strong> {{ Auth::user()->username }}</p>
-        <p><strong>Name:</strong> {{ Auth::user()->name }}</p>
-        <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
+        <p><strong>Username:</strong> {{ auth_user()->username }}</p>
+        <p><strong>Name:</strong> {{ auth_user()->name }}</p>
+        <p><strong>Email:</strong> {{ auth_user()->email }}</p>
 
-        @if (Auth::user()->buyer)
-            <p><strong>NIF:</strong> {{ Auth::user()->buyer->nif ?? 'NONE'}}</p>
-            <p><strong>Birth Date:</strong> {{ Auth::user()->buyer->birth_date }}</p>
-            <p><strong>Coins:</strong> {{ Auth::user()->buyer->coins }}</p>
-        @elseif (Auth::user()->seller)
+        @if (auth_user()->buyer)
+            <p><strong>NIF:</strong> {{ auth_user()->buyer->nif ?? 'NONE'}}</p>
+            <p><strong>Birth Date:</strong> {{ auth_user()->buyer->birth_date }}</p>
+            <p><strong>Coins:</strong> {{ auth_user()->buyer->coins }}</p>
+        @elseif (auth_user()->seller)
             <p><strong>Seller Information:</strong> This user is a seller.</p>
+        @elseif (is_admin())
+            <p><strong>Admin Information:</strong> This user is an admin.</p>
         @endif
 
         <button id="edit-profile-btn">Edit</button>
@@ -36,7 +38,7 @@
         {{ csrf_field() }}
         @method('PUT')
         <label for="username">Username:</label>
-        <input type="text" id="username" name="username" value="{{ Auth::user()->username }}">
+        <input type="text" id="username" name="username" value="{{ auth_user()->username }}">
         @if ($errors->has('username'))
             <span class="error">
                 {{ $errors->first('username') }}
@@ -44,7 +46,7 @@
         @endif
 
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="{{ Auth::user()->name }}">
+        <input type="text" id="name" name="name" value="{{ auth_user()->name }}">
         @if ($errors->has('name'))
             <span class="error">
                 {{ $errors->first('name') }}
@@ -52,11 +54,11 @@
         @endif
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="{{ Auth::user()->email }}" readonly>
+        <input type="email" id="email" name="email" value="{{ auth_user()->email }}" readonly>
         
-        @if (Auth::user()->buyer)
+        @if (auth_user()->buyer)
             <label for="nif">NIF:</label>
-            <input type="text" id="nif" name="nif" value="{{ Auth::user()->buyer->nif }}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="9">    
+            <input type="text" id="nif" name="nif" value="{{ auth_user()->buyer->nif }}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="9">    
             @if ($errors->has('nif'))
                 <span class="error">
                     {{ $errors->first('nif') }}
@@ -64,10 +66,10 @@
             @endif
 
             <label for="birth_date">Birth Date:</label>
-            <input type="date" id="birth_date" name="birth_date" value="{{ Auth::user()->buyer->birth_date }}" readonly>
+            <input type="date" id="birth_date" name="birth_date" value="{{ auth_user()->buyer->birth_date }}" readonly>
             
             <label for="coins">Coins:</label>
-            <input type="number" id="coins" name="coins" value="{{ Auth::user()->buyer->coins }}" readonly>
+            <input type="number" id="coins" name="coins" value="{{ auth_user()->buyer->coins }}" readonly>
         @endif
         
         <button type="button" id="cancel-edit-btn">Cancel</button>
