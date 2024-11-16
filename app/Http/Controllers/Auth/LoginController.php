@@ -35,12 +35,14 @@ class LoginController extends Controller
             'password' => ['required'],
         ]);
 
-        $guard = $request->input('guard', 'web'); // Default to 'web' guard
+        $guards = ['web', 'admin'];
 
-        if (Auth::guard($guard)->attempt($credentials, $request->filled('remember'))) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('/home');
+        foreach ($guards as $guard) {
+            if (Auth::guard($guard)->attempt($credentials, $request->filled('remember'))) {
+                $request->session()->regenerate();
+                
+                return redirect()->intended('/helloworld');
+            }
         }
 
         return back()->withErrors([
@@ -53,7 +55,7 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        $guard = Auth::guard('admin')->check() ? 'admin' : 'web';
+        $guard = is_admin() ? 'admin' : 'web';
 
         Auth::guard($guard)->logout();
         $request->session()->invalidate();
