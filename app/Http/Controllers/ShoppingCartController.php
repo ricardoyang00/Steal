@@ -9,12 +9,6 @@ class ShoppingCartController extends Controller
 {
     public function index()
     {
-        $cartItems = ShoppingCart::with('game')->get();
-        return view('shopping_cart', compact('cartItems'));
-    }
-
-    public function add(Request $request)
-    {
-        // Add item to cart logic
+        return view('pages/shopping_cart');
     }
 }
