@@ -27,7 +27,7 @@ class GameController extends Controller
         
         $games = $gamesQuery->paginate(6);
 
-        return view('pages.home', compact('games'));
+        return view('pages.explore', compact('games'));
     }   
 
     public function show($id)

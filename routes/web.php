@@ -24,14 +24,13 @@ use App\Http\Controllers\GameController;
 // Home
 Route::redirect('/', '/login');
 
-// example "Hello world"
-Route::get('/helloworld', function () {
-    return view('pages/helloworld');
-})->name('helloworld');
-
 Route::get('/home', function () {
     return view('pages/home');
 })->name('home');
+
+Route::get('/explore', function () {
+    return view('pages/explore');
+})->name('explore');
 
 // Cards
 Route::controller(CardController::class)->group(function () {
@@ -65,6 +64,6 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('/register', 'register');
 });
 
-Route::get('/home', [GameController::class, 'index']);
+Route::get('/explore', [GameController::class, 'index']);
 
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.details');
