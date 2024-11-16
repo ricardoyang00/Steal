@@ -24,7 +24,11 @@
     <body>
         <main>
             <header>
-                <h1><a href="{{ url('/helloworld') }}">Steal!</a></h1>
+                <h1>
+                    <a href="{{ url('/home') }}">
+                        <img src="{{ asset('images/logo.svg') }}" alt="Steal!" /*style="filter: invert(1) brightness(100%);"*/>
+                    </a>
+                </h1>
                 @if (Auth::check() || Auth::guard('admin')->check())
                     <div class="profile">
                         <a class="button" href="{{ url('/logout') }}"> Logout </a>
@@ -34,9 +38,35 @@
                     </div>
                 @endif
             </header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid d-flex justify-content-between align-items-center">
+                    <div class="d-flex">
+                        <a class="btn btn-link" href="{{ url('/home') }}">Home</a>
+                        <a class="btn btn-link" href="{{ url('/explore') }}">Explore</a>
+                        <a class="btn btn-link" href="#help-footer">Help</a>
+                    </div>
+
+                    <form action="{{ url('/explore') }}" method="GET" class="d-flex">
+                        <input class="form-control me-2" type="search" name="query" placeholder="Search Games..." aria-label="Search" value="{{ request('query') }}">
+                        <button class="btn btn-outline-primary" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
             <section id="content">
                 @yield('content')
             </section>
         </main>
     </body>
+    <footer id="help-footer" class="bg-light py-5">
+        <div class="container text-center">
+            <h2>HELP</h2>
+            <div class="d-flex flex-column align-items-center">
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="{{ url('/contact') }}" class="btn btn-link">Contact</a></li>
+                    <li class="list-group-item"><a href="{{ url('/faqs') }}" class="btn btn-link">FAQs</a></li>
+                    <li class="list-group-item"><a href="{{ url('/about') }}" class="btn btn-link">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 </html>
