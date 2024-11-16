@@ -7,6 +7,7 @@ use App\Http\Controllers\ItemController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,7 +60,7 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('/register', 'register');
 });
 
-// Profile
-Route::get('/profile', function () {
-    return view('pages/profile');
-})->name('profile');
+Route::controller(ProfileController::class)->group(function () {
+    Route::get('/profile', 'showProfile')->name('profile');
+    Route::put('/profile', 'update')->name('profile.update');
+});
