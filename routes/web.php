@@ -22,7 +22,7 @@ use App\Http\Controllers\GameController;
 */
 
 // Home
-Route::redirect('/', '/login');
+Route::redirect('/', '/home');
 
 Route::get('/home', function () {
     return view('pages/home');

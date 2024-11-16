@@ -36,6 +36,11 @@
                             <i class="fas fa-user"></i> <span>{{ auth_user()->username }}</span>
                         </a>
                     </div>
+                @else
+                    <div class="auth-buttons">
+                        <a class="button" href="{{ url('/login') }}">Login</a>
+                        <a class="button" href="{{ url('/register') }}">Sign Up</a>
+                    </div>
                 @endif
             </header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
