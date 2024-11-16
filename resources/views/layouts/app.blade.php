@@ -23,7 +23,11 @@
     <body>
         <main>
             <header>
-                <h1><a href="{{ url('/helloworld') }}">Steal!</a></h1>
+                <h1>
+                    <a href="{{ url('/home') }}">
+                        <img src="{{ asset('images/logo.svg') }}" alt="Steal!" /*style="filter: invert(1) brightness(100%);"*/>
+                    </a>
+                </h1>
                 @if (Auth::check())
                     <a class="button" href="{{ url('/logout') }}"> Logout </a> <span>{{ Auth::user()->name }}</span>
                 @endif
