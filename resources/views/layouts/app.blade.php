@@ -40,9 +40,9 @@
                         <a class="btn btn-link" href="#help-footer">Help</a>
                     </div>
 
-                    <form class="d-flex ms-auto" action="{{ url('/search') }}" method="GET">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    <form action="{{ url('/explore') }}" method="GET" class="d-flex">
+                        <input class="form-control me-2" type="search" name="query" placeholder="Search Games..." aria-label="Search" value="{{ request('query') }}">
+                        <button class="btn btn-outline-primary" type="submit">Search</button>
                     </form>
                 </div>
             </nav>

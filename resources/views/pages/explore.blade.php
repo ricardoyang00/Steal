@@ -1,27 +1,30 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Explore')
 
 @section('content')
-<form action="{{ url('/home') }}" method="GET" class="mb-4">
-    <div class="btn-group" role="group" aria-label="Game Filters">
-        <button type="submit" name="filter" value="all" class="btn btn-outline-primary {{ request('filter') == 'all' ? 'active' : '' }}">
+<form action="{{ url('/explore') }}" method="GET" class="mb-4">
+    <div class="btn-group" role="group" aria-label="Game Sorting">
+        <button type="submit" name="sort" value="all" class="btn btn-outline-primary {{ request('sort') == 'all' ? 'active' : '' }}">
             All Items
         </button>
-        <button type="submit" name="filter" value="new-releases" class="btn btn-outline-primary {{ request('filter') == 'new-releases' ? 'active' : '' }}">
+        <button type="submit" name="sort" value="new-releases" class="btn btn-outline-primary {{ request('sort') == 'new-releases' ? 'active' : '' }}">
             New
         </button>
-        <button type="submit" name="filter" value="top-selling" class="btn btn-outline-primary {{ request('filter') == 'top-selling' ? 'active' : '' }}">
+        <button type="submit" name="sort" value="top-selling" class="btn btn-outline-primary {{ request('sort') == 'top-selling' ? 'active' : '' }}">
             Top Selling
         </button>
-        <button type="submit" name="filter" value="top-rated" class="btn btn-outline-primary {{ request('filter') == 'top-rated' ? 'active' : '' }}">
+        <button type="submit" name="sort" value="top-rated" class="btn btn-outline-primary {{ request('sort') == 'top-rated' ? 'active' : '' }}">
             Top Rated
         </button>
     </div>
 </form>
 
 <div class="container py-5">
-    <h1 class="text-center mb-4">Available Games</h1>
+    <h1 class="text-center mb-4">Explore Games</h1>
+    @if(isset($query) && $query)
+        <p class="text-center">Showing results for "<strong>{{ $query }}</strong>":</p>
+    @endif
     <div class="row g-4">
         <div class="col-12">
             @foreach($games as $game)
@@ -29,10 +32,10 @@
             @endforeach
         </div>
     </div>
+</div>
 
-    <!-- Pagination Links -->
-    <div class="d-flex justify-content-center mt-4">
-        {{ $games->links() }}
-    </div>
+<!-- Pagination Links -->
+<div class="d-flex justify-content-center mt-4">
+    {{ $games->appends(request()->except('page'))->links() }}
 </div>
 @endsection

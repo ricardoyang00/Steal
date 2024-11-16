@@ -66,4 +66,6 @@ Route::controller(RegisterController::class)->group(function () {
 
 Route::get('/explore', [GameController::class, 'index']);
 
+Route::get('/explore', [GameController::class, 'explore'])->name('explore');
+
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.details');
