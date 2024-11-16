@@ -8,6 +8,8 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
+use App\Models\Game;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +28,10 @@ Route::redirect('/', '/login');
 Route::get('/helloworld', function () {
     return view('pages/helloworld');
 })->name('helloworld');
+
+Route::get('/home', function () {
+    return view('pages/home');
+})->name('home');
 
 // Cards
 Route::controller(CardController::class)->group(function () {
@@ -57,4 +63,14 @@ Route::controller(LoginController::class)->group(function () {
 Route::controller(RegisterController::class)->group(function () {
     Route::get('/register', 'showRegistrationForm')->name('register');
     Route::post('/register', 'register');
+});
+
+/*Route::get('/', function () {
+    $games = Game::where('is_active', true)->get();
+    return view('pages/home', compact('games'));
+});*/
+
+Route::get('/home', function () {
+    $games = Game::where('is_active', true)->get();
+    return view('pages/home', compact('games'));
 });
