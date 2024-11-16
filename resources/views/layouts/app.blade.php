@@ -32,9 +32,35 @@
                     <a class="button" href="{{ url('/logout') }}"> Logout </a> <span>{{ Auth::user()->name }}</span>
                 @endif
             </header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid d-flex justify-content-between align-items-center">
+                    <div class="d-flex">
+                        <a class="btn btn-link" href="{{ url('/home') }}">Home</a>
+                        <a class="btn btn-link" href="{{ url('/explore') }}">Explore</a>
+                        <a class="btn btn-link" href="#help-footer">Help</a>
+                    </div>
+
+                    <form class="d-flex ms-auto" action="{{ url('/search') }}" method="GET">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
             <section id="content">
                 @yield('content')
             </section>
         </main>
     </body>
+    <footer id="help-footer" class="bg-light py-5">
+        <div class="container text-center">
+            <h2>HELP</h2>
+            <div class="d-flex flex-column align-items-center">
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="{{ url('/contact') }}" class="btn btn-link">Contact</a></li>
+                    <li class="list-group-item"><a href="{{ url('/faqs') }}" class="btn btn-link">FAQs</a></li>
+                    <li class="list-group-item"><a href="{{ url('/about') }}" class="btn btn-link">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 </html>
