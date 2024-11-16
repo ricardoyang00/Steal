@@ -20,7 +20,8 @@ class Game extends Model
         'price',
         'overall_rating',
         'owner',
-        'is_active'
+        'is_active',
+        'release_date'
     ];
 
     public function seller()
