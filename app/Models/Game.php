@@ -22,4 +22,9 @@ class Game extends Model
         'owner',
         'is_active'
     ];
+
+    public function seller()
+    {
+        return $this->belongsTo(Seller::class, 'owner', 'id');
+    }
 }

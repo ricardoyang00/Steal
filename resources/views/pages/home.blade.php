@@ -17,12 +17,18 @@
                     <div class="card">
                         <div class="row g-0">
                             <div class="col-md-3">
-                                <img src="{{ asset('images/default-game-image.jpg') }}" class="img-fluid rounded-start" alt="{{ $game->name }}" style="height: 200px; object-fit: cover;">
+                                <a href="{{ route('game.details', ['id' => $game->id]) }}">
+                                    <img src="{{ asset('images/default-game-image.jpg') }}" class="card-img-top" alt="{{ $game->name }}" height=200px>
+                                </a>
                             </div>
                             <div class="col-md-6">
                                 <div class="card-body d-flex flex-column">
                                     <div class="d-flex justify-content-between">
-                                        <h5 class="card-title text-truncate" title="{{ $game->name }}">{{ $game->name }}</h5>
+                                        <h5 class="card-title">
+                                            <a href="{{ route('game.details', ['id' => $game->id]) }}" class="text-decoration-none text-dark">
+                                                {{ $game->name }}
+                                            </a>
+                                        </h5>
                                         <p class="card-text"><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
                                     </div>
                                 </div>

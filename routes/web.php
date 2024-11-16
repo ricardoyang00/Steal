@@ -8,7 +8,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 
-use App\Models\Game;
+use App\Http\Controllers\GameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,12 +65,6 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('/register', 'register');
 });
 
-/*Route::get('/', function () {
-    $games = Game::where('is_active', true)->get();
-    return view('pages/home', compact('games'));
-});*/
+Route::get('/home', [GameController::class, 'index']);
 
-Route::get('/home', function () {
-    $games = Game::where('is_active', true)->get();
-    return view('pages/home', compact('games'));
-});
+Route::get('/game/{id}', [GameController::class, 'show'])->name('game.details');
