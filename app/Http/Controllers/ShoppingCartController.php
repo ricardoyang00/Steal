@@ -9,6 +9,7 @@ class ShoppingCartController extends Controller
 {
     public function index()
     {
+        $shoppingCart = ShoppingCart::all();
         return view('pages/shopping_cart');
     }
 }
