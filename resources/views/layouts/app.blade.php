@@ -32,6 +32,7 @@
                 @if (Auth::check() || Auth::guard('admin')->check())
                     <div class="profile">
                         @if (is_admin())
+                            <a class="button" href="{{ url('/register') }}">Create Account</a>
                             <a class="button" href="{{ route('admin.users.search') }}">Manage Users</a>
                         @endif
                         <a class="button" href="{{ url('/logout') }}"> Logout </a>
