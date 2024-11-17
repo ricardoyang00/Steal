@@ -19,7 +19,7 @@ class UserController extends Controller
     public function searchUsers(Request $request): View
     {
         $query = $request->input('query');
-    
+
         if ($query) {
             $users = User::whereRaw('LOWER(username) LIKE ?', ['%' . strtolower($query) . '%'])
                 ->orWhereRaw('LOWER(email) LIKE ?', ['%' . strtolower($query) . '%'])
@@ -27,7 +27,7 @@ class UserController extends Controller
         } else {
             $users = collect(); // Return an empty collection if no query is provided
         }
-    
+
         return view('admin.users.index', compact('users'));
     }
 
@@ -92,6 +92,29 @@ class UserController extends Controller
             $randomString .= $characters[rand(0, $charactersLength - 1)];
         }
         return $randomString;
+    }
+
+    /**
+     * Change the number of coins for a buyer.
+     */
+    public function changeCoins(Request $request, $id): RedirectResponse
+    {
+        $maxCoins = 500000;
+        
+        $request->validate([
+            'coins' => 'required|integer|min:0|max:' . $maxCoins,
+        ]);
+
+        $user = User::findOrFail($id);
+        $buyer = $user->buyer;
+
+        if ($buyer) {
+            $buyer->coins = $request->input('coins');
+            $buyer->save();
+        }
+
+        return redirect()->route('admin.users.profile', $user->id)
+            ->with('success', 'Coins updated successfully!');
     }
 
     // Probably temporary functions as the number of users will scale too much
