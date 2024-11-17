@@ -10,15 +10,13 @@
             @foreach ($products as $product)
                 <li>
                     {{ $product['name'] }} - ${{ $product['price'] }} 
-                    @if ($product['quantity'] > 1)
-                        x {{ $product['quantity'] }}
-                    @endif
 
                     <form action="{{ route('increase_quantity') }}" method="POST" style="display:inline;">
                         @csrf
                         <input type="hidden" name="game_id" value="{{ $product['id'] }}">
                         <button type="submit">+</button>
                     </form>
+                    {{ $product['quantity'] }}
                     <form action="{{ route('decrease_quantity') }}" method="POST" style="display:inline;">
                         @csrf
                         <input type="hidden" name="game_id" value="{{ $product['id'] }}">
