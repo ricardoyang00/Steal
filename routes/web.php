@@ -75,7 +75,9 @@ Route::controller(ShoppingCartController::class)->group(function () {
 Route::post('/increase_quantity', [ShoppingCartController::class, 'increaseQuantity'])->name('increase_quantity');
 Route::post('/decrease_quantity', [ShoppingCartController::class, 'decreaseQuantity'])->name('decrease_quantity');
 
+Route::post('/add_product', [ShoppingCartController::class, 'addProduct'])->name('add_product');
 Route::post('/remove_product', [ShoppingCartController::class, 'removeProduct'])->name('remove_product');
+Route::get('/add_test_products', [ShoppingCartController::class, 'addTestProducts'])->name('add_test_products');
 // ----------------------------
 
 

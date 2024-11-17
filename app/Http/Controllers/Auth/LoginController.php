@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\View\View;
 
+use App\Http\Controllers\ShoppingCartController;
+
 class LoginController extends Controller
 {
 
@@ -40,6 +42,12 @@ class LoginController extends Controller
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->attempt($credentials, $request->filled('remember'))) {
                 $request->session()->regenerate();
+                $request->session()->forget('shopping_cart');
+
+                if ($guard === 'buyer') {
+                    $shoppingCartController = new ShoppingCartController();
+                    $shoppingCartController->mergeShoppingCart($request);
+                }
                 
                 return redirect()->intended('/home');
             }

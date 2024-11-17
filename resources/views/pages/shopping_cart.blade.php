@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Shopping Cart</title>
-    </head>
-    <body>
+@extends('layouts.app')
+
+@section('title', 'Cart')
+
+@section('content')
+    <section id="shopping_cart">
         <h1>Shopping Cart</h1>
         @if (count($products) == 0)
             <li>No products in cart</li>
@@ -35,5 +35,6 @@
         </ul>
         <p>Total: ${{ $total }}</p>
         @endif
-    </body>
-</html>
+        <button onclick="window.location.href = '{{ route('home') }}';">Go Back Home</button>
+    </section>
+@endsection
