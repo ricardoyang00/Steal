@@ -31,6 +31,9 @@
                 </h1>
                 @if (Auth::check() || Auth::guard('admin')->check())
                     <div class="profile">
+                        @if (is_admin())
+                            <a class="button" href="{{ route('admin.users.search') }}">Manage Users</a>
+                        @endif
                         <a class="button" href="{{ url('/logout') }}"> Logout </a>
                         <a class="profile-link" href="{{ url('/profile') }}">
                             <i class="fas fa-user"></i> <span>{{ auth_user()->username }}</span>

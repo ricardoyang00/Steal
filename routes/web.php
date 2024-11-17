@@ -8,6 +8,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\GameController;
 
 /*
@@ -64,10 +65,19 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('/register', 'register');
 });
 
+// Authenticated User
 Route::controller(ProfileController::class)->group(function () {
     Route::get('/profile', 'showProfile')->name('profile');
     Route::put('/profile/edit', 'update')->name('profile.update');
     Route::put('/profile', 'updatePassword')->name('profile.updatePassword');
+});
+
+Route::prefix('admin')->middleware('auth:admin')->controller(UserController::class)->group(function () {
+    Route::get('/users/search', 'searchUsers')->name('admin.users.search');
+    Route::get('/users/{id}', 'viewProfile')->name('admin.users.profile');
+    Route::get('/all-users', 'listBuyersAndSellers')->name('admin.users.all');
+    //Route::get('/users/buyers', 'listBuyers')->name('admin.users.buyers');
+    //Route::get('/users/sellers', 'listSellers')->name('admin.users.sellers');
 });
 
 Route::get('/explore', [GameController::class, 'index']);
