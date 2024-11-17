@@ -19,15 +19,15 @@ class UserController extends Controller
     public function searchUsers(Request $request): View
     {
         $query = $request->input('query');
-
+    
         if ($query) {
-            $users = User::where('username', 'like', '%' . $query . '%')
-                ->orWhere('email', 'like', '%' . $query . '%')
+            $users = User::whereRaw('LOWER(username) LIKE ?', ['%' . strtolower($query) . '%'])
+                ->orWhereRaw('LOWER(email) LIKE ?', ['%' . strtolower($query) . '%'])
                 ->get();
         } else {
             $users = collect(); // Return an empty collection if no query is provided
         }
-
+    
         return view('admin.users.index', compact('users'));
     }
 
