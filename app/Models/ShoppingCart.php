@@ -6,18 +6,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class ShoppingCart extends Model
 {
-    protected $table = 'ShoppingCart';
+    protected $table = 'shoppingcart'; // Use lowercase table name to avoid case sensitivity issues
+
     public $timestamps = false;
 
-    protected $fillable = ['buyer', 'game'];
+    protected $fillable = ['quantity', 'buyer', 'game'];
 
     public function buyer()
     {
-        return $this->belongsTo(Buyer::class, 'buyer', 'id');
+        return $this->belongsTo(Buyer::class, 'buyer');
     }
 
     public function game()
     {
-        return $this->belongsTo(Game::class, 'game', 'id');
+        return $this->belongsTo(Game::class, 'game');
+    }
+
+    public function games()
+    {
+        return $this->belongsToMany(Game::class, 'shoppingcart', 'buyer', 'game')
+                    ->withPivot('quantity');
     }
 }

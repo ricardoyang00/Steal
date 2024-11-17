@@ -1186,3 +1186,9 @@ insert into About (content) values ('This website was created as a project for t
 
 -- CONTACT
 insert into Contacts (contact) values ('contact@steal.com');
+
+-- TESTING SHOPPING CART
+insert into ShoppingCart (game, quantity, buyer) values (1, 1, 1);
+insert into ShoppingCart (game, quantity, buyer) values (2, 1, 1);
+insert into ShoppingCart (game, quantity, buyer) values (3, 1, 1);
+insert into ShoppingCart (game, quantity, buyer) values (4, 1, 1);

@@ -66,11 +66,19 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('/register', 'register');
 });
 
-<<<<<<< HEAD
+// ----------------------------
+// ShoppingCart
 Route::controller(ShoppingCartController::class)->group(function () {
     Route::get('/cart', 'index')->name('shopping_cart');
 });
-=======
+
+Route::post('/increase_quantity', [ShoppingCartController::class, 'increaseQuantity'])->name('increase_quantity');
+Route::post('/decrease_quantity', [ShoppingCartController::class, 'decreaseQuantity'])->name('decrease_quantity');
+
+Route::post('/remove_product', [ShoppingCartController::class, 'removeProduct'])->name('remove_product');
+// ----------------------------
+
+
 Route::controller(ProfileController::class)->group(function () {
     Route::get('/profile', 'showProfile')->name('profile');
     Route::put('/profile/edit', 'update')->name('profile.update');
@@ -82,4 +90,3 @@ Route::get('/explore', [GameController::class, 'index']);
 Route::get('/explore', [GameController::class, 'explore'])->name('explore');
 
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.details');
->>>>>>> main
