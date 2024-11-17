@@ -5,6 +5,9 @@
     </head>
     <body>
         <h1>Shopping Cart</h1>
+        @if (count($products) == 0)
+            <li>No products in cart</li>
+        @else
         <p>Products:</p>
         <ul>
             @foreach ($products as $product)
@@ -31,5 +34,6 @@
             @endforeach
         </ul>
         <p>Total: ${{ $total }}</p>
+        @endif
     </body>
 </html>

@@ -10,9 +10,18 @@ use App\Models\Game;
 
 class ShoppingCartController extends Controller
 {
+    private $isLoggedIn = false;
+
     public function index()
     {
-        $buyerId = auth_user()->id;
+        if (auth_user()->role != Buyer::class) {
+            $buyerId = auth_user()->id;
+            $isLoggedIn = true;
+        } else if (auth_user()) {
+            $isLoggedIn = true;
+        } else {
+            return redirect()->route('home');
+        }
         $shoppingCartItems = ShoppingCart::where('buyer', $buyerId)->get();
         $products = [];
         $total = 0;
@@ -35,19 +44,24 @@ class ShoppingCartController extends Controller
 
     public function increaseQuantity(Request $request)
     {
-        $buyerId = auth_user()->id;
-        $gameId = $request->input('game_id');
+        if ($isLoggedIn = false) {
+            // add to session
 
-        $shoppingCartItem = ShoppingCart::where('buyer', $buyerId)
-                                        ->where('game', $gameId)
-                                        ->first();
-
-        if ($shoppingCartItem) {
-            $shoppingCartItem->quantity += 1;
-            $shoppingCartItem->save();
+        } else {
+            $buyerId = auth_user()->id;
+            $gameId = $request->input('game_id');
+    
+            $shoppingCartItem = ShoppingCart::where('buyer', $buyerId)
+                                            ->where('game', $gameId)
+                                            ->first();
+    
+            if ($shoppingCartItem) {
+                $shoppingCartItem->quantity += 1;
+                $shoppingCartItem->save();
+            }
+    
+            return redirect()->route('shopping_cart');
         }
-
-        return redirect()->route('shopping_cart');
     }
 
     public function decreaseQuantity(Request $request)
