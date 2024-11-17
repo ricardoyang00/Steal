@@ -56,7 +56,7 @@ class ShoppingCartController extends Controller
 
     public function decreaseQuantity(Request $request)
     {
-        $buyerId = session()->get('buyer_id');
+        $buyerId = auth_user()->id;
         $gameId = $request->input('game_id');
 
         $shoppingCartItem = ShoppingCart::where('buyer', $buyerId)

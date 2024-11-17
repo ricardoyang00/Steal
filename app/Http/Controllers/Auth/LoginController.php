@@ -41,9 +41,6 @@ class LoginController extends Controller
             if (Auth::guard($guard)->attempt($credentials, $request->filled('remember'))) {
                 $request->session()->regenerate();
                 
-                $user = Auth::guard($guard)->user();
-                $request->session()->put('buyer_id', $user->id);
-
                 return redirect()->intended('/home');
             }
         }
