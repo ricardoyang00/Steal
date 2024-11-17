@@ -1,5 +1,5 @@
 <?php
- 
+
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -19,8 +19,7 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         if (Auth::check()) {
-            //return redirect('/cards');
-            return redirect('/helloworld');
+            return redirect('/home');
         } else {
             return view('auth.login');
         }
@@ -35,14 +34,17 @@ class LoginController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
- 
-        if (Auth::attempt($credentials, $request->filled('remember'))) {
-            $request->session()->regenerate();
- 
-            //return redirect()->intended('/cards');
-            return redirect()->intended('/helloworld');
+
+        $guards = ['web', 'admin'];
+
+        foreach ($guards as $guard) {
+            if (Auth::guard($guard)->attempt($credentials, $request->filled('remember'))) {
+                $request->session()->regenerate();
+                
+                return redirect()->intended('/home');
+            }
         }
- 
+
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
@@ -53,10 +55,13 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        Auth::logout();
+        $guard = is_admin() ? 'admin' : 'web';
+
+        Auth::guard($guard)->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect()->route('login')
             ->withSuccess('You have logged out successfully!');
-    } 
+    }
 }

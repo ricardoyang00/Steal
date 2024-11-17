@@ -7,6 +7,8 @@ use App\Http\Controllers\ItemController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\GameController;
 
 use App\Http\Controllers\ShoppingCartController;
 
@@ -22,12 +24,15 @@ use App\Http\Controllers\ShoppingCartController;
 */
 
 // Home
-Route::redirect('/', '/login');
+Route::redirect('/', '/home');
 
-// example "Hello world"
-Route::get('/helloworld', function () {
-    return view('pages/helloworld');
-})->name('helloworld');
+Route::get('/home', function () {
+    return view('pages/home');
+})->name('home');
+
+Route::get('/explore', function () {
+    return view('pages/explore');
+})->name('explore');
 
 // Cards
 Route::controller(CardController::class)->group(function () {
@@ -61,6 +66,20 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('/register', 'register');
 });
 
+<<<<<<< HEAD
 Route::controller(ShoppingCartController::class)->group(function () {
     Route::get('/cart', 'index')->name('shopping_cart');
 });
+=======
+Route::controller(ProfileController::class)->group(function () {
+    Route::get('/profile', 'showProfile')->name('profile');
+    Route::put('/profile/edit', 'update')->name('profile.update');
+    Route::put('/profile', 'updatePassword')->name('profile.updatePassword');
+});
+
+Route::get('/explore', [GameController::class, 'index']);
+
+Route::get('/explore', [GameController::class, 'explore'])->name('explore');
+
+Route::get('/game/{id}', [GameController::class, 'show'])->name('game.details');
+>>>>>>> main
