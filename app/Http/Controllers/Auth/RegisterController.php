@@ -36,31 +36,55 @@ class RegisterController extends Controller
             'birth_date' => 'required_if:user_type,buyer|date|before:today',
         ]);
 
-        $user = User::create([
-            'username' => $request->username,
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'is_active' => true,
-        ]);
+        if (is_admin() && $request->user_type == 'admin') {
+            $admin = Administrator::create([
+                'username' => $request->username,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+        } else {
+            $user = User::create([
+                'username' => $request->username,
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'is_active' => true,
+            ]);
 
-        if ($request->user_type == 'buyer') {
-            $user->buyer()->create([
-                'id' => $user->id,
-                'nif' => null,
-                'birth_date' => $request->birth_date,
-                'coins' => 0,
-            ]);
-        } else if ($request->user_type == 'seller') {
-            $user->seller()->create([
-                'id' => $user->id,
-            ]);
+            if ($request->user_type == 'buyer') {
+                $user->buyer()->create([
+                    'id' => $user->id,
+                    'nif' => null,
+                    'birth_date' => $request->birth_date,
+                    'coins' => 0,
+                ]);
+            } else if ($request->user_type == 'seller') {
+                $user->seller()->create([
+                    'id' => $user->id,
+                ]);
+            }
         }
 
+        // Check if the request is from an admin
+        if (is_admin()) {
+            return redirect()->route('admin.users.search')
+                ->withSuccess('Account created successfully!');
+        }
+
+        // Immediate login for regular user registration
         $credentials = $request->only('email', 'password');
         Auth::attempt($credentials);
         $request->session()->regenerate();
         return redirect()->route('helloworld')
             ->withSuccess('You have successfully registered & logged in!');
+    }
+
+    /**
+     * Display the admin registration form.
+     */
+    public function showAdminRegistrationForm(): View
+    {
+        return view('admin.register');
     }
 }
