@@ -43,17 +43,18 @@ class LoginController extends Controller
             if (Auth::guard($guard)->attempt($credentials, $request->filled('remember'))) {
                 $request->session()->regenerate();
                 
-                // Retrieve the shopping cart from the session
-                $shoppingCart = $request->session()->get('shopping_cart', []);
-                // Optionally, you can log the shopping cart for debugging
-                \Log::info('Shopping Cart:', $shoppingCart);
-                $shoppingCartController = new ShoppingCartController();
-                $shoppingCartController->mergeShoppingCart($request, $shoppingCart);
-                
+                if (auth_user()->buyer) {
+                    $buyerId = auth_user()->id;
+                    $shoppingCart = $request->session()->get('shopping_cart', []);
+                    $shoppingCartController = new ShoppingCartController();
+                    $shoppingCartController->mergeShoppingCart($request, $shoppingCart);
+                }
                 $request->session()->forget('shopping_cart');
+                
                 return redirect()->intended('/home');
             }
         }
+        
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',

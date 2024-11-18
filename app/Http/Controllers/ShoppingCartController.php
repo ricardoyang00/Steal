@@ -15,7 +15,7 @@ class ShoppingCartController extends Controller
     public function index()
     {
         if (auth_user()){
-            if (auth_user()->buyer()) {
+            if (auth_user()->buyer) {
                 $buyerId = auth_user()->id;
                 $shoppingCartItems = ShoppingCart::where('buyer', $buyerId)->get();
             } else {
