@@ -59,10 +59,12 @@ class ShoppingCartController extends Controller
         return view('pages.shopping_cart', ['products' => $products, 'total' => $total]);
     }
 
-    public function addProduct(Request $request, $gameId, $quantity = 1)
+    public function addProduct(Request $request, $quantity = 1)
     {
         if (!auth_user()) {
             $shoppingCart = $request->session()->get('shopping_cart', []);
+
+            $gameId = $request->input('game_id');
 
             if (isset($shoppingCart[$gameId])) {
                 $shoppingCart[$gameId]['quantity'] += 1;
@@ -80,13 +82,19 @@ class ShoppingCartController extends Controller
 
             $request->session()->put('shopping_cart', $shoppingCart);
 
+            return response()->json([
+                'success' => true,
+            ]);
+
         } else {
             $buyerId = auth_user()->id;
-    
+
+            $gameId = $request->input('game_id');
+
             $shoppingCartItem = ShoppingCart::where('buyer', $buyerId)
                                             ->where('game', $gameId)
                                             ->first();
-    
+
             if ($shoppingCartItem) {
                 $shoppingCartItem->quantity += $quantity;
                 $shoppingCartItem->save();
@@ -97,6 +105,10 @@ class ShoppingCartController extends Controller
                 $shoppingCartItem->quantity = $quantity;
                 $shoppingCartItem->save();
             }
+
+            return response()->json([
+                'success' => true,
+            ]);
     
         }
     }

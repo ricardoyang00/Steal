@@ -31,13 +31,17 @@
                 </h1>
                 @if (Auth::check() || Auth::guard('admin')->check())
                     <div class="profile">
-                        <a class="button" href="{{ url('/logout') }}"> Logout </a>
-                        <a class="profile-link" href="{{ url('/profile') }}">
-                            <i class="fas fa-user"></i> <span>{{ auth_user()->username }}</span>
-                        </a>
+                        @if (auth_user()->buyer)
+                            <a class="button" href="{{ url('/cart') }}"> [Cart Icon Here] </a>
+                        @endif
+                            <a class="button" href="{{ url('/logout') }}"> Logout </a>
+                            <a class="profile-link" href="{{ url('/profile') }}">
+                                <i class="fas fa-user"></i> <span>{{ auth_user()->username }}</span>
+                            </a>
                     </div>
                 @else
                     <div class="auth-buttons">
+                        <a class="button" href="{{ url('/cart') }}"> [Cart Icon Here] </a>
                         <a class="button" href="{{ url('/login') }}">Login</a>
                         <a class="button" href="{{ url('/register') }}">Sign Up</a>
                     </div>

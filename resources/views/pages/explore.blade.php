@@ -38,4 +38,6 @@
 <div class="d-flex justify-content-center mt-4">
     {{ $games->appends(request()->except('page'))->links() }}
 </div>
+
+<script src="{{ asset('js/cart/add-to-cart.js') }}" defer></script>
 @endsection
