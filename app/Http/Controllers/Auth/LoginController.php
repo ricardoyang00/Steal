@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\View\View;
 
+use App\Http\Controllers\ShoppingCartController;
+
 class LoginController extends Controller
 {
 
@@ -41,9 +43,18 @@ class LoginController extends Controller
             if (Auth::guard($guard)->attempt($credentials, $request->filled('remember'))) {
                 $request->session()->regenerate();
                 
+                if (auth_user()->buyer) {
+                    $buyerId = auth_user()->id;
+                    $shoppingCart = $request->session()->get('shopping_cart', []);
+                    $shoppingCartController = new ShoppingCartController();
+                    $shoppingCartController->mergeShoppingCart($request, $shoppingCart);
+                }
+                $request->session()->forget('shopping_cart');
+                
                 return redirect()->intended('/home');
             }
         }
+        
 
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
