@@ -56,7 +56,7 @@ class ShoppingCartController extends Controller
         return view('pages.shopping_cart', ['products' => $products, 'total' => $total]);
     }
 
-    public function addProduct(Request $request, $gameId)
+    public function addProduct(Request $request, $gameId, $quantity = 1)
     {
         if (!auth_user()) {
             $shoppingCart = $request->session()->get('shopping_cart', []);
@@ -85,13 +85,13 @@ class ShoppingCartController extends Controller
                                             ->first();
     
             if ($shoppingCartItem) {
-                $shoppingCartItem->quantity += 1;
+                $shoppingCartItem->quantity += $quantity;
                 $shoppingCartItem->save();
             } else {
                 $shoppingCartItem = new ShoppingCart();
                 $shoppingCartItem->buyer = $buyerId;
                 $shoppingCartItem->game = $gameId;
-                $shoppingCartItem->quantity = 1;
+                $shoppingCartItem->quantity = $quantity;
                 $shoppingCartItem->save();
             }
     
@@ -207,31 +207,13 @@ class ShoppingCartController extends Controller
         }
     }
 
-    public function mergeShoppingCart(Request $request)
+    public function mergeShoppingCart(Request $request, $shoppingCart)
     {
         $buyerId = auth_user()->id;
-        $shoppingCart = $request->session()->get('shopping_cart', []);
-
-        foreach ($shoppingCart as $item) {
-            $gameId = $item['id'];
-
-            $shoppingCartItem = ShoppingCart::where('buyer', $buyerId)
-                                            ->where('game', $gameId)
-                                            ->first();
-
-            if ($shoppingCartItem) {
-                $shoppingCartItem->quantity += $item['quantity'];
-                $shoppingCartItem->save();
-            } else {
-                $shoppingCartItem = new ShoppingCart();
-                $shoppingCartItem->buyer = $buyerId;
-                $shoppingCartItem->game = $gameId;
-                $shoppingCartItem->quantity = $item['quantity'];
-                $shoppingCartItem->save();
-            }
+        
+        foreach ($shoppingCart as $product) {
+            $this->addProduct($request, $product['id'], $product['quantity']);
         }
-
-        $request->session()->put('shopping_cart', []);
 
     }
 

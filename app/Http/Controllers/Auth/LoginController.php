@@ -42,13 +42,15 @@ class LoginController extends Controller
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->attempt($credentials, $request->filled('remember'))) {
                 $request->session()->regenerate();
-                $request->session()->forget('shopping_cart');
-
-                if ($guard === 'buyer') {
-                    $shoppingCartController = new ShoppingCartController();
-                    $shoppingCartController->mergeShoppingCart($request);
-                }
                 
+                // Retrieve the shopping cart from the session
+                $shoppingCart = $request->session()->get('shopping_cart', []);
+                // Optionally, you can log the shopping cart for debugging
+                \Log::info('Shopping Cart:', $shoppingCart);
+                $shoppingCartController = new ShoppingCartController();
+                $shoppingCartController->mergeShoppingCart($request, $shoppingCart);
+                
+                $request->session()->forget('shopping_cart');
                 return redirect()->intended('/home');
             }
         }
