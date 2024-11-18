@@ -11,7 +11,7 @@
         <div class="col-md-6">
             <h1>{{ $game->name }}</h1>
             <p><strong>Description:</strong> {{ $game->description }}</p>
-            <p><strong>Owner:</strong> {{ $game->seller->name ?? 'Unknown Seller' }}</p>
+            <p><strong>Owner:</strong> {{ $game->seller->name }}</p>
             <p><strong>Minimum Age:</strong> {{ $game->minimum_age }}</p>
             <p><strong>Price:</strong> ${{ $game->price }}</p>
             <p><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
@@ -20,7 +20,7 @@
             <ul>
                 @foreach($game->gamePlatforms as $gamePlatform)
                     @if($gamePlatform->platform)
-                        <li>{{ $gamePlatform->platform }}</li>
+                        <li>{{ $gamePlatform->platform->name ?? 'If not displaying, something is wrong!' }}</li> 
                     @else
                         <li>Platform Not Found</li>
                     @endif

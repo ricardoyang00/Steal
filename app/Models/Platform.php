@@ -13,8 +13,17 @@ class Platform extends Model
 
     public $timestamps = false;
 
+    protected $fillable = [
+        'name',
+    ];
+
     public function gamePlatforms()
     {
         return $this->hasMany(GamePlatform::class, 'platform', 'id');
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->name ?? 'Unknown Platform';
     }
 }
