@@ -33,4 +33,9 @@ class Game extends Model
     {
         return $this->belongsToMany(ShoppingCart::class, 'ShoppingCartGame', 'game_id', 'shopping_cart_id');
     }
+
+    public function gamePlatforms()
+    {
+        return $this->hasMany(GamePlatform::class, 'game', 'id');
+    }
 }

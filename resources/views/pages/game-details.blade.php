@@ -15,6 +15,18 @@
             <p><strong>Minimum Age:</strong> {{ $game->minimum_age }}</p>
             <p><strong>Price:</strong> ${{ $game->price }}</p>
             <p><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
+
+            <p><strong>Available Platforms:</strong></p>
+            <ul>
+                @foreach($game->gamePlatforms as $gamePlatform)
+                    @if($gamePlatform->platform)
+                        <li>{{ $gamePlatform->platform }}</li>
+                    @else
+                        <li>Platform Not Found</li>
+                    @endif
+                @endforeach
+            </ul>
+
             <a href="#" class="btn btn-primary">Buy Now</a>
         </div>
     </div>

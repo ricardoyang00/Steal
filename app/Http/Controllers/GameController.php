@@ -40,7 +40,7 @@ class GameController extends Controller
 
     public function show($id)
     {
-        $game = Game::with('seller')->findOrFail($id);
+        $game = Game::with(['seller', 'gamePlatforms.platform:id,name'])->findOrFail($id);
         return view('pages.game-details', compact('game'));
     }
 }
