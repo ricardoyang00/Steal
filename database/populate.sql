@@ -669,8 +669,8 @@ insert into GameStock (game, quantity) values (50, 0);
 
 -- PLATFORM
 insert into Platform (name) values ('Steam');
-insert into Platform (name) values ('Origin');
-insert into Platform (name) values ('Uplay');
+insert into Platform (name) values ('EA');
+insert into Platform (name) values ('UbiSoft');
 insert into Platform (name) values ('Epic Games');
 
 

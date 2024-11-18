@@ -33,7 +33,7 @@ class GameController extends Controller
             $gamesQuery->orderBy('name', 'asc');    // default : all games sorted alphabetically
         }
         
-        $games = $gamesQuery->paginate(6);
+        $games = $gamesQuery->with('gamePlatforms')->paginate(6);
 
         return view('pages.explore', compact('games', 'query', 'sort'));
     }
