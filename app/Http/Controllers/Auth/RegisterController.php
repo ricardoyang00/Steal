@@ -79,12 +79,4 @@ class RegisterController extends Controller
         return redirect()->route('helloworld')
             ->withSuccess('You have successfully registered & logged in!');
     }
-
-    /**
-     * Display the admin registration form.
-     */
-    public function showAdminRegistrationForm(): View
-    {
-        return view('admin.register');
-    }
 }
