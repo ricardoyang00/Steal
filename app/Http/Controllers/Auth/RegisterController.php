@@ -13,6 +13,8 @@ use Illuminate\View\View;
 use App\Models\User;
 use App\Models\Administrator;
 
+use App\Rules\UniqueEmail;
+
 class RegisterController extends Controller
 {
     /**
@@ -32,7 +34,7 @@ class RegisterController extends Controller
             'user_type' => 'required|in:buyer,seller,admin',
             'username' => 'required|string|max:15|unique:users',
             'name' => 'required|string|max:30',
-            'email' => 'required|email|max:320|unique:users',
+            'email' => ['required', 'email', 'max:320', new UniqueEmail],
             'password' => 'required|min:8|confirmed',
         ];
     
