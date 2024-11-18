@@ -38,4 +38,19 @@ class Game extends Model
     {
         return $this->hasMany(GamePlatform::class, 'game', 'id');
     }
+
+    public function gameCategories()
+    {
+        return $this->hasMany(GameCategory::class, 'game', 'id');
+    }
+
+    public function gameLanguages()
+    {
+        return $this->hasMany(GameLanguage::class, 'game', 'id');
+    }
+
+    public function gamePlayers()
+    {
+        return $this->hasMany(GamePlayer::class, 'game', 'id');
+    }
 }
