@@ -14,8 +14,10 @@
       function toggleBuyerFields() {
           if (userTypeSelect.value === 'buyer') {
               buyerFields.style.display = 'block';
+              birthDateInput.setAttribute('required', 'required');
           } else {
               buyerFields.style.display = 'none';
+              birthDateInput.removeAttribute('required');
           }
       }
   
@@ -84,7 +86,7 @@
 
     <div id="buyer_fields">
         <label for="birth_date">Birth Date</label>
-        <input id="birth_date" type="date" name="birth_date" value="{{ old('birth_date') }}" required>
+        <input id="birth_date" type="date" name="birth_date" value="{{ old('birth_date') }}">
         @if ($errors->has('birth_date'))
           <span class="error">
               {{ $errors->first('birth_date') }}
