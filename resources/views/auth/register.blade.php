@@ -14,8 +14,10 @@
       function toggleBuyerFields() {
           if (userTypeSelect.value === 'buyer') {
               buyerFields.style.display = 'block';
+              birthDateInput.setAttribute('required', 'required');
           } else {
               buyerFields.style.display = 'none';
+              birthDateInput.removeAttribute('required');
           }
       }
   
@@ -31,10 +33,15 @@
 <form method="POST" action="{{ route('register') }}">
     {{ csrf_field() }}
 
-    <label for="user_type">Register as</label>
+    <label for="user_type">
+      {{ is_admin() ? 'Create' : 'Register as' }}
+    </label>
     <select id="user_type" name="user_type" required>
         <option value="buyer" {{ old('user_type') == 'buyer' ? 'selected' : '' }}>Buyer</option>
         <option value="seller" {{ old('user_type') == 'seller' ? 'selected' : '' }}>Seller</option>
+        @if (is_admin())
+          <option value="admin" {{ old('user_type') == 'admin' ? 'selected' : '' }}>Admin</option>
+        @endif
     </select>
     @if ($errors->has('user_type'))
       <span class="error">
@@ -79,7 +86,7 @@
 
     <div id="buyer_fields">
         <label for="birth_date">Birth Date</label>
-        <input id="birth_date" type="date" name="birth_date" value="{{ old('birth_date') }}" required>
+        <input id="birth_date" type="date" name="birth_date" value="{{ old('birth_date') }}">
         @if ($errors->has('birth_date'))
           <span class="error">
               {{ $errors->first('birth_date') }}
@@ -87,7 +94,9 @@
         @endif
     </div>
 
-    <button type="submit">Register</button>
+    <button type="submit">
+      {{ is_admin() ? 'Create' : 'Register' }}
+    </button>
 </form>
 
 @endsection

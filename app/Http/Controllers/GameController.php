@@ -33,14 +33,15 @@ class GameController extends Controller
             $gamesQuery->orderBy('name', 'asc');    // default : all games sorted alphabetically
         }
         
-        $games = $gamesQuery->paginate(6);
+        $games = $gamesQuery->with('gamePlatforms')->paginate(6);
 
         return view('pages.explore', compact('games', 'query', 'sort'));
     }
 
     public function show($id)
     {
-        $game = Game::with('seller')->findOrFail($id);
+        $game = Game::with(['seller', 'gamePlatforms', 'gameCategories', 'gameLanguages', 'gamePlayers'])->find($id);
+    
         return view('pages.game-details', compact('game'));
     }
 }

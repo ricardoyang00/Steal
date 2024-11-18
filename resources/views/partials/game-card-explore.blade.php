@@ -13,6 +13,8 @@
                             {{ $game->name }}
                         </a>
                     </h5>
+                    @foreach($game->gamePlatforms as $gamePlatform)
+                    <img src="{{ asset('images/platform_logos/' . $gamePlatform->platform . '.svg') }}" alt="{{ $gamePlatform->platform }} logo" class="img-fluid" style="width: 20px; height: auto;">                    @endforeach
                     <p>{{ \Carbon\Carbon::parse($game->release_date)->format('d M, Y') }}</p>
                     <p class="card-text"><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
                 </div>

@@ -1,77 +1,72 @@
-# ER: Requirements Specification Component
+# EAP: Architecture Specification and Prototype
 
 > Project vision.
 
-## A1: Project Name
+## A7: Web Resources Specification
 
-> Goals, business context and environment.  
-> Motivation.  
-> Main features.  
-> User profiles.
+> Brief presentation of the artifact's goals.
 
+### 1. Overview
 
----
+> Identify and overview the modules that will be part of the application.  
 
+### 2. Permissions
 
-## A2: Actors and User stories
+> Define the permissions used by each module, necessary to access its data and features.  
 
-> Brief presentation of the artifact goals.
+### 3. OpenAPI Specification
 
+> OpenAPI specification in YAML format to describe the vertical prototype's web resources.
 
-### 1. Actors
-
-> Diagram identifying actors and their relationships.  
-> Table identifying actors, including a brief description.
+> Link to the `a7_openapi.yaml` file in the group's repository.
 
 
-### 2. User Stories
+```yaml
+openapi: 3.0.0
 
-> User stories organized by actor.  
-> For each actor, a table containing a line for each user story, and for each user story: an identifier, a name, a priority, and a description (following the recommended pattern).
-
-#### 2.1. Actor 1
-
-#### 2.2. Actor 2
-
-#### 2.N. Actor n
-
-
-### 3. Supplementary Requirements
-
-> Section including business rules, technical requirements, and restrictions.  
-> For each subsection, a table containing identifiers, names, and descriptions for each requirement.
-
-#### 3.1. Business rules
-
-#### 3.2. Technical requirements
-
-#### 3.3. Restrictions
-
+...
+```
 
 ---
 
 
-## A3: Information Architecture
+## A8: Vertical prototype
 
 > Brief presentation of the artifact goals.
 
+### 1. Implemented Features
 
-### 1. Sitemap
+#### 1.1. Implemented User Stories
 
-> Sitemap presenting the overall structure of the web application.  
-> Each page must be identified in the sitemap.  
-> Multiple instances of the same page (e.g. student profile in SIGARRA) are presented as page stacks.
+> Identify the user stories that were implemented in the prototype.  
 
+| User Story reference | Name      | Priority    | Responsible        | Description                                           |
+| -------------------- | --------- | ----------- | ------------------ | ----------------------------------------------------- |
+| US01                 | Name of the user story | Priority of the user story | Main responsible by the implementation | Description of the user story |
 
-### 2. Wireframes
+...
 
-> Wireframes for, at least, two main pages of the web application.
-> Do not include trivial use cases (e.g. about page, contacts).
+#### 1.2. Implemented Web Resources
 
+> Identify the web resources that were implemented in the prototype.  
 
-#### UIxx: Page Name
+> Module M01: Module Name  
 
-#### UIxx: Page Name
+| Web Resource Reference | URL                            |
+| ---------------------- | ------------------------------ |
+| R01: Web resource name | URL to access the web resource |
+
+...
+
+> Module M02: Module Name  
+
+...
+
+### 2. Prototype
+
+> Command to start the Docker image from the group's Container Registry.
+> User credentials necessary to test all features.
+> Link to the source code in the group's Git repository.
 
 
 ---
@@ -81,11 +76,11 @@
 
 Changes made to the first submission:
 1. Item 1
-1. ...
+1. ..
 
 ***
 GROUPYYgg, DD/MM/20YY
-
+ 
 * Group member 1 name, email (Editor)
 * Group member 2 name, email
 * ...

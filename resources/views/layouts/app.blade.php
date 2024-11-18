@@ -34,10 +34,14 @@
                         @if (auth_user()->buyer)
                             <a class="button" href="{{ url('/cart') }}"> [Cart Icon Here] </a>
                         @endif
-                            <a class="button" href="{{ url('/logout') }}"> Logout </a>
-                            <a class="profile-link" href="{{ url('/profile') }}">
-                                <i class="fas fa-user"></i> <span>{{ auth_user()->username }}</span>
-                            </a>
+                        @if (is_admin())
+                            <a class="button" href="{{ url('/register') }}">Create Account</a>
+                            <a class="button" href="{{ route('admin.users.search') }}">Manage Users</a>
+                        @endif
+                        <a class="button" href="{{ url('/logout') }}"> Logout </a>
+                        <a class="profile-link" href="{{ url('/profile') }}">
+                            <i class="fas fa-user"></i> <span>{{ auth_user()->username }}</span>
+                        </a>
                     </div>
                 @else
                     <div class="auth-buttons">
