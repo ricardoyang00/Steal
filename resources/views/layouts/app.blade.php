@@ -13,10 +13,9 @@
         <!-- Styles -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
         <!-- <link href="{{ url('css/milligram.min.css') }}" rel="stylesheet"> -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <link href="{{ url('css/app.css') }}" rel="stylesheet">
         <link href="{{ url('css/register_login.css') }}" rel="stylesheet">
+        <link href="{{ url('css/explore_page.css') }}" rel="stylesheet">
         <script type="text/javascript">
             // Fix for Firefox autofocus CSS bug
             // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951

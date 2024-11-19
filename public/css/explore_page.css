@@ -1,0 +1,135 @@
+/* General Card Styling */
+.game-card {
+    background-color: #3b3b3b;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    color: var(--text-color);
+    display: flex;
+    align-items: stretch;
+    gap: 16px;
+    position: relative; 
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.game-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* Thumbnail */
+.game-thumbnail {
+    flex-shrink: 0;
+}
+
+.game-card img.card-img-top {
+    border-radius: 4px;
+    width: 250px;
+    height: auto;
+}
+
+/* Game Details */
+.game-details {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 100%; 
+}
+
+.game-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.game-title a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.game-title a:hover {
+    color: var(--secondary-text-color);
+}
+
+/* Platforms and Release Date */
+.game-platform-release-date {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.platform-logo {
+    width: 20px;
+    height: auto;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.platform-logo:hover {
+    opacity: 1;
+}
+
+.game-platform-release-date a {
+    font-size: 0.9rem;
+    color: var(--game-detail-text);
+}
+
+/* Rating */
+.game-rating {
+    font-size: 0.9rem;
+    color: var(--game-detail-text);
+    margin-bottom: 8px;
+}
+
+/* Price and Add to Cart Section */
+.game-price-add-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+}
+
+.game-price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+
+.btn-add-to-cart {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: var(--text-color);
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-add-to-cart:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .game-price-add-cart {
+        position: static;
+        align-items: flex-start;
+        margin-top: 16px;
+    }
+    .game-thumbnail img {
+        width: 100%;
+    }
+}
