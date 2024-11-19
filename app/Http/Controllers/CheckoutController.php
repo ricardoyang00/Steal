@@ -57,7 +57,7 @@ class checkoutController extends Controller
             DB::beginTransaction();
             try {
                 $payment = Payment::create([
-                    'method' => $request->input('payment_method'),
+                    'method' => session('payment_method'),
                     'value' => $total,
                 ]);
                 $order = Orders::create([
@@ -80,6 +80,7 @@ class checkoutController extends Controller
                         'game' => $canceledItem['game'],
                     ]);
                 }
+                session()->forget('payment_method');
                 ShoppingCart::where('buyer', $buyer->id)->delete();
                 DB::commit();
                 return view('pages.order_completed', ['purchasedItems' => $purchasedItems, 'canceledItems' => $canceledItems, 'total' => $total]);
