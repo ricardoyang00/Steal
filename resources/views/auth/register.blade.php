@@ -4,14 +4,19 @@
 
 <script src="{{ asset('js/register/register.js') }}" defer></script>
 
-<div class="form-container register">
+@if ($errors->any())
+    <div class="error">
+        {{ $errors->first() }}
+    </div>
+@endif
+
+<div class="form-container register-page">
 
 <form method="POST" action="{{ route('register') }}">
     {{ csrf_field() }}
 
-    <label for="user_type">
-      {{ is_admin() ? 'Create' : 'Register as' }}
-    </label>
+    <h1>Sign Up</h1>
+
     <select id="user_type" name="user_type" required>
         <option value="buyer" {{ old('user_type') == 'buyer' ? 'selected' : '' }}>Buyer</option>
         <option value="seller" {{ old('user_type') == 'seller' ? 'selected' : '' }}>Seller</option>
@@ -19,60 +24,41 @@
           <option value="admin" {{ old('user_type') == 'admin' ? 'selected' : '' }}>Admin</option>
         @endif
     </select>
-    @if ($errors->has('user_type'))
-      <span class="error">
-          {{ $errors->first('user_type') }}
-      </span>
-    @endif
-
-    <label for="username">Username</label>
-    <input id="username" type="text" name="username" value="{{ old('username') }}" required autofocus>
-    @if ($errors->has('username'))
-      <span class="error">
-          {{ $errors->first('username') }}
-      </span>
-    @endif
-
-    <label for="name">Name</label>
-    <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
-    @if ($errors->has('name'))
-      <span class="error">
-          {{ $errors->first('name') }}
-      </span>
-    @endif
-
-    <label for="email">E-Mail Address</label>
-    <input id="email" type="email" name="email" value="{{ old('email') }}" required>
-    @if ($errors->has('email'))
-      <span class="error">
-          {{ $errors->first('email') }}
-      </span>
-    @endif
-
-    <label for="password">Password</label>
-    <input id="password" type="password" name="password" required>
-    @if ($errors->has('password'))
-      <span class="error">
-          {{ $errors->first('password') }}
-      </span>
-    @endif
     
-    <label for="password-confirm">Confirm Password</label>
-    <input id="password-confirm" type="password" name="password_confirmation" required>
+    <div class="input-wrapper">
+      <input id="username" type="text" name="username" value="{{ old('username') }}" required>
+      <label for="username" class="placeholder">Username</label>
+    </div>
 
+    <div class="input-wrapper">
+      <input id="name" type="text" name="name" value="{{ old('name') }}" required>
+      <label for="name" class="placeholder">Name</label>
+    </div>
+    
+    <div class="input-wrapper">
+      <input id="email" type="text" name="email" value="{{ old('email') }}" required>
+      <label for="email" class="placeholder">E-mail</label>
+    </div>
+    
+    <div class="input-wrapper">
+      <input id="password" type="password" name="password" required>
+      <label for="password" class="placeholder">Password</label>
+    </div>
+    
+    <div class="input-wrapper">
+      <input id="password-confirm" type="password" name="password_confirmation" required>
+      <label for="password-confirm" class="placeholder">Confirm Password</label>
+    </div>
+    
     <div id="buyer_fields">
-        <label for="birth_date">Birth Date</label>
-        <input id="birth_date" type="date" name="birth_date" value="{{ old('birth_date') }}">
-        @if ($errors->has('birth_date'))
-          <span class="error">
-              {{ $errors->first('birth_date') }}
-          </span>
-        @endif
+      <input id="birth_date" type="date" name="birth_date" value="{{ old('birth_date') }}">
     </div>
 
     <button type="submit">
       {{ is_admin() ? 'Create' : 'Register' }}
     </button>
+
+    <a class="button button-outline" href="{{ route('login') }}">Sign In</a>
 </form>
 
 </div>

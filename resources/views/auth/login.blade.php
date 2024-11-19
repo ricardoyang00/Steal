@@ -22,7 +22,7 @@
     <h1>Sign In</h1>
 
     <div class="input-wrapper">
-        <input id="email" type="string" name="email" value="{{ old('email') }}" required>
+        <input id="email" type="text" name="email" value="{{ old('email') }}" required>
         <label for="email" class="placeholder">E-mail</label>
     </div>
 
