@@ -32,11 +32,6 @@
                     </h1>
                     @if (auth_user())
                         <div class="profile-buttons">
-                            @if (auth_user()->buyer)
-                                <a class="button" href="{{ url('/cart') }}">
-                                    <i class="fas fa-shopping-cart"></i> Cart
-                                </a>
-                            @endif
                             @if (is_admin())
                                 <a class="button" href="{{ url('/register') }}">Create Account</a>
                                 <a class="button" href="{{ route('admin.users.search') }}">Manage Users</a>
@@ -44,6 +39,14 @@
                             <a class="button" href="{{ url('/logout') }}"> Logout </a>
                             <a class="profile-link" href="{{ url('/profile') }}">
                                 <i class="fas fa-user"></i> <span>{{ auth_user()->username }}</span>
+                            </a>
+                            @if (auth_user()->buyer)
+                                <a class="icon-button" href="{{ url('/cart') }}">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                            @endif
+                            <a class="icon-button">
+                                <i class="fa-regular fa-bell"></i>
                             </a>
                         </div>
                     @else
