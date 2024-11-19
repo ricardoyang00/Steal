@@ -1,34 +1,8 @@
 @extends('layouts.app')
 
-{{--
-@section('scripts')
-<script src="{{ asset('js/register.js') }}"></script>
-@endsection
---}}
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-      var userTypeSelect = document.getElementById('user_type');
-      var buyerFields = document.getElementById('buyer_fields');
-  
-      function toggleBuyerFields() {
-          if (userTypeSelect.value === 'buyer') {
-              buyerFields.style.display = 'block';
-              birthDateInput.setAttribute('required', 'required');
-          } else {
-              buyerFields.style.display = 'none';
-              birthDateInput.removeAttribute('required');
-          }
-      }
-  
-      userTypeSelect.addEventListener('change', toggleBuyerFields);
-  
-      // Initial toggle based on the selected value
-      toggleBuyerFields();
-  });
-</script>
-
 @section('content')
+
+<script src="{{ asset('js/register/register.js') }}" defer></script>
 
 <form method="POST" action="{{ route('register') }}">
     {{ csrf_field() }}
