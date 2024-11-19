@@ -1,4 +1,7 @@
-/* Reset */
+.logo-icon {
+  margin-left: 10px;
+}
+
 body, h1, a, button, input {
   margin: 0;
   padding: 0;
@@ -44,6 +47,15 @@ header .profile, header .auth-buttons {
   display: flex;
   gap: 10px;
   align-items: center;
+  .button {
+    border-radius: 20px;
+  }
+  .button[href*="/register"] {
+    background-color: #0066ff;
+  }
+  .button[href*="/register"]:hover {
+    background-color: #0056cc;
+  }
 }
 
 header .button, header .profile-link {
@@ -51,12 +63,25 @@ header .button, header .profile-link {
   color: #ffffff;
   padding: 8px 12px;
   border-radius: 4px;
-  font-size: 0.9em;
+  font-size: 1em;
   transition: background-color 0.2s;
 }
 
 header .button:hover, header .profile-link:hover {
   background-color: #444444;
+}
+
+header .icon-button {
+  background: none;
+  color: #ffffff;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 1.2em;
+  transition: color 0.2s;
+}
+
+header .icon-button:hover {
+  color: #bbbbbb;
 }
 
 /* Navbar */
@@ -76,7 +101,7 @@ header .button:hover, header .profile-link:hover {
 
 .navbar .btn {
   color: #ffffff;
-  font-size: 1em;
+  font-size: 1.2em;
   margin-right: 10px;
   padding: 8px 12px;
   border-radius: 4px;

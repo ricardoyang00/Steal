@@ -27,7 +27,7 @@
                 <header>
                     <h1>
                         <a href="{{ url('/home') }}">
-                            <img src="{{ asset('images/logo.svg') }}" alt="Steal!" /*style="filter: invert(1) brightness(100%);"*/>
+                            <img src="{{ asset('images/logo.svg') }}" alt="Steal!" class="logo-icon">
                         </a>
                     </h1>
                     @if (auth_user())
@@ -48,11 +48,14 @@
                         </div>
                     @else
                         <div class="auth-buttons">
-                            <a class="button" href="{{ url('/cart') }}">
-                                <i class="fas fa-shopping-cart"></i> Cart
-                            </a>
                             <a class="button" href="{{ url('/login') }}">Login</a>
                             <a class="button" href="{{ url('/register') }}">Sign Up</a>
+                            <a class="icon-button" href="{{ url('/cart') }}">
+                                <i class="fas fa-shopping-cart"></i>
+                            </a>
+                            <a class="icon-button">
+                                <i class="fa-regular fa-bell"></i>
+                            </a>
                         </div>
                     @endif
                 </header>
