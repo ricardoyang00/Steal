@@ -83,7 +83,7 @@ Route::get('/add_test_products', [ShoppingCartController::class, 'addTestProduct
 
 
 // Authenticated User
-Route::middleware('auth')->controller(ProfileController::class)->group(function () {
+Route::controller(ProfileController::class)->group(function () {
     Route::get('/profile', 'showProfile')->name('profile');
     Route::put('/profile/edit', 'update')->name('profile.update');
     Route::put('/profile', 'updatePassword')->name('profile.updatePassword');

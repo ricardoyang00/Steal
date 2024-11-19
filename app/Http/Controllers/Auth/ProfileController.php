@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,9 +15,13 @@ use App\Models\User;
 
 class ProfileController extends Controller
 {
-    public function showProfile(): View
+    public function showProfile()
     {
-        return view('pages.profile');
+        if (auth_user()) {
+            return view('pages.profile');
+        } else {
+            return redirect('/login');
+        }
     }
 
     public function update(Request $request)

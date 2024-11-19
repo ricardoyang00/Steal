@@ -18,7 +18,7 @@ use App\Rules\UniqueEmail;
 class RegisterController extends Controller
 {
     /**
-     * Display a login form.
+     * Display a register form.
      */
     public function showRegistrationForm(): View
     {
