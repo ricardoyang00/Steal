@@ -82,7 +82,7 @@ class checkoutController extends Controller
                 }
                 ShoppingCart::where('buyer', $buyer->id)->delete();
                 DB::commit();
-                return view('pages.checkout', ['purchasedItems' => $purchasedItems, 'canceledItems' => $canceledItems, 'total' => $total]);
+                return view('pages.order_completed', ['purchasedItems' => $purchasedItems, 'canceledItems' => $canceledItems, 'total' => $total]);
             }
             catch (\Exception $e) {
                 DB::rollBack();
@@ -92,4 +92,22 @@ class checkoutController extends Controller
         }
 
     }
+
+    public function selectPaymentMethod()
+    {
+        $paymentMethods = PaymentMethod::all();
+        return view('pages.payment.select', compact('paymentMethods'));
+    }
+
+    public function confirmPaymentMethod(Request $request)
+    {
+        $request->validate([
+            'payment_method' => 'required|exists:payment_methods,id',
+        ]);
+
+        session(['payment_method' => $request->input('payment_method')]);
+
+        return redirect()->route('checkout.index');
+    }
+
 }
