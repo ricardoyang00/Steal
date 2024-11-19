@@ -43,7 +43,9 @@ class checkoutController extends Controller
                     'game' => $game->id,
                     'value' => 0.0,
                 ];
+                continue;
             }
+            $availableCDKs = $availableCDKs->slice(0, $cartItem->quantity);
             foreach ($availableCDKs as $cdk) {
                 $purchasedItems[] = [
                     'cdk' => $cdk->id,
@@ -77,7 +79,11 @@ class checkoutController extends Controller
                 foreach ($canceledItems as $canceledItem){
                     $purchase = Purchase::create([
                         'value' => $canceledItem['value'],
-                        'game' => $canceledItem['game'],
+                        'order_' => $order->id,
+                    ]);
+                    CanceledPurchase::create([
+                        'id' => $purchase->id,
+                        'cdk' => $canceledItem['game'],
                     ]);
                 }
                 session()->forget('payment_method');
