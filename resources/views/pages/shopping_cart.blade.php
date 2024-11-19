@@ -3,6 +3,7 @@
 @section('title', 'Cart')
 
 @section('content')
+    <script src="{{ asset('js/cart/cart.js') }}" defer></script>
     <section id="shopping_cart">
         <h1>Shopping Cart</h1>
         @if (count($products) == 0)
@@ -15,9 +16,9 @@
                     <li id="product-{{ $product['id'] }}">
                         {{ $product['name'] }} - ${{ $product['price'] }} 
 
-                        <button class="btn-increase" data-id="{{ $product['id'] }}">+</button>
-                        <span class="prod_quantity">{{ $product['quantity'] }}</span>
                         <button class="btn-decrease" data-id="{{ $product['id'] }}">-</button>
+                        <span class="prod_quantity">{{ $product['quantity'] }}</span>
+                        <button class="btn-increase" data-id="{{ $product['id'] }}">+</button>
                         <button class="btn-remove" data-id="{{ $product['id'] }}">Remove</button>
                     </li>
                 @endforeach
@@ -26,6 +27,5 @@
         </div>
         @endif
         <button onclick="window.location.href = '{{ route('home') }}';">Go Back Home</button>
-        <script src="{{ asset('js/cart/cart.js') }}" defer></script>
     </section>
 @endsection
