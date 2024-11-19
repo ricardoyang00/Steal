@@ -23,7 +23,7 @@
         <div class="col-md-3">
             <div class="d-flex justify-content-between mt-auto">
                 <p class="card-text"><strong>Price:</strong> ${{ number_format($game->price, 2) }}</p>
-                <a href="#" class="btn btn-primary">Buy Now</a>
+                <button id="add-to-cart-{{ $game->id }}" data-id="{{ $game->id }}" class="btn-add-to-cart btn btn-primary">Add to Cart</button>
             </div>
         </div>
     </div>

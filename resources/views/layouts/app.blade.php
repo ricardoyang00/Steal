@@ -31,6 +31,9 @@
                 </h1>
                 @if (Auth::check() || Auth::guard('admin')->check())
                     <div class="profile">
+                        @if (auth_user()->buyer)
+                            <a class="button" href="{{ url('/cart') }}"> [Cart Icon Here] </a>
+                        @endif
                         @if (is_admin())
                             <a class="button" href="{{ url('/register') }}">Create Account</a>
                             <a class="button" href="{{ route('admin.users.search') }}">Manage Users</a>
@@ -42,6 +45,7 @@
                     </div>
                 @else
                     <div class="auth-buttons">
+                        <a class="button" href="{{ url('/cart') }}"> [Cart Icon Here] </a>
                         <a class="button" href="{{ url('/login') }}">Login</a>
                         <a class="button" href="{{ url('/register') }}">Sign Up</a>
                     </div>

@@ -6,35 +6,26 @@
     <section id="shopping_cart">
         <h1>Shopping Cart</h1>
         @if (count($products) == 0)
-            <li>No products in cart</li>
+            <p>No products in the cart.</p>
         @else
-        <p>Products:</p>
-        <ul>
-            @foreach ($products as $product)
-                <li>
-                    {{ $product['name'] }} - ${{ $product['price'] }} 
+        <div id="product_div">
+            <p>Products:</p>
+            <ul id="product_list">
+                @foreach ($products as $product)
+                    <li id="product-{{ $product['id'] }}">
+                        {{ $product['name'] }} - ${{ $product['price'] }} 
 
-                    <form action="{{ route('increase_quantity') }}" method="POST" style="display:inline;">
-                        @csrf
-                        <input type="hidden" name="game_id" value="{{ $product['id'] }}">
-                        <button type="submit">+</button>
-                    </form>
-                    {{ $product['quantity'] }}
-                    <form action="{{ route('decrease_quantity') }}" method="POST" style="display:inline;">
-                        @csrf
-                        <input type="hidden" name="game_id" value="{{ $product['id'] }}">
-                        <button type="submit">-</button>
-                    </form>
-                    <form action="{{ route('remove_product') }}" method="POST" style="display:inline;">
-                        @csrf
-                        <input type="hidden" name="game_id" value="{{ $product['id'] }}">
-                        <button type="submit">Remove</button>
-                    </form>
-                </li>
-            @endforeach
-        </ul>
-        <p>Total: ${{ $total }}</p>
+                        <button class="btn-increase" data-id="{{ $product['id'] }}">+</button>
+                        <span class="prod_quantity">{{ $product['quantity'] }}</span>
+                        <button class="btn-decrease" data-id="{{ $product['id'] }}">-</button>
+                        <button class="btn-remove" data-id="{{ $product['id'] }}">Remove</button>
+                    </li>
+                @endforeach
+            </ul>
+            <p>Total: $<span id="total_price">{{ $total }}</span></p>
+        </div>
         @endif
         <button onclick="window.location.href = '{{ route('home') }}';">Go Back Home</button>
+        <script src="{{ asset('js/cart/cart.js') }}" defer></script>
     </section>
 @endsection

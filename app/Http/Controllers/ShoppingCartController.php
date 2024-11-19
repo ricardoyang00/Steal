@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Buyer;
 use App\Models\Game;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class ShoppingCartController extends Controller
 {
@@ -53,13 +54,19 @@ class ShoppingCartController extends Controller
             }
         }
 
+        ksort($products);
+
         return view('pages.shopping_cart', ['products' => $products, 'total' => $total]);
     }
 
-    public function addProduct(Request $request, $gameId, $quantity = 1)
+    public function addProduct(Request $request, $gameId = null, $quantity = 1)
     {
         if (!auth_user()) {
             $shoppingCart = $request->session()->get('shopping_cart', []);
+
+            if (!$gameId) {
+                $gameId = $request->input('game_id');
+            }
 
             if (isset($shoppingCart[$gameId])) {
                 $shoppingCart[$gameId]['quantity'] += 1;
@@ -77,13 +84,21 @@ class ShoppingCartController extends Controller
 
             $request->session()->put('shopping_cart', $shoppingCart);
 
+            return response()->json([
+                'success' => true,
+            ]);
+
         } else {
             $buyerId = auth_user()->id;
-    
+
+            if (!$gameId) {
+                $gameId = $request->input('game_id');
+            }
+
             $shoppingCartItem = ShoppingCart::where('buyer', $buyerId)
                                             ->where('game', $gameId)
                                             ->first();
-    
+
             if ($shoppingCartItem) {
                 $shoppingCartItem->quantity += $quantity;
                 $shoppingCartItem->save();
@@ -94,6 +109,10 @@ class ShoppingCartController extends Controller
                 $shoppingCartItem->quantity = $quantity;
                 $shoppingCartItem->save();
             }
+
+            return response()->json([
+                'success' => true,
+            ]);
     
         }
     }
@@ -120,22 +139,39 @@ class ShoppingCartController extends Controller
 
             $request->session()->put('shopping_cart', $shoppingCart);
 
-            return redirect()->route('shopping_cart');
+            return response()->json([
+                'success' => true,
+                'new_quantity' => $shoppingCart[$gameId]['quantity'],
+                'new_total' => array_reduce($shoppingCart, function ($carry, $item) {
+                    return $carry + ($item['price'] * $item['quantity']);
+                }, 0),
+            ]);
 
         } else {
             $buyerId = auth_user()->id;
             $gameId = $request->input('game_id');
-    
+
             $shoppingCartItem = ShoppingCart::where('buyer', $buyerId)
                                             ->where('game', $gameId)
                                             ->first();
-    
+
             if ($shoppingCartItem) {
                 $shoppingCartItem->quantity += 1;
                 $shoppingCartItem->save();
             }
-    
-            return redirect()->route('shopping_cart');
+
+            $shoppingCart = ShoppingCart::where('buyer', $buyerId)->get();
+            $newTotal = 0;
+            foreach ($shoppingCart as $item) {
+                $game = Game::find($item->game);
+                $newTotal += $game->price * $item->quantity;
+            }
+
+            return response()->json([
+                'success' => true,
+                'new_quantity' => $shoppingCartItem->quantity,
+                'new_total' => $newTotal,
+            ]);
         }
     }
 
@@ -143,19 +179,26 @@ class ShoppingCartController extends Controller
     {
         if (!auth_user()) {
             $gameId = $request->input('game_id');
-            $shoppingCart = $request->session()->get('shopping_cart', []);
+            $shoppingCart = session('shopping_cart', []);
 
             if (isset($shoppingCart[$gameId])) {
-                if ($shoppingCart[$gameId]['quantity'] > 1) {
-                    $shoppingCart[$gameId]['quantity'] -= 1;
-                } else {
+                $shoppingCart[$gameId]['quantity'] -= 1;
+                if ($shoppingCart[$gameId]['quantity'] <= 0) {
                     unset($shoppingCart[$gameId]);
                 }
-            } 
+            }
 
             $request->session()->put('shopping_cart', $shoppingCart);
 
-            return redirect()->route('shopping_cart');
+            $newTotal = array_reduce($shoppingCart, function ($carry, $item) {
+                return $carry + ($item['price'] * $item['quantity']);
+            }, 0);
+
+            return response()->json([
+                'success' => true,
+                'new_quantity' => $shoppingCart[$gameId]['quantity'] ?? 0,
+                'new_total' => $newTotal,
+            ]);
         } else {
             $buyerId = auth_user()->id;
             $gameId = $request->input('game_id');
@@ -173,7 +216,18 @@ class ShoppingCartController extends Controller
                 }
             }
 
-            return redirect()->route('shopping_cart');
+            $shoppingCart = ShoppingCart::where('buyer', $buyerId)->get();
+            $newTotal = 0;
+            foreach ($shoppingCart as $item) {
+                $game = Game::find($item->game);
+                $newTotal += $game->price * $item->quantity;
+            }
+
+            return response()->json([
+                'success' => true,
+                'new_quantity' => $shoppingCartItem->quantity ?? 0,
+                'new_total' => $newTotal,
+            ]);
         }
     }
 
@@ -189,7 +243,12 @@ class ShoppingCartController extends Controller
 
             $request->session()->put('shopping_cart', $shoppingCart);
 
-            return redirect()->route('shopping_cart');
+            return response()->json([
+                'success' => true,
+                'new_total' => array_reduce($shoppingCart, function ($carry, $item) {
+                    return $carry + ($item['price'] * $item['quantity']);
+                }, 0),
+            ]);
 
         } else {
             $buyerId = auth_user()->id;
@@ -203,7 +262,17 @@ class ShoppingCartController extends Controller
                 $shoppingCartItem->delete();
             }
 
-            return redirect()->route('shopping_cart');
+            $shoppingCart = ShoppingCart::where('buyer', $buyerId)->get();
+            $newTotal = 0;
+            foreach ($shoppingCart as $item) {
+                $game = Game::find($item->game);
+                $newTotal += $game->price * $item->quantity;
+            }
+
+            return response()->json([
+                'success' => true,
+                'new_total' => $newTotal,
+            ]);
         }
     }
 
@@ -214,7 +283,6 @@ class ShoppingCartController extends Controller
         foreach ($shoppingCart as $product) {
             $this->addProduct($request, $product['id'], $product['quantity']);
         }
-
     }
 
     public function addTestProducts(Request $request)
