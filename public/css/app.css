@@ -6,8 +6,9 @@
   --text-color: #ffffff;
   --secondary-text-color: #bbbbbb;
   --highlight-color: #0066ff;
-  --highlight-hover-color: #0056cc;
-  --shadow-color: rgba(0, 0, 0, 0.2);
+  --highlight-hover-color: #0044bc;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --error-color: #ff4d4d;
 }
 
 .logo-icon {

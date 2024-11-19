@@ -1,17 +1,18 @@
+/* Login */
 .login-page form {
-    background-color: var(--background-color); /* Card-like background */
+    background-color: var(--background-color);
     color: var(--text-color);
     padding: 30px 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px var(--shadow-color);
     max-width: 400px;
     width: 100%;
-    margin: auto;
+    margin: 5% auto;
 }
 
 .login-page form h1 {
     font-size: 1.8em;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     text-align: center;
     color: var(--text-color);
 }
@@ -23,30 +24,15 @@
     color: var(--secondary-text-color);
 }
 
-.login-page form input[type="email"], 
+.login-page form input[type="string"], 
 .login-page form input[type="password"], 
 .login-page form button {
     width: 100%;
     padding: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     border-radius: 4px;
     border: none;
     font-size: 1em;
-}
-
-.login-page form input[type="email"], 
-.login-page form input[type="password"] {
-    background-color: var(--secondary-background-color);
-    color: var(--text-color);
-}
-
-.login-page form input::placeholder {
-    color: #aaaaaa;
-}
-
-.login-page form input:focus {
-    outline: 2px solid var(--highlight-color);
-    background-color: #292929;
 }
 
 .login-page form button {
@@ -55,10 +41,11 @@
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-bottom: auto;
 }
 
 .login-page form button:hover {
-    background-color: #004bcc;
+    background-color: var(--highlight-hover-color);
 }
 
 .login-page form .button-outline {
@@ -81,10 +68,126 @@
     display: block;
     text-align: center;
     color: var(--secondary-text-color);
-    margin-top: 10px;
+    margin-top: 20px;
     cursor: pointer;
 }
 
 .login-page form a:hover {
     color: var(--text-color);
 }
+
+.input-wrapper {
+    --padding: 14px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-wrapper input {
+    padding: var(--padding);
+    border: 2px solid var(--secondary-background-color);
+    outline: none;
+    border-radius: 6px;
+    background-color: var(--secondary-background-color);
+    color: var(--text-color);
+    width: 100%;
+}
+
+.input-wrapper .placeholder {
+    position: absolute;
+    color: var(--secondary-text-color);
+    left: var(--padding);
+    top: 12px;
+    transition: all 0.2s ease-in;
+}
+
+.input-wrapper input:is(:focus, :valid) {
+    border: 2px solid var(--focus-color);
+}
+
+.input-wrapper input:is(:focus, :valid) + .placeholder {
+    transform: translateY(calc(-1 * var(--padding) - 8px));
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+/* Checkbox */
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+    appearance: none;
+    background-color: var(--secondary-background-color);
+    border: 2px solid var(--secondary-text-color);
+    padding: 10px;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 6px;
+  }
+  
+  .checkbox-wrapper input[type="checkbox"]:checked {
+    background-color: var(--highlight-color);
+    border: 2px solid var(--highlight-color);
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked::after {
+    content: '✔';
+    color: var(--text-color);
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox-wrapper label {
+    color: var(--secondary-text-color);
+    cursor: pointer;
+    line-height: 20px;
+    margin: 0;
+}
+
+/* Error message */
+.error {
+    color: var(--error-color);
+    font-size: 0.9em;
+    text-align: center;
+    background-color: var(--background-color);
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    max-width: 400px;
+    width: 100%;
+    margin: auto;
+}
+
+/* Autofill */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px var(--secondary-background-color) inset !important;
+    -webkit-text-fill-color: var(--text-color) !important;
+}
+
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 30px var(--secondary-background-color) inset !important;
+    -webkit-text-fill-color: var(--text-color) !important;
+}
+
+input:-webkit-autofill:hover {
+    -webkit-box-shadow: 0 0 0 30px var(--secondary-background-color) inset !important;
+    -webkit-text-fill-color: var(--text-color) !important;
+}
+
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--secondary-background-color) inset !important;
+    -webkit-text-fill-color: var(--text-color) !important;
+}
+
