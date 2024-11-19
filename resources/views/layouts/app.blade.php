@@ -59,7 +59,7 @@
                         </div>
                     @endif
                 </header>
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav class="navbar">
                     <div class="links">
                         <a class="btn btn-link" href="{{ url('/home') }}">Home</a>
                         <a class="btn btn-link" href="{{ url('/explore') }}">Explore</a>
@@ -85,16 +85,19 @@
             </section>
         </main>
     </body>
-    <footer id="help-footer" class="bg-light py-5">
+    <footer id="help-footer">
         <div class="container text-center">
             <h2>HELP</h2>
             <div class="d-flex flex-column align-items-center">
                 <ul class="list-group">
-                    <li class="list-group-item"><a href="{{ url('/contact') }}" class="btn btn-link">Contact</a></li>
+                    <li class="list-group-item"><a href="{{ url('/contact') }}" class="btn btn-link">Contact Us</a></li>
                     <li class="list-group-item"><a href="{{ url('/faqs') }}" class="btn btn-link">FAQs</a></li>
                     <li class="list-group-item"><a href="{{ url('/about') }}" class="btn btn-link">About</a></li>
                 </ul>
             </div>
+        </div>
+        <div class="copyright">
+            &copy; Copyright {{ date('Y') }} Steal! All rights reserved.
         </div>
     </footer>
 </html>
