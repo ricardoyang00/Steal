@@ -20,8 +20,16 @@ class RegisterController extends Controller
     /**
      * Display a register form.
      */
-    public function showRegistrationForm(): View
+    public function showRegistrationForm()
     {
+        if (is_admin()) {
+            return view('auth.register');
+        }
+    
+        if (auth_user()) {
+            return redirect('/home');
+        }
+    
         return view('auth.register');
     }
 
