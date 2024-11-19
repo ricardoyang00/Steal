@@ -14,6 +14,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
         <!-- <link href="{{ url('css/milligram.min.css') }}" rel="stylesheet"> -->
         <link href="{{ url('css/app.css') }}" rel="stylesheet">
+        <link href="{{ url('css/register_login.css') }}" rel="stylesheet">
         <script type="text/javascript">
             // Fix for Firefox autofocus CSS bug
             // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
@@ -74,7 +75,7 @@
                             <button class="btn-outline-primary" type="submit">
                                 <i class="fas fa-search search-icon"></i>
                             </button>
-                            <input class="form-control me-2" type="search" name="query" placeholder="Search Games..." aria-label="Search" value="{{ request('query') }}">
+                            <input class="form-control" type="search" name="query" placeholder="Search Games..." aria-label="Search" value="{{ request('query') }}">
                         </form>
                     </div>
 

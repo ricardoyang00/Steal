@@ -4,6 +4,8 @@
 
 <script src="{{ asset('js/register/register.js') }}" defer></script>
 
+<div class="form-container register">
+
 <form method="POST" action="{{ route('register') }}">
     {{ csrf_field() }}
 
@@ -72,5 +74,7 @@
       {{ is_admin() ? 'Create' : 'Register' }}
     </button>
 </form>
+
+</div>
 
 @endsection
