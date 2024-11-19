@@ -1,3 +1,15 @@
+:root {
+  --main-color: #121212;
+  --background-color: #1c1c1c;
+  --secondary-background-color: #333333;
+  --hover-background-color: #444444;
+  --text-color: #ffffff;
+  --secondary-text-color: #bbbbbb;
+  --highlight-color: #0066ff;
+  --highlight-hover-color: #0056cc;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+}
+
 .logo-icon {
   margin-left: 10px;
 }
@@ -12,8 +24,8 @@ body, h1, a, button, input {
 
 /* General Layout */
 main {
-  background-color: #121212;
-  color: #ffffff;
+  background-color: var(--main-color);
+  color: var(--text-color);
   font-family: Arial, sans-serif;
   min-height: 100vh;
 }
@@ -23,8 +35,8 @@ main {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background-color: #1c1c1c;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: var(--background-color);
+  box-shadow: 0 2px 4px var(--shadow-color);
 }
 
 /* Header */
@@ -33,8 +45,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #1c1c1c;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: var(--background-color);
+  box-shadow: 0 2px 4px var(--shadow-color);
   top: 0;
   z-index: 1000;
 }
@@ -51,16 +63,16 @@ header .profile-buttons, header .auth-buttons {
     border-radius: 20px;
   }
   .button[href*="/register"], .profile-link {
-    background-color: #0066ff;
+    background-color: var(--highlight-color);
   }
   .button[href*="/register"]:hover, .profile-link:hover {
-    background-color: #0056cc;
+    background-color: var(--highlight-hover-color);
   }
 }
 
 header .button, header .profile-link {
-  background-color: #333333;
-  color: #ffffff;
+  background-color: var(--secondary-background-color);
+  color: var(--text-color);
   padding: 8px 12px;
   border-radius: 4px;
   font-size: 1em;
@@ -68,12 +80,12 @@ header .button, header .profile-link {
 }
 
 header .button:hover, header .profile-link:hover {
-  background-color: #444444;
+  background-color: var(--hover-background-color);
 }
 
 header .icon-button {
   background: none;
-  color: #ffffff;
+  color: var(--text-color);
   padding: 8px;
   border-radius: 4px;
   font-size: 1.2em;
@@ -81,14 +93,14 @@ header .icon-button {
 }
 
 header .icon-button:hover {
-  color: #bbbbbb;
+  color: var(--secondary-text-color);
 }
 
 /* Navbar */
 .navbar {
   padding: 10px 20px;
-  background-color: #1c1c1c;
-  border-bottom: 1px solid #333333;
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--secondary-background-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -100,7 +112,7 @@ header .icon-button:hover {
 }
 
 .navbar .btn {
-  color: #ffffff;
+  color: var(--text-color);
   font-size: 1.2em;
   margin-right: 10px;
   padding: 8px 12px;
@@ -109,7 +121,7 @@ header .icon-button:hover {
 }
 
 .navbar .btn:hover {
-  background-color: #333333;
+  background-color: var(--secondary-background-color);
 }
 
 .navbar .search-container {
@@ -126,8 +138,8 @@ header .icon-button:hover {
 }
 
 .navbar .form-control {
-  background-color: #333333;
-  color: #ffffff;
+  background-color: var(--secondary-background-color);
+  color: var(--text-color);
   border: none;
   padding: 8px 12px;
   border-radius: 0 4px 4px 0;
@@ -137,8 +149,8 @@ header .icon-button:hover {
 
 .navbar .btn-outline-primary {
   border: none;
-  background-color: #333333;
-  color: #ffffff;
+  background-color: var(--secondary-background-color);
+  color: var(--text-color);
   border-radius: 4px 0 0 4px;
   display: flex;
   align-items: center;
@@ -147,25 +159,25 @@ header .icon-button:hover {
 }
 
 .navbar .btn-outline-primary:hover {
-  background-color: #444444;
+  background-color: var(--hover-background-color);
 }
 
 .navbar .search-icon {
   font-size: 1.2em;
-  color: #ffffff;
+  color: var(--text-color);
   cursor: pointer;
   transition: color 0.2s;
 }
 
 .navbar .search-icon:hover {
-  color: #bbbbbb;
+  color: var(--secondary-text-color);
 }
 
 /* Wishlist */
 .navbar .wishlist {
   display: flex;
   align-items: center;
-  color: #ffffff;
+  color: var(--text-color);
   font-size: 1em;
   gap: 10px;
 }
@@ -179,9 +191,9 @@ header .icon-button:hover {
 #help-footer {
   padding: 40px 20px;
   text-align: left;
-  background-color: #1c1c1c;
-  color: #ffffff;
-  border-top: 1px solid #333333;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-top: 1px solid var(--secondary-background-color);
   position: relative;
 }
 
@@ -189,7 +201,7 @@ header .icon-button:hover {
   margin-bottom: 20px;
   font-size: 1.6em;
   font-weight: bold;
-  color: #ffffff;
+  color: var(--text-color);
   padding-left: 3em;
 }
 
@@ -207,13 +219,13 @@ header .icon-button:hover {
 }
 
 #help-footer .btn-link {
-  color: #bbbbbb;
+  color: var(--secondary-text-color);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 #help-footer .btn-link:hover {
-  color: #ffffff;
+  color: var(--text-color);
 }
 
 #help-footer .copyright {
@@ -221,5 +233,5 @@ header .icon-button:hover {
   bottom: 10px;
   right: 20px;
   font-size: 0.8em;
-  color: #bbbbbb;
+  color: var(--secondary-text-color);
 }
