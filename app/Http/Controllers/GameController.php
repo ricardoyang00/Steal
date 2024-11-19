@@ -24,7 +24,7 @@ class GameController extends Controller
 
         if ($sort == 'new-releases') {
             $gamesQuery->orderBy('release_date', 'desc');
-        } /*elseif ($sort == 'top-selling') { // TODO
+        } /*elseif ($sort == 'top-sellers') { // TODO
             $gamesQuery->withCount('purchases')
                ->orderBy('purchases_count', 'desc');
         }*/ elseif ($sort == 'top-rated') {

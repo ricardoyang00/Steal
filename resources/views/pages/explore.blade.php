@@ -16,8 +16,8 @@
         <button type="submit" name="sort" value="new-releases" class="btn btn-outline-primary {{ request('sort') == 'new-releases' ? 'active' : '' }}">
             New
         </button>
-        <button type="submit" name="sort" value="top-selling" class="btn btn-outline-primary {{ request('sort') == 'top-selling' ? 'active' : '' }}">
-            Top Selling
+        <button type="submit" name="sort" value="top-sellers" class="btn btn-outline-primary {{ request('sort') == 'top-sellers' ? 'active' : '' }}">
+            Top Sellers
         </button>
         <button type="submit" name="sort" value="top-rated" class="btn btn-outline-primary {{ request('sort') == 'top-rated' ? 'active' : '' }}">
             Top Rated
