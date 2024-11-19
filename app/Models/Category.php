@@ -17,8 +17,8 @@ class Category extends Model
         'name',
     ];
 
-    public function gameCategories()
+    public function games()
     {
-        return $this->hasMany(GameCategories::class, 'category', 'id');
+        return $this->belongsToMany(Game::class, 'gamecategory', 'category', 'game');
     }
 }

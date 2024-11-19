@@ -17,13 +17,8 @@ class Platform extends Model
         'name',
     ];
 
-    public function gamePlatforms()
+    public function games()
     {
-        return $this->hasMany(GamePlatform::class, 'platform', 'id');
-    }
-
-    public function getNameAttribute()
-    {
-        return $this->name ?? 'Unknown Platform';
+        return $this->belongsToMany(Game::class, 'gameplatform', 'platform', 'game');
     }
 }

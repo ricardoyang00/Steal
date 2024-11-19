@@ -17,8 +17,8 @@ class Language extends Model
         'name',
     ];
 
-    public function gameLanguages()
+    public function games()
     {
-        return $this->hasMany(GameLanguage::class, 'language', 'id');
+        return $this->belongsToMany(Game::class, 'gamelanguage', 'language', 'game');
     }
 }

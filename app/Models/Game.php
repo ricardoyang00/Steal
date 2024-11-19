@@ -34,23 +34,23 @@ class Game extends Model
         return $this->belongsToMany(ShoppingCart::class, 'ShoppingCartGame', 'game_id', 'shopping_cart_id');
     }
 
-    public function gamePlatforms()
+    public function platforms()
     {
-        return $this->hasMany(GamePlatform::class, 'game', 'id');
+        return $this->belongsToMany(Platform::class, 'gameplatform', 'game', 'platform');
     }
 
-    public function gameCategories()
+    public function categories()
     {
-        return $this->hasMany(GameCategory::class, 'game', 'id');
+        return $this->belongsToMany(Category::class, 'gamecategory', 'game', 'category');
     }
 
-    public function gameLanguages()
+    public function languages()
     {
-        return $this->hasMany(GameLanguage::class, 'game', 'id');
+        return $this->belongsToMany(Language::class, 'gamelanguage', 'game', 'language');
     }
 
-    public function gamePlayers()
+    public function players()
     {
-        return $this->hasMany(GamePlayer::class, 'game', 'id');
+        return $this->belongsToMany(Player::class, 'gameplayer', 'game', 'player');
     }
 }

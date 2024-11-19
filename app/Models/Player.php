@@ -17,13 +17,8 @@ class Player extends Model
         'name',
     ];
 
-    public function gamePlayers()
+    public function games()
     {
-        return $this->hasMany(GamePlayer::class, 'player', 'id');
-    }
-
-    public function getNameAttribute()
-    {
-        return $this->name ?? 'Unknown Player';
+        return $this->belongsToMany(Game::class, 'gameplayer', 'player', 'game');
     }
 }
