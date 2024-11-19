@@ -81,6 +81,9 @@ Route::post('/remove_product', [ShoppingCartController::class, 'removeProduct'])
 Route::get('/add_test_products', [ShoppingCartController::class, 'addTestProducts'])->name('add_test_products');
 // ----------------------------
 
+Route::middleware('auth')->group(function () {
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+});
 
 // Authenticated User
 Route::controller(ProfileController::class)->group(function () {
