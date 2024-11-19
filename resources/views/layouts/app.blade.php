@@ -31,7 +31,7 @@
                         </a>
                     </h1>
                     @if (auth_user())
-                        <div class="profile">
+                        <div class="profile-buttons">
                             @if (auth_user()->buyer)
                                 <a class="button" href="{{ url('/cart') }}">
                                     <i class="fas fa-shopping-cart"></i> Cart
