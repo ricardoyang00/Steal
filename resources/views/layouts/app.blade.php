@@ -67,9 +67,9 @@
                 </header>
                 <nav class="navbar">
                     <div class="links">
-                        <a class="btn btn-link" href="{{ url('/home') }}">Home</a>
-                        <a class="btn btn-link" href="{{ url('/explore') }}">Explore</a>
-                        <a class="btn btn-link" href="#help-footer">Help</a>
+                        <a class="btn btn-link {{ request()->is('home') ? 'active' : '' }}" href="{{ url('/home') }}">Home</a>
+                        <a class="btn btn-link {{ request()->is('explore') ? 'active' : '' }}" href="{{ url('/explore') }}">Explore</a>
+                        <a class="btn btn-link {{ request()->is('#help') ? 'active' : '' }}" href="#help">Help</a>
                     </div>
 
                     <div class="search-container">
@@ -91,7 +91,7 @@
             </section>
         </main>
     </body>
-    <footer id="help-footer">
+    <footer id="help">
         <div class="container text-center">
             <h2>HELP</h2>
             <div class="d-flex flex-column align-items-center">
