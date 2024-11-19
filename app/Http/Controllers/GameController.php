@@ -16,10 +16,14 @@ class GameController extends Controller
         $gamesQuery = Game::query()->where('is_active', true);
 
         if ($query) {
-            $gamesQuery->where(function ($subQuery) use ($query) {
-                $subQuery->where('name', 'ILIKE', "%{$query}%")
-                        ->orWhere('description', 'ILIKE', "%{$query}%");
-            });
+            // Trim and normalize the query
+            $query = trim(preg_replace('/\s+/', ' ', $query));
+
+            // Ensure the query is not empty after normalization
+            if (!empty($query)) {
+                $formattedQuery = implode(' | ', array_map(fn($term) => "{$term}:*", explode(' ', $query)));
+                $gamesQuery->whereRaw("tsvectors @@ to_tsquery('english', ?)", [$formattedQuery]);
+            }
         }
 
         if ($sort == 'new-releases') {
