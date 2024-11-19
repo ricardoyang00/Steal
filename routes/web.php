@@ -81,6 +81,10 @@ Route::post('/remove_product', [ShoppingCartController::class, 'removeProduct'])
 Route::get('/add_test_products', [ShoppingCartController::class, 'addTestProducts'])->name('add_test_products');
 // ----------------------------
 
+// Redirect GET /profile/edit to /profile
+Route::get('/profile/edit', function () {
+    return redirect()->route('profile');
+});
 
 // Authenticated User
 Route::controller(ProfileController::class)->group(function () {
