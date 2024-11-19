@@ -3,6 +3,11 @@
 @section('title', 'Explore')
 
 @section('content')
+
+@if (!auth_user() || auth_user()->buyer)
+<script src="{{ asset('js/cart/add-to-cart.js') }}" defer></script>
+@endif
+
 <form action="{{ url('/explore') }}" method="GET" class="mb-4">
     <div class="btn-group" role="group" aria-label="Game Sorting">
         <button type="submit" name="sort" value="all" class="btn btn-outline-primary {{ request('sort') == 'all' ? 'active' : '' }}">
@@ -38,7 +43,4 @@
 <div class="d-flex justify-content-center mt-4">
     {{ $games->appends(request()->except('page'))->links() }}
 </div>
-@if (!auth_user() || auth_user()->buyer)
-    <script src="{{ asset('js/cart/add-to-cart.js') }}" defer></script>
-@endif
 @endsection

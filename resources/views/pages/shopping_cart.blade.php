@@ -3,6 +3,7 @@
 @section('title', 'Cart')
 
 @section('content')
+    <script src="{{ asset('js/cart/cart.js') }}" defer></script>
     <section id="shopping_cart">
         <h1>Shopping Cart</h1>
         @if (count($products) == 0)
@@ -26,6 +27,5 @@
         </div>
         @endif
         <button onclick="window.location.href = '{{ route('home') }}';">Go Back Home</button>
-        <script src="{{ asset('js/cart/cart.js') }}" defer></script>
     </section>
 @endsection
