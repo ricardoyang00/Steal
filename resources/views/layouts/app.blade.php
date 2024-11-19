@@ -29,7 +29,7 @@
                         <img src="{{ asset('images/logo.svg') }}" alt="Steal!" /*style="filter: invert(1) brightness(100%);"*/>
                     </a>
                 </h1>
-                @if (Auth::check() || Auth::guard('admin')->check())
+                @if (auth_user())
                     <div class="profile">
                         @if (auth_user()->buyer)
                             <a class="button" href="{{ url('/cart') }}">
