@@ -82,8 +82,8 @@ Route::get('/add_test_products', [ShoppingCartController::class, 'addTestProduct
 // ----------------------------
 
 Route::middleware('auth')->group(function () {
-    Route::get('/checkout/payment', [CheckoutController::class, 'selectPaymentMethod'])->name('checkout.payment.select');
-    Route::post('/checkout/payment', [CheckoutController::class, 'confirmPaymentMethod'])->name('checkout.payment.confirm');
+    Route::get('/checkout/payment', [CheckoutController::class, 'selectPaymentMethod'])->name('checkout.selectPaymentMethod');
+    Route::post('/checkout/payment', [CheckoutController::class, 'confirmPaymentMethod'])->name('checkout.confirmPayment');
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 });
 

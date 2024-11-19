@@ -12,6 +12,16 @@ class CDK extends Model{
 
     public $timestamps  = false;
 
+    protected $fillable = [
+        'code',
+        'game',
+    ];
+
+    public function code()
+    {
+        return $this->code;
+    }
+
     public function game()
     {
         return $this->belongsTo(Game::class, 'game', 'id');

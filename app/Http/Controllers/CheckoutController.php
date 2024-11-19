@@ -60,7 +60,7 @@ class checkoutController extends Controller
                     'method' => session('payment_method'),
                     'value' => $total,
                 ]);
-                $order = Orders::create([
+                $order = Order::create([
                     'buyer' => $buyer->id,
                     'payment' => $payment->id,
                 ]);
@@ -83,7 +83,8 @@ class checkoutController extends Controller
                 session()->forget('payment_method');
                 ShoppingCart::where('buyer', $buyer->id)->delete();
                 DB::commit();
-                return view('pages.order_completed', ['purchasedItems' => $purchasedItems, 'canceledItems' => $canceledItems, 'total' => $total]);
+                $purchasedCDKs = [];
+                return view('pages.checkout.orderCompleted', ['purchasedItems' => $purchasedItems, 'canceledItems' => $canceledItems, 'total' => $total]);
             }
             catch (\Exception $e) {
                 DB::rollBack();
@@ -97,7 +98,7 @@ class checkoutController extends Controller
     public function selectPaymentMethod()
     {
         $paymentMethods = PaymentMethod::all();
-        return view('pages.payment.select', compact('paymentMethods'));
+        return view('pages.checkout.selectPaymentMethod', compact('paymentMethods'));
     }
 
     public function confirmPaymentMethod(Request $request)

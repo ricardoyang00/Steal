@@ -13,6 +13,8 @@ Class Order extends Model
 
     public $timestamps = false;
 
+    protected $fillable = ['buyer', 'payment'];
+
     public function buyer()
     {
         return $this->belongsTo(Buyer::Class, 'buyer', 'id');

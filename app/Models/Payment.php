@@ -5,13 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-Class PaymentMethod extends Model
+Class Payment extends Model
 {
     use HasFactory;
 
     protected $table = 'payment';
 
     public $timestamps = false;
+
+    protected $fillable = ['method', 'value'];
 
     public function paymentMethod()
     {
