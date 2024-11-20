@@ -13,6 +13,8 @@
   --button-highlight-color: #ffffff;
   --button-secondary-color: #313638;
   --button-hover-color: #bbbbbb;
+  --explore-table-color: #666666;
+  --game-card-background: #3b3b3b;
 }
 
 .logo-icon {
@@ -178,8 +180,7 @@ header .icon-button:hover {
   color: var(--secondary-text-color);
 }
 
-/* Highlight button */
-.btn-link.active {
+.navbar .btn-link.active {
   background-color: var(--secondary-background-color);
   color: var(--highlight-text-color);
 }
