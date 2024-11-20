@@ -35,8 +35,8 @@
 }
 
 .login-page form button, .register-page form button {
-    background-color: var(--highlight-color);
-    color: var(--text-color);
+    background-color: var(--button-highlight-color);
+    color: var(--button-secondary-color);
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -44,13 +44,13 @@
 }
 
 .login-page form button:hover, .register-page form button:hover {
-    background-color: var(--highlight-hover-color);
+    background-color: var(--button-highlight-color);
 }
 
 .login-page form .button-outline, .register-page form .button-outline {
     background-color: transparent;
-    border: 2px solid var(--highlight-color);
-    color: var(--highlight-color);
+    border: 2px solid var(--button-highlight-color);
+    color: var(--button-highlight-color);
     padding: 10px;
     font-weight: bold;
     text-align: center;
@@ -59,8 +59,8 @@
 }
 
 .login-page form .button-outline:hover, .register-page form .button-outline:hover {
-    background-color: var(--highlight-color);
-    color: var(--text-color);
+    background-color: var(--button-highlight-color);
+    color: var(--button-secondary-color);
 }
 
 .login-page form a, .register-page form a {
