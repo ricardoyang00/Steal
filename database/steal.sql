@@ -297,36 +297,8 @@ ADD COLUMN tsvectors TSVECTOR;
 
 CREATE FUNCTION game_search_update() RETURNS TRIGGER AS $$
 DECLARE
-    category_names TEXT;
-    player_names TEXT;
-    platform_names TEXT;
-    language_names TEXT;
     owner_name TEXT;
 BEGIN
-    -- Fetch category names
-    SELECT STRING_AGG(name, ' ') INTO category_names
-    FROM Category
-    JOIN GameCategory ON Category.id = GameCategory.category
-    WHERE GameCategory.game = 1;
-
-    -- Fetch player names
-    SELECT STRING_AGG(name, ' ') INTO player_names
-    FROM Player
-    JOIN GamePlayer ON Player.id = GamePlayer.player
-    WHERE GamePlayer.game = NEW.id;
-
-    -- Fetch platform names
-    SELECT STRING_AGG(name, ' ') INTO platform_names
-    FROM Platform
-    JOIN GamePlatform ON Platform.id = GamePlatform.platform
-    WHERE GamePlatform.game = NEW.id;
-
-    -- Fetch language names
-    SELECT STRING_AGG(name, ' ') INTO language_names
-    FROM Language
-    JOIN GameLanguage ON Language.id = GameLanguage.language
-    WHERE GameLanguage.game = NEW.id;
-
     SELECT u.name INTO owner_name
     FROM Seller s
     JOIN Users u ON s.id = u.id
@@ -336,11 +308,7 @@ BEGIN
     NEW.tsvectors = (
         setweight(to_tsvector('english', NEW.name), 'A') ||
         setweight(to_tsvector('english', NEW.description), 'B') ||
-        setweight(to_tsvector('english', COALESCE(category_names, '')), 'C') ||
-        setweight(to_tsvector('english', COALESCE(owner_name, '')), 'C') ||
-        setweight(to_tsvector('english', COALESCE(player_names, '')), 'D') ||
-        setweight(to_tsvector('english', COALESCE(platform_names, '')), 'D') ||
-        setweight(to_tsvector('english', COALESCE(language_names, '')), 'D')
+        setweight(to_tsvector('english', COALESCE(owner_name, '')), 'C')
     );
 
     RETURN NEW;
