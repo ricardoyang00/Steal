@@ -15,6 +15,8 @@ use App\Models\Purchase;
 use App\Models\DeliveredPurchase;
 use App\Models\CanceledPurchase;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+
 
 class CheckoutController extends Controller
 {
@@ -24,7 +26,7 @@ class CheckoutController extends Controller
                 $buyerId = auth_user()->id;
                 $shoppingCartItems = ShoppingCart::where('buyer', $buyerId)->get();
                 if ($shoppingCartItems->isEmpty()) {
-                    return redirect()->route('cart.index')->with('error', 'Your cart is empty.');
+                    return redirect()->route('shopping_cart')->with('error', 'Your cart is empty.');
                 }
             }
             else{
@@ -41,10 +43,10 @@ class CheckoutController extends Controller
         foreach ($shoppingCartItems as $cartItem) {
             $game = Game::find($cartItem->game);
             if (!$game) {
-                return redirect()->route('cart.index')->with('error', 'Some items are no longer available.');
+                return redirect()->route('shopping_cart')->with('error', 'Some items are no longer available.');
             }
             $availableCDKs = $game->availableCDKs();
-            if($availableCDKs->count < $cartItem->quantity){
+            if($availableCDKs->count() < $cartItem->quantity){
                 $canceledItems[] = [
                     'game' => $game->id,
                     'value' => 0.0,
@@ -69,7 +71,7 @@ class CheckoutController extends Controller
                     'value' => $total,
                 ]);
                 $order = Order::create([
-                    'buyer' => $buyer->id,
+                    'buyer' => $buyerId,
                     'payment' => $payment->id,
                 ]);
                 foreach ($purchasedItems as $purchasedItem) {
@@ -93,14 +95,18 @@ class CheckoutController extends Controller
                     ]);
                 }
                 session()->forget('payment_method');
-                ShoppingCart::where('buyer', $buyer->id)->delete();
+                ShoppingCart::where('buyer', $buyerId)->delete();
                 DB::commit();
                 $purchasedCDKs = [];
                 return view('checkout.orderCompleted', ['purchasedItems' => $purchasedItems, 'canceledItems' => $canceledItems, 'total' => $total]);
             }
             catch (\Exception $e) {
                 DB::rollBack();
-                return redirect()->route('cart.index')->with('error', 'Something went wrong. Please try again.');
+                Log::error('Error during checkout', [
+                    'message' => $e->getMessage(),
+                    'stack' => $e->getTraceAsString(),
+                ]);
+                return redirect()->route('shopping_cart')->with('error', 'Something went wrong. Please try again.');
             }
 
         }
@@ -116,7 +122,7 @@ class CheckoutController extends Controller
     public function confirmPaymentMethod(Request $request)
     {
         $request->validate([
-            'payment_method' => 'required|exists:payment_methods,id',
+            'payment_method' => 'required|exists:paymentmethod,id',
         ]);
 
         session(['payment_method' => $request->input('payment_method')]);
@@ -124,4 +130,8 @@ class CheckoutController extends Controller
         return redirect()->route('checkout.index');
     }
 
+    
+
+
 }
+

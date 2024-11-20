@@ -22,7 +22,7 @@ Class Payment extends Model
 
     public function order()
     {
-        return $this.hasOne(Order::Class, 'payment', 'id');
+        return $this->hasOne(Order::Class, 'payment', 'id');
     }
 
     public function value()

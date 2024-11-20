@@ -25,10 +25,6 @@ Class Purchase extends Model
 
     public function type()
 {
-    if (PrePurchase::where('id', $this->id)->exists()) {
-        return 'PrePurchase';
-    }
-
     if (CanceledPurchase::where('id', $this->id)->exists()) {
         return 'CanceledPurchase';
     }
