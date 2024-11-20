@@ -9,7 +9,7 @@
     <div class="game-details">
         <!-- Game Title -->
         <h5 class="game-title">
-            <a href="{{ route('game.details', ['id' => $game->id]) }}" class="text-decoration-none text-dark">
+            <a href="{{ route('game.details', ['id' => $game->id]) }}">
                 {{ $game->name }}
             </a>
         </h5>

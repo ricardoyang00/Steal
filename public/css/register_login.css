@@ -44,7 +44,7 @@
 }
 
 .login-page form button:hover, .register-page form button:hover {
-    background-color: var(--button-highlight-color);
+    background-color: var(--button-hover-color);
 }
 
 .login-page form .button-outline, .register-page form .button-outline {
