@@ -86,7 +86,7 @@
 .explore-page .game-card img.card-img-top {
     border-radius: 4px;
     width: 250px;
-    height: auto;
+    height: 150px;
 }
 
 /* Game Details */
@@ -112,7 +112,33 @@
 }
 
 .explore-page .game-title a:hover {
-    color: var(--secondary-text-color);
+    color: var(--positive);
+}
+
+/* Game Tags Container */
+.game-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-width: 100%;
+    margin-top: 4px;
+}
+
+.tag {
+    background-color: var(--explore-table-color);
+    color: var(--text-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.tag:hover {
+    background-color: var(--positive);
 }
 
 /* Platforms and Release Date */
@@ -122,6 +148,8 @@
     align-items: center;
     gap: 10px;
     margin-bottom: 8px;
+    margin-top: 16px;
+    margin-left: 2px;
 }
 
 .explore-page .platform-logo {
@@ -173,7 +201,7 @@
 
 .explore-page .positive-label, .negative-label {
     font-size: 0.9rem;
-    margin-top: 40px;
+    margin-top: 10px;
 }
 
 .explore-page .positive-label {

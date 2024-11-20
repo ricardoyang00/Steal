@@ -13,6 +13,15 @@
                 {{ $game->name }}
             </a>
         </h5>
+        <!-- Game Tags (Categories and Players) -->
+        <div class="game-tags">
+            @foreach($game->categories as $category)
+                <a href="javascript:void(0);" class="tag">{{ $category->name }}</a>
+            @endforeach
+            @foreach($game->players as $player)
+                <a href="javascript:void(0);" class="tag">{{ $player->name }}</a>
+            @endforeach
+        </div>
         <!-- Game Platforms and Release Date -->
         <div class="game-platform-release-date">
             @foreach($game->platforms as $platform)
