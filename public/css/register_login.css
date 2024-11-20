@@ -1,0 +1,231 @@
+.login-page form, .register-page form {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow-color);
+    max-width: 400px;
+    width: 100%;
+    margin: 5% auto;
+}
+
+.login-page form h1, .register-page form h1 {
+    font-size: 1.8em;
+    margin-bottom: 50px;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.login-page form label, .register-page form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--secondary-text-color);
+}
+
+.login-page form input[type="text"], .register-page form input[type="text"], 
+.login-page form input[type="password"], .register-page form input[type="password"], 
+.login-page form button, .register-page form button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 40px;
+    border-radius: 4px;
+    border: none;
+    font-size: 1em;
+}
+
+.login-page form button, .register-page form button {
+    background-color: var(--button-highlight-color);
+    color: var(--button-secondary-color);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: auto;
+}
+
+.login-page form button:hover, .register-page form button:hover {
+    background-color: var(--button-hover-color);
+}
+
+.login-page form .button-outline, .register-page form .button-outline {
+    background-color: transparent;
+    border: 2px solid var(--button-highlight-color);
+    color: var(--button-highlight-color);
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.login-page form .button-outline:hover, .register-page form .button-outline:hover {
+    background-color: var(--button-highlight-color);
+    color: var(--button-secondary-color);
+}
+
+.login-page form a, .register-page form a {
+    display: block;
+    text-align: center;
+    color: var(--secondary-text-color);
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.login-page form a:hover, .register-page form a:hover {
+    color: var(--text-color);
+}
+
+/* Select type of user upon register */
+.register-page form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 40px;
+    border-radius: 4px;
+    border: none;
+    font-size: 1em;
+    background-color: var(--secondary-background-color);
+    color: var(--text-color);
+    appearance: none; 
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    padding-right: 30px; 
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23bbbbbb" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center; 
+    font-weight: bold;
+}
+
+/* Birth date */
+.register-page form input[type="date"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 40px;
+    border-radius: 4px;
+    border: none;
+    font-size: 1em;
+    background-color: var(--secondary-background-color);
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.register-page form input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(90%);
+    cursor: pointer;
+}
+
+/* Input */
+.input-wrapper {
+    --padding: 14px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-wrapper input {
+    padding: var(--padding);
+    border: 2px solid var(--secondary-background-color);
+    outline: none;
+    border-radius: 6px;
+    background-color: var(--secondary-background-color);
+    color: var(--text-color);
+    width: 100%;
+}
+
+.input-wrapper .placeholder {
+    position: absolute;
+    color: var(--secondary-text-color);
+    left: var(--padding);
+    top: 12px;
+    transition: all 0.2s ease-in;
+}
+
+.input-wrapper input:is(:focus, :valid) {
+    border: 2px solid var(--focus-color);
+}
+
+.input-wrapper input:is(:focus, :valid) + .placeholder {
+    transform: translateY(calc(-1 * var(--padding) - 8px));
+    font-size: 14px;
+    color: var(--text-color);
+}
+
+/* Checkbox */
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+    appearance: none;
+    background-color: var(--secondary-background-color);
+    border: 2px solid var(--secondary-text-color);
+    padding: 10px;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-bottom: 6px;
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked {
+    background-color: var(--highlight-color);
+    border: 2px solid var(--highlight-color);
+}
+
+.checkbox-wrapper input[type="checkbox"]:checked::after {
+    content: '✔';
+    color: var(--text-color);
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.checkbox-wrapper label {
+    color: var(--secondary-text-color);
+    cursor: pointer;
+    line-height: 20px;
+    margin: 0;
+}
+
+/* Error message */
+.error {
+    color: var(--error-color);
+    font-size: 0.9em;
+    text-align: center;
+    background-color: var(--background-color);
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    max-width: 400px;
+    width: 100%;
+    margin: auto;
+}
+
+/* Autofill */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px var(--secondary-background-color) inset !important;
+    -webkit-text-fill-color: var(--text-color) !important;
+}
+
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 30px var(--secondary-background-color) inset !important;
+    -webkit-text-fill-color: var(--text-color) !important;
+}
+
+input:-webkit-autofill:hover {
+    -webkit-box-shadow: 0 0 0 30px var(--secondary-background-color) inset !important;
+    -webkit-text-fill-color: var(--text-color) !important;
+}
+
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--secondary-background-color) inset !important;
+    -webkit-text-fill-color: var(--text-color) !important;
+}
+
