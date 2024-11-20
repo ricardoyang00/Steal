@@ -221,18 +221,17 @@
 
 .explore-page .btn-add-to-cart {
     padding: 8px 16px;
-    background-color: #007bff;
+    background-color: var(--buy-button-color);
     color: var(--text-color);
     border: none;
     border-radius: 4px;
     font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    transition: background-color 0.3s;
 }
 
 .explore-page .btn-add-to-cart:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
+    background-color: var(--buy-button-hover-color);
 }
 
 

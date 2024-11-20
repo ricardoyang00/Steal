@@ -14,7 +14,7 @@
         <p><strong>Minimum Age:</strong> {{ $game->minimum_age }}</p>
         <p><strong>Price:</strong> ${{ $game->price }}</p>
         <p><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
-        <a href="#" class="btn btn-primary">Buy Now</a>
+        <a href="#" class="btn-buy-now">Buy Now</a>
     </div>
 </div>
 
