@@ -29,10 +29,24 @@
     margin-bottom: 20px;
     color: var(--text-color);
     display: flex;
-    align-items: stretch;
+    align-items: center;
     gap: 16px;
     position: relative; 
     max-width: 100%;
+    height: 30px;
+}
+
+.explore-page .explore-navbar .search-text {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.explore-page .explore-navbar .sorting-form {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
 }
 
 .explore-page .explore-navbar .btn {
@@ -50,7 +64,6 @@
     border-radius: 4px;
 }
 
-
 .explore-page .explore-navbar .btn-link.active {
     background-color: var(--hover-background-color);
     color: var(--highlight-text-color);
@@ -60,6 +73,11 @@
 /* General Card Styling */
 .explore-page .game-cards {
     flex-grow: 1;
+}
+
+.explore-page .game-cards .text-center {
+    margin-left: 10px;
+    margin-bottom: 30px;
 }
 
 .explore-page .game-card {
@@ -86,7 +104,7 @@
 .explore-page .game-card img.card-img-top {
     border-radius: 4px;
     width: 250px;
-    height: 150px;
+    height: 155px;
 }
 
 /* Game Details */

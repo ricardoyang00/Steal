@@ -68,7 +68,7 @@
                 <nav class="navbar">
                     <div class="links">
                         <a class="btn btn-link {{ request()->is('home') ? 'active' : '' }}" href="{{ url('/home') }}">Home</a>
-                        <a class="btn btn-link {{ request()->is('explore') ? 'active' : '' }}" href="{{ url('/explore') }}">Explore</a>
+                        <a class="btn btn-link {{ request()->is('explore') ? 'active' : '' }}" href="{{ url('/explore?sort=all') }}">Explore</a>
                         <a class="btn btn-link {{ request()->is('#help') ? 'active' : '' }}" href="#help">Help</a>
                     </div>
 
@@ -77,7 +77,7 @@
                             <button class="btn-outline-primary" type="submit">
                                 <i class="fas fa-search search-icon"></i>
                             </button>
-                            <input class="form-control" type="search" name="query" placeholder="Search Games..." aria-label="Search" value="{{ request('query') }}">
+                            <input class="form-control" type="search" name="query" placeholder="Search games..." aria-label="Search" value="{{ request('query') }}">
                         </form>
                     </div>
 
