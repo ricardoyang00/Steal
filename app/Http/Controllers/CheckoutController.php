@@ -8,9 +8,15 @@ use Illuminate\Http\Request;
 use App\Models\Buyer;
 use App\Models\Game;
 use App\Models\User;
+use App\Models\Payment;
+use App\Models\PaymentMethod;
+use App\Models\Order;
+use App\Models\Purchase;
+use App\Models\DeliveredPurchase;
+use App\Models\CanceledPurchase;
 use Illuminate\Support\Facades\Log;
 
-class checkoutController extends Controller
+class CheckoutController extends Controller
 {
     public function index(){
         if(auth_user()){
@@ -90,7 +96,7 @@ class checkoutController extends Controller
                 ShoppingCart::where('buyer', $buyer->id)->delete();
                 DB::commit();
                 $purchasedCDKs = [];
-                return view('pages.checkout.orderCompleted', ['purchasedItems' => $purchasedItems, 'canceledItems' => $canceledItems, 'total' => $total]);
+                return view('checkout.orderCompleted', ['purchasedItems' => $purchasedItems, 'canceledItems' => $canceledItems, 'total' => $total]);
             }
             catch (\Exception $e) {
                 DB::rollBack();
@@ -104,7 +110,7 @@ class checkoutController extends Controller
     public function selectPaymentMethod()
     {
         $paymentMethods = PaymentMethod::all();
-        return view('pages.checkout.selectPaymentMethod', compact('paymentMethods'));
+        return view('checkout.selectPaymentMethod', compact('paymentMethods'));
     }
 
     public function confirmPaymentMethod(Request $request)

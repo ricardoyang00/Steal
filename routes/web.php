@@ -10,8 +10,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\GameController;
-
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
