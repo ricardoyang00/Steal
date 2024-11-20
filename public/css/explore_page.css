@@ -22,7 +22,7 @@
 }
 
 /* Explore Navbar Styling */
-.explore-navbar{
+.explore-page .explore-navbar{
     background-color: var(--explore-table-color);
     border-radius: 8px;
     padding: 10px;
@@ -35,7 +35,7 @@
     max-width: 100%;
 }
 
-.explore-navbar .btn {
+.explore-page .explore-navbar .btn {
     background-color: var(--explore-table-color);
     color: var(--text-color);
     font-size: 1em;
@@ -45,24 +45,24 @@
     border: none;
 }
 
-.explore-navbar .btn:hover {
+.explore-page .explore-navbar .btn:hover {
     background-color: var(--hover-background-color);
     border-radius: 4px;
 }
 
 
-.explore-navbar .btn-link.active {
+.explore-page .explore-navbar .btn-link.active {
     background-color: var(--hover-background-color);
     color: var(--highlight-text-color);
     border-radius: 4px;
 }
 
 /* General Card Styling */
-.game-cards {
+.explore-page .game-cards {
     flex-grow: 1;
 }
 
-.game-card {
+.explore-page .game-card {
     background-color: var(--game-card-background);
     border-radius: 8px;
     padding: 16px;
@@ -77,20 +77,20 @@
     cursor: pointer;
 }
 
-.game-card:hover {
+.explore-page .game-card:hover {
     background-color: var(--hover-background-color);
     box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 /* Thumbnail */
-.game-card img.card-img-top {
+.explore-page .game-card img.card-img-top {
     border-radius: 4px;
     width: 250px;
     height: auto;
 }
 
 /* Game Details */
-.game-details {
+.explore-page .game-details {
     flex-grow: 1; 
     display: flex;
     flex-direction: column;
@@ -98,25 +98,25 @@
     height: 100%; 
 }
 
-.game-title {
+.explore-page .game-title {
     font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 8px;
     margin-top: 4px;
 }
 
-.game-title a {
+.explore-page .game-title a {
     color: var(--text-color);
     text-decoration: none;
     transition: color 0.3s;
 }
 
-.game-title a:hover {
+.explore-page .game-title a:hover {
     color: var(--secondary-text-color);
 }
 
 /* Platforms and Release Date */
-.game-platform-release-date {
+.explore-page .game-platform-release-date {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -124,24 +124,24 @@
     margin-bottom: 8px;
 }
 
-.platform-logo {
+.explore-page .platform-logo {
     width: 20px;
     height: auto;
     opacity: 0.8;
     transition: opacity 0.3s;
 }
 
-.platform-logo:hover {
+.explore-page .platform-logo:hover {
     opacity: 1;
 }
 
-.game-platform-release-date a {
+.explore-page .game-platform-release-date a {
     font-size: 0.9rem;
     color: var(--game-detail-text);
 }
 
 /* Rating Bar Container */
-.rating-bar {
+.explore-page .rating-bar {
     display: flex;
     height: 8px;
     width: 200px;
@@ -150,7 +150,7 @@
     margin: 8px 0;
 }
 
-.rating-positive {
+.explore-page .rating-positive {
     background-color: var(--positive);
     height: 100%;
     border-top-right-radius: 5px;
@@ -158,34 +158,34 @@
     margin-right: 2px;
 }
 
-.rating-negative {
+.explore-page .rating-negative {
     background-color: var(--negative);
     height: 100%;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 
-.rating-labels {
+.explore-page .rating-labels {
     display: flex;
     justify-content: space-between;
     width: 200px;
 }
 
-.positive-label, .negative-label {
+.explore-page .positive-label, .negative-label {
     font-size: 0.9rem;
     margin-top: 40px;
 }
 
-.positive-label {
+.explore-page .positive-label {
     color: var(--positive);
 }
 
-.negative-label {
+.explore-page .negative-label {
     color: var(--negative);
 }
 
 /* Wishlist Button */
-.add-to-wishlist {
+.explore-page .add-to-wishlist {
     background: none;
     border: none;
     color: var(--text-color);
@@ -197,12 +197,12 @@
     right: 16px;
 }
 
-.add-to-wishlist:hover {
+.explore-page .add-to-wishlist:hover {
     color: var(--error-color);
 }
 
 /* Price and Add to Cart Section */
-.game-price-add-cart {
+.explore-page .game-price-add-cart {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
@@ -211,7 +211,7 @@
     right: 16px;
 }
 
-.game-price {
+.explore-page .game-price {
     font-size: 1.25rem;
     font-weight: bold;
     color: var(--text-color);
@@ -219,7 +219,7 @@
     margin-bottom: 4px;
 }
 
-.btn-add-to-cart {
+.explore-page .btn-add-to-cart {
     padding: 8px 16px;
     background-color: #007bff;
     color: var(--text-color);
@@ -230,7 +230,7 @@
     transition: background-color 0.3s, transform 0.2s;
 }
 
-.btn-add-to-cart:hover {
+.explore-page .btn-add-to-cart:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
 }
@@ -241,21 +241,21 @@
     .explore-page {
         flex-direction: column;
     }
-    .filter-table {
+    .explore-page .filter-table {
         width: 100%;
         margin-bottom: 16px;
     }
-    .game-card {
+    .explore-page .game-card {
         flex-direction: column;
         align-items: flex-start;
         max-width: 100%;
     }
-    .game-price-add-cart {
+    .explore-page .game-price-add-cart {
         position: static;
         align-items: flex-start;
         margin-top: 16px;
     }
-    .game-thumbnail img {
+    .explore-page .game-thumbnail img {
         width: 100%;
     }
 }
