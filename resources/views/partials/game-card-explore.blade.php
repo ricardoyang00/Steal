@@ -32,6 +32,10 @@
             </div>
         </div>
     </div>
+    <!-- Wishlist Button -->
+    <button class="add-to-wishlist">
+        <i class="far fa-heart"></i>
+    </button>
     <!-- Game Price and Add to Cart -->
     <div class="game-price-add-cart">
         <p class="game-price">

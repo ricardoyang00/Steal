@@ -156,13 +156,16 @@
 .rating-positive {
     background-color: var(--positive);
     height: 100%;
-    transition: width 0.3s ease;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-right: 2px;
 }
 
 .rating-negative {
     background-color: var(--negative);
     height: 100%;
-    transition: width 0.3s ease;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .rating-labels {
@@ -184,6 +187,22 @@
     color: var(--negative);
 }
 
+/* Wishlist Button */
+.add-to-wishlist {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.add-to-wishlist:hover {
+    color: var(--error-color);
+}
 
 /* Price and Add to Cart Section */
 .game-price-add-cart {

@@ -5,7 +5,8 @@
 @section('content')
 
 @if (!auth_user() || auth_user()->buyer)
-<script src="{{ asset('js/cart/add-to-cart.js') }}" defer></script>
+    <script src="{{ asset('js/cart/add-to-cart.js') }}" defer></script>
+    <script src="{{ asset('js/explore/game_card.js') }}" defer></script>
 @endif
 
 <div class="explore-page">
