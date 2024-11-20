@@ -21,9 +21,16 @@
             <a>{{ \Carbon\Carbon::parse($game->release_date)->format('d M, Y') }}</a>
         </div>
         <!-- Rating -->
-        <p class="game-rating">
-            <strong>Rating:</strong> {{ $game->overall_rating }}%
-        </p>
+        <div class="game-rating">
+            <div class="rating-labels">
+                <span class="positive-label">{{ $game->overall_rating }}% <i class="fa fa-thumbs-up"></i></span>
+                <span class="negative-label">{{ 100 - $game->overall_rating }}% <i class="fa fa-thumbs-down"></i></span>
+            </div>
+            <div class="rating-bar">
+                <div class="rating-positive" style="width: {{ $game->overall_rating }}%;"></div>
+                <div class="rating-negative" style="width: {{ 100 - $game->overall_rating }}%;"></div>
+            </div>
+        </div>
     </div>
     <!-- Game Price and Add to Cart -->
     <div class="game-price-add-cart">

@@ -37,18 +37,20 @@
             </form>
         </nav>
 
-        @if(isset($query) && $query)
-            <p class="text-center">Showing results for "<strong>{{ $query }}</strong>":</p>
-        @endif
-
         <div class="game-cards">
             @foreach($games as $game)
                 @include('partials.game-card-explore', ['game' => $game])
             @endforeach
         </div>
 
+        <!--
+        @if(isset($query) && $query)
+            <p class="text-center">Showing results for "<strong>{{ $query }}</strong>":</p>
+        @endif
+        -->
+
         <!-- Pagination Links -->
-        <div class="d-flex justify-content-center mt-4">
+        <div class="pagination-links">
             {{ $games->appends(request()->except('page'))->links() }}
         </div>
 

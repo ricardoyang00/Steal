@@ -143,13 +143,47 @@
     color: var(--game-detail-text);
 }
 
-/* Rating */
-.game-rating {
-    font-size: 0.9rem;
-    color: var(--game-detail-text);
-    margin-top: 60px;
-    margin-bottom: 4px;
+/* Rating Bar Container */
+.rating-bar {
+    display: flex;
+    height: 8px;
+    width: 200px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 8px 0;
 }
+
+.rating-positive {
+    background-color: var(--positive);
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.rating-negative {
+    background-color: var(--negative);
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.rating-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.positive-label, .negative-label {
+    font-size: 0.9rem;
+    margin-top: 40px;
+}
+
+.positive-label {
+    color: var(--positive);
+}
+
+.negative-label {
+    color: var(--negative);
+}
+
 
 /* Price and Add to Cart Section */
 .game-price-add-cart {
@@ -184,6 +218,7 @@
     background-color: #0056b3;
     transform: translateY(-2px);
 }
+
 
 /* Responsive Design */
 @media (max-width: 768px) {

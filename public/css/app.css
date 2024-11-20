@@ -9,6 +9,8 @@
   --highlight-hover-color: #0044bc;
   --shadow-color: rgba(0, 0, 0, 0.3);
   --error-color: #ff4d4d;
+  --negative: #b7574a;
+  --positive: #65add7; 
   --game-detail-text: #cccccc;
   --button-highlight-color: #ffffff;
   --button-secondary-color: #313638;
