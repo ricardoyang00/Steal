@@ -1,4 +1,4 @@
-<div class="game-card">
+<div class="game-card" data-url="{{ route('game.details', ['id' => $game->id]) }}">
     <!-- Game Thumbnail -->
     <div class="game-thumbnail">
         <a href="{{ route('game.details', ['id' => $game->id]) }}">

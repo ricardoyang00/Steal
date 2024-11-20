@@ -74,18 +74,15 @@
     position: relative; 
     transition: transform 0.2s, box-shadow 0.2s;
     max-width: 100%;
+    cursor: pointer;
 }
 
 .game-card:hover {
-    transform: translateY(-2px);
+    background-color: var(--hover-background-color);
     box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 /* Thumbnail */
-.game-thumbnail {
-    flex-shrink: 0;
-}
-
 .game-card img.card-img-top {
     border-radius: 4px;
     width: 250px;
