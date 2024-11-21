@@ -87,6 +87,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 });
 
+// Redirect GET /profile/edit to /profile
+Route::get('/profile/edit', function () {
+    return redirect()->route('profile');
+});
+
 // Authenticated User
 Route::controller(ProfileController::class)->group(function () {
     Route::get('/profile', 'showProfile')->name('profile');

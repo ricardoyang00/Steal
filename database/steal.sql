@@ -292,5 +292,34 @@ CREATE TABLE Contacts(
 );
 
 
+ALTER TABLE Game
+ADD COLUMN tsvectors TSVECTOR;
+
+CREATE FUNCTION game_search_update() RETURNS TRIGGER AS $$
+DECLARE
+    owner_name TEXT;
+BEGIN
+    SELECT u.name INTO owner_name
+    FROM Seller s
+    JOIN Users u ON s.id = u.id
+    WHERE s.id = NEW.owner;
+
+    -- Update tsvectors
+    NEW.tsvectors = (
+        setweight(to_tsvector('english', NEW.name), 'A') ||
+        setweight(to_tsvector('english', NEW.description), 'B') ||
+        setweight(to_tsvector('english', COALESCE(owner_name, '')), 'C')
+    );
+
+    RETURN NEW;
+END $$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER game_search_update
+    BEFORE INSERT OR UPDATE ON Game
+    FOR EACH ROW
+    EXECUTE FUNCTION game_search_update();
+
+CREATE INDEX search_idx ON game USING GIN (tsvectors); 
 
 

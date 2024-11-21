@@ -18,10 +18,18 @@ use App\Rules\UniqueEmail;
 class RegisterController extends Controller
 {
     /**
-     * Display a login form.
+     * Display a register form.
      */
-    public function showRegistrationForm(): View
+    public function showRegistrationForm()
     {
+        if (is_admin()) {
+            return view('auth.register');
+        }
+    
+        if (auth_user()) {
+            return redirect('/home');
+        }
+    
         return view('auth.register');
     }
 
@@ -84,7 +92,7 @@ class RegisterController extends Controller
         $credentials = $request->only('email', 'password');
         Auth::attempt($credentials);
         $request->session()->regenerate();
-        return redirect()->route('helloworld')
+        return redirect()->route('home')
             ->withSuccess('You have successfully registered & logged in!');
     }
 }

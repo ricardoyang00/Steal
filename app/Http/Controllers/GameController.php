@@ -16,15 +16,19 @@ class GameController extends Controller
         $gamesQuery = Game::query()->where('is_active', true);
 
         if ($query) {
-            $gamesQuery->where(function ($subQuery) use ($query) {
-                $subQuery->where('name', 'ILIKE', "%{$query}%")
-                        ->orWhere('description', 'ILIKE', "%{$query}%");
-            });
+            // Trim and normalize the query
+            $query = trim(preg_replace('/\s+/', ' ', $query));
+
+            // Ensure the query is not empty after normalization
+            if (!empty($query)) {
+                $formattedQuery = implode(' | ', array_map(fn($term) => "{$term}:*", explode(' ', $query)));
+                $gamesQuery->whereRaw("tsvectors @@ to_tsquery('english', ?)", [$formattedQuery]);
+            }
         }
 
         if ($sort == 'new-releases') {
             $gamesQuery->orderBy('release_date', 'desc');
-        } /*elseif ($sort == 'top-selling') { // TODO
+        } /*elseif ($sort == 'top-sellers') { // TODO
             $gamesQuery->withCount('purchases')
                ->orderBy('purchases_count', 'desc');
         }*/ elseif ($sort == 'top-rated') {
@@ -33,14 +37,14 @@ class GameController extends Controller
             $gamesQuery->orderBy('name', 'asc');    // default : all games sorted alphabetically
         }
         
-        $games = $gamesQuery->with('gamePlatforms')->paginate(6);
+        $games = $gamesQuery->with('platforms')->paginate(6);
 
         return view('pages.explore', compact('games', 'query', 'sort'));
     }
 
     public function show($id)
     {
-        $game = Game::with(['seller', 'gamePlatforms', 'gameCategories', 'gameLanguages', 'gamePlayers'])->find($id);
+        $game = Game::with(['seller', 'platforms', 'categories', 'languages', 'players'])->find($id);
     
         return view('pages.game-details', compact('game'));
     }

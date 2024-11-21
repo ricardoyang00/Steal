@@ -22,45 +22,29 @@
 
 <p><strong>Available Platforms:</strong></p>
 <ul>
-    @foreach($game->gamePlatforms as $gamePlatform)
-        @if($gamePlatform->platform)
-            <li>{{ $gamePlatform->platform->name ?? 'If not displaying, something is wrong!' }} (id = {{ $gamePlatform->platform }})</li>
-        @else
-            <li>Platform Not Found</li>
-        @endif
+    @foreach($game->platforms as $platform)
+        <li>{{ $platform->name }}</li>
     @endforeach
 </ul>
 
 <p><strong>Categories:</strong></p>
 <ul>
-    @foreach($game->gameCategories as $gameCategory)
-        @if($gameCategory->category)
-            <li>{{ $gameCategory->category->name ?? 'If not displaying, something is wrong!' }} (id = {{ $gameCategory->category }})</li>
-        @else
-            <li>Category Not Found</li>
-        @endif
+    @foreach($game->categories as $category)
+        <li>{{ $category->name }}</li>
     @endforeach
 </ul>
 
 <p><strong>Languages:</strong></p>
 <ul>
-    @foreach($game->gameLanguages as $gameLanguage)
-        @if($gameLanguage->language)
-            <li>{{ $gameLanguage->language->name ?? 'If not displaying, something is wrong!' }} (id = {{ $gameLanguage->language }})</li>
-        @else
-            <li>Language Not Found</li>
-        @endif
+    @foreach($game->languages as $language)
+        <li>{{ $language->name }}</li>
     @endforeach
 </ul>
 
 <p><strong>Players:</strong></p>
 <ul>
-    @foreach($game->gamePlayers as $gamePlayer)
-        @if($gamePlayer->player)
-            <li>{{ $gamePlayer->player->name ?? 'If not displaying, something is wrong!' }} (id = {{ $gamePlayer->player }})</li>
-        @else
-            <li>Player Not Found</li>
-        @endif
+    @foreach($game->players as $player)
+        <li>{{ $player->name }}</li>
     @endforeach
 </ul>
 

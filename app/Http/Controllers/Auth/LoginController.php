@@ -20,7 +20,7 @@ class LoginController extends Controller
      */
     public function showLoginForm()
     {
-        if (Auth::check()) {
+        if (auth_user()) {
             return redirect('/home');
         } else {
             return view('auth.login');
@@ -57,7 +57,7 @@ class LoginController extends Controller
         
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'The provided credentials do not match our records.',
         ])->onlyInput('email');
     }
 
