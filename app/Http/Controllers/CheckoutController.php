@@ -49,14 +49,18 @@ class CheckoutController extends Controller
             if($availableCDKs->count() < $cartItem->quantity){
                 $canceledItems[] = [
                     'game' => $game->id,
+                    'gameName' => $game->name,
                     'value' => 0.0,
                 ];
                 continue;
             }
             $availableCDKs = $availableCDKs->slice(0, $cartItem->quantity);
+            $total += $game->price;
             foreach ($availableCDKs as $cdk) {
                 $purchasedItems[] = [
+                    'gameName' => $game->name,
                     'cdk' => $cdk->id,
+                    'cdkCode' => $cdk->code,
                     'value' => $game->price,
                 ];
             }
