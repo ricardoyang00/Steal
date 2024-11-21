@@ -26,6 +26,12 @@
                         </tr>
                     @endforeach
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="2" class="text-right"><strong>Total Price:</strong></td>
+                        <td><strong>${{ number_format($history['totalPrice'], 2) }}</strong></td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     @empty
