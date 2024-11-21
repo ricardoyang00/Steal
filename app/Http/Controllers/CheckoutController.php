@@ -55,7 +55,7 @@ class CheckoutController extends Controller
                 continue;
             }
             $availableCDKs = $availableCDKs->slice(0, $cartItem->quantity);
-            $total += $game->price;
+            $total += ($game->price * $cartItem->quantity);
             foreach ($availableCDKs as $cdk) {
                 $purchasedItems[] = [
                     'gameName' => $game->name,
