@@ -25,7 +25,7 @@
         <!-- Game Platforms and Release Date -->
         <div class="game-platform-release-date">
             @foreach($game->platforms as $platform)
-                <img src="{{ asset('images/platform_logos/' . $platform->id . '.svg') }}" alt="{{ $platform->name }} logo" class="img-fluid" style="width: 20px; height: auto;">
+                <img src="{{ asset('images/platform_logos/' . $platform->id . '.svg') }}" alt="{{ $platform->name }} logo" class="img-fluid" style="width: 20px; height: 30px;">
             @endforeach
             <a>{{ \Carbon\Carbon::parse($game->release_date)->format('d M, Y') }}</a>
         </div>
