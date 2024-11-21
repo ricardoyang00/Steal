@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="{{ asset('js/purchaseHistory/sort_menu.js') }}" defer></script>
 <div class="container">
     @if (auth_user())
         @if (auth_user()->buyer)
@@ -9,22 +10,45 @@
             @endphp
             <h1>Purchase History</h1>
             
+            <!-- Sort Dropdown -->
             <div class="mb-3">
-                <strong>Sort By:</strong>
-                <a href="{{ route('purchaseHistory', ['id' => $buyerId, 'sortBy' => 'time', 'direction' => 'asc']) }}" 
-                   class="btn btn-primary btn-sm">Order Time (Asc)</a>
-                <a href="{{ route('purchaseHistory', ['id' => $buyerId, 'sortBy' => 'time', 'direction' => 'desc']) }}" 
-                   class="btn btn-primary btn-sm">Order Time (Desc)</a>
-                <a href="{{ route('purchaseHistory', ['id' => $buyerId, 'sortBy' => 'totalPrice', 'direction' => 'asc']) }}" 
-                   class="btn btn-primary btn-sm">Total Price (Asc)</a>
-                <a href="{{ route('purchaseHistory', ['id' => $buyerId, 'sortBy' => 'totalPrice', 'direction' => 'desc']) }}" 
-                   class="btn btn-primary btn-sm">Total Price (Desc)</a>
+                <div class="dropdown">
+                    <button id="dropdownButton" onclick="toggleDropdown()" class="btn btn-primary btn-sm">
+                        Sort By:
+                    </button>
+                    <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
+                        <!-- Order Time (Asc) -->
+                        <form method="GET" action="{{ route('purchaseHistory', ['id' => $buyerId]) }}">
+                            <input type="hidden" name="sortBy" value="time">
+                            <input type="hidden" name="direction" value="asc">
+                            <button type="submit" class="dropdown-item">Order Time (Asc)</button>
+                        </form>
+                        <!-- Order Time (Desc) -->
+                        <form method="GET" action="{{ route('purchaseHistory', ['id' => $buyerId]) }}">
+                            <input type="hidden" name="sortBy" value="time">
+                            <input type="hidden" name="direction" value="desc">
+                            <button type="submit" class="dropdown-item">Order Time (Desc)</button>
+                        </form>
+                        <!-- Total Price (Asc) -->
+                        <form method="GET" action="{{ route('purchaseHistory', ['id' => $buyerId]) }}">
+                            <input type="hidden" name="sortBy" value="totalPrice">
+                            <input type="hidden" name="direction" value="asc">
+                            <button type="submit" class="dropdown-item">Total Price (Asc)</button>
+                        </form>
+                        <!-- Total Price (Desc) -->
+                        <form method="GET" action="{{ route('purchaseHistory', ['id' => $buyerId]) }}">
+                            <input type="hidden" name="sortBy" value="totalPrice">
+                            <input type="hidden" name="direction" value="desc">
+                            <button type="submit" class="dropdown-item">Total Price (Desc)</button>
+                        </form>
+                    </div>
+                </div>
             </div>
 
             <!-- Display Order History -->
             @forelse ($orderHistory as $history)
                 <div class="order">
-                    <h3>Order ID: {{ $history['order']->id }}</h3>
+                    <h3>Order</h3>
                     <p>Payment Method: {{ $history['payment'] }}</p>
                     <p>Order Time: {{ $history['formattedTime'] }}</p>
                     
@@ -68,4 +92,3 @@
     @endif
 </div>
 @endsection
-
