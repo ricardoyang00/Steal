@@ -41,7 +41,7 @@
             <p>The following games could not be purchased due to insufficient stock:</p>
             <ul>
                 @foreach ($canceledItems as $item)
-                    <li>Game ID: {{ $item['game'] }}</li>
+                    <li>Game Name: {{ $item['gameName'] }}</li>
                 @endforeach
             </ul>
         @endif

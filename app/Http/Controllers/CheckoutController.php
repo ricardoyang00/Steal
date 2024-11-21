@@ -96,7 +96,7 @@ class CheckoutController extends Controller
                     ]);
                     CanceledPurchase::create([
                         'id' => $purchase->id,
-                        'cdk' => $canceledItem['game'],
+                        'game' => $canceledItem['game'],
                     ]);
                 }
                 session()->forget('payment_method');
