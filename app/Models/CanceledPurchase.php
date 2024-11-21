@@ -14,11 +14,11 @@ Class CanceledPurchase extends Model{
 
     protected $fillable = ['id','game'];
 
-    public function game(){
+    public function getGame(){
         return $this->belongsTo(Game::class, 'game', 'id');
     }
 
-    public function purchase(){
+    public function getPurchase(){
         return $this->belongsTo(Purchase::Class, 'id', 'id');
     }
 

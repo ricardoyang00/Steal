@@ -14,15 +14,15 @@ Class DeliveredPurchase extends Model{
 
     protected $fillable = ['id', 'cdk'];
 
-    public function cdk(){
+    public function getCdk(){
         return $this->belongsTo(CDK::class, 'cdk', 'id');
     }
 
-    public function purchase(){
+    public function getPurchase(){
         return $this->belongsTo(Purchase::Class, 'id', 'id');
     }
 
-    public function value(){
+    public function getValue(){
         return $this->purchase->value ?? 0.0;
     }
 

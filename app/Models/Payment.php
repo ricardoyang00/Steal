@@ -15,17 +15,17 @@ Class Payment extends Model
 
     protected $fillable = ['method', 'value'];
 
-    public function paymentMethod()
+    public function getPaymentMethod()
     {
         return $this->belongsTo(PaymentMethod::Class, 'method', 'id');
     }
 
-    public function order()
+    public function getOrder()
     {
         return $this->hasOne(Order::Class, 'payment', 'id');
     }
 
-    public function value()
+    public function getValue()
     {
         return $this->value ?? 0;
     }

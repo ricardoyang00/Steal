@@ -17,12 +17,12 @@ class CDK extends Model{
         'game',
     ];
 
-    public function code()
+    public function getCode()
     {
         return $this->code;
     }
 
-    public function game()
+    public function getGame()
     {
         return $this->belongsTo(Game::class, 'game', 'id');
     }

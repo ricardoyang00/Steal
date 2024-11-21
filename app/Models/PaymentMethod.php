@@ -13,9 +13,14 @@ Class PaymentMethod extends Model
 
     public $timestamps = false;
 
-    public function paymentMethods()
+    protected $fillable = ['name'];
+
+
+    public function getPaymentMethods()
     {
         return $this->hasMany(Payment::Class, 'method', 'id');
     }
+
+
 
 }
