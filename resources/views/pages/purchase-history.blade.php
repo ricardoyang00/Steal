@@ -5,22 +5,21 @@
     @if (auth_user())
         @if (auth_user()->buyer)
             @php
-                $buyerId = auth_user()->id; // Ensure you are accessing the buyer's ID
+                $buyerId = auth_user()->buyer->id; // Ensure you are accessing the buyer's ID
             @endphp
             <h1>Purchase History</h1>
             
             <div class="mb-3">
                 <strong>Sort By:</strong>
-                    <a href="{{ route('purchaseHistory', ['id' => auth_user()->buyer->id, 'sortBy' => 'time', 'direction' => 'asc']) }}" 
-                    class="btn btn-primary btn-sm">Order Time (Asc)</a>
-                    <a href="{{ route('purchaseHistory', ['id' => auth_user()->buyer->id, 'sortBy' => 'time', 'direction' => 'desc']) }}" 
-                    class="btn btn-primary btn-sm">Order Time (Desc)</a>
-                    <a href="{{ route('purchaseHistory', ['id' => auth_user()->buyer->id, 'sortBy' => 'totalPrice', 'direction' => 'asc']) }}" 
-                    class="btn btn-primary btn-sm">Total Price (Asc)</a>
-                    <a href="{{ route('purchaseHistory', ['id' => auth_user()->buyer->id, 'sortBy' => 'totalPrice', 'direction' => 'desc']) }}" 
-                    class="btn btn-primary btn-sm">Total Price (Desc)</a>
+                <a href="{{ route('purchaseHistory', ['id' => $buyerId, 'sortBy' => 'time', 'direction' => 'asc']) }}" 
+                   class="btn btn-primary btn-sm">Order Time (Asc)</a>
+                <a href="{{ route('purchaseHistory', ['id' => $buyerId, 'sortBy' => 'time', 'direction' => 'desc']) }}" 
+                   class="btn btn-primary btn-sm">Order Time (Desc)</a>
+                <a href="{{ route('purchaseHistory', ['id' => $buyerId, 'sortBy' => 'totalPrice', 'direction' => 'asc']) }}" 
+                   class="btn btn-primary btn-sm">Total Price (Asc)</a>
+                <a href="{{ route('purchaseHistory', ['id' => $buyerId, 'sortBy' => 'totalPrice', 'direction' => 'desc']) }}" 
+                   class="btn btn-primary btn-sm">Total Price (Desc)</a>
             </div>
-
 
             <!-- Display Order History -->
             @forelse ($orderHistory as $history)
@@ -57,6 +56,10 @@
             @empty
                 <p>No orders found.</p>
             @endforelse
+
+            <div class="d-flex justify-content-center">
+                {{ $orders->links() }}
+            </div>
         @else
             <p>You must be a buyer to view the purchase history.</p>
         @endif
@@ -65,3 +68,4 @@
     @endif
 </div>
 @endsection
+

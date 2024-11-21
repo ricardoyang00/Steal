@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Purchase;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
+
 
 class PurchaseHistoryController extends Controller
 {
@@ -16,14 +19,24 @@ class PurchaseHistoryController extends Controller
 
         $buyerId = auth_user()->buyer->id;
 
-        // Default sorting options
         $sortBy = $request->get('sortBy', 'time');
         $direction = $request->get('direction', 'desc');
 
-        // Fetch orders for the user
-        $orders = Order::where('buyer', $buyerId)->get();
+        
+        $ordersQuery = Order::where('buyer', $buyerId);
 
-        // Map orders with additional data
+        if ($sortBy === 'totalPrice') {
+            $ordersQuery->select('orders.*', DB::raw('(SELECT SUM(purchase.value) FROM purchase WHERE purchase.order_ = orders.id) AS total_cost'))
+                ->orderBy('total_cost', $direction);
+        } else {
+            $ordersQuery->orderBy('time', $direction); // Default to sorting by time
+        }
+
+        $orders = $ordersQuery->paginate(5)->appends([
+            'sortBy' => $sortBy,
+            'direction' => $direction,
+        ]);
+        
         $orderHistory = $orders->map(function ($order) {
             $paymentMethodName = $order->getPayment->getPaymentMethod->name ?? 'Unknown';
 
@@ -51,16 +64,7 @@ class PurchaseHistoryController extends Controller
             ];
         });
 
-        // Apply sorting
-        if ($sortBy === 'totalPrice') {
-            $orderHistory = $orderHistory->sortBy('totalPrice', SORT_REGULAR, $direction === 'desc');
-        } else {
-            $orderHistory = $orderHistory->sortBy(function ($history) {
-                return $history['order']->time;
-            }, SORT_REGULAR, $direction === 'desc');
-        }
-
-        return view('pages.purchase-history', compact('orderHistory'));
+        return view('pages.purchase-history', compact('orderHistory', 'orders'));
     }
 
     private function formatOrderTime($orderTime)
