@@ -27,7 +27,7 @@
             </div>
             <form action="{{ url('/explore') }}" method="GET" class="sorting-form">
                 <div class="links" role="group" aria-label="Game Sorting">
-                    <button type="submit" name="sort" value="all" class="btn btn-link {{ request('sort') == 'all' || !request('query') ? 'active' : '' }}">
+                    <button type="submit" name="sort" value="all" class="btn btn-link {{ request('sort') == 'all' || (!request('sort') && !request('query')) ? 'active' : '' }}">
                         All Items
                     </button>
                     <button type="submit" name="sort" value="new-releases" class="btn btn-link {{ request('sort') == 'new-releases' ? 'active' : '' }}">
@@ -44,9 +44,11 @@
         </nav>
 
         <div class="game-cards">
-            <p class="text-center">
-                {{ $games->total() }} {{ $games->total() == 1 ? 'result matches' : 'results match' }} your search.
-            </p>
+            @if(request('query'))
+                <p class="text-center">
+                    {{ $games->total() }} {{ $games->total() == 1 ? 'result matches' : 'results match' }} your search.
+                </p>
+            @endif
             @foreach($games as $game)
                 @include('partials.game-card-explore', ['game' => $game])
             @endforeach
