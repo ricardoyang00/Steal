@@ -23,12 +23,12 @@ Class Purchase extends Model
         return $this->value ?? 0.0;
     }
 
-    public function deliveredPurchase()
+    public function getDeliveredPurchase()
     {
         return $this->hasOne(DeliveredPurchase::class, 'id', 'id');
     }
 
-    public function canceledPurchase()
+    public function getCanceledPurchase()
     {
         return $this->hasOne(CanceledPurchase::class, 'id', 'id');
     }

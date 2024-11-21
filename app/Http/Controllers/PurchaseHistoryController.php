@@ -8,45 +8,57 @@ use Illuminate\Http\Request;
 
 class PurchaseHistoryController extends Controller
 {
-    public function orderHistory($userId)
+    public function orderHistory($userId, Request $request)
     {
-        if (!auth_user()) {
+        if (!auth_user() || !auth_user()->buyer) {
             return redirect()->route('login');
         }
-        if (!auth_user()->buyer) {
-            return redirect()->route('login');
-        }
-        $buyerId = auth_user()->id;
 
+        $buyerId = auth_user()->buyer->id;
+
+        // Default sorting options
+        $sortBy = $request->get('sortBy', 'time');
+        $direction = $request->get('direction', 'desc');
+
+        // Fetch orders for the user
         $orders = Order::where('buyer', $buyerId)->get();
 
-    $orderHistory = $orders->map(function ($order) {
-        $paymentMethodName = $order->getPayment->getPaymentMethod->name ?? 'Unknown';
+        // Map orders with additional data
+        $orderHistory = $orders->map(function ($order) {
+            $paymentMethodName = $order->getPayment->getPaymentMethod->name ?? 'Unknown';
 
-        $deliveredPurchases = Purchase::where('order_', $order->id)
-            ->whereHas('deliveredPurchase')
-            ->get()
-            ->map(function ($purchase) {
-                $delivered = $purchase->deliveredPurchase;
-                return [
-                    'cdk' => $delivered->getCDK->code ?? 'No CDK',
-                    'game' => $delivered->getCDK->getGame->name ?? 'Unknown Game',
-                    'value' => $purchase->value,
-                ];
-            });
+            $deliveredPurchases = Purchase::where('order_', $order->id)
+                ->whereHas('getDeliveredPurchase')
+                ->get()
+                ->map(function ($purchase) {
+                    $delivered = $purchase->getDeliveredPurchase;
+                    return [
+                        'cdk' => $delivered->getCDK->code ?? 'No CDK',
+                        'game' => $delivered->getCDK->getGame->name ?? 'Unknown Game',
+                        'value' => $purchase->value,
+                    ];
+                });
 
-        $formattedTime = $this->formatOrderTime($order->time);
+            $totalPrice = $deliveredPurchases->sum('value');
+            $formattedTime = $this->formatOrderTime($order->time);
 
-        $totalPrice = $deliveredPurchases->sum('value');
+            return [
+                'order' => $order,
+                'payment' => $paymentMethodName,
+                'purchases' => $deliveredPurchases,
+                'formattedTime' => $formattedTime,
+                'totalPrice' => $totalPrice,
+            ];
+        });
 
-        return [
-            'order' => $order,
-            'payment' => $paymentMethodName,
-            'purchases' => $deliveredPurchases,
-            'formattedTime' => $formattedTime,
-            'totalPrice' => $totalPrice,
-        ];
-    });
+        // Apply sorting
+        if ($sortBy === 'totalPrice') {
+            $orderHistory = $orderHistory->sortBy('totalPrice', SORT_REGULAR, $direction === 'desc');
+        } else {
+            $orderHistory = $orderHistory->sortBy(function ($history) {
+                return $history['order']->time;
+            }, SORT_REGULAR, $direction === 'desc');
+        }
 
         return view('pages.purchase-history', compact('orderHistory'));
     }
@@ -67,7 +79,6 @@ class PurchaseHistoryController extends Controller
 
         return $orderDateTime->format('Y-m-d H:i');
     }
-
 }
 
 
