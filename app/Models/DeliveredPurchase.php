@@ -14,7 +14,7 @@ Class DeliveredPurchase extends Model{
 
     protected $fillable = ['id', 'cdk'];
 
-    public function getCdk(){
+    public function getCDK(){
         return $this->belongsTo(CDK::class, 'cdk', 'id');
     }
 

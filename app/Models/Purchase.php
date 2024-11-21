@@ -15,25 +15,36 @@ Class Purchase extends Model
 
     protected $fillable = ['order_', 'value'];
 
-    public function order(){
+    public function getOrder(){
         return $this->belongsTo(Order::class, 'order_', 'id');
     }
 
-    public function value(){
+    public function getValue(){
         return $this->value ?? 0.0;
     }
 
+    public function deliveredPurchase()
+    {
+        return $this->hasOne(DeliveredPurchase::class, 'id', 'id');
+    }
+
+    public function canceledPurchase()
+    {
+        return $this->hasOne(CanceledPurchase::class, 'id', 'id');
+    }
+
+
     public function type()
-{
-    if (CanceledPurchase::where('id', $this->id)->exists()) {
-        return 'CanceledPurchase';
-    }
+    {
+        if (CanceledPurchase::where('id', $this->id)->exists()) {
+            return 'CanceledPurchase';
+        }
 
-    if (DeliveredPurchase::where('id', $this->id)->exists()) {
-        return 'DeliveredPurchase';
-    }
+        if (DeliveredPurchase::where('id', $this->id)->exists()) {
+            return 'DeliveredPurchase';
+        }
 
-    return 'Unknown';
+        return 'Unknown';
 }
 
 
