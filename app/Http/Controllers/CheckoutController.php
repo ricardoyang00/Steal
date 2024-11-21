@@ -64,6 +64,7 @@ class CheckoutController extends Controller
                     'value' => $game->price,
                 ];
             }
+        }
             $paymentSuccessful = true;
             if (!$paymentSuccessful) {
                 return redirect()->route('cart.index')->with('error', 'Payment failed.');
@@ -112,8 +113,6 @@ class CheckoutController extends Controller
                 ]);
                 return redirect()->route('shopping_cart')->with('error', 'Something went wrong. Please try again.');
             }
-
-        }
 
     }
 
