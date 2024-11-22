@@ -1,0 +1,150 @@
+/* Index.blade.php */
+.admin-user-index h1 {
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admin-user-index .button-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admin-user-index a.list-all-users {
+    display: inline-block;
+    background-color: var(--highlight-color);
+    color: var(--button-highlight-color);
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.admin-user-index a.list-all-users:hover, .admin-user-index form .button:hover {
+    background-color: var(--highlight-hover-color);
+}
+
+.admin-user-index form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.admin-user-index form input[type="text"] {
+    padding: 10px;
+    border: 1px solid var(--secondary-background-color);
+    border-radius: 4px 0 0 4px;
+    background-color: var(--secondary-background-color);
+    color: var(--text-color);
+    outline: none;
+}
+
+.admin-user-index form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    background-color: var(--highlight-color);
+    color: var(--button-highlight-color);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.admin-user-index form button:hover {
+    background-color: var(--highlight-hover-color);
+}
+
+.admin-user-index ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+.admin-user-index ul li {
+    margin: 10px 0;
+}
+
+.admin-user-index ul li a {
+    color: var(--highlight-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.admin-user-index ul li a:hover {
+    color: var(--highlight-hover-color);
+}
+
+.admin-user-index p {
+    text-align: center;
+    color: var(--error-color);
+}
+
+/* All-users.blade.php */
+h1#all-users {
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+/* Buyers and Sellers Container */
+.list-buyers-sellers {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+/* Individual User List Styling */
+.list-buyers-sellers .user-list {
+    background-color: var(--secondary-background-color);
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1;
+    max-width: 45%;
+    text-align: center;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.list-buyers-sellers .user-list h2 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.list-buyers-sellers .user-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list-buyers-sellers .user-list ul li {
+    margin: 10px 0;
+}
+
+.list-buyers-sellers .user-list ul li a {
+    color: var(--highlight-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.list-buyers-sellers .user-list ul li a:hover {
+    color: var(--highlight-hover-color);
+}
+
+.list-buyers-sellers .user-list p {
+    color: var(--error-color);
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .list-buyers-sellers {
+        flex-direction: column; 
+    }
+
+    .user-list {
+        max-width: 100%;
+    }
+}
