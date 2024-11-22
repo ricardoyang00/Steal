@@ -7,6 +7,8 @@
         @if (auth_user()->buyer)
             @php
                 $buyerId = auth_user()->buyer->id; // Ensure you are accessing the buyer's ID
+                $currentSortBy = request('sortBy', 'time'); // Default to 'time'
+                $currentDirection = request('direction', 'asc'); // Default to 'asc'
             @endphp
             <h1>Purchase History</h1>
             
@@ -15,31 +17,50 @@
                 <div class="dropdown">
                     <button id="dropdownButton" onclick="toggleDropdown()" class="btn btn-primary btn-sm">
                         Sort By:
+                        <span id="selectedSort">
+                            @if ($currentSortBy === 'time' && $currentDirection === 'asc')
+                                Order Time (Asc)
+                            @elseif ($currentSortBy === 'time' && $currentDirection === 'desc')
+                                Order Time (Desc)
+                            @elseif ($currentSortBy === 'totalPrice' && $currentDirection === 'asc')
+                                Total Price (Asc)
+                            @elseif ($currentSortBy === 'totalPrice' && $currentDirection === 'desc')
+                                Total Price (Desc)
+                            @endif
+                        </span>
                     </button>
                     <div id="dropdownMenu" class="dropdown-menu" style="display: none;">
                         <!-- Order Time (Asc) -->
                         <form method="GET" action="{{ route('purchaseHistory', ['id' => $buyerId]) }}">
                             <input type="hidden" name="sortBy" value="time">
                             <input type="hidden" name="direction" value="asc">
-                            <button type="submit" class="dropdown-item">Order Time (Asc)</button>
+                            <button type="submit" class="dropdown-item @if ($currentSortBy === 'time' && $currentDirection === 'asc') active @endif">
+                                Order Time (Asc)
+                            </button>
                         </form>
                         <!-- Order Time (Desc) -->
                         <form method="GET" action="{{ route('purchaseHistory', ['id' => $buyerId]) }}">
                             <input type="hidden" name="sortBy" value="time">
                             <input type="hidden" name="direction" value="desc">
-                            <button type="submit" class="dropdown-item">Order Time (Desc)</button>
+                            <button type="submit" class="dropdown-item @if ($currentSortBy === 'time' && $currentDirection === 'desc') active @endif">
+                                Order Time (Desc)
+                            </button>
                         </form>
                         <!-- Total Price (Asc) -->
                         <form method="GET" action="{{ route('purchaseHistory', ['id' => $buyerId]) }}">
                             <input type="hidden" name="sortBy" value="totalPrice">
                             <input type="hidden" name="direction" value="asc">
-                            <button type="submit" class="dropdown-item">Total Price (Asc)</button>
+                            <button type="submit" class="dropdown-item @if ($currentSortBy === 'totalPrice' && $currentDirection === 'asc') active @endif">
+                                Total Price (Asc)
+                            </button>
                         </form>
                         <!-- Total Price (Desc) -->
                         <form method="GET" action="{{ route('purchaseHistory', ['id' => $buyerId]) }}">
                             <input type="hidden" name="sortBy" value="totalPrice">
                             <input type="hidden" name="direction" value="desc">
-                            <button type="submit" class="dropdown-item">Total Price (Desc)</button>
+                            <button type="submit" class="dropdown-item @if ($currentSortBy === 'totalPrice' && $currentDirection === 'desc') active @endif">
+                                Total Price (Desc)
+                            </button>
                         </form>
                     </div>
                 </div>

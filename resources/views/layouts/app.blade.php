@@ -47,7 +47,7 @@
                                     <i class="fas fa-shopping-cart"></i>
                                 </a>
                                 <a class="icon-button" href="{{ route('purchaseHistory', ['id' => auth_user()->id]) }}">
-                                    <i class="fas fa-history"></i>
+                                    <i class="fas fa-wallet"></i>
                                 </a>
                             @endif
                             <a class="icon-button">
