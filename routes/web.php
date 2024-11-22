@@ -10,8 +10,8 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\GameController;
-
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +80,12 @@ Route::post('/add_product', [ShoppingCartController::class, 'addProduct'])->name
 Route::post('/remove_product', [ShoppingCartController::class, 'removeProduct'])->name('remove_product');
 Route::get('/add_test_products', [ShoppingCartController::class, 'addTestProducts'])->name('add_test_products');
 // ----------------------------
+
+Route::middleware('auth')->group(function () {
+    Route::get('/checkout/payment', [CheckoutController::class, 'selectPaymentMethod'])->name('checkout.selectPaymentMethod');
+    Route::post('/checkout/payment', [CheckoutController::class, 'confirmPaymentMethod'])->name('checkout.confirmPayment');
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+});
 
 // Redirect GET /profile/edit to /profile
 Route::get('/profile/edit', function () {

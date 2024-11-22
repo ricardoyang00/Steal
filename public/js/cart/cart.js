@@ -86,3 +86,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
+
+const checkoutButton = document.getElementById('checkout_button');
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', function () {
+            const isAuthenticated = checkoutButton.getAttribute('data-authenticated') === 'true';
+
+            if (isAuthenticated) {
+                // Redirect to the payment method selection page
+                window.location.href = '/checkout/payment';
+            } else {
+                // Alert the user and redirect to the login page
+                alert('You must be logged in as a buyer to proceed to checkout.');
+                window.location.href = '/login';
+            }
+        });
+    }

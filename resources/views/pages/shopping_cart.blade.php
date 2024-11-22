@@ -27,5 +27,13 @@
         </div>
         @endif
         <button onclick="window.location.href = '{{ route('home') }}';">Go Back Home</button>
+        @if (auth_user())
+            @if (auth_user()->buyer)
+                <button id="checkout_button" data-authenticated="true">Checkout</button>
+            @endif
+        @else
+            <button id="checkout_button" data-authenticated="false">Checkout</button>
+        @endif
+
     </section>
 @endsection
