@@ -54,14 +54,14 @@ class Game extends Model
         return $this->belongsToMany(Player::class, 'gameplayer', 'game', 'player');
     }
 
-    public function CDKs()
+    public function getCDKs()
     {
         return $this->hasMany(CDK::class, 'game', 'id');
     }
 
-    public function availableCDKs()
+    public function getAvailableCDKs()
     {
-        return $this->CDKs()
+        return $this->getCDKs()
             ->whereNotIn('id', DeliveredPurchase::pluck('cdk'))
             ->get();
     }

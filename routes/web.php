@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\CheckoutController;
-
+use App\Http\Controllers\PurchaseHistoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -81,10 +81,17 @@ Route::post('/remove_product', [ShoppingCartController::class, 'removeProduct'])
 Route::get('/add_test_products', [ShoppingCartController::class, 'addTestProducts'])->name('add_test_products');
 // ----------------------------
 
+// ----------------------------
+// Checkout
 Route::middleware('auth')->group(function () {
     Route::get('/checkout/payment', [CheckoutController::class, 'selectPaymentMethod'])->name('checkout.selectPaymentMethod');
     Route::post('/checkout/payment', [CheckoutController::class, 'confirmPaymentMethod'])->name('checkout.confirmPayment');
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+});
+// -----------------------------
+
+Route::middleware('auth')->group(function (){
+    Route::get('/user/{id}/order-history', [PurchaseHistoryController::class, 'orderHistory'])->name('purchaseHistory');
 });
 
 // Redirect GET /profile/edit to /profile

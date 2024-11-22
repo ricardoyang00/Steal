@@ -45,7 +45,7 @@ class CheckoutController extends Controller
             if (!$game) {
                 return redirect()->route('shopping_cart')->with('error', 'Some items are no longer available.');
             }
-            $availableCDKs = $game->availableCDKs();
+            $availableCDKs = $game->getAvailableCDKs();
             if($availableCDKs->count() < $cartItem->quantity){
                 $canceledItems[] = [
                     'game' => $game->id,

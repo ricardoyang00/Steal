@@ -15,14 +15,14 @@ Class Order extends Model
 
     protected $fillable = ['buyer', 'payment'];
 
-    public function buyer()
+    public function getBuyer()
     {
         return $this->belongsTo(Buyer::Class, 'buyer', 'id');
     }
 
-    public function payment()
+    public function getPayment()
     {
-        return $this->belongsTo(Payment::class, 'payment', 'id');
+        return $this->belongsTo(Payment::Class, 'payment', 'id');
     }
 
 }
