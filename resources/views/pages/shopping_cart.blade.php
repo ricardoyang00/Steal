@@ -50,12 +50,16 @@
                 <p class="price-item grey-text">Official price<span id="total_price">{{ $total }}€</span></p>
                 <p class="price-item grey-text">Discount<span id="discount">-0.00€</span></p>
                 <p class="price-item subtotal">Subtotal<span id="subtotal">{{ $total }}€</span></p> <!-- Later change cart.js updateQuantity function so subtotal is calculated with discounts -->
-                @if (auth_user())
-                    @if (auth_user()->buyer)
-                        <button id="checkout_button" data-authenticated="true">Checkout <span class="forward-symbol">&rsaquo;</span></button>
-                    @endif
+                @if (count($products) == 0)
+                    <button id="checkout_button" class="disabled" data-authenticated="false" disabled>Checkout <span class="forward-symbol">&rsaquo;</span></button>
                 @else
-                    <button id="checkout_button" data-authenticated="false">Checkout <span class="forward-symbol">&rsaquo;</span></button>
+                    @if (auth_user())
+                        @if (auth_user()->buyer)
+                            <button id="checkout_button" data-authenticated="true">Checkout <span class="forward-symbol">&rsaquo;</span></button>
+                        @endif
+                    @else
+                        <button id="checkout_button" data-authenticated="false">Checkout <span class="forward-symbol">&rsaquo;</span></button>
+                    @endif
                 @endif
                 <div class="separator">
                     <span>or</span>

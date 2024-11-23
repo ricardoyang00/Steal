@@ -91,6 +91,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const noItems = document.createElement('p');
             noItems.textContent = 'No products in the cart.';
             document.getElementById('product_list').appendChild(noItems);
+
+            // Disable the checkout button and change its appearance
+            const checkoutButton = document.getElementById('checkout_button');
+            if (checkoutButton) {
+                checkoutButton.classList.add('disabled');
+                checkoutButton.disabled = true;
+            }
         }
     }
 });
