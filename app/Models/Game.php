@@ -66,6 +66,11 @@ class Game extends Model
             ->get();
     }
 
+    public function deliveredPurchases()
+    {
+        return $this->hasManyThrough(DeliveredPurchase::class, CDK::class, 'game', 'cdk', 'id', 'id');
+    }
+
     public function countDeliveredPurchases()
     {
         return DeliveredPurchase::whereIn('cdk', $this->getCDKs()->pluck('id'))->count();

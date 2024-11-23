@@ -27,7 +27,7 @@ class GameController extends Controller
         if ($sort == 'new-releases') {
             $gamesQuery->orderBy('release_date', 'desc');
         } elseif ($sort == 'top-sellers') {
-            $gamesQuery = $this -> sortByTopSellers($gamesQuery);
+            $gamesQuery->withCount('deliveredPurchases')->orderBy('delivered_purchases_count', 'desc');
         } elseif ($sort == 'top-rated') {
             $gamesQuery->orderBy('overall_rating', 'desc');
         } else { 
@@ -44,15 +44,5 @@ class GameController extends Controller
         $game = Game::with(['seller', 'platforms', 'categories', 'languages', 'players'])->find($id);
     
         return view('pages.game-details', compact('game'));
-    }
-
-    protected function sortByTopSellers($gamesQuery)
-    {
-        return $gamesQuery
-            ->select('game.*')
-            ->leftJoin('cdk', 'cdk.game', '=', 'game.id')
-            ->leftJoin('deliveredpurchase', 'deliveredpurchase.cdk', '=', 'cdk.id')
-            ->groupBy('game.id')
-            ->orderByRaw('COUNT(deliveredpurchase.id) DESC');
     }
 }
