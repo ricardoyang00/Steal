@@ -74,7 +74,7 @@
                     <div class="links">
                         <a class="btn btn-link {{ request()->is('home') ? 'active' : '' }}" href="{{ url('/home') }}">Home</a>
                         <a class="btn btn-link {{ request()->is('explore') ? 'active' : '' }}" href="{{ url('/explore?sort=all') }}">Explore</a>
-                        <a class="btn btn-link {{ request()->is('#help') ? 'active' : '' }}" href="#help">Help</a>
+                        <a class="btn btn-link" href="#help" onclick="scrollToSection(event, 'help')">Help</a>
                     </div>
 
                     <div class="search-container">
