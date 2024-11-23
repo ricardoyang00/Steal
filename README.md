@@ -93,17 +93,69 @@ Our implementation is based on the LBAW Framework and includes work both on the 
 
 > Identify the web resources that were implemented in the prototype.  
 
-> Module M01: Module Name  
+> Module M01: Authentication and User Profile  
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
-| R01: Web resource name | URL to access the web resource |
-
+| R0101: Register Form | GET /register |
+| R0102: Register Action | POST /register |
+| R0103: Login Form | GET /login |
+| R0104: Login Action | POST /login |
+| R0105: Logout Action | GET /logout |
+| R0106: View Profile | GET /profile |
+| R0107: Edit Profile | PUT /profile/edit |
+| R0107: Change Password | PUT /profile |
 ...
 
-> Module M02: Module Name  
+> Module M02: Proucts Browse
 
-...
+| Web Resource Reference | URL                            |
+| ---------------------- | ------------------------------ |
+| R0201: Game Explore | GET /explore |
+| R0202: Game Explore No Filters | GET /explore/sort=all |
+| R0203: Game Explore Filter By Recent Releases | GET /explore/sort=new-releases |
+| R0204: Game Explore Filter By Top Sellers | GET /explore/sort=top-sellers |
+| R0205: Game Explore Filter By Top Rated | GET /explore/sort=top-rated |
+| R0206: View Game Details | GET /game/{id} |
+
+> Module M03: ShoppingCart and Checkout
+
+| Web Resource Reference | URL                            |
+| ---------------------- | ------------------------------ |
+| R0301: View Shopping Cart | GET /cart |
+| R0302: Add Item To Shopping Cart | POST /cart/add_product |
+| R0303: Remove Item From Shopping Cart | POST /cart/add_product |
+| R0304: Increase Quantity in Shopping Cart | POST /cart/increase_quantity |
+| R0305: Decrease Quantity in Shopping Cart | POST /cart/decrease_quantity |
+| R0306: Select Payment Method | GET /checkout/payment |
+| R0307: Confirm Payment Method and Place Order | POST /checkout/payment |
+| R0308: View Order Completion Confirmation And Details | GET /checkout |
+| R0309: View Purchase History | GET /user/{id}/order-history |
+| R0310: View Purchase History With Orders Sorted By Date DESC | GET /user/{id}/order-history?sortBy=time&direction=desc |
+| R0311: View Purchase History With Orders Sorted By Date ASC | GET /user/{id}/order-history?sortBy=time&direction=asc |
+| R0312: View Purchase History With Orders Sorted By Price DESC | GET /user/{id}/order-history?sortBy=totalPrice&direction=desc |
+| R0313: View Purchase History With Orders Sorted By Price ASC | GET /user/{id}/order-history?sortBy=totalPrice&direction=asc |
+
+
+> Module M04: User Administration
+
+| Web Resource Reference | URL                            |
+| ---------------------- | ------------------------------ |
+| R0401: Search Users | GET /users/search |
+| R0402: View User Profiles | GET /users/{id} |
+| R0403: List All Buyers And Users | GET /all-users |
+| R0404: Change User's Username | POST /users/{id}/change-username |
+| R0405: Change User's Name | POST /users/{id}/change-name |
+| R0406: Change User's Coins | /users/{id}/change-coins |
+
+
+> Module M05: Static Pages
+
+| Web Resource Reference | URL                            |
+| ---------------------- | ------------------------------ |
+| R0501: About | GET /about |
+| R0502: Contact | GET /contact |
+| R0503: FAQ | GET /faqs |
 
 ### 2. Prototype
 
