@@ -90,8 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (document.getElementById('product_list').childElementCount === 0) {
             const noItems = document.createElement('p');
             noItems.textContent = 'No products in the cart.';
-            document.getElementById('product_div').innerHTML = '';
-            document.getElementById('product_div').appendChild(noItems);
+            document.getElementById('product_list').appendChild(noItems);
         }
     }
 });

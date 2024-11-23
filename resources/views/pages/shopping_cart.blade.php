@@ -10,10 +10,10 @@
     <div class="cart-container">
         <div class="cart-items">
             <h2>Cart</h2>
-            <ul id="product_list">
-                @if (count($products) == 0)
-                    <p>No products in the cart.</p>
-                @else
+            @if (count($products) == 0)
+                <p>No products in the cart.</p>
+            @else
+                <ul id="product_list">
                     @foreach ($products as $product)
                         <li id="product-{{ $product['id'] }}">
                             <div class="product-container">
@@ -33,8 +33,8 @@
                             </div>
                         </li>
                     @endforeach
-                @endif
-            </ul>
+                </ul>
+            @endif
         </div>
         <div class="cart-summary">
             <h2>Summary</h2>

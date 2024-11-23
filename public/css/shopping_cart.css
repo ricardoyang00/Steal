@@ -33,12 +33,9 @@
 }
 
 #product_list li {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
-    border-bottom: 1px solid #444;
 }
 
 /* Container for each product */
@@ -48,7 +45,7 @@
     justify-content: space-between;
     padding: 10px 0;
     border-bottom: 1px solid #444;
-    gap: 15px; /* Space between image and details */
+    gap: 15px;
 }
 
 /* Image styling */
