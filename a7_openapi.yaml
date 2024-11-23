@@ -2,8 +2,8 @@ openapi: 3.0.0
 
 info:
   version: '1.0'
-  title: 'LBAW MediaLibrary Web API'
-  description: 'Web Resources Specification (A7) for MediaLibrary'
+  title: 'Steal! Web API'
+  description: 'Web Resources Specification (A7) for Steal!'
 
 servers:
 - url: http://lbaw.fe.up.pt
@@ -32,13 +32,13 @@ paths:
       responses:
         '200':
           description: 'Ok. Show log-in UI'
+
     post:
       operationId: R102
       summary: 'R102: Login Action'
       description: 'Processes the login form submission. Access: PUB'
       tags:
         - 'M01: Authentication and Individual Profile'
- 
       requestBody:
         required: true
         content:
@@ -46,14 +46,13 @@ paths:
             schema:
               type: object
               properties:
-                email:          # <!--- form field name
+                email:
                   type: string
-                password:    # <!--- form field name
+                password:
                   type: string
               required:
                 - email
                 - password
- 
       responses:
         '302':
           description: 'Redirect after processing the login credentials.'
@@ -63,14 +62,13 @@ paths:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful authentication. Redirect to user profile.'
-                  value: '/users/{id}'
+                  description: 'Successful authentication. Redirect to home page.'
+                  value: '/home'
                 302Error:
                   description: 'Failed authentication. Redirect to login form.'
                   value: '/login'
  
   /logout:
-
     post:
       operationId: R103
       summary: 'R103: Logout Action'
@@ -106,7 +104,6 @@ paths:
       description: 'Processes the new user registration form submission. Access: PUB'
       tags:
         - 'M01: Authentication and Individual Profile'
-
       requestBody:
         required: true
         content:
@@ -114,17 +111,30 @@ paths:
             schema:
               type: object
               properties:
+                role:
+                  type: string
+                  enum: [BYR, SLR]    # Buyer or Seller
+                username:
+                  type: string
                 name:
                   type: string
                 email:
                   type: string
-                picture:
+                password:
                   type: string
-                  format: binary
+                confirm_password:
+                  type: string
+                birthday:
+                  type: string
+                  format: date
               required:
+                - role
+                - username
+                - name
                 - email
                 - password
-
+                - confirm_password
+                - birthday
       responses:
         '302':
           description: 'Redirect after processing the new user information.'
@@ -134,31 +144,129 @@ paths:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful authentication. Redirect to user profile.'
-                  value: '/users/{id}'
+                  description: 'Successful registration and authentication. Redirect to home page.'
+                  value: '/home'
                 302Failure:
-                  description: 'Failed authentication. Redirect to login form.'
-                  value: '/login'
+                  description: 'FFailed registration. Redirect to registration form.'
+                  value: '/register'
 
-  /users/{id}:
+  /profile:
     get:
       operationId: R106
       summary: 'R106: View user profile'
       description: 'Show the individual user profile. Access: USR'
       tags:
         - 'M01: Authentication and Individual Profile'
-
       parameters:
         - in: path
           name: id
           schema:
             type: integer
           required: true
-
       responses:
         '200':
           description: 'Ok. Show view profile UI'
- 
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  username:
+                    type: string
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  role:
+                    type: string
+                  nif:
+                    type: string
+                    description: 'Only for buyers'
+                  birth_date:
+                    type: string
+                    format: date
+                    description: 'Only for buyers'
+                  coins:
+                    type: integer
+                    description: 'Only for buyers'
+
+    put:
+      operationId: R107
+      summary: 'R107: Edit user profile'
+      description: 'Edit the individual user profile. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                name:
+                  type: string
+                nif:
+                  type: string
+              required:
+                - username
+                - name
+                - nif
+      responses:
+        '200':
+          description: 'Profile updated successfully'
+        '400':
+          description: 'Invalid input'
+        '404':
+          description: 'Profile not found'
+
+    post:
+      operationId: R108
+      summary: 'R108: Change user password'
+      description: 'Change the user password. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                current_password:
+                  type: string
+                new_password:
+                  type: string
+                confirm_new_password:
+                  type: string
+              required:
+                - current_password
+                - new_password
+                - confirm_new_password
+      responses:
+        '200':
+          description: 'Password changed successfully'
+        '400':
+          description: 'Invalid input'
+        '404':
+          description: 'Profile not found'
+        '401':
+          description: 'Unauthorized. Current password is incorrect'
 
   /api/works:
     get:

@@ -24,6 +24,9 @@ This artifact documents the architecture of the web application to be developed,
 | M04: User Administration | Web resources associated with administrative functions, including listing and managing users, managing products and their properties, and maintaining the shop's functionality. |
 | M05: Static Pages | Web resources associated with static content and pages such as About, Contact, and FAQs. |
 
+|M06: Order Management|Web resources associated with managing orders, including order tracking, status updates, and order history.|
+|M07: Reviews and Ratings|Web resources associated with submitting and managing product reviews and ratings.|
+|M08: Notifications|Web resources associated with sending and managing notifications for various events such as order updates, promotions, and user activities.|
 
 ### 2. Permissions
 
