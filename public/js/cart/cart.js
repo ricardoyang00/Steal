@@ -88,9 +88,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function noProductsInCart() {
         if (document.getElementById('product_list').childElementCount === 0) {
-            const noItems = document.createElement('p');
-            noItems.textContent = 'No products in the cart.';
-            document.getElementById('product_list').appendChild(noItems);
+            const emptyCartMessage = document.createElement('div');
+            emptyCartMessage.classList.add('empty-cart-message');
+            emptyCartMessage.innerHTML = `
+                <i class="fas fa-shopping-cart"></i>
+                <p id="primary-empty-message">Your cart is empty</p>
+                <p id="secondary-empty-message">You didn't add any item in your cart yet. Browse the website to find amazing deals!</p>
+                <a href="/explore" class="btn">Explore games</a>
+            `;
+            document.getElementById('product_list').appendChild(emptyCartMessage);
 
             // Disable the checkout button and change its appearance
             const checkoutButton = document.getElementById('checkout_button');

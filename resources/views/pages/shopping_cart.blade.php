@@ -10,9 +10,14 @@
     <div class="cart-container">
         <div class="cart">
             <h2>Cart</h2>
-            <div class="cart-items">
+            <div class="cart-items {{ count($products) == 0 ? 'empty-cart' : '' }}">
                 @if (count($products) == 0)
-                    <p>No products in the cart.</p>
+                    <div class="empty-cart-message">
+                        <i class="fas fa-shopping-cart"></i>
+                        <p id="primary-empty-message">Your cart is empty</p>
+                        <p id="secondary-empty-message">You didn't add any item in your cart yet. Browse the website to find amazing deals!</p>
+                        <a href="{{ route('explore') }}" class="btn">Explore games</a>
+                    </div>
                 @else
                     <ul id="product_list">
                         @foreach ($products as $product)
