@@ -823,6 +823,8 @@ insert into GamePlatform (game, platform) values (29, 2);
 insert into GamePlatform (game, platform) values (30, 3);
 insert into GamePlatform (game, platform) values (31, 1);
 insert into GamePlatform (game, platform) values (32, 1);
+insert into GamePlatform (game, platform) values (32, 2);
+insert into GamePlatform (game, platform) values (32, 4);
 insert into GamePlatform (game, platform) values (33, 3);
 insert into GamePlatform (game, platform) values (34, 3);
 insert into GamePlatform (game, platform) values (35, 2);
