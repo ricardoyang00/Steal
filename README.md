@@ -58,6 +58,7 @@ openapi: 3.0.0
 
 > This artifact contains the implementation of most of the high priority user stories of our web application and all mandatory features for its vertical prototype (features marked with an * in the common and theme requirements documents).
 Our implementation is based on the LBAW Framework and includes work both on the client and server side of the application, focusing both on user interface and server data access. By implementing all the features described in this section, our protoype has a functional implementation of all CRUD operations (Create, Read, Update, Delete).
+
 ### 1. Implemented Features
 
 #### 1.1. Implemented User Stories
@@ -73,6 +74,7 @@ Our implementation is based on the LBAW Framework and includes work both on the 
 | US05                 | Add to Shopping Cart | High | Daniel Basílio | As an Anonymous User, I want to add games to a shopping cart, so that I can purchase multiple items at once. |
 | US06                 | Manage Shopping Cart | High | Daniel Basílio | As an Anonymous User, I want to manage my shopping cart, so that I can update quantities or remove items before purchasing. |
 | US07                 | Full Text Search | High | Ricardo Yang | As an Anonymous User, I want to perform full-text searches across the game catalog, so that I can quickly find games based on keywords. |
+| US08                 | Search Games by Genre/Platform | High | Ricardo Yang | As an Anonymous User, I want to search for games by genre, platform, price, language and rating, so that I can quickly find the games I am interested in. |
 | US09                 | Access Static Pages | Medium | Ricardo Yang | As an Anonymous User, I want to view static pages (About Us, Contact Us, Terms of Service), so that I can understand the platform’s purpose and policies. |
 | US10                 | Delete Own Account | High | Bruno Huang | As an Authenticated User, I want the option to delete my own account, so that I can control my personal data on the platform. |
 | US11                 | Edit Profile | High | Bruno Huang | As an Authenticated User, I want to be able to edit my profile, so that I can personalize my account. |
@@ -93,7 +95,8 @@ Our implementation is based on the LBAW Framework and includes work both on the 
 
 > Identify the web resources that were implemented in the prototype.  
 
-> Module M01: Authentication and User Profile  
+
+Module M01: Authentication and User Profile  
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
@@ -105,9 +108,9 @@ Our implementation is based on the LBAW Framework and includes work both on the 
 | R0106: View Profile | GET /profile |
 | R0107: Edit Profile | PUT /profile/edit |
 | R0107: Change Password | PUT /profile |
-...
 
-> Module M02: Proucts Browse
+
+Module M02: Proucts Browse
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
@@ -118,7 +121,8 @@ Our implementation is based on the LBAW Framework and includes work both on the 
 | R0205: Game Explore Filter By Top Rated | GET /explore/sort=top-rated |
 | R0206: View Game Details | GET /game/{id} |
 
-> Module M03: ShoppingCart and Checkout
+
+Module M03: ShoppingCart and Checkout
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
@@ -137,7 +141,7 @@ Our implementation is based on the LBAW Framework and includes work both on the 
 | R0313: View Purchase History With Orders Sorted By Price ASC | GET /user/{id}/order-history?sortBy=totalPrice&direction=asc |
 
 
-> Module M04: User Administration
+Module M04: User Administration
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
@@ -146,10 +150,10 @@ Our implementation is based on the LBAW Framework and includes work both on the 
 | R0403: List All Buyers And Users | GET /all-users |
 | R0404: Change User's Username | POST /users/{id}/change-username |
 | R0405: Change User's Name | POST /users/{id}/change-name |
-| R0406: Change User's Coins | /users/{id}/change-coins |
+| R0406: Change User's Coins | POST /users/{id}/change-coins |
 
 
-> Module M05: Static Pages
+Module M05: Static Pages
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
