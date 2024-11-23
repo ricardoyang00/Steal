@@ -66,10 +66,8 @@ class Game extends Model
             ->get();
     }
 
-    public function countDeliveredCDKs()
+    public function countDeliveredPurchases()
     {
-        return DeliveredPurchase::whereHas('getCDK', function ($query) {
-            $query->where('game', $this->id);
-        })->count();
+        return DeliveredPurchase::whereIn('cdk', $this->getCDKs()->pluck('id'))->count();
     }
 }

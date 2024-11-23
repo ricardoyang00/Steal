@@ -27,11 +27,7 @@ class GameController extends Controller
         if ($sort == 'new-releases') {
             $gamesQuery->orderBy('release_date', 'desc');
         } elseif ($sort == 'top-sellers') {
-            $gamesQuery->select('game.*')
-                ->leftJoin('cdk', 'cdk.game', '=', 'game.id')
-                ->leftJoin('deliveredpurchase', 'deliveredpurchase.cdk', '=', 'cdk.id')
-                ->groupBy('game.id')
-                ->orderByRaw('COUNT(deliveredpurchase.id) DESC');
+            $gamesQuery = $this -> sortByTopSellers($gamesQuery);
         } elseif ($sort == 'top-rated') {
             $gamesQuery->orderBy('overall_rating', 'desc');
         } else { 

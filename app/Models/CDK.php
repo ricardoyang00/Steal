@@ -26,9 +26,4 @@ class CDK extends Model{
     {
         return $this->belongsTo(Game::class, 'game', 'id');
     }
-
-    public function deliveredPurchase()
-    {
-        return $this->hasOne(DeliveredPurchase::class, 'cdk', 'id');
-    }
 }
