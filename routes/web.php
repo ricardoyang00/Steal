@@ -13,6 +13,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PurchaseHistoryController;
+use App\Http\Controllers\StaticPagesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -122,3 +123,9 @@ Route::get('/explore', [GameController::class, 'index']);
 Route::get('/explore', [GameController::class, 'explore'])->name('explore');
 
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.details');
+
+Route::controller(StaticPagesController::class)->group(function () {
+    Route::get('/about', 'about')->name('about');
+    Route::get('/contact', 'contact')->name('contact');
+    Route::get('/faqs', 'faqs')->name('faqs');
+});

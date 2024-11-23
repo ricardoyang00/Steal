@@ -1183,7 +1183,11 @@ insert into FAQ (question, answer) values ('Can I return a CDK?', 'No, CDKs cann
 
 
 -- ABOUT 
-insert into About (content) values ('This website was created as a project for the Web Development course at the University of Oviedo.');
+insert into About (content) values ('This website was created as a project for the Database and Web Applications Laboratory (LBAW) course at the University of Porto (FEUP).');
+insert into About (content) values ('Bruno Huang, up202207517@up.pt');
+insert into About (content) values ('Daniel Basílio, up201806838@up.pt');
+insert into About (content) values ('Francisco Magalhães, up202007945@up.pt');
+insert into About (content) values ('Ricardo Yang, up202208465@up.pt');
 
 
 -- CONTACT
