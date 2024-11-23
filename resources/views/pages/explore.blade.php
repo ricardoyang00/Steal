@@ -54,12 +54,6 @@
             @endforeach
         </div>
 
-        <!--
-        @if(isset($query) && $query)
-            <p class="text-center">Showing results for "<strong>{{ $query }}</strong>":</p>
-        @endif
-        -->
-
         <!-- Pagination Links -->
         <div class="pagination-links">
             {{ $games->appends(request()->except('page'))->links() }}

@@ -18,9 +18,13 @@
                         @foreach ($products as $product)
                             <li id="product-{{ $product['id'] }}">
                                 <div class="product-container">
-                                    <img src="{{ asset('images/default-game-poster.jpg') }}" class="img-fluid" alt="{{ $product['name'] }}">
+                                    <a href="{{ route('game.details', ['id' => $product['id']]) }}">
+                                        <img src="{{ asset('images/default-game-poster.jpg') }}" class="img-fluid" alt="{{ $product['name'] }}">
+                                    </a>
                                     <div class="product-details">
-                                        <p class="product-name">{{ $product['name'] }}</p>
+                                        <a href="{{ route('game.details', ['id' => $product['id']]) }}">
+                                            <p class="product-name">{{ $product['name'] }}</p>
+                                        </a>
                                         <button class="btn-remove" data-id="{{ $product['id'] }}">
                                             <i class="far fa-trash-alt"></i> Remove
                                         </button>
