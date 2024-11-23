@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 if (data.success) {
                     document.getElementById(`product-${productId}`).remove();
-                    document.getElementById('total_price').textContent = data.new_total;
+                    document.getElementById('total_price').textContent = (data.new_total).toFixed(2) + '€';
+                    document.getElementById('subtotal').textContent = (data.new_total).toFixed(2) + '€';
                     if (document.getElementById('product_list').childElementCount === 0) {
                         noProductsInCart();
                     }
@@ -61,7 +62,15 @@ document.addEventListener('DOMContentLoaded', function () {
             if (data.success) {
                 const productItem = document.getElementById(`product-${productId}`);
                 productItem.querySelector('.prod_quantity').textContent = data.new_quantity;
-                document.getElementById('total_price').textContent = (data.new_total).toFixed(2);
+
+                // Update the total price
+                const totalPriceElement = document.getElementById('total_price');
+                totalPriceElement.textContent = (data.new_total).toFixed(2) + '€';
+
+                // Update the subtotal (same as total for now since no discounts applied)
+                const subtotalElement = document.getElementById('subtotal');
+                subtotalElement.textContent = (data.new_total).toFixed(2) + '€';
+                
                 if (data.new_quantity === 0) {
                     productItem.remove();
                     if (document.getElementById('product_list').childElementCount === 0) {
