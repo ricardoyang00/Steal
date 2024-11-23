@@ -163,9 +163,26 @@
     padding-bottom: 10px;
 }
 
-.cart-summary p {
-    margin: 10px 0;
-    font-size: 1rem;
+.cart-summary .price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-summary .price-item span {
+    margin-left: auto;
+    text-align: right;
+}
+
+.cart-summary .grey-text {
+    color: var(--secondary-text-color);
+    font-size: 0.9rem;
+}
+
+.cart-summary .subtotal {
+    font-size: 1.2rem; 
+    font-weight: bold;
+    margin-top: 12px;
 }
 
 #checkout_button {
@@ -187,14 +204,57 @@
     background: linear-gradient(180deg, var(--buy-button-color), var(--positive));
 }
 
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    color: var(--secondary-text-color);
+    font-size: 0.9rem;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #666;
+}
+
+.separator:not(:empty)::before {
+    margin-right: .5em;
+}
+
+.separator:not(:empty)::after {
+    margin-left: .5em;
+}
+
 .continue-shopping {
     display: block;
     text-align: center;
     margin-top: 10px;
-    color: #ff9800;
+    color: var(--secondary-text-color);
     text-decoration: none;
+    transition: color 0.3s;
+    font-size: 0.9rem;
 }
 
 .continue-shopping:hover {
-    text-decoration: underline;
+    color: var(--text-color);
+}
+
+.back-symbol {
+    font-size: 1.5rem;
+    margin-right: 5px;
+    vertical-align: middle;
+    position: relative;
+    bottom: 3px;
+}
+
+.forward-symbol {
+    font-size: 1.5rem;
+    margin-left: 5px;
+    vertical-align: middle;
+    position: relative;
+    bottom: 3px;
 }

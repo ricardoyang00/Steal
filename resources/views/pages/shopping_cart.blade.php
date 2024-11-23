@@ -43,17 +43,20 @@
         <div class="summary">
             <h2>Summary</h2>
             <div class="cart-summary">
-                <p>Official price: <span id="total_price">{{ $total }}€</span></p>
-                <p>Discount: <span id="discount">-0.00€</span></p>
-                <p>Subtotal: <span id="subtotal">{{ $total }}€</span></p> <!-- Later change cart.js updateQuantity function so subtotal is calculated with discounts -->
+                <p class="price-item grey-text">Official price<span id="total_price">{{ $total }}€</span></p>
+                <p class="price-item grey-text">Discount<span id="discount">-0.00€</span></p>
+                <p class="price-item subtotal">Subtotal<span id="subtotal">{{ $total }}€</span></p> <!-- Later change cart.js updateQuantity function so subtotal is calculated with discounts -->
                 @if (auth_user())
                     @if (auth_user()->buyer)
-                        <button id="checkout_button" data-authenticated="true">Checkout</button>
+                        <button id="checkout_button" data-authenticated="true">Checkout <span class="forward-symbol">&rsaquo;</span></button>
                     @endif
                 @else
-                    <button id="checkout_button" data-authenticated="false">Checkout</button>
+                    <button id="checkout_button" data-authenticated="false">Checkout <span class="forward-symbol">&rsaquo;</span></button>
                 @endif
-                <button class="continue-shopping" onclick="window.location.href = '{{ route('home') }}';">continue-shopping</button>
+                <div class="separator">
+                    <span>or</span>
+                </div>
+                <a href="{{ route('explore') }}" class="continue-shopping"><span class="back-symbol">&lsaquo;</span> Continue shopping</a>
             </div>
         </div>
     </div>
