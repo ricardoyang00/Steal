@@ -49,6 +49,11 @@
     gap: 15px;
 }
 
+/* Remove border for the last item in the cart */
+#product_list li:last-child .product-container {
+    border-bottom: none;
+}
+
 /* Image styling */
 .product-container img {
     width: 70px;
