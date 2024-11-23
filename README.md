@@ -56,17 +56,36 @@ openapi: 3.0.0
 
 ## A8: Vertical prototype
 
-> Brief presentation of the artifact goals.
-
+> This artifact contains the implementation of most of the high priority user stories of our web application and all mandatory features for its vertical prototype (features marked with an * in the common and theme requirements documents).
+Our implementation is based on the LBAW Framework and includes work both on the client and server side of the application, focusing both on user interface and server data access. By implementing all the features described in this section, our protoype has a functional implementation of all CRUD operations (Create, Read, Update, Delete).
 ### 1. Implemented Features
 
 #### 1.1. Implemented User Stories
 
-> Identify the user stories that were implemented in the prototype.  
+> Identification of the user stories that were implemented in the prototype.  
 
 | User Story reference | Name      | Priority    | Responsible        | Description                                           |
 | -------------------- | --------- | ----------- | ------------------ | ----------------------------------------------------- |
-| US01                 | Name of the user story | Priority of the user story | Main responsible by the implementation | Description of the user story |
+| US01                 | Browse Marketplace | High | Ricardo Yang | As an Anonymous User, I want to browse the marketplace, view and filter the product list and categories, so that I can explore available CDKs. |
+| US02                 | View Product Details | High | Ricardo Yang | As an Anonymous User, I want to view detailed information about a game, including reviews, so that I can decide if I want to purchase it. |
+| US03                 | Register Account | High | Bruno Huang | As an Anonymous User, I want to register an account, so that I can access additional features. |
+| US04                 | Sign In Account  | High | Bruno Huang | As an Anonymous User, I want to sign in to my account, so that I can have access additional features. |
+| US05                 | Add to Shopping Cart | High | Daniel Basílio | As an Anonymous User, I want to add games to a shopping cart, so that I can purchase multiple items at once. |
+| US06                 | Manage Shopping Cart | High | Daniel Basílio | As an Anonymous User, I want to manage my shopping cart, so that I can update quantities or remove items before purchasing. |
+| US07                 | Full Text Search | High | Ricardo Yang | As an Anonymous User, I want to perform full-text searches across the game catalog, so that I can quickly find games based on keywords. |
+| US09                 | Access Static Pages | Medium | Ricardo Yang | As an Anonymous User, I want to view static pages (About Us, Contact Us, Terms of Service), so that I can understand the platform’s purpose and policies. |
+| US10                 | Delete Own Account | High | Bruno Huang | As an Authenticated User, I want the option to delete my own account, so that I can control my personal data on the platform. |
+| US11                 | Edit Profile | High | Bruno Huang | As an Authenticated User, I want to be able to edit my profile, so that I can personalize my account. |
+| US12                 | Log Out | High | Bruno Huang | As an Authenticated User, I want to log out of my account, so that my session is securely terminated and my account is protected. |
+| US13                 | View Profile | High | Bruno Huang | As an Authenticated User, I want to view my profile information, so that I can see my account details and ensure they are correct. |
+| US14                 | Update Profile Information | High | Bruno Huang | As an Authenticated User, I want to update my profile information, so that my account details are up to date. |
+| US15                 | Change Password| High | Bruno Huang | As an Authenticated User, I want to change my password, so that I can maintain the security of my account. |
+| US18                 | Checkout Items | High | Francisco Magalhães | As a Buyer, I want to complete the checkout process for items in my cart or individual items, so that I can finalize my purchases efficiently. |
+| US22                 | Track Purchase History | Medium | Francisco Magalhães | As a Buyer, I want to track my purchase history, so that I can review my past orders. |
+| US26                 | Cancel Order | Medium | Francisco Magalhães | As a Buyer, I want to cancel my order, so that I can manage my purchases effectively if I change my mind. |
+| US29                 | Multiple Payment Options | Low | Francisco Magalhães | As a Buyer, I want to complete my purchase using multiple payment methods as by PayPal, MBWay or credit card, so that I can choose the most convenient method for me. |
+| US39                 | Administer User Accounts (Search, View, Edit, Create) | High | Bruno Huang | As an Administrator, I want to manage user accounts by searching for, viewing, editing, and creating user profiles, so that I can ensure that user information is accurate and up to date on the platform. |
+| US40                 | Block or Unblock User Accounts | Medium | Bruno Huang | As an Administrator, I want to manage user accounts (either deleting, blocking/unblocking), so that I can maintain a secure and orderly platform. |
 
 ...
 
