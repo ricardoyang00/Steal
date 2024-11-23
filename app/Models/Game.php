@@ -65,4 +65,11 @@ class Game extends Model
             ->whereNotIn('id', DeliveredPurchase::pluck('cdk'))
             ->get();
     }
+
+    public function countDeliveredCDKs()
+    {
+        return DeliveredPurchase::whereHas('getCDK', function ($query) {
+            $query->where('game', $this->id);
+        })->count();
+    }
 }
