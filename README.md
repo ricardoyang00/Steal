@@ -1,18 +1,42 @@
 # EAP: Architecture Specification and Prototype
 
-> Project vision.
+**Project Vision**
+
+**STEAL!** is an online marketplace focused on selling Content Distribution Keys (CDKs). It offers a secure, user-friendly platform for gamers seeking affordable game keys, aiming to become the top destination for accessible, high-quality digital gaming.
+
+> **"SO AFFORDABLE IT'S LIKE STEALING!"** 
+
+----
 
 ## A7: Web Resources Specification
 
-> Brief presentation of the artifact's goals.
+This artifact documents the architecture of the web application to be developed, indicating the catalog of resources, the properties of each resource, and the format of JSON responses. This page includes the following operations over data: create, read, update, and delete.
 
 ### 1. Overview
 
 > Identify and overview the modules that will be part of the application.  
 
+| Module | Description |
+|--|--|
+| M01: Authentication and Profile | Web resources associated with user authentication and profile management, including basic user information and roles. |
+| M02: Products Browse | Web resources associated with the search, filtering, sorting, and listing of available products, as well as browsing product information. |
+| M03: Shopping Cart and Checkout | Web resources associated with adding products to the shopping cart and proceeding to checkout, including navigation of purchase history. |
+| M04: User Administration | Web resources associated with administrative functions, including listing and managing users, managing products and their properties, and maintaining the shop's functionality. |
+| M05: Static Pages | Web resources associated with static content and pages such as About, Contact, and FAQs. |
+
+
 ### 2. Permissions
 
 > Define the permissions used by each module, necessary to access its data and features.  
+
+| Role | Description | Permissions |
+| -- | -- | -- |
+| **ANM** | Anonymous | Users without privileges |
+| **USR** | User | General authenticated users |
+| **BYR** | Buyer | Authenticated users who can purchase products and leave reviews |
+| **SLR** | Seller | Authenticated users who can list products for sale |
+| **ADM** | Administrator | System administrators |
+
 
 ### 3. OpenAPI Specification
 
