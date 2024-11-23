@@ -9,6 +9,8 @@
   --highlight-hover-color: #0044bc;
   --shadow-color: rgba(0, 0, 0, 0.3);
   --error-color: #ff4d4d;
+  --red: #ff4d4d;
+  --red-hover: #e03434;
   --negative: #b7574a;
   --positive: #65add7; 
   --game-detail-text: #cccccc;
@@ -19,6 +21,7 @@
   --buy-button-hover-color: #0056b3;
   --explore-table-color: #666666;
   --game-card-background: #3b3b3b;
+  --cart-color: #1e1e1e;
 }
 
 .logo-icon {
