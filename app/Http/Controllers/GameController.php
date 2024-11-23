@@ -16,10 +16,8 @@ class GameController extends Controller
         $gamesQuery = Game::query()->where('is_active', true);
 
         if ($query) {
-            // Trim and normalize the query
             $query = trim(preg_replace('/\s+/', ' ', $query));
 
-            // Ensure the query is not empty after normalization
             if (!empty($query)) {
                 $formattedQuery = implode(' | ', array_map(fn($term) => "{$term}:*", explode(' ', $query)));
                 $gamesQuery->whereRaw("tsvectors @@ to_tsquery('english', ?)", [$formattedQuery]);
@@ -28,10 +26,9 @@ class GameController extends Controller
 
         if ($sort == 'new-releases') {
             $gamesQuery->orderBy('release_date', 'desc');
-        } /*elseif ($sort == 'top-sellers') { // TODO
-            $gamesQuery->withCount('purchases')
-               ->orderBy('purchases_count', 'desc');
-        }*/ elseif ($sort == 'top-rated') {
+        } elseif ($sort == 'top-sellers') {
+            $gamesQuery->withCount('deliveredPurchases')->orderBy('delivered_purchases_count', 'desc');
+        } elseif ($sort == 'top-rated') {
             $gamesQuery->orderBy('overall_rating', 'desc');
         } else { 
             $gamesQuery->orderBy('name', 'asc');    // default : all games sorted alphabetically

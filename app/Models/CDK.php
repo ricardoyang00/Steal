@@ -26,6 +26,4 @@ class CDK extends Model{
     {
         return $this->belongsTo(Game::class, 'game', 'id');
     }
-
-
 }
