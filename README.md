@@ -52,14 +52,14 @@ openapi: 3.0.0
 
 ## A8: Vertical prototype
 
-> This artifact contains the implementation of most of the high priority user stories of our web application and all mandatory features for its vertical prototype (features marked with an * in the common and theme requirements documents).
+This artifact contains the implementation of most of the high priority user stories of our web application and all mandatory features for its vertical prototype (features marked with an * in the common and theme requirements documents).
 Our implementation is based on the LBAW Framework and includes work both on the client and server side of the application, focusing both on user interface and server data access. By implementing all the features described in this section, our protoype has a functional implementation of all CRUD operations (Create, Read, Update, Delete).
 
 ### 1. Implemented Features
 
 #### 1.1. Implemented User Stories
 
-> Identification of the user stories that were implemented in the prototype.  
+Identification of the user stories that were implemented in the prototype.  
 
 | User Story reference | Name      | Priority    | Responsible        | Description                                           |
 | -------------------- | --------- | ----------- | ------------------ | ----------------------------------------------------- |
@@ -71,7 +71,7 @@ Our implementation is based on the LBAW Framework and includes work both on the 
 | US06                 | Manage Shopping Cart | High | Daniel Basílio | As an Anonymous User, I want to manage my shopping cart, so that I can update quantities or remove items before purchasing. |
 | US07                 | Full Text Search | High | Ricardo Yang | As an Anonymous User, I want to perform full-text searches across the game catalog, so that I can quickly find games based on keywords. |
 | US08                 | Search Games by Genre/Platform | High | Ricardo Yang | As an Anonymous User, I want to search for games by genre, platform, price, language and rating, so that I can quickly find the games I am interested in. |
-| US09                 | Access Static Pages | Medium | Ricardo Yang | As an Anonymous User, I want to view static pages (About Us, Contact Us, Terms of Service), so that I can understand the platform’s purpose and policies. |
+| US09                 | Access Static Pages | Medium | Ricardo Yang | As an Anonymous User, I want to view static pages (About Us, Contact Us, FAQs), so that I can understand the platform’s purpose and policies. |
 | US10                 | Delete Own Account | High | Bruno Huang | As an Authenticated User, I want the option to delete my own account, so that I can control my personal data on the platform. |
 | US11                 | Edit Profile | High | Bruno Huang | As an Authenticated User, I want to be able to edit my profile, so that I can personalize my account. |
 | US12                 | Log Out | High | Bruno Huang | As an Authenticated User, I want to log out of my account, so that my session is securely terminated and my account is protected. |
@@ -89,9 +89,6 @@ Our implementation is based on the LBAW Framework and includes work both on the 
 
 #### 1.2. Implemented Web Resources
 
-> Identify the web resources that were implemented in the prototype.  
-
-
 Module M01: Authentication and User Profile  
 
 | Web Resource Reference | URL                            |
@@ -106,7 +103,7 @@ Module M01: Authentication and User Profile
 | R0107: Change Password | PUT /profile |
 
 
-Module M02: Proucts Browse
+M02: Products Browse and Details
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
@@ -149,13 +146,13 @@ Module M04: User Administration
 | R0406: Change User's Coins | POST /users/{id}/change-coins |
 
 
-Module M05: Static Pages
+Module M06: Static Pages
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
-| R0501: About | GET /about |
-| R0502: Contact | GET /contact |
-| R0503: FAQ | GET /faqs |
+| R0601: About | GET /about |
+| R0602: Contact | GET /contact |
+| R0603: FAQ | GET /faqs |
 
 ### 2. Prototype
 
@@ -174,8 +171,9 @@ Changes made to the first submission:
 1. ..
 
 ***
-GROUPYYgg, DD/MM/20YY
+GROUP2435, 24/11/2024
  
-* Group member 1 name, email (Editor)
-* Group member 2 name, email
-* ...
+* Bruno Huang, up202207517@up.pt
+* Daniel Basílio, up201806838@up.pt
+* Francisco Magalhães, up202007945@up.pt
+* Ricardo Yang, up202208465@up.pt (Editor)
