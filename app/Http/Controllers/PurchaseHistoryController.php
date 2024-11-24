@@ -23,7 +23,8 @@ class PurchaseHistoryController extends Controller
         $direction = $request->get('direction', 'desc');
 
         
-        $ordersQuery = Order::where('buyer', $buyerId);
+        $ordersQuery = Order::where('buyer', $buyerId)
+        ->whereHas('getPurchases.getDeliveredPurchase');
 
         if ($sortBy === 'totalPrice') {
             $ordersQuery->select('orders.*', DB::raw('(SELECT SUM(purchase.value) FROM purchase WHERE purchase.order_ = orders.id) AS total_cost'))

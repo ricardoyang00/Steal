@@ -25,4 +25,9 @@ Class Order extends Model
         return $this->belongsTo(Payment::Class, 'payment', 'id');
     }
 
+    public function getPurchases()
+    {
+        return $this->hasMany(Purchase::class, 'order_', 'id');
+    }
+
 }
