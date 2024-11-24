@@ -13,11 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        /*$path = base_path('database/steal.sql');
-        $sql = file_get_contents($path);
-        DB::unprepared($sql);
-        $this->command->info('Database seeded!');
-        */
         $files = ['steal.sql', 'populate.sql'];
         foreach ($files as $file) {
             $path = base_path('database/' . $file);

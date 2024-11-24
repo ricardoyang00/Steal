@@ -68,7 +68,6 @@ Route::controller(RegisterController::class)->group(function () {
     Route::post('/register', 'register');
 });
 
-// ----------------------------
 // ShoppingCart
 Route::controller(ShoppingCartController::class)->group(function () {
     Route::get('/cart', 'index')->name('shopping_cart');
@@ -80,17 +79,15 @@ Route::post('/decrease_quantity', [ShoppingCartController::class, 'decreaseQuant
 Route::post('/add_product', [ShoppingCartController::class, 'addProduct'])->name('add_product');
 Route::post('/remove_product', [ShoppingCartController::class, 'removeProduct'])->name('remove_product');
 Route::get('/add_test_products', [ShoppingCartController::class, 'addTestProducts'])->name('add_test_products');
-// ----------------------------
 
-// ----------------------------
 // Checkout
 Route::middleware('auth')->group(function () {
     Route::get('/checkout/payment', [CheckoutController::class, 'selectPaymentMethod'])->name('checkout.selectPaymentMethod');
     Route::post('/checkout/payment', [CheckoutController::class, 'confirmPaymentMethod'])->name('checkout.confirmPayment');
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
 });
-// -----------------------------
 
+// Purchase History
 Route::middleware('auth')->group(function (){
     Route::get('/user/{id}/order-history', [PurchaseHistoryController::class, 'orderHistory'])->name('purchaseHistory');
 });
@@ -107,6 +104,7 @@ Route::controller(ProfileController::class)->group(function () {
     Route::put('/profile', 'updatePassword')->name('profile.updatePassword');
 });
 
+// Admin
 Route::prefix('admin')->middleware('auth:admin')->controller(UserController::class)->group(function () {
     Route::get('/users/search', 'searchUsers')->name('admin.users.search');
     Route::get('/users/{id}', 'viewProfile')->name('admin.users.profile');
@@ -116,12 +114,12 @@ Route::prefix('admin')->middleware('auth:admin')->controller(UserController::cla
     Route::post('/users/{id}/change-coins', 'changeCoins')->name('admin.users.changeCoins');
 });
 
+// Explore Games
 Route::get('/explore', [GameController::class, 'index']);
-
 Route::get('/explore', [GameController::class, 'explore'])->name('explore');
-
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.details');
 
+// Static Pages
 Route::controller(StaticPagesController::class)->group(function () {
     Route::get('/about', 'about')->name('about');
     Route::get('/contact', 'contact')->name('contact');
