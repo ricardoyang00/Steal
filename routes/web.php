@@ -114,8 +114,6 @@ Route::prefix('admin')->middleware('auth:admin')->controller(UserController::cla
     Route::post('/users/{id}/change-username', 'changeUsername')->name('admin.users.changeUsername');
     Route::post('/users/{id}/change-name', 'changeName')->name('admin.users.changeName');
     Route::post('/users/{id}/change-coins', 'changeCoins')->name('admin.users.changeCoins');
-    //Route::get('/users/buyers', 'listBuyers')->name('admin.users.buyers');
-    //Route::get('/users/sellers', 'listSellers')->name('admin.users.sellers');
 });
 
 Route::get('/explore', [GameController::class, 'index']);

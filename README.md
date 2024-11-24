@@ -76,7 +76,6 @@ Our implementation is based on the LBAW Framework and includes work both on the 
 | US07                 | Full Text Search | High | Ricardo Yang | As an Anonymous User, I want to perform full-text searches across the game catalog, so that I can quickly find games based on keywords. |
 | US08                 | Search Games by Genre/Platform | High | Ricardo Yang | As an Anonymous User, I want to search for games by genre, platform, price, language and rating, so that I can quickly find the games I am interested in. |
 | US09                 | Access Static Pages | Medium | Ricardo Yang | As an Anonymous User, I want to view static pages (About Us, Contact Us, Terms of Service), so that I can understand the platform’s purpose and policies. |
-| US10                 | Delete Own Account | High | Bruno Huang | As an Authenticated User, I want the option to delete my own account, so that I can control my personal data on the platform. |
 | US11                 | Edit Profile | High | Bruno Huang | As an Authenticated User, I want to be able to edit my profile, so that I can personalize my account. |
 | US12                 | Log Out | High | Bruno Huang | As an Authenticated User, I want to log out of my account, so that my session is securely terminated and my account is protected. |
 | US13                 | View Profile | High | Bruno Huang | As an Authenticated User, I want to view my profile information, so that I can see my account details and ensure they are correct. |
@@ -87,7 +86,6 @@ Our implementation is based on the LBAW Framework and includes work both on the 
 | US26                 | Cancel Order | Medium | Francisco Magalhães | As a Buyer, I want to cancel my order, so that I can manage my purchases effectively if I change my mind. |
 | US29                 | Multiple Payment Options | Low | Francisco Magalhães | As a Buyer, I want to complete my purchase using multiple payment methods as by PayPal, MBWay or credit card, so that I can choose the most convenient method for me. |
 | US39                 | Administer User Accounts (Search, View, Edit, Create) | High | Bruno Huang | As an Administrator, I want to manage user accounts by searching for, viewing, editing, and creating user profiles, so that I can ensure that user information is accurate and up to date on the platform. |
-| US40                 | Block or Unblock User Accounts | Medium | Bruno Huang | As an Administrator, I want to manage user accounts (either deleting, blocking/unblocking), so that I can maintain a secure and orderly platform. |
 
 ...
 
@@ -110,16 +108,17 @@ Module M01: Authentication and User Profile
 | R0107: Change Password | PUT /profile |
 
 
-Module M02: Proucts Browse
+Module M02: Products Browse
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
 | R0201: Game Explore | GET /explore |
-| R0202: Game Explore No Filters | GET /explore/sort=all |
-| R0203: Game Explore Filter By Recent Releases | GET /explore/sort=new-releases |
-| R0204: Game Explore Filter By Top Sellers | GET /explore/sort=top-sellers |
-| R0205: Game Explore Filter By Top Rated | GET /explore/sort=top-rated |
-| R0206: View Game Details | GET /game/{id} |
+| R0202: Game Explore Search | GET /explore?query={search_text} |
+| R0203: Game Explore No Filters | GET /explore?sort=all |
+| R0204: Game Explore Filter By Recent Releases | GET /explore?sort=new-releases |
+| R0205: Game Explore Filter By Top Sellers | GET /explore?sort=top-sellers |
+| R0206: Game Explore Filter By Top Rated | GET /explore?sort=top-rated |
+| R0207: View Game Details | GET /game/{id} |
 
 
 Module M03: ShoppingCart and Checkout
@@ -145,12 +144,12 @@ Module M04: User Administration
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
-| R0401: Search Users | GET /users/search |
-| R0402: View User Profiles | GET /users/{id} |
-| R0403: List All Buyers And Users | GET /all-users |
-| R0404: Change User's Username | POST /users/{id}/change-username |
-| R0405: Change User's Name | POST /users/{id}/change-name |
-| R0406: Change User's Coins | POST /users/{id}/change-coins |
+| R0401: Search Users | GET /admin/users/search |
+| R0402: View User Profiles | GET /admin/users/{id} |
+| R0403: List All Buyers And Users | GET /admin/all-users |
+| R0404: Change User's Username | POST /admin/users/{id}/change-username |
+| R0405: Change User's Name | POST /admin/users/{id}/change-name |
+| R0406: Change User's Coins | POST /admin/users/{id}/change-coins |
 
 
 Module M05: Static Pages
