@@ -1304,7 +1304,7 @@ Module M01: Authentication and User Profile
 | R108: Change Password | POST /profile |
 
 
-Module M02: Products Browse
+Module M02: Products Browse and Details
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
@@ -1316,6 +1316,15 @@ Module M02: Products Browse
 | R0206: Game Explore Filter By Top Rated | GET /explore?sort=top-rated |
 | R0207: View Game Details | GET /game/{id} |
 
+Module M03: Shopping Cart
+
+| Web Resource Reference | URL                            |
+| ---------------------- | ------------------------------ |
+| R301: View Shopping Cart | GET /cart |
+| R302: Add Product To Shopping Cart | POST /cart/add_product |
+| R303: Increase Quantity in Shopping Cart | POST /cart/increase_quantity |
+| R304: Decrease Quantity in Shopping Cart | POST /cart/decrease_quantity |
+| R305: Remove Product From Shopping Cart | POST /cart/remove_product |
 
 Module M04: Checkout
 
