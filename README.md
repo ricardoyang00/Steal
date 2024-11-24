@@ -1363,7 +1363,7 @@ Module M06: Static Pages
 The prototype Docker image is available at GitLab's Registry Container and can be run with:
 
 ```bash
-docker run -d --name lbaw2435 -p 8001:80 \ gitlab.up.pt:5050/lbaw/lbaw2425/lbaw2435
+docker run -d --name lbaw2435 -p 8001:80 gitlab.up.pt:5050/lbaw/lbaw2425/lbaw2435
 ```
 
 The application will be available at `http://localhost:8001`
