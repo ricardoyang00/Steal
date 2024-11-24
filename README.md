@@ -14,31 +14,24 @@ This artifact documents the architecture of the web application to be developed,
 
 ### 1. Overview
 
-> Identify and overview the modules that will be part of the application.  
-
 | Module | Description |
 |--|--|
-| M01: Authentication and Profile | Web resources associated with user authentication and profile management, including basic user information and roles. |
-| M02: Products Browse | Web resources associated with the search, filtering, sorting, and listing of available products, as well as browsing product information. |
-| M03: Shopping Cart and Checkout | Web resources associated with adding products to the shopping cart and proceeding to checkout, including navigation of purchase history. |
-| M04: User Administration | Web resources associated with administrative functions, including listing and managing users, managing products and their properties, and maintaining the shop's functionality. |
-| M05: Static Pages | Web resources associated with static content and pages such as About, Contact, and FAQs. |
-
-|M06: Order Management|Web resources associated with managing orders, including order tracking, status updates, and order history.|
-|M07: Reviews and Ratings|Web resources associated with submitting and managing product reviews and ratings.|
-|M08: Notifications|Web resources associated with sending and managing notifications for various events such as order updates, promotions, and user activities.|
+| M01: Authentication and Profile | Web resources for user authentication and profile management, including handling user information and roles. |
+| M02: Products Browse and Details | Web resources for searching, filtering, sorting, and listing available products, as well as viewing product details. |
+| M03: Shopping Cart | Web resources for adding products to the shopping cart and managing the cart. |
+| M04: Checkout | 	Web resources for proceeding to checkout, including navigation of purchase history. |
+| M05: User Administration | Web resources for administrative functions, including managing users, products, and maintaining the shop's functionality. |
+| M06: Static Pages | Web resources for static content and pages such as About, Contact, and FAQs. |
 
 ### 2. Permissions
 
-> Define the permissions used by each module, necessary to access its data and features.  
-
 | Role | Description | Permissions |
 | -- | -- | -- |
-| **ANM** | Anonymous | Users without privileges |
-| **USR** | User | General authenticated users |
-| **BYR** | Buyer | Authenticated users who can purchase products and leave reviews |
-| **SLR** | Seller | Authenticated users who can list products for sale |
-| **ADM** | Administrator | System administrators |
+| **PUB** | Public | Group of users without privileges, namely "Anonymous users". Can browse public content. |
+| **USR** | User | General authenticated users. Can update their profiles. |
+| **BYR** | Buyer |  Authenticated users who can purchase products. |
+| **SLR** | Seller | Authenticated users who can list products for sale but cannot purchase products. |
+| **ADM** | Administrator | Group of administrators with full access to manage users, products, and site settings. |
 
 
 ### 3. OpenAPI Specification
