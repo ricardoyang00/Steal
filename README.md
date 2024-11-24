@@ -83,9 +83,6 @@ Identification of the user stories that were implemented in the prototype.
 | US26                 | Cancel Order | Medium | Francisco Magalhães | As a Buyer, I want to cancel my order, so that I can manage my purchases effectively if I change my mind. |
 | US29                 | Multiple Payment Options | Low | Francisco Magalhães | As a Buyer, I want to complete my purchase using multiple payment methods as by PayPal, MBWay or credit card, so that I can choose the most convenient method for me. |
 | US39                 | Administer User Accounts (Search, View, Edit, Create) | High | Bruno Huang | As an Administrator, I want to manage user accounts by searching for, viewing, editing, and creating user profiles, so that I can ensure that user information is accurate and up to date on the platform. |
-| US40                 | Block or Unblock User Accounts | Medium | Bruno Huang | As an Administrator, I want to manage user accounts (either deleting, blocking/unblocking), so that I can maintain a secure and orderly platform. |
-
-...
 
 #### 1.2. Implemented Web Resources
 
@@ -93,66 +90,66 @@ Module M01: Authentication and User Profile
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
-| R0101: Register Form | GET /register |
-| R0102: Register Action | POST /register |
-| R0103: Login Form | GET /login |
-| R0104: Login Action | POST /login |
-| R0105: Logout Action | GET /logout |
-| R0106: View Profile | GET /profile |
-| R0107: Edit Profile | PUT /profile/edit |
-| R0107: Change Password | PUT /profile |
+| R101: Login Form | GET /login |
+| R102: Login Action | POST /login |
+| R103: Logout Action | POST /logout |
+| R104: Register Form | GET /register |
+| R105: Register Action | POST /register |
+| R106: View Profile | GET /profile |
+| R107: Edit Profile | PUT /profile/edit |
+| R108: Change Password | POST /profile |
 
 
 M02: Products Browse and Details
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
-| R0201: Game Explore | GET /explore |
-| R0202: Game Explore No Filters | GET /explore/sort=all |
-| R0203: Game Explore Filter By Recent Releases | GET /explore/sort=new-releases |
-| R0204: Game Explore Filter By Top Sellers | GET /explore/sort=top-sellers |
-| R0205: Game Explore Filter By Top Rated | GET /explore/sort=top-rated |
-| R0206: View Game Details | GET /game/{id} |
+| R201: Game Explore and Search | GET /explore |
+| R202: View Game Details | GET /game/{id} |
 
 
-Module M03: ShoppingCart and Checkout
+Module M03: Shopping Cart
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
-| R0301: View Shopping Cart | GET /cart |
-| R0302: Add Item To Shopping Cart | POST /cart/add_product |
-| R0303: Remove Item From Shopping Cart | POST /cart/add_product |
-| R0304: Increase Quantity in Shopping Cart | POST /cart/increase_quantity |
-| R0305: Decrease Quantity in Shopping Cart | POST /cart/decrease_quantity |
-| R0306: Select Payment Method | GET /checkout/payment |
-| R0307: Confirm Payment Method and Place Order | POST /checkout/payment |
-| R0308: View Order Completion Confirmation And Details | GET /checkout |
-| R0309: View Purchase History | GET /user/{id}/order-history |
-| R0310: View Purchase History With Orders Sorted By Date DESC | GET /user/{id}/order-history?sortBy=time&direction=desc |
-| R0311: View Purchase History With Orders Sorted By Date ASC | GET /user/{id}/order-history?sortBy=time&direction=asc |
-| R0312: View Purchase History With Orders Sorted By Price DESC | GET /user/{id}/order-history?sortBy=totalPrice&direction=desc |
-| R0313: View Purchase History With Orders Sorted By Price ASC | GET /user/{id}/order-history?sortBy=totalPrice&direction=asc |
+| R301: View Shopping Cart | GET /cart |
+| R302: Add Product To Shopping Cart | POST /cart/add_product |
+| R303: Increase Quantity in Shopping Cart | POST /cart/increase_quantity |
+| R304: Decrease Quantity in Shopping Cart | POST /cart/decrease_quantity |
+| R305: Remove Product From Shopping Cart | POST /cart/remove_product |
 
 
-Module M04: User Administration
+Module M04: Checkout
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
-| R0401: Search Users | GET /users/search |
-| R0402: View User Profiles | GET /users/{id} |
-| R0403: List All Buyers And Users | GET /all-users |
-| R0404: Change User's Username | POST /users/{id}/change-username |
-| R0405: Change User's Name | POST /users/{id}/change-name |
-| R0406: Change User's Coins | POST /users/{id}/change-coins |
+| R0401: Proceed to Checkout | POST /checkout |
+| R0402: Get Payment Methods | GET /checkout/payment |
+| R0403: Choose Payment Method | POST /checkout/payment |
+| R0404: Get Receipt | GET /checkout/receipt |
+| R0405: View Purchase History | GET /user/{id}/order-history |
+
+
+Module M05: User Administration
+
+| Web Resource Reference | URL                            |
+| ---------------------- | ------------------------------ |
+| R501: Search Users | GET /admin/users/search |
+| R503: List All Users | GET /admin/all-users |
+| R502: View User Profile | GET /admin/users/{id} |
+| R504: Change User's Username | POST /admin/users/{id}/change-username |
+| R505: Change User's Name | POST /admin/users/{id}/change-name |
+| R506: Change User's Coins | POST /admin/users/{id}/change-coins |
 
 
 Module M06: Static Pages
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
-| R0601: About | GET /about |
-| R0602: Contact | GET /contact |
-| R0603: FAQ | GET /faqs |
+| R601: Contact | GET /contact |
+| R602: FAQ | GET /faqs |
+| R603: About | GET /about |
+
 
 ### 2. Prototype
 

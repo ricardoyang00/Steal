@@ -453,7 +453,7 @@ paths:
                   price: 9.99
                   quantity: 1
 
-  /cart/add:
+  /cart/add_product:
     post:
       operationId: R302
       summary: 'R302: Add Product to Shopping Cart'
@@ -496,11 +496,11 @@ paths:
         '404':
           description: 'Product not found'
 
-  /cart/update_quantity:
+  /cart/increase_quantity:
     post:
       operationId: R303
-      summary: 'R303: Update Product Quantity in Shopping Cart'
-      description: 'Allows users to update the quantity of a product in the shopping cart. Access: PUB.'
+      summary: 'R303: Increase Product Quantity in Shopping Cart'
+      description: 'Allows users to increase the quantity of a product in the shopping cart. Access: PUB.'
       tags:
         - 'M03: Shopping Cart'
       requestBody:
@@ -515,13 +515,13 @@ paths:
                   description: 'ID of the product to update'
                 quantity:
                   type: integer
-                  description: 'New quantity of the product'
+                  description: 'Quantity to increase'
               required:
                 - product_id
                 - quantity
       responses:
         '200':
-          description: 'Product quantity updated successfully'
+          description: 'Product quantity increased successfully'
           content:
             application/json:
               schema:
@@ -537,7 +537,7 @@ paths:
                       quantity:
                         type: integer
               example:
-                message: 'Product quantity updated successfully'
+                message: 'Product quantity increased successfully'
                 cart:
                   product_id: 1
                   quantity: 3
@@ -546,10 +546,60 @@ paths:
         '404':
           description: 'Product not found'
 
+  /cart/decrease_quantity:
+    post:
+      operationId: R304
+      summary: 'R304: Decrease Product Quantity in Shopping Cart'
+      description: 'Allows users to decrease the quantity of a product in the shopping cart. Access: PUB.'
+      tags:
+        - 'M03: Shopping Cart'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                  description: 'ID of the product to update'
+                quantity:
+                  type: integer
+                  description: 'Quantity to decrease'
+              required:
+                - product_id
+                - quantity
+      responses:
+        '200':
+          description: 'Product quantity decreased successfully'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  cart:
+                    type: object
+                    properties:
+                      product_id:
+                        type: integer
+                      quantity:
+                        type: integer
+              example:
+                message: 'Product quantity decreased successfully'
+                cart:
+                  product_id: 1
+                  quantity: 1
+        '400':
+          description: 'Invalid input'
+        '404':
+          description: 'Product not found'
+
   /cart/remove:
     delete:
-      operationId: R304
-      summary: 'R304: Remove Product from Shopping Cart'
+      operationId: R305
+      summary: 'R305: Remove Product from Shopping Cart'
       description: 'Allows users to remove a product from the shopping cart. Access: PUB.'
       tags:
         - 'M03: Shopping Cart'
@@ -754,12 +804,14 @@ paths:
           description: 'Field to sort by (e.g., time, totalPrice)'
           schema:
             type: string
+            enum: [time, totalPrice]
           required: false
         - in: query
           name: direction
           description: 'Sort direction (asc or desc)'
           schema:
             type: string
+            enum: [asc, desc]
           required: false
       responses:
         '200':
@@ -859,10 +911,54 @@ paths:
                   username: 'jane_doe'
                   email: 'jane@example.com'
 
-  /admin/users/{id}:
+  /admin/all-users:
     get:
       operationId: R502
-      summary: 'R502: Get User Information'
+      summary: 'R502: List All Users'
+      description: 'Allows admin to list all users, including buyers and sellers. Access: ADM.'
+      tags:
+        - 'M05: User Administration'
+      responses:
+        '200':
+          description: 'Ok. Show all users'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  buyers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        username:
+                          type: string
+                    example:
+                      - id: 1
+                        username: 'john_doe'
+                  sellers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        username:
+                          type: string
+                    example:
+                      - id: 2
+                        username: 'jane_doe'
+        '400':
+          description: 'Invalid input'
+        '404':
+          description: 'Users not found'
+  
+  /admin/users/{id}:
+    get:
+      operationId: R503
+      summary: 'R503: View User Profile'
       description: 'Allows admin to view detailed information about a user. Access: ADM.'
       tags:
         - 'M05: User Administration'
@@ -913,8 +1009,8 @@ paths:
 
   /admin/users/{id}/change-username:
     post:
-      operationId: R503
-      summary: 'R503: Change Username'
+      operationId: R504
+      summary: 'R504: Change Users Username'
       description: 'Allows admin to change the username of a user. Access: ADM.'
       tags:
         - 'M05: User Administration'
@@ -955,8 +1051,8 @@ paths:
 
   /admin/users/{id}/change-name:
     post:
-      operationId: R504
-      summary: 'R504: Change Name'
+      operationId: R505
+      summary: 'R505: Change Users Name'
       description: 'Allows admin to change the name of a user. Access: ADM.'
       tags:
         - 'M05: User Administration'
@@ -997,8 +1093,8 @@ paths:
 
   /admin/users/{id}/change-coins:
     post:
-      operationId: R505
-      summary: 'R505: Change Coins'
+      operationId: R506
+      summary: 'R506: Change Coins'
       description: 'Allows admin to change the coins of a user. Access: ADM.'
       tags:
         - 'M05: User Administration'
