@@ -12,7 +12,6 @@
 
         <!-- Styles -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-        <!-- <link href="{{ url('css/milligram.min.css') }}" rel="stylesheet"> -->
         <link href="{{ url('css/app.css') }}" rel="stylesheet">
         <link href="{{ url('css/register_login.css') }}" rel="stylesheet">
         <link href="{{ url('css/explore_page.css') }}" rel="stylesheet">
