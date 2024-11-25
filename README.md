@@ -1290,7 +1290,7 @@ Identification of the user stories that were implemented in the prototype.
 
 #### 1.2. Implemented Web Resources
 
-Module M01: Authentication and User Profile  
+**Module M01: Authentication and User Profile**
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
@@ -1304,19 +1304,15 @@ Module M01: Authentication and User Profile
 | R108: Change Password | POST /profile |
 
 
-Module M02: Products Browse and Details
+**Module M02: Products Browse and Details**
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
-| R0201: Game Explore | GET /explore |
-| R0202: Game Explore Search | GET /explore?query={search_text} |
-| R0203: Game Explore No Filters | GET /explore?sort=all |
-| R0204: Game Explore Filter By Recent Releases | GET /explore?sort=new-releases |
-| R0205: Game Explore Filter By Top Sellers | GET /explore?sort=top-sellers |
-| R0206: Game Explore Filter By Top Rated | GET /explore?sort=top-rated |
-| R0207: View Game Details | GET /game/{id} |
+| R201: Game Explore and Search | GET /explore |
+| R202: View Game Details | GET /game/{id} |
 
-Module M03: Shopping Cart
+
+**Module M03: Shopping Cart**
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
@@ -1326,18 +1322,19 @@ Module M03: Shopping Cart
 | R304: Decrease Quantity in Shopping Cart | POST /cart/decrease_quantity |
 | R305: Remove Product From Shopping Cart | POST /cart/remove_product |
 
-Module M04: Checkout
+
+**Module M04: Checkout**
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
-| R0401: Proceed to Checkout | POST /checkout |
-| R0402: Get Payment Methods | GET /checkout/payment |
-| R0403: Choose Payment Method | POST /checkout/payment |
-| R0404: Get Receipt | GET /checkout/receipt |
-| R0405: View Purchase History | GET /user/{id}/order-history |
+| R401: Proceed to Checkout | POST /checkout |
+| R402: Get Payment Methods | GET /checkout/payment |
+| R403: Choose Payment Method | POST /checkout/payment |
+| R404: Get Receipt | GET /checkout/receipt |
+| R405: View Purchase History | GET /user/{id}/order-history |
 
 
-Module M05: User Administration
+**Module M05: User Administration**
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
@@ -1349,12 +1346,12 @@ Module M05: User Administration
 | R506: Change User's Coins | POST /admin/users/{id}/change-coins |
 
 
-Module M06: Static Pages
+**Module M06: Static Pages**
 
 | Web Resource Reference | URL                            |
 | ---------------------- | ------------------------------ |
 | R601: Contact | GET /contact |
-| R602: FAQ | GET /faqs |
+| R602: FAQs | GET /faqs |
 | R603: About | GET /about |
 
 
