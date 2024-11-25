@@ -10,7 +10,7 @@
 
 ## A7: Web Resources Specification
 
-This artifact documents the architecture of the web application to be developed, indicating the catalog of resources, the properties of each resource, and the format of JSON responses. This page includes the following operations over data: create, read, update, and delete.
+This artifact documents the architecture of the web application to be developed, detailing the catalog of resources, their properties, and the operations available for each resource. The specification follows the OpenAPI Specification (OAS). This page includes the following operations over data: create, read, update, and delete.
 
 ### 1. Overview
 
