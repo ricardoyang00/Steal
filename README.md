@@ -1363,7 +1363,7 @@ The prototype Docker image is available at GitLab's Registry Container and can b
 docker run -d --name lbaw2435 -p 8001:80 gitlab.up.pt:5050/lbaw/lbaw2425/lbaw2435
 ```
 
-For users on **ARM** users (e.g., Apple Silicon Macs), Docker Desktop supports architecture emulation using `qemu`. You can run the image with:
+For **ARM** users (e.g., Apple Silicon Macs), Docker Desktop supports architecture emulation using `qemu`. You can run the image with:
 ```bash
 docker run --platform linux/amd64 -d --name lbaw2435 -p 8001:80 gitlab.up.pt:5050/lbaw/lbaw2425/lbaw2435
 ```
