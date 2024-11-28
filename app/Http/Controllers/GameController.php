@@ -36,6 +36,14 @@ class GameController extends Controller
         
         $games = $gamesQuery->with('platforms')->paginate(6);
 
+        // Check if the requested page number exceeds the total number of pages
+        $currentPage = $request->input('page', 1);
+        $lastPage = $games->lastPage();
+
+        if ($currentPage > $lastPage) {
+            return redirect()->route('explore', ['sort' => $sort, 'page' => $lastPage, 'query' => $query]);
+        }
+
         return view('pages.explore', compact('games', 'query', 'sort'));
     }
 
