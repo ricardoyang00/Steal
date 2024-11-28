@@ -304,3 +304,48 @@
         width: 100%;
     }
 }
+
+.pagination-nav {
+    display: flex;
+    margin-top: 20px;
+}
+
+.pagination-links {
+    display: flex;
+    justify-content: flex-end;
+    list-style: none;
+    padding: 0;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: var(--text-color);
+    background-color: var(--explore-table-color);
+    border: 1px solid var(--hover-background-color);
+    border-radius: 0.25rem;
+    text-decoration: none;
+}
+
+.page-item.disabled .page-link {
+    color: var(--secondary-text-color);
+    pointer-events: none;
+    background-color: var(--game-card-background);
+    border-color: var(--button-secondary-color);
+}
+
+.page-item.active .page-link {
+    color: var(--text-color);
+    background-color: var(--buy-button-color);
+    border-color: var(--buy-button-hover-color);
+}
+
+.page-link:hover {
+    color: var(--buy-button-hover-color);
+    background-color: var(--page-link-bg-color);
+    border-color: var(--page-link-hover-color);
+}
