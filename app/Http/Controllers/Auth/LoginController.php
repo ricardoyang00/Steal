@@ -43,6 +43,13 @@ class LoginController extends Controller
             if (Auth::guard($guard)->attempt($credentials, $request->filled('remember'))) {
                 $request->session()->regenerate();
                 
+                if (!is_admin() && !auth_user()->is_active) {
+                    Auth::guard($guard)->logout();
+                    return back()->withErrors([
+                        'Your account has been suspended. Please contact us for further assistance.',
+                    ])->onlyInput('email');
+                }
+
                 if (auth_user()->buyer) {
                     $buyerId = auth_user()->id;
                     $shoppingCart = $request->session()->get('shopping_cart', []);
