@@ -332,7 +332,7 @@ BEGIN
         -- Update the NEW row directly to anonymize user data
         NEW.username := 'Anonymous' || OLD.id;
         NEW.name := 'Anonymous';
-        NEW.email := 'anonymous' || OLD.id || '@example.com';
+        NEW.email := 'anonymous' || OLD.id || 'mail';
         NEW.password := 'anonymous';
 
         -- Update Buyer table
