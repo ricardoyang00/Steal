@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\Category;
+use App\Models\Platform;
+use App\Models\Language;
+use App\Models\Player;
 
 use Illuminate\Http\Request;
 
@@ -12,6 +16,10 @@ class GameController extends Controller
     {
         $query = $request->input('query');
         $sort = $request->input('sort');
+        $categories = $request->input('categories', []);
+        $platforms = $request->input('platforms', []);
+        $languages = $request->input('languages', []);
+        $players = $request->input('players', []);
 
         $gamesQuery = Game::query()->where('is_active', true);
 
@@ -33,6 +41,22 @@ class GameController extends Controller
         } else { 
             $gamesQuery->orderBy('name', 'asc');    // default : all games sorted alphabetically
         }
+
+        if (!empty($categories)) {
+            $gamesQuery->whereHas('categories', fn($query) => $query->whereIn('category', $categories));
+        }
+
+        if (!empty($platforms)) {
+            $gamesQuery->whereHas('platforms', fn($query) => $query->whereIn('platform', $platforms));
+        }
+
+        if (!empty($languages)) {
+            $gamesQuery->whereHas('languages', fn($query) => $query->whereIn('language', $languages));
+        }
+
+        if (!empty($players)) {
+            $gamesQuery->whereHas('players', fn($query) => $query->whereIn('player', $players));
+        }
         
         $games = $gamesQuery->with('platforms')->paginate(6);
 
@@ -44,7 +68,12 @@ class GameController extends Controller
             return redirect()->route('explore', ['sort' => $sort, 'page' => $lastPage, 'query' => $query]);
         }
 
-        return view('pages.explore', compact('games', 'query', 'sort'));
+        $categories = Category::orderBy('name', 'asc')->get();
+        $platforms = Platform::orderBy('name', 'asc')->get();
+        $languages = Language::orderBy('name', 'asc')->get();
+        $players = Player::orderBy('name', 'asc')->get();
+
+        return view('pages.explore', compact('games', 'query', 'sort', 'categories', 'platforms', 'languages', 'players'));
     }
 
     public function show($id)

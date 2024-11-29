@@ -7,17 +7,53 @@
 @if (!auth_user() || auth_user()->buyer)
     <script src="{{ asset('js/cart/add-to-cart.js') }}" defer></script>
     <script src="{{ asset('js/explore/game_card.js') }}" defer></script>
+    <script src="{{ asset('js/explore/filter.js') }}" defer></script>
 @endif
 
 <div class="explore-page">
     <div class="filter-table">
         <h1>FILTERS</h1>
-        <p><strong>IN CONTRUCTION...</strong></p>
-        <p><strong>IN CONTRUCTION...</strong></p>
-        <p><strong>IN CONTRUCTION...</strong></p>
-        <p><strong>IN CONTRUCTION...</strong></p>
-        <p><strong>IN CONTRUCTION...</strong></p>
+        <form action="{{ url('/explore') }}" method="GET" class="filter-form">
+            <div class="form-group">
+                <label for="category">Category</label>
+                @foreach($categories as $category)
+                    <div class="form-check">
+                        <input type="checkbox" name="categories[]" value="{{ $category->id }}" class="form-check-input" id="category{{ $category->id }}" {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="category{{ $category->id }}">{{ $category->name }}</label>
+                    </div>
+                @endforeach
+            </div>
+            <div class="form-group">
+                <label for="platform">Platform</label>
+                @foreach($platforms as $platform)
+                    <div class="form-check">
+                        <input type="checkbox" name="platforms[]" value="{{ $platform->id }}" class="form-check-input" id="platform{{ $platform->id }}" {{ in_array($platform->id, request('platforms', [])) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="platform{{ $platform->id }}">{{ $platform->name }}</label>
+                    </div>
+                @endforeach
+            </div>
+            <div class="form-group">
+                <label for="language">Language</label>
+                @foreach($languages as $language)
+                    <div class="form-check">
+                        <input type="checkbox" name="languages[]" value="{{ $language->id }}" class="form-check-input" id="language{{ $language->id }}" {{ in_array($language->id, request('languages', [])) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="language{{ $language->id }}">{{ $language->name }}</label>
+                    </div>
+                @endforeach
+            </div>
+            <div class="form-group">
+                <label for="player">Player</label>
+                @foreach($players as $player)
+                    <div class="form-check">
+                        <input type="checkbox" name="players[]" value="{{ $player->id }}" class="form-check-input" id="player{{ $player->id }}" {{ in_array($player->id, request('players', [])) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="player{{ $player->id }}">{{ $player->name }}</label>
+                    </div>
+                @endforeach
+            </div>
+            <button type="submit" class="btn btn-primary">Apply Filters</button>
+        </form>
     </div>
+
     <div class="game-content">
         <nav class="explore-navbar">
             <div class="search-text">
