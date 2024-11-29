@@ -31,6 +31,14 @@
 
         <button id="edit-profile-btn">Edit</button>
         <button id="change-password-btn">Change Password</button>
+
+        <!-- Deactivate Account Button -->
+        @if (!is_admin())    
+            <form method="POST" action="{{ route('profile.deactivate') }}" style="display:inline;">
+                @csrf
+                <button type="submit" class="btn btn-danger">Deactivate Account</button>
+            </form>
+        @endif
     </article>
 </section>
 

@@ -70,4 +70,23 @@ class ProfileController extends Controller
         return redirect()->route('profile')
             ->with('success', 'Password updated successfully!');
     }
+
+    public function deactivateUser(Request $request)
+    {
+        $user = auth_user();
+
+        \Log::info('Before deactivation: ' . $user->is_active);
+        
+        // Set is_active to false to trigger the anonymization
+        $user->is_active = false;
+        $user->save();
+
+        \Log::info('After deactivation: ' . $user->is_active);
+
+        // Log the user out after deactivation
+        auth()->logout();
+
+        return redirect()->route('home')
+            ->with('success', 'Your account has been deactivated and anonymized.');
+    }
 }

@@ -100,11 +100,17 @@ Route::get('/profile/edit', function () {
     return redirect()->route('profile');
 });
 
+// Redirect GET /profile/deactivate to /profile
+Route::get('/profile/deactivate', function () {
+    return redirect()->route('profile');
+});
+
 // Authenticated User
 Route::controller(ProfileController::class)->group(function () {
     Route::get('/profile', 'showProfile')->name('profile');
     Route::put('/profile/edit', 'update')->name('profile.update');
     Route::put('/profile', 'updatePassword')->name('profile.updatePassword');
+    Route::post('/profile/deactivate', 'deactivateUser')->name('profile.deactivate');
 });
 
 Route::prefix('admin')->middleware('auth:admin')->controller(UserController::class)->group(function () {
