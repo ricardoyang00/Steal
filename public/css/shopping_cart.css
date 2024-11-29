@@ -173,6 +173,18 @@
     background-color: var(--positive);
 }
 
+.btn-decrease:disabled,
+.btn-increase:disabled {
+    cursor: not-allowed;
+    background-color: #2b2b2b;
+    color: var(--secondary-text-color);
+}
+
+.btn-decrease:disabled:hover,
+.btn-increase:disabled:hover {
+    background-color: #2b2b2b;
+}
+
 .prod_quantity {
     font-size: 1rem;
     font-weight: bold;

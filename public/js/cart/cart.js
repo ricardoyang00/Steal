@@ -5,6 +5,19 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
+    function disableDecrementButtons() {
+        const productItems = document.querySelectorAll('#product_list .product-container');
+        productItems.forEach(productItem => {
+            const quantityElement = productItem.querySelector('.prod_quantity');
+            const decreaseButton = productItem.querySelector('.btn-decrease');
+            if (parseInt(quantityElement.textContent) === 1) {
+                decreaseButton.disabled = true;
+            }
+        });
+    }
+
+    disableDecrementButtons();
+
     productList.addEventListener('click', function (event) {
         if (event.target.classList.contains('btn-increase')) {
             const productId = event.target.getAttribute('data-id');
@@ -73,6 +86,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 const subtotalElement = document.getElementById('subtotal');
                 subtotalElement.textContent = (data.new_total).toFixed(2) + '€';
                 
+                // Disable the decrement button if quantity is 1
+                const decreaseButton = productItem.querySelector('.btn-decrease');
+                if (data.new_quantity === 1) {
+                    decreaseButton.disabled = true;
+                } else {
+                    decreaseButton.disabled = false;
+                }
+
                 if (data.new_quantity === 0) {
                     productItem.remove();
                     if (productList.childElementCount === 0) {
@@ -87,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error:', error);
         });
     }
-
+    
     function noProductsInCart() {
         if (document.getElementById('product_list').childElementCount === 0) {
             const emptyCartMessage = document.createElement('div');
