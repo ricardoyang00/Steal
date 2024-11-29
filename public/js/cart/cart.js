@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
     const productList = document.getElementById('product_list');
+
     if (!productList) {
         return;
     }
+
     productList.addEventListener('click', function (event) {
         if (event.target.classList.contains('btn-increase')) {
             const productId = event.target.getAttribute('data-id');
@@ -26,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById(`product-${productId}`).remove();
                     document.getElementById('total_price').textContent = (data.new_total).toFixed(2) + '€';
                     document.getElementById('subtotal').textContent = (data.new_total).toFixed(2) + '€';
-                    if (document.getElementById('product_list').childElementCount === 0) {
+                    if (productList.childElementCount === 0) {
                         noProductsInCart();
                     }
                 } else {
@@ -73,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 
                 if (data.new_quantity === 0) {
                     productItem.remove();
-                    if (document.getElementById('product_list').childElementCount === 0) {
+                    if (productList.childElementCount === 0) {
                         noProductsInCart();
                     }
                 }
@@ -96,7 +98,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p id="secondary-empty-message">You didn't add any item in your cart yet. Browse the website to find amazing deals!</p>
                 <a href="/explore" class="btn">Explore games</a>
             `;
-            document.getElementById('product_list').appendChild(emptyCartMessage);
+            productList.appendChild(emptyCartMessage);
+            document.querySelector('.cart-items').classList.add('empty-cart');
 
             // Disable the checkout button and change its appearance
             const checkoutButton = document.getElementById('checkout_button');
