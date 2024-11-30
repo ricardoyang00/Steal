@@ -4,6 +4,8 @@
 
 @section('content')
 
+<script src="{{ asset('js/cart/add-to-cart.js') }}" defer ></script>
+
 <section id="wishlist">
     <div class="wishlist-container"> 
         <div class="wishlist">
@@ -35,7 +37,7 @@
                                     <div class="product-actions">
                                         <p class="product-price">{{ $product['price'] }}€</p>
                                         <button class="btn-add-to-cart" data-id="{{ $product['id'] }}">
-                                            <i class="fas fa-cart-plus"></i> Add to cart
+                                            Add to cart
                                         </button>
                                     </div>
                                 </div>

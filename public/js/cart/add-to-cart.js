@@ -21,6 +21,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     button.textContent = "Added to cart.";
                     button.disabled = true;
                     button.style.backgroundColor = 'gray';
+                    setTimeout(() => {
+                        button.textContent = "Add to cart";
+                        button.disabled = false;
+                        button.style.backgroundColor = '';
+                    }, 1000);
                 } else {
                     alert('An error occurred while adding the product to the cart.');
                 }

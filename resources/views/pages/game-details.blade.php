@@ -3,6 +3,8 @@
 @section('title', $game->name)
 
 @section('content')
+<script src="{{ asset('js/cart/add-to-cart.js') }}" defer></script>
+
 <div class="game-details-page">
     <div class="game-image">
         <img src="{{ asset('images/default-game-image.jpg') }}" class="img-fluid" alt="{{ $game->name }}">
@@ -14,7 +16,11 @@
         <p><strong>Minimum Age:</strong> {{ $game->minimum_age }}</p>
         <p><strong>Price:</strong> ${{ $game->price }}</p>
         <p><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
-        <a href="#" class="btn-buy-now">Buy Now</a>
+        @if (!auth_user() || auth_user()->buyer)
+            <button id="add-to-cart-{{ $game->id }}" data-id="{{ $game->id }}" class="btn-add-to-cart btn btn-primary">
+                Add to Cart
+            </button>
+        @endif
     </div>
 </div>
 
