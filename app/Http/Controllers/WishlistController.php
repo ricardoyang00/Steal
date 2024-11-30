@@ -11,7 +11,7 @@ use App\Models\User;
 class WishlistController extends Controller
 {
     public function index() {
-        if (auth_user()) {
+        if (auth_user() && auth_user()->buyer) {
             return view('pages/wishlist', 
                 ['products' => $this->getProducts()]
             );
