@@ -1,14 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
     const addToWishlistButtons = document.querySelectorAll('.btn-add-to-wishlist');
-    if (!addToWishlistButtons.length) {
-        return;
-    }
     addToWishlistButtons.forEach(button => {
-        console.log("button added: ", button);
         button.addEventListener('click', function (event) {
             const productId = event.currentTarget.getAttribute('data-id');
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-            console.log("productId: ", productId);
             fetch('/wishlist/add', {
                 method: 'POST',
                 headers: {
@@ -21,17 +16,22 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 if (data.success) {
                     button.disabled = true;
-                    button.style.color = 'red';
-                    const heartIcon = button.querySelector('.fas.fa-heart');
-                    heartIcon.classList.remove('far');
-                    heartIcon.classList.add('fas');
+                    heartBtnActive(button);
                 } else {
                     alert('An error occurred while adding the product to the wishlist.');
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
+                alert('An error occurred while adding the product to the wishlist.');
             });
         });
     });
 });
+
+function heartBtnActive(button) {
+    const icon = button.querySelector('i');
+    icon.classList.remove('far');
+    icon.classList.add('fas');
+    icon.style.color = 'red';
+}

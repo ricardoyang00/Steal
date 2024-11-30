@@ -247,10 +247,6 @@
     color: var(--error-color);
 }
 
-.add-to-wishlist.active {
-    color: var(--error-color);
-}
-
 /* Price and Add to Cart Section */
 .explore-page .game-price-add-cart {
     display: flex;
