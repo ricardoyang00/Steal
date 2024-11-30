@@ -53,4 +53,17 @@ class GameController extends Controller
     
         return view('pages.game-details', compact('game'));
     }
+
+    public function listProducts(Request $request) {
+        if (!auth_user() || !auth_user()->seller) {
+            return redirect()->route('login');
+        }
+
+        $sellerId = auth()->user()->id;
+        $games = Game::where('owner', $sellerId)
+                    ->with(['platforms', 'categories', 'languages', 'players'])
+                    ->paginate(10);
+
+        return view('seller.products', compact('games'));
+    }
 }

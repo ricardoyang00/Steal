@@ -113,3 +113,5 @@ Route::controller(StaticPagesController::class)->group(function () {
     Route::get('/contact', 'contact')->name('contact');
     Route::get('/faqs', 'faqs')->name('faqs');
 });
+
+Route::get('/seller/products', [GameController::class, 'listProducts'])->name('seller.products');
