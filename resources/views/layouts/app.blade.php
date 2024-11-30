@@ -89,7 +89,9 @@
                     </div>
 
                     <div class="wishlist">
-                        <a class="btn btn-link">Wishlist</a>
+                        <a class="btn btn-link" href="{{ url('/wishlist') }}">
+                            Wishlist
+                        </a>
                     </div>
                 </nav>
             </div>

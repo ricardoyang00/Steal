@@ -36,8 +36,8 @@
                                     </div>
                                     <div class="product-actions">
                                         <p class="product-price">{{ $product['price'] }}€</p>
-                                        <button class="btn-add-to-cart" data-id="{{ $product['id'] }}">
-                                            Add to cart
+                                        <button id="add-to-cart-{{ $product['id'] }}" data-id="{{ $product['id'] }}" class="btn-add-to-cart btn btn-primary">
+                                            Add to Cart
                                         </button>
                                     </div>
                                 </div>
