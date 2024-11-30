@@ -122,6 +122,7 @@ Route::prefix('admin')->middleware('auth:admin')->controller(UserController::cla
     Route::post('/users/{id}/change-coins', 'changeCoins')->name('admin.users.changeCoins');
     Route::post('/admin/users/{id}/block', 'blockUser')->name('admin.users.block');
     Route::post('/admin/users/{id}/unblock', 'unblockUser')->name('admin.users.unblock');
+    Route::post('/admin/users/{id}/deactivate', 'adminDeactivateUser')->name('admin.users.deactivate');
     //Route::get('/users/buyers', 'listBuyers')->name('admin.users.buyers');
     //Route::get('/users/sellers', 'listSellers')->name('admin.users.sellers');
 });

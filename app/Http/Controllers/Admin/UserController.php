@@ -139,6 +139,18 @@ class UserController extends Controller
             ->with('success', 'User has been unblocked successfully!');
     }
 
+    /* Deactivate User */
+    public function adminDeactivateUser(Request $request, $id): RedirectResponse
+    {
+        $user = User::findOrFail($id);
+
+        $user->is_active = false;
+        $user->save();
+
+        return redirect()->route('admin.users.profile', $user->id)
+            ->with('success', 'User has been deactivated successfully!');
+    }
+
 
     // Probably temporary functions as the number of users will scale too much
     /**

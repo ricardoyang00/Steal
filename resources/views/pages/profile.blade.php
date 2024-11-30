@@ -34,9 +34,9 @@
 
         <!-- Deactivate Account Button -->
         @if (!is_admin())    
-            <form method="POST" action="{{ route('profile.deactivate') }}" style="display:inline;">
-                @csrf
-                <button type="submit" class="btn btn-danger">Deactivate Account</button>
+            <form method="POST" action="{{ route('profile.deactivate') }}">
+                {{ csrf_field() }}
+                <button type="submit" onclick="return confirm('Are you sure you want to deactivate your account? Please note that all your data will be anonymized as part of this process.');">Deactivate Account</button>
             </form>
         @endif
     </article>

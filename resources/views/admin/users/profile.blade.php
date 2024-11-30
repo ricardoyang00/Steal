@@ -67,4 +67,9 @@
     </form>
 @endif
 
+<form id="deactivate-user-form" method="POST" action="{{ route('admin.users.deactivate', $user->id) }}">
+    {{ csrf_field() }}
+    <button type="submit" onclick="return confirm('Are you sure you want to deactivate this user?');">Deactivate User</button>
+</form>
+
 @endsection
