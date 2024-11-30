@@ -42,7 +42,7 @@
         </div>
     </div>
     <!-- Wishlist Button -->
-    <button class="add-to-wishlist">
+    <button class="add-to-wishlist" data-id="{{ $game->id }}">
         <i class="far fa-heart"></i>
     </button>
     <!-- Game Price and Add to Cart -->

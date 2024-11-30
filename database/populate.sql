@@ -1198,9 +1198,3 @@ insert into About (content) values ('Ricardo Yang, up202208465@up.pt');
 
 -- CONTACT
 insert into Contacts (contact) values ('contact@steal.com');
-
--- WISHLIST
-insert into Wishlist (game, buyer) values (1, 1);
-insert into Wishlist (game, buyer) values (2, 1);
-insert into Wishlist (game, buyer) values (3, 1);
-insert into Wishlist (game, buyer) values (4, 1);
