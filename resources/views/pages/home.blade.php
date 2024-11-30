@@ -3,23 +3,34 @@
 @section('title', 'Home')
 
 @section('content')
-    <section id="home">
-        <h1>Top 5 Top-Sellers Games</h1>
 
+<script src="{{ asset('js/home/home.js') }}" defer></script>
+
+<section id="home">
+    <!-- Carousel for Top Sellers -->
+    <div class="top-sellers-carousel">
+        <button class="carousel-btn left" onclick="moveCarousel('top-sellers', -1)">&#8249;</button>
+        <div class="carousel-track" id="top-sellers">
+            @foreach($topSellers as $game)
+                @include('partials.game-card-home', ['game' => $game])
+            @endforeach
+        </div>
+        <button class="carousel-btn right" onclick="moveCarousel('top-sellers', 1)">&#8250;</button>
+    </div>
+
+    <!-- Smaller cards for similar games -->
+    {{-- 
         @foreach ($topSellers as $game)
-            <div>
-                <h2><a href="{{ route('game.details', $game->id) }}">{{ $game->name }}</a></h2>
-
-                <h3>Similar Games</h3>
-                <ul>
+            <div class="similar-games-section">
+                <h3>Similar Games for {{ $game->name }}</h3>
+                <div class="similar-game-cards">
                     @foreach ($similarGames[$game->id] as $similarGame)
-                        <li>
-                            <a href="{{ route('game.details', $similarGame->id) }}">{{ $similarGame->name }}</a>
-                        </li>
+                        @include('partials.small-game-card-home', ['game' => $similarGame])
                     @endforeach
-                </ul>
+                </div>
             </div>
-        @endforeach
+        @endforeach 
+    --}}
+</section>
 
-    </section>
 @endsection
