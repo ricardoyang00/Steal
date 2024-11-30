@@ -56,10 +56,14 @@ Route::post('/decrease_quantity', [ShoppingCartController::class, 'decreaseQuant
 
 Route::post('/add_product', [ShoppingCartController::class, 'addProduct'])->name('add_product');
 Route::post('/remove_product', [ShoppingCartController::class, 'removeProduct'])->name('remove_product');
-Route::get('/add_test_products', [ShoppingCartController::class, 'addTestProducts'])->name('add_test_products');
 
 // Wishlist
-Route::get('/wishlist', [WishlistController::class, 'index']);
+Route::controller(WishlistController::class)->group(function () {
+    Route::get('/wishlist', 'index')->name('wishlist');
+});
+
+Route::post('/wishlist/remove', [WishlistController::class, 'removeProduct'])->name('wishlist.remove');
+Route::post('/wishlist/add', [WishlistController::class, 'addProduct'])->name('wishlist.add');
 
 // Checkout
 Route::middleware('auth')->group(function () {
