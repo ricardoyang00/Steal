@@ -11,9 +11,13 @@ use App\Models\User;
 class WishlistController extends Controller
 {
     public function index() {
-        return view('pages/wishlist', 
-            ['products' => $this->getProducts()]
-        );
+        if (auth_user()) {
+            return view('pages/wishlist', 
+                ['products' => $this->getProducts()]
+            );
+        } else {
+            return redirect()->route('login');
+        }
     }
 
     private function getProducts() {

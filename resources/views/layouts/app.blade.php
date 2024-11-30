@@ -88,12 +88,13 @@
                             <input class="form-control" type="search" name="query" placeholder="Search games..." aria-label="Search" value="{{ request('query') }}">
                         </form>
                     </div>
-
-                    <div class="wishlist">
-                        <a class="btn btn-link" href="{{ url('/wishlist') }}">
-                            Wishlist
-                        </a>
-                    </div>
+                    @if (auth_user() && auth_user()->buyer)
+                        <div class="wishlist">
+                            <a class="btn btn-link" href="{{ url('/wishlist') }}">
+                                Wishlist
+                            </a>
+                        </div>
+                    @endif
                 </nav>
             </div>
             <section id="content">
