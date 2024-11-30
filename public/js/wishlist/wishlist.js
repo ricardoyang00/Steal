@@ -19,9 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 if (data.success) {
                     document.getElementById(`product-${productId}`).remove();
-                    // change background to red
-                    document.getElementById(`product-${productId}`).style.backgroundColor = 'red';
-                    if (document.getElementById('product_list').childElementCount === 0) {
+                    if (document.getElementById('product_list').childElementCount < 1) {
                         noProductsInWishlist();
                     }
                 } else {
@@ -36,8 +34,14 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function noProductsInWishlist() {
-    const productList = document.getElementById('product_list');
-    const noProducts = document.createElement('p');
-    noProducts.textContent = 'No products in wishlist.';
-    productList.appendChild(noProducts);
+    const wishlistItems = document.getElementById('wishlist_id');
+    const noProducts = document.createElement('div');
+    noProducts.classList.add('empty-wishlist-message');
+    noProducts.innerHTML = `
+        <i class="fas fa-heart"></i>
+        <p id="primary-empty-message">Your wishlist is empty.</p>
+        <p id="secondary-empty-message">You have no item in your wishlist yet. Browse the website to find amazing deals!</p>
+        <a href="{{ route('explore') }}" class="btn">Explore games</a>
+    `;
+    wishlistItems.appendChild(noProducts);
 }

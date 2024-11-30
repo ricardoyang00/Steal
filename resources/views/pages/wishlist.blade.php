@@ -11,12 +11,12 @@
     <div class="wishlist-container"> 
         <div class="wishlist">
             <h2>Wishlist</h2>
-            <div class="wishlist-items {{ count($products) == 0 ? 'empty-wishlist' : '' }}">
+            <div id="wishlist_id" class="wishlist-items {{ count($products) == 0 ? 'empty-wishlist' : '' }}">
                 @if (count($products) == 0)
                     <div class="empty-wishlist-message">
                         <i class="fas fa-heart"></i>
-                        <p id="primary-empty-message">Your wishlist is empty</p>
-                        <p id="secondary-empty-message">You didn't add any item in your wishlist yet. Browse the website to find amazing deals!</p>
+                        <p id="primary-empty-message">Your wishlist is empty.</p>
+                        <p id="secondary-empty-message">You have no item in your wishlist yet. Browse the website to find amazing deals!</p>
                         <a href="{{ route('explore') }}" class="btn">Explore games</a>
                     </div>
                 @else
