@@ -14,6 +14,7 @@
     <div class="filter-table">
         <h1>FILTERS</h1>
         <form action="{{ url('/explore') }}" method="GET" class="filter-form">
+            <button type="submit" class="btn btn-primary">Apply Filters</button>
             <div class="form-group">
                 <label for="category">Category</label>
                 @foreach($categories as $category)
@@ -50,7 +51,6 @@
                     </div>
                 @endforeach
             </div>
-            <button type="submit" class="btn btn-primary">Apply Filters</button>
         </form>
     </div>
 
