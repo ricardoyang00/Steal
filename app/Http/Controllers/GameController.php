@@ -8,6 +8,47 @@ use Illuminate\Http\Request;
 
 class GameController extends Controller
 {    
+    public function home()
+    {
+        $topSellers = Game::query()
+            ->where('is_active', true)
+            ->withCount('deliveredPurchases')
+            ->orderBy('delivered_purchases_count', 'desc')
+            ->take(5)
+            ->get();
+        
+        $similarGames = [];
+
+        foreach ($topSellers as $topSeller) {
+            $similarGames[$topSeller->id] = Game::query()
+                ->where('is_active', true)
+                ->whereHas('categories', function ($query) use ($topSeller) {
+                    $query->whereIn('category.id', $topSeller->categories->pluck('id'));
+                })
+                ->whereNotIn('id', $topSellers->pluck('id'))
+                ->take(4)
+                ->get();
+
+            // If there are less than 4 similar games, add top-rated games with the same categories
+            if ($similarGames[$topSeller->id]->count() < 4) {
+                $additionalGames = Game::query()
+                    ->where('is_active', true)
+                    ->whereHas('players', function ($query) use ($topSeller) {
+                        $query->whereIn('player.id', $topSeller->players->pluck('id'));
+                    })
+                    ->whereNotIn('id', $topSellers->pluck('id'))
+                    ->whereNotIn('id', $similarGames[$topSeller->id]->pluck('id'))
+                    ->orderBy('overall_rating', 'desc')
+                    ->take(4 - $similarGames[$topSeller->id]->count())
+                    ->get();
+                
+                $similarGames[$topSeller->id] = $similarGames[$topSeller->id]->merge($additionalGames);
+            }
+        }
+
+        return view('pages.home', compact('topSellers', 'similarGames'));
+    }
+
     public function explore(Request $request)
     {
         $query = $request->input('query');

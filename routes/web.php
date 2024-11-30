@@ -29,9 +29,7 @@ Route::get('/home', function () {
     return view('pages/home');
 })->name('home');
 
-Route::get('/explore', function () {
-    return view('pages/explore');
-})->name('explore');
+Route::get('/home', [GameController::class, 'home'])->name('home');
 
 // Authentication
 Route::controller(LoginController::class)->group(function () {
@@ -103,6 +101,10 @@ Route::prefix('admin')->middleware('auth:admin')->controller(UserController::cla
 });
 
 // Explore Games
+Route::get('/explore', function () {
+    return view('pages/explore');
+})->name('explore');
+
 Route::get('/explore', [GameController::class, 'index']);
 Route::get('/explore', [GameController::class, 'explore'])->name('explore');
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.details');
