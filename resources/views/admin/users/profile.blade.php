@@ -16,7 +16,15 @@
 <p><strong>Username:</strong> {{ $user->username }} <button onclick="document.getElementById('change-username-form').submit();">Change Innapropriate Username</button></p>
 <p><strong>Name:</strong> {{ $user->name }} <button onclick="document.getElementById('change-name-form').submit();">Change Innapropriate Name</button></p>
 <p><strong>Email:</strong> {{ $user->email }}</p>
-<p><strong>Status:</strong> {{ $user->is_active ? 'Active' : 'Disabled' }}</p>
+<p><strong>Status:</strong>
+    @if (!$user->is_active)
+        Disabled
+    @elseif ($user->is_blocked)
+        Blocked
+    @else
+        Active
+    @endif
+</p>
 @if ($user->buyer)
     <p><strong>Role:</strong> Buyer</p>
     <p><strong>NIF:</strong> {{ $user->buyer->nif ?? 'NONE' }}</p>
@@ -46,5 +54,17 @@
 <form id="change-name-form" method="POST" action="{{ route('admin.users.changeName', $user->id) }}">
     {{ csrf_field() }}
 </form>
+
+@if ($user->is_blocked)
+    <form id="unblock-user-form" method="POST" action="{{ route('admin.users.unblock', $user->id) }}">
+        {{ csrf_field() }}
+        <button type="submit" onclick="return confirm('Are you sure you want to unblock this user?');">Unblock User</button>
+    </form>
+@else
+    <form id="block-user-form" method="POST" action="{{ route('admin.users.block', $user->id) }}">
+        {{ csrf_field() }}
+        <button type="submit" onclick="return confirm('Are you sure you want to block this user?');">Block User</button>
+    </form>
+@endif
 
 @endsection

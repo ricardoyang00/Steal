@@ -43,7 +43,7 @@ class LoginController extends Controller
             if (Auth::guard($guard)->attempt($credentials, $request->filled('remember'))) {
                 $request->session()->regenerate();
                 
-                if (!is_admin() && !auth_user()->is_active) {
+                if (!is_admin() && auth_user()->is_blocked) {
                     Auth::guard($guard)->logout();
                     return back()->withErrors([
                         'Your account has been suspended. Please contact us for further assistance.',

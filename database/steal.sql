@@ -50,6 +50,7 @@ CREATE TABLE Users (
     email TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
     is_active BOOLEAN DEFAULT TRUE,
+    is_blocked BOOLEAN DEFAULT FALSE,
     remember_token VARCHAR(100) NULL
 );
 

@@ -75,13 +75,9 @@ class ProfileController extends Controller
     {
         $user = auth_user();
 
-        \Log::info('Before deactivation: ' . $user->is_active);
-        
         // Set is_active to false to trigger the anonymization
         $user->is_active = false;
         $user->save();
-
-        \Log::info('After deactivation: ' . $user->is_active);
 
         // Log the user out after deactivation
         auth()->logout();

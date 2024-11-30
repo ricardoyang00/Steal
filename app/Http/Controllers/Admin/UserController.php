@@ -117,6 +117,29 @@ class UserController extends Controller
             ->with('success', 'Coins updated successfully!');
     }
 
+    /* Block User */
+    public function blockUser(Request $request, $id): RedirectResponse
+    {
+        $user = User::findOrFail($id);
+        $user->is_blocked = true;
+        $user->save();
+
+        return redirect()->route('admin.users.profile', $user->id)
+            ->with('success', 'User has been blocked successfully!');
+    }
+
+    /* Unblock User */
+    public function unblockUser(Request $request, $id): RedirectResponse
+    {
+        $user = User::findOrFail($id);
+        $user->is_blocked = false;
+        $user->save();
+
+        return redirect()->route('admin.users.profile', $user->id)
+            ->with('success', 'User has been unblocked successfully!');
+    }
+
+
     // Probably temporary functions as the number of users will scale too much
     /**
      * List all buyers and sellers.
