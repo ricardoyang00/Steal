@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\StaticPagesController;
@@ -56,6 +57,9 @@ Route::post('/decrease_quantity', [ShoppingCartController::class, 'decreaseQuant
 Route::post('/add_product', [ShoppingCartController::class, 'addProduct'])->name('add_product');
 Route::post('/remove_product', [ShoppingCartController::class, 'removeProduct'])->name('remove_product');
 Route::get('/add_test_products', [ShoppingCartController::class, 'addTestProducts'])->name('add_test_products');
+
+// Wishlist
+Route::get('/wishlist', [WishlistController::class, 'index']);
 
 // Checkout
 Route::middleware('auth')->group(function () {
