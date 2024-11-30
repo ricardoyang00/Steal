@@ -8,9 +8,12 @@ use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\StaticPagesController;
+use App\Http\Controllers\AgeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,7 +58,14 @@ Route::post('/decrease_quantity', [ShoppingCartController::class, 'decreaseQuant
 
 Route::post('/add_product', [ShoppingCartController::class, 'addProduct'])->name('add_product');
 Route::post('/remove_product', [ShoppingCartController::class, 'removeProduct'])->name('remove_product');
-Route::get('/add_test_products', [ShoppingCartController::class, 'addTestProducts'])->name('add_test_products');
+
+// Wishlist
+Route::controller(WishlistController::class)->group(function () {
+    Route::get('/wishlist', 'index')->name('wishlist');
+});
+
+Route::post('/wishlist/remove', [WishlistController::class, 'removeProduct'])->name('wishlist.remove');
+Route::post('/wishlist/add', [WishlistController::class, 'addProduct'])->name('wishlist.add');
 
 // Checkout
 Route::middleware('auth')->group(function () {
@@ -115,3 +125,5 @@ Route::controller(StaticPagesController::class)->group(function () {
 });
 
 Route::get('/seller/products', [GameController::class, 'listProducts'])->name('seller.products');
+
+Route::get('/age/{id}', [AgeController::class, 'show'])->name('age.show');
