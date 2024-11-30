@@ -12,6 +12,8 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\StaticPagesController;
+use App\Http\Controllers\AgeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -121,3 +123,5 @@ Route::controller(StaticPagesController::class)->group(function () {
     Route::get('/contact', 'contact')->name('contact');
     Route::get('/faqs', 'faqs')->name('faqs');
 });
+
+Route::get('/age/{id}', [AgeController::class, 'show'])->name('age.show');

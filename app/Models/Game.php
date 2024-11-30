@@ -17,17 +17,22 @@ class Game extends Model
         'id',
         'name',
         'description',
-        'minimum_age',
         'price',
         'overall_rating',
         'owner',
         'is_active',
-        'release_date'
+        'release_date',
+        'age_id'
     ];
 
     public function seller()
     {
         return $this->belongsTo(Seller::class, 'owner', 'id');
+    }
+
+    public function age()
+    {
+        return $this->belongsTo(Age::class, 'age_id', 'id');
     }
 
     public function shoppingCarts()

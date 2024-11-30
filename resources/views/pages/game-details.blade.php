@@ -13,7 +13,11 @@
         <h1>{{ $game->name }}</h1>
         <p><strong>Description:</strong> {{ $game->description }}</p>
         <p><strong>Owner:</strong> {{ $game->seller->name }}</p>
-        <p><strong>Minimum Age:</strong> {{ $game->minimum_age }}</p>
+        <p><strong>Minimum Age:</strong>
+            <a href="{{ url('age/' . $game->age->id) }}">
+                <img src="{{ asset('images/' . $game->age->image_path) }}" alt={{ $game->age->name }} style="width: 50px; height: auto;">
+            </a>
+        </p>
         <p><strong>Price:</strong> ${{ $game->price }}</p>
         <p><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
         @if (!auth_user() || auth_user()->buyer)
