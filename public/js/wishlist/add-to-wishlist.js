@@ -4,9 +4,11 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
     addToWishlistButtons.forEach(button => {
+        console.log("button added: ", button);
         button.addEventListener('click', function (event) {
-            const productId = event.target.getAttribute('data-id');
+            const productId = event.currentTarget.getAttribute('data-id');
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            console.log("productId: ", productId);
             fetch('/wishlist/add', {
                 method: 'POST',
                 headers: {
@@ -18,13 +20,11 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    button.textContent = "Added to wishlist.";
                     button.disabled = true;
-                    button.style.backgroundColor = 'gray';
-                    setTimeout(() => {
-                        button.disabled = false;
-                        button.style.color = 'red';
-                    }, 1000);
+                    button.style.color = 'red';
+                    const heartIcon = button.querySelector('.fas.fa-heart');
+                    heartIcon.classList.remove('far');
+                    heartIcon.classList.add('fas');
                 } else {
                     alert('An error occurred while adding the product to the wishlist.');
                 }

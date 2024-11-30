@@ -45,19 +45,19 @@ class WishlistController extends Controller
     }
 
     public function addProduct(Request $request) {
-        $gameId = $request->input('game_id');
-        $buyerId = Auth::user()->id;
+        // $gameId = $request->input('game_id');
+        // $buyerId = Auth::user()->id;
 
-        $wishlistItem = Wishlist::where('buyer', $buyerId)
-            ->where('game', $gameId)
-            ->first();
+        // $wishlistItem = Wishlist::where('buyer', $buyerId)
+        //     ->where('game', $gameId)
+        //     ->first();
 
-        if (!$wishlistItem) {
-            $wishlistItem = new Wishlist();
-            $wishlistItem->buyer = $buyerId;
-            $wishlistItem->game = $gameId;
-            $wishlistItem->save();
-        }
+        // if (!$wishlistItem) {
+        //     $wishlistItem = new Wishlist();
+        //     $wishlistItem->buyer = $buyerId;
+        //     $wishlistItem->game = $gameId;
+        //     $wishlistItem->save();
+        // }
 
         return response()->json([
             'success' => true,
