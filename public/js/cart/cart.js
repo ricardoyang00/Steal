@@ -1,8 +1,23 @@
 document.addEventListener('DOMContentLoaded', function () {
     const productList = document.getElementById('product_list');
+
     if (!productList) {
         return;
     }
+
+    function disableDecrementButtons() {
+        const productItems = document.querySelectorAll('#product_list .product-container');
+        productItems.forEach(productItem => {
+            const quantityElement = productItem.querySelector('.prod_quantity');
+            const decreaseButton = productItem.querySelector('.btn-decrease');
+            if (parseInt(quantityElement.textContent) === 1) {
+                decreaseButton.disabled = true;
+            }
+        });
+    }
+
+    disableDecrementButtons();
+
     productList.addEventListener('click', function (event) {
         if (event.target.classList.contains('btn-increase')) {
             const productId = event.target.getAttribute('data-id');
@@ -26,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById(`product-${productId}`).remove();
                     document.getElementById('total_price').textContent = (data.new_total).toFixed(2) + '€';
                     document.getElementById('subtotal').textContent = (data.new_total).toFixed(2) + '€';
-                    if (document.getElementById('product_list').childElementCount === 0) {
+                    if (productList.childElementCount === 0) {
                         noProductsInCart();
                     }
                 } else {
@@ -71,9 +86,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 const subtotalElement = document.getElementById('subtotal');
                 subtotalElement.textContent = (data.new_total).toFixed(2) + '€';
                 
+                // Disable the decrement button if quantity is 1
+                const decreaseButton = productItem.querySelector('.btn-decrease');
+                if (data.new_quantity === 1) {
+                    decreaseButton.disabled = true;
+                } else {
+                    decreaseButton.disabled = false;
+                }
+
                 if (data.new_quantity === 0) {
                     productItem.remove();
-                    if (document.getElementById('product_list').childElementCount === 0) {
+                    if (productList.childElementCount === 0) {
                         noProductsInCart();
                     }
                 }
@@ -85,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Error:', error);
         });
     }
-
+    
     function noProductsInCart() {
         if (document.getElementById('product_list').childElementCount === 0) {
             const emptyCartMessage = document.createElement('div');
@@ -96,7 +119,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <p id="secondary-empty-message">You didn't add any item in your cart yet. Browse the website to find amazing deals!</p>
                 <a href="/explore" class="btn">Explore games</a>
             `;
-            document.getElementById('product_list').appendChild(emptyCartMessage);
+            productList.appendChild(emptyCartMessage);
+            document.querySelector('.cart-items').classList.add('empty-cart');
 
             // Disable the checkout button and change its appearance
             const checkoutButton = document.getElementById('checkout_button');

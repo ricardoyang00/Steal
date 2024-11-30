@@ -74,11 +74,17 @@ Route::get('/profile/edit', function () {
     return redirect()->route('profile');
 });
 
+// Redirect GET /profile/deactivate to /profile
+Route::get('/profile/deactivate', function () {
+    return redirect()->route('profile');
+});
+
 // Authenticated User
 Route::controller(ProfileController::class)->group(function () {
     Route::get('/profile', 'showProfile')->name('profile');
     Route::put('/profile/edit', 'update')->name('profile.update');
     Route::put('/profile', 'updatePassword')->name('profile.updatePassword');
+    Route::post('/profile/deactivate', 'deactivateUser')->name('profile.deactivate');
 });
 
 // Admin
@@ -89,6 +95,11 @@ Route::prefix('admin')->middleware('auth:admin')->controller(UserController::cla
     Route::post('/users/{id}/change-username', 'changeUsername')->name('admin.users.changeUsername');
     Route::post('/users/{id}/change-name', 'changeName')->name('admin.users.changeName');
     Route::post('/users/{id}/change-coins', 'changeCoins')->name('admin.users.changeCoins');
+    Route::post('/admin/users/{id}/block', 'blockUser')->name('admin.users.block');
+    Route::post('/admin/users/{id}/unblock', 'unblockUser')->name('admin.users.unblock');
+    Route::post('/admin/users/{id}/deactivate', 'adminDeactivateUser')->name('admin.users.deactivate');
+    //Route::get('/users/buyers', 'listBuyers')->name('admin.users.buyers');
+    //Route::get('/users/sellers', 'listSellers')->name('admin.users.sellers');
 });
 
 // Explore Games
