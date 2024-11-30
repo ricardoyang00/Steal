@@ -1,7 +1,7 @@
 /* Wishlist Styling */
 
 /* Add to Cart Button */
-.game-details-page .btn-add-to-cart {
+.wishlist .btn-add-to-cart {
     padding: 8px 16px;
     background-color: var(--buy-button-color);
     color: var(--text-color);
@@ -12,7 +12,7 @@
     transition: background-color 0.3s;
 }
 
-.game-details-page .btn-add-to-cart:hover {
+.wishlist .btn-add-to-cart:hover {
     background-color: var(--buy-button-hover-color);
 }
 

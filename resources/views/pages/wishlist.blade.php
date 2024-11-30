@@ -36,9 +36,11 @@
                                     </div>
                                     <div class="product-actions">
                                         <p class="product-price">{{ $product['price'] }}€</p>
-                                        <button id="add-to-cart-{{ $product['id'] }}" data-id="{{ $product['id'] }}" class="btn-add-to-cart btn btn-primary">
-                                            Add to Cart
-                                        </button>
+                                        @if (!auth_user() || auth_user()->buyer)
+                                            <button id="add-to-cart-{{ $product['id'] }}" data-id="{{ $product['id'] }}" class="btn-add-to-cart btn btn-primary">
+                                                Add to Cart
+                                            </button>
+                                        @endif
                                     </div>
                                 </div>
                             </li>

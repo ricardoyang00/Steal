@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
         button.addEventListener('click', function (event) {
             const productId = event.target.getAttribute('data-id');
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-            fetch('add_product', {
+            fetch('/add_product', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

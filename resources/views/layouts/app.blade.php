@@ -21,6 +21,7 @@
         <link href="{{ url('css/game_details.css') }}" rel="stylesheet">
         <link href="{{ url('css/admin/manage_users.css') }}" rel="stylesheet">
         <link href="{{ url('css/shopping_cart.css') }}" rel="stylesheet">
+        <link href="{{ url('css/wishlist.css') }}" rel="stylesheet">
         <script type="text/javascript">
             // Fix for Firefox autofocus CSS bug
             // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
