@@ -65,8 +65,7 @@ class WishlistController extends Controller
             }
 
             return response()->json([
-                'success' => true,
-                'wl' => $wishlistItem
+                'success' => true
             ]);
         } catch (Exception $e) {
             \Log::error('Error adding product to wishlist: ' . $e->getMessage());
@@ -91,6 +90,19 @@ class WishlistController extends Controller
 
         return response()->json([
             'success' => true,
+        ]);
+    }
+
+    public function isInWishlist(Request $request) {
+        $gameId = $request->input('game_id');
+        $buyerId = Auth::user()->id;
+
+        $wishlistItem = Wishlist::where('buyer', $buyerId)
+            ->where('game', $gameId)
+            ->first();
+
+        return response()->json([
+            'is_in_wishlist' => $wishlistItem ? true : false
         ]);
     }
 }

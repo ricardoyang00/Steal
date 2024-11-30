@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         button.addEventListener('mouseout', function() {
-            if (button.disabled) {
+            if (button.classList.contains('active')) {
                 return;
             }
             const icon = button.querySelector('i');
