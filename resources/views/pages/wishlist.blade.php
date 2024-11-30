@@ -17,7 +17,7 @@
                         <i class="fas fa-heart"></i>
                         <p id="primary-empty-message">Your wishlist is empty.</p>
                         <p id="secondary-empty-message">You have no item in your wishlist yet. Browse the website to find amazing deals!</p>
-                        <a href="{{ route('explore') }}" class="btn">Explore games</a>
+                        <a href="/explore" class="btn">Explore games</a>
                     </div>
                 @else
                     <ul id="product_list">
