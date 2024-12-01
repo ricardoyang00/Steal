@@ -11,8 +11,8 @@
 
 .carousel-track {
     display: flex;
-    justify-content: space-between;
     transition: transform 0.5s ease;
+    gap: 10px;
 }
 
 .carousel-btn {
@@ -53,14 +53,44 @@
     object-fit: cover;
 }
 
+/* Overlay container for video and details */
+.home-game-card .overlay {
+    position: absolute;
+    bottom: -100%; /* Start from below the card */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: bottom 0.3s ease;
+}
+
+.home-game-card:hover .overlay {
+    bottom: 0; /* Slide up to occupy 100% */
+}
+
+.home-game-card .top-media {
+    width: 100%;
+    height: 40%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-game-card .top-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 /* Game details overlay */
 .home-game-card .game-details {
-    position: absolute;
-    top: 0;
-    left: 0;
+    width: 100%;
+    height: 60%; /* Bottom 60% for the details */
+    background: linear-gradient(to top, rgba(116, 128, 124, 1), rgba(116, 128, 124, 1));
     color: var(--text-color);
     padding: 10px;
-    width: 100%;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;

@@ -1,9 +1,14 @@
 <div class="home-game-card" data-url="{{ route('game.details', ['id' => $game->id]) }}">
     <!-- Game Thumbnail -->
     <div class="game-thumbnail">
-        <!-- <a href="{{ route('game.details', ['id' => $game->id]) }}"> -->
-            <img src="{{ asset('images/home-game-image.png') }}" class="card-img-top" alt="{{ $game->name }}">
-        <!-- </a> -->
+        <img src="{{ asset('images/home-game-image.png') }}" class="card-img-top" alt="{{ $game->name }}">
+    </div>
+    <!-- Overlay for video and details -->
+    <div class="overlay">
+        <!-- Game Small Image -->
+        <div class="top-media">
+            <img src="{{ asset('images/default-game-image.jpg') }}" alt="{{ $game->name }}">
+        </div>
         <!-- Game Details -->
         <div class="game-details">
             <!-- Game Title -->
