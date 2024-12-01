@@ -1,46 +1,23 @@
-.top-sellers-carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
 }
 
-.carousel-container {
-    overflow: hidden;
-    width: 100%;
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.3s ease-in;
 }
 
-.carousel-track {
+.top-sellers-section {
     display: flex;
-    transition: transform 0.5s ease;
-    gap: 10px;
-}
-
-.carousel-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: var(--text-color);
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    z-index: 1;
-}
-
-.carousel-btn.left {
-    left: 0;
-}
-
-.carousel-btn.right {
-    right: 0;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 /* Container for the game card */
 .home-game-card {
-    flex: 0 0 20%;
     box-sizing: border-box;
     position: relative;
-    width: 100%;
     height: 400px;
     overflow: hidden;
 }
@@ -53,6 +30,21 @@
     object-fit: cover;
 }
 
+/* Dark overlay on hover */
+.home-game-card .game-thumbnail::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.home-game-card:hover .game-thumbnail::before {
+    opacity: 1;
+}
+
 /* Overlay container for video and details */
 .home-game-card .overlay {
     position: absolute;
@@ -62,7 +54,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    transition: bottom 0.3s ease;
+    transition: bottom 0.8s ease;
 }
 
 .home-game-card:hover .overlay {
@@ -98,9 +90,11 @@
 }
 
 /* Game title */
-.home-game-card .game-title {
+.home-game-card .game-title a {
     margin: 0;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: var(--text-color);
 }
 
 /* Game description */

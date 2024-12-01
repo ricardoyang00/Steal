@@ -30,7 +30,7 @@ Route::get('/home', function () {
 })->name('home');
 
 Route::get('/home', [GameController::class, 'home'])->name('home');
-
+Route::get('/top-sellers-chunk/{chunkIndex}', [GameController::class, 'loadChunk'])->name('top-sellers-chunk');
 // Authentication
 Route::controller(LoginController::class)->group(function () {
     Route::get('/login', 'showLoginForm')->name('login');

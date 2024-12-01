@@ -10,43 +10,66 @@ class GameController extends Controller
 {    
     public function home()
     {
+        [$topSellersChunks, $similarGames] = $this->getTopSellersAndSimilarGames();
+
+        return view('pages.home', compact('topSellersChunks', 'similarGames'));
+    }
+
+    public function loadChunk($chunkIndex)
+    {
+        [$topSellersChunks, $similarGames] = $this->getTopSellersAndSimilarGames();
+
+        return view('partials.top-sellers-chunk', [
+            'topSellersChunk' => $topSellersChunks[$chunkIndex],
+            'chunkIndex' => $chunkIndex,
+            'similarGames' => $similarGames
+        ]);
+    }
+
+    private function getTopSellersAndSimilarGames()
+    {
         $topSellers = Game::query()
             ->where('is_active', true)
             ->withCount('deliveredPurchases')
             ->orderBy('delivered_purchases_count', 'desc')
             ->take(15)
             ->get();
-        
+
+        // Split top sellers into three lists of 5 games each
+        $topSellersChunks = $topSellers->chunk(5);
+
         $similarGames = [];
 
-        foreach ($topSellers as $topSeller) {
-            $similarGames[$topSeller->id] = Game::query()
-                ->where('is_active', true)
-                ->whereHas('categories', function ($query) use ($topSeller) {
-                    $query->whereIn('category.id', $topSeller->categories->pluck('id'));
-                })
-                ->whereNotIn('id', $topSellers->pluck('id'))
-                ->take(4)
-                ->get();
-
-            // If there are less than 4 similar games, add top-rated games with the same categories
-            if ($similarGames[$topSeller->id]->count() < 4) {
-                $additionalGames = Game::query()
+        foreach ($topSellersChunks as $chunkIndex => $topSellersChunk) {
+            foreach ($topSellersChunk as $topSeller) {
+                $similarGames[$chunkIndex][$topSeller->id] = Game::query()
                     ->where('is_active', true)
-                    ->whereHas('players', function ($query) use ($topSeller) {
-                        $query->whereIn('player.id', $topSeller->players->pluck('id'));
+                    ->whereHas('categories', function ($query) use ($topSeller) {
+                        $query->whereIn('category.id', $topSeller->categories->pluck('id'));
                     })
                     ->whereNotIn('id', $topSellers->pluck('id'))
-                    ->whereNotIn('id', $similarGames[$topSeller->id]->pluck('id'))
-                    ->orderBy('overall_rating', 'desc')
-                    ->take(4 - $similarGames[$topSeller->id]->count())
+                    ->take(4)
                     ->get();
-                
-                $similarGames[$topSeller->id] = $similarGames[$topSeller->id]->merge($additionalGames);
+
+                // If there are less than 4 similar games, add top-rated games with the same categories
+                if ($similarGames[$chunkIndex][$topSeller->id]->count() < 4) {
+                    $additionalGames = Game::query()
+                        ->where('is_active', true)
+                        ->whereHas('players', function ($query) use ($topSeller) {
+                            $query->whereIn('player.id', $topSeller->players->pluck('id'));
+                        })
+                        ->whereNotIn('id', $topSellers->pluck('id'))
+                        ->whereNotIn('id', $similarGames[$chunkIndex][$topSeller->id]->pluck('id'))
+                        ->orderBy('overall_rating', 'desc')
+                        ->take(4 - $similarGames[$chunkIndex][$topSeller->id]->count())
+                        ->get();
+
+                    $similarGames[$chunkIndex][$topSeller->id] = $similarGames[$chunkIndex][$topSeller->id]->merge($additionalGames);
+                }
             }
         }
 
-        return view('pages.home', compact('topSellers', 'similarGames'));
+        return [$topSellersChunks, $similarGames];
     }
 
     public function explore(Request $request)
