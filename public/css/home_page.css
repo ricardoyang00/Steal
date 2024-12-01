@@ -1,11 +1,11 @@
 .fade-out {
     opacity: 0;
-    transition: opacity 0.3s ease-out;
+    transition: opacity 0.2s ease-out;
 }
 
 .fade-in {
     opacity: 1;
-    transition: opacity 0.3s ease-in;
+    transition: opacity 0.2s ease-in;
 }
 
 .top-sellers-section {
@@ -176,4 +176,31 @@
 
 .home-game-card .btn-add-to-cart:hover {
     background-color: var(--buy-button-hover-color);
+}
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination-btn {
+    width: 40px;
+    height: 20px;
+    margin: 0 5px;
+    background-color: var(--secondary-background-color);
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: transparent; /* Hide text */
+    font-size: 0; /* Hide text */
+}
+
+.pagination-btn:hover {
+    background-color: grey;
+}
+
+.pagination-btn.active {
+    background-color: grey;
 }
