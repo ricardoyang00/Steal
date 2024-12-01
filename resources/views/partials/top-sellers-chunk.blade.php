@@ -8,7 +8,7 @@
                     <img src="{{ asset('images/' . $game->age->image_path) }}" alt={{ $game->age->name }} class="pegi-age">
                 </a>
                 <!-- Game Big Image -->
-                <img src="{{ asset('images/home-game-image.png') }}" class="card-img-top" alt="{{ $game->name }}">
+                <img src="{{ asset('images/home-game-image.jpg') }}" class="card-img-top" alt="{{ $game->name }}">
                 <!-- Game Price -->
                 <p class="game-price-thumbnail">
                     €{{ number_format($game->price, 2) }}
