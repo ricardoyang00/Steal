@@ -17,6 +17,15 @@
             <button class="pagination-btn" onclick="loadChunk({{ $chunkIndex }})">{{ $chunkIndex + 1 }}</button>
         @endforeach
     </div>
+
+    <!-- Smaller cards for similar games -->
+    <div class="similar-games-section">
+        <div class="similar-game-cards">
+            @foreach ($similarGames as $similarGame)
+                @include('partials.small-game-card-home', ['game' => $similarGame])
+            @endforeach
+        </div>
+    </div>
 </section>
 
 @endsection

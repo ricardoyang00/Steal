@@ -34,15 +34,21 @@ class GameController extends Controller
             ->orderBy('delivered_purchases_count', 'desc')
             ->take(15)
             ->get();
-
+    
         // Split top sellers into three lists of 5 games each
         $topSellersChunks = $topSellers->chunk(5);
-
-        $similarGames = [];
-
+    
+        $similarGames = collect();
+        $totalSimilarGames = 0;
+        $maxSimilarGames = 16;
+    
         foreach ($topSellersChunks as $chunkIndex => $topSellersChunk) {
             foreach ($topSellersChunk as $topSeller) {
-                $similarGames[$chunkIndex][$topSeller->id] = Game::query()
+                if ($totalSimilarGames >= $maxSimilarGames) {
+                    break 2; // Exit both loops if we have collected 16 similar games
+                }
+            
+                $games = Game::query()
                     ->where('is_active', true)
                     ->whereHas('categories', function ($query) use ($topSeller) {
                         $query->whereIn('category.id', $topSeller->categories->pluck('id'));
@@ -50,25 +56,31 @@ class GameController extends Controller
                     ->whereNotIn('id', $topSellers->pluck('id'))
                     ->take(4)
                     ->get();
-
+                
                 // If there are less than 4 similar games, add top-rated games with the same categories
-                if ($similarGames[$chunkIndex][$topSeller->id]->count() < 4) {
+                if ($games->count() < 4) {
                     $additionalGames = Game::query()
                         ->where('is_active', true)
                         ->whereHas('players', function ($query) use ($topSeller) {
                             $query->whereIn('player.id', $topSeller->players->pluck('id'));
                         })
                         ->whereNotIn('id', $topSellers->pluck('id'))
-                        ->whereNotIn('id', $similarGames[$chunkIndex][$topSeller->id]->pluck('id'))
+                        ->whereNotIn('id', $games->pluck('id'))
                         ->orderBy('overall_rating', 'desc')
-                        ->take(4 - $similarGames[$chunkIndex][$topSeller->id]->count())
+                        ->take(4 - $games->count())
                         ->get();
-
-                    $similarGames[$chunkIndex][$topSeller->id] = $similarGames[$chunkIndex][$topSeller->id]->merge($additionalGames);
+                    
+                    $games = $games->merge($additionalGames);
                 }
+            
+                // Add only the required number of games to reach the limit
+                $remainingSlots = $maxSimilarGames - $totalSimilarGames;
+                $gamesToAdd = $games->take($remainingSlots);
+                $similarGames = $similarGames->merge($gamesToAdd);
+                $totalSimilarGames += $gamesToAdd->count();
             }
         }
-
+    
         return [$topSellersChunks, $similarGames];
     }
 
