@@ -42,7 +42,7 @@
         </div>
     </div>
     <!-- Wishlist Button -->
-    @if (!auth_user() || auth_user()->buyer)
+    @if (auth_user() && auth_user()->buyer)
         <button class="add-to-wishlist btn-add-to-wishlist" data-id="{{ $game->id }}">
             <i class="far fa-heart"></i>
         </button>
