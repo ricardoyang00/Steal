@@ -14,7 +14,7 @@ class GameController extends Controller
             ->where('is_active', true)
             ->withCount('deliveredPurchases')
             ->orderBy('delivered_purchases_count', 'desc')
-            ->take(5)
+            ->take(15)
             ->get();
         
         $similarGames = [];

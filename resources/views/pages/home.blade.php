@@ -10,10 +10,12 @@
     <!-- Carousel for Top Sellers -->
     <div class="top-sellers-carousel">
         <button class="carousel-btn left" onclick="moveCarousel('top-sellers', -1)">&#8249;</button>
-        <div class="carousel-track" id="top-sellers">
-            @foreach($topSellers as $game)
-                @include('partials.game-card-home', ['game' => $game])
-            @endforeach
+        <div class="carousel-container">
+            <div class="carousel-track" id="top-sellers">
+                @foreach($topSellers as $game)
+                    @include('partials.game-card-home', ['game' => $game])
+                @endforeach
+            </div>
         </div>
         <button class="carousel-btn right" onclick="moveCarousel('top-sellers', 1)">&#8250;</button>
     </div>

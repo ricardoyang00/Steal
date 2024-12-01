@@ -1,37 +1,19 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const carousels = {};
+let currentIndex = 0;
 
-    // Initialize carousel positions
-    document.querySelectorAll(".carousel-track").forEach((track) => {
-        const id = track.id;
-        carousels[id] = {
-            index: 0,
-            items: track.children.length,
-            track: track,
-            cardWidth: track.children[0].getBoundingClientRect().width,
-            gap: 20, // Same as CSS gap
-        };
-    });
+function moveCarousel(trackId, direction) {
+    const track = document.getElementById(trackId);
+    const items = track.children;
+    const itemsToShow = 5;
+    const totalItems = items.length;
 
-    // Function to move the carousel
-    window.moveCarousel = (carouselId, direction) => {
-        const carousel = carousels[carouselId];
-        if (!carousel) return;
+    currentIndex += direction * itemsToShow;
 
-        // Update index based on direction (left or right)
-        carousel.index += direction;
-        if (carousel.index < 0) {
-            carousel.index = carousel.items - 1; // Loop to the last card
-        } else if (carousel.index >= carousel.items) {
-            carousel.index = 0; // Loop back to the first card
-        }
+    if (currentIndex < 0) {
+        currentIndex = totalItems - itemsToShow; // Loop back to the last set
+    } else if (currentIndex >= totalItems) {
+        currentIndex = 0; // Loop back to the first set
+    }
 
-        // Update transform to center the active card
-        const offset =
-            -(carousel.index * (carousel.cardWidth + carousel.gap)) +
-            (window.innerWidth / 2 - carousel.cardWidth / 2) - carousel.gap / 2; // Adjust for gap
-
-        // Apply the calculated offset to the carousel track
-        carousel.track.style.transform = `translateX(${offset}px)`;
-    };
-});
+    const offset = currentIndex * (100 / itemsToShow);
+    track.style.transform = `translateX(-${offset}%)`;
+}
