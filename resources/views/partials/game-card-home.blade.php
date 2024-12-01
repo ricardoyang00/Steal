@@ -2,6 +2,10 @@
     <!-- Game Thumbnail -->
     <div class="game-thumbnail">
         <img src="{{ asset('images/home-game-image.png') }}" class="card-img-top" alt="{{ $game->name }}">
+        <!-- Game Price -->
+        <p class="game-price-thumbnail">
+            €{{ number_format($game->price, 2) }}
+        </p>
     </div>
     <!-- Overlay for video and details -->
     <div class="overlay">
@@ -20,15 +24,16 @@
             <p class="game-description">
                 {{ $game->description }}
             </p>
-            <!-- Game Price and Platforms -->
-            <div class="game-price-platforms">
-                <p class="game-price">
-                    €{{ number_format($game->price, 2) }}
-                </p>
+            <!-- Game Platforms -->
+            <div class="game-platforms">
                 @foreach($game->platforms as $platform)
                     <img src="{{ asset('images/platform_logos/' . $platform->id . '.svg') }}" alt="{{ $platform->name }} logo" class="img-fluid">
                 @endforeach
             </div>
+            <!-- Game Price -->
+            <p class="game-price">
+                €{{ number_format($game->price, 2) }}
+            </p>
         </div>
     </div>
     <!-- Add to Cart Button -->
