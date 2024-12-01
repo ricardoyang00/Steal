@@ -12,7 +12,7 @@
         @include('partials.top-sellers-chunk', ['topSellersChunk' => $topSellersChunks[0], 'chunkIndex' => 0])
     </div>
 
-    <div class="pagination-controls">
+    <div class="pagination-controls" data-total-chunks="{{ count($topSellersChunks) }}">
         @foreach ($topSellersChunks as $chunkIndex => $topSellersChunk)
             <button class="pagination-btn" onclick="loadChunk({{ $chunkIndex }})">{{ $chunkIndex + 1 }}</button>
         @endforeach

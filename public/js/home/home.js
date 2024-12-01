@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('top-sellers-container');
+    const paginationControls = document.querySelector('.pagination-controls');
+    const totalChunks = parseInt(paginationControls.getAttribute('data-total-chunks'), 10);
+    let currentChunkIndex = 0;
+
+    // Add fade-in class to start the fade-in effect on initial load
+    container.classList.add('fade-in');
+
+    // Wait for the fade-in transition to complete
+    container.addEventListener('transitionend', function handleInitialFadeIn() {
+        container.removeEventListener('transitionend', handleInitialFadeIn);
+        container.classList.remove('fade-in');
+    });
+
     // Highlight the first pagination button on initial load
     const firstButton = document.querySelector('.pagination-btn');
     if (firstButton) {
@@ -6,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.loadChunk = function(chunkIndex) {
-        const container = document.getElementById('top-sellers-container');
         const buttons = document.querySelectorAll('.pagination-btn');
 
         // Check if the clicked button is already active
@@ -50,4 +63,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 .catch(error => console.error('Error loading chunk:', error));
         });
     };
+
+    // Function to automatically change pages
+    function autoChangePage() {
+        currentChunkIndex = (currentChunkIndex + 1) % totalChunks;
+        loadChunk(currentChunkIndex);
+    }
+
+    // Set interval to change pages every 5 seconds (5000 milliseconds)
+    setInterval(autoChangePage, 5000);
 });
