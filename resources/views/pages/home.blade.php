@@ -5,6 +5,7 @@
 @section('content')
 
 <script src="{{ asset('js/home/home.js') }}" defer></script>
+<script src="{{ asset('js/cart/add-to-cart.js') }}" defer></script>
 
 <section id="home">
     <div id="top-sellers-container">

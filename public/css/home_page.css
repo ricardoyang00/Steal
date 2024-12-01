@@ -30,17 +30,30 @@
     object-fit: cover;
 }
 
+/* PEGI age image */
+.home-game-card .game-thumbnail .pegi-age {
+    position: absolute;
+    width: 25px;
+    height: auto;
+}
+
 /* Game price */
 .home-game-card .game-price-thumbnail {
     position: absolute;
-    bottom: 10px;
+    bottom: 0;
     right: 0;
     margin: 0;
     font-size: 1.2rem;
     background: black;
     color: white;
     padding: 5px 10px;
-    border-radius: 5px;
+    z-index: 1;
+}
+
+/* Game price on hover */
+.home-game-card:hover .game-price-thumbnail {
+    bottom: 20px;
+    transition: bottom 0.8s ease;
 }
 
 /* Dark overlay on hover */
@@ -58,7 +71,7 @@
     opacity: 1;
 }
 
-/* Overlay container for video and details */
+/* Overlay container */
 .home-game-card .overlay {
     position: absolute;
     bottom: -100%; /* Start from below the card */
@@ -95,7 +108,7 @@
     height: 60%; /* Bottom 60% for the details */
     background: linear-gradient(to top, rgba(116, 128, 124, 1), rgba(116, 128, 124, 1));
     color: var(--text-color);
-    padding: 10px;
+    padding-left: 12px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -103,20 +116,38 @@
 }
 
 /* Game title */
-.home-game-card .game-title a {
-    margin: 0;
+.home-game-card .game-title {
+    margin-top: 10px;
+    margin-bottom: 0;
     font-size: 1.5rem;
+}
+
+.home-game-card .game-title a {
     text-decoration: none;
     color: var(--text-color);
 }
 
-/* Game description */
-.home-game-card .game-description {
-    margin: 5px 0;
-    font-size: 0.9rem;
+/* Game tags */
+.home-game-card .game-categories {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    gap: 5px;
 }
 
-/* Game price and platforms */
+.home-game-card .category-tag {
+    background-color: var(--explore-table-color);
+    color: var(--text-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+}
+
+/* Game platforms */
 .home-game-card .game-platforms {
     display: flex;
     align-items: center;
@@ -125,12 +156,24 @@
 
 /* Platform logos */
 .home-game-card .game-platforms img {
-    width: 20px;
-    height: 30px;
+    width: 30px;
+    height: 40px;
     margin-right: 5px;
 }
 
 /* Add to cart button */
-.home-game-card .add-to-cart {
-    margin-top: 10px;
+.home-game-card .btn-add-to-cart {
+    padding: 8px 16px;
+    background-color: var(--buy-button-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 52px;
+}
+
+.home-game-card .btn-add-to-cart:hover {
+    background-color: var(--buy-button-hover-color);
 }
