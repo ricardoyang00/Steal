@@ -42,9 +42,11 @@
         </div>
     </div>
     <!-- Wishlist Button -->
-    <button class="add-to-wishlist btn-add-to-wishlist" data-id="{{ $game->id }}">
-        <i class="far fa-heart"></i>
-    </button>
+    @if (!auth_user() || auth_user()->buyer)
+        <button class="add-to-wishlist btn-add-to-wishlist" data-id="{{ $game->id }}">
+            <i class="far fa-heart"></i>
+        </button>
+    @endif
     <!-- Game Price and Add to Cart -->
     <div class="game-price-add-cart">
         <p class="game-price">
