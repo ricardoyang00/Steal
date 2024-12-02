@@ -48,10 +48,11 @@ CREATE TABLE Users (
     username TEXT UNIQUE NOT NULL,
     name TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
-    password TEXT NOT NULL,
+    password TEXT,
     is_active BOOLEAN DEFAULT TRUE,
     is_blocked BOOLEAN DEFAULT FALSE,
-    remember_token VARCHAR(100) NULL
+    remember_token VARCHAR(100) NULL,
+    google_id VARCHAR
 );
 
 CREATE TABLE Administrator(

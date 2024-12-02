@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const paginationControls = document.querySelector('.pagination-controls');
     const totalChunks = parseInt(paginationControls.getAttribute('data-total-chunks'), 10);
     let currentChunkIndex = 0;
+    let intervalId;
 
     // Add fade-in class to start the fade-in effect on initial load
     container.classList.add('fade-in');
@@ -70,6 +71,25 @@ document.addEventListener('DOMContentLoaded', function() {
         loadChunk(currentChunkIndex);
     }
 
-    // Set interval to change pages every 5 seconds (5000 milliseconds)
-    setInterval(autoChangePage, 5000);
+    // Function to start the interval
+    function startInterval() {
+        intervalId = setInterval(autoChangePage, 5000);
+    }
+
+    // Function to stop the interval
+    function stopInterval() {
+        clearInterval(intervalId);
+    }
+
+    // Handle page visibility change
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            stopInterval();
+        } else {
+            startInterval();
+        }
+    });
+
+    // Start the interval initially
+    startInterval();
 });

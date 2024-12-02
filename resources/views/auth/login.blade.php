@@ -36,10 +36,14 @@
         <label for="remember">Remember Me</label>
     </div>
     
+    <a class="google-button" href="{{ route('google-auth') }}">
+        <img src="{{ asset('images/google-icon.svg') }}" alt="google logo" width="20px" height="auto"> Sign in with Google
+    </a>
+    
     <button type="submit">Login</button>
 
     <a class="button button-outline" href="{{ route('register') }}">Register</a>
-    
+
     <a class="forgot-password">Forgot Your Password?</a>
 </form>
 
