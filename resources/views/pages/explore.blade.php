@@ -14,7 +14,19 @@
     <div class="filter-table">
         <h1>FILTERS</h1>
         <form id="filter-form" action="{{ url('/explore') }}" method="GET" class="filter-form">
+            <!-- Persist query -->
+            @if(request('query'))
+                <input type="hidden" name="query" value="{{ request('query') }}">
+            @endif
+
+            <!-- Persist sort -->
+            @if(request('sort'))
+                <input type="hidden" name="sort" value="{{ request('sort') }}">
+            @endif
+            
             <button type="button" id="clear-filters" class="btn btn-secondary">Clear Filters</button>
+            
+            <!-- Filters -->
             <div class="form-group">
                 <label for="category">Category</label>
                 @foreach($categories as $category)
@@ -62,6 +74,26 @@
                 @endif
             </div>
             <form action="{{ url('/explore') }}" method="GET" class="sorting-form">
+                <!-- Persist query -->
+                @if(request('query'))
+                    <input type="hidden" name="query" value="{{ request('query') }}">
+                @endif
+
+                <!-- Persist filters -->
+                @foreach(request('categories', []) as $category)
+                    <input type="hidden" name="categories[]" value="{{ $category }}">
+                @endforeach
+                @foreach(request('platforms', []) as $platform)
+                    <input type="hidden" name="platforms[]" value="{{ $platform }}">
+                @endforeach
+                @foreach(request('languages', []) as $language)
+                    <input type="hidden" name="languages[]" value="{{ $language }}">
+                @endforeach
+                @foreach(request('players', []) as $player)
+                    <input type="hidden" name="players[]" value="{{ $player }}">
+                @endforeach
+
+                <!-- Sort -->
                 <div class="links" role="group" aria-label="Game Sorting">
                     <button type="submit" name="sort" value="all" class="btn btn-link {{ request('sort') == 'all' || (!request('sort') && !request('query')) ? 'active' : '' }}">
                         All Items
