@@ -30,7 +30,9 @@
         @endif
 
         <button id="edit-profile-btn">Edit</button>
-        <button id="change-password-btn">Change Password</button>
+        @if (auth_user()->buyer && auth_user()->google_id === null)
+            <button id="change-password-btn">Change Password</button>
+        @endif
 
         <!-- Deactivate Account Button -->
         @if (!is_admin())    

@@ -24,7 +24,15 @@ class GoogleController extends Controller
         // Check if a user with the same email already exists
         $existing_user = User::where('email', $google_user->getEmail())->first();
         if ($existing_user) {
-            return redirect()->route('login')->withErrors(['email' => 'The email is already associated with another account.']);
+            if ($existing_user->google_id) {
+                // Log in the user if they have a Google ID
+                Auth::login($existing_user);
+                request()->session()->regenerate();
+                return redirect()->route('home')->withSuccess('You have successfully logged in with Google!');
+            } else {
+                // Redirect with an error if the email is associated with another account without a Google ID
+                return redirect()->route('login')->withErrors(['email' => 'The email is already associated with another account.']);
+            }
         }
 
         // If the user does not exist, create one
@@ -52,14 +60,16 @@ class GoogleController extends Controller
             ]);
             
             Auth::login($new_user);
-            
+            request()->session()->regenerate();
+
+            return redirect()->route('home')->withSuccess('You have successfully registered & logged in with Google!');
         // Otherwise, simply log in with the existing user
         } else {
             Auth::login($user);
-        }
+            request()->session()->regenerate();
 
-        // After login, redirect to homepage
-        return redirect()->intended('home');
+            return redirect()->route('home')->withSuccess('You have successfully logged in with Google!');
+        }
     }
 
     /**
