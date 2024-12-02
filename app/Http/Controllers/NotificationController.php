@@ -48,14 +48,17 @@ class NotificationController extends Controller{
 
     private function getReviewNotifications() {
         // TODO
+        return [];
     }
 
     private function getGameNotifications() {
         // TODO
+        return [];
     }
 
     private function getWishlistNotifications() {
         // TODO
+        return [];
     }
 
 }

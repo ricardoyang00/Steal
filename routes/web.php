@@ -74,6 +74,11 @@ Route::middleware('auth')->group(function (){
     Route::get('/user/{id}/order-history', [PurchaseHistoryController::class, 'orderHistory'])->name('purchaseHistory');
 });
 
+// Notifications
+Route::middleware('auth')->group(function (){
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
+});
+
 // Redirect GET /profile/edit to /profile
 Route::get('/profile/edit', function () {
     return redirect()->route('profile');

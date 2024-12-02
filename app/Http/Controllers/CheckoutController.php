@@ -14,6 +14,7 @@ use App\Models\Order;
 use App\Models\Purchase;
 use App\Models\DeliveredPurchase;
 use App\Models\CanceledPurchase;
+use App\Models\OrderNotification;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
@@ -99,6 +100,7 @@ class CheckoutController extends Controller
                         'game' => $canceledItem['game'],
                     ]);
                 }
+                OrderNotification::createOrderNotification($order, $purchasedItems, $canceledItems);
                 session()->forget('payment_method');
                 ShoppingCart::where('buyer', $buyerId)->delete();
                 DB::commit();
