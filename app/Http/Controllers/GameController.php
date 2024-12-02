@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Platform;
 use App\Models\Language;
 use App\Models\Player;
+use App\Models\Age;
 
 use Illuminate\Http\Request;
 
@@ -183,5 +184,30 @@ class GameController extends Controller
                     ->paginate(10);
 
         return view('seller.products', compact('games'));
+    }
+
+    public function edit($id) {
+        $game = Game::with(['categories', 'platforms', 'languages', 'players'])->findOrFail($id);
+        $categories = Category::all();
+        $platforms = Platform::all();
+        $languages = Language::all();
+        $players = Player::all();
+        $ages = Age::all();
+
+        return view('seller.game-edit', compact('game', 'categories', 'platforms', 'languages', 'players', 'ages'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $game = Game::findOrFail($id);
+        $game->update($request->all());
+
+        // Update relationships
+        $game->categories()->sync($request->input('categories', []));
+        $game->platforms()->sync($request->input('platforms', []));
+        $game->languages()->sync($request->input('languages', []));
+        $game->players()->sync($request->input('players', []));
+
+        return redirect()->route('games.edit', $game->id)->with('success', 'Game updated successfully.');
     }
 }

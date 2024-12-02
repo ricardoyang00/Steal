@@ -53,8 +53,8 @@
         </div>
     </div>
     <div class="game-edit-button">
-        <button class="btn-edit-game btn btn-primary">
+        <a href="{{ route('games.edit', ['id' => $game->id]) }}" class="btn-edit-game btn btn-primary">
             Edit
-        </button>
+        </a>
     </div>
 </div>
