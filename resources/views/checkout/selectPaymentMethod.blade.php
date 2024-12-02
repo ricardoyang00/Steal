@@ -19,6 +19,7 @@
             <p>Please choose your preferred payment method:</p>
             @foreach ($paymentMethods as $method)
                 <div class="form-check mb-3">
+                    <img src="{{ asset('images/' . $method->image_path) }}" alt={{ $method->name }} style="width:2em;">
                     <label for="payment_method_{{ $method->id }}" class="form-check-label d-block">
                         {{ $method->name }}
                     </label>

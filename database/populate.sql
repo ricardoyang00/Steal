@@ -1120,9 +1120,15 @@ insert into GamePlayer (game, player) values (50, 2);
 
 
 -- PaymentMethod
-insert into PaymentMethod (name) values ('Credit Card');
-insert into PaymentMethod (name) values ('PayPal');
-insert into PaymentMethod (name) values ('MB Way');
+insert into PaymentMethod (name, image_path) values ('Alipay', 'payment/alipay.svg');
+insert into PaymentMethod (name, image_path) values ('American Express', 'payment/american_express.svg');
+insert into PaymentMethod (name, image_path) values ('Apple Pay', 'payment/applepay.svg');
+insert into PaymentMethod (name, image_path) values ('Bitcoin', 'payment/bitcoin.svg');
+insert into PaymentMethod (name, image_path) values ('Google Pay', 'payment/googlepay.svg');
+insert into PaymentMethod (name, image_path) values ('Mastercard', 'payment/mastercard.svg');
+insert into PaymentMethod (name, image_path) values ('Paypal', 'payment/paypal.svg');
+insert into PaymentMethod (name, image_path) values ('Visa', 'payment/visa.svg');
+insert into PaymentMethod (name, image_path) values ('Multibanco', 'payment/mb.svg');
 
 
 -- Payment
