@@ -11,8 +11,14 @@ document.addEventListener('DOMContentLoaded', function () {
             icon.classList.remove('fas');
             icon.classList.add('far');
         });
+
+        button.addEventListener('mouseover', function() {
+            const icon = button.querySelector('i');
+            icon.classList.remove('far');
+            icon.classList.add('fas');
+        });
     });
-    
+
     // check if item is already in wishlist
     const wishlistButtons = document.querySelectorAll('.add-to-wishlist');
     wishlistButtons.forEach(button => {
