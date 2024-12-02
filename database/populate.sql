@@ -1156,7 +1156,7 @@ insert into DeliveredPurchase (id, cdk) values (5, 32);
 
 
 -- Review
-insert into Review (title, description, positive, author, game) values ('Amazing Gameplay', 'The gameplay is smooth and engaging. Highly recommend!', true, 1, 1);
+insert into Review (title, description, positive, author, game) values ('Amazing Gameplay', 'The gameplay is smooth and engaging. Highly recommend!', true, 3, 1);
 insert into Review (title, description, positive, author, game) values ('Not Worth the Price', 'The game is overpriced for the content it offers.', false, 2, 1);
 insert into Review (title, description, positive, author, game) values ('Great Graphics', 'The graphics are stunning and very detailed.', true, 1, 3);
 insert into Review (title, description, positive, author, game) values ('Boring Storyline', 'The storyline is very predictable and boring.', false, 1, 4);

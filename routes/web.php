@@ -71,6 +71,7 @@ Route::post('/wishlist/is_in_wishlist', [WishlistController::class, 'isInWishlis
 
 // Reviews
 Route::post('/reviews', [ReviewsController::class, 'getReviews'])->name('reviews');
+Route::post('/reviews/add', [ReviewsController::class, 'addReview'])->name('reviews.add');
 
 // Checkout
 Route::middleware('auth')->group(function () {

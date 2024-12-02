@@ -73,37 +73,39 @@
         <h2>Reviews</h2>
         @if (auth_user() && auth_user()->buyer)
             <button class="btn-review-form-toggle">Add Review</button>
+            <div class="add-review-container" style="display: none;">
+                <form class="add-review-form" action="{{ url('reviews/add') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="game_id" value="{{ $game->id }}">
+                    <div class="form-group">
+                        <label for="review-title">Title</label>
+                        <input type="text" class="form-control" id="review-title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="review-description">Description</label>
+                        <textarea class="form-control" id="review-description" name="description" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="review-rating">Rating</label>
+                        <div class="form-check thumbs-up">
+                            <input class="form-check-input" type="radio" name="positive" id="review-positive" value="true" required>
+                            <label class="form-check-label" for="review-positive">
+                                <i class="fas fa-thumbs-up" style="color: lightgreen;"></i> Positive
+                            </label>
+                        </div>
+                        <div class="form-check thumbs-up">
+                            <input class="form-check-input" type="radio" name="positive" id="review-negative" value="false" required>
+                            <label class="form-check-label" for="review-negative">
+                                <i class="fas fa-thumbs-down" style="color: red;"></i> Negative
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                </form>
+            </div>
         @elseif (!auth_user())
             <button onclick="window.location.href = '/login';" class="btn-review-form-toggle">Add Review</button>
         @endif
-        <div class="add-review-container" style="display: none;">
-            <form class="add-review-form">
-                <div class="form-group">
-                    <label for="review-title">Title</label>
-                    <input type="text" class="form-control" id="review-title" name="title" required>
-                </div>
-                <div class="form-group">
-                    <label for="review-description">Description</label>
-                    <textarea class="form-control" id="review-description" name="description" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="review-rating">Rating</label>
-                    <div class="form-check thumbs-up">
-                        <input class="form-check-input" type="radio" name="positive" id="review-positive" value="true" required>
-                        <label class="form-check-label" for="review-positive">
-                            <i class="fas fa-thumbs-up" style="color: lightgreen;"></i> Positive
-                        </label>
-                    </div>
-                    <div class="form-check thumbs-up">
-                        <input class="form-check-input" type="radio" name="positive" id="review-negative" value="false" required>
-                        <label class="form-check-label" for="review-negative">
-                            <i class="fas fa-thumbs-down" style="color: red;"></i> Negative
-                        </label>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit Review</button>
-            </form>
-        </div>
     </div>
 </div>
 

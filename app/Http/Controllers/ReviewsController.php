@@ -32,4 +32,21 @@ class ReviewsController extends Controller
 
         ]);
     }
+
+    public function addReview(Request $request)
+    {
+        $review = new Review();
+        $review->title = $request->input('title');
+        $review->game = $request->input('game_id');
+        $review->description = $request->input('description');
+        $review->positive = $request->input('positive');
+        $review->author = auth_user()->id;
+
+        $review->save();
+
+        return response()->json([
+            'success' => true,
+        ]);
+    }
+
 }
