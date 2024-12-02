@@ -53,13 +53,16 @@
     <div id="buyer_fields">
       <input id="birth_date" type="date" name="birth_date" value="{{ old('birth_date') }}">
     </div>
+    
+    <a class="google-button" href="{{ route('google-auth') }}">
+      <img src="{{ asset('images/google-icon.svg') }}" alt="google logo" width="20px" height="auto"> Sign up with Google
+    </a>
 
     <button type="submit">
       {{ is_admin() ? 'Create' : 'Register' }}
     </button>
 
     <a class="button button-outline" href="{{ route('login') }}">Sign In</a>
-    <a href="{{ route('google-auth') }}">Continue with Google</a>
 </form>
 
 </div>
