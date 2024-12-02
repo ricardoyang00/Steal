@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Game;
 use App\Models\User;
+use App\Models\Buyer;
+use App\Models\Wishlist;
+use Exception;
 
 class WishlistController extends Controller
 {
@@ -52,16 +54,26 @@ class WishlistController extends Controller
             ->where('game', $gameId)
             ->first();
 
-        if (!$wishlistItem) {
-            $wishlistItem = new Wishlist();
-            $wishlistItem->buyer = $buyerId;
-            $wishlistItem->game = $gameId;
-            $wishlistItem->save();
-        }
+        try {
+            if (!$wishlistItem) {
+                $wishlistItem = new Wishlist();
+                $wishlistItem->buyer = $buyerId;
+                $wishlistItem->game = $gameId;
+                $wishlistItem->save();
+            } else {
+                $wishlistItem->delete();
+            }
 
-        return response()->json([
-            'success' => true,
-        ]);
+            return response()->json([
+                'success' => true
+            ]);
+        } catch (Exception $e) {
+            \Log::error('Error adding product to wishlist: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'An error occurred while adding the product to the wishlist.'
+            ]);
+        }
     }
 
     public function removeProduct(Request $request) {
@@ -78,6 +90,19 @@ class WishlistController extends Controller
 
         return response()->json([
             'success' => true,
+        ]);
+    }
+
+    public function isInWishlist(Request $request) {
+        $gameId = $request->input('game_id');
+        $buyerId = Auth::user()->id;
+
+        $wishlistItem = Wishlist::where('buyer', $buyerId)
+            ->where('game', $gameId)
+            ->first();
+
+        return response()->json([
+            'is_in_wishlist' => $wishlistItem ? true : false
         ]);
     }
 }

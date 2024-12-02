@@ -27,14 +27,8 @@ use App\Http\Controllers\AgeController;
 
 // Home
 Route::redirect('/', '/home');
-
-Route::get('/home', function () {
-    return view('pages/home');
-})->name('home');
-
-Route::get('/explore', function () {
-    return view('pages/explore');
-})->name('explore');
+Route::get('/home', [GameController::class, 'home'])->name('home');
+Route::get('/top-sellers-chunk/{chunkIndex}', [GameController::class, 'loadChunk'])->name('top-sellers-chunk');
 
 // Authentication
 Route::controller(LoginController::class)->group(function () {
@@ -66,6 +60,7 @@ Route::controller(WishlistController::class)->group(function () {
 
 Route::post('/wishlist/remove', [WishlistController::class, 'removeProduct'])->name('wishlist.remove');
 Route::post('/wishlist/add', [WishlistController::class, 'addProduct'])->name('wishlist.add');
+Route::post('/wishlist/is_in_wishlist', [WishlistController::class, 'isInWishlist'])->name('wishlist.isInWishlist');
 
 // Checkout
 Route::middleware('auth')->group(function () {
@@ -113,6 +108,10 @@ Route::prefix('admin')->middleware('auth:admin')->controller(UserController::cla
 });
 
 // Explore Games
+Route::get('/explore', function () {
+    return view('pages/explore');
+})->name('explore');
+
 Route::get('/explore', [GameController::class, 'index']);
 Route::get('/explore', [GameController::class, 'explore'])->name('explore');
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.details');

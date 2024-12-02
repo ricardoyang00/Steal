@@ -15,6 +15,8 @@ class Wishlist extends Model
     protected $table = 'wishlist';
     protected $fillable = ['buyer', 'game'];
 
+    public $timestamps = false;
+
     public function buyer()
     {
         return $this->belongsTo(Buyer::class, 'buyer');

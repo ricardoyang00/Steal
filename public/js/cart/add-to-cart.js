@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    button.textContent = "Added to cart.";
+                    button.textContent = "Added to cart";
                     button.disabled = true;
-                    button.style.backgroundColor = 'gray';
+                    button.style.backgroundColor = '#0044bc';
                     setTimeout(() => {
                         button.textContent = "Add to cart";
                         button.disabled = false;

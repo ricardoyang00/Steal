@@ -3,7 +3,11 @@
 @section('title', $game->name)
 
 @section('content')
+
+@if (!auth_user() || auth_user()->buyer)
+<script src="{{ asset('js/wishlist/add-to-wishlist.js') }}" defer></script>
 <script src="{{ asset('js/cart/add-to-cart.js') }}" defer ></script>
+@endif
 
 <div class="game-details-page">
     <div class="game-image">
@@ -20,6 +24,15 @@
         </p>
         <p><strong>Price:</strong> ${{ $game->price }}</p>
         <p><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
+        @if (auth_user() && auth_user()->buyer)
+            <button class="add-to-wishlist btn-add-to-wishlist" data-id="{{ $game->id }}">
+                <i class="far fa-heart"></i>
+            </button>
+        @elseif (!auth_user())
+            <button onclick="window.location.href = '/login';" class="add-to-wishlist">
+                <i class="far fa-heart"></i>
+            </button>
+        @endif
         @if (!auth_user() || auth_user()->buyer)
             <button id="add-to-cart-{{ $game['id'] }}" data-id="{{ $game['id'] }}" class="btn-add-to-cart btn btn-primary">
                 Add to Cart
