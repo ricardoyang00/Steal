@@ -57,6 +57,11 @@
                                     <i class="fas fa-wallet"></i>
                                 </a>
                             @endif
+                            @if (auth_user()->seller)
+                                <a class="icon-button" href="{{ url('/seller/products/') }}">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                            @endif
                             <a class="icon-button">
                                 <i class="fa-regular fa-bell"></i>
                             </a>
