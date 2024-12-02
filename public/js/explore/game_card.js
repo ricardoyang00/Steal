@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         button.addEventListener('mouseout', function() {
+            if (button.classList.contains('active')) {
+                return;
+            }
             const icon = button.querySelector('i');
             icon.classList.remove('fas');
             icon.classList.add('far');

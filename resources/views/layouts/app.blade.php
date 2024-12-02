@@ -21,6 +21,8 @@
         <link href="{{ url('css/game_details.css') }}" rel="stylesheet">
         <link href="{{ url('css/admin/manage_users.css') }}" rel="stylesheet">
         <link href="{{ url('css/shopping_cart.css') }}" rel="stylesheet">
+        <link href="{{ url('css/home_page.css') }}" rel="stylesheet">
+        <link href="{{ url('css/wishlist.css') }}" rel="stylesheet">
         <script type="text/javascript">
             // Fix for Firefox autofocus CSS bug
             // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
@@ -87,10 +89,13 @@
                             <input class="form-control" type="search" name="query" placeholder="Search games..." aria-label="Search" value="{{ request('query') }}">
                         </form>
                     </div>
-
-                    <div class="wishlist">
-                        <a class="btn btn-link">Wishlist</a>
-                    </div>
+                    @if (auth_user() && auth_user()->buyer)
+                        <div class="wishlist">
+                            <a class="btn btn-link" href="{{ url('/wishlist') }}">
+                                Wishlist
+                            </a>
+                        </div>
+                    @endif
                 </nav>
             </div>
             <section id="content">

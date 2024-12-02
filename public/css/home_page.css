@@ -1,0 +1,247 @@
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: opacity 0.2s ease-in;
+}
+
+.top-sellers-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+/* Container for the game card */
+.home-game-card {
+    box-sizing: border-box;
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+/* Game thumbnail */
+.home-game-card .game-thumbnail {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* PEGI age image */
+.home-game-card .game-thumbnail .pegi-age {
+    position: absolute;
+    width: 25px;
+    height: auto;
+}
+
+/* Game price */
+.home-game-card .game-price-thumbnail {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    font-size: 1.2rem;
+    background: black;
+    color: white;
+    padding: 5px 10px;
+    z-index: 1;
+}
+
+/* Game price on hover */
+.home-game-card:hover .game-price-thumbnail {
+    bottom: 20px;
+    transition: bottom 0.8s ease;
+}
+
+/* Dark overlay on hover */
+.home-game-card .game-thumbnail::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.home-game-card:hover .game-thumbnail::before {
+    opacity: 1;
+}
+
+/* Overlay container */
+.home-game-card .overlay {
+    position: absolute;
+    bottom: -100%; /* Start from below the card */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: bottom 0.8s ease;
+}
+
+.home-game-card:hover .overlay {
+    bottom: 0; /* Slide up to occupy 100% */
+}
+
+.home-game-card .top-media {
+    width: 100%;
+    height: 40%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-game-card .top-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Game details overlay */
+.home-game-card .game-details {
+    width: 100%;
+    height: 60%; /* Bottom 60% for the details */
+    background: linear-gradient(to top, rgba(116, 128, 124, 1), rgba(116, 128, 124, 1));
+    color: var(--text-color);
+    padding-left: 12px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Game title */
+.home-game-card .game-title {
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-size: 1.5rem;
+}
+
+.home-game-card .game-title a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+/* Game tags */
+.home-game-card .game-categories {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+    gap: 5px;
+}
+
+.home-game-card .category-tag {
+    background-color: var(--explore-table-color);
+    color: var(--text-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+}
+
+/* Game platforms */
+.home-game-card .game-platforms {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Platform logos */
+.home-game-card .game-platforms img {
+    width: 30px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+/* Add to cart button */
+.home-game-card .btn-add-to-cart {
+    padding: 8px 16px;
+    background-color: var(--buy-button-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 52px;
+}
+
+.home-game-card .btn-add-to-cart:hover {
+    background-color: var(--buy-button-hover-color);
+}
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination-btn {
+    width: 40px;
+    height: 20px;
+    margin: 0 5px;
+    background-color: var(--secondary-background-color);
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: transparent; /* Hide text */
+    font-size: 0; /* Hide text */
+}
+
+.pagination-btn:hover {
+    background-color: grey;
+}
+
+.pagination-btn.active {
+    background-color: grey;
+}
+
+/* Container for the grid */
+.similar-game-cards {
+    margin-top: 5%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 games per line */
+    gap: 20px;
+    padding: 20px 200px;
+}
+
+.home-small-game-card {
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.home-small-game-card:hover {
+    transform: scale(1.05);
+}
+
+.home-small-game-card .game-small-thumbnail {
+    position: relative;
+}
+
+.home-small-game-card .game-small-thumbnail img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.home-small-game-card .game-price {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    right: 0;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 1rem;
+}

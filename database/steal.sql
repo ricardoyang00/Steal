@@ -50,6 +50,7 @@ CREATE TABLE Users (
     email TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
     is_active BOOLEAN DEFAULT TRUE,
+    is_blocked BOOLEAN DEFAULT FALSE,
     remember_token VARCHAR(100) NULL
 );
 
@@ -73,16 +74,24 @@ CREATE TABLE Seller(
     id INT PRIMARY KEY REFERENCES Users(id) ON UPDATE CASCADE
 );
 
+CREATE TABLE Age (
+    id SERIAL PRIMARY KEY,
+    minimum_age INT NOT NULL,
+    name TEXT NOT NULL,
+    description TEXT NOT NULL,
+    image_path TEXT NOT NULL
+);
+
 CREATE TABLE Game(
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     description TEXT NOT NULL,
-    minimum_age INT NOT NULL CHECK(minimum_age >= 0 AND minimum_age <= 18),
     price FLOAT NOT NULL CHECK(price > 0.0),
     overall_rating INT NOT NULL CHECK(overall_rating >= 0 AND overall_rating <= 100),
     owner INT NOT NULL REFERENCES Seller(id) ON UPDATE CASCADE,
     is_active BOOLEAN DEFAULT TRUE,
-    release_date DATE NOT NULL CHECK(release_date <= CURRENT_DATE)
+    release_date DATE NOT NULL CHECK(release_date <= CURRENT_DATE),
+    age_id INT NOT NULL REFERENCES Age(id) ON UPDATE CASCADE
 );
 
 CREATE TABLE CDK(
@@ -322,4 +331,36 @@ CREATE TRIGGER game_search_update
 
 CREATE INDEX search_idx ON game USING GIN (tsvectors); 
 
+/* Trigger to anonymize user data*/
+-- Create the anonymization function, ensuring it returns a TRIGGER type
+CREATE OR REPLACE FUNCTION anonymize_user_data() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+    -- Anonymize user data only when is_active transitions from TRUE to FALSE
+    IF NEW.is_active = FALSE AND OLD.is_active = TRUE THEN
+        -- Update the NEW row directly to anonymize user data
+        NEW.username := 'Anonymous' || OLD.id;
+        NEW.name := 'Anonymous';
+        NEW.email := 'anonymous' || OLD.id || 'mail';
+        NEW.password := 'anonymous';
 
+        -- Update Buyer table
+        UPDATE Buyer
+        SET NIF = NULL,
+            birth_date = '1111-11-11', -- Placeholder date
+            coins = 0
+        WHERE id = OLD.id;
+    END IF;
+
+    -- Return the NEW row for the update
+    RETURN NEW;
+END;
+$BODY$
+LANGUAGE plpgsql;
+
+-- Create the trigger to call the function before updating Users
+CREATE TRIGGER trg_anonymize_user_data
+BEFORE UPDATE ON Users
+FOR EACH ROW
+WHEN (NEW.is_active IS FALSE)  -- Trigger when is_active is set to FALSE
+EXECUTE FUNCTION anonymize_user_data();

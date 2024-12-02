@@ -19,3 +19,19 @@
 .game-details-page .btn-buy-now:hover {
     background-color: var(--buy-button-hover-color);
 }
+
+/* Add to Cart Button */
+.game-details-page .btn-add-to-cart {
+    padding: 8px 16px;
+    background-color: var(--buy-button-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.game-details-page .btn-add-to-cart:hover {
+    background-color: var(--buy-button-hover-color);
+}

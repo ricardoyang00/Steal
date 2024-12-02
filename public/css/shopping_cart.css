@@ -170,7 +170,19 @@
 
 .btn-decrease:hover,
 .btn-increase:hover {
-    background-color: var(--positive);
+    background-color: var(--cart-control-button);
+}
+
+.btn-decrease:disabled,
+.btn-increase:disabled {
+    cursor: not-allowed;
+    background-color: #2b2b2b;
+    color: var(--secondary-text-color);
+}
+
+.btn-decrease:disabled:hover,
+.btn-increase:disabled:hover {
+    background-color: #2b2b2b;
 }
 
 .prod_quantity {
@@ -235,7 +247,7 @@
     display: block;
     width: 100%;
     padding: 15px;
-    background: linear-gradient(90deg, var(--positive), var(--buy-button-color));
+    background: linear-gradient(90deg, var(--cart-control-button), var(--buy-button-color));
     color: var(--text-color);
     border: none;
     border-radius: 5px;
@@ -247,7 +259,7 @@
 }
 
 #checkout_button:hover {
-    background: linear-gradient(180deg, var(--buy-button-color), var(--positive));
+    background: linear-gradient(180deg, var(--buy-button-color), var(--cart-control-button));
 }
 
 #checkout_button.disabled {

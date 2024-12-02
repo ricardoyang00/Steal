@@ -8,9 +8,12 @@ use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\StaticPagesController;
+use App\Http\Controllers\AgeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,14 +27,8 @@ use App\Http\Controllers\StaticPagesController;
 
 // Home
 Route::redirect('/', '/home');
-
-Route::get('/home', function () {
-    return view('pages/home');
-})->name('home');
-
-Route::get('/explore', function () {
-    return view('pages/explore');
-})->name('explore');
+Route::get('/home', [GameController::class, 'home'])->name('home');
+Route::get('/top-sellers-chunk/{chunkIndex}', [GameController::class, 'loadChunk'])->name('top-sellers-chunk');
 
 // Authentication
 Route::controller(LoginController::class)->group(function () {
@@ -55,7 +52,15 @@ Route::post('/decrease_quantity', [ShoppingCartController::class, 'decreaseQuant
 
 Route::post('/add_product', [ShoppingCartController::class, 'addProduct'])->name('add_product');
 Route::post('/remove_product', [ShoppingCartController::class, 'removeProduct'])->name('remove_product');
-Route::get('/add_test_products', [ShoppingCartController::class, 'addTestProducts'])->name('add_test_products');
+
+// Wishlist
+Route::controller(WishlistController::class)->group(function () {
+    Route::get('/wishlist', 'index')->name('wishlist');
+});
+
+Route::post('/wishlist/remove', [WishlistController::class, 'removeProduct'])->name('wishlist.remove');
+Route::post('/wishlist/add', [WishlistController::class, 'addProduct'])->name('wishlist.add');
+Route::post('/wishlist/is_in_wishlist', [WishlistController::class, 'isInWishlist'])->name('wishlist.isInWishlist');
 
 // Checkout
 Route::middleware('auth')->group(function () {
@@ -74,11 +79,17 @@ Route::get('/profile/edit', function () {
     return redirect()->route('profile');
 });
 
+// Redirect GET /profile/deactivate to /profile
+Route::get('/profile/deactivate', function () {
+    return redirect()->route('profile');
+});
+
 // Authenticated User
 Route::controller(ProfileController::class)->group(function () {
     Route::get('/profile', 'showProfile')->name('profile');
     Route::put('/profile/edit', 'update')->name('profile.update');
     Route::put('/profile', 'updatePassword')->name('profile.updatePassword');
+    Route::post('/profile/deactivate', 'deactivateUser')->name('profile.deactivate');
 });
 
 // Admin
@@ -89,9 +100,18 @@ Route::prefix('admin')->middleware('auth:admin')->controller(UserController::cla
     Route::post('/users/{id}/change-username', 'changeUsername')->name('admin.users.changeUsername');
     Route::post('/users/{id}/change-name', 'changeName')->name('admin.users.changeName');
     Route::post('/users/{id}/change-coins', 'changeCoins')->name('admin.users.changeCoins');
+    Route::post('/admin/users/{id}/block', 'blockUser')->name('admin.users.block');
+    Route::post('/admin/users/{id}/unblock', 'unblockUser')->name('admin.users.unblock');
+    Route::post('/admin/users/{id}/deactivate', 'adminDeactivateUser')->name('admin.users.deactivate');
+    //Route::get('/users/buyers', 'listBuyers')->name('admin.users.buyers');
+    //Route::get('/users/sellers', 'listSellers')->name('admin.users.sellers');
 });
 
 // Explore Games
+Route::get('/explore', function () {
+    return view('pages/explore');
+})->name('explore');
+
 Route::get('/explore', [GameController::class, 'index']);
 Route::get('/explore', [GameController::class, 'explore'])->name('explore');
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.details');
@@ -102,3 +122,5 @@ Route::controller(StaticPagesController::class)->group(function () {
     Route::get('/contact', 'contact')->name('contact');
     Route::get('/faqs', 'faqs')->name('faqs');
 });
+
+Route::get('/age/{id}', [AgeController::class, 'show'])->name('age.show');
