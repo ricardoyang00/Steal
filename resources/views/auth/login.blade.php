@@ -39,7 +39,8 @@
     <button type="submit">Login</button>
 
     <a class="button button-outline" href="{{ route('register') }}">Register</a>
-    
+    <a href="{{ route('google-auth') }}">Continue with Google</a>
+
     <a class="forgot-password">Forgot Your Password?</a>
 </form>
 

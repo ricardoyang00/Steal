@@ -66,6 +66,7 @@ class RegisterController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
                 'is_active' => true,
+                'is_blocked' => false,
             ]);
 
             if ($request->user_type == 'buyer') {
