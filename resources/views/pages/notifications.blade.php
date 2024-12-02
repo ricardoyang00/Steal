@@ -6,7 +6,7 @@
 <div class="notifications-container">
     <h1>My Notifications</h1>
 
-    @if($notifications->isEmpty())
+    @if(empty($notifications))
         <div class="no-notifications">
             You have no notifications at the moment.
         </div>
@@ -15,11 +15,13 @@
             @foreach ($notifications as $notification)
                 <li class="notification">
                     <div class="notification-details">
-                        <div class="notification-title">{{ $notification->title }}</div>
-                        <p class="notification-description">{{ $notification->description }}</p>
-                        <small class="notification-time">{{ $notification->time->format('F j, Y, g:i a') }}</small>
+                        <div class="notification-title">{{ $notification['title'] }}</div>
+                        <p class="notification-description">{{ $notification['description'] }}</p>
+                        <small class="notification-time">
+                            {{ \Carbon\Carbon::parse($notification['time'])->format('F j, Y, g:i a') }}
+                        </small>
                     </div>
-                    @if(!$notification->isRead)
+                    @if(!$notification['is_read'])
                         <span class="unread-notification">New</span>
                     @endif
                 </li>

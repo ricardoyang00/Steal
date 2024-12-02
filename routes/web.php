@@ -13,6 +13,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\StaticPagesController;
 use App\Http\Controllers\AgeController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------

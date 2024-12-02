@@ -19,20 +19,31 @@ class NotificationController extends Controller{
         }
     }
 
-    private function getNotifications(){
-        return [
-            'orderNotifications' => $this->getOrderNotifications(),
-            'reviewNotifications' => $this->getReviewNotifications(),
-            'gameNotifications' => $this->getGameNotifications(),
-            'wishlistNotifications' => $this->getWishlistNotifications(),
-        ];
+    private function getNotifications() {
+        $orderNotifications = $this->getOrderNotifications()->toArray();
+        $reviewNotifications = $this->getReviewNotifications()->toArray();
+        $gameNotifications = $this->getGameNotifications()->toArray();
+        $wishlistNotifications = $this->getWishlistNotifications()->toArray();
+    
+        $notifications = array_merge(
+            $orderNotifications,
+            $reviewNotifications,
+            $gameNotifications,
+            $wishlistNotifications
+        );
+    
+        usort($notifications, function ($a, $b) {
+            return strtotime($b['time']) - strtotime($a['time']);
+        });
+    
+        return $notifications;
     }
 
     private function getOrderNotifications() {
         try {
             $buyerId = auth_user()->id;
     
-            $notifications = OrderNotifications::whereHas('getOrder', function ($query) use ($buyerId) {
+            $notifications = OrderNotification::whereHas('getOrder', function ($query) use ($buyerId) {
                 $query->where('buyer', $buyerId);
             })
             ->orderBy('time', 'desc')
@@ -41,24 +52,24 @@ class NotificationController extends Controller{
             return $notifications;
         } catch (Exception $e) {
             \Log::error("Error fetching order notifications: " . $e->getMessage());
-            return [];
+            return collect();
         }
     }
     
 
     private function getReviewNotifications() {
         // TODO
-        return [];
+        return collect();
     }
 
     private function getGameNotifications() {
         // TODO
-        return [];
+        return collect();
     }
 
     private function getWishlistNotifications() {
         // TODO
-        return [];
+        return collect();
     }
 
 }

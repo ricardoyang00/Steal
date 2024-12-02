@@ -57,7 +57,7 @@
                                     <i class="fas fa-wallet"></i>
                                 </a>
                             @endif
-                            <a class="notifications-link" href="{{ url('/notifications') }}">
+                            <a class="icon-button" href="{{ url('/notifications') }}">
                                 <i class="fas fa-bell"></i>
                             </a>
                         </div>
