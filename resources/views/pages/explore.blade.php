@@ -13,8 +13,8 @@
 <div class="explore-page">
     <div class="filter-table">
         <h1>FILTERS</h1>
-        <form action="{{ url('/explore') }}" method="GET" class="filter-form">
-            <button type="submit" class="btn btn-primary">Apply Filters</button>
+        <form id="filter-form" action="{{ url('/explore') }}" method="GET" class="filter-form">
+            <button type="button" id="clear-filters" class="btn btn-secondary">Clear Filters</button>
             <div class="form-group">
                 <label for="category">Category</label>
                 @foreach($categories as $category)
@@ -84,6 +84,9 @@
                 <p class="text-center">
                     {{ $games->total() }} {{ $games->total() == 1 ? 'result matches' : 'results match' }} your search.
                 </p>
+            @endif
+            @if($games->isEmpty())
+                <p class="text-center">No games found.</p>
             @endif
             @foreach($games as $game)
                 @include('partials.game-card-explore', ['game' => $game])
