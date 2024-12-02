@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\StaticPagesController;
@@ -67,6 +68,9 @@ Route::controller(WishlistController::class)->group(function () {
 Route::post('/wishlist/remove', [WishlistController::class, 'removeProduct'])->name('wishlist.remove');
 Route::post('/wishlist/add', [WishlistController::class, 'addProduct'])->name('wishlist.add');
 Route::post('/wishlist/is_in_wishlist', [WishlistController::class, 'isInWishlist'])->name('wishlist.isInWishlist');
+
+// Reviews
+Route::post('/reviews', [ReviewsController::class, 'getReviews'])->name('reviews');
 
 // Checkout
 Route::middleware('auth')->group(function () {
