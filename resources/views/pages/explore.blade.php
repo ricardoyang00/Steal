@@ -32,11 +32,14 @@
             <div class="form-group">
                 <label for="category">Category</label>
                 @foreach($categories as $category)
-                    <div class="form-check">
+                    <div class="form-check {{ $loop->index >= 5 ? 'hidden-category' : '' }}">
                         <input type="checkbox" name="categories[]" value="{{ $category->id }}" class="form-check-input" id="category{{ $category->id }}" {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }}>
                         <label class="form-check-label" for="category{{ $category->id }}">{{ $category->name }}</label>
                     </div>
                 @endforeach
+                @if(count($categories) > 5)
+                    <button type="button" id="see-more-btn" class="btn btn-link">See More</button>
+                @endif
             </div>
             <div class="form-group">
                 <label for="platform">Platform</label>

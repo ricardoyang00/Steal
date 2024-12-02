@@ -19,4 +19,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         window.location.href = url.toString();
     });
+
+    const seeMoreBtn = document.getElementById('see-more-btn');
+    if (seeMoreBtn) {
+        seeMoreBtn.addEventListener('click', function() {
+            const hiddenCategories = document.querySelectorAll('.hidden-category');
+            hiddenCategories.forEach(function(category) {
+                category.style.display = 'block';
+            });
+            seeMoreBtn.style.display = 'none'; // Hide the "See More" button after clicking
+        });
+    }
 });

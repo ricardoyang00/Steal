@@ -11,8 +11,16 @@
     padding: 16px;
     border-radius: 8px;
     color: var(--text-color);
-    height: 800px; 
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
+
+.explore-page .filter-table .hidden-category {
+    display: none;
+}
+
 
 /* Game Content Styling */
 .explore-page .game-content {
