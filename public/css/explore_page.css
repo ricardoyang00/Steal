@@ -21,6 +21,16 @@
     display: none;
 }
 
+.explore-page .filter-table .collapsible {
+    cursor: pointer;
+    user-select: none;
+}
+
+.explore-page .filter-table .content {
+    display: none;
+    overflow: hidden;
+}
+
 
 /* Game Content Styling */
 .explore-page .game-content {
