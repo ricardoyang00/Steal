@@ -42,4 +42,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     })
     .catch(error => console.error('Error fetching reviews:', error));
+
+    const reviewForm = document.querySelector('.add-review-container');
+    const reviewFormToggle = document.querySelector('.btn-review-form-toggle');
+    if (!reviewFormToggle) {
+        return;
+    }
+    reviewFormToggle.addEventListener('click', function() {
+        reviewForm.style.display = reviewForm.classList.contains('visible') ? 'none' : 'block';
+        reviewForm.classList.toggle('visible');
+        reviewFormToggle.textContent = reviewForm.classList.contains('visible') ? 'Close review form' : 'Add review';
+    });
 });

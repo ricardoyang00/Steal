@@ -75,6 +75,16 @@
     }
 }
 
+.game-details-page .btn-review-form-toggle {
+    padding: 8px 16px;
+    background-color: whitesmoke;
+    color: black;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
 .game-details-page .add-review-container {
     margin-top: 16px;
     padding: 16px;
@@ -129,7 +139,6 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s;
-    align-self: flex-end;
 }
 
 .game-details-page .add-review-container button:hover {

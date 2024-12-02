@@ -72,12 +72,12 @@
     <div class="game-reviews" data-id="{{ $game->id }}">
         <h2>Reviews</h2>
         @if (auth_user() && auth_user()->buyer)
-            <button class="btn-add-review">Add Review</button>
+            <button class="btn-review-form-toggle">Add Review</button>
         @elseif (!auth_user())
-            <button onclick="window.location.href = '/login';" class="btn-add-review">Add Review</button>
+            <button onclick="window.location.href = '/login';" class="btn-review-form-toggle">Add Review</button>
         @endif
-        <div class="add-review-container">
-            <form class="add-review-form" style="">
+        <div class="add-review-container" style="display: none;">
+            <form class="add-review-form">
                 <div class="form-group">
                     <label for="review-title">Title</label>
                     <input type="text" class="form-control" id="review-title" name="title" required>
