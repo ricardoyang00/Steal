@@ -32,14 +32,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     var collapsibles = document.querySelectorAll('.collapsible');
-    collapsibles.forEach(function(collapsible) {
+    collapsibles.forEach(function(collapsible, index) {
+        // Restore the state from local storage
+        var content = collapsible.nextElementSibling;
+        var state = localStorage.getItem('collapsible-' + index);
+        if (state === 'open') {
+            content.style.display = 'block';
+            collapsible.classList.add('active');
+        }
+
         collapsible.addEventListener('click', function() {
             this.classList.toggle('active');
-            var content = this.nextElementSibling;
             if (content.style.display === "block") {
                 content.style.display = "none";
+                localStorage.setItem('collapsible-' + index, 'closed');
             } else {
                 content.style.display = "block";
+                localStorage.setItem('collapsible-' + index, 'open');
             }
         });
     });
