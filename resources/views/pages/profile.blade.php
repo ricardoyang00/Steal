@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Facades\Storage;
+@endphp
+
 @extends('layouts.app')
 
 @section('title', 'Profile')
@@ -6,99 +10,165 @@
 
 <script src="{{ asset('js/profile/profile.js') }}" defer></script>
 
-<section id="profile" style="display: {{ $errors->any() ? 'none' : 'block' }};">
+@php
+    $profilePicturePath = auth_user()->profile_picture;
+    $profilePictureFullPath = public_path($profilePicturePath);
+    $profilePicture = auth_user()->profile_picture && file_exists($profilePictureFullPath) 
+        ? asset($profilePicturePath) 
+        : asset('images/profile_pictures/default-profile-picture.png');
+@endphp
+
+<section id="profile" style="display: {{ $errors->any() ? 'none' : 'flex' }};">
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
 
-    <article>
-        <h1>Profile</h1>
-        @php
-            $profilePicture = auth_user()->profile_picture ? asset(auth_user()->profile_picture) : asset('images/profile_pictures/default-profile-picture.png');
-        @endphp
-        <img src="{{ $profilePicture }}" alt="Profile Picture" style="width: 150px; height: 150px; object-fit: cover;">
+    <div class="profile-card">
+        <!-- Username -->
+        <div class="profile-username">
+            <strong>{{ auth_user()->username }}</strong>
+        </div>
+
+        <!-- Profile Picture -->
+        <div class="profile-picture">
+            <img src="{{ $profilePicture }}" alt="Profile Picture">
+        </div>
         
-        <p><strong>Username:</strong> {{ auth_user()->username }}</p>
-        <p><strong>Name:</strong> {{ auth_user()->name }}</p>
-        <p><strong>Email:</strong> {{ auth_user()->email }}</p>
+        <!-- Profile Details -->
+        <div class="profile-details">
+            <div class="detail-box">
+                <div class="detail-label"><strong>Name</strong></div>
+                <div class="detail-info">{{ auth_user()->name }}</div>
+            </div>
+            <div class="detail-box">
+                <div class="detail-label"><strong>Email</strong></div>
+                <div class="detail-info">{{ auth_user()->email }}</div>
+            </div>
 
-        @if (auth_user()->buyer)
-            <p><strong>NIF:</strong> {{ auth_user()->buyer->nif ?? 'NONE'}}</p>
-            <p><strong>Birth Date:</strong> {{ auth_user()->buyer->birth_date }}</p>
-            <p><strong>Coins:</strong> {{ auth_user()->buyer->coins }}</p>
-        @elseif (auth_user()->seller)
-            <p><strong>Seller Information:</strong> This user is a seller.</p>
-        @elseif (is_admin())
-            <p><strong>Admin Information:</strong> This user is an admin.</p>
-        @endif
+            @if (auth_user()->buyer)
+                <div class="detail-box">
+                    <div class="detail-label"><strong>NIF</strong></div>
+                    <div class="detail-info">{{ auth_user()->buyer->nif ?? 'NONE'}}</div>
+                </div>
+                <div class="detail-box">
+                    <div class="detail-label"><strong>Birth Date</strong></div>
+                    <div class="detail-info">{{ auth_user()->buyer->birth_date }}</div>
+                </div>
+                <div class="detail-box">
+                    <div class="detail-label"><strong>Coins</strong></div>
+                    <div class="detail-info">{{ auth_user()->buyer->coins }}</div>
+                </div>
+            @elseif (auth_user()->seller)
+                <div class="detail-box">
+                    <div class="detail-label"><strong>Seller Information</strong></div>
+                    <div class="detail-info">This user is a seller.</div>
+                </div>
+            @elseif (is_admin())
+                <div class="detail-box">
+                    <div class="detail-label"><strong>Admin Information</strong></div>
+                    <div class="detail-info">This user is an admin.</div>
+                </div>
+            @endif
+        </div>
 
-        <button id="edit-profile-btn">Edit</button>
-        @if (auth_user()->buyer && auth_user()->google_id === null)
-            <button id="change-password-btn">Change Password</button>
-        @endif
+        <!-- Buttons -->
+        <div class="profile-actions">
+            <button id="edit-profile-btn">
+                <i class="fas fa-edit"></i> Edit profile
+            </button>
+            @if (auth_user()->google_id === null)
+                <button id="change-password-btn">
+                    <i class="fas fa-key"></i> Change Password
+                </button>
+            @endif
 
-        <!-- Deactivate Account Button -->
-        @if (!is_admin())    
-            <form method="POST" action="{{ route('profile.deactivate') }}">
-                {{ csrf_field() }}
-                <button type="submit" onclick="return confirm('Are you sure you want to deactivate your account? Please note that all your data will be anonymized as part of this process.');">Deactivate Account</button>
-            </form>
-        @endif
-    </article>
+            @if (!is_admin())
+                <form method="POST" action="{{ route('profile.deactivate') }}" class="deactivate-form">
+                    {{ csrf_field() }}
+                    <button type="submit" onclick="return confirm('Are you sure you want to deactivate your account? Please note that all your data will be anonymized as part of this process.');">
+                        Deactivate Account
+                    </button>
+                </form>
+            @endif
+        </div>
+    </div>
 </section>
 
 <!-- Edit Profile -->
-<section id="edit-profile" style="display: {{ $errors->any() && !$errors->has('current_password') && !$errors->has('new_password') && !$errors->has('new_password_confirmation') ? 'block' : 'none' }};">
+<section id="edit-profile" style="display: {{ $errors->any() && !$errors->has('current_password') && !$errors->has('new_password') && !$errors->has('new_password_confirmation') ? 'flex' : 'none' }};">
     <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
         @method('PUT')
-        <label for="profile_picture">Profile Picture:</label>
-        <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
-        @if ($errors->has('profile_picture'))
-            <span class="error">
-                {{ $errors->first('profile_picture') }}
-            </span>
-        @endif
 
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" value="{{ auth_user()->username }}">
-        @if ($errors->has('username'))
-            <span class="error">
-                {{ $errors->first('username') }}
-            </span>
-        @endif
+        <div class="profile-card">
+            <!-- Profile Picture -->
+            <div class="profile-picture">
+                <img src="{{ $profilePicture }}" alt="Profile Picture" id="editable-profile-picture">
+                <div class="edit-icon" id="edit-icon">
+                    <i class="fas fa-pen"></i>
+                </div>
+                <input type="file" id="profile_picture" name="profile_picture" accept="image/*" style="display: none;">
+                @if ($errors->has('profile_picture'))
+                    <span class="error">
+                        {{ $errors->first('profile_picture') }}
+                    </span>
+                @endif
+            </div>
 
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="{{ auth_user()->name }}">
-        @if ($errors->has('name'))
-            <span class="error">
-                {{ $errors->first('name') }}
-            </span>
-        @endif
+            <!-- Profile Details -->
+            <div class="profile-details">
+                <div class="detail-box editable">
+                    <div class="detail-label"><label for="username"><strong>Username</strong></label></div>
+                    <div class="detail-info"><input type="text" id="username" name="username" value="{{ auth_user()->username }}" minlength="5" maxlength="15"></div>
+                    @if ($errors->has('username'))
+                        <span class="error">
+                            {{ $errors->first('username') }}
+                        </span>
+                    @endif
+                </div>
+                <div class="detail-box editable">
+                    <div class="detail-label"><label for="name"><strong>Name</strong></label></div>
+                    <div class="detail-info"><input type="text" id="name" name="name" value="{{ auth_user()->name }}" minlength="5" maxlength="30"></div>
+                    @if ($errors->has('name'))
+                        <span class="error">
+                            {{ $errors->first('name') }}
+                        </span>
+                    @endif
+                </div>
+                <div class="detail-box">
+                    <div class="detail-label"><strong>Email</strong></div>
+                    <div class="detail-info">{{ auth_user()->email }}</div>
+                </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="{{ auth_user()->email }}" readonly>
-        
-        @if (auth_user()->buyer)
-            <label for="nif">NIF:</label>
-            <input type="text" id="nif" name="nif" value="{{ auth_user()->buyer->nif }}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="9">    
-            @if ($errors->has('nif'))
-                <span class="error">
-                    {{ $errors->first('nif') }}
-                </span>
-            @endif
+                @if (auth_user()->buyer)
+                    <div class="detail-box editable">
+                        <div class="detail-label"><label for="nif"><strong>NIF</strong></label></div>
+                        <div class="detail-info"><input type="text" id="nif" name="nif" value="{{ auth_user()->buyer->nif }}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="9"></div>
+                        @if ($errors->has('nif'))
+                            <span class="error">
+                                {{ $errors->first('nif') }}
+                            </span>
+                        @endif
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-label"><strong>Birth Date</strong></div>
+                        <div class="detail-info">{{ auth_user()->buyer->birth_date }}</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-label"><strong>Coins</strong></div>
+                        <div class="detail-info">{{ auth_user()->buyer->coins }}</div>
+                    </div>
+                @endif
+            </div>
 
-            <label for="birth_date">Birth Date:</label>
-            <input type="date" id="birth_date" name="birth_date" value="{{ auth_user()->buyer->birth_date }}" readonly>
-            
-            <label for="coins">Coins:</label>
-            <input type="number" id="coins" name="coins" value="{{ auth_user()->buyer->coins }}" readonly>
-        @endif
-        
-        <button type="button" id="cancel-edit-btn">Cancel</button>
-        <button type="submit">Save</button>
+            <!-- Buttons -->
+            <div class="profile-actions">
+                <button type="button" id="cancel-edit-btn">Cancel</button>
+                <button type="submit" id="save-edit-btn">Save</button>
+            </div>
+        </div>
     </form>
 </section>
 
@@ -107,27 +177,59 @@
     <form method="POST" action="{{ route('profile.updatePassword') }}">
         {{ csrf_field() }}
         @method('PUT')
-        <label for="current_password">Current Password:</label>
-        <input type="password" id="current_password" name="current_password" required>
-        @if ($errors->has('current_password'))
-            <span class="error">
-                {{ $errors->first('current_password') }}
-            </span>
-        @endif
 
-        <label for="new_password">New Password:</label>
-        <input type="password" id="new_password" name="new_password" required>
-        @if ($errors->has('new_password'))
-            <span class="error">
-                {{ $errors->first('new_password') }}
-            </span>
-        @endif
+        <div class="profile-card-password">
+            <!-- Username -->
+            <div class="profile-username">
+                <strong>{{ auth_user()->username }}</strong>
+            </div>
+    
+            <!-- Profile Picture -->
+            <div class="profile-picture">
+                <img src="{{ $profilePicture }}" alt="Profile Picture">
+            </div>
+            
+            <!-- Profile Details -->
+            <div class="profile-details">
+                <div class="detail-box">
+                    <div class="detail-label"><label for="current_password"><strong>Current Password</strong></label></div>
+                    <div class="detail-info">
+                        <input type="password" id="current_password" name="current_password" required minlength="8" maxlength="25">
+                        <i class="fas fa-eye toggle-password" data-toggle="#current_password"></i>
+                    </div>
+                    @if ($errors->has('current_password'))
+                        <span class="error">
+                            {{ $errors->first('current_password') }}
+                        </span>
+                    @endif
+                </div>
+                <div class="detail-box">
+                    <div class="detail-label"><label for="new_password"><strong>New Password</strong></label></div>
+                    <div class="detail-info">
+                        <input type="password" id="new_password" name="new_password" required minlength="8" maxlength="25">
+                        <i class="fas fa-eye toggle-password" data-toggle="#new_password"></i>
+                    </div>
+                    @if ($errors->has('new_password'))
+                        <span class="error">
+                            {{ $errors->first('new_password') }}
+                        </span>
+                    @endif
+                </div>
+                <div class="detail-box">
+                    <div class="detail-label"><label for="new_password_confirmation"><strong>Confirm New Password</strong></label></div>
+                    <div class="detail-info">
+                        <input type="password" id="new_password_confirmation" name="new_password_confirmation" required minlength="8" maxlength="25">
+                        <i class="fas fa-eye toggle-password" data-toggle="#new_password_confirmation"></i>
+                    </div>
+                </div>
+            </div>
 
-        <label for="new_password_confirmation">Confirm New Password:</label>
-        <input type="password" id="new_password_confirmation" name="new_password_confirmation" required>
-        
-        <button type="button" id="cancel-change-password-btn">Cancel</button>
-        <button type="submit">Change Password</button>
+            <!-- Buttons -->
+            <div class="profile-actions">
+                <button type="button" id="cancel-change-password-btn">Cancel</button>
+                <button type="submit" id="confirm-change-password-btn">Confirm Change</button>
+            </div>
+        </div>
     </form>
 </div>
 

@@ -30,8 +30,21 @@ class ProfileController extends Controller
         $user = auth_user();
 
         $rules = [
-            'username' => 'required|string|max:15|unique:users,username,' . $user->id,
-            'name' => 'required|string|max:30',
+            'username' => [
+                'required',
+                'string',
+                'min:5',
+                'max:15',
+                'unique:users,username,' . $user->id,
+                'regex:/^[a-zA-Z0-9._-]+$/',
+            ],
+            'name' => [
+                'required',
+                'string',
+                'min:5',
+                'max:30',
+                'regex:/^[a-zA-Z0-9 .\'-]+$/',
+            ],
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ];
 
@@ -70,7 +83,7 @@ class ProfileController extends Controller
     {
         $request->validate([
             'current_password' => 'required',
-            'new_password' => 'required|min:8|confirmed',
+            'new_password' => 'required|min:8|max:25|confirmed',
         ]);
 
         $user = auth_user();
