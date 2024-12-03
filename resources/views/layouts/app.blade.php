@@ -29,6 +29,7 @@
         </script>
         <script type="text/javascript" src={{ url('js/app.js') }} defer>
         </script>
+        <script src="{{ asset('js/notifications/notifications.js') }}" defer></script>
     </head>
     <body>
         <main>
@@ -59,8 +60,8 @@
                             @endif
                             <a class="icon-button" href="{{ url('/notifications') }}">
                                 <i class="fas fa-bell"></i>
+                                <span id="notification-count" class="badge"></span>
                             </a>
-                            <span id="notification-count" class="badge"></span>
                         </div>
                     @else
                         <div class="auth-buttons">
