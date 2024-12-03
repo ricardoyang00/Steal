@@ -148,7 +148,7 @@
 }
 
 .explore-page .game-title a:hover {
-    color: var(--positive);
+    color: var(--cart-control-button);
 }
 
 /* Game Tags Container */
@@ -174,7 +174,7 @@
 }
 
 .tag:hover {
-    background-color: var(--positive);
+    background-color: var(--cart-control-button);
 }
 
 /* Platforms and Release Date */
