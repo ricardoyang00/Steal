@@ -13,40 +13,81 @@
         </div>
     @endif
 
-    <article>
-        <h1>Profile</h1>
+    <div class="profile-card">
         @php
-            $profilePicture = auth_user()->profile_picture ? asset(auth_user()->profile_picture) : asset('images/profile_pictures/default-profile-picture.png');
+            $profilePicture = auth_user()->profile_picture 
+            ? asset(auth_user()->profile_picture) 
+            : asset('images/profile_pictures/default-profile-picture.png');
         @endphp
-        <img src="{{ $profilePicture }}" alt="Profile Picture" style="width: 150px; height: 150px; object-fit: cover;">
+
+        <!-- Username -->
+        <div class="profile-username">
+            <strong>{{ auth_user()->username }}</strong>
+        </div>
+
+        <!-- Profile Picture -->
+        <div class="profile-picture">
+            <img src="{{ $profilePicture }}" alt="Profile Picture">
+        </div>
         
-        <p><strong>Username:</strong> {{ auth_user()->username }}</p>
-        <p><strong>Name:</strong> {{ auth_user()->name }}</p>
-        <p><strong>Email:</strong> {{ auth_user()->email }}</p>
+        <!-- Profile Details -->
+        <div class="profile-details">
+            <div class="detail-box">
+                <div class="detail-label"><strong>Name</strong></div>
+                <div class="detail-info">{{ auth_user()->name }}</div>
+            </div>
+            <div class="detail-box">
+                <div class="detail-label"><strong>Email</strong></div>
+                <div class="detail-info">{{ auth_user()->email }}</div>
+            </div>
 
-        @if (auth_user()->buyer)
-            <p><strong>NIF:</strong> {{ auth_user()->buyer->nif ?? 'NONE'}}</p>
-            <p><strong>Birth Date:</strong> {{ auth_user()->buyer->birth_date }}</p>
-            <p><strong>Coins:</strong> {{ auth_user()->buyer->coins }}</p>
-        @elseif (auth_user()->seller)
-            <p><strong>Seller Information:</strong> This user is a seller.</p>
-        @elseif (is_admin())
-            <p><strong>Admin Information:</strong> This user is an admin.</p>
-        @endif
+            @if (auth_user()->buyer)
+                <div class="detail-box">
+                    <div class="detail-label"><strong>NIF</strong></div>
+                    <div class="detail-info">{{ auth_user()->buyer->nif ?? 'NONE'}}</div>
+                </div>
+                <div class="detail-box">
+                    <div class="detail-label"><strong>Birth Date</strong></div>
+                    <div class="detail-info">{{ auth_user()->buyer->birth_date }}</div>
+                </div>
+                <div class="detail-box">
+                    <div class="detail-label"><strong>Coins</strong></div>
+                    <div class="detail-info">{{ auth_user()->buyer->coins }}</div>
+                </div>
+            @elseif (auth_user()->seller)
+                <div class="detail-box">
+                    <div class="detail-label"><strong>Seller Information</strong></div>
+                    <div class="detail-info">This user is a seller.</div>
+                </div>
+            @elseif (is_admin())
+                <div class="detail-box">
+                    <div class="detail-label"><strong>Admin Information</strong></div>
+                    <div class="detail-info">This user is an admin.</div>
+                </div>
+            @endif
+        </div>
 
-        <button id="edit-profile-btn">Edit</button>
-        @if (auth_user()->buyer && auth_user()->google_id === null)
-            <button id="change-password-btn">Change Password</button>
-        @endif
+        <!-- Buttons -->
+        <div class="profile-actions">
+            <button id="edit-profile-btn">
+                <i class="fas fa-edit"></i> Edit profile
+            </button>
+            @if (auth_user()->buyer && auth_user()->google_id === null)
+                <button id="change-password-btn">
+                    <i class="fas fa-key"></i> Change Password
+                </button>
+            @endif
 
-        <!-- Deactivate Account Button -->
-        @if (!is_admin())    
-            <form method="POST" action="{{ route('profile.deactivate') }}">
-                {{ csrf_field() }}
-                <button type="submit" onclick="return confirm('Are you sure you want to deactivate your account? Please note that all your data will be anonymized as part of this process.');">Deactivate Account</button>
-            </form>
-        @endif
-    </article>
+            @if (!is_admin())
+                <form method="POST" action="{{ route('profile.deactivate') }}" class="deactivate-form">
+                    {{ csrf_field() }}
+                    <button type="submit" onclick="return confirm('Are you sure you want to deactivate your account? Please note that all your data will be anonymized as part of this process.');">
+                        Deactivate Account
+                    </button>
+                </form>
+            @endif
+        </div>
+    </div>
 </section>
 
 <!-- Edit Profile -->
