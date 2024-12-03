@@ -18,20 +18,25 @@
             @foreach ($notifications as $notification)
                 <div class="notification">
                     <div class="notification-card">
-                        <div class="notification-body">
+                        <div class="notification-header">
                             <h5 class="notification-title">{{ $notification['title'] }}</h5>
+                            <button class="delete-notification-button" data-id="{{ $notification['id'] }}" aria-label="Delete notification">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                        <div class="notification-body">
                             <p class="notification-text">{{ $notification['description'] }}</p>
                             <small class="notification-time">
                                 {{ \Carbon\Carbon::parse($notification['time'])->format('F j, Y, g:i a') }}
                             </small>
                             @if(!$notification['is_read'])
-                                <span class="is-read-notification">New</span>
+                                <span class="unread-notification-indicator"></span>
                             @endif
-                            <button class="view-notification-details" type="button" data-toggle="collapse" data-target="#details-{{ $notification['id'] }}" aria-expanded="false" aria-controls="details-{{ $notification['id'] }}">
+                            <button class="view-notification-details btn btn-link mt-2" type="button" data-toggle="collapse" data-target="#details-{{ $notification['id'] }}" aria-expanded="false" aria-controls="details-{{ $notification['id'] }}">
                                 View Order Details
                             </button>
                         </div>
-                        <div class="notifications-collapse" id="details-{{ $notification['id'] }}">
+                        <div class="notifications-collapse collapse" id="details-{{ $notification['id'] }}">
                             <div class="notification-details">
                                 <p><strong>Order ID:</strong> {{ $notification['order_id'] ?? 'N/A' }}</p>
                                 <p><strong>Additional Info:</strong> {{ $notification['extra_info'] ?? 'No additional information available.' }}</p>
@@ -48,6 +53,7 @@
 </div>
 
 @endsection
+
 
 
 

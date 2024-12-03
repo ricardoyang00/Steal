@@ -35,6 +35,7 @@
 .notification-title {
     font-size: 1.25rem;
     color: #007bff;
+    margin-top: 0;
     margin-bottom: 10px;
     font-weight: bold;
 }
@@ -103,3 +104,37 @@
 .notifications-collapse.show {
     display: block;
 }
+
+.unread-notification-indicator {
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between; /* Space between title and delete button */
+    align-items: center; /* Vertically align the title and delete button */
+    padding: 5px 0; /* Optional: Add padding for spacing */
+}
+
+.delete-notification-button {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+    font-size: 1.0rem;
+    display: flex; /* Ensure the button is treated as a flex container */
+    align-items: center; /* Center the icon inside the button */
+    justify-content: center; /* Center the icon horizontally */
+}
+
+.delete-notification-button i {
+    display: inline-block;
+    vertical-align: middle; /* Ensure icon is vertically aligned */
+}
+

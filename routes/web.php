@@ -79,6 +79,7 @@ Route::middleware('auth')->group(function (){
 Route::middleware('auth')->group(function (){
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
     Route::get('/notifications/unread-count', [NotificationController::class, 'getUnreadCount'])->name('notifications.unreadCount');
+    Route::delete('/notifications/{id}', [NotificationController::class, 'deleteNotification'])->name('notifications.delete');
 });
 
 // Redirect GET /profile/edit to /profile

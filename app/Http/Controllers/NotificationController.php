@@ -114,6 +114,25 @@ class NotificationController extends Controller{
             return response()->json(['error' => 'Unable to fetch unread notifications count'], 500);
         }
     }
+
+    public function deleteNotification($notificationId)
+{
+    try {
+        $notification = OrderNotification::findOrFail($notificationId);
+
+        if ($notification->getOrder && $notification->getOrder->buyer === auth()->id()) {
+            $notification->delete();
+            return response()->json(['message' => 'Notification deleted successfully'], 200);
+        }
+
+        return response()->json(['error' => 'Unauthorized'], 403);
+    } catch (\Exception $e) {
+        \Log::error('Error deleting notification: ' . $e->getMessage());
+        return response()->json(['error' => 'Unable to delete notification'], 500);
+    }
+}
+
+
     
     
 
