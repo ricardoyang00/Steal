@@ -1,3 +1,11 @@
+/* General Section Styling */
+#profile, #edit-profile, #change-password {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
 /* Profile Card */
 .profile-card, .profile-card-password {
     background-color: #1e1e1e;

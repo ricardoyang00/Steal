@@ -17,7 +17,7 @@
         : asset('images/profile_pictures/default-profile-picture.png');
 @endphp
 
-<section id="profile" style="display: {{ $errors->any() ? 'none' : 'block' }};">
+<section id="profile" style="display: {{ $errors->any() ? 'none' : 'flex' }};">
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -96,7 +96,7 @@
 </section>
 
 <!-- Edit Profile -->
-<section id="edit-profile" style="display: {{ $errors->any() && !$errors->has('current_password') && !$errors->has('new_password') && !$errors->has('new_password_confirmation') ? 'block' : 'none' }};">
+<section id="edit-profile" style="display: {{ $errors->any() && !$errors->has('current_password') && !$errors->has('new_password') && !$errors->has('new_password_confirmation') ? 'flex' : 'none' }};">
     <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
         @method('PUT')
@@ -172,7 +172,7 @@
 </section>
 
 <!-- Change Password -->
-<div id="change-password" style="display: {{ $errors->has('current_password') || $errors->has('new_password') || $errors->has('new_password_confirmation') ? 'block' : 'none' }};">
+<div id="change-password" style="display: {{ $errors->has('current_password') || $errors->has('new_password') || $errors->has('new_password_confirmation') ? 'flex' : 'none' }};">
     <form method="POST" action="{{ route('profile.updatePassword') }}">
         {{ csrf_field() }}
         @method('PUT')

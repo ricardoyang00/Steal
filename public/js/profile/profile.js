@@ -7,24 +7,24 @@ function clearErrors() {
 
 document.getElementById('edit-profile-btn').addEventListener('click', function() {
     document.getElementById('profile').style.display = 'none';
-    document.getElementById('edit-profile').style.display = 'block';
+    document.getElementById('edit-profile').style.display = 'flex';
 });
 
 document.getElementById('cancel-edit-btn').addEventListener('click', function() {
     clearErrors();
     document.getElementById('edit-profile').style.display = 'none';
-    document.getElementById('profile').style.display = 'block';
+    document.getElementById('profile').style.display = 'flex';
 });
 
 document.getElementById('change-password-btn').addEventListener('click', function() {
     document.getElementById('profile').style.display = 'none';
-    document.getElementById('change-password').style.display = 'block';
+    document.getElementById('change-password').style.display = 'flex';
 });
 
 document.getElementById('cancel-change-password-btn').addEventListener('click', function() {
     clearErrors();
     document.getElementById('change-password').style.display = 'none';
-    document.getElementById('profile').style.display = 'block';
+    document.getElementById('profile').style.display = 'flex';
 });
 
 document.addEventListener('DOMContentLoaded', function() {
