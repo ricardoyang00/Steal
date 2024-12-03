@@ -45,14 +45,17 @@ class ShoppingCartController extends Controller
             }
         } else {
             foreach ($shoppingCart as $item) {
-                $products[] = [
-                    'id' => $item['id'],
-                    'name' => $item['name'],
-                    'price' => $item['price'],
-                    'quantity' => $item['quantity'],
-                    'thumbnail_small_path' => $game->getThumbnailSmallPath()
-                ];
-                $total += $item['price'] * $item['quantity'];
+                $game = Game::find($item['id']);
+                if ($game) {
+                    $products[] = [
+                        'id' => $game->id,
+                        'name' => $game->name,
+                        'price' => $game->price,
+                        'quantity' => $item['quantity'],
+                        'thumbnail_small_path' => $game->getThumbnailSmallPath()
+                    ];
+                    $total += $game->price * $item['quantity'];
+                }
             }
         }
 
