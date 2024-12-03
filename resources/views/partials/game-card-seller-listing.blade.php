@@ -53,8 +53,19 @@
         </div>
     </div>
     <div class="game-edit-button">
-        <a href="{{ route('games.edit', ['id' => $game->id]) }}" class="btn-edit-game btn btn-primary">
-            Edit
+        <a href="{{ route('games.edit', ['id' => $game->id]) }}" class="btn-edit-game btn btn-primary" style="color:white;">
+            <i class="fa-solid fa-pen"></i> Edit
         </a>
     </div>
+    <div class="game-stock-button">
+        <a href="{{ route('games.edit', ['id' => $game->id]) }}" class="btn-edit-game btn btn-primary" style="color:white;">
+            <i class="fa-solid fa-plus"></i></i> Add Stock
+        </a>
+    </div>
+    <div class="game-history-button">
+        <a href="{{ route('games.edit', ['id' => $game->id]) }}" class="btn-edit-game btn btn-primary" style="color:white;">
+            <i class="fa-solid fa-chart-line"></i> Purchase History
+        </a>
+    </div>
+    
 </div>
