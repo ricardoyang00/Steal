@@ -208,7 +208,8 @@
 }
 
 #cancel-edit-btn, #save-edit-btn,
-#cancel-change-password-btn, #confirm-change-password-btn {
+#cancel-change-password-btn, #confirm-change-password-btn,
+#block-unblock-btn, #deactivate-btn{
     margin: 10px;
     color: #ffffff;
     border: none;
@@ -222,19 +223,23 @@
     width: 150px;
 }
 
-#cancel-edit-btn, #cancel-change-password-btn {
+#cancel-edit-btn, #cancel-change-password-btn, 
+#deactivate-btn, #cancel-change-coins-btn {
     background-color: #dc3545;
 }
 
-#cancel-edit-btn:hover, #cancel-change-password-btn:hover {
+#cancel-edit-btn:hover, #cancel-change-password-btn:hover, 
+#deactivate-btn:hover, #cancel-change-coins-btn:hover {
     background-color: #a71d2a;
 }
 
-#save-edit-btn, #confirm-change-password-btn {
+#save-edit-btn, #confirm-change-password-btn,
+#confirm-change-coins-btn {
     background-color: #28a745;
 }
 
-#save-edit-btn:hover, #confirm-change-password-btn:hover {
+#save-edit-btn:hover, #confirm-change-password-btn:hover,
+#confirm-change-coins-btn:hover {
     background-color: #218838;
 }
 
@@ -245,4 +250,89 @@
     top: 50%;
     transform: translateY(-50%);
     color: #ffffff;
+}
+
+#block-unblock-btn {
+    background-color: #fd7e14;
+}
+
+#block-unblock-btn:hover {
+    background-color: #e36b0a;
+}
+
+.profile-card-admin-view {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 0;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.profile-card-admin-view .profile-details .detail-info {
+    background-color: #444444;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 0 6px 6px 0;
+    flex: 2;
+    text-align: left;
+    position: relative;
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Space between elements */
+    align-items: center; /* Center items vertically */
+}
+
+.profile-card-admin-view .change-button {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.profile-card-admin-view .change-button:hover {
+    background-color: #a71d2a;
+}
+
+.profile-card-admin-view .edit-button {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 16px;
+}
+
+.profile-card-admin-view .edit-button i {
+    pointer-events: none;
+}
+
+#change-coins-form {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+#change-coins-form input[type="number"] {
+    width: 100px;
+    padding: 5px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#change-coins-form button {
+    color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 5px;
 }
