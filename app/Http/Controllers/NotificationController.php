@@ -42,6 +42,8 @@ class NotificationController extends Controller{
         $perPage = 6; // Number of notifications per page
         $currentPage = request()->get('page', 1); // Get the current page from the request, default to 1
         $currentItems = array_slice($notifications, ($currentPage - 1) * $perPage, $perPage);
+
+        $this->markNotificationsAsRead($currentItems);
     
         return new LengthAwarePaginator(
             $currentItems, // Items for the current page
@@ -85,18 +87,19 @@ class NotificationController extends Controller{
         return collect();
     }
 
-    public function markAllAsRead(){
-        try{
-            $userOrders = Order::where('buyer', auth()->id())->pluck('id');
-            OrderNotification::whereIn('order_', $userOrders)
-                ->where('isRead', false)
-                ->update(['isRead' => true]);
-        }
-        catch(Exception $e){
-            \Log::error("Error in read notifications: " . $e->getMessage());
-            return response()->json(['error' => 'Unable to mark notifications as read'], 500);
+    private function markNotificationsAsRead($notifications) {
+        $unreadNotificationIds = array_map(function ($notification) {
+            return !$notification['is_read'] ? $notification['id'] : null;
+        }, $notifications);
+    
+        // Filter out null values
+        $unreadNotificationIds = array_filter($unreadNotificationIds);
+    
+        if (!empty($unreadNotificationIds)) {
+            OrderNotification::whereIn('id', $unreadNotificationIds)->update(['is_read' => true]);
         }
     }
+    
 
     public function getUnreadCount() {
         try {

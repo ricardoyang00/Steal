@@ -29,7 +29,6 @@
                 </li>
             @endforeach
         </ul>
-        <!-- Pagination Links -->
         <div class="pagination-links">
             {{ $notifications->links() }}
         </div>
