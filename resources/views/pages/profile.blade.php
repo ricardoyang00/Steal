@@ -77,7 +77,7 @@
             <button id="edit-profile-btn">
                 <i class="fas fa-edit"></i> Edit profile
             </button>
-            @if (auth_user()->buyer && auth_user()->google_id === null)
+            @if (auth_user()->google_id === null)
                 <button id="change-password-btn">
                     <i class="fas fa-key"></i> Change Password
                 </button>
@@ -172,7 +172,7 @@
 </section>
 
 <!-- Change Password -->
-<div id="change-password" style="display: {{ $errors->has('current_password') || $errors->has('new_password') || $errors->has('new_password_confirmation') ? 'flex' : 'none' }};">
+<div id="change-password" style="display: {{ $errors->has('current_password') || $errors->has('new_password') || $errors->has('new_password_confirmation') ? 'block' : 'none' }};">
     <form method="POST" action="{{ route('profile.updatePassword') }}">
         {{ csrf_field() }}
         @method('PUT')

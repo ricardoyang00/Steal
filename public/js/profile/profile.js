@@ -18,7 +18,7 @@ document.getElementById('cancel-edit-btn').addEventListener('click', function() 
 
 document.getElementById('change-password-btn').addEventListener('click', function() {
     document.getElementById('profile').style.display = 'none';
-    document.getElementById('change-password').style.display = 'flex';
+    document.getElementById('change-password').style.display = 'block';
 });
 
 document.getElementById('cancel-change-password-btn').addEventListener('click', function() {
