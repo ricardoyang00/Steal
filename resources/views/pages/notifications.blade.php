@@ -7,9 +7,9 @@
 <script src="{{ asset('js/notifications/notifications.js') }}" defer></script>
 <script src="{{ asset('js/notifications/notifications-buttons.js') }}" defer></script>
 <div id="notifications-tab" class="notifications-container">
-    <h1>My Notifications</h1>
+    <h1>Notifications</h1>
 
-    @if(empty($notifications))
+    @if($notifications->isEmpty())
         <div class="no-notifications">
             You have no notifications at the moment.
         </div>
