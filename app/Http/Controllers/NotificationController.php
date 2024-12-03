@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Order;
 use App\Models\OrderNotification;
 use Exception;
@@ -32,11 +33,23 @@ class NotificationController extends Controller{
             $wishlistNotifications
         );
     
+        // Sort notifications by time (most recent first)
         usort($notifications, function ($a, $b) {
             return strtotime($b['time']) - strtotime($a['time']);
         });
     
-        return $notifications;
+        // Pagination
+        $perPage = 6; // Number of notifications per page
+        $currentPage = request()->get('page', 1); // Get the current page from the request, default to 1
+        $currentItems = array_slice($notifications, ($currentPage - 1) * $perPage, $perPage);
+    
+        return new LengthAwarePaginator(
+            $currentItems, // Items for the current page
+            count($notifications), // Total number of items
+            $perPage, // Items per page
+            $currentPage, // Current page
+            ['path' => request()->url(), 'query' => request()->query()] // Maintain query parameters in pagination links
+        );
     }
 
     private function getOrderNotifications() {
