@@ -24,7 +24,7 @@ class GameController extends Controller
     {
         [$topSellersChunks, $similarGames] = $this->getTopSellersAndSimilarGames();
 
-        return view('partials.top-sellers-chunk', [
+        return view('partials.home.top-sellers-chunk', [
             'topSellersChunk' => $topSellersChunks[$chunkIndex],
             'chunkIndex' => $chunkIndex,
             'similarGames' => $similarGames
@@ -117,6 +117,10 @@ class GameController extends Controller
         $platforms = Platform::orderBy('name', 'asc')->get();
         $languages = Language::orderBy('name', 'asc')->get();
         $players = Player::orderBy('name', 'asc')->get();
+
+        if ($request->ajax()) {
+            return view('partials.explore.game-cards', compact('games'))->render();
+        }
     
         return view('pages.explore', compact('games', 'query', 'sort', 'categories', 'platforms', 'languages', 'players'));
     }    
