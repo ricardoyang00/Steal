@@ -61,15 +61,49 @@ class NotificationController extends Controller{
             $notifications = OrderNotification::whereHas('getOrder', function ($query) use ($buyerId) {
                 $query->where('buyer', $buyerId);
             })
+            ->with(['getOrder.getPurchases.getDeliveredPurchase.getCDK.getGame', 'getOrder.getPurchases.getCanceledPurchase.getGame']) // Eager load related models
             ->orderBy('time', 'desc')
             ->get();
     
-            return $notifications;
-        } catch (Exception $e) {
+            return $notifications->map(function ($notification) {
+                $order = $notification->getOrder;
+    
+                if ($order) {
+                    $purchases = $order->getPurchases;
+    
+                    $details = $purchases->map(function ($purchase) {
+                        if ($purchase->getDeliveredPurchase) {
+                            $game = $purchase->getDeliveredPurchase->getCDK->getGame ?? null;
+                            return [
+                                'type' => 'Delivered',
+                                'gameName' => $game->name ?? 'Unknown Game',
+                                'value' => $purchase->getValue(),
+                            ];
+                        } elseif ($purchase->getCanceledPurchase) {
+                            $game = $purchase->getCanceledPurchase->getGame ?? null;
+                            return [
+                                'type' => 'Canceled',
+                                'gameName' => $game->name ?? 'Unknown Game',
+                                'value' => $purchase->getValue(),
+                            ];
+                        }
+                        return null;
+                    })->filter();
+    
+                    $notification->orderDetails = [
+                        'purchases' => $details->toArray(),
+                        'totalPrice' => $purchases->sum('value'),
+                    ];
+                }
+    
+                return $notification;
+            });
+        } catch (\Exception $e) {
             \Log::error("Error fetching order notifications: " . $e->getMessage());
             return collect();
         }
     }
+    
     
 
     private function getReviewNotifications() {

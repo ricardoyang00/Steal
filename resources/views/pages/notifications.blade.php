@@ -38,8 +38,34 @@
                         </div>
                         <div class="notifications-collapse collapse" id="details-{{ $notification['id'] }}">
                             <div class="notification-details">
-                                <p><strong>Order ID:</strong> {{ $notification['order_id'] ?? 'N/A' }}</p>
-                                <p><strong>Additional Info:</strong> {{ $notification['extra_info'] ?? 'No additional information available.' }}</p>
+                                <p><strong>Order ID:</strong> {{ $notification['order_'] ?? 'N/A' }}</p>
+                                @php
+                                    $purchasedGames = collect($notification['orderDetails']['purchases'])->filter(fn($purchase) => $purchase['type'] === 'Delivered');
+                                @endphp
+                                @if($purchasedGames->isNotEmpty())
+                                    <h6>Purchased Games:</h6>
+                                    <ul>
+                                        @foreach($notification['orderDetails']['purchases'] as $purchase)
+                                            @if($purchase['type'] === 'Delivered')
+                                                <li>{{ $purchase['gameName'] }} - ${{ $purchase['value'] }}</li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                @endif
+                                @php
+                                    $canceledGames = collect($notification['orderDetails']['purchases'])->filter(fn($purchase) => $purchase['type'] === 'Canceled');
+                                @endphp
+                                @if($canceledGames->isNotEmpty())
+                                    <h6>Canceled Purchases:</h6>
+                                    <ul>
+                                        @foreach($notification['orderDetails']['purchases'] as $purchase)
+                                            @if($purchase['type'] === 'Canceled')
+                                                <li>{{ $purchase['gameName'] }} - ${{ $purchase['value'] }}</li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                @endif
+                                <p><strong>Total Price:</strong> ${{ $notification['orderDetails']['totalPrice'] ?? 0.0 }}</p>
                             </div>
                         </div>
                     </div>

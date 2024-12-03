@@ -138,3 +138,18 @@
     vertical-align: middle; /* Ensure icon is vertically aligned */
 }
 
+.notification-details {
+    background-color: #f8f9fa; /* Keep the light background */
+    padding: 10px;
+    border-left: 3px solid #007bff;
+    margin-top: 10px;
+    border-radius: 5px;
+    color: #000; /* Change text color to black */
+}
+
+.notification-details p,
+.notification-details ul,
+.notification-details li {
+    color: #000; /* Ensure all text inside is black */
+}
+
