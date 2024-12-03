@@ -4,7 +4,7 @@
             {{ $games->total() }} {{ $games->total() == 1 ? 'result matches' : 'results match' }} your search.
         </p>
     @endif
-    @if($games->isEmpty())
+    @if($games->isEmpty() && !request('query'))
         <p class="text-center">No games found.</p>
     @endif
     @foreach($games as $game)

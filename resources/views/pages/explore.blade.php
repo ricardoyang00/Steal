@@ -111,7 +111,7 @@
 
                 <!-- Sort -->
                 <div class="links" role="group" aria-label="Game Sorting">
-                    <button type="submit" name="sort" value="all" class="btn btn-link {{ request('sort') == 'all' || (!request('sort') && !request('query')) ? 'active' : '' }}">
+                    <button type="submit" name="sort" value="all" class="btn btn-link {{ request('sort') == 'all' || !request('sort') ? 'active' : '' }}">
                         All Items
                     </button>
                     <button type="submit" name="sort" value="new-releases" class="btn btn-link {{ request('sort') == 'new-releases' ? 'active' : '' }}">
