@@ -2,7 +2,7 @@
     <!-- Game Thumbnail -->
     <div class="game-thumbnail">
         <a href="{{ route('game.details', ['id' => $game->id]) }}">
-            <img src="{{ asset('images/default-game-image.jpg') }}" class="card-img-top" alt="{{ $game->name }}">
+            <img src="{{ asset('images/' . $game->getThumbnailLargePath()) }}" class="card-img-top" alt="{{ $game->name }}">
         </a>
     </div>
     <!-- Game Details -->
@@ -27,7 +27,7 @@
             @foreach($game->platforms as $platform)
                 <img src="{{ asset('images/platform_logos/' . $platform->id . '.svg') }}" alt="{{ $platform->name }} logo" class="img-fluid" style="width: 20px; height: 30px;">
             @endforeach
-            <a>{{ \Carbon\Carbon::parse($game->release_date)->format('d M, Y') }}</a>
+            <a>{{ $game->getReleaseDate() }}</a>
         </div>
         <!-- Rating -->
         <div class="game-rating">

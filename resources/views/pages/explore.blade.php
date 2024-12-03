@@ -111,7 +111,7 @@
 
                 <!-- Sort -->
                 <div class="links" role="group" aria-label="Game Sorting">
-                    <button type="submit" name="sort" value="all" class="btn btn-link {{ request('sort') == 'all' || (!request('sort') && !request('query')) ? 'active' : '' }}">
+                    <button type="submit" name="sort" value="all" class="btn btn-link {{ request('sort') == 'all' || !request('sort') ? 'active' : '' }}">
                         All Items
                     </button>
                     <button type="submit" name="sort" value="new-releases" class="btn btn-link {{ request('sort') == 'new-releases' ? 'active' : '' }}">
@@ -127,24 +127,7 @@
             </form>
         </nav>
 
-        <div class="game-cards">
-            @if(request('query'))
-                <p class="text-center">
-                    {{ $games->total() }} {{ $games->total() == 1 ? 'result matches' : 'results match' }} your search.
-                </p>
-            @endif
-            @if($games->isEmpty())
-                <p class="text-center">No games found.</p>
-            @endif
-            @foreach($games as $game)
-                @include('partials.game-card-explore', ['game' => $game])
-            @endforeach
-        </div>
-
-        <!-- Pagination Links -->
-        <div class="pagination-links">
-            {{ $games->appends(request()->except('page'))->links() }}
-        </div>
+        @include('partials.explore.game-cards')
 
     </div>
 </div>

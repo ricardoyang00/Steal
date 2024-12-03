@@ -52,7 +52,8 @@ CREATE TABLE Users (
     is_active BOOLEAN DEFAULT TRUE,
     is_blocked BOOLEAN DEFAULT FALSE,
     remember_token VARCHAR(100) NULL,
-    google_id VARCHAR
+    google_id VARCHAR,
+    profile_picture TEXT
 );
 
 CREATE TABLE Administrator(
@@ -88,11 +89,13 @@ CREATE TABLE Game(
     name TEXT NOT NULL,
     description TEXT NOT NULL,
     price FLOAT NOT NULL CHECK(price > 0.0),
-    overall_rating INT NOT NULL CHECK(overall_rating >= 0 AND overall_rating <= 100),
+    overall_rating INT NOT NULL CHECK(overall_rating >= 0 AND overall_rating <= 100) DEFAULT 0,
     owner INT NOT NULL REFERENCES Seller(id) ON UPDATE CASCADE,
     is_active BOOLEAN DEFAULT TRUE,
-    release_date DATE NOT NULL CHECK(release_date <= CURRENT_DATE),
-    age_id INT NOT NULL REFERENCES Age(id) ON UPDATE CASCADE
+    release_date DATE CHECK(release_date <= CURRENT_DATE),
+    age_id INT NOT NULL REFERENCES Age(id) ON UPDATE CASCADE,
+    thumbnail_small_path TEXT,
+    thumbnail_large_path TEXT
 );
 
 CREATE TABLE CDK(
@@ -155,7 +158,7 @@ CREATE TABLE GamePlayer(
     CONSTRAINT game_player_pair_unique UNIQUE (game,player)
 );
 
-CREATE TABLE Media(
+CREATE TABLE GameMedia(
     id SERIAL PRIMARY KEY,
     path TEXT NOT NULL,
     game INT NOT NULL REFERENCES Game(id) ON UPDATE CASCADE

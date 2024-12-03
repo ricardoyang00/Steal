@@ -12,7 +12,7 @@
 
 <div class="game-details-page">
     <div class="game-image">
-        <img src="{{ asset('images/default-game-image.jpg') }}" class="img-fluid" alt="{{ $game->name }}">
+        <img src="{{ asset('images/' . $game->getThumbnailLargePath()) }}" class="img-fluid" alt="{{ $game->name }}">
     </div>
     <div class="game-details">
         <h1>{{ $game->name }}</h1>
@@ -24,6 +24,7 @@
             </a>
         </p>
         <p><strong>Price:</strong> ${{ $game->price }}</p>
+        <p><strong>Release Date:</strong> {{ $game->getReleaseDate() }}</p>
         <p><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
         @if (auth_user() && auth_user()->buyer)
             <button class="add-to-wishlist btn-add-to-wishlist" data-id="{{ $game->id }}">

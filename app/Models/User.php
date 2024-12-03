@@ -31,6 +31,7 @@ class User extends Authenticatable
         'is_active',
         'is_blocked',
         'google_id',
+        'profile_picture',
     ];
 
     /**

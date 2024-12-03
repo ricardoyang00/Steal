@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Exception;
+use Illuminate\Http\RedirectResponse;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Exceptions\ExceptionHandler;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Http\Controllers\ShoppingCartController;
 
 class GoogleController extends Controller
 {
@@ -28,6 +30,14 @@ class GoogleController extends Controller
                 // Log in the user if they have a Google ID
                 Auth::login($existing_user);
                 request()->session()->regenerate();
+
+                if (auth_user()->buyer) {
+                    $shoppingCart = request()->session()->get('shopping_cart', []);
+                    $shoppingCartController = new ShoppingCartController();
+                    $shoppingCartController->mergeShoppingCart(request(), $shoppingCart);
+                }
+                request()->session()->forget('shopping_cart');
+
                 return redirect()->route('home')->withSuccess('You have successfully logged in with Google!');
             } else {
                 // Redirect with an error if the email is associated with another account without a Google ID
@@ -61,12 +71,26 @@ class GoogleController extends Controller
             
             Auth::login($new_user);
             request()->session()->regenerate();
+        
+            if (auth_user()->buyer) {
+                $shoppingCart = request()->session()->get('shopping_cart', []);
+                $shoppingCartController = new ShoppingCartController();
+                $shoppingCartController->mergeShoppingCart(request(), $shoppingCart);
+            }
+            request()->session()->forget('shopping_cart');
 
             return redirect()->route('home')->withSuccess('You have successfully registered & logged in with Google!');
         // Otherwise, simply log in with the existing user
         } else {
             Auth::login($user);
             request()->session()->regenerate();
+
+            if (auth_user()->buyer) {
+                $shoppingCart = request()->session()->get('shopping_cart', []);
+                $shoppingCartController = new ShoppingCartController();
+                $shoppingCartController->mergeShoppingCart(request(), $shoppingCart);
+            }
+            request()->session()->forget('shopping_cart');
 
             return redirect()->route('home')->withSuccess('You have successfully logged in with Google!');
         }

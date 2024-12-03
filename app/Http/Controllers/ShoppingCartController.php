@@ -37,20 +37,25 @@ class ShoppingCartController extends Controller
                         'id' => $game->id,
                         'name' => $game->name,
                         'price' => $game->price,
-                        'quantity' => $item->quantity
+                        'quantity' => $item->quantity,
+                        'thumbnail_small_path' => $game->getThumbnailSmallPath()
                     ];
                 }
                 $total += $game->price * $item->quantity;
             }
         } else {
             foreach ($shoppingCart as $item) {
-                $products[] = [
-                    'id' => $item['id'],
-                    'name' => $item['name'],
-                    'price' => $item['price'],
-                    'quantity' => $item['quantity']
-                ];
-                $total += $item['price'] * $item['quantity'];
+                $game = Game::find($item['id']);
+                if ($game) {
+                    $products[] = [
+                        'id' => $item['id'],
+                        'name' => $item['name'],
+                        'price' => $item['price'],
+                        'quantity' => $item['quantity'],
+                        'thumbnail_small_path' => $game->getThumbnailSmallPath()
+                    ];
+                    $total += $item['price'] * $item['quantity'];
+                }
             }
         }
 
@@ -283,19 +288,5 @@ class ShoppingCartController extends Controller
         foreach ($shoppingCart as $product) {
             $this->addProduct($request, $product['id'], $product['quantity']);
         }
-    }
-
-    public function addTestProducts(Request $request)
-    {
-        $request->session()->put('shopping_cart', []);
-
-        $gameIds = [1, 2, 3];
-
-        foreach ($gameIds as $gameId) {
-            $this->addProduct($request, $gameId);
-        }
-
-        return redirect()->route('home');
-
     }
 }

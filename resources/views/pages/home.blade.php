@@ -9,7 +9,7 @@
 
 <section id="home">
     <div id="top-sellers-container">
-        @include('partials.top-sellers-chunk', ['topSellersChunk' => $topSellersChunks[0], 'chunkIndex' => 0])
+        @include('partials.home.top-sellers-chunk', ['topSellersChunk' => $topSellersChunks[0], 'chunkIndex' => 0])
     </div>
 
     <div class="pagination-controls" data-total-chunks="{{ count($topSellersChunks) }}">
@@ -22,7 +22,7 @@
     <div class="similar-games-section">
         <div class="similar-game-cards">
             @foreach ($similarGames as $similarGame)
-                @include('partials.small-game-card-home', ['game' => $similarGame])
+                @include('partials.home.small-game-card-home', ['game' => $similarGame])
             @endforeach
         </div>
     </div>
