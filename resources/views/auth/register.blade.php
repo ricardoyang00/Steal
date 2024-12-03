@@ -15,7 +15,7 @@
 <form method="POST" action="{{ route('register') }}">
     {{ csrf_field() }}
 
-    <h1>Sign Up</h1>
+    <h1>{{ is_admin() ? 'Create Account' : 'Sign Up' }}</h1>
 
     <select id="user_type" name="user_type" required>
         <option value="buyer" {{ old('user_type') == 'buyer' ? 'selected' : '' }}>Buyer</option>
@@ -54,15 +54,21 @@
       <input id="birth_date" type="date" name="birth_date" value="{{ old('birth_date') }}">
     </div>
     
-    <a class="google-button" href="{{ route('google-auth') }}">
-      <img src="{{ asset('images/google-icon.svg') }}" alt="google logo" width="20px" height="auto"> Sign up with Google
-    </a>
+    @if (!is_admin())
+      <a class="google-button" href="{{ route('google-auth') }}">
+        <img src="{{ asset('images/google-icon.svg') }}" alt="google logo" width="20px" height="auto"> Sign up with Google
+      </a>
+    @endif
 
     <button type="submit">
-      {{ is_admin() ? 'Create' : 'Register' }}
+      {{ is_admin() ? 'Create Account' : 'Register' }}
     </button>
 
-    <a class="button button-outline" href="{{ route('login') }}">Sign In</a>
+    @if (!is_admin())
+      <a class="button button-outline" href="{{ route('login') }}">Sign In</a>
+    @else
+      <a class="button button-outline" href="{{ route('home') }}">Cancel</a>
+    @endif
 </form>
 
 </div>
