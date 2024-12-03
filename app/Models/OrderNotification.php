@@ -22,7 +22,7 @@ Class OrderNotification extends Model
     public function createOrderNotification($order, $purchasedItems, $canceledItems) {
         $title = 'Order Notification';
         $description = '';
-        $orderTime = $order->time; // Assuming $order->time contains the date value
+        $orderTime = $order->time;
         $formattedOrderTime = new \DateTime($orderTime);
         $formattedOrderTime = $formattedOrderTime->format('d F Y');
     

@@ -78,6 +78,7 @@ Route::middleware('auth')->group(function (){
 // Notifications
 Route::middleware('auth')->group(function (){
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
+    Route::get('/notifications/unread-count', [NotificationController::class, 'getUnreadCount'])->name('notifications.unreadCount');
 });
 
 // Redirect GET /profile/edit to /profile

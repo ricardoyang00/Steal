@@ -60,6 +60,7 @@
                             <a class="icon-button" href="{{ url('/notifications') }}">
                                 <i class="fas fa-bell"></i>
                             </a>
+                            <span id="notification-count" class="badge"></span>
                         </div>
                     @else
                         <div class="auth-buttons">

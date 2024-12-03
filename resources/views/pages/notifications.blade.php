@@ -3,7 +3,9 @@
 @section('title', 'Notifications')
 
 @section('content')
-<div class="notifications-container">
+
+<script src="{{ asset('js/notifications/notifications.js') }}" defer></script>
+<div id = "notifications-tab" class="notifications-container">
     <h1>My Notifications</h1>
 
     @if(empty($notifications))

@@ -72,4 +72,34 @@ class NotificationController extends Controller{
         return collect();
     }
 
+    public function markAllAsRead(){
+        try{
+            $userOrders = Order::where('buyer', auth()->id())->pluck('id');
+            OrderNotification::whereIn('order_', $userOrders)
+                ->where('isRead', false)
+                ->update(['isRead' => true]);
+        }
+        catch(Exception $e){
+            \Log::error("Error in read notifications: " . $e->getMessage());
+            return response()->json(['error' => 'Unable to mark notifications as read'], 500);
+        }
+    }
+
+    public function getUnreadCount() {
+        try {
+            $unreadCount = Cache::remember('user_' . auth()->id() . '_unread_notifications', 60, function () {
+                $userOrders = Order::where('buyer', auth()->id())->pluck('id');
+                return OrderNotification::whereIn('order_', $userOrders)
+                    ->where('isRead', false)
+                    ->count();
+            });
+    
+            return response()->json(['unread_count' => $unreadCount], 200);
+        } catch (\Exception $e) {
+            \Log::error("Error fetching unread notifications count: " . $e->getMessage());
+            return response()->json(['error' => 'Unable to fetch unread notifications count'], 500);
+        }
+    }
+    
+
 }
