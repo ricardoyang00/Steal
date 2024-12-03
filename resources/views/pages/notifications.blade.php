@@ -27,18 +27,18 @@
                         <div class="notification-body">
                             <p class="notification-text">{{ $notification['description'] }}</p>
                             <small class="notification-time">
-                                {{ \Carbon\Carbon::parse($notification['time'])->format('F j, Y, g:i a') }}
+                                {{ (new \DateTime($notification['time']))->format('F d Y, H:i') }}
                             </small>
                             @if(!$notification['is_read'])
                                 <span class="unread-notification-indicator"></span>
                             @endif
-                            <button class="view-notification-details btn btn-link mt-2" type="button" data-toggle="collapse" data-target="#details-{{ $notification['id'] }}" aria-expanded="false" aria-controls="details-{{ $notification['id'] }}">
+                            <button class="view-notification-details" type="button" data-toggle="collapse" data-target="#details-{{ $notification['id'] }}" aria-expanded="false" aria-controls="details-{{ $notification['id'] }}">
                                 View Order Details
                             </button>
                         </div>
                         <div class="notifications-collapse collapse" id="details-{{ $notification['id'] }}">
                             <div class="notification-details">
-                                <p><strong>Order ID:</strong> {{ $notification['order_'] ?? 'N/A' }}</p>
+                                <p><strong>Placed at:</strong> {{ $notification['orderDetails']['date'] }}</p>
                                 @php
                                     $purchasedGames = collect($notification['orderDetails']['purchases'])->filter(fn($purchase) => $purchase['type'] === 'Delivered');
                                 @endphp

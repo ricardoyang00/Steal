@@ -20,19 +20,16 @@ Class OrderNotification extends Model
     }
 
     public function createOrderNotification($order, $purchasedItems, $canceledItems) {
-        $title = 'Order Notification';
+        $title = 'Order Processed';
         $description = '';
-        $orderTime = $order->time;
-        $formattedOrderTime = new \DateTime($orderTime);
-        $formattedOrderTime = $formattedOrderTime->format('d F Y');
     
         if (empty($purchasedItems) && !empty($canceledItems)) {
-            $description = 'Your order from ' . $formattedOrderTime . ' could not be completed. ';
+            $description = 'Your order could not be completed. ';
             $description .= 'Unfortunately, none of the items in your order were available due to insufficient stock.';
         } elseif (empty($canceledItems)) {
-            $description = 'Your order from ' . $formattedOrderTime . ' was successfully completed. All items have been purchased.';
+            $description = 'Your order was successfully completed. All items have been purchased.';
         } else {
-            $description = 'Your order from ' . $formattedOrderTime . ' was partially completed. ';
+            $description = 'Your order was partially completed. ';
             $description .= 'Unfortunately, the following items could not be purchased, due to insufficient stock: ';
             $canceledGameNames = array_column($canceledItems, 'gameName');
             $description .= implode(', ', $canceledGameNames) . '.';

@@ -69,6 +69,9 @@ class NotificationController extends Controller{
                 $order = $notification->getOrder;
     
                 if ($order) {
+                    
+                    $formattedOrderDate = (new \DateTime($order->time))->format('F d, Y H:i');
+
                     $purchases = $order->getPurchases;
     
                     $details = $purchases->map(function ($purchase) {
@@ -91,6 +94,7 @@ class NotificationController extends Controller{
                     })->filter();
     
                     $notification->orderDetails = [
+                        'date' => $formattedOrderDate,
                         'purchases' => $details->toArray(),
                         'totalPrice' => $purchases->sum('value'),
                     ];
