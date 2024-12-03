@@ -26,12 +26,12 @@
     </select>
     
     <div class="input-wrapper">
-      <input id="username" type="text" name="username" value="{{ old('username') }}" required>
+      <input id="username" type="text" name="username" value="{{ old('username') }}" required minlength="5" maxlength="15">
       <label for="username" class="placeholder">Username</label>
     </div>
 
     <div class="input-wrapper">
-      <input id="name" type="text" name="name" value="{{ old('name') }}" required>
+      <input id="name" type="text" name="name" value="{{ old('name') }}" required minlength="5" maxlength="30">
       <label for="name" class="placeholder">Name</label>
     </div>
     
@@ -41,12 +41,12 @@
     </div>
     
     <div class="input-wrapper">
-      <input id="password" type="password" name="password" required>
+      <input id="password" type="password" name="password" required minlength="8" maxlength="25">
       <label for="password" class="placeholder">Password</label>
     </div>
     
     <div class="input-wrapper">
-      <input id="password-confirm" type="password" name="password_confirmation" required>
+      <input id="password-confirm" type="password" name="password_confirmation" required minlength="8" maxlength="25">
       <label for="password-confirm" class="placeholder">Confirm Password</label>
     </div>
     

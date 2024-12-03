@@ -120,7 +120,7 @@
             <div class="profile-details">
                 <div class="detail-box editable">
                     <div class="detail-label"><label for="username"><strong>Username</strong></label></div>
-                    <div class="detail-info"><input type="text" id="username" name="username" value="{{ auth_user()->username }}"></div>
+                    <div class="detail-info"><input type="text" id="username" name="username" value="{{ auth_user()->username }}" minlength="5" maxlength="15"></div>
                     @if ($errors->has('username'))
                         <span class="error">
                             {{ $errors->first('username') }}
@@ -129,7 +129,7 @@
                 </div>
                 <div class="detail-box editable">
                     <div class="detail-label"><label for="name"><strong>Name</strong></label></div>
-                    <div class="detail-info"><input type="text" id="name" name="name" value="{{ auth_user()->name }}"></div>
+                    <div class="detail-info"><input type="text" id="name" name="name" value="{{ auth_user()->name }}" minlength="5" maxlength="30"></div>
                     @if ($errors->has('name'))
                         <span class="error">
                             {{ $errors->first('name') }}
@@ -193,7 +193,7 @@
                 <div class="detail-box">
                     <div class="detail-label"><label for="current_password"><strong>Current Password</strong></label></div>
                     <div class="detail-info">
-                        <input type="password" id="current_password" name="current_password" required>
+                        <input type="password" id="current_password" name="current_password" required minlength="8" maxlength="25">
                         <i class="fas fa-eye toggle-password" data-toggle="#current_password"></i>
                     </div>
                     @if ($errors->has('current_password'))
@@ -205,7 +205,7 @@
                 <div class="detail-box">
                     <div class="detail-label"><label for="new_password"><strong>New Password</strong></label></div>
                     <div class="detail-info">
-                        <input type="password" id="new_password" name="new_password" required>
+                        <input type="password" id="new_password" name="new_password" required minlength="8" maxlength="25">
                         <i class="fas fa-eye toggle-password" data-toggle="#new_password"></i>
                     </div>
                     @if ($errors->has('new_password'))
@@ -217,7 +217,7 @@
                 <div class="detail-box">
                     <div class="detail-label"><label for="new_password_confirmation"><strong>Confirm New Password</strong></label></div>
                     <div class="detail-info">
-                        <input type="password" id="new_password_confirmation" name="new_password_confirmation" required>
+                        <input type="password" id="new_password_confirmation" name="new_password_confirmation" required minlength="8" maxlength="25">
                         <i class="fas fa-eye toggle-password" data-toggle="#new_password_confirmation"></i>
                     </div>
                 </div>
