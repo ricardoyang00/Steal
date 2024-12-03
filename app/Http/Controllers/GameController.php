@@ -10,6 +10,7 @@ use App\Models\Player;
 use App\Models\Age;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class GameController extends Controller
 {    
@@ -213,5 +214,62 @@ class GameController extends Controller
         $game->players()->sync($request->input('players', []));
 
         return redirect()->route('games.edit', $game->id)->with('success', 'Game updated successfully.');
+    }
+
+    public function create()
+    {
+        $categories = Category::all();
+        $platforms = Platform::all();
+        $languages = Language::all();
+        $players = Player::all();
+        $ages = Age::all();
+
+        return view('seller.game-new', compact('categories', 'platforms', 'languages', 'players', 'ages'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|numeric|min:0',
+            'release_date' => 'nullable|date',
+            'age_id' => 'required|exists:age,id',
+            'categories' => 'array',
+            'platforms' => 'array',
+            'languages' => 'array',
+            'players' => 'array'
+        ]);
+
+        try {
+            $game = new Game();
+            $game->name = $request->name;
+            $game->description = $request->description;
+            $game->price = $request->price;
+            $game->release_date = $request->pre_release ? null : $request->release_date;
+            $game->age_id = $request->age_id;
+            $game->owner = auth()->user()->id;
+            $game->is_active = true;
+
+            $game->save();
+            Log::info('Game created successfully', ['game_id' => $game->id]);
+
+            $game->categories()->sync($request->categories);
+            Log::info('Categories synced', ['categories' => $request->categories]);
+
+            $game->platforms()->sync($request->platforms);
+            Log::info('Platforms synced', ['platforms' => $request->platforms]);
+
+            $game->languages()->sync($request->languages);
+            Log::info('Languages synced', ['languages' => $request->languages]);
+
+            $game->players()->sync($request->players);
+            Log::info('Players synced', ['players' => $request->players]);
+
+            return redirect()->route('seller.products')->with('success', 'Game created successfully.');
+        } catch (\Exception $e) {
+            Log::error('Error creating game', ['error' => $e->getMessage()]);
+            return redirect()->route('seller.products')->with('error', 'Failed to create game.');
+        }
     }
 }
