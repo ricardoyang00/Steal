@@ -144,3 +144,7 @@
 .game-details-page .add-review-container button:hover {
     background-color: lightgray;
 }
+
+.game-details-page .error-reviews {
+    margin-left: 0;
+}

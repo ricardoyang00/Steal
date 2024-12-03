@@ -103,6 +103,11 @@
                     <button type="submit" class="btn btn-primary">Submit Review</button>
                 </form>
             </div>
+            @if ($errors->any())
+                <div class="error error-reviews">
+                    {{ $errors->first() }}
+                </div>
+            @endif
         @elseif (!auth_user())
             <button onclick="window.location.href = '/login';" class="btn-review-form-toggle">Add Review</button>
         @endif

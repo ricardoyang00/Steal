@@ -49,9 +49,7 @@ class ReviewsController extends Controller
             $gameId = $request->input('game_id');
             $game = Game::find($gameId);
         } catch (\Exception $e) {
-            return response()->json([
-                'error' => $e->getMessage(),
-            ]);
+            return back()->withErrors(['error' => 'An error occurred while adding the review.']);
         }
 
         return view('pages.game-details', compact('game'));
