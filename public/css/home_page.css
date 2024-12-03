@@ -21,6 +21,7 @@
     position: relative;
     height: 400px;
     overflow: hidden;
+    width: 270px;
 }
 
 /* Game thumbnail */
