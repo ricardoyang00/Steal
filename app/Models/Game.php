@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Game extends Model
 {
@@ -90,5 +91,14 @@ class Game extends Model
 
     public function getThumbnailLargePath() {
         return $this->thumbnail_large_path ?? '/thumbnail_large/default_thumbnail_large.jpg';
+    }
+
+    public function getReleaseDate()
+    {
+        if (is_null($this->release_date)) {
+            return 'Not realeased yet';
+        }
+
+        return Carbon::parse($this->release_date)->format('d M, Y');
     }
 }

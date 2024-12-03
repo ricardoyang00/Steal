@@ -24,6 +24,7 @@
             </a>
         </p>
         <p><strong>Price:</strong> ${{ $game->price }}</p>
+        <p><strong>Release Date:</strong> {{ $game->getReleaseDate() }}</p>
         <p><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
         @if (auth_user() && auth_user()->buyer)
             <button class="add-to-wishlist btn-add-to-wishlist" data-id="{{ $game->id }}">

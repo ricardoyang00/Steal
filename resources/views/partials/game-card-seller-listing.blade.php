@@ -36,7 +36,7 @@
             @endforeach
         </div>
         <div class="game-release-date">
-            <a>{{ \Carbon\Carbon::parse($game->release_date)->format('d M, Y') }}</a>
+            <a>{{ $game->getReleaseDate() }}</a>
         </div>
         <div class="game-rating">
             <div class="rating-labels">
