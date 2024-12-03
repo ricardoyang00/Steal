@@ -51,7 +51,6 @@ class LoginController extends Controller
                 }
 
                 if (auth_user()->buyer) {
-                    $buyerId = auth_user()->id;
                     $shoppingCart = $request->session()->get('shopping_cart', []);
                     $shoppingCartController = new ShoppingCartController();
                     $shoppingCartController->mergeShoppingCart($request, $shoppingCart);
