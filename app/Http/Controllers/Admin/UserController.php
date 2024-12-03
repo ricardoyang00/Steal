@@ -41,6 +41,24 @@ class UserController extends Controller
     }
 
     /**
+     * Reset the profile picture to default
+     */
+    public function resetPicture($id)
+    {
+        $user = User::findOrFail($id);
+
+        // Set the profile picture to the default path
+        $defaultPicturePath = 'images/profile_pictures/default-profile-picture.png';
+
+        // Update the user's profile_picture field
+        $user->profile_picture = $defaultPicturePath;
+        $user->save();
+
+        return redirect()->route('admin.users.profile', $user->id)
+            ->with('success', 'Profile picture reset to default.');
+    }
+
+    /**
      * Change the username to a unique random 8-character string.
      */
     public function changeUsername($id): RedirectResponse
@@ -74,7 +92,7 @@ class UserController extends Controller
     {
         do {
             $randomString = $this->generateRandomString(8);
-            $newUsername = 'User ' . $randomString;
+            $newUsername = 'User_' . $randomString;
         } while (User::where('username', $newUsername)->exists());
 
         return $newUsername;

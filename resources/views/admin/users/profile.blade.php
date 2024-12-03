@@ -13,8 +13,9 @@
 @endif
 
 @php
-    $profilePicturePath = auth_user()->profile_picture;
-    $profilePicture = $profilePicturePath && Storage::exists($profilePicturePath) 
+    $profilePicturePath = $user->profile_picture;
+    $profilePictureFullPath = public_path($profilePicturePath);
+    $profilePicture = $user->profile_picture && file_exists($profilePictureFullPath) 
         ? asset($profilePicturePath) 
         : asset('images/profile_pictures/default-profile-picture.png');
 @endphp
@@ -22,8 +23,15 @@
 <div id="admin-check-user-profile" style="display: flex; justify-content: center">
     <div class="profile-card-admin-view">
         <!-- Profile Picture -->
-        <div class="profile-picture">
+        <div class="profile-picture-admin-view">
             <img src="{{ $profilePicture }}" alt="Profile Picture" id="editable-profile-picture">
+            <form method="POST" action="{{ route('admin.users.resetPicture', $user->id) }}" id="reset-profile-picture-form">
+                @csrf
+                @method('PUT')
+                <button type="submit" id="reset-profile-picture-btn" class="reset-button">
+                    <i class="fas fa-undo"></i> Reset to Default
+                </button>
+            </form>
         </div>
 
         <!-- Profile Details -->

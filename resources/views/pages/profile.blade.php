@@ -12,7 +12,8 @@
 
 @php
     $profilePicturePath = auth_user()->profile_picture;
-    $profilePicture = $profilePicturePath && Storage::exists($profilePicturePath) 
+    $profilePictureFullPath = public_path($profilePicturePath);
+    $profilePicture = auth_user()->profile_picture && file_exists($profilePictureFullPath) 
         ? asset($profilePicturePath) 
         : asset('images/profile_pictures/default-profile-picture.png');
 @endphp
