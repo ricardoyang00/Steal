@@ -12,7 +12,7 @@
 
 <div class="game-details-page">
     <div class="game-image">
-        <img src="{{ asset('images/default-game-image.jpg') }}" class="img-fluid" alt="{{ $game->name }}">
+        <img src="{{ asset('images/' . $game->getThumbnailLargePath()) }}" class="img-fluid" alt="{{ $game->name }}">
     </div>
     <div class="game-details">
         <h1>{{ $game->name }}</h1>

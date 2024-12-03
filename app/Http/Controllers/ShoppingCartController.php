@@ -37,7 +37,8 @@ class ShoppingCartController extends Controller
                         'id' => $game->id,
                         'name' => $game->name,
                         'price' => $game->price,
-                        'quantity' => $item->quantity
+                        'quantity' => $item->quantity,
+                        'thumbnail_small_path' => $game->getThumbnailSmallPath()
                     ];
                 }
                 $total += $game->price * $item->quantity;
@@ -48,7 +49,8 @@ class ShoppingCartController extends Controller
                     'id' => $item['id'],
                     'name' => $item['name'],
                     'price' => $item['price'],
-                    'quantity' => $item['quantity']
+                    'quantity' => $item['quantity'],
+                    'thumbnail_small_path' => $game->getThumbnailSmallPath()
                 ];
                 $total += $item['price'] * $item['quantity'];
             }
