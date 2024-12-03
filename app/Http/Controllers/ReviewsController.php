@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Review;
 use App\Models\User;
+use App\Models\Game;
+use App\Http\Controllers\GameController;
 
 class ReviewsController extends Controller
 {
@@ -29,24 +31,30 @@ class ReviewsController extends Controller
 
         return response()->json([
             'reviews' => $reviews,
-
         ]);
     }
 
     public function addReview(Request $request)
     {
-        $review = new Review();
-        $review->title = $request->input('title');
-        $review->game = $request->input('game_id');
-        $review->description = $request->input('description');
-        $review->positive = $request->input('positive');
-        $review->author = auth_user()->id;
+        try {
+            $review = new Review();
+            $review->title = $request->input('title');
+            $review->game = $request->input('game_id');
+            $review->description = $request->input('description');
+            $review->positive = $request->input('positive');
+            $review->author = auth_user()->id;
 
-        $review->save();
+            $review->save();
 
-        return response()->json([
-            'success' => true,
-        ]);
+            $gameId = $request->input('game_id');
+            $game = Game::find($gameId);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage(),
+            ]);
+        }
+
+        return view('pages.game-details', compact('game'));
     }
 
 }
