@@ -15,6 +15,11 @@
 
     <article>
         <h1>Profile</h1>
+        @php
+            $profilePicture = auth_user()->profile_picture ? asset(auth_user()->profile_picture) : asset('images/profile_pictures/default-profile-picture.png');
+        @endphp
+        <img src="{{ $profilePicture }}" alt="Profile Picture" style="width: 150px; height: 150px; object-fit: cover;">
+        
         <p><strong>Username:</strong> {{ auth_user()->username }}</p>
         <p><strong>Name:</strong> {{ auth_user()->name }}</p>
         <p><strong>Email:</strong> {{ auth_user()->email }}</p>
@@ -46,9 +51,17 @@
 
 <!-- Edit Profile -->
 <section id="edit-profile" style="display: {{ $errors->any() && !$errors->has('current_password') && !$errors->has('new_password') && !$errors->has('new_password_confirmation') ? 'block' : 'none' }};">
-    <form method="POST" action="{{ route('profile.update') }}">
+    <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
         @method('PUT')
+        <label for="profile_picture">Profile Picture:</label>
+        <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+        @if ($errors->has('profile_picture'))
+            <span class="error">
+                {{ $errors->first('profile_picture') }}
+            </span>
+        @endif
+
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" value="{{ auth_user()->username }}">
         @if ($errors->has('username'))

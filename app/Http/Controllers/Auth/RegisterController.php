@@ -67,6 +67,7 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password),
                 'is_active' => true,
                 'is_blocked' => false,
+                'profile_picture' => 'images/profile_pictures/default-profile-picture.png',
             ]);
 
             if ($request->user_type == 'buyer') {

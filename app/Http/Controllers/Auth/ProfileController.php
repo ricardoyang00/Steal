@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\File;
 
 use Illuminate\View\View;
 
@@ -31,6 +32,7 @@ class ProfileController extends Controller
         $rules = [
             'username' => 'required|string|max:15|unique:users,username,' . $user->id,
             'name' => 'required|string|max:30',
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ];
 
         if ($user->buyer) {
@@ -42,6 +44,19 @@ class ProfileController extends Controller
         $user->username = $request->input('username');
         $user->name = $request->input('name');
         
+        if ($request->hasFile('profile_picture')) {
+            // Delete the old profile picture if it exists and is not the default one
+            if ($user->profile_picture && $user->profile_picture !== 'images/profile_pictures/default-profile-picture.png' && File::exists(public_path($user->profile_picture))) {
+                File::delete(public_path($user->profile_picture));
+            }
+
+            // Store the new profile picture
+            $file = $request->file('profile_picture');
+            $path = 'images/profile_pictures/' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/profile_pictures'), $path);
+            $user->profile_picture = $path;
+        }
+
         if ($user->buyer) {
             $user->buyer->nif = $request->input('nif');
             $user->buyer->save();

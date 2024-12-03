@@ -52,7 +52,8 @@ CREATE TABLE Users (
     is_active BOOLEAN DEFAULT TRUE,
     is_blocked BOOLEAN DEFAULT FALSE,
     remember_token VARCHAR(100) NULL,
-    google_id VARCHAR
+    google_id VARCHAR,
+    profile_picture TEXT
 );
 
 CREATE TABLE Administrator(
