@@ -19,4 +19,37 @@ document.addEventListener('DOMContentLoaded', function () {
 
         window.location.href = url.toString();
     });
+
+    const seeMoreBtn = document.getElementById('see-more-btn');
+    if (seeMoreBtn) {
+        seeMoreBtn.addEventListener('click', function() {
+            const hiddenCategories = document.querySelectorAll('.hidden-category');
+            hiddenCategories.forEach(function(category) {
+                category.style.display = 'block';
+            });
+            seeMoreBtn.style.display = 'none'; // Hide the "See More" button after clicking
+        });
+    }
+
+    var collapsibles = document.querySelectorAll('.collapsible');
+    collapsibles.forEach(function(collapsible, index) {
+        // Restore the state from local storage
+        var content = collapsible.nextElementSibling;
+        var state = localStorage.getItem('collapsible-' + index);
+        if (state === 'open') {
+            content.style.display = 'block';
+            collapsible.classList.add('active');
+        }
+
+        collapsible.addEventListener('click', function() {
+            this.classList.toggle('active');
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                localStorage.setItem('collapsible-' + index, 'closed');
+            } else {
+                content.style.display = "block";
+                localStorage.setItem('collapsible-' + index, 'open');
+            }
+        });
+    });
 });

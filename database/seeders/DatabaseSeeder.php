@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $files = ['steal.sql', 'populate.sql'];
+        $files = ['steal.sql', 'populate.sql', 'triggers.sql'];
         foreach ($files as $file) {
             $path = base_path('database/' . $file);
             $sql = file_get_contents($path);

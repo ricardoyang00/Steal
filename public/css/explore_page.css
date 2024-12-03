@@ -11,8 +11,26 @@
     padding: 16px;
     border-radius: 8px;
     color: var(--text-color);
-    height: 800px; 
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
+
+.explore-page .filter-table .hidden-category {
+    display: none;
+}
+
+.explore-page .filter-table .collapsible {
+    cursor: pointer;
+    user-select: none;
+}
+
+.explore-page .filter-table .content {
+    display: none;
+    overflow: hidden;
+}
+
 
 /* Game Content Styling */
 .explore-page .game-content {
@@ -130,7 +148,7 @@
 }
 
 .explore-page .game-title a:hover {
-    color: var(--positive);
+    color: var(--cart-control-button);
 }
 
 /* Game Tags Container */
@@ -156,7 +174,7 @@
 }
 
 .tag:hover {
-    background-color: var(--positive);
+    background-color: var(--cart-control-button);
 }
 
 /* Platforms and Release Date */
