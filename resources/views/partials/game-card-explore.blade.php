@@ -2,7 +2,7 @@
     <!-- Game Thumbnail -->
     <div class="game-thumbnail">
         <a href="{{ route('game.details', ['id' => $game->id]) }}">
-            <img src="{{ asset('images/default-game-image.jpg') }}" class="card-img-top" alt="{{ $game->name }}">
+            <img src="{{ asset('images/' . $game->getThumbnailLargePath()) }}" class="card-img-top" alt="{{ $game->name }}">
         </a>
     </div>
     <!-- Game Details -->

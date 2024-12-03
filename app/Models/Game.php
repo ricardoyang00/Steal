@@ -22,7 +22,9 @@ class Game extends Model
         'owner',
         'is_active',
         'release_date',
-        'age_id'
+        'age_id',
+        'thumbnail_small_path',
+        'thumbnail_large_path'
     ];
 
     public function seller()
@@ -80,5 +82,13 @@ class Game extends Model
     public function countDeliveredPurchases()
     {
         return DeliveredPurchase::whereIn('cdk', $this->getCDKs()->pluck('id'))->count();
+    }
+
+    public function getThumbnailSmallPath() {
+        return $this->thumbnail_small_path ?? '/thumbnail_small/default_thumbnail_small.jpg';
+    }
+
+    public function getThumbnailLargePath() {
+        return $this->thumbnail_large_path ?? '/thumbnail_large/default_thumbnail_large.jpg';
     }
 }

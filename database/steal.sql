@@ -92,7 +92,9 @@ CREATE TABLE Game(
     owner INT NOT NULL REFERENCES Seller(id) ON UPDATE CASCADE,
     is_active BOOLEAN DEFAULT TRUE,
     release_date DATE NOT NULL CHECK(release_date <= CURRENT_DATE),
-    age_id INT NOT NULL REFERENCES Age(id) ON UPDATE CASCADE
+    age_id INT NOT NULL REFERENCES Age(id) ON UPDATE CASCADE,
+    thumbnail_small_path TEXT,
+    thumbnail_large_path TEXT
 );
 
 CREATE TABLE CDK(
@@ -155,7 +157,7 @@ CREATE TABLE GamePlayer(
     CONSTRAINT game_player_pair_unique UNIQUE (game,player)
 );
 
-CREATE TABLE Media(
+CREATE TABLE GameMedia(
     id SERIAL PRIMARY KEY,
     path TEXT NOT NULL,
     game INT NOT NULL REFERENCES Game(id) ON UPDATE CASCADE
