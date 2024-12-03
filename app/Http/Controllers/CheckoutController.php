@@ -118,7 +118,7 @@ class CheckoutController extends Controller
 
     public function selectPaymentMethod()
     {
-        $paymentMethods = PaymentMethod::all();
+        $paymentMethods = PaymentMethod::orderBy('name', 'asc')->get();
         return view('checkout.selectPaymentMethod', compact('paymentMethods'));
     }
 

@@ -178,7 +178,8 @@ CREATE TABLE ShoppingCart(
 
 CREATE TABLE PaymentMethod(
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL
+    name TEXT NOT NULL,
+    image_path TEXT NOT NULL
 );
 
 CREATE TABLE Payment(

@@ -13,7 +13,10 @@ Class PaymentMethod extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['name'];
+    protected $fillable = [
+        'name',
+        'image_path'
+    ];
 
 
     public function getPaymentMethods()

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\WishlistController;
+use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\StaticPagesController;
@@ -68,6 +69,10 @@ Route::post('/wishlist/remove', [WishlistController::class, 'removeProduct'])->n
 Route::post('/wishlist/add', [WishlistController::class, 'addProduct'])->name('wishlist.add');
 Route::post('/wishlist/is_in_wishlist', [WishlistController::class, 'isInWishlist'])->name('wishlist.isInWishlist');
 
+// Reviews
+Route::post('/reviews', [ReviewsController::class, 'getReviews'])->name('reviews');
+Route::post('/reviews/add', [ReviewsController::class, 'addReview'])->name('reviews.add');
+
 // Checkout
 Route::middleware('auth')->group(function () {
     Route::get('/checkout/payment', [CheckoutController::class, 'selectPaymentMethod'])->name('checkout.selectPaymentMethod');
@@ -121,6 +126,9 @@ Route::get('/explore', function () {
 Route::get('/explore', [GameController::class, 'index']);
 Route::get('/explore', [GameController::class, 'explore'])->name('explore');
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.details');
+Route::get('/seller/products', [GameController::class, 'listProducts'])->name('seller.products');
+Route::get('/games/{id}/edit', [GameController::class, 'edit'])->name('games.edit');
+Route::post('/games/{id}/update', [GameController::class, 'update'])->name('games.update');
 
 // Static Pages
 Route::controller(StaticPagesController::class)->group(function () {

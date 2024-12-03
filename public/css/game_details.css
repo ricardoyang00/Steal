@@ -51,3 +51,96 @@
 .game-details-page .add-to-wishlist:hover {
     color: var(--error-color);
 }
+
+/* Review Section */
+.game-details-page .review-container {
+    margin-top: 32px;
+    background-color: var(--game-card-background);
+    padding: 16px;
+    border-radius: 8px;
+    color: var(--text-color);
+}
+
+.game-details-page .review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .h4 {
+        font-size: 1.25rem;
+    }
+    p {
+        margin: 0;
+        font-size: 1rem;
+        color: var(--text-color);
+    }
+}
+
+.game-details-page .btn-review-form-toggle {
+    padding: 8px 16px;
+    background-color: whitesmoke;
+    color: black;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.game-details-page .add-review-container {
+    margin-top: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--game-card-background);
+    border-radius: 8px;
+    gap: 16px;
+    justify-content: flex-start;
+    .form-group {
+        margin-bottom: 16px;
+    }
+}
+
+.game-details-page .add-review-container .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 16px;
+}
+
+.game-details-page .add-review-container .form-group label {
+    font-size: 1rem;
+    margin-top: 8px;
+}
+
+.game-details-page .add-review-container .form-group textarea,
+.game-details-page .add-review-container .form-group input {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--text-color);
+    background-color: var(--game-card-background);
+    color: var(--text-color);
+}
+
+.game-details-page .add-review-container .form-group .thumbs-up {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+    gap: 12px;
+}
+
+.game-details-page .add-review-container .form-group .thumbs-up label {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.game-details-page .add-review-container button {
+    padding: 8px 16px;
+    background-color: whitesmoke;
+    color: black;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.game-details-page .add-review-container button:hover {
+    background-color: lightgray;
+}
