@@ -1,5 +1,5 @@
 /* Profile Card */
-.profile-card {
+.profile-card, .profile-card-password {
     background-color: #1e1e1e;
     color: #ffffff;
     border-radius: 12px;
@@ -8,6 +8,10 @@
     width: 100%;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     text-align: center;
+}
+
+.profile-card-password {
+    max-width: 700px;
 }
 
 /* Profile Username Styling */
@@ -86,11 +90,26 @@
     border-radius: 0 6px 6px 0;
     flex: 2;
     text-align: left;
+    position: relative;
 }
 
 /* Editable Input Styling */
 .profile-details .editable .detail-info {
     background-color: #f0f0f0;
+}
+
+.profile-details .detail-info input {
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.profile-details .detail-info input:focus {
+    outline: none;
 }
 
 .profile-details .editable .detail-info input {
@@ -168,7 +187,8 @@
     background-color: #a71d2a;
 }
 
-#cancel-edit-btn, #save-edit-btn {
+#cancel-edit-btn, #save-edit-btn,
+#cancel-change-password-btn, #confirm-change-password-btn {
     margin: 10px;
     color: #ffffff;
     border: none;
@@ -182,18 +202,27 @@
     width: 150px;
 }
 
-#cancel-edit-btn {
+#cancel-edit-btn, #cancel-change-password-btn {
     background-color: #dc3545;
 }
 
-#cancel-edit-btn:hover {
+#cancel-edit-btn:hover, #cancel-change-password-btn:hover {
     background-color: #a71d2a;
 }
 
-#save-edit-btn {
+#save-edit-btn, #confirm-change-password-btn {
     background-color: #28a745;
 }
 
-#save-edit-btn:hover {
+#save-edit-btn:hover, #confirm-change-password-btn:hover {
     background-color: #218838;
+}
+
+.toggle-password {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffffff;
 }

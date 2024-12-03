@@ -10,19 +10,19 @@
 
 <script src="{{ asset('js/profile/profile.js') }}" defer></script>
 
+@php
+    $profilePicturePath = auth_user()->profile_picture;
+    $profilePicture = $profilePicturePath && Storage::exists($profilePicturePath) 
+        ? asset($profilePicturePath) 
+        : asset('images/profile_pictures/default-profile-picture.png');
+@endphp
+
 <section id="profile" style="display: {{ $errors->any() ? 'none' : 'block' }};">
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
     @endif
-
-    @php
-        $profilePicturePath = auth_user()->profile_picture;
-        $profilePicture = $profilePicturePath && Storage::exists($profilePicturePath) 
-            ? asset($profilePicturePath) 
-            : asset('images/profile_pictures/default-profile-picture.png');
-    @endphp
 
     <div class="profile-card">
         <!-- Username -->
@@ -176,27 +176,59 @@
     <form method="POST" action="{{ route('profile.updatePassword') }}">
         {{ csrf_field() }}
         @method('PUT')
-        <label for="current_password">Current Password:</label>
-        <input type="password" id="current_password" name="current_password" required>
-        @if ($errors->has('current_password'))
-            <span class="error">
-                {{ $errors->first('current_password') }}
-            </span>
-        @endif
 
-        <label for="new_password">New Password:</label>
-        <input type="password" id="new_password" name="new_password" required>
-        @if ($errors->has('new_password'))
-            <span class="error">
-                {{ $errors->first('new_password') }}
-            </span>
-        @endif
+        <div class="profile-card-password">
+            <!-- Username -->
+            <div class="profile-username">
+                <strong>{{ auth_user()->username }}</strong>
+            </div>
+    
+            <!-- Profile Picture -->
+            <div class="profile-picture">
+                <img src="{{ $profilePicture }}" alt="Profile Picture">
+            </div>
+            
+            <!-- Profile Details -->
+            <div class="profile-details">
+                <div class="detail-box">
+                    <div class="detail-label"><label for="current_password"><strong>Current Password</strong></label></div>
+                    <div class="detail-info">
+                        <input type="password" id="current_password" name="current_password" required>
+                        <i class="fas fa-eye toggle-password" data-toggle="#current_password"></i>
+                    </div>
+                    @if ($errors->has('current_password'))
+                        <span class="error">
+                            {{ $errors->first('current_password') }}
+                        </span>
+                    @endif
+                </div>
+                <div class="detail-box">
+                    <div class="detail-label"><label for="new_password"><strong>New Password</strong></label></div>
+                    <div class="detail-info">
+                        <input type="password" id="new_password" name="new_password" required>
+                        <i class="fas fa-eye toggle-password" data-toggle="#new_password"></i>
+                    </div>
+                    @if ($errors->has('new_password'))
+                        <span class="error">
+                            {{ $errors->first('new_password') }}
+                        </span>
+                    @endif
+                </div>
+                <div class="detail-box">
+                    <div class="detail-label"><label for="new_password_confirmation"><strong>Confirm New Password</strong></label></div>
+                    <div class="detail-info">
+                        <input type="password" id="new_password_confirmation" name="new_password_confirmation" required>
+                        <i class="fas fa-eye toggle-password" data-toggle="#new_password_confirmation"></i>
+                    </div>
+                </div>
+            </div>
 
-        <label for="new_password_confirmation">Confirm New Password:</label>
-        <input type="password" id="new_password_confirmation" name="new_password_confirmation" required>
-        
-        <button type="button" id="cancel-change-password-btn">Cancel</button>
-        <button type="submit">Change Password</button>
+            <!-- Buttons -->
+            <div class="profile-actions">
+                <button type="button" id="cancel-change-password-btn">Cancel</button>
+                <button type="submit" id="confirm-change-password-btn">Confirm Change</button>
+            </div>
+        </div>
     </form>
 </div>
 
