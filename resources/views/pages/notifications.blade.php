@@ -5,7 +5,8 @@
 @section('content')
 
 <script src="{{ asset('js/notifications/notifications.js') }}" defer></script>
-<div id = "notifications-tab" class="notifications-container">
+<script src="{{ asset('js/notifications/notifications-buttons.js') }}" defer></script>
+<div id="notifications-tab" class="notifications-container">
     <h1>My Notifications</h1>
 
     @if(empty($notifications))
@@ -13,25 +14,40 @@
             You have no notifications at the moment.
         </div>
     @else
-        <ul class="notifications-list">
+        <div class="notifications">
             @foreach ($notifications as $notification)
-                <li class="notification">
-                    <div class="notification-details">
-                        <div class="notification-title">{{ $notification['title'] }}</div>
-                        <p class="notification-description">{{ $notification['description'] }}</p>
-                        <small class="notification-time">
-                            {{ \Carbon\Carbon::parse($notification['time'])->format('F j, Y, g:i a') }}
-                        </small>
+                <div class="notification">
+                    <div class="notification-card">
+                        <div class="notification-body">
+                            <h5 class="notification-title">{{ $notification['title'] }}</h5>
+                            <p class="notification-text">{{ $notification['description'] }}</p>
+                            <small class="notification-time">
+                                {{ \Carbon\Carbon::parse($notification['time'])->format('F j, Y, g:i a') }}
+                            </small>
+                            @if(!$notification['is_read'])
+                                <span class="is-read-notification">New</span>
+                            @endif
+                            <button class="view-notification-details" type="button" data-toggle="collapse" data-target="#details-{{ $notification['id'] }}" aria-expanded="false" aria-controls="details-{{ $notification['id'] }}">
+                                View Order Details
+                            </button>
+                        </div>
+                        <div class="notifications-collapse" id="details-{{ $notification['id'] }}">
+                            <div class="notification-details">
+                                <p><strong>Order ID:</strong> {{ $notification['order_id'] ?? 'N/A' }}</p>
+                                <p><strong>Additional Info:</strong> {{ $notification['extra_info'] ?? 'No additional information available.' }}</p>
+                            </div>
+                        </div>
                     </div>
-                    @if(!$notification['is_read'])
-                        <span class="unread-notification">New</span>
-                    @endif
-                </li>
+                </div>
             @endforeach
-        </ul>
+        </div>
         <div class="pagination-links">
             {{ $notifications->links() }}
         </div>
     @endif
 </div>
+
 @endsection
+
+
+
