@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Facades\Storage;
+@endphp
+
 @extends('layouts.app')
 
 @section('title', 'Profile')
@@ -13,13 +17,14 @@
         </div>
     @endif
 
-    <div class="profile-card">
-        @php
-            $profilePicture = auth_user()->profile_picture 
-            ? asset(auth_user()->profile_picture) 
+    @php
+        $profilePicturePath = auth_user()->profile_picture;
+        $profilePicture = $profilePicturePath && Storage::exists($profilePicturePath) 
+            ? asset($profilePicturePath) 
             : asset('images/profile_pictures/default-profile-picture.png');
-        @endphp
+    @endphp
 
+    <div class="profile-card">
         <!-- Username -->
         <div class="profile-username">
             <strong>{{ auth_user()->username }}</strong>
@@ -95,51 +100,74 @@
     <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
         {{ csrf_field() }}
         @method('PUT')
-        <label for="profile_picture">Profile Picture:</label>
-        <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
-        @if ($errors->has('profile_picture'))
-            <span class="error">
-                {{ $errors->first('profile_picture') }}
-            </span>
-        @endif
 
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" value="{{ auth_user()->username }}">
-        @if ($errors->has('username'))
-            <span class="error">
-                {{ $errors->first('username') }}
-            </span>
-        @endif
+        <div class="profile-card">
+            <!-- Profile Picture -->
+            <div class="profile-picture">
+                <img src="{{ $profilePicture }}" alt="Profile Picture" id="editable-profile-picture">
+                <div class="edit-icon" id="edit-icon">
+                    <i class="fas fa-pen"></i>
+                </div>
+                <input type="file" id="profile_picture" name="profile_picture" accept="image/*" style="display: none;">
+                @if ($errors->has('profile_picture'))
+                    <span class="error">
+                        {{ $errors->first('profile_picture') }}
+                    </span>
+                @endif
+            </div>
 
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="{{ auth_user()->name }}">
-        @if ($errors->has('name'))
-            <span class="error">
-                {{ $errors->first('name') }}
-            </span>
-        @endif
+            <!-- Profile Details -->
+            <div class="profile-details">
+                <div class="detail-box editable">
+                    <div class="detail-label"><label for="username"><strong>Username</strong></label></div>
+                    <div class="detail-info"><input type="text" id="username" name="username" value="{{ auth_user()->username }}"></div>
+                    @if ($errors->has('username'))
+                        <span class="error">
+                            {{ $errors->first('username') }}
+                        </span>
+                    @endif
+                </div>
+                <div class="detail-box editable">
+                    <div class="detail-label"><label for="name"><strong>Name</strong></label></div>
+                    <div class="detail-info"><input type="text" id="name" name="name" value="{{ auth_user()->name }}"></div>
+                    @if ($errors->has('name'))
+                        <span class="error">
+                            {{ $errors->first('name') }}
+                        </span>
+                    @endif
+                </div>
+                <div class="detail-box">
+                    <div class="detail-label"><strong>Email</strong></div>
+                    <div class="detail-info">{{ auth_user()->email }}</div>
+                </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="{{ auth_user()->email }}" readonly>
-        
-        @if (auth_user()->buyer)
-            <label for="nif">NIF:</label>
-            <input type="text" id="nif" name="nif" value="{{ auth_user()->buyer->nif }}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="9">    
-            @if ($errors->has('nif'))
-                <span class="error">
-                    {{ $errors->first('nif') }}
-                </span>
-            @endif
+                @if (auth_user()->buyer)
+                    <div class="detail-box editable">
+                        <div class="detail-label"><label for="nif"><strong>NIF</strong></label></div>
+                        <div class="detail-info"><input type="text" id="nif" name="nif" value="{{ auth_user()->buyer->nif }}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="9"></div>
+                        @if ($errors->has('nif'))
+                            <span class="error">
+                                {{ $errors->first('nif') }}
+                            </span>
+                        @endif
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-label"><strong>Birth Date</strong></div>
+                        <div class="detail-info">{{ auth_user()->buyer->birth_date }}</div>
+                    </div>
+                    <div class="detail-box">
+                        <div class="detail-label"><strong>Coins</strong></div>
+                        <div class="detail-info">{{ auth_user()->buyer->coins }}</div>
+                    </div>
+                @endif
+            </div>
 
-            <label for="birth_date">Birth Date:</label>
-            <input type="date" id="birth_date" name="birth_date" value="{{ auth_user()->buyer->birth_date }}" readonly>
-            
-            <label for="coins">Coins:</label>
-            <input type="number" id="coins" name="coins" value="{{ auth_user()->buyer->coins }}" readonly>
-        @endif
-        
-        <button type="button" id="cancel-edit-btn">Cancel</button>
-        <button type="submit">Save</button>
+            <!-- Buttons -->
+            <div class="profile-actions">
+                <button type="button" id="cancel-edit-btn">Cancel</button>
+                <button type="submit" id="save-edit-btn">Save</button>
+            </div>
+        </div>
     </form>
 </section>
 
