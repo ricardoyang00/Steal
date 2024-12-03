@@ -30,8 +30,21 @@ class ProfileController extends Controller
         $user = auth_user();
 
         $rules = [
-            'username' => 'required|string|max:15|unique:users,username,' . $user->id,
-            'name' => 'required|string|max:30',
+            'username' => [
+                'required',
+                'string',
+                'min:5',
+                'max:15',
+                'unique:users,username,' . $user->id,
+                'regex:/^[a-zA-Z0-9._-]+$/',
+            ],
+            'name' => [
+                'required',
+                'string',
+                'min:5',
+                'max:30',
+                'regex:/^[a-zA-Z0-9 .\'-]+$/',
+            ],
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ];
 

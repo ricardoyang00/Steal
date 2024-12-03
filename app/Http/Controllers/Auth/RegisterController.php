@@ -40,8 +40,21 @@ class RegisterController extends Controller
     {
         $rules = [
             'user_type' => 'required|in:buyer,seller,admin',
-            'username' => 'required|string|min:5|max:15|unique:users',
-            'name' => 'required|string|min:5|max:30',
+            'username' => [
+                'required',
+                'string',
+                'min:5',
+                'max:15',
+                'unique:users',
+                'regex:/^[a-zA-Z0-9._-]+$/',
+            ],
+            'name' => [
+                'required',
+                'string',
+                'min:5',
+                'max:30',
+                'regex:/^[a-zA-Z0-9 .\'-]+$/',
+            ],
             'email' => ['required', 'email', 'max:320', new UniqueEmail],
             'password' => 'required|min:8|max:25|confirmed',
         ];
