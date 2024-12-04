@@ -30,7 +30,9 @@
         </script>
         <script type="text/javascript" src={{ url('js/app.js') }} defer>
         </script>
-        <script src="{{ asset('js/notifications/notifications.js') }}" defer></script>
+        @if (auth_user())
+            <script src="{{ asset('js/notifications/notifications.js') }}" defer></script>
+        @endif
     </head>
     <body>
         <main>

@@ -139,17 +139,20 @@ class NotificationController extends Controller{
 
     public function getUnreadCount() {
         try {
-            $userOrders = Order::where('buyer', auth()->id())->pluck('id');
-            $unreadCount = OrderNotification::whereIn('order_', $userOrders)
+            if(auth_user()){
+                $userOrders = Order::where('buyer', auth()->id())->pluck('id');
+                $unreadCount = OrderNotification::whereIn('order_', $userOrders)
                 ->where('is_read', false)
                 ->count();
     
-            return response()->json(['unread_count' => $unreadCount], 200);
+                return response()->json(['unread_count' => $unreadCount], 200);
+            }
         } catch (\Exception $e) {
             \Log::error("Error fetching unread notifications count: " . $e->getMessage());
             return response()->json(['error' => 'Unable to fetch unread notifications count'], 500);
         }
     }
+    
 
     public function deleteNotification($notificationId)
 {
