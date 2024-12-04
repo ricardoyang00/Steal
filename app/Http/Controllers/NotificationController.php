@@ -20,7 +20,7 @@ class NotificationController extends Controller{
         }
     }
 
-    public function createWishlistNotifications($game, $oldPrice, $newPrice) {
+    public function createPriceWishlistNotifications($game, $oldPrice, $newPrice) {
         try {
             $wishlists = DB::table('wishlist_game')
                 ->where('game_id', $game->id)
@@ -33,7 +33,7 @@ class NotificationController extends Controller{
             foreach ($wishlists as $wishlist) {
                 WishlistNotification::create([
                     'title' => "Update on price of wishlist game",
-                    'description' => "A game on your wishlist had its price updated. Game Name: {$game->name}, Old Price: $ {$oldPrice}, New Price: $ {$newPrice}",
+                    'description' => "A game on your wishlist had its price updated. Game Name: {$game->name}, Old Price: $ {$oldPrice}, New Price: $ {$newPrice}, Type: Price",
                     'time' => now(),
                     'is_read' => false,
                     'wishlist' => $wishlist,
@@ -42,7 +42,36 @@ class NotificationController extends Controller{
         } catch (\Exception $e) {
             \Log::error("Error creating wishlist notifications: " . $e->getMessage());
         }
-    }    
+    } 
+
+    public function createStockWishlistNotifications($game, $soldOut) {
+        try {
+            $wishlists = DB::table('wishlist')
+                ->where('game', $game->id)
+                ->pluck('id');
+    
+            if ($wishlists->isEmpty()) {
+                return;
+            }
+    
+            $description = $soldOut
+                ? "A game on your wishlist has just sold out. '{$game->name}'"
+                : "Good news! A game on your wishlist is now available again. Game Name:'{$game->name}', Type: Stock";
+    
+            foreach ($wishlists as $wishlist) {
+                WishlistNotification::create([
+                    'title' => "Stock Update for game on wishlist",
+                    'description' => $description,
+                    'time' => now(),
+                    'is_read' => false,
+                    'wishlist' => $wishlist,
+                ]);
+            }
+        } catch (\Exception $e) {
+            \Log::error("Error creating stock wishlist notifications: " . $e->getMessage());
+        }
+    }
+    
     
 
     private function getNotifications() {
@@ -147,13 +176,14 @@ class NotificationController extends Controller{
         try {
             $buyerId = auth_user()->id;
     
-            $notifications = WishlistNotification::whereHas('getWishlist', function ($query) use ($userId) {
+            $notifications = WishlistNotification::whereHas('getWishlist', function ($query) use ($buyerId) {
                 $query->where('buyer', $buyerId);
             })
             ->orderBy('time', 'desc')
             ->get()
             ->map(function ($notification) {
-                return [
+                // Default notification array
+                $parsedNotification = [
                     'id' => $notification->id,
                     'title' => $notification->title,
                     'description' => $notification->description,
@@ -161,6 +191,39 @@ class NotificationController extends Controller{
                     'is_read' => $notification->is_read,
                     'wishlist' => $notification->wishlist,
                 ];
+    
+                // Extract the game name from the description using regex
+                $gameName = null;
+                if (preg_match("/Game Name: ?'?([^,']+)'?/", $notification->description, $gameNameMatches)) {
+                    $gameName = $gameNameMatches[1] ?? null;
+                }
+    
+                // Parse type-specific information
+                if (strpos($notification->description, 'Type: Price') !== false) {
+                    // Extract old price and new price using regex
+                    $matches = [];
+                    preg_match('/Old Price: \$([\d.]+), New Price: \$([\d.]+)/', $notification->description, $matches);
+    
+                    $oldPrice = $matches[1] ?? null;
+                    $newPrice = $matches[2] ?? null;
+    
+                    // Remove the price and type details from the description
+                    $cleanedDescription = preg_replace('/Old Price: \$[\d.]+, New Price: \$[\d.]+, Type: Price/', '', $notification->description);
+    
+                    // Add parsed details to the notification array
+                    $parsedNotification['description'] = trim($cleanedDescription);
+                    $parsedNotification['old_price'] = $oldPrice;
+                    $parsedNotification['new_price'] = $newPrice;
+                    $parsedNotification['type'] = 'Price';
+                } elseif (strpos($notification->description, 'Type: Stock') !== false) {
+                    $parsedNotification['type'] = 'Stock';
+                } else {
+                    $parsedNotification['type'] = 'Unknown';
+                }
+    
+                $parsedNotification['game_name'] = $gameName;
+    
+                return $parsedNotification;
             });
     
             return $notifications;
@@ -169,6 +232,7 @@ class NotificationController extends Controller{
             return collect();
         }
     }
+    
 
     private function markNotificationsAsRead($notifications) {
         $unreadNotificationIds = array_map(function ($notification) {
