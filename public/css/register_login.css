@@ -283,7 +283,7 @@ input:-webkit-autofill:active {
     width: 100%;
     align-items: center;
     justify-content: center;
-    background-color: #4285F4;
+    background-color: var(--highlight-color);
     color: white !important;
     font-weight: bold;
     padding: 10px 20px;
@@ -302,5 +302,5 @@ input:-webkit-autofill:active {
 }
 
 .google-button:hover {
-    background-color: #357ae8;
+    background-color: var(--highlight-hover-color);
 }

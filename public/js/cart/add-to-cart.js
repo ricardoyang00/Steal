@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (data.success) {
                     button.textContent = "Added to cart";
                     button.disabled = true;
-                    button.style.backgroundColor = '#0044bc';
+                    button.style.backgroundColor = '#4e13a3';
                     setTimeout(() => {
                         button.textContent = "Add to cart";
                         button.disabled = false;

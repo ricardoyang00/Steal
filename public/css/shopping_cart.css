@@ -263,7 +263,7 @@
 }
 
 #checkout_button.disabled {
-    background: linear-gradient(90deg, rgba(101, 173, 215, 0.5), rgba(0, 123, 255, 0.5));
+    background: linear-gradient(90deg, rgba(130, 40, 220, 0.5), rgba(100, 25, 204, 0.5));
     cursor: not-allowed;
     color: var(--secondary-text-color);
 }
