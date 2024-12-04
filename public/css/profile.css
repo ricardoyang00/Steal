@@ -188,8 +188,8 @@
     background-color: #e36b0a;
 }
 
-/* Deactivate Account Button Styling */
-.deactivate-form button {
+/* Delete Account Button Styling */
+#delete-account-btn {
     margin: 10px;
     background-color: #dc3545;
     color: #ffffff;
@@ -203,7 +203,7 @@
     font-weight: bold;
 }
 
-.deactivate-form button:hover {
+#delete-account-btn:hover {
     background-color: #a71d2a;
 }
 

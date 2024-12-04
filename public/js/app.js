@@ -13,13 +13,13 @@ document.addEventListener('DOMContentLoaded', function() {
         successNotification.style.display = 'block';
         setTimeout(function() {
             successNotification.style.display = 'none';
-        }, 5000); // Hide after 5 seconds
+        }, 3000); // Hide after 3 seconds
     }
 
     if (errorNotification) {
         errorNotification.style.display = 'block';
         setTimeout(function() {
             errorNotification.style.display = 'none';
-        }, 5000); // Hide after 5 seconds
+        }, 3000); // Hide after 3 seconds
     }
 });

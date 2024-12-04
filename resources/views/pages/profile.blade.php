@@ -79,13 +79,24 @@
             @endif
 
             @if (!is_admin())
-                <form method="POST" action="{{ route('profile.deactivate') }}" class="deactivate-form">
-                    {{ csrf_field() }}
-                    <button type="submit" onclick="return confirm('Are you sure you want to deactivate your account? Please note that all your data will be anonymized as part of this process.');">
-                        Delete Account
-                    </button>
-                </form>
+                <button type="button" id="delete-account-btn">
+                    Delete Account
+                </button>
             @endif
+
+            <!-- Confirmation Modal -->
+            <div id="confirmation-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>Are you sure you want to delete your account?</h2>
+                    <p>Please note that this action is irreversible and all your data will be anonymized as part of this process.</p>
+                    <form method="POST" action="{{ route('profile.deactivate') }}" class="deactivate-form">
+                        {{ csrf_field() }}
+                        <button type="submit" class="confirm-btn">Confirm</button>
+                        <button type="button" class="cancel-btn">Cancel</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </section>
