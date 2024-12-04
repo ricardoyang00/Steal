@@ -86,7 +86,12 @@
                 </p>
             @elseif (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
                 <p class="review-form-message">
-                    You have already reviewed this game.
+                    <button class="btn-review-form-toggle">Edit Review</button>
+                    @if ($errors->any())
+                        <div class="error error-reviews">
+                            {{ $errors->first() }}
+                        </div>
+                    @endif
                 </p>
             @elseif (!auth_user())
                 <p class="review-form-message">
@@ -101,7 +106,16 @@
                 </p>
             @endif
             <div class="add-review-container" style="display: none;">
-                <form class="add-review-form" action="{{ url('reviews/add') }}" method="POST">
+                <div class="btn-close-div">
+                    @if (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
+                        <h3>Edit Review</h3>
+                        <form class="edit-review-form" action="{{ url('reviews/edit') }}" method="POST">
+                    @else
+                        <h3>Add Review</h3>
+                        <form class="add-review-form" action="{{ url('reviews/add') }}" method="POST">
+                    @endif
+                    <button class="btn-close-review-form">x</button>
+                </div>
                     @csrf
                     <input type="hidden" name="game_id" value="{{ $game->id }}">
                     <div class="form-group">

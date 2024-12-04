@@ -76,6 +76,7 @@
 }
 
 .game-details-page .btn-review-form-toggle {
+    margin-top: 0;
     padding: 8px 16px;
     background-color: whitesmoke;
     color: black;
@@ -152,16 +153,10 @@
 .game-details-page .game-reviews {
     display: flex;
     flex-direction: row;
-    .review-controls {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        margin-bottom: 16px;
-    }
 }
 
 .game-details-page .review-controls {
+    text-align: center;
     padding: 32px;
     background-color: var(--explore-table-color);
     border-radius: 8px;
@@ -183,4 +178,31 @@
     text-align: center;
     margin: auto;
     margin-top: 32px;
+}
+
+.game-details-page {
+    .game-reviews {
+        .reviews .add-review-container {
+            display: flex;
+            .btn-close-div{
+                display: flex;
+                justify-content: space-between;
+                flex-direction: row;
+            }
+            .btn-close-review-form {
+                color: var(--error-color);
+                font-size: 1.5rem;
+                cursor: pointer;
+                margin-right: 0;
+                background-color: whitesmoke;
+                border-radius: 4px;
+                width: 3rem;
+                height: 3rem;
+            }
+            .btn-close-review-form:hover {
+                background-color: lightgray;
+                border-color: var(--error-color);
+            }
+        }
+    }
 }

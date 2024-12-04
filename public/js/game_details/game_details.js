@@ -53,4 +53,11 @@ document.addEventListener('DOMContentLoaded', function() {
         reviewForm.classList.toggle('visible');
         reviewFormToggle.textContent = reviewForm.classList.contains('visible') ? 'Close review form' : 'Add review';
     });
+
+    const closeReviewForm = document.querySelector('.btn-close-review-form');
+    closeReviewForm.addEventListener('click', function() {
+        reviewForm.style.display = 'none';
+        reviewForm.classList.remove('visible');
+        reviewFormToggle.textContent = 'Add review';
+    });
 });
