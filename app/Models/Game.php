@@ -35,7 +35,7 @@ class Game extends Model
 
     public function age()
     {
-        return $this->belongsTo(Age::class, 'age_id', 'id');
+        return $this->belongsTo(Age::class);
     }
 
     public function shoppingCarts()
@@ -86,11 +86,16 @@ class Game extends Model
     }
 
     public function getThumbnailSmallPath() {
-        return $this->thumbnail_small_path ?? '/thumbnail_small/default_thumbnail_small.jpg';
+        return $this->thumbnail_small_path ?? 'images/thumbnail_small/default_thumbnail_small.jpg';
     }
 
     public function getThumbnailLargePath() {
-        return $this->thumbnail_large_path ?? '/thumbnail_large/default_thumbnail_large.jpg';
+        return $this->thumbnail_large_path ?? 'images/thumbnail_large/default_thumbnail_large.jpg';
+    }
+
+    public function images()
+    {
+        return $this->hasMany(GameMedia::class, 'game');
     }
 
     public function getReleaseDate()

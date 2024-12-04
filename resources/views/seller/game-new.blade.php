@@ -9,6 +9,16 @@
 <div class="container mt-5">
     <h1><a href="{{ url('seller/products') }}"><i class="fa-solid fa-chevron-left" style="color: white;"></i></a>New Game</h1>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <form id="game-form" action="{{ route('games.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <!-- name -->
@@ -24,7 +34,7 @@
         <!-- price -->
         <div class="form-group">
             <label for="price">Price (€)</label>
-            <input type="number" name="price" class="form-control" step="0.01" required>
+            <input type="number" name="price" class="form-control" step="0.01" max="9999.99" required>
         </div>
         <!-- release date -->
         <div class="form-group">
@@ -42,7 +52,7 @@
                 <div class="form-check">
                     <input type="radio" name="age_id" value="{{ $age->id }}" class="form-check-input" id="age{{ $age->id }}" required>
                     <label class="form-check-label" for="age{{ $age->id }}">
-                        <img src="{{ asset('images/' . $age->image_path) }}" alt="{{ $age->name }}" style="width: 50px; height: auto;">
+                        <img src="{{ asset($age->image_path) }}" alt="{{ $age->name }}" style="width: 50px; height: auto;">
                         {{ $age->name }}
                         <a href="{{ url('/age/' . $age->id) }}" class="btn btn-info btn-sm" target="_blank"><i class="fa-solid fa-circle-info" style="color: white;"></i></a>
                     </label>
@@ -89,7 +99,27 @@
                 </div>
             @endforeach
         </div>
-        <!-- media -->
+        <!-- large thumbnails -->
+        <div class="form-group">
+            <label for="thumbnail_large_path">Thumbnail Large (16:9)</label>
+            <input type="file" name="thumbnail_large_path" class="form-control-file" required>
+            <small class="form-text text-muted">Recommended aspect ratio: 16:9</small>
+            <img id="thumbnail_large_preview" src="#" alt="Thumbnail Large Preview" style="display: none; width: 320px; height: 180px;"/>
+        </div>
+        <!-- small thumbnails -->
+        <div class="form-group">
+            <label for="thumbnail_small_path">Thumbnail Small (270x400)</label>
+            <input type="file" name="thumbnail_small_path" class="form-control-file" required>
+            <small class="form-text text-muted">Recommended size: 270x400</small>
+            <img id="thumbnail_small_preview" src="#" alt="Thumbnail Small Preview" style="display: none; width: 270px; height: 400px;"/>
+        </div>
+        <!-- additional images -->
+        <div class="form-group">
+            <label for="additional_images">Additional Large Images (16:9)</label>
+            <input type="file" name="additional_images[]" class="form-control-file" multiple>
+            <small class="form-text text-muted">Recommended aspect ratio: 16:9. You can upload multiple images.</small>
+            <div id="additional_images_preview" class="d-flex flex-wrap"></div>
+        </div>
 
         
         <button type="submit" class="btn btn-primary">Create Game</button>

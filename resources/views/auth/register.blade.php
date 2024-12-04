@@ -51,6 +51,12 @@
     </div>
     
     <div id="buyer_fields">
+      <div class="label-wrapper">
+        <label for="birth_date" class="placeholder">Birth Date</label>
+        <button type="button" id="birth-date-info-btn" class="info-button" title="The birthdate is definitive and cannot be altered at a later time.">
+            <i class="fas fa-info-circle"></i>
+        </button>
+      </div>
       <input id="birth_date" type="date" name="birth_date" value="{{ old('birth_date') }}">
     </div>
     

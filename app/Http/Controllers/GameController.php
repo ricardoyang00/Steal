@@ -8,10 +8,12 @@ use App\Models\Platform;
 use App\Models\Language;
 use App\Models\Player;
 use App\Models\Age;
+use App\Models\GameMedia;
 use App\Models\Review;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
 
 class GameController extends Controller
 {    
@@ -245,13 +247,16 @@ class GameController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'price' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0|max:9999.99',
             'release_date' => 'nullable|date',
             'age_id' => 'required|exists:age,id',
             'categories' => 'array',
             'platforms' => 'array',
             'languages' => 'array',
-            'players' => 'array'
+            'players' => 'array',
+            'thumbnail_small_path' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'thumbnail_large_path' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'additional_images.*' => 'image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
         try {
@@ -263,6 +268,35 @@ class GameController extends Controller
             $game->age_id = $request->age_id;
             $game->owner = auth()->user()->id;
             $game->is_active = true;
+
+            // Handle small thumbnail upload
+            if ($request->hasFile('thumbnail_small_path')) {
+                // Delete the old small thumbnail if it exists
+                if ($game->thumbnail_small_path && File::exists(public_path($game->thumbnail_small_path))) {
+                    File::delete(public_path($game->thumbnail_small_path));
+                }
+
+                // Store the new small thumbnail
+                $file = $request->file('thumbnail_small_path');
+                $smallPath = 'images/thumbnail_small/' . uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('images/thumbnail_small'), $smallPath);
+                $game->thumbnail_small_path = $smallPath;
+                Log::info('Small thumbnail uploaded', ['path' => $smallPath]);
+            }
+            // Handle large thumbnail upload
+            if ($request->hasFile('thumbnail_large_path')) {
+                // Delete the old large thumbnail if it exists
+                if ($game->thumbnail_large_path && File::exists(public_path($game->thumbnail_large_path))) {
+                    File::delete(public_path($game->thumbnail_large_path));
+                }
+
+                // Store the new large thumbnail
+                $file = $request->file('thumbnail_large_path');
+                $largePath = 'images/thumbnail_large/' . uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('images/thumbnail_large'), $largePath);
+                $game->thumbnail_large_path = $largePath;
+                Log::info('Large thumbnail uploaded', ['path' => $largePath]);
+            }
 
             $game->save();
             Log::info('Game created successfully', ['game_id' => $game->id]);
@@ -278,7 +312,21 @@ class GameController extends Controller
 
             $game->players()->sync($request->players);
             Log::info('Players synced', ['players' => $request->players]);
+            
+            if ($request->hasFile('additional_images')) {
+                foreach ($request->file('additional_images') as $index => $image) {
+                    $imagePath = 'images/gamemedia/' . uniqid() . '.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('images/gamemedia'), $imagePath);
+                    GameMedia::create([
+                        'path' => $imagePath,
+                        'game' => $game->id,
+                        'order_' => $index
+                    ]);
+                    Log::info('Additional image uploaded', ['path' => $imagePath, 'order' => $index]);
+                }
+            }
 
+            Log::info('Game created successfully', ['game_id' => $game->id]);
             return redirect()->route('seller.products')->with('success', 'Game created successfully.');
         } catch (\Exception $e) {
             Log::error('Error creating game', ['error' => $e->getMessage()]);

@@ -40,7 +40,7 @@
                 <div class="form-check">
                     <input type="radio" name="age_id" value="{{ $age->id }}" class="form-check-input" id="age{{ $age->id }}" {{ $game->age_id == $age->id ? 'checked' : '' }}>
                     <label class="form-check-label" for="age{{ $age->id }}">
-                        <img src="{{ asset('images/' . $age->image_path) }}" alt="{{ $age->name }}" style="width: 50px; height: auto;">
+                        <img src="{{ asset($age->image_path) }}" alt="{{ $age->name }}" style="width: 50px; height: auto;">
                         {{ $age->name }}
                         <a href="{{ url('/age/' . $age->id) }}" class="btn btn-info btn-sm" target="_blank"><i class="fa-solid fa-circle-info" style="color: white;"></i></a>
                     </label>
