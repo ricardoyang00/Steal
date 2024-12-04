@@ -72,7 +72,7 @@
     
     <div class="game-reviews" data-id="{{ $game->id }}">
         <h2>Reviews</h2>
-        @if (auth_user() && auth_user()->buyer)
+        @if (auth_user() && auth_user()->buyer && auth()->user()->hasDeliveredPurchase($game->id) && !$game->hasReviewedGame(auth()->user()))
             <button class="btn-review-form-toggle">Add Review</button>
             <div class="add-review-container" style="display: none;">
                 <form class="add-review-form" action="{{ url('reviews/add') }}" method="POST">
@@ -109,8 +109,11 @@
                     {{ $errors->first() }}
                 </div>
             @endif
-        @elseif (!auth_user())
-            <button onclick="window.location.href = '/login';" class="btn-review-form-toggle">Add Review</button>
+        @endif
+        @if (!$game->hasReviews())
+            <p class="no-review-message">
+                There are no reviews for this game yet.
+            </p>
         @endif
     </div>
 </div>

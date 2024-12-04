@@ -101,4 +101,19 @@ class Game extends Model
 
         return Carbon::parse($this->release_date)->format('d M, Y');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'game', 'id');
+    }
+
+    public function hasReviewedGame($user)
+    {
+        return $this->reviews()->where('author', $user->id)->exists();
+    }
+
+    public function hasReviews()
+    {
+        return $this->reviews()->exists();
+    }
 }

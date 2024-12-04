@@ -1160,7 +1160,7 @@ insert into Review (title, description, positive, author, game) values ('Amazing
 insert into Review (title, description, positive, author, game) values ('Not Worth the Price', 'The game is overpriced for the content it offers.', false, 2, 1);
 insert into Review (title, description, positive, author, game) values ('Great Graphics', 'The graphics are stunning and very detailed.', true, 1, 3);
 insert into Review (title, description, positive, author, game) values ('Boring Storyline', 'The storyline is very predictable and boring.', false, 1, 4);
-insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 1, 5);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 4, 5);
 insert into Review (title, description, positive, author, game) values ('Too Many Bugs', 'The game has too many bugs and crashes often.', false, 1, 6);
 insert into Review (title, description, positive, author, game) values ('Immersive Experience', 'The game provides an immersive experience with its detailed world.', true, 1, 7);
 insert into Review (title, description, positive, author, game) values ('Lack of Content', 'The game lacks content and gets repetitive quickly.', false, 1, 8);

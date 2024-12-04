@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Order;
+use App\Models\Buyer;
+use Illuminate\Support\Facades\DB;
 
 // Added to define Eloquent relationships.
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -63,4 +66,16 @@ class User extends Authenticatable
     {
         return $this->hasOne(Seller::class, 'id', 'id');
     }
+
+    public function hasDeliveredPurchase($gameId)
+    {
+        return DB::table('purchase')
+            ->join('orders', 'purchase.order_', '=', 'orders.id')
+            ->join('deliveredpurchase', 'purchase.id', '=', 'deliveredpurchase.id')
+            ->join('cdk', 'deliveredpurchase.cdk', '=', 'cdk.id')
+            ->where('cdk.game', $gameId)
+            ->where('orders.buyer', $this->id)
+            ->exists();
+    }
+
 }
