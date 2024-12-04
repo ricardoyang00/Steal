@@ -99,7 +99,6 @@ class NotificationController extends Controller{
         $currentPage = request()->get('page', 1); // Get the current page from the request, default to 1
         $currentItems = array_slice($notifications, ($currentPage - 1) * $perPage, $perPage);
 
-        $this->markNotificationsAsRead($currentItems);
     
         return new LengthAwarePaginator(
             $currentItems, // Items for the current page
@@ -231,20 +230,30 @@ class NotificationController extends Controller{
         }
     }
     
-    
 
-    private function markNotificationsAsRead($notifications) {
-        $unreadNotificationIds = array_map(function ($notification) {
-            return !$notification['is_read'] ? $notification['id'] : null;
-        }, $notifications);
-    
-        // Filter out null values
-        $unreadNotificationIds = array_filter($unreadNotificationIds);
-    
-        if (!empty($unreadNotificationIds)) {
-            OrderNotification::whereIn('id', $unreadNotificationIds)->update(['is_read' => true]);
+    public function markNotificationAsRead($notificationId)
+{
+    try {
+        $notification = OrderNotification::find($notificationId) ??
+                        WishlistNotification::find($notificationId) ??
+                        GameNotification::find($notificationId);
+
+        if (!$notification) {
+            return response()->json(['error' => 'Notification not found'], 404);
         }
+
+        if (!$notification->is_read) {
+            $notification->update(['is_read' => true]);
+        }
+
+        return response()->json(['message' => 'Notification marked as read'], 200);
+
+    } catch (\Exception $e) {
+        \Log::error('Error marking notification as read: ' . $e->getMessage());
+        return response()->json(['error' => 'Unable to mark notification as read'], 500);
     }
+}
+
     
 
     public function getUnreadCount() {

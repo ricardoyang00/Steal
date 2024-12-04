@@ -16,7 +16,7 @@
     @else
         <div class="notifications">
             @foreach ($notifications as $notification)
-                <div class="notification">
+                <div class="notification" data-id="{{ $notification['id'] }}" data-type="{{ $notification['type'] }}">
                     <div class="notification-card">
                         <div class="notification-header">
                             <h5 class="notification-title">{{ $notification['title'] }}</h5>
