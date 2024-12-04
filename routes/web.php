@@ -15,6 +15,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\StaticPagesController;
 use App\Http\Controllers\AgeController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +86,13 @@ Route::middleware('auth')->group(function (){
     Route::get('/user/{id}/order-history', [PurchaseHistoryController::class, 'orderHistory'])->name('purchaseHistory');
 });
 
+// Notifications
+Route::middleware('auth')->group(function (){
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
+    Route::get('/notifications/unread-count', [NotificationController::class, 'getUnreadCount'])->name('notifications.unreadCount');
+    Route::delete('/notifications/{id}', [NotificationController::class, 'deleteNotification'])->name('notifications.delete');
+});
+
 // Redirect GET /profile/edit to /profile
 Route::get('/profile/edit', function () {
     return redirect()->route('profile');
@@ -108,6 +116,7 @@ Route::prefix('admin')->middleware('auth:admin')->controller(UserController::cla
     Route::get('/users/search', 'searchUsers')->name('admin.users.search');
     Route::get('/users/{id}', 'viewProfile')->name('admin.users.profile');
     Route::get('/all-users', 'listBuyersAndSellers')->name('admin.users.all');
+    Route::put('/admin/users/{id}/reset-picture', 'resetPicture')->name('admin.users.resetPicture');
     Route::post('/users/{id}/change-username', 'changeUsername')->name('admin.users.changeUsername');
     Route::post('/users/{id}/change-name', 'changeName')->name('admin.users.changeName');
     Route::post('/users/{id}/change-coins', 'changeCoins')->name('admin.users.changeCoins');

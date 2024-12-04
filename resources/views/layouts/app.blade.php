@@ -23,12 +23,17 @@
         <link href="{{ url('css/shopping_cart.css') }}" rel="stylesheet">
         <link href="{{ url('css/home_page.css') }}" rel="stylesheet">
         <link href="{{ url('css/wishlist.css') }}" rel="stylesheet">
+        <link href="{{ url('css/profile.css') }}" rel="stylesheet">
+        <link href="{{ url('css/notifications.css') }}" rel="stylesheet">
         <script type="text/javascript">
             // Fix for Firefox autofocus CSS bug
             // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
         </script>
         <script type="text/javascript" src={{ url('js/app.js') }} defer>
         </script>
+        @if (auth_user())
+            <script src="{{ asset('js/notifications/notifications.js') }}" defer></script>
+        @endif
     </head>
     <body>
         <main>
@@ -62,8 +67,9 @@
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                             @endif
-                            <a class="icon-button">
-                                <i class="fa-regular fa-bell"></i>
+                            <a class="icon-button" href="{{ url('/notifications') }}">
+                                <i class="fas fa-bell"></i>
+                                <span id="notification-count" class="badge"></span>
                             </a>
                         </div>
                     @else

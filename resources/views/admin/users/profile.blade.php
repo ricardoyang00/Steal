@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1>Profile</h1>
+<script src="{{ asset('js/admin/user-profile.js') }}" defer></script>
 
 @if (session('success'))
     <div class="alert alert-success">
@@ -12,73 +12,149 @@
     </div>
 @endif
 
-<p><strong>User ID:</strong> {{ $user->id }}</p>
 @php
-    $profilePicture = $user->profile_picture ? asset($user->profile_picture) : asset('images/profile_pictures/default-profile-picture.png');
+    $profilePicturePath = $user->profile_picture;
+    $profilePictureFullPath = public_path($profilePicturePath);
+    $profilePicture = $user->profile_picture && file_exists($profilePictureFullPath) 
+        ? asset($profilePicturePath) 
+        : asset('images/profile_pictures/default-profile-picture.png');
 @endphp
-<img src="{{ $profilePicture }}" alt="Profile Picture" style="width: 150px; height: 150px; object-fit: cover;">
-        
-<p><strong>Username:</strong> {{ $user->username }} <button onclick="document.getElementById('change-username-form').submit();">Change Innapropriate Username</button></p>
-<p><strong>Name:</strong> {{ $user->name }} <button onclick="document.getElementById('change-name-form').submit();">Change Innapropriate Name</button></p>
-<p><strong>Email:</strong> {{ $user->email }}</p>
-<p><strong>Status:</strong>
-    @if (!$user->is_active)
-        Disabled
-    @elseif ($user->is_blocked)
-        Blocked
-    @else
-        Active
-    @endif
-</p>
-@if ($user->buyer)
-    <p><strong>Role:</strong> Buyer</p>
-    <p><strong>NIF:</strong> {{ $user->buyer->nif ?? 'NONE' }}</p>
-    <p><strong>Birth Date:</strong> {{ $user->buyer->birth_date }}</p>
-    <p><strong>Coins:</strong> 
-        {{ $user->buyer->coins }}
-        @if ($user->is_active)
-            <form id="change-coins-form" method="POST" action="{{ route('admin.users.changeCoins', $user->id) }}" style="display: inline;">
-                {{ csrf_field() }}
-                <input type="number" name="coins" value="{{ $user->buyer->coins }}" style="width: 100px;">
-                <button type="submit">Change Coins</button>
+
+<div id="admin-check-user-profile" style="display: flex; justify-content: center">
+    <div class="profile-card-admin-view">
+        <!-- Profile Picture -->
+        <div class="profile-picture-admin-view">
+            <img src="{{ $profilePicture }}" alt="Profile Picture" id="editable-profile-picture">
+            <form method="POST" action="{{ route('admin.users.resetPicture', $user->id) }}" id="reset-profile-picture-form">
+                @csrf
+                @method('PUT')
+                <button type="submit" id="reset-profile-picture-btn" class="reset-button">
+                    <i class="fas fa-undo"></i> Reset to Default
+                </button>
             </form>
-        @endif
-        @if ($errors->has('coins'))
-            <span class="error">
-                {{ $errors->first('coins') }}
-            </span>
-        @endif
-    </p>
-@elseif ($user->seller)
-    <p><strong>Role:</strong> Seller</p>
-    <p><strong>Seller Information:</strong> This user is a seller.</p>
-@endif
+        </div>
 
-@if ($user->is_active)
-    <form id="change-username-form" method="POST" action="{{ route('admin.users.changeUsername', $user->id) }}">
-        {{ csrf_field() }}
-    </form>
+        <!-- Profile Details -->
+        <div class="profile-details">
+            @if ($user->is_active)
+                <form id="change-username-form" method="POST" action="{{ route('admin.users.changeUsername', $user->id) }}">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="username" value="{{ $user->username }}">
+                </form>
+            
+                <form id="change-name-form" method="POST" action="{{ route('admin.users.changeName', $user->id) }}">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="name" value="{{ $user->name }}">
+                </form>
+            @endif
 
-    <form id="change-name-form" method="POST" action="{{ route('admin.users.changeName', $user->id) }}">
-        {{ csrf_field() }}
-    </form>
+            <div class="detail-box">
+                <div class="detail-label"><strong>User ID</strong></div>
+                <div class="detail-info">{{ $user->id }}</div>
+            </div>
+            <div class="detail-box">
+                <div class="detail-label"><strong>Username</strong></div>
+                <div class="detail-info">
+                    {{ $user->username }}
+                    @if ($user->is_active)
+                        <button type="submit" form="change-username-form" class="change-button">Change</button>
+                    @endif
+                </div>
+            </div>
+            <div class="detail-box">
+                <div class="detail-label"><strong>Name</strong></div>
+                <div class="detail-info">
+                    {{ $user->name }}
+                    @if ($user->is_active)
+                        <button type="submit" form="change-name-form" class="change-button">Change</button>
+                    @endif
+                </div>
+            </div>
+            <div class="detail-box">
+                <div class="detail-label"><strong>Email</strong></div>
+                <div class="detail-info">{{ $user->email }}</div>
+            </div>
+            <div class="detail-box">
+                <div class="detail-label"><strong>Status</strong></div>
+                <div class="detail-info" id="status-info">
+                    @if (!$user->is_active)
+                        Disabled
+                    @elseif ($user->is_blocked)
+                        Blocked
+                    @else
+                        Active
+                    @endif
+                </div>
+            </div>
+            <div class="detail-box">
+                <div class="detail-label"><strong>Role</strong></div>
+                <div class="detail-info">
+                    @if ($user->buyer)
+                        Buyer
+                    @elseif ($user->seller)
+                        Seller
+                    @endif
+                </div>
+            </div>
+            @if ($user->buyer)
+                <div class="detail-box">
+                    <div class="detail-label"><strong>NIF</strong></div>
+                    <div class="detail-info">{{ $user->buyer->nif ?? 'NONE' }}</div>
+                </div>
+                <div class="detail-box">
+                    <div class="detail-label"><strong>Birth Date</strong></div>
+                    <div class="detail-info">{{ $user->buyer->birth_date }}</div>
+                </div>
+                <div class="detail-box">
+                    <div class="detail-label"><strong>Coins</strong></div>
+                    <div class="detail-info">
+                        <span id="coins-display">{{ $user->buyer->coins }}</span>
+                        @if ($user->is_active)
+                            <button type="button" id="edit-coins-btn" class="edit-button">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <form id="change-coins-form" method="POST" action="{{ route('admin.users.changeCoins', $user->id) }}" style="display: none; margin-left: 10px;">
+                                {{ csrf_field() }}
+                                <input type="number" name="coins" value="{{ $user->buyer->coins }}">
+                                <button type="button" id="cancel-change-coins-btn">Cancel</button>
+                                <button type="submit" id="confirm-change-coins-btn">Confirm</button>
+                            </form>
+                            @if ($errors->has('coins'))
+                                <span class="error">
+                                    {{ $errors->first('coins') }}
+                                </span>
+                            @endif
+                        @endif
+                    </div>
+                </div>
+            @elseif ($user->seller)
+                <div class="detail-box">
+                    <div class="detail-label"><strong>Seller Information</strong></div>
+                    <div class="detail-info">This user is a seller.</div>
+                </div>
+            @endif
 
-    @if ($user->is_blocked)
-        <form id="unblock-user-form" method="POST" action="{{ route('admin.users.unblock', $user->id) }}">
-            {{ csrf_field() }}
-            <button type="submit" onclick="return confirm('Are you sure you want to unblock this user?');">Unblock User</button>
-        </form>
-    @else
-        <form id="block-user-form" method="POST" action="{{ route('admin.users.block', $user->id) }}">
-            {{ csrf_field() }}
-            <button type="submit" onclick="return confirm('Are you sure you want to block this user?');">Block User</button>
-        </form>
-    @endif
-
-    <form id="deactivate-user-form" method="POST" action="{{ route('admin.users.deactivate', $user->id) }}">
-        {{ csrf_field() }}
-        <button type="submit" onclick="return confirm('Are you sure you want to deactivate this user?');">Deactivate User</button>
-    </form>
-@endif
-
+            <!-- Buttons -->
+            <div class="profile-actions">
+                @if ($user->is_blocked)
+                    <form id="unblock-user-form" method="POST" action="{{ route('admin.users.unblock', $user->id) }}">
+                        {{ csrf_field() }}
+                        <button id="block-unblock-btn" type="submit" onclick="return confirm('Are you sure you want to unblock this user?');">Unblock User</button>
+                    </form>
+                @else
+                    <form id="block-user-form" method="POST" action="{{ route('admin.users.block', $user->id) }}">
+                        {{ csrf_field() }}
+                        <button id="block-unblock-btn" type="submit" onclick="return confirm('Are you sure you want to block this user?');">Block User</button>
+                    </form>
+                @endif
+                
+                <form id="deactivate-user-form" method="POST" action="{{ route('admin.users.deactivate', $user->id) }}">
+                    {{ csrf_field() }}
+                    <button id="deactivate-btn" type="submit" onclick="return confirm('Are you sure you want to deactivate this user?');">Deactivate User</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    
 @endsection

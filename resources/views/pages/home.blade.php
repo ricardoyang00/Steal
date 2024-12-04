@@ -18,7 +18,6 @@
         @endforeach
     </div>
 
-    <!-- Smaller cards for similar games -->
     <div class="similar-games-section">
         <div class="similar-game-cards">
             @foreach ($similarGames as $similarGame)

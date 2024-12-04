@@ -13,7 +13,7 @@ Class Order extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['buyer', 'payment'];
+    protected $fillable = ['buyer', 'payment', 'time'];
 
     public function getBuyer()
     {
