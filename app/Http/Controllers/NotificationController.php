@@ -296,11 +296,31 @@ class NotificationController extends Controller{
     public function deleteNotification($notificationId)
 {
     try {
-        $notification = OrderNotification::findOrFail($notificationId);
+        $notification = null;
 
-        if ($notification->getOrder && $notification->getOrder->buyer === auth()->id()) {
-            $notification->delete();
-            return response()->json(['message' => 'Notification deleted successfully'], 200);
+        $notification = OrderNotification::find($notificationId) ??
+                        WishlistNotification::find($notificationId) ??
+                        GameNotification::find($notificationId);
+
+        if (!$notification) {
+            return response()->json(['error' => 'Notification not found'], 404);
+        }
+
+        if ($notification instanceof OrderNotification) {
+            if ($notification->getOrder && $notification->getOrder->buyer === auth()->id()) {
+                $notification->delete();
+                return response()->json(['message' => 'Order notification deleted successfully'], 200);
+            }
+        } elseif ($notification instanceof WishlistNotification) {
+            if ($notification->getWishlist && $notification->getWishlist->buyer === auth()->id()) {
+                $notification->delete();
+                return response()->json(['message' => 'Wishlist notification deleted successfully'], 200);
+            }
+        } elseif ($notification instanceof GameNotification) {
+            if ($notification->getGame && $notification->getGame->seller === auth()->id()) {
+                $notification->delete();
+                return response()->json(['message' => 'Game notification deleted successfully'], 200);
+            }
         }
 
         return response()->json(['error' => 'Unauthorized'], 403);
@@ -309,6 +329,7 @@ class NotificationController extends Controller{
         return response()->json(['error' => 'Unable to delete notification'], 500);
     }
 }
+
 
 
     
