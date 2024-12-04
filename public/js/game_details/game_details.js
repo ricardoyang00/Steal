@@ -51,7 +51,13 @@ document.addEventListener('DOMContentLoaded', function() {
     reviewFormToggle.addEventListener('click', function() {
         reviewForm.style.display = reviewForm.classList.contains('visible') ? 'none' : 'block';
         reviewForm.classList.toggle('visible');
-        reviewFormToggle.textContent = reviewForm.classList.contains('visible') ? 'Close review form' : 'Add review';
+        if (reviewForm.classList.contains('visible')) {
+            reviewFormToggle.textContent = 'Close form';
+        } else if (reviewForm.classList.contains('edit')) {
+            reviewFormToggle.textContent = 'Edit review';
+        } else {
+            reviewFormToggle.textContent = 'Add review';
+        }
     });
 
     const closeReviewForm = document.querySelector('.btn-close-review-form');

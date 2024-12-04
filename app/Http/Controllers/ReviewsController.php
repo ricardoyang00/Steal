@@ -53,4 +53,35 @@ class ReviewsController extends Controller
         return view('pages.game-details', compact('game'));
     }
 
+    public function deleteReview(Request $request)
+    {
+        $reviewId = $request->input('review_id');
+
+        $review = Review::find($reviewId);
+
+        $gameId = $review->game;
+        $game = Game::find($gameId);
+
+        $review->delete();
+
+        return view('pages.game-details', compact('game'));
+    }
+
+    public function updateReview(Request $request)
+    {
+        $reviewId = $request->input('review_id');
+
+        $review = Review::find($reviewId);
+
+        $gameId = $review->game;
+        $game = Game::find($gameId);
+
+        $review->title = $request->input('title');
+        $review->description = $request->input('description');
+        $review->positive = $request->input('positive');
+
+        $review->save();
+
+        return view('pages.game-details', compact('game'));
+    }
 }

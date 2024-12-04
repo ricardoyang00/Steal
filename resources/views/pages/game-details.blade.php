@@ -75,6 +75,7 @@
         <div class="review-controls">
             @if (auth_user() && auth_user()->buyer && auth()->user()->hasDeliveredPurchase($game->id) && !$game->hasReviewedGame(auth()->user()))
                 <button class="btn-review-form-toggle">Add Review</button>
+                <button class="btn-review-remove" style="display: none;">Remove Review</button>
                 @if ($errors->any())
                     <div class="error error-reviews">
                         {{ $errors->first() }}
@@ -87,6 +88,7 @@
             @elseif (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
                 <p class="review-form-message">
                     <button class="btn-review-form-toggle">Edit Review</button>
+                    <button class="btn-review-remove">Remove Review</button>
                     @if ($errors->any())
                         <div class="error error-reviews">
                             {{ $errors->first() }}
@@ -109,12 +111,12 @@
                 <div class="btn-close-div">
                     @if (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
                         <h3>Edit Review</h3>
-                        <form class="edit-review-form" action="{{ url('reviews/edit') }}" method="POST">
+                        <form class="edit-review-form" action="{{ url('reviews/update') }}" method="POST">
                     @else
                         <h3>Add Review</h3>
                         <form class="add-review-form" action="{{ url('reviews/add') }}" method="POST">
                     @endif
-                    <button class="btn-close-review-form">x</button>
+                    <button class="btn-close-review-form">Close</button>
                 </div>
                     @csrf
                     <input type="hidden" name="game_id" value="{{ $game->id }}">
@@ -141,7 +143,9 @@
                             </label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit Review</button>
+                    <div class="btn-submit-div">
+                        <button type="submit" class="btn btn-primary btn-submit">Submit Review</button>
+                    </div>
                 </form>
             </div>
             <!-- Reviews will be loaded here by the JS -->
