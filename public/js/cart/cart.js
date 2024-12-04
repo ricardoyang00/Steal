@@ -141,8 +141,6 @@ const checkoutButton = document.getElementById('checkout_button');
                 // Redirect to the payment method selection page
                 window.location.href = '/checkout/payment';
             } else {
-                // Alert the user and redirect to the login page
-                alert('You must be logged in as a buyer to proceed to checkout.');
                 window.location.href = '/login';
             }
         });
