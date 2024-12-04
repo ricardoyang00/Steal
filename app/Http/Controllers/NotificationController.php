@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Order;
+use App\Models\Wishlist;
+use App\Models\Game;
 use App\Models\OrderNotification;
 use App\Models\WishlistNotification;
 use App\Models\GameNotification;
@@ -248,17 +250,46 @@ class NotificationController extends Controller{
     public function getUnreadCount() {
         try {
             if(auth_user()){
-                $userOrders = Order::where('buyer', auth()->id())->pluck('id');
-                $unreadCount = OrderNotification::whereIn('order_', $userOrders)
-                ->where('is_read', false)
-                ->count();
+
+                $unreadCount = 0;
+
+                if(auth_user()->buyer){
+
+                    $buyerId = auth_user()->id;
+                    $userOrders = Order::where('buyer', $buyerId)->pluck('id');
+                    $unreadOrderNotifications = OrderNotification::whereIn('order_', $userOrders)
+                    ->where('is_read', false)
+                    ->count();
+
+                    $userWishlists = Wishlist::where('buyer', $buyerId)->pluck('id');
+                    $unreadWishlistNotifications = WishlistNotification::whereIn('wishlist', $userWishlists)
+                    ->where('is_read', false)
+                    ->count();
+
+                    $unreadCount = $unreadOrderNotifications + $unreadWishlistNotifications;
     
+                }
+
+
+                else if(auth_user()->seller){
+
+                    $sellerId = auth_user()->id;
+                    $sellerGames = Game::where('seller', $sellerId)->pluck('id');
+                    $unreadGameNotifications = GameNotification::whereIn('game', $sellerGames)
+                    ->where('is_read', false)
+                    ->count();
+                    
+                    $unreadCount = $unreadGameNotifications;
+
+                }
                 return response()->json(['unread_count' => $unreadCount], 200);
             }
+
         } catch (\Exception $e) {
             \Log::error("Error fetching unread notifications count: " . $e->getMessage());
             return response()->json(['error' => 'Unable to fetch unread notifications count'], 500);
         }
+
     }
     
 
