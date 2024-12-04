@@ -36,15 +36,6 @@
         <!-- Profile Details -->
         <div class="profile-details">
             @if ($user->is_active)
-                <form id="change-username-form" method="POST" action="{{ route('admin.users.changeUsername', $user->id) }}">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="username" value="{{ $user->username }}">
-                </form>
-            
-                <form id="change-name-form" method="POST" action="{{ route('admin.users.changeName', $user->id) }}">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="name" value="{{ $user->name }}">
-                </form>
             @endif
 
             <div class="detail-box">
@@ -56,7 +47,15 @@
                 <div class="detail-info">
                     {{ $user->username }}
                     @if ($user->is_active)
-                        <button type="submit" form="change-username-form" class="change-button">Change</button>
+                    <form id="change-username-form" method="POST" action="{{ route('admin.users.changeUsername', $user->id) }}">
+                        {{ csrf_field() }}
+                        <button type="button" id="change-button" class="confirmation-btn"
+                                data-title="Change Username"
+                                data-message="Are you sure you want to change this user's username?"
+                                data-form-id="change-username-form">
+                            Change
+                        </button>
+                    </form>
                     @endif
                 </div>
             </div>
@@ -65,7 +64,15 @@
                 <div class="detail-info">
                     {{ $user->name }}
                     @if ($user->is_active)
-                        <button type="submit" form="change-name-form" class="change-button">Change</button>
+                        <form id="change-name-form" method="POST" action="{{ route('admin.users.changeName', $user->id) }}">
+                            {{ csrf_field() }}
+                            <button type="button" id="change-button" class="confirmation-btn"
+                                    data-title="Change Name"
+                                    data-message="Are you sure you want to change this user's ame?"
+                                    data-form-id="change-name-form">
+                                Change
+                            </button>
+                        </form>
                     @endif
                 </div>
             </div>

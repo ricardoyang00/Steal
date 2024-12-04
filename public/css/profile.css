@@ -286,7 +286,7 @@
     align-items: center; /* Center items vertically */
 }
 
-.profile-card-admin-view .change-button {
+.profile-card-admin-view #change-button {
     background-color: #dc3545;
     color: #ffffff;
     border: none;
@@ -298,7 +298,7 @@
     transition: background-color 0.3s ease;
 }
 
-.profile-card-admin-view .change-button:hover {
+.profile-card-admin-view #change-button:hover {
     background-color: #a71d2a;
 }
 
