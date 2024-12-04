@@ -27,8 +27,6 @@ class ReviewsController extends Controller
             $reviews[$i]->author = $authorNames[$i];
         }
 
-        $reviews = $reviews->toArray();
-
         return response()->json([
             'reviews' => $reviews,
         ]);

@@ -53,8 +53,8 @@
 }
 
 /* Review Section */
-.game-details-page .review-container {
-    margin-top: 32px;
+.game-details-page .review-card {
+    margin-bottom: 32px;
     background-color: var(--game-card-background);
     padding: 16px;
     border-radius: 8px;
@@ -86,7 +86,7 @@
 }
 
 .game-details-page .add-review-container {
-    margin-top: 16px;
+    margin-bottom: 32px;
     padding: 16px;
     display: flex;
     flex-direction: column;
@@ -147,4 +147,40 @@
 
 .game-details-page .error-reviews {
     margin-left: 0;
+}
+
+.game-details-page .game-reviews {
+    display: flex;
+    flex-direction: row;
+    .review-controls {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        margin-bottom: 16px;
+    }
+}
+
+.game-details-page .review-controls {
+    padding: 32px;
+    background-color: var(--explore-table-color);
+    border-radius: 8px;
+    margin-right: 32px;
+}
+
+.game-details-page .game-reviews{
+    > :nth-child(1) {
+        flex: 1;
+    }
+
+    > :nth-child(2) {
+        flex: 3;
+    }
+}
+
+.game-details-page .no-reviews-message {
+    font-size: 1.25rem;
+    text-align: center;
+    margin: auto;
+    margin-top: 32px;
 }

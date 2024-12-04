@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM fully loaded and parsed');
-    const reviewsContainer = document.querySelector('.game-reviews');
+    const reviewsContainer = document.querySelector('.reviews');
     if (!reviewsContainer) {
         return;
     }
@@ -16,10 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     .then(response => response.json())
     .then(data => {
-        data.reviews.forEach(review => {
+        data.reviews.reverse().forEach(review => {
             
             const reviewElement = document.createElement('div');
-            reviewElement.classList.add('review-container');
+            reviewElement.classList.add('review-card');
             
             const iconFas = document.createElement('i');
             if (review.positive) {

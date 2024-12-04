@@ -70,10 +70,28 @@
         @endforeach
     </ul>
     
+    <h2>Reviews</h2>
     <div class="game-reviews" data-id="{{ $game->id }}">
-        <h2>Reviews</h2>
-        @if (auth_user() && auth_user()->buyer && auth()->user()->hasDeliveredPurchase($game->id) && !$game->hasReviewedGame(auth()->user()))
-            <button class="btn-review-form-toggle">Add Review</button>
+        <div class="review-controls">
+            @if (auth_user() && auth_user()->buyer && auth()->user()->hasDeliveredPurchase($game->id) && !$game->hasReviewedGame(auth()->user()))
+                <button class="btn-review-form-toggle">Add Review</button>
+                @if ($errors->any())
+                    <div class="error error-reviews">
+                        {{ $errors->first() }}
+                    </div>
+                @endif
+            @else
+                <p class="review-form-message">
+                    You must have purchased this game to leave a review.
+                </p>
+            @endif
+        </div>
+        <div class="reviews">
+            @if (!$game->hasReviews())
+                <p class="no-reviews-message">
+                    There are no reviews for this game yet.
+                </p>
+            @endif
             <div class="add-review-container" style="display: none;">
                 <form class="add-review-form" action="{{ url('reviews/add') }}" method="POST">
                     @csrf
@@ -104,17 +122,8 @@
                     <button type="submit" class="btn btn-primary">Submit Review</button>
                 </form>
             </div>
-            @if ($errors->any())
-                <div class="error error-reviews">
-                    {{ $errors->first() }}
-                </div>
-            @endif
-        @endif
-        @if (!$game->hasReviews())
-            <p class="no-review-message">
-                There are no reviews for this game yet.
-            </p>
-        @endif
+            <!-- Reviews will be loaded here by the JS -->
+        </div>
     </div>
 </div>
 
