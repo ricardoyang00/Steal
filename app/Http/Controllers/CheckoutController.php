@@ -27,7 +27,7 @@ class CheckoutController extends Controller
                 $buyerId = auth_user()->id;
                 $shoppingCartItems = ShoppingCart::where('buyer', $buyerId)->get();
                 if ($shoppingCartItems->isEmpty()) {
-                    return redirect()->route('shopping_cart')->with('error', 'Your cart is empty.');
+                    return redirect()->route('shopping_cart')->withErrors('Your cart is empty.');
                 }
             }
             else{
@@ -44,7 +44,7 @@ class CheckoutController extends Controller
         foreach ($shoppingCartItems as $cartItem) {
             $game = Game::find($cartItem->game);
             if (!$game) {
-                return redirect()->route('shopping_cart')->with('error', 'Some items are no longer available.');
+                return redirect()->route('shopping_cart')->withErrors('Some items are no longer available.');
             }
             $availableCDKs = $game->getAvailableCDKs();
             if($availableCDKs->count() < $cartItem->quantity){
@@ -68,7 +68,7 @@ class CheckoutController extends Controller
         }
             $paymentSuccessful = true;
             if (!$paymentSuccessful) {
-                return redirect()->route('cart.index')->with('error', 'Payment failed.');
+                return redirect()->route('cart.index')->withErrors('Payment failed.');
             }
             DB::beginTransaction();
             try {
@@ -115,7 +115,7 @@ class CheckoutController extends Controller
                     'message' => $e->getMessage(),
                     'stack' => $e->getTraceAsString(),
                 ]);
-                return redirect()->route('shopping_cart')->with('error', 'Something went wrong. Please try again.');
+                return redirect()->route('shopping_cart')->withErrors('Something went wrong. Please try again.');
             }
 
     }

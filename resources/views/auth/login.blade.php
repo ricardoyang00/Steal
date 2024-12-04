@@ -2,18 +2,6 @@
 
 @section('content')
 
-@if (session('success'))
-    <p class="success">
-        {{ session('success') }}
-    </p>
-@endif
-
-@if ($errors->any())
-    <div class="error">
-        {{ $errors->first() }}
-    </div>
-@endif
-
 <div class="form-container login-page">
 
 <form method="POST" action="{{ route('login') }}">

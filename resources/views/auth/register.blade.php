@@ -4,12 +4,6 @@
 
 <script src="{{ asset('js/register/register.js') }}" defer></script>
 
-@if ($errors->any())
-    <div class="error">
-        {{ $errors->first() }}
-    </div>
-@endif
-
 <div class="form-container register-page">
 
 <form method="POST" action="{{ route('register') }}">

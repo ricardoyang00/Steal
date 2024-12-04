@@ -6,12 +6,6 @@
 
 <script src="{{ asset('js/admin/user-profile.js') }}" defer></script>
 
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
-
 @php
     $profilePicturePath = $user->profile_picture;
     $profilePictureFullPath = public_path($profilePicturePath);

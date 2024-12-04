@@ -19,12 +19,6 @@
 @endphp
 
 <section id="profile" style="display: {{ $errors->any() ? 'none' : 'flex' }};">
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <div class="profile-card">
         <!-- Username -->
         <div class="profile-username">
@@ -88,7 +82,7 @@
                 <form method="POST" action="{{ route('profile.deactivate') }}" class="deactivate-form">
                     {{ csrf_field() }}
                     <button type="submit" onclick="return confirm('Are you sure you want to deactivate your account? Please note that all your data will be anonymized as part of this process.');">
-                        Deactivate Account
+                        Delete Account
                     </button>
                 </form>
             @endif

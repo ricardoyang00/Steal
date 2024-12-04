@@ -55,7 +55,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('admin.users.profile', $user->id)
-            ->with('success', 'Profile picture reset to default.');
+            ->withSuccess('Profile picture reset to default.');
     }
 
     /**
@@ -69,7 +69,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('admin.users.profile', $user->id)
-            ->with('success', 'Username changed successfully!');
+            ->withSuccess('Username changed successfully!');
     }
 
     /**
@@ -82,7 +82,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('admin.users.profile', $user->id)
-            ->with('success', 'Name changed successfully!');
+            ->withSuccess('Name changed successfully!');
     }
 
     /**
@@ -132,7 +132,7 @@ class UserController extends Controller
         }
 
         return redirect()->route('admin.users.profile', $user->id)
-            ->with('success', 'Coins updated successfully!');
+            ->withSuccess('Coins updated successfully!');
     }
 
     /* Block User */
@@ -143,7 +143,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('admin.users.profile', $user->id)
-            ->with('success', 'User has been blocked successfully!');
+            ->withSuccess('User has been blocked successfully!');
     }
 
     /* Unblock User */
@@ -154,7 +154,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('admin.users.profile', $user->id)
-            ->with('success', 'User has been unblocked successfully!');
+            ->withSuccess('User has been unblocked successfully!');
     }
 
     /* Deactivate User */
@@ -166,7 +166,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('admin.users.profile', $user->id)
-            ->with('success', 'User has been deactivated successfully!');
+            ->withSuccess('User has been deactivated successfully!');
     }
 
 
