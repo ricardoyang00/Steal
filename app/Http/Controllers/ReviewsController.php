@@ -87,6 +87,6 @@ class ReviewsController extends Controller
             return back()->withErrors(['error' => 'An error occurred while updating the review.']);
         }
 
-        return view('pages.game-details', compact('game', 'review'));
+        return redirect()->route('game.details', ['id' => $gameId])->with(['success' => 'Review updated successfully!']);
     }
 }

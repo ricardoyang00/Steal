@@ -115,13 +115,16 @@
                 <div class="btn-close-div">
                     @if (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
                         <h3>Edit Review</h3>
-                        <form class="edit-review-form" action="{{ url('reviews/update') }}" method="POST">
                     @else
                         <h3>Add Review</h3>
-                        <form class="add-review-form" action="{{ url('reviews/add') }}" method="POST">
                     @endif
                     <button class="btn-close-review-form">Close</button>
                 </div>
+                @if (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
+                    <form class="edit-review-form" action="{{ url('reviews/update') }}" method="POST">
+                @else
+                    <form class="add-review-form" action="{{ url('reviews/add') }}" method="POST">
+                @endif
                 @csrf
                 @if (auth_user() && auth_user()->buyer && !$game->hasReviewedGame(auth()->user()))
                     <input type="hidden" name="game_id" value="{{ $game->id }}">

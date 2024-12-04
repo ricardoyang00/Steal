@@ -61,13 +61,18 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const closeReviewForm = document.querySelector('.btn-close-review-form');
-    closeReviewForm.addEventListener('click', function() {
-        reviewForm.style.display = 'none';
-        reviewForm.classList.remove('visible');
-        if (reviewForm.classList.contains('edit')) {
-            reviewFormToggle.textContent = 'Edit review';
-        } else {
-            reviewFormToggle.textContent = 'Add review';
-        }
-    });
+    closeReviewForm.addEventListener('click', closeFormEvent);
+
 });
+
+function closeFormEvent() {
+    reviewFormToggle = document.querySelector('.btn-review-form-toggle');
+    reviewForm = document.querySelector('.add-review-container');
+    reviewForm.style.display = 'none';
+    reviewForm.classList.remove('visible');
+    if (reviewForm.classList.contains('edit')) {
+        reviewFormToggle.textContent = 'Edit review';
+    } else {
+        reviewFormToggle.textContent = 'Add review';
+    }
+}
