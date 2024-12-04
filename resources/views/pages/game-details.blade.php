@@ -86,6 +86,7 @@
     <div class="game-reviews" data-id="{{ $game->id }}">
         <div class="review-controls">
             @if (auth_user() && auth_user()->buyer && auth()->user()->hasDeliveredPurchase($game->id) && !$game->hasReviewedGame(auth()->user()))
+            <div class="review-form-message">
                 <button class="btn-review-form-toggle">Add Review</button>
                 <button class="btn-review-remove" style="display: none;">Remove Review</button>
                 @if ($errors->any())
@@ -93,20 +94,21 @@
                         {{ $errors->first() }}
                     </div>
                 @endif
+            </div>
             @elseif (auth_user() && auth_user()->buyer && !$game->hasReviewedGame(auth()->user()))
                 <p class="review-form-message">
                     You must have purchased this game to leave a review.
                 </p>
             @elseif (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
-                <p class="review-form-message">
+                <div class="review-form-message">
                     <button class="btn-review-form-toggle">Edit Review</button>
-                    <button class="btn-review-remove">Remove Review</button>
+                    <button class="btn-review-remove" data-id="{{ $review->id }}">Remove Review</button>
                     @if ($errors->any())
                         <div class="error error-reviews">
                             {{ $errors->first() }}
                         </div>
                     @endif
-                </p>
+                </div>
             @elseif (!auth_user())
                 <p class="review-form-message">
                     You must be logged in to leave a review.

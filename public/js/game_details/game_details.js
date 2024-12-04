@@ -62,7 +62,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const closeReviewForm = document.querySelector('.btn-close-review-form');
     closeReviewForm.addEventListener('click', closeFormEvent);
-
+    const removeReviewBtns = document.querySelectorAll('.btn-review-remove');
+    removeReviewBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            console.log("button clicked");
+            reviewId = btn.getAttribute('data-id');
+            console.log("review id: ", reviewId);
+            fetch('/reviews/delete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken,
+                },
+                body: JSON.stringify({ review_id: reviewId }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log("received response");
+                    window.location.href = `/game/${gameId}`;
+                    alert('Review removed successfully.');
+                }
+            })
+            .catch(error => console.error('Error removing review:', error));
+        });
+    });
 });
 
 function closeFormEvent() {

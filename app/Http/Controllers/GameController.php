@@ -139,9 +139,11 @@ class GameController extends Controller
 
         if (!$review) {
             $review = new Review();
+            $review->id = null;
             $review->game = $game->id;
             $review->author = $userId;
             $review->positive = true;
+            $review->title = '';
             $review->description = '';
         }
 

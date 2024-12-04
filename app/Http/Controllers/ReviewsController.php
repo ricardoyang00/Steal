@@ -50,7 +50,7 @@ class ReviewsController extends Controller
             return back()->withErrors(['error' => 'An error occurred while adding the review.']);
         }
 
-        return view('pages.game-details', compact('game'));
+        return redirect()->route('game.details', ['id' => $gameId])->with(['success' => 'Review added successfully!']);
     }
 
     public function deleteReview(Request $request)
@@ -64,7 +64,9 @@ class ReviewsController extends Controller
 
         $review->delete();
 
-        return view('pages.game-details', compact('game'));
+        return response()->json([
+            'success' => true,
+        ]);
     }
 
     public function updateReview(Request $request)
