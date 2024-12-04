@@ -10,6 +10,8 @@ BEGIN
         NEW.name := 'Anonymous';
         NEW.email := 'anonymous' || OLD.id || 'mail';
         NEW.password := 'anonymous';
+        NEW.google_id := NULL;
+        NEW.profile_picture := NULL;
 
         -- Update Buyer table
         UPDATE Buyer

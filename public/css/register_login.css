@@ -243,20 +243,6 @@
     margin: 0;
 }
 
-/* Error message */
-.error {
-    color: var(--error-color);
-    font-size: 0.9em;
-    text-align: center;
-    background-color: var(--background-color);
-    padding: 10px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px var(--shadow-color);
-    max-width: 400px;
-    width: 100%;
-    margin: auto;
-}
-
 /* Autofill */
 input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px var(--secondary-background-color) inset !important;

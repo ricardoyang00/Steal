@@ -6,12 +6,6 @@
 <div class="container mt-5">
     <h1><a href=" {{ url('seller/products') }} "><i class="fa-solid fa-chevron-left" style="color: white;"></i></a>Edit Game</h1>
 
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <form action="{{ route('games.update', $game->id) }}" method="POST">
         @csrf
         <div class="form-group">

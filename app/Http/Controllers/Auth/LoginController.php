@@ -57,7 +57,8 @@ class LoginController extends Controller
                 }
                 $request->session()->forget('shopping_cart');
                 
-                return redirect()->intended('/home');
+                return redirect()->intended('/home')
+                    ->withSuccess('You\'re in! The best deals and games are waiting for you.');
             }
         }
         
@@ -79,6 +80,6 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect()->route('login')
-            ->withSuccess('You have logged out successfully!');
+            ->withSuccess('You\'re logged out. Ready to respawn anytime!');
     }
 }
