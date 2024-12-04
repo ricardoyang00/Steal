@@ -223,8 +223,9 @@ class GameController extends Controller
         $game->languages()->sync($request->input('languages', []));
         $game->players()->sync($request->input('players', []));
         
-        
-        $this->notificationController->createPriceWishlistNotifications($game, $oldPrice, $game->price);
+        if ($oldPrice != $game->price) {
+            $this->notificationController->createPriceWishlistNotifications($game, $oldPrice, $game->price);
+        }
         
 
         return redirect()->route('games.edit', $game->id)->with('success', 'Game updated successfully.');
