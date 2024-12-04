@@ -11,7 +11,7 @@ use Exception;
 
 class NotificationController extends Controller{
     public function index() {
-        if (auth_user() && auth_user()->buyer) {
+        if (auth_user()) {
             return view('pages/notifications', 
                 ['notifications' => $this->getNotifications()]
             );
@@ -33,7 +33,6 @@ class NotificationController extends Controller{
             $wishlistNotifications
         );
     
-        // Sort notifications by time (most recent first)
         usort($notifications, function ($a, $b) {
             return strtotime($b['time']) - strtotime($a['time']);
         });
@@ -69,7 +68,7 @@ class NotificationController extends Controller{
                 $order = $notification->getOrder;
     
                 if ($order) {
-                    
+
                     $formattedOrderDate = (new \DateTime($order->time))->format('F d, Y H:i');
 
                     $purchases = $order->getPurchases;
@@ -109,7 +108,6 @@ class NotificationController extends Controller{
     }
     
     
-
     private function getReviewNotifications() {
         // TODO
         return collect();
