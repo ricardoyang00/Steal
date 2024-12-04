@@ -47,9 +47,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     notificationCards.forEach(card => {
         card.addEventListener('mouseenter', function () {
-            const id = this.getAttribute('data-id');
+            const notificationId = this.dataset.id;
 
-            fetch(`/notifications/${id}/mark-as-read`, {
+            fetch(`/notifications/${notificationId}/mark-as-read`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -64,7 +64,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                 .then(data => {
                     console.log(data.message);
-                    const unreadIndicator = this.querySelector('.unread-notification-indicator');
+
+                    // Update the unread count globally
+                    updateUnreadCount();
+
+                    // Remove the green dot (unread indicator) for the current notification
+                    const unreadIndicator = card.querySelector('.unread-notification-indicator');
                     if (unreadIndicator) {
                         unreadIndicator.remove();
                     }
@@ -72,5 +77,36 @@ document.addEventListener('DOMContentLoaded', function () {
                 .catch(error => console.error('Error:', error));
         });
     });
+
+    function updateUnreadCount() {
+        fetch('/notifications/unread-count', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch unread notifications count');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const countElement = document.getElementById('notification-count');
+                if (countElement) {
+                    if (data.unread_count > 0) {
+                        countElement.textContent = data.unread_count;
+                        countElement.style.display = 'inline-block';
+                    } else {
+                        countElement.textContent = '';
+                        countElement.style.display = 'none';
+                    }
+                }
+            })
+            .catch(error => console.error('Error fetching unread notifications count:', error));
+    }
 });
+
+
 
