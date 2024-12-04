@@ -64,6 +64,10 @@ document.addEventListener('DOMContentLoaded', function() {
     closeReviewForm.addEventListener('click', function() {
         reviewForm.style.display = 'none';
         reviewForm.classList.remove('visible');
-        reviewFormToggle.textContent = 'Add review';
+        if (reviewForm.classList.contains('edit')) {
+            reviewFormToggle.textContent = 'Edit review';
+        } else {
+            reviewFormToggle.textContent = 'Add review';
+        }
     });
 });

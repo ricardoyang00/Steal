@@ -69,19 +69,24 @@ class ReviewsController extends Controller
 
     public function updateReview(Request $request)
     {
-        $reviewId = $request->input('review_id');
+        try {
+            $reviewId = $request->input('review_id');
 
-        $review = Review::find($reviewId);
+            $review = Review::find($reviewId);
 
-        $gameId = $review->game;
-        $game = Game::find($gameId);
+            $gameId = $review->game;
+            $game = Game::find($gameId);
 
-        $review->title = $request->input('title');
-        $review->description = $request->input('description');
-        $review->positive = $request->input('positive');
+            $review->title = $request->input('title');
+            $review->description = $request->input('description');
+            $review->positive = $request->input('positive');
 
-        $review->save();
+            $review->save();
 
-        return view('pages.game-details', compact('game'));
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'An error occurred while updating the review.']);
+        }
+
+        return view('pages.game-details', compact('game', 'review'));
     }
 }

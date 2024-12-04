@@ -8,6 +8,7 @@ use App\Models\Platform;
 use App\Models\Language;
 use App\Models\Player;
 use App\Models\Age;
+use App\Models\Review;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -129,8 +130,20 @@ class GameController extends Controller
     public function show($id)
     {
         $game = Game::with(['seller', 'platforms', 'categories', 'languages', 'players'])->find($id);
-    
-        return view('pages.game-details', compact('game'));
+        
+        $userId = auth_user()->id;
+
+        $review = Review::where('game', $game->id)->where('author', $userId)->first();
+
+        if (!$review) {
+            $review = new Review();
+            $review->game = $game->id;
+            $review->author = $userId;
+            $review->positive = true;
+            $review->description = '';
+        }
+
+        return view('pages.game-details', compact('game', 'review'));
     }
 
     protected function applySearchQuery($gamesQuery, $query)
