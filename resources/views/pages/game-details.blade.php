@@ -107,7 +107,11 @@
                     There are no reviews for this game yet.
                 </p>
             @endif
-            <div class="add-review-container" style="display: none;">
+            @if (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
+                <div class="add-review-container edit" style="display: none;">
+            @else
+                <div class="add-review-container" style="display: none;">
+            @endif
                 <div class="btn-close-div">
                     @if (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
                         <h3>Edit Review</h3>

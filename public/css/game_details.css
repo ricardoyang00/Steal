@@ -199,7 +199,6 @@
                 flex-direction: row;
             }
             .btn-close-review-form {
-                color: var(--error-color);
                 cursor: pointer;
                 margin-right: 0;
                 background-color: whitesmoke;
@@ -207,7 +206,6 @@
             }
             .btn-close-review-form:hover {
                 background-color: lightgray;
-                border-color: var(--error-color);
             }
             .btn-submit-div{
                 text-align: center;
