@@ -12,7 +12,7 @@
 
 <div class="game-details-page">
     <div class="game-image">
-        <img src="{{ asset('images/' . $game->getThumbnailLargePath()) }}" class="img-fluid" alt="{{ $game->name }}">
+        <img src="{{ asset($game->getThumbnailLargePath()) }}" class="img-fluid" alt="{{ $game->name }}">
     </div>
     <div class="game-details">
         <h1>{{ $game->name }}</h1>
@@ -20,7 +20,7 @@
         <p><strong>Owner:</strong> {{ $game->seller->name }}</p>
         <p><strong>Minimum Age:</strong>
             <a href="{{ url('age/' . $game->age->id) }}">
-                <img src="{{ asset('images/' . $game->age->image_path) }}" alt={{ $game->age->name }} style="width: 50px; height: auto;">
+                <img src="{{ asset($game->age->image_path) }}" alt={{ $game->age->name }} style="width: 50px; height: auto;">
             </a>
         </p>
         <p><strong>Price:</strong> ${{ $game->price }}</p>

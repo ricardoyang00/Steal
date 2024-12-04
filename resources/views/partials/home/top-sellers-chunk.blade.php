@@ -5,10 +5,10 @@
             <div class="game-thumbnail">
                 <!-- Game Age -->
                 <a href="{{ url('age/' . $game->age->id) }}">
-                    <img src="{{ asset('images/' . $game->age->image_path) }}" alt={{ $game->age->name }} class="pegi-age">
+                    <img src="{{ asset($game->age->image_path) }}" alt={{ $game->age->name }} class="pegi-age">
                 </a>
                 <!-- Game Big Image -->
-                <img src="{{ asset('images/' . $game->getThumbnailSmallPath()) }}" class="card-img-top" alt="{{ $game->name }}" width="270px" height="400px">
+                <img src="{{ asset($game->getThumbnailSmallPath()) }}" class="card-img-top" alt="{{ $game->name }}" width="270px" height="400px">
                 <!-- Game Price -->
                 <p class="game-price-thumbnail">
                     €{{ number_format($game->price, 2) }}
@@ -18,7 +18,7 @@
             <div class="overlay">
                 <!-- Game Small Image -->
                 <div class="top-media">
-                    <img src="{{ asset('images/' . $game->getThumbnailLargePath()) }}" alt="{{ $game->name }}">
+                    <img src="{{ asset($game->getThumbnailLargePath()) }}" alt="{{ $game->name }}">
                 </div>
                 <!-- Game Details -->
                 <div class="game-details">

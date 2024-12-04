@@ -58,11 +58,11 @@ insert into Seller (id) values (19);
 insert into Seller (id) values (20);
 
 -- AGE
-insert into Age (minimum_age, name, description, image_path) values (0, 'PEGI 3', 'Suitable for all ages. Contains no violence, inappropriate language, or anything that could scare or harm young children. However, PEGI does recommend parental guidance for children under 3 years old, as the minimum age officially starts at 3. So while there’s no real restriction, the "PEGI 3" label still suggests an age starting point.', 'age/PEGI_3.svg');
-insert into Age (minimum_age, name, description, image_path) values (7, 'PEGI 7', 'May include mild violence or scenes and sounds that could be slightly scary for younger children. Typically suitable for children aged 7 and older.', 'age/PEGI_7.svg');
-insert into Age (minimum_age, name, description, image_path) values (12, 'PEGI 12', 'Includes more realistic violence against fantasy characters or humans, mild swearing, or suggestive themes such as romance or mild danger. Suitable for players aged 12 and older.', 'age/PEGI_12.svg');
-insert into Age (minimum_age, name, description, image_path) values (16, 'PEGI 16', 'Features more explicit violence or sexual activity, strong language, or the depiction of alcohol, tobacco, or drugs. Suitable for players aged 16 and older.', 'age/PEGI_16.svg');
-insert into Age (minimum_age, name, description, image_path) values (18, 'PEGI 18', 'Contains extreme violence, explicit sexual content, glamorization of drugs, or very offensive language. Suitable only for adults aged 18 and older.', 'age/PEGI_18.svg');
+insert into Age (minimum_age, name, description, image_path) values (0, 'PEGI 3', 'Suitable for all ages. Contains no violence, inappropriate language, or anything that could scare or harm young children. However, PEGI does recommend parental guidance for children under 3 years old, as the minimum age officially starts at 3. So while there’s no real restriction, the "PEGI 3" label still suggests an age starting point.', 'images/age/PEGI_3.svg');
+insert into Age (minimum_age, name, description, image_path) values (7, 'PEGI 7', 'May include mild violence or scenes and sounds that could be slightly scary for younger children. Typically suitable for children aged 7 and older.', 'images/age/PEGI_7.svg');
+insert into Age (minimum_age, name, description, image_path) values (12, 'PEGI 12', 'Includes more realistic violence against fantasy characters or humans, mild swearing, or suggestive themes such as romance or mild danger. Suitable for players aged 12 and older.', 'images/age/PEGI_12.svg');
+insert into Age (minimum_age, name, description, image_path) values (16, 'PEGI 16', 'Features more explicit violence or sexual activity, strong language, or the depiction of alcohol, tobacco, or drugs. Suitable for players aged 16 and older.', 'images/age/PEGI_16.svg');
+insert into Age (minimum_age, name, description, image_path) values (18, 'PEGI 18', 'Contains extreme violence, explicit sexual content, glamorization of drugs, or very offensive language. Suitable only for adults aged 18 and older.', 'images/age/PEGI_18.svg');
 
 -- GAME
 INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Stormborn Alliance', 'Rain delay postpones game', 110.53, 33, 11, true, '2021-03-15', 1);
@@ -96,7 +96,7 @@ INSERT INTO Game (name, description, price, overall_rating, owner, is_active, re
 INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Soulbound Warriors', 'Team hits 5 home runs in a single game', 41.92, 11, 15, true, '2022-04-11', 4);
 INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('War of Realms', 'Exciting comeback win in extra innings', 120.12, 45, 13, true, '2020-09-25', 5);
 INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Reckoning of Kings', 'Controversial call decides the outcome', 57.23, 9, 16, true, '2021-06-18', 1);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id, thumbnail_small_path, thumbnail_large_path) VALUES ('Aetherium Chronicles', 'In the ancient realm of Aetherium, a land of floating islands, mystical creatures, and powerful elemental magic, the balance of power is held by the Celestial Crown—a legendary artifact said to grant its wearer control over all the elements. For centuries, the crown has kept peace among the five Elemental Kingdoms: Fire, Water, Earth, Air, and Light.  But when the crown is shattered into five pieces by a betrayal from within, chaos erupts across the lands. The once-united kingdoms are plunged into war, each vying for control of the pieces. Amidst the turmoil, a prophecy emerges: a group of unlikely heroes, each from a different kingdom, must unite to restore the crown and bring peace back to Aetherium.', 151.65, 95, 20, true, '2022-02-02', 2, 'thumbnail_small/thumbnail_small.jpg', 'thumbnail_large/thumbnail_large.jpg');
+INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id, thumbnail_small_path, thumbnail_large_path) VALUES ('Aetherium Chronicles', 'In the ancient realm of Aetherium, a land of floating islands, mystical creatures, and powerful elemental magic, the balance of power is held by the Celestial Crown—a legendary artifact said to grant its wearer control over all the elements. For centuries, the crown has kept peace among the five Elemental Kingdoms: Fire, Water, Earth, Air, and Light.  But when the crown is shattered into five pieces by a betrayal from within, chaos erupts across the lands. The once-united kingdoms are plunged into war, each vying for control of the pieces. Amidst the turmoil, a prophecy emerges: a group of unlikely heroes, each from a different kingdom, must unite to restore the crown and bring peace back to Aetherium.', 151.65, 95, 20, true, '2022-02-02', 2, 'images/thumbnail_small/thumbnail_small.jpg', 'images/thumbnail_large/thumbnail_large.jpg');
 INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Eclipse Rising', 'Rain delay postpones game', 101.05, 82, 13, true, '2020-11-27', 3);
 INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Solar Strike', 'Pitcher throws a no-hitter', 157.48, 36, 18, true, '2021-08-03', 4);
 INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Iron Frontier', 'Exciting comeback win in extra innings', 8.45, 86, 17, true, '2022-05-19', 5);
@@ -1120,15 +1120,15 @@ insert into GamePlayer (game, player) values (50, 2);
 
 
 -- PaymentMethod
-insert into PaymentMethod (name, image_path) values ('Alipay', 'payment/alipay.svg');
-insert into PaymentMethod (name, image_path) values ('American Express', 'payment/american_express.svg');
-insert into PaymentMethod (name, image_path) values ('Apple Pay', 'payment/applepay.svg');
-insert into PaymentMethod (name, image_path) values ('Bitcoin', 'payment/bitcoin.svg');
-insert into PaymentMethod (name, image_path) values ('Google Pay', 'payment/googlepay.svg');
-insert into PaymentMethod (name, image_path) values ('Mastercard', 'payment/mastercard.svg');
-insert into PaymentMethod (name, image_path) values ('Paypal', 'payment/paypal.svg');
-insert into PaymentMethod (name, image_path) values ('Visa', 'payment/visa.svg');
-insert into PaymentMethod (name, image_path) values ('Multibanco', 'payment/mb.svg');
+insert into PaymentMethod (name, image_path) values ('Alipay', 'images/payment/alipay.svg');
+insert into PaymentMethod (name, image_path) values ('American Express', 'images/payment/american_express.svg');
+insert into PaymentMethod (name, image_path) values ('Apple Pay', 'images/payment/applepay.svg');
+insert into PaymentMethod (name, image_path) values ('Bitcoin', 'images/payment/bitcoin.svg');
+insert into PaymentMethod (name, image_path) values ('Google Pay', 'images/payment/googlepay.svg');
+insert into PaymentMethod (name, image_path) values ('Mastercard', 'images/payment/mastercard.svg');
+insert into PaymentMethod (name, image_path) values ('Paypal', 'images/payment/paypal.svg');
+insert into PaymentMethod (name, image_path) values ('Visa', 'images/payment/visa.svg');
+insert into PaymentMethod (name, image_path) values ('Multibanco', 'images/payment/mb.svg');
 
 
 -- Payment

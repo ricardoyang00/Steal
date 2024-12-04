@@ -42,7 +42,7 @@
                 <div class="form-check">
                     <input type="radio" name="age_id" value="{{ $age->id }}" class="form-check-input" id="age{{ $age->id }}" required>
                     <label class="form-check-label" for="age{{ $age->id }}">
-                        <img src="{{ asset('images/' . $age->image_path) }}" alt="{{ $age->name }}" style="width: 50px; height: auto;">
+                        <img src="{{ asset($age->image_path) }}" alt="{{ $age->name }}" style="width: 50px; height: auto;">
                         {{ $age->name }}
                         <a href="{{ url('/age/' . $age->id) }}" class="btn btn-info btn-sm" target="_blank"><i class="fa-solid fa-circle-info" style="color: white;"></i></a>
                     </label>
@@ -89,7 +89,24 @@
                 </div>
             @endforeach
         </div>
-        <!-- media -->
+        <!-- large thumbnails -->
+        <div class="form-group">
+            <label for="thumbnail_large_path">Thumbnail Large</label>
+            <input type="file" name="thumbnail_large_path" class="form-control-file" required>
+            <small class="form-text text-muted">Recommended aspect ratio: 16:9</small>
+        </div>
+        <!-- small thumbnails -->
+        <div class="form-group">
+            <label for="thumbnail_small_path">Thumbnail Small</label>
+            <input type="file" name="thumbnail_small_path" class="form-control-file" required>
+            <small class="form-text text-muted">Recommended size: 270x400</small>
+        </div>
+        <!-- additional images -->
+        <div class="form-group">
+            <label for="additional_images">Additional Large Images (16:9)</label>
+            <input type="file" name="additional_images[]" class="form-control-file" multiple>
+            <small class="form-text text-muted">Recommended aspect ratio: 16:9. You can upload multiple images.</small>
+        </div>
 
         
         <button type="submit" class="btn btn-primary">Create Game</button>

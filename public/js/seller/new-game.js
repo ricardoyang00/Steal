@@ -10,4 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
             releaseDateInput.disabled = false;
         }
     });
+
+    // Make additional images sortable
+    $('#additional_images').sortable();
 });
