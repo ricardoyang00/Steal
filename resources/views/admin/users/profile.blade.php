@@ -5,6 +5,8 @@
 @section('content')
 
 <script src="{{ asset('js/admin/user-profile.js') }}" defer></script>
+<script src="{{ asset('js/confirmation-modal.js') }}" defer></script>
+@include('partials.confirmation-modal')
 
 @php
     $profilePicturePath = $user->profile_picture;
@@ -20,9 +22,12 @@
         <div class="profile-picture-admin-view">
             <img src="{{ $profilePicture }}" alt="Profile Picture" id="editable-profile-picture">
             <form method="POST" action="{{ route('admin.users.resetPicture', $user->id) }}" id="reset-profile-picture-form">
-                @csrf
+                {{ csrf_field() }}
                 @method('PUT')
-                <button type="submit" id="reset-profile-picture-btn" class="reset-button">
+                <button type="button" id="reset-profile-picture-btn" class="confirmation-btn"
+                        data-title="Reset Profile Picture to Default"
+                        data-message="Are you sure you want to reset this profile picture?"
+                        data-form-id="reset-profile-picture-form">
                     <i class="fas fa-undo"></i> Reset to Default
                 </button>
             </form>
@@ -130,22 +135,24 @@
 
             <!-- Buttons -->
             <div class="profile-actions">
-                @if ($user->is_blocked)
-                    <form id="unblock-user-form" method="POST" action="{{ route('admin.users.unblock', $user->id) }}">
+                @if ($user->is_active)
+                    @if ($user->is_blocked)
+                        <form id="unblock-user-form" method="POST" action="{{ route('admin.users.unblock', $user->id) }}">
+                            {{ csrf_field() }}
+                            <button type="button" class="confirmation-btn" id="block-unblock-btn" data-title="Unblock User" data-message="Are you sure you want to unblock this user?" data-form-id="unblock-user-form">Unblock User</button>
+                        </form>
+                    @else
+                        <form id="block-user-form" method="POST" action="{{ route('admin.users.block', $user->id) }}">
+                            {{ csrf_field() }}
+                            <button type="button" class="confirmation-btn" id="block-unblock-btn" data-title="Block User" data-message="Are you sure you want to block this user?" data-form-id="block-user-form">Block User</button>
+                        </form>
+                    @endif
+
+                    <form id="deactivate-user-form" method="POST" action="{{ route('admin.users.deactivate', $user->id) }}">
                         {{ csrf_field() }}
-                        <button id="block-unblock-btn" type="submit" onclick="return confirm('Are you sure you want to unblock this user?');">Unblock User</button>
-                    </form>
-                @else
-                    <form id="block-user-form" method="POST" action="{{ route('admin.users.block', $user->id) }}">
-                        {{ csrf_field() }}
-                        <button id="block-unblock-btn" type="submit" onclick="return confirm('Are you sure you want to block this user?');">Block User</button>
+                        <button type="button" class="confirmation-btn" id="deactivate-btn" data-title="Deactivate User" data-message="Are you sure you want to deactivate this user? This action is irreversible and all data will be anonymized, be careful!" data-form-id="deactivate-user-form">Deactivate User</button>
                     </form>
                 @endif
-                
-                <form id="deactivate-user-form" method="POST" action="{{ route('admin.users.deactivate', $user->id) }}">
-                    {{ csrf_field() }}
-                    <button id="deactivate-btn" type="submit" onclick="return confirm('Are you sure you want to deactivate this user?');">Deactivate User</button>
-                </form>
             </div>
         </div>
     </div>

@@ -9,6 +9,8 @@
 @section('content')
 
 <script src="{{ asset('js/profile/profile.js') }}" defer></script>
+<script src="{{ asset('js/confirmation-modal.js') }}" defer></script>
+@include('partials.confirmation-modal')
 
 @php
     $profilePicturePath = auth_user()->profile_picture;
@@ -77,26 +79,18 @@
                     <i class="fas fa-key"></i> Change Password
                 </button>
             @endif
-
+            
             @if (!is_admin())
-                <button type="button" id="delete-account-btn">
-                    Delete Account
-                </button>
+                <form method="POST" action="{{ route('profile.deactivate') }}" id="deactivate-account-form" class="deactivate-form">
+                    {{ csrf_field() }}
+                    <button type="button" id="delete-account-btn" class="confirmation-btn" 
+                            data-title="Are you sure you want to delete your account?"
+                            data-message="Please note that this action is irreversible and all your data will be anonymized as part of this process."
+                            data-form-id="deactivate-account-form">
+                        Delete Account
+                    </button>
+                </form>
             @endif
-
-            <!-- Confirmation Modal -->
-            <div id="confirmation-modal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <h2>Are you sure you want to delete your account?</h2>
-                    <p>Please note that this action is irreversible and all your data will be anonymized as part of this process.</p>
-                    <form method="POST" action="{{ route('profile.deactivate') }}" class="deactivate-form">
-                        {{ csrf_field() }}
-                        <button type="submit" class="confirm-btn">Confirm</button>
-                        <button type="button" class="cancel-btn">Cancel</button>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
 </section>
