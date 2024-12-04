@@ -109,7 +109,7 @@
             <p>You must be a buyer to view the purchase history.</p>
         @endif
     @else
-        <p>You must be logged in to view this page. <a href="{{ route('login') }}">Login here</a>.</p>
+        <a href="{{ route('login') }}"></a>
     @endif
 </div>
 @endsection

@@ -5,12 +5,8 @@
 @section('content')
 
 <script src="{{ asset('js/admin/user-profile.js') }}" defer></script>
-
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
+<script src="{{ asset('js/confirmation-modal.js') }}" defer></script>
+@include('partials.confirmation-modal')
 
 @php
     $profilePicturePath = $user->profile_picture;
@@ -25,29 +21,22 @@
         <!-- Profile Picture -->
         <div class="profile-picture-admin-view">
             <img src="{{ $profilePicture }}" alt="Profile Picture" id="editable-profile-picture">
-            <form method="POST" action="{{ route('admin.users.resetPicture', $user->id) }}" id="reset-profile-picture-form">
-                @csrf
-                @method('PUT')
-                <button type="submit" id="reset-profile-picture-btn" class="reset-button">
-                    <i class="fas fa-undo"></i> Reset to Default
-                </button>
-            </form>
+            @if ($user->is_active)
+                <form method="POST" action="{{ route('admin.users.resetPicture', $user->id) }}" id="reset-profile-picture-form">
+                    {{ csrf_field() }}
+                    @method('PUT')
+                    <button type="button" id="reset-profile-picture-btn" class="confirmation-btn"
+                            data-title="Reset Profile Picture to Default"
+                            data-message="Are you sure you want to reset this profile picture?"
+                            data-form-id="reset-profile-picture-form">
+                        <i class="fas fa-undo"></i> Reset to Default
+                    </button>
+                </form>
+            @endif
         </div>
 
         <!-- Profile Details -->
         <div class="profile-details">
-            @if ($user->is_active)
-                <form id="change-username-form" method="POST" action="{{ route('admin.users.changeUsername', $user->id) }}">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="username" value="{{ $user->username }}">
-                </form>
-            
-                <form id="change-name-form" method="POST" action="{{ route('admin.users.changeName', $user->id) }}">
-                    {{ csrf_field() }}
-                    <input type="hidden" name="name" value="{{ $user->name }}">
-                </form>
-            @endif
-
             <div class="detail-box">
                 <div class="detail-label"><strong>User ID</strong></div>
                 <div class="detail-info">{{ $user->id }}</div>
@@ -57,7 +46,15 @@
                 <div class="detail-info">
                     {{ $user->username }}
                     @if ($user->is_active)
-                        <button type="submit" form="change-username-form" class="change-button">Change</button>
+                    <form id="change-username-form" method="POST" action="{{ route('admin.users.changeUsername', $user->id) }}">
+                        {{ csrf_field() }}
+                        <button type="button" id="change-button" class="confirmation-btn"
+                                data-title="Change Username"
+                                data-message="Are you sure you want to change this user's username?"
+                                data-form-id="change-username-form">
+                            Change
+                        </button>
+                    </form>
                     @endif
                 </div>
             </div>
@@ -66,7 +63,15 @@
                 <div class="detail-info">
                     {{ $user->name }}
                     @if ($user->is_active)
-                        <button type="submit" form="change-name-form" class="change-button">Change</button>
+                        <form id="change-name-form" method="POST" action="{{ route('admin.users.changeName', $user->id) }}">
+                            {{ csrf_field() }}
+                            <button type="button" id="change-button" class="confirmation-btn"
+                                    data-title="Change Name"
+                                    data-message="Are you sure you want to change this user's ame?"
+                                    data-form-id="change-name-form">
+                                Change
+                            </button>
+                        </form>
                     @endif
                 </div>
             </div>
@@ -136,22 +141,24 @@
 
             <!-- Buttons -->
             <div class="profile-actions">
-                @if ($user->is_blocked)
-                    <form id="unblock-user-form" method="POST" action="{{ route('admin.users.unblock', $user->id) }}">
+                @if ($user->is_active)
+                    @if ($user->is_blocked)
+                        <form id="unblock-user-form" method="POST" action="{{ route('admin.users.unblock', $user->id) }}">
+                            {{ csrf_field() }}
+                            <button type="button" class="confirmation-btn" id="block-unblock-btn" data-title="Unblock User" data-message="Are you sure you want to unblock this user?" data-form-id="unblock-user-form">Unblock User</button>
+                        </form>
+                    @else
+                        <form id="block-user-form" method="POST" action="{{ route('admin.users.block', $user->id) }}">
+                            {{ csrf_field() }}
+                            <button type="button" class="confirmation-btn" id="block-unblock-btn" data-title="Block User" data-message="Are you sure you want to block this user?" data-form-id="block-user-form">Block User</button>
+                        </form>
+                    @endif
+
+                    <form id="deactivate-user-form" method="POST" action="{{ route('admin.users.deactivate', $user->id) }}">
                         {{ csrf_field() }}
-                        <button id="block-unblock-btn" type="submit" onclick="return confirm('Are you sure you want to unblock this user?');">Unblock User</button>
-                    </form>
-                @else
-                    <form id="block-user-form" method="POST" action="{{ route('admin.users.block', $user->id) }}">
-                        {{ csrf_field() }}
-                        <button id="block-unblock-btn" type="submit" onclick="return confirm('Are you sure you want to block this user?');">Block User</button>
+                        <button type="button" class="confirmation-btn" id="deactivate-btn" data-title="Deactivate User" data-message="Are you sure you want to deactivate this user? This action is irreversible and all data will be anonymized, be careful!" data-form-id="deactivate-user-form">Deactivate User</button>
                     </form>
                 @endif
-                
-                <form id="deactivate-user-form" method="POST" action="{{ route('admin.users.deactivate', $user->id) }}">
-                    {{ csrf_field() }}
-                    <button id="deactivate-btn" type="submit" onclick="return confirm('Are you sure you want to deactivate this user?');">Deactivate User</button>
-                </form>
             </div>
         </div>
     </div>

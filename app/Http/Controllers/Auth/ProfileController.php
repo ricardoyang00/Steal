@@ -96,7 +96,7 @@ class ProfileController extends Controller
         $user->save();
 
         return redirect()->route('profile')
-            ->with('success', 'Password updated successfully!');
+            ->withSuccess('Password updated successfully!');
     }
 
     public function deactivateUser(Request $request)
@@ -111,6 +111,6 @@ class ProfileController extends Controller
         auth()->logout();
 
         return redirect()->route('home')
-            ->with('success', 'Your account has been deactivated and anonymized.');
+            ->withSuccess('Your account has been deleted. Game over... for now!');
     }
 }

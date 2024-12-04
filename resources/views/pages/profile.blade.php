@@ -9,6 +9,8 @@
 @section('content')
 
 <script src="{{ asset('js/profile/profile.js') }}" defer></script>
+<script src="{{ asset('js/confirmation-modal.js') }}" defer></script>
+@include('partials.confirmation-modal')
 
 @php
     $profilePicturePath = auth_user()->profile_picture;
@@ -19,12 +21,6 @@
 @endphp
 
 <section id="profile" style="display: {{ $errors->any() ? 'none' : 'flex' }};">
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <div class="profile-card">
         <!-- Username -->
         <div class="profile-username">
@@ -83,12 +79,15 @@
                     <i class="fas fa-key"></i> Change Password
                 </button>
             @endif
-
+            
             @if (!is_admin())
-                <form method="POST" action="{{ route('profile.deactivate') }}" class="deactivate-form">
+                <form method="POST" action="{{ route('profile.deactivate') }}" id="deactivate-account-form" class="deactivate-form">
                     {{ csrf_field() }}
-                    <button type="submit" onclick="return confirm('Are you sure you want to deactivate your account? Please note that all your data will be anonymized as part of this process.');">
-                        Deactivate Account
+                    <button type="button" id="delete-account-btn" class="confirmation-btn" 
+                            data-title="Are you sure you want to delete your account?"
+                            data-message="Please note that this action is irreversible and all your data will be anonymized as part of this process."
+                            data-form-id="deactivate-account-form">
+                        Delete Account
                     </button>
                 </form>
             @endif

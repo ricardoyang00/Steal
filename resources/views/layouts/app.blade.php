@@ -37,6 +37,17 @@
     </head>
     <body>
         <main>
+            @if (session('success'))
+                <div class="alert alert-success notification-popup">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-error notification-popup">
+                    {{ $errors->first() }}
+                </div>
+            @endif
+
             <div class="header-navbar-container">
                 <header>
                     <h1>

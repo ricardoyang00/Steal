@@ -38,7 +38,7 @@ class GoogleController extends Controller
                 }
                 request()->session()->forget('shopping_cart');
 
-                return redirect()->route('home')->withSuccess('You have successfully logged in with Google!');
+                return redirect()->route('home')->withSuccess('You\'re in! The best deals and games are waiting for you.');
             } else {
                 // Redirect with an error if the email is associated with another account without a Google ID
                 return redirect()->route('login')->withErrors(['email' => 'The email is already associated with another account.']);
@@ -79,7 +79,7 @@ class GoogleController extends Controller
             }
             request()->session()->forget('shopping_cart');
 
-            return redirect()->route('home')->withSuccess('You have successfully registered & logged in with Google!');
+            return redirect()->route('home')->withSuccess('You\'re all set, gamer. Let’s unlock some new items!');
         // Otherwise, simply log in with the existing user
         } else {
             Auth::login($user);
@@ -92,7 +92,7 @@ class GoogleController extends Controller
             }
             request()->session()->forget('shopping_cart');
 
-            return redirect()->route('home')->withSuccess('You have successfully logged in with Google!');
+            return redirect()->route('home')->withSuccess('You\'re in! The best deals and games are waiting for you.');
         }
     }
 

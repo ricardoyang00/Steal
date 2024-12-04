@@ -215,7 +215,7 @@ class GameController extends Controller
         $game->languages()->sync($request->input('languages', []));
         $game->players()->sync($request->input('players', []));
 
-        return redirect()->route('games.edit', $game->id)->with('success', 'Game updated successfully.');
+        return redirect()->route('games.edit', $game->id)->withSuccess('Game updated successfully.');
     }
 
     public function create()
@@ -313,11 +313,10 @@ class GameController extends Controller
                 }
             }
 
-            Log::info('Game created successfully', ['game_id' => $game->id]);
-            return redirect()->route('seller.products')->with('success', 'Game created successfully.');
+            return redirect()->route('seller.products')->withSuccess('Game created successfully.');
         } catch (\Exception $e) {
             Log::error('Error creating game', ['error' => $e->getMessage()]);
-            return redirect()->route('seller.products')->with('error', 'Failed to create game.');
+            return redirect()->route('seller.products')->withErrors('Failed to create game.');
         }
     }
 }
