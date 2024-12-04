@@ -21,23 +21,22 @@
         <!-- Profile Picture -->
         <div class="profile-picture-admin-view">
             <img src="{{ $profilePicture }}" alt="Profile Picture" id="editable-profile-picture">
-            <form method="POST" action="{{ route('admin.users.resetPicture', $user->id) }}" id="reset-profile-picture-form">
-                {{ csrf_field() }}
-                @method('PUT')
-                <button type="button" id="reset-profile-picture-btn" class="confirmation-btn"
-                        data-title="Reset Profile Picture to Default"
-                        data-message="Are you sure you want to reset this profile picture?"
-                        data-form-id="reset-profile-picture-form">
-                    <i class="fas fa-undo"></i> Reset to Default
-                </button>
-            </form>
+            @if ($user->is_active)
+                <form method="POST" action="{{ route('admin.users.resetPicture', $user->id) }}" id="reset-profile-picture-form">
+                    {{ csrf_field() }}
+                    @method('PUT')
+                    <button type="button" id="reset-profile-picture-btn" class="confirmation-btn"
+                            data-title="Reset Profile Picture to Default"
+                            data-message="Are you sure you want to reset this profile picture?"
+                            data-form-id="reset-profile-picture-form">
+                        <i class="fas fa-undo"></i> Reset to Default
+                    </button>
+                </form>
+            @endif
         </div>
 
         <!-- Profile Details -->
         <div class="profile-details">
-            @if ($user->is_active)
-            @endif
-
             <div class="detail-box">
                 <div class="detail-label"><strong>User ID</strong></div>
                 <div class="detail-info">{{ $user->id }}</div>
