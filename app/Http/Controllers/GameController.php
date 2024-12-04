@@ -8,12 +8,18 @@ use App\Models\Platform;
 use App\Models\Language;
 use App\Models\Player;
 use App\Models\Age;
+use App\Http\Controllers\NotificationController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class GameController extends Controller
 {    
+    public function __construct(NotificationController $notificationController)
+    {
+        $this->notificationController = $notificationController;
+    }
+
     public function home()
     {
         [$topSellersChunks, $similarGames] = $this->getTopSellersAndSimilarGames();
@@ -205,6 +211,10 @@ class GameController extends Controller
     public function update(Request $request, $id)
     {
         $game = Game::findOrFail($id);
+
+        $oldPrice = $game->price;
+        $oldStock = $game->stock;
+
         $game->update($request->all());
 
         // Update relationships
@@ -212,6 +222,10 @@ class GameController extends Controller
         $game->platforms()->sync($request->input('platforms', []));
         $game->languages()->sync($request->input('languages', []));
         $game->players()->sync($request->input('players', []));
+        
+        
+        $this->notificationController->createPriceWishlistNotifications($game, $oldPrice, $game->price);
+        
 
         return redirect()->route('games.edit', $game->id)->with('success', 'Game updated successfully.');
     }

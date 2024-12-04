@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Order;
 use App\Models\OrderNotification;
+use App\Models\WishlistNotification;
+use App\Models\GameNotification;
+use Illuminate\Support\Facades\DB;
 use Exception;
 
 class NotificationController extends Controller{
@@ -22,9 +25,9 @@ class NotificationController extends Controller{
 
     public function createPriceWishlistNotifications($game, $oldPrice, $newPrice) {
         try {
-            $wishlists = DB::table('wishlist_game')
-                ->where('game_id', $game->id)
-                ->pluck('wishlist_id');
+            $wishlists = DB::table('wishlist')
+                ->where('game', $game->id)
+                ->pluck('id');
     
             if ($wishlists->isEmpty()) {
                 return;
@@ -72,8 +75,6 @@ class NotificationController extends Controller{
         }
     }
     
-    
-
     private function getNotifications() {
         $orderNotifications = $this->getOrderNotifications()->toArray();
         $reviewNotifications = $this->getReviewNotifications()->toArray();
@@ -152,6 +153,8 @@ class NotificationController extends Controller{
                         'totalPrice' => $purchases->sum('value'),
                     ];
                 }
+
+                $notification->type = 'Order';
     
                 return $notification;
             });
@@ -182,48 +185,41 @@ class NotificationController extends Controller{
             ->orderBy('time', 'desc')
             ->get()
             ->map(function ($notification) {
-                // Default notification array
+                // Set the general notification type
+                $notification->type = 'Wishlist';
+    
+                // Default parsed details
                 $parsedNotification = [
-                    'id' => $notification->id,
-                    'title' => $notification->title,
-                    'description' => $notification->description,
-                    'time' => $notification->time,
-                    'is_read' => $notification->is_read,
-                    'wishlist' => $notification->wishlist,
+                    'game_name' => null,
+                    'specific_type' => 'Unknown',
                 ];
     
                 // Extract the game name from the description using regex
-                $gameName = null;
                 if (preg_match("/Game Name: ?'?([^,']+)'?/", $notification->description, $gameNameMatches)) {
-                    $gameName = $gameNameMatches[1] ?? null;
+                    $parsedNotification['game_name'] = $gameNameMatches[1] ?? null;
                 }
     
-                // Parse type-specific information
+                // Parse specific details based on the description
                 if (strpos($notification->description, 'Type: Price') !== false) {
                     // Extract old price and new price using regex
                     $matches = [];
-                    preg_match('/Old Price: \$([\d.]+), New Price: \$([\d.]+)/', $notification->description, $matches);
+                    preg_match('/Old Price: \$\s?(\d+(?:\.\d{1,2})?), New Price: \$\s?(\d+(?:\.\d{1,2})?)/', $notification->description, $matches);
+                    $parsedNotification['specific_type'] = 'Price';
+                    $parsedNotification['old_price'] = $matches[1] ?? null;
+                    $parsedNotification['new_price'] = $matches[2] ?? null;
     
-                    $oldPrice = $matches[1] ?? null;
-                    $newPrice = $matches[2] ?? null;
-    
-                    // Remove the price and type details from the description
-                    $cleanedDescription = preg_replace('/Old Price: \$[\d.]+, New Price: \$[\d.]+, Type: Price/', '', $notification->description);
-    
-                    // Add parsed details to the notification array
-                    $parsedNotification['description'] = trim($cleanedDescription);
-                    $parsedNotification['old_price'] = $oldPrice;
-                    $parsedNotification['new_price'] = $newPrice;
-                    $parsedNotification['type'] = 'Price';
+                    // Remove the price details from the description
+                    $notification->description = preg_replace('/Game Name: ?\'?[^,]+\'?, Old Price: \$\s?\d+(?:\.\d{1,2})?, New Price: \$\s?\d+(?:\.\d{1,2})?, Type: Price/', '', $notification->description);
+
+
                 } elseif (strpos($notification->description, 'Type: Stock') !== false) {
-                    $parsedNotification['type'] = 'Stock';
-                } else {
-                    $parsedNotification['type'] = 'Unknown';
+                    $parsedNotification['specific_type'] = 'Stock';
                 }
     
-                $parsedNotification['game_name'] = $gameName;
+                // Add the parsed details to the notification
+                $notification->parsedDetails = $parsedNotification;
     
-                return $parsedNotification;
+                return $notification;
             });
     
             return $notifications;
@@ -232,6 +228,7 @@ class NotificationController extends Controller{
             return collect();
         }
     }
+    
     
 
     private function markNotificationsAsRead($notifications) {
