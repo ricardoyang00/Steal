@@ -80,9 +80,17 @@
                         {{ $errors->first() }}
                     </div>
                 @endif
-            @else
+            @elseif (auth_user() && auth_user()->buyer && !$game->hasReviewedGame(auth()->user()))
                 <p class="review-form-message">
                     You must have purchased this game to leave a review.
+                </p>
+            @elseif (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
+                <p class="review-form-message">
+                    You have already reviewed this game.
+                </p>
+            @elseif (!auth_user())
+                <p class="review-form-message">
+                    You must be logged in to leave a review.
                 </p>
             @endif
         </div>
