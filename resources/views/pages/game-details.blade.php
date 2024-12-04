@@ -11,8 +11,20 @@
 @endif
 
 <div class="game-details-page">
-    <div class="game-image">
-        <img src="{{ asset($game->getThumbnailLargePath()) }}" class="img-fluid" alt="{{ $game->name }}">
+    <!-- Game Images -->
+    <div class="game-images">
+        <!-- Large Thumbnail -->
+        <div class="game-image">
+            <img src="{{ asset($game->getThumbnailLargePath()) }}" class="img-fluid" alt="{{ $game->name }}">
+        </div>
+        <!-- Additional Images -->
+        @if ($game->images)
+            @foreach($game->images as $image)
+                <div class="game-image">
+                    <img src="{{ asset($image->path) }}" class="img-fluid" alt="{{ $game->name }}">
+                </div>
+            @endforeach
+        @endif
     </div>
     <div class="game-details">
         <h1>{{ $game->name }}</h1>

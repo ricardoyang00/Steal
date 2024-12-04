@@ -15,8 +15,8 @@ class GameMedia extends Model
 
     protected $fillable = [
         'path',
-        'game_id',
-        'order'
+        'game',
+        'order_'
     ];
 
     public function game()

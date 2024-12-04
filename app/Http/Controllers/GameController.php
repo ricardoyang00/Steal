@@ -302,17 +302,18 @@ class GameController extends Controller
             
             if ($request->hasFile('additional_images')) {
                 foreach ($request->file('additional_images') as $index => $image) {
-                    $imagePath = 'images/large/' . uniqid() . '.' . $image->getClientOriginalExtension();
-                    $image->move(public_path('images/large'), $imagePath);
+                    $imagePath = 'images/gamemedia/' . uniqid() . '.' . $image->getClientOriginalExtension();
+                    $image->move(public_path('images/gamemedia'), $imagePath);
                     GameMedia::create([
                         'path' => $imagePath,
-                        'game_id' => $game->id,
-                        'order' => $index
+                        'game' => $game->id,
+                        'order_' => $index
                     ]);
                     Log::info('Additional image uploaded', ['path' => $imagePath, 'order' => $index]);
                 }
             }
 
+            Log::info('Game created successfully', ['game_id' => $game->id]);
             return redirect()->route('seller.products')->with('success', 'Game created successfully.');
         } catch (\Exception $e) {
             Log::error('Error creating game', ['error' => $e->getMessage()]);

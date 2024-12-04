@@ -95,7 +95,7 @@ class Game extends Model
 
     public function images()
     {
-        return $this->hasMany(GameMedia::class);
+        return $this->hasMany(GameMedia::class, 'game');
     }
 
     public function getReleaseDate()
