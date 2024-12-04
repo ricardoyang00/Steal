@@ -20,6 +20,31 @@ class NotificationController extends Controller{
         }
     }
 
+    public function createWishlistNotifications($game, $oldPrice, $newPrice) {
+        try {
+            $wishlists = DB::table('wishlist_game')
+                ->where('game_id', $game->id)
+                ->pluck('wishlist_id');
+    
+            if ($wishlists->isEmpty()) {
+                return;
+            }
+    
+            foreach ($wishlists as $wishlist) {
+                WishlistNotification::create([
+                    'title' => "Update on price of wishlist game",
+                    'description' => "A game on your wishlist had its price updated. Game Name: {$game->name}, Old Price: $ {$oldPrice}, New Price: $ {$newPrice}",
+                    'time' => now(),
+                    'is_read' => false,
+                    'wishlist' => $wishlist,
+                ]);
+            }
+        } catch (\Exception $e) {
+            \Log::error("Error creating wishlist notifications: " . $e->getMessage());
+        }
+    }    
+    
+
     private function getNotifications() {
         $orderNotifications = $this->getOrderNotifications()->toArray();
         $reviewNotifications = $this->getReviewNotifications()->toArray();
@@ -119,8 +144,30 @@ class NotificationController extends Controller{
     }
 
     private function getWishlistNotifications() {
-        // TODO
-        return collect();
+        try {
+            $buyerId = auth_user()->id;
+    
+            $notifications = WishlistNotification::whereHas('getWishlist', function ($query) use ($userId) {
+                $query->where('buyer', $buyerId);
+            })
+            ->orderBy('time', 'desc')
+            ->get()
+            ->map(function ($notification) {
+                return [
+                    'id' => $notification->id,
+                    'title' => $notification->title,
+                    'description' => $notification->description,
+                    'time' => $notification->time,
+                    'is_read' => $notification->is_read,
+                    'wishlist' => $notification->wishlist,
+                ];
+            });
+    
+            return $notifications;
+        } catch (\Exception $e) {
+            \Log::error("Error fetching wishlist notifications: " . $e->getMessage());
+            return collect();
+        }
     }
 
     private function markNotificationsAsRead($notifications) {
