@@ -37,7 +37,7 @@ class NotificationController extends Controller{
     
             foreach ($wishlists as $wishlist) {
                 WishlistNotification::create([
-                    'title' => "Update on price of wishlist game",
+                    'title' => "Wishlist Game Price Update",
                     'description' => "A game on your wishlist had its price updated. Game Name: {$game->name}, Old Price: $ {$oldPrice}, New Price: $ {$newPrice}, Type: Price",
                     'time' => now(),
                     'is_read' => false,
