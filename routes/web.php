@@ -151,6 +151,8 @@ Route::get('/games/{id}/edit', [GameController::class, 'edit'])->name('games.edi
 Route::post('/games/{id}/update', [GameController::class, 'update'])->name('games.update');
 Route::get('/games/create', [GameController::class, 'create'])->name('games.create');
 Route::post('/games', [GameController::class, 'store'])->name('games.store');
+Route::get('/games/{id}/cdks', [GameController::class, 'showCdks'])->name('games.cdks');
+Route::post('/games/{id}/cdks/add', [GameController::class, 'addCdks'])->name('games.cdks.add');
 
 // Static Pages
 Route::controller(StaticPagesController::class)->group(function () {

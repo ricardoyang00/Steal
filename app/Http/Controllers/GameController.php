@@ -10,6 +10,7 @@ use App\Models\Player;
 use App\Models\Age;
 use App\Models\GameMedia;
 use App\Models\Review;
+use App\Models\CDK;
 use App\Http\Controllers\NotificationController;
 
 use Illuminate\Http\Request;
@@ -352,5 +353,56 @@ class GameController extends Controller
             Log::error('Error creating game', ['error' => $e->getMessage()]);
             return redirect()->route('seller.products')->withErrors('Failed to create game.');
         }
+    }
+
+    public function showCdks(Request $request, $id)
+    {
+        $game = Game::findOrFail($id);
+        $filter = $request->input('filter', 'all');
+
+        $query = CDK::where('game', $id);
+
+        if ($filter === 'available') {
+            $query->whereDoesntHave('deliveredPurchase');
+        } elseif ($filter === 'sold') {
+            $query->whereHas('deliveredPurchase');
+        }
+
+        $cdks = $query->orderBy('id', 'desc')->paginate(25);
+
+        return view('seller.game-cdks', compact('game', 'cdks', 'filter'));
+    }
+
+    public function addCdks(Request $request, $id)
+    {
+        $request->validate([
+            'quantity' => 'required|integer|min:1'
+        ]);
+
+        $game = Game::findOrFail($id);
+
+        for ($i = 0; $i < $request->quantity; $i++) {
+            $cdk = new CDK();
+            $cdk->code = $this->generateUniqueCode(26);
+            $cdk->game = $game->id;
+            $cdk->save();
+        }
+
+        return redirect()->route('games.cdks', $game->id)->with('success', 'CDKs added successfully.');
+    }
+
+    private function generateUniqueCode($length = 26)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        do {
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            $randomString = strtoupper($randomString);
+        } while (CDK::where('code', $randomString)->exists());
+
+        return $randomString;
     }
 }
