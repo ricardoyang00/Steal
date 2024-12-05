@@ -189,11 +189,16 @@
     transition: all 0.2s ease-in;
 }
 
-.input-wrapper input:is(:focus, :valid) {
+.input-wrapper input:focus {
     border: 2px solid var(--focus-color);
 }
 
-.input-wrapper input:is(:focus, :valid) + .placeholder {
+.input-wrapper.input-filled input {
+    border: 2px solid var(--focus-color);
+}
+
+.input-wrapper.input-filled .placeholder,
+.input-wrapper input:focus + .placeholder {
     transform: translateY(calc(-1 * var(--padding) - 8px));
     font-size: 14px;
     color: var(--text-color);
@@ -289,4 +294,20 @@ input:-webkit-autofill:active {
 
 .google-button:hover {
     background-color: var(--highlight-hover-color);
+}
+
+#login-toggle-password {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    transform: translateY(-90%);
+    color: #ffffff;
+}
+
+#register-toggle-password {
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    transform: translateY(+90%);
+    color: #ffffff;
 }

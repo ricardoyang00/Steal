@@ -3,6 +3,8 @@
 @section('content')
 
 <script src="{{ asset('js/register/register.js') }}" defer></script>
+<script src="{{ asset('js/common/toggle-password.js') }}" defer></script>
+<script src="{{ asset('js/common/input-visual.js') }}" defer></script>
 
 <div class="form-container register-page">
 
@@ -37,11 +39,13 @@
     <div class="input-wrapper">
       <input id="password" type="password" name="password" required minlength="8" maxlength="25">
       <label for="password" class="placeholder">Password</label>
+      <i class="fas fa-eye toggle-password" data-toggle="#password" id="register-toggle-password"></i>
     </div>
     
     <div class="input-wrapper">
       <input id="password-confirm" type="password" name="password_confirmation" required minlength="8" maxlength="25">
       <label for="password-confirm" class="placeholder">Confirm Password</label>
+      <i class="fas fa-eye toggle-password" data-toggle="#password-confirm" id="register-toggle-password"></i>
     </div>
     
     <div id="buyer_fields">

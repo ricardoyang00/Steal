@@ -9,7 +9,8 @@
 @section('content')
 
 <script src="{{ asset('js/profile/profile.js') }}" defer></script>
-<script src="{{ asset('js/confirmation-modal.js') }}" defer></script>
+<script src="{{ asset('js/common/confirmation-modal.js') }}" defer></script>
+<script src="{{ asset('js/common/toggle-password.js') }}" defer></script>
 @include('partials.confirmation-modal')
 
 @php
@@ -193,7 +194,7 @@
                 <div class="detail-box">
                     <div class="detail-label"><label for="current_password"><strong>Current Password</strong></label></div>
                     <div class="detail-info">
-                        <input type="password" id="current_password" name="current_password" required minlength="8" maxlength="25">
+                        <input type="password" id="current_password" name="current_password" required maxlength="25">
                         <i class="fas fa-eye toggle-password" data-toggle="#current_password"></i>
                     </div>
                     @if ($errors->has('current_password'))

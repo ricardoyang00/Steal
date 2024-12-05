@@ -5,7 +5,7 @@
 @section('content')
 
 <script src="{{ asset('js/admin/user-profile.js') }}" defer></script>
-<script src="{{ asset('js/confirmation-modal.js') }}" defer></script>
+<script src="{{ asset('js/common/confirmation-modal.js') }}" defer></script>
 @include('partials.confirmation-modal')
 
 @php

@@ -2,6 +2,9 @@
 
 @section('content')
 
+<script src="{{ asset('js/common/toggle-password.js') }}" defer></script>
+<script src="{{ asset('js/common/input-visual.js') }}" defer></script>
+
 <div class="form-container login-page">
 
 <form method="POST" action="{{ route('login') }}">
@@ -15,8 +18,9 @@
     </div>
 
     <div class="input-wrapper">
-        <input id="password" type="password" name="password" required>
+        <input id="password" type="password" name="password" required maxlength="25">
         <label for="password" class="placeholder">Password</label>
+        <i class="fas fa-eye toggle-password" data-toggle="#password" id="login-toggle-password"></i>
     </div>
 
     <div class="checkbox-wrapper">
