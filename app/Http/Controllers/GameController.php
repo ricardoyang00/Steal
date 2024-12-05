@@ -133,8 +133,12 @@ class GameController extends Controller
     {
         $game = Game::with(['seller', 'platforms', 'categories', 'languages', 'players'])->find($id);
         
-        $userId = auth_user()->id;
-
+        if (auth_user()){
+            $userId = auth_user()->id;
+        } else {
+            $userId = -1;
+        }
+        
         $review = Review::where('game', $game->id)->where('author', $userId)->first();
 
         if (!$review) {
