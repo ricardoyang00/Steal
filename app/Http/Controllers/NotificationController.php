@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Order;
 use App\Models\Wishlist;
+use App\Models\ShoppingCart;
 use App\Models\Game;
 use App\Models\OrderNotification;
 use App\Models\WishlistNotification;
@@ -305,6 +306,7 @@ class NotificationController extends Controller{
     try {
         $notification = OrderNotification::find($notificationId) ??
                         WishlistNotification::find($notificationId) ??
+                        ShoppingCartNotification::find($notificationId) ??
                         GameNotification::find($notificationId);
 
         if (!$notification) {
@@ -334,6 +336,7 @@ class NotificationController extends Controller{
                 if(auth_user()->buyer){
 
                     $buyerId = auth_user()->id;
+
                     $userOrders = Order::where('buyer', $buyerId)->pluck('id');
                     $unreadOrderNotifications = OrderNotification::whereIn('order_', $userOrders)
                     ->where('is_read', false)
@@ -344,7 +347,12 @@ class NotificationController extends Controller{
                     ->where('is_read', false)
                     ->count();
 
-                    $unreadCount = $unreadOrderNotifications + $unreadWishlistNotifications;
+                    $userShoppingCarts = ShoppingCart::where('buyer', $buyerId)->pluck('id');
+                    $unreadShoppingCartNotifications = ShoppingCartNotification::whereIn('shopping_cart', $userShoppingCarts)
+                    ->where('is_read', false)
+                    ->count();
+
+                    $unreadCount = $unreadOrderNotifications + $unreadWishlistNotifications + $unreadShoppingCartNotifications;
     
                 }
 
@@ -378,6 +386,7 @@ class NotificationController extends Controller{
 
         $notification = OrderNotification::find($notificationId) ??
                         WishlistNotification::find($notificationId) ??
+                        ShoppingCartNotification::find($notificationId) ??
                         GameNotification::find($notificationId);
 
         if (!$notification) {
@@ -393,6 +402,11 @@ class NotificationController extends Controller{
             if ($notification->getWishlist && $notification->getWishlist->buyer === auth()->id()) {
                 $notification->delete();
                 return response()->json(['message' => 'Wishlist notification deleted successfully'], 200);
+            }
+        } elseif ($notification instanceof ShoppingCartNotification) {
+            if ($notification->getShoppingCart && $notification->getShoppingCart->buyer === auth()->id()) {
+                $notification->delete();
+                return response()->json(['message' => 'Game notification deleted successfully'], 200);
             }
         } elseif ($notification instanceof GameNotification) {
             if ($notification->getGame && $notification->getGame->seller === auth()->id()) {

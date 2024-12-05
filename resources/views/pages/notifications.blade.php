@@ -33,7 +33,7 @@
                                 <span class="unread-notification-indicator"></span>
                             @endif
                             <button class="view-notification-details" type="button" data-toggle="collapse" data-target="#details-{{ $notification['id'] }}" aria-expanded="false" aria-controls="details-{{ $notification['id'] }}">
-                                {{ $notification['type'] === 'Wishlist' ? 'View Details' : 'View Order Details' }}
+                                {{ in_array($notification['type'], ['Wishlist', 'ShoppingCart']) ? 'View Details' : 'View Order Details' }}
                             </button>
                         </div>
                         <div class="notifications-collapse collapse" id="details-{{ $notification['id'] }}">
@@ -67,7 +67,7 @@
                                         </ul>
                                     @endif
                                     <p><strong>Total Price:</strong> ${{ $notification['orderDetails']['totalPrice'] ?? 0.0 }}</p>
-                                @elseif($notification['type'] === 'Wishlist')
+                                @elseif(in_array($notification['type'], ['Wishlist', 'ShoppingCart']))
                                     <p><strong>Game:</strong> {{ $notification['parsedDetails']['game_name'] ?? 'Unknown Game' }}</p>
                                     @if($notification['parsedDetails']['specific_type'] === 'Price')
                                         <p><strong>Old Price:</strong> ${{ $notification['parsedDetails']['old_price'] ?? 'N/A' }}</p>
