@@ -10,6 +10,7 @@ use App\Models\Wishlist;
 use App\Models\Game;
 use App\Models\OrderNotification;
 use App\Models\WishlistNotification;
+use App\Models\ShoppingCartNotification;
 use App\Models\GameNotification;
 use Illuminate\Support\Facades\DB;
 use Exception;
@@ -25,15 +26,12 @@ class NotificationController extends Controller{
         }
     }
 
-    public function createPriceWishlistNotifications($game, $oldPrice, $newPrice) {
+    public function createPriceNotifications($game, $oldPrice, $newPrice) {
         try {
+            // Create Wishlist Notifications
             $wishlists = DB::table('wishlist')
                 ->where('game', $game->id)
                 ->pluck('id');
-    
-            if ($wishlists->isEmpty()) {
-                return;
-            }
     
             foreach ($wishlists as $wishlist) {
                 WishlistNotification::create([
@@ -44,10 +42,25 @@ class NotificationController extends Controller{
                     'wishlist' => $wishlist,
                 ]);
             }
+    
+            $shoppingCarts = DB::table('shoppingcart')
+                ->where('game', $game->id)
+                ->pluck('id');
+    
+            foreach ($shoppingCarts as $shoppingCart) {
+                ShoppingCartNotification::create([
+                    'title' => "Shopping Cart Game Price Update",
+                    'description' => "A game on your shopping cart had its price updated. Game Name: {$game->name}, Old Price: $ {$oldPrice}, New Price: $ {$newPrice}, Type: Price",
+                    'time' => now(),
+                    'is_read' => false,
+                    'shopping_cart' => $shoppingCart,
+                ]);
+            }
         } catch (\Exception $e) {
-            \Log::error("Error creating wishlist notifications: " . $e->getMessage());
+            \Log::error("Error creating price notifications: " . $e->getMessage());
         }
-    } 
+    }
+    
 
     public function createStockWishlistNotifications($game, $soldOut) {
         try {
@@ -82,12 +95,14 @@ class NotificationController extends Controller{
         $reviewNotifications = $this->getReviewNotifications()->toArray();
         $gameNotifications = $this->getGameNotifications()->toArray();
         $wishlistNotifications = $this->getWishlistNotifications()->toArray();
+        $shoppingCartNotifications = $this->getShoppingCartNotifications()->toArray();
     
         $notifications = array_merge(
             $orderNotifications,
             $reviewNotifications,
             $gameNotifications,
-            $wishlistNotifications
+            $wishlistNotifications,
+            $shoppingCartNotifications
         );
     
         usort($notifications, function ($a, $b) {
@@ -229,6 +244,60 @@ class NotificationController extends Controller{
             return collect();
         }
     }
+
+    private function getShoppingCartNotifications() {
+        try {
+            $buyerId = auth_user()->id;
+    
+            $notifications = ShoppingCartNotification::whereHas('getShoppingCart', function ($query) use ($buyerId) {
+                $query->where('buyer', $buyerId);
+            })
+            ->orderBy('time', 'desc')
+            ->get()
+            ->map(function ($notification) {
+                // Set the general notification type
+                $notification->type = 'ShoppingCart';
+    
+                // Default parsed details
+                $parsedNotification = [
+                    'game_name' => null,
+                    'specific_type' => 'Unknown',
+                ];
+    
+                // Extract the game name from the description using regex
+                if (preg_match("/Game Name: ?'?([^,']+)'?/", $notification->description, $gameNameMatches)) {
+                    $parsedNotification['game_name'] = $gameNameMatches[1] ?? null;
+                }
+    
+                // Parse specific details based on the description
+                if (strpos($notification->description, 'Type: Price') !== false) {
+                    // Extract old price and new price using regex
+                    $matches = [];
+                    preg_match('/Old Price: \$\s?(\d+(?:\.\d{1,2})?), New Price: \$\s?(\d+(?:\.\d{1,2})?)/', $notification->description, $matches);
+                    $parsedNotification['specific_type'] = 'Price';
+                    $parsedNotification['old_price'] = $matches[1] ?? null;
+                    $parsedNotification['new_price'] = $matches[2] ?? null;
+    
+                    // Remove the price details from the description
+                    $notification->description = preg_replace('/Game Name: ?\'?[^,]+\'?, Old Price: \$\s?\d+(?:\.\d{1,2})?, New Price: \$\s?\d+(?:\.\d{1,2})?, Type: Price/', '', $notification->description);
+    
+                } elseif (strpos($notification->description, 'Type: Stock') !== false) {
+                    $parsedNotification['specific_type'] = 'Stock';
+                }
+    
+                // Add the parsed details to the notification
+                $notification->parsedDetails = $parsedNotification;
+    
+                return $notification;
+            });
+    
+            return $notifications;
+        } catch (\Exception $e) {
+            \Log::error("Error fetching shopping cart notifications: " . $e->getMessage());
+            return collect();
+        }
+    }
+    
     
 
     public function markNotificationAsRead($notificationId)

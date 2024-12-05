@@ -224,7 +224,7 @@ class GameController extends Controller
         $game->players()->sync($request->input('players', []));
         
         if ($oldPrice != $game->price) {
-            $this->notificationController->createPriceWishlistNotifications($game, $oldPrice, $game->price);
+            $this->notificationController->createPriceNotifications($game, $oldPrice, $game->price);
         }
         
 
