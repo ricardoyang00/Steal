@@ -129,6 +129,10 @@
     color: var(--text-color);
 }
 
+.home-game-card .game-title a:hover {
+    color: var(--secondary-text-color);
+}
+
 /* Game tags */
 .home-game-card .game-categories {
     display: flex;
@@ -245,4 +249,22 @@
     padding: 5px;
     border-radius: 4px;
     font-size: 1rem;
+}
+
+.home-small-game-card .game-title {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.home-small-game-card:hover .game-title {
+    display: block;
 }
