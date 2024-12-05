@@ -57,15 +57,21 @@
                     </h1>
                     @if (auth_user())
                         <div class="profile-buttons">
-                            @if (is_admin())
-                                <a class="button" href="{{ route('admin.createGameField') }}">Create Game Field</a>
-                                <a class="button" href="{{ url('/register') }}">Create Account</a>
-                                <a class="button" href="{{ route('admin.users.search') }}">Manage Users</a>
-                            @endif
-                            <a class="button" href="{{ url('/logout') }}"> Logout </a>
-                            <a class="profile-link" href="{{ url('/profile') }}">
-                                <i class="fas fa-user"></i> <span>{{ auth_user()->username }}</span>
-                            </a>
+                            <div class="dropdown">
+                                <a class="profile-link" href="{{ url('/profile') }}" role="button" id="profileDropdown">
+                                    <i class="fas fa-user"></i> <span>{{ auth_user()->username }}</span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                                    <a class="dropdown-item" href="{{ url('/profile') }}">View Profile</a>
+                                    @if (is_admin())
+                                        <a class="dropdown-item" href="{{ url('/register') }}">Create Accounts</a>
+                                        <a class="dropdown-item" href="{{ route('admin.users.search') }}">Manage Users</a>
+                                        <a class="dropdown-item" href="{{ route('admin.createGameField') }}">Create Game Fields</a>
+                                    @endif
+                                    <a class="dropdown-item" id="logout" href="{{ url('/logout') }}">Logout</a>
+                                </div>
+                            </div>
+
                             @if (auth_user()->buyer)
                                 <a class="icon-button" href="{{ url('/cart') }}">
                                     <i class="fas fa-shopping-cart"></i>

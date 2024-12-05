@@ -337,3 +337,70 @@ header .icon-button:hover {
   color: white;
 }
 
+/* Dropdown Styling */
+.profile-buttons .dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #1e1e1e; /* Matches the website's dark theme */
+  border: 1px solid #333333; /* Subtle border for separation */
+  border-radius: 8px; /* Rounded corners for a clean look */
+  min-width: 160px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4); /* Minimal shadow for depth */
+  z-index: 10;
+  padding: 8px 0; /* Adds vertical spacing between items */
+}
+
+/* Dropdown Links */
+.profile-buttons .dropdown-menu a {
+  color: var(--text-color); 
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Hover Effects */
+.profile-buttons .dropdown-menu a:hover {
+  background-color: #ededed;
+  color: var(--highlight-color);
+}
+
+/* Display Dropdown on Hover */
+.profile-buttons .dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+/* Dropdown Container */
+.profile-buttons .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Profile Link */
+.profile-buttons .profile-link {
+  display: flex;
+  align-items: center;
+  color: var(--text-color);
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.profile-buttons .profile-link i {
+  margin-right: 6px;
+  font-size: 16px;
+}
+
+.profile-buttons .profile-link:hover {
+  color: #d1d1d1;
+}
+
+.profile-buttons #logout {
+  color: var(--error-color);
+}
+
+.profile-buttons #logout:hover {
+  color: var(--red-hover);
+}
