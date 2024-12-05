@@ -58,6 +58,7 @@
                     @if (auth_user())
                         <div class="profile-buttons">
                             @if (is_admin())
+                                <a class="button" href="{{ route('admin.createGameField') }}">Create Game Field</a>
                                 <a class="button" href="{{ url('/register') }}">Create Account</a>
                                 <a class="button" href="{{ route('admin.users.search') }}">Manage Users</a>
                             @endif
