@@ -11,7 +11,7 @@
 <script src="{{ asset('js/profile/profile.js') }}" defer></script>
 <script src="{{ asset('js/common/confirmation-modal.js') }}" defer></script>
 <script src="{{ asset('js/common/toggle-password.js') }}" defer></script>
-@include('partials.confirmation-modal')
+@include('partials.common.confirmation-modal')
 
 @php
     $profilePicturePath = auth_user()->profile_picture;
