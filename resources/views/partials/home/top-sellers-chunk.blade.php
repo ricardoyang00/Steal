@@ -1,3 +1,5 @@
+<script src="{{ asset('js/cart/add-to-cart.js') }}" defer></script>
+
 <div class="top-sellers-section" id="top-sellers-{{ $chunkIndex }}">
     @foreach($topSellersChunk as $game)
         <div class="home-game-card" data-url="{{ route('game.details', ['id' => $game->id]) }}">
