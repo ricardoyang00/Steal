@@ -58,8 +58,8 @@
         </a>
     </div>
     <div class="game-stock-button">
-        <a href="{{ route('games.edit', ['id' => $game->id]) }}" class="btn-edit-game btn btn-primary" style="color:white;">
-            <i class="fa-solid fa-plus"></i></i> Add Stock
+        <a href="{{ route('games.cdks', ['id' => $game->id]) }}" class="btn-edit-game btn btn-primary" style="color:white;">
+            <i class="fa-solid fa-plus"></i> Add Stock
         </a>
     </div>
     <div class="game-history-button">

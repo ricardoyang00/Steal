@@ -6,7 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Order;
+use App\Models\Wishlist;
+use App\Models\ShoppingCart;
+use App\Models\Game;
 use App\Models\OrderNotification;
+use App\Models\WishlistNotification;
+use App\Models\ShoppingCartNotification;
+use App\Models\GameNotification;
+use Illuminate\Support\Facades\DB;
 use Exception;
 
 class NotificationController extends Controller{
@@ -20,17 +27,83 @@ class NotificationController extends Controller{
         }
     }
 
+    public function createPriceNotifications($game, $oldPrice, $newPrice) {
+        try {
+            // Create Wishlist Notifications
+            $wishlists = DB::table('wishlist')
+                ->where('game', $game->id)
+                ->pluck('id');
+    
+            foreach ($wishlists as $wishlist) {
+                WishlistNotification::create([
+                    'title' => "Wishlist Game Price Update",
+                    'description' => "A game on your wishlist had its price updated. Game Name: {$game->name}, Old Price: $ {$oldPrice}, New Price: $ {$newPrice}, Type: Price",
+                    'time' => now(),
+                    'is_read' => false,
+                    'wishlist' => $wishlist,
+                ]);
+            }
+    
+            $shoppingCarts = DB::table('shoppingcart')
+                ->where('game', $game->id)
+                ->pluck('id');
+    
+            foreach ($shoppingCarts as $shoppingCart) {
+                ShoppingCartNotification::create([
+                    'title' => "Shopping Cart Game Price Update",
+                    'description' => "A game on your shopping cart had its price updated. Game Name: {$game->name}, Old Price: $ {$oldPrice}, New Price: $ {$newPrice}, Type: Price",
+                    'time' => now(),
+                    'is_read' => false,
+                    'shopping_cart' => $shoppingCart,
+                ]);
+            }
+        } catch (\Exception $e) {
+            \Log::error("Error creating price notifications: " . $e->getMessage());
+        }
+    }
+    
+
+    public function createStockWishlistNotifications($game, $soldOut) {
+        try {
+            $wishlists = DB::table('wishlist')
+                ->where('game', $game->id)
+                ->pluck('id');
+    
+            if ($wishlists->isEmpty()) {
+                return;
+            }
+    
+            $description = $soldOut
+                ? "A game on your wishlist has just sold out. '{$game->name}'"
+                : "Good news! A game on your wishlist is now available again. Game Name:'{$game->name}', Type: Stock";
+    
+            foreach ($wishlists as $wishlist) {
+                WishlistNotification::create([
+                    'title' => "Stock Update for game on wishlist",
+                    'description' => $description,
+                    'time' => now(),
+                    'is_read' => false,
+                    'wishlist' => $wishlist,
+                ]);
+            }
+        } catch (\Exception $e) {
+            \Log::error("Error creating stock wishlist notifications: " . $e->getMessage());
+        }
+    }
+    
     private function getNotifications() {
         $orderNotifications = $this->getOrderNotifications()->toArray();
         $reviewNotifications = $this->getReviewNotifications()->toArray();
         $gameNotifications = $this->getGameNotifications()->toArray();
         $wishlistNotifications = $this->getWishlistNotifications()->toArray();
+        $shoppingCartNotifications = $this->getShoppingCartNotifications()->toArray();
     
         $notifications = array_merge(
             $orderNotifications,
             $reviewNotifications,
             $gameNotifications,
-            $wishlistNotifications
+            $wishlistNotifications,
+            $shoppingCartNotifications
         );
     
         usort($notifications, function ($a, $b) {
@@ -42,7 +115,6 @@ class NotificationController extends Controller{
         $currentPage = request()->get('page', 1); // Get the current page from the request, default to 1
         $currentItems = array_slice($notifications, ($currentPage - 1) * $perPage, $perPage);
 
-        $this->markNotificationsAsRead($currentItems);
     
         return new LengthAwarePaginator(
             $currentItems, // Items for the current page
@@ -98,6 +170,8 @@ class NotificationController extends Controller{
                         'totalPrice' => $purchases->sum('value'),
                     ];
                 }
+
+                $notification->type = 'Order';
     
                 return $notification;
             });
@@ -119,49 +193,226 @@ class NotificationController extends Controller{
     }
 
     private function getWishlistNotifications() {
-        // TODO
-        return collect();
-    }
+        try {
+            $buyerId = auth_user()->id;
+    
+            $notifications = WishlistNotification::whereHas('getWishlist', function ($query) use ($buyerId) {
+                $query->where('buyer', $buyerId);
+            })
+            ->orderBy('time', 'desc')
+            ->get()
+            ->map(function ($notification) {
+                // Set the general notification type
+                $notification->type = 'Wishlist';
+    
+                // Default parsed details
+                $parsedNotification = [
+                    'game_name' => null,
+                    'specific_type' => 'Unknown',
+                ];
+    
+                // Extract the game name from the description using regex
+                if (preg_match("/Game Name: ?'?([^,']+)'?/", $notification->description, $gameNameMatches)) {
+                    $parsedNotification['game_name'] = $gameNameMatches[1] ?? null;
+                }
+    
+                // Parse specific details based on the description
+                if (strpos($notification->description, 'Type: Price') !== false) {
+                    // Extract old price and new price using regex
+                    $matches = [];
+                    preg_match('/Old Price: \$\s?(\d+(?:\.\d{1,2})?), New Price: \$\s?(\d+(?:\.\d{1,2})?)/', $notification->description, $matches);
+                    $parsedNotification['specific_type'] = 'Price';
+                    $parsedNotification['old_price'] = $matches[1] ?? null;
+                    $parsedNotification['new_price'] = $matches[2] ?? null;
+    
+                    // Remove the price details from the description
+                    $notification->description = preg_replace('/Game Name: ?\'?[^,]+\'?, Old Price: \$\s?\d+(?:\.\d{1,2})?, New Price: \$\s?\d+(?:\.\d{1,2})?, Type: Price/', '', $notification->description);
 
-    private function markNotificationsAsRead($notifications) {
-        $unreadNotificationIds = array_map(function ($notification) {
-            return !$notification['is_read'] ? $notification['id'] : null;
-        }, $notifications);
+
+                } elseif (strpos($notification->description, 'Type: Stock') !== false) {
+                    $parsedNotification['specific_type'] = 'Stock';
+                }
     
-        // Filter out null values
-        $unreadNotificationIds = array_filter($unreadNotificationIds);
+                // Add the parsed details to the notification
+                $notification->parsedDetails = $parsedNotification;
     
-        if (!empty($unreadNotificationIds)) {
-            OrderNotification::whereIn('id', $unreadNotificationIds)->update(['is_read' => true]);
+                return $notification;
+            });
+    
+            return $notifications;
+        } catch (\Exception $e) {
+            \Log::error("Error fetching wishlist notifications: " . $e->getMessage());
+            return collect();
         }
     }
+
+    private function getShoppingCartNotifications() {
+        try {
+            $buyerId = auth_user()->id;
+    
+            $notifications = ShoppingCartNotification::whereHas('getShoppingCart', function ($query) use ($buyerId) {
+                $query->where('buyer', $buyerId);
+            })
+            ->orderBy('time', 'desc')
+            ->get()
+            ->map(function ($notification) {
+                // Set the general notification type
+                $notification->type = 'ShoppingCart';
+    
+                // Default parsed details
+                $parsedNotification = [
+                    'game_name' => null,
+                    'specific_type' => 'Unknown',
+                ];
+    
+                // Extract the game name from the description using regex
+                if (preg_match("/Game Name: ?'?([^,']+)'?/", $notification->description, $gameNameMatches)) {
+                    $parsedNotification['game_name'] = $gameNameMatches[1] ?? null;
+                }
+    
+                // Parse specific details based on the description
+                if (strpos($notification->description, 'Type: Price') !== false) {
+                    // Extract old price and new price using regex
+                    $matches = [];
+                    preg_match('/Old Price: \$\s?(\d+(?:\.\d{1,2})?), New Price: \$\s?(\d+(?:\.\d{1,2})?)/', $notification->description, $matches);
+                    $parsedNotification['specific_type'] = 'Price';
+                    $parsedNotification['old_price'] = $matches[1] ?? null;
+                    $parsedNotification['new_price'] = $matches[2] ?? null;
+    
+                    // Remove the price details from the description
+                    $notification->description = preg_replace('/Game Name: ?\'?[^,]+\'?, Old Price: \$\s?\d+(?:\.\d{1,2})?, New Price: \$\s?\d+(?:\.\d{1,2})?, Type: Price/', '', $notification->description);
+    
+                } elseif (strpos($notification->description, 'Type: Stock') !== false) {
+                    $parsedNotification['specific_type'] = 'Stock';
+                }
+    
+                // Add the parsed details to the notification
+                $notification->parsedDetails = $parsedNotification;
+    
+                return $notification;
+            });
+    
+            return $notifications;
+        } catch (\Exception $e) {
+            \Log::error("Error fetching shopping cart notifications: " . $e->getMessage());
+            return collect();
+        }
+    }
+    
+    
+
+    public function markNotificationAsRead($notificationId)
+{
+    try {
+        $notification = OrderNotification::find($notificationId) ??
+                        WishlistNotification::find($notificationId) ??
+                        ShoppingCartNotification::find($notificationId) ??
+                        GameNotification::find($notificationId);
+
+        if (!$notification) {
+            return response()->json(['error' => 'Notification not found'], 404);
+        }
+
+        if (!$notification->is_read) {
+            $notification->update(['is_read' => true]);
+        }
+
+        return response()->json(['message' => 'Notification marked as read'], 200);
+
+    } catch (\Exception $e) {
+        \Log::error('Error marking notification as read: ' . $e->getMessage());
+        return response()->json(['error' => 'Unable to mark notification as read'], 500);
+    }
+}
+
     
 
     public function getUnreadCount() {
         try {
             if(auth_user()){
-                $userOrders = Order::where('buyer', auth()->id())->pluck('id');
-                $unreadCount = OrderNotification::whereIn('order_', $userOrders)
-                ->where('is_read', false)
-                ->count();
+
+                $unreadCount = 0;
+
+                if(auth_user()->buyer){
+
+                    $buyerId = auth_user()->id;
+
+                    $userOrders = Order::where('buyer', $buyerId)->pluck('id');
+                    $unreadOrderNotifications = OrderNotification::whereIn('order_', $userOrders)
+                    ->where('is_read', false)
+                    ->count();
+
+                    $userWishlists = Wishlist::where('buyer', $buyerId)->pluck('id');
+                    $unreadWishlistNotifications = WishlistNotification::whereIn('wishlist', $userWishlists)
+                    ->where('is_read', false)
+                    ->count();
+
+                    $userShoppingCarts = ShoppingCart::where('buyer', $buyerId)->pluck('id');
+                    $unreadShoppingCartNotifications = ShoppingCartNotification::whereIn('shopping_cart', $userShoppingCarts)
+                    ->where('is_read', false)
+                    ->count();
+
+                    $unreadCount = $unreadOrderNotifications + $unreadWishlistNotifications + $unreadShoppingCartNotifications;
     
+                }
+
+
+                else if(auth_user()->seller){
+
+                    $sellerId = auth_user()->id;
+                    $sellerGames = Game::where('seller', $sellerId)->pluck('id');
+                    $unreadGameNotifications = GameNotification::whereIn('game', $sellerGames)
+                    ->where('is_read', false)
+                    ->count();
+                    
+                    $unreadCount = $unreadGameNotifications;
+
+                }
                 return response()->json(['unread_count' => $unreadCount], 200);
             }
+
         } catch (\Exception $e) {
             \Log::error("Error fetching unread notifications count: " . $e->getMessage());
             return response()->json(['error' => 'Unable to fetch unread notifications count'], 500);
         }
+
     }
     
 
     public function deleteNotification($notificationId)
 {
     try {
-        $notification = OrderNotification::findOrFail($notificationId);
+        $notification = null;
 
-        if ($notification->getOrder && $notification->getOrder->buyer === auth()->id()) {
-            $notification->delete();
-            return response()->json(['message' => 'Notification deleted successfully'], 200);
+        $notification = OrderNotification::find($notificationId) ??
+                        WishlistNotification::find($notificationId) ??
+                        ShoppingCartNotification::find($notificationId) ??
+                        GameNotification::find($notificationId);
+
+        if (!$notification) {
+            return response()->json(['error' => 'Notification not found'], 404);
+        }
+
+        if ($notification instanceof OrderNotification) {
+            if ($notification->getOrder && $notification->getOrder->buyer === auth()->id()) {
+                $notification->delete();
+                return response()->json(['message' => 'Order notification deleted successfully'], 200);
+            }
+        } elseif ($notification instanceof WishlistNotification) {
+            if ($notification->getWishlist && $notification->getWishlist->buyer === auth()->id()) {
+                $notification->delete();
+                return response()->json(['message' => 'Wishlist notification deleted successfully'], 200);
+            }
+        } elseif ($notification instanceof ShoppingCartNotification) {
+            if ($notification->getShoppingCart && $notification->getShoppingCart->buyer === auth()->id()) {
+                $notification->delete();
+                return response()->json(['message' => 'Game notification deleted successfully'], 200);
+            }
+        } elseif ($notification instanceof GameNotification) {
+            if ($notification->getGame && $notification->getGame->seller === auth()->id()) {
+                $notification->delete();
+                return response()->json(['message' => 'Game notification deleted successfully'], 200);
+            }
         }
 
         return response()->json(['error' => 'Unauthorized'], 403);
@@ -170,6 +421,7 @@ class NotificationController extends Controller{
         return response()->json(['error' => 'Unable to delete notification'], 500);
     }
 }
+
 
 
     
