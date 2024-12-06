@@ -55,7 +55,7 @@ class RegisterController extends Controller
                 'max:30',
                 'regex:/^[a-zA-Z0-9 .\'-]+$/',
             ],
-            'email' => ['required', 'email', 'max:320', new UniqueEmail],
+            'email' => ['required', 'email', 'max:50', new UniqueEmail],
             'password' => 'required|min:8|max:25|confirmed',
         ];
     

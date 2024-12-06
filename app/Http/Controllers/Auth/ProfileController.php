@@ -92,6 +92,10 @@ class ProfileController extends Controller
             return back()->withErrors(['current_password' => 'Current password is incorrect']);
         }
 
+        if (Hash::check($request->input('new_password'), $user->password)) {
+            return back()->withErrors(['new_password' => 'New password cannot be the same as the current password']);
+        }
+
         $user->password = Hash::make($request->input('new_password'));
         $user->save();
 

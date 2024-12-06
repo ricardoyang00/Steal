@@ -24,7 +24,7 @@ class GameFieldsController extends Controller
     {
         $request->validate([
             'type' => 'required|string|in:category,platform,language',
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:20',
         ]);
 
         switch ($request->type) {
@@ -39,6 +39,82 @@ class GameFieldsController extends Controller
                 break;
         }
 
-        return redirect()->route('admin.createGameField')->withSuccess(ucfirst($request->type) . ' created successfully.');
+        return redirect()->route('admin.indexGameField')->withSuccess(ucfirst($request->type) . ' created successfully.');
+    }
+
+    public function index()
+    {
+        $categories = Category::all();
+        $platforms = Platform::all();
+        $languages = Language::all();
+
+        return view('admin.games.index-game-field', compact('categories', 'platforms', 'languages'));
+    }
+
+    public function edit($type, $id)
+    {
+        switch ($type) {
+            case 'category':
+                $entry = Category::findOrFail($id);
+                break;
+            case 'platform':
+                $entry = Platform::findOrFail($id);
+                break;
+            case 'language':
+                $entry = Language::findOrFail($id);
+                break;
+        }
+
+        return view('admin.games.edit-game-field', compact('entry', 'type'));
+    }
+
+    public function update(Request $request, $type, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:20',
+        ]);
+
+        switch ($type) {
+            case 'category':
+                $entry = Category::findOrFail($id);
+                break;
+            case 'platform':
+                $entry = Platform::findOrFail($id);
+                break;
+            case 'language':
+                $entry = Language::findOrFail($id);
+                break;
+        }
+
+        $oldName = $entry->name;
+        $entry->update(['name' => $request->name]);
+
+        return redirect()->route('admin.indexGameField')->withSuccess(ucfirst($type) . ' "' . $oldName . '" changed to "' . $request->name . '" successfully.');
+    }
+
+    public function destroy($type, $id)
+    {
+        switch ($type) {
+            case 'category':
+                $entry = Category::findOrFail($id);
+                $name = $entry->name;
+                \DB::table('gamecategory')->where('category', $id)->delete();
+                $entry->delete();
+                break;
+            case 'platform':
+                $entry = Platform::findOrFail($id);
+                $name = $entry->name;
+                \DB::table('gameplatform')->where('platform', $id)->delete();
+                $entry->delete();
+                break;
+            case 'language':
+                $entry = Language::findOrFail($id);
+                $name = $entry->name;
+                \DB::table('gamelanguage')->where('language', $id)->delete();
+                $entry->delete();
+                break;
+        }
+
+        return redirect()->route('admin.indexGameField')->withSuccess(ucfirst($type) . ' "' . $name . '" deleted successfully.');
     }
 }

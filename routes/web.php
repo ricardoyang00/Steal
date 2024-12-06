@@ -133,10 +133,20 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     });
 
     Route::controller(GameFieldsController::class)->group(function () {
-        Route::get('/create-game-field', 'create')->name('admin.createGameField');
-        Route::post('/store', 'store')->name('admin.storeGameField');
+        Route::get('games/create-game-field', 'create')->name('admin.createGameField');
+        Route::post('games/store-game-field', 'store')->name('admin.storeGameField');
+        Route::get('games/index-game-field', 'index')->name('admin.indexGameField');
+        Route::get('games/edit-game-field/{type}/{id}', 'edit')->name('admin.editGameField');
+        Route::post('games/update-game-field/{type}/{id}', 'update')->name('admin.updateGameField');
+        Route::delete('games/destroy-game-field/{type}/{id}', 'destroy')->name('admin.destroyGameField');
     });
 });
+
+// Redirect GET /admin/games/store-game-field to /admin/games/index-game-field
+Route::get('/admin/games/store-game-field', function () {
+    return redirect()->route('admin.games.index-game-field');
+});
+
 
 // Explore Games
 Route::get('/explore', function () {

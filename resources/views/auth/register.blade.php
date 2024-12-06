@@ -32,7 +32,7 @@
     </div>
     
     <div class="input-wrapper">
-      <input id="email" type="text" name="email" value="{{ old('email') }}" required>
+      <input id="email" type="text" name="email" value="{{ old('email') }}" required maxlength="50">
       <label for="email" class="placeholder">E-mail</label>
     </div>
     

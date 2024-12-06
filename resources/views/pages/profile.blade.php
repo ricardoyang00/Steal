@@ -192,31 +192,21 @@
             <!-- Profile Details -->
             <div class="profile-details">
                 <div class="detail-box">
-                    <div class="detail-label"><label for="current_password"><strong>Current Password</strong></label></div>
+                    <div class="detail-label" id="password-label"><label for="current_password"><strong>Current Password</strong></label></div>
                     <div class="detail-info">
                         <input type="password" id="current_password" name="current_password" required maxlength="25">
                         <i class="fas fa-eye toggle-password" data-toggle="#current_password"></i>
                     </div>
-                    @if ($errors->has('current_password'))
-                        <span class="error">
-                            {{ $errors->first('current_password') }}
-                        </span>
-                    @endif
                 </div>
                 <div class="detail-box">
-                    <div class="detail-label"><label for="new_password"><strong>New Password</strong></label></div>
+                    <div class="detail-label" id="password-label"><label for="new_password"><strong>New Password</strong></label></div>
                     <div class="detail-info">
                         <input type="password" id="new_password" name="new_password" required minlength="8" maxlength="25">
                         <i class="fas fa-eye toggle-password" data-toggle="#new_password"></i>
                     </div>
-                    @if ($errors->has('new_password'))
-                        <span class="error">
-                            {{ $errors->first('new_password') }}
-                        </span>
-                    @endif
                 </div>
                 <div class="detail-box">
-                    <div class="detail-label"><label for="new_password_confirmation"><strong>Confirm New Password</strong></label></div>
+                    <div class="detail-label" id="password-label"><label for="new_password_confirmation"><strong>Confirm New Password</strong></label></div>
                     <div class="detail-info">
                         <input type="password" id="new_password_confirmation" name="new_password_confirmation" required minlength="8" maxlength="25">
                         <i class="fas fa-eye toggle-password" data-toggle="#new_password_confirmation"></i>
