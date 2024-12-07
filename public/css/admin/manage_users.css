@@ -105,37 +105,65 @@ h1#all-users {
     max-width: 45%;
     text-align: center;
     box-shadow: 0 2px 4px var(--shadow-color);
+    border: 1px solid var(--text-color);
 }
 
-.list-buyers-sellers .user-list h2 {
-    color: var(--text-color);
-    margin-bottom: 15px;
-    font-size: 1.5rem;
-}
-
+/* User List Grid Layout */
 .list-buyers-sellers .user-list ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
 }
 
-.list-buyers-sellers .user-list ul li {
-    margin: 10px 0;
+/* User Card Styling */
+.user-card-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--text-color);
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: background-color 0.3s;
+    color: var(--text-color);
 }
 
-.list-buyers-sellers .user-list ul li a {
-    color: var(--highlight-color);
-    text-decoration: none;
-    transition: color 0.3s;
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--text-color);
+    flex-shrink: 0;
 }
 
-.list-buyers-sellers .user-list ul li a:hover {
-    color: var(--highlight-hover-color);
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.list-buyers-sellers .user-list p {
-    color: var(--error-color);
-    margin-top: 20px;
+.username {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Status-based background colors */
+.user-card-content.Active {
+    background-color: #28a745;
+}
+
+.user-card-content.Blocked {
+    background-color: #ffc107;
+}
+
+.user-card-content.Disabled {
+    background-color: #dc3545;
 }
 
 /* Responsive Design */
@@ -146,5 +174,9 @@ h1#all-users {
 
     .user-list {
         max-width: 100%;
+    }
+
+    .list-buyers-sellers .user-list ul {
+        grid-template-columns: 1fr;
     }
 }
