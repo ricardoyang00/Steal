@@ -133,7 +133,6 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     });
 
     Route::controller(GameFieldsController::class)->group(function () {
-        Route::get('games/create-game-field', 'create')->name('admin.createGameField');
         Route::post('games/store-game-field', 'store')->name('admin.storeGameField');
         Route::get('games/index-game-field', 'index')->name('admin.indexGameField');
         Route::get('games/edit-game-field/{type}/{id}', 'edit')->name('admin.editGameField');

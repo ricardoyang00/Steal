@@ -57,16 +57,6 @@
                     <div class="detail-label"><strong>Coins</strong></div>
                     <div class="detail-info">{{ auth_user()->buyer->coins }}</div>
                 </div>
-            @elseif (auth_user()->seller)
-                <div class="detail-box">
-                    <div class="detail-label"><strong>Seller Information</strong></div>
-                    <div class="detail-info">This user is a seller.</div>
-                </div>
-            @elseif (is_admin())
-                <div class="detail-box">
-                    <div class="detail-label"><strong>Admin Information</strong></div>
-                    <div class="detail-info">This user is an admin.</div>
-                </div>
             @endif
         </div>
 
@@ -110,11 +100,6 @@
                     <i class="fas fa-pen"></i>
                 </div>
                 <input type="file" id="profile_picture" name="profile_picture" accept="image/*" style="display: none;">
-                @if ($errors->has('profile_picture'))
-                    <span class="error">
-                        {{ $errors->first('profile_picture') }}
-                    </span>
-                @endif
             </div>
 
             <!-- Profile Details -->
@@ -122,20 +107,10 @@
                 <div class="detail-box editable">
                     <div class="detail-label"><label for="username"><strong>Username</strong></label></div>
                     <div class="detail-info"><input type="text" id="username" name="username" value="{{ auth_user()->username }}" minlength="5" maxlength="15"></div>
-                    @if ($errors->has('username'))
-                        <span class="error">
-                            {{ $errors->first('username') }}
-                        </span>
-                    @endif
                 </div>
                 <div class="detail-box editable">
                     <div class="detail-label"><label for="name"><strong>Name</strong></label></div>
                     <div class="detail-info"><input type="text" id="name" name="name" value="{{ auth_user()->name }}" minlength="5" maxlength="30"></div>
-                    @if ($errors->has('name'))
-                        <span class="error">
-                            {{ $errors->first('name') }}
-                        </span>
-                    @endif
                 </div>
                 <div class="detail-box">
                     <div class="detail-label"><strong>Email</strong></div>
@@ -146,11 +121,6 @@
                     <div class="detail-box editable">
                         <div class="detail-label"><label for="nif"><strong>NIF</strong></label></div>
                         <div class="detail-info"><input type="text" id="nif" name="nif" value="{{ auth_user()->buyer->nif }}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="9"></div>
-                        @if ($errors->has('nif'))
-                            <span class="error">
-                                {{ $errors->first('nif') }}
-                            </span>
-                        @endif
                     </div>
                     <div class="detail-box">
                         <div class="detail-label"><strong>Birth Date</strong></div>

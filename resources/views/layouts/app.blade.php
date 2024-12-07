@@ -66,7 +66,6 @@
                                     @if (is_admin())
                                         <a class="dropdown-item" href="{{ url('/register') }}">Create Accounts</a>
                                         <a class="dropdown-item" href="{{ route('admin.users.search') }}">Manage Users</a>
-                                        <a class="dropdown-item" href="{{ route('admin.createGameField') }}">Create Game Fields</a>
                                         <a class="dropdown-item" href="{{ route('admin.indexGameField') }}">Manage Game Fields</a>
                                     @endif
                                     <a class="dropdown-item" id="logout" href="{{ url('/logout') }}">Logout</a>
