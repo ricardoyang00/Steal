@@ -21,8 +21,8 @@ class UserController extends Controller
         $userQuery = $request->input('user_query');
         $statusFilter = $request->input('status');
 
-        $buyersQuery = User::whereHas('buyer');
-        $sellersQuery = User::whereHas('seller');
+        $buyersQuery = User::whereHas('buyer')->orderBy('id');
+        $sellersQuery = User::whereHas('seller')->orderBy('id');
 
         if ($userQuery) {
             $buyersQuery->where(function ($query) use ($userQuery) {
