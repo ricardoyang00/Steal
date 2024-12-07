@@ -124,18 +124,8 @@
                                 <button type="button" id="cancel-change-coins-btn">Cancel</button>
                                 <button type="submit" id="confirm-change-coins-btn">Confirm</button>
                             </form>
-                            @if ($errors->has('coins'))
-                                <span class="error">
-                                    {{ $errors->first('coins') }}
-                                </span>
-                            @endif
                         @endif
                     </div>
-                </div>
-            @elseif ($user->seller)
-                <div class="detail-box">
-                    <div class="detail-label"><strong>Seller Information</strong></div>
-                    <div class="detail-info">This user is a seller.</div>
                 </div>
             @endif
 

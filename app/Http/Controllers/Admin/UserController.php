@@ -14,21 +14,32 @@ use App\Models\User;
 class UserController extends Controller
 {
     /**
-     * Search for users based on a query.
+     * Search for users based on a query and filter the list of buyers and sellers.
      */
     public function searchUsers(Request $request): View
     {
         $userQuery = $request->input('user_query');
 
         if ($userQuery) {
-            $users = User::whereRaw('LOWER(username) LIKE ?', ['%' . strtolower($userQuery) . '%'])
-                ->orWhereRaw('LOWER(email) LIKE ?', ['%' . strtolower($userQuery) . '%'])
+            $buyers = User::whereHas('buyer')
+                ->where(function ($query) use ($userQuery) {
+                    $query->whereRaw('LOWER(username) LIKE ?', ['%' . strtolower($userQuery) . '%'])
+                        ->orWhereRaw('LOWER(email) LIKE ?', ['%' . strtolower($userQuery) . '%']);
+                })
+                ->get();
+
+            $sellers = User::whereHas('seller')
+                ->where(function ($query) use ($userQuery) {
+                    $query->whereRaw('LOWER(username) LIKE ?', ['%' . strtolower($userQuery) . '%'])
+                        ->orWhereRaw('LOWER(email) LIKE ?', ['%' . strtolower($userQuery) . '%']);
+                })
                 ->get();
         } else {
-            $users = collect(); // Return an empty collection if no query is provided
+            $buyers = User::whereHas('buyer')->get();
+            $sellers = User::whereHas('seller')->get();
         }
 
-        return view('admin.users.index', compact('users'));
+        return view('admin.users.index', compact('buyers', 'sellers'));
     }
 
     /**
@@ -168,33 +179,4 @@ class UserController extends Controller
         return redirect()->route('admin.users.profile', $user->id)
             ->withSuccess('User has been deactivated successfully!');
     }
-
-
-    // Probably temporary functions as the number of users will scale too much
-    /**
-     * List all buyers and sellers.
-     */
-    public function listBuyersAndSellers(): View
-    {
-        $buyers = User::whereHas('buyer')->get();
-        $sellers = User::whereHas('seller')->get();
-        return view('admin.users.all-users', compact('buyers', 'sellers'));
-    }
-    /**
-     * List all buyers.
-     */
-    /*public function listBuyers(): View
-    {
-        $buyers = User::whereHas('buyer')->get();
-        return view('admin.users.buyers', compact('buyers'));
-    }*/
-
-    /**
-     * List all sellers.
-     */
-    /*public function listSellers(): View
-    {
-        $sellers = User::whereHas('seller')->get();
-        return view('admin.users.sellers', compact('sellers'));
-    }*/
 }
