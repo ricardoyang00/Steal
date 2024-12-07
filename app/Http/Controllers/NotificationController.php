@@ -230,10 +230,10 @@ class NotificationController extends Controller{
 
     private function getGameNotifications() {
         try {
-            $sellerId = auth()->id();
+            $sellerId = auth_user()->id;
     
             $notifications = GameNotification::whereHas('getGame', function ($query) use ($sellerId) {
-                $query->where('seller', $sellerId);
+                $query->where('owner', $sellerId);
             })
             ->get()
             ->map(function ($notification) {
@@ -434,7 +434,7 @@ class NotificationController extends Controller{
                 else if(auth_user()->seller){
 
                     $sellerId = auth_user()->id;
-                    $sellerGames = Game::where('seller', $sellerId)->pluck('id');
+                    $sellerGames = Game::where('owner', $sellerId)->pluck('id');
                     $unreadGameNotifications = GameNotification::whereIn('game', $sellerGames)
                     ->where('is_read', false)
                     ->count();

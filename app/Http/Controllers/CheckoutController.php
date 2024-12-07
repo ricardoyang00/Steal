@@ -15,7 +15,7 @@ use App\Models\Purchase;
 use App\Models\DeliveredPurchase;
 use App\Models\CanceledPurchase;
 use App\Models\OrderNotification;
-use App\Models\NotificationController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
@@ -111,7 +111,7 @@ class CheckoutController extends Controller
                 $order->refresh();
                 $orderNotification = new OrderNotification();
                 $orderNotification->createOrderNotification($order, $purchasedItems, $canceledItems);
-                $this->notificationController->createGameNotification($purchasedItems);
+                $this->notificationController->createGameNotifications($purchasedItems);
                 session()->forget('payment_method');
                 ShoppingCart::where('buyer', $buyerId)->delete();
                 DB::commit();
