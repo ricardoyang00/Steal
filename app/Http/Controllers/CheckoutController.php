@@ -109,8 +109,7 @@ class CheckoutController extends Controller
                     ]);
                 }
                 $order->refresh();
-                $orderNotification = new OrderNotification();
-                $orderNotification->createOrderNotification($order, $purchasedItems, $canceledItems);
+                $this->notificationController->createOrderNotification($order, $purchasedItems, $canceledItems);
                 $this->notificationController->createGameNotifications($purchasedItems);
                 session()->forget('payment_method');
                 ShoppingCart::where('buyer', $buyerId)->delete();

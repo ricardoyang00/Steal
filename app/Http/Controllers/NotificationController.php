@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\Wishlist;
 use App\Models\ShoppingCart;
 use App\Models\Game;
+use App\Models\Notification;
 use App\Models\OrderNotification;
 use App\Models\WishlistNotification;
 use App\Models\ShoppingCartNotification;
@@ -26,6 +27,41 @@ class NotificationController extends Controller{
             return redirect()->route('login');
         }
     }
+
+    public function createOrderNotification($order, $purchasedItems, $canceledItems) {
+        $title = 'Order Processed';
+        $description = '';
+    
+        if (empty($purchasedItems) && !empty($canceledItems)) {
+            $description = 'Your order could not be completed. ';
+            $description .= 'Unfortunately, none of the items in your order were available due to insufficient stock.';
+        } elseif (empty($canceledItems)) {
+            $description = 'Your order was successfully completed. All items have been purchased.';
+        } else {
+            $description = 'Your order was partially completed. ';
+            $description .= 'Unfortunately, the following items could not be purchased, due to insufficient stock: ';
+            $canceledGameNames = array_column($canceledItems, 'gameName');
+            $description .= implode(', ', $canceledGameNames) . '.';
+        }
+    
+        try {
+            // Create the base notification
+            $notification = Notification::create([
+                'title' => $title,
+                'description' => $description,
+                'time' => now(),
+                'is_read' => false,
+            ]);
+    
+            // Create the specialized notification linking to the order
+            OrderNotification::create([
+                'id' => $notification->id,
+                'order_' => $order->id,
+            ]);
+        } catch (\Exception $e) {
+            \Log::error("Error creating order notification: " . $e->getMessage());
+        }
+    }    
 
     public function createPriceNotifications($game, $oldPrice, $newPrice) {
         try {
@@ -124,7 +160,7 @@ class NotificationController extends Controller{
                     'is_read' => false,
                 ]);
     
-                NotificationGame::create([
+                GameNotification::create([
                     'id' => $notification->id,
                     'game' => $game->id,
                 ]);
@@ -177,17 +213,27 @@ class NotificationController extends Controller{
             $notifications = OrderNotification::whereHas('getOrder', function ($query) use ($buyerId) {
                 $query->where('buyer', $buyerId);
             })
-            ->with(['getOrder.getPurchases.getDeliveredPurchase.getCDK.getGame', 'getOrder.getPurchases.getCanceledPurchase.getGame']) // Eager load related models
-            ->orderBy('time', 'desc')
+            ->with([
+                'getNotification', 
+                'getOrder.getPurchases.getDeliveredPurchase.getCDK.getGame', 
+                'getOrder.getPurchases.getCanceledPurchase.getGame'
+            ])
             ->get();
     
-            return $notifications->map(function ($notification) {
-                $order = $notification->getOrder;
+            // Sort by notification time descending
+            $notifications = $notifications->sortByDesc(fn($notification) => $notification->getNotification->time)->values();
     
+            return $notifications->map(function ($notification) {
+                $notification->title = $notification->getNotification->title;
+                $notification->description = $notification->getNotification->description;
+                $notification->time = $notification->getNotification->time;
+                $notification->is_read = $notification->getNotification->is_read;
+    
+                $notification->type = 'Order';
+    
+                $order = $notification->getOrder;
                 if ($order) {
-
                     $formattedOrderDate = (new \DateTime($order->time))->format('F d, Y H:i');
-
                     $purchases = $order->getPurchases;
     
                     $details = $purchases->map(function ($purchase) {
@@ -215,8 +261,6 @@ class NotificationController extends Controller{
                         'totalPrice' => $purchases->sum('value'),
                     ];
                 }
-
-                $notification->type = 'Order';
     
                 return $notification;
             });
@@ -224,7 +268,7 @@ class NotificationController extends Controller{
             \Log::error("Error fetching order notifications: " . $e->getMessage());
             return collect();
         }
-    }
+    }    
     
     
     private function getReviewNotifications() {
@@ -236,20 +280,24 @@ class NotificationController extends Controller{
         try {
             $sellerId = auth_user()->id;
     
-            $notifications = NotificationGame::whereHas('getGame', function ($query) use ($sellerId) {
+            $notifications = GameNotification::whereHas('getGame', function($query) use ($sellerId) {
                 $query->where('owner', $sellerId);
             })
-            ->with(['notification', 'getGame'])
-            ->get()
-            ->map(function ($notification) {
-                // Set the notification type
+            ->with(['getNotification','getGame'])
+            ->get();
+    
+            $notifications = $notifications->sortByDesc(fn($n) => $n->getNotification->time)->values();
+    
+            return $notifications->map(function ($notification) {
+                // Set notification type
                 $notification->type = 'Game';
     
-                $desc = $notification->getNotification->description;
                 $title = $notification->getNotification->title;
-                $isRead = $notification->getNotification->is_read;
+                $desc = $notification->getNotification->description;
                 $time = $notification->getNotification->time;
+                $isRead = $notification->getNotification->is_read;
     
+                // Default parsed details
                 $parsedNotification = [
                     'game_name' => null,
                     'quantity' => null,
@@ -261,7 +309,7 @@ class NotificationController extends Controller{
                     $parsedNotification['quantity'] = $matches[2] ?? null;
                     $parsedNotification['total_price'] = $matches[3] ?? null;
     
-                    // Remove the parsed details from the description
+                    // Remove parsed details from the description
                     $desc = preg_replace('/GameName:\s?[^,]+,\s?quantity:\s?\d+,\s?totalPrice:\s?[\d.]+/', '', $desc);
                     $desc = trim($desc);
                 }
@@ -274,13 +322,12 @@ class NotificationController extends Controller{
     
                 return $notification;
             });
-    
-            return $notifications;
         } catch (\Exception $e) {
             \Log::error("Error fetching game notifications: " . $e->getMessage());
             return collect();
         }
     }
+    
     
     
 

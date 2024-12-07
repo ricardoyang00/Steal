@@ -32,6 +32,7 @@ DROP TABLE IF EXISTS CanceledPurchase CASCADE;
 DROP TABLE IF EXISTS DeliveredPurchase CASCADE;
 DROP TABLE IF EXISTS Review CASCADE;
 DROP TABLE IF EXISTS ReviewLike CASCADE;
+DROP TABLE IF EXISTS Notifications CASCADE;
 DROP TABLE IF EXISTS NotificationWishlist CASCADE;
 DROP TABLE IF EXISTS NotificationShoppingCart CASCADE;
 DROP TABLE IF EXISTS NotificationGame CASCADE;
@@ -240,12 +241,12 @@ CREATE TABLE ReviewLike(
     CONSTRAINT review_author_pair_unique UNIQUE (review, author)
 );
 
-CREATE TABLE Notification(
+CREATE TABLE Notifications(
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
     description TEXT NOT NULL,
     time TIMESTAMP NOT NULL CHECK (time <= CURRENT_TIMESTAMP) DEFAULT CURRENT_TIMESTAMP,
-    is_read BOOLEAN NOT NULL DEFAULT FALSE,
+    is_read BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE NotificationWishlist(

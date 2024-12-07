@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 Class Notification extends Model{
     use HasFactory;
 
-    protected $table = 'notification';
+    protected $table = 'notifications';
 
     public $timestamps = false;
 
@@ -16,27 +16,27 @@ Class Notification extends Model{
 
     public function wishlistNotification()
     {
-        return $this->hasOne(NotificationWishlist::class, 'id', 'id');
+        return $this->hasOne(WishlistNotification::class, 'id', 'id');
     }
 
     public function shoppingCartNotification()
     {
-        return $this->hasOne(NotificationShoppingCart::class, 'id', 'id');
+        return $this->hasOne(ShoppingCartNotification::class, 'id', 'id');
     }
 
     public function gameNotification()
     {
-        return $this->hasOne(NotificationGame::class, 'id', 'id');
+        return $this->hasOne(GameNotification::class, 'id', 'id');
     }
 
     public function orderNotification()
     {
-        return $this->hasOne(NotificationOrder::class, 'id', 'id');
+        return $this->hasOne(OrderNotification::class, 'id', 'id');
     }
 
     public function reviewNotification()
     {
-        return $this->hasOne(NotificationReview::class, 'id', 'id');
+        return $this->hasOne(ReviewNotification::class, 'id', 'id');
     }
 
 
