@@ -34,7 +34,7 @@
                                     <span class="unread-notification-indicator"></span>
                                 @endif
                                 <button class="view-notification-details" type="button" data-toggle="collapse" data-target="#details-{{ $notification['id'] }}" aria-expanded="false" aria-controls="details-{{ $notification['id'] }}">
-                                    {{ in_array($notification['type'], ['Wishlist', 'ShoppingCart']) ? 'View Details' : 'View Order Details' }}
+                                    {{ in_array($notification['type'], ['Wishlist', 'ShoppingCart']) ? 'View Details' : ($notification['type'] === 'Order' ? 'View Order Details' : 'View Details') }}
                                 </button>
                             </div>
                             <div class="notifications-collapse collapse" id="details-{{ $notification['id'] }}">
@@ -112,20 +112,28 @@
                                     <span class="unread-notification-indicator"></span>
                                 @endif
                                 <button class="view-notification-details" type="button" data-toggle="collapse" data-target="#details-{{ $notification['id'] }}" aria-expanded="false" aria-controls="details-{{ $notification['id'] }}">
-                                    View Details
+                                    @if($notification['type'] === 'Game' || $notification['type'] === 'Review')
+                                        View Details
+                                    @endif
                                 </button>
                             </div>
                             <div class="notifications-collapse collapse" id="details-{{ $notification['id'] }}">
                                 <div class="notification-details">
-                                    <p><strong>Game:</strong> {{ $notification['parsedDetails']['game_name'] ?? 'Unknown Game' }}</p>
-                                    <p><strong>Quantity:</strong> {{ $notification['parsedDetails']['quantity'] ?? 'N/A' }}</p>
-                                    @php
-                                        $quantity = $notification['parsedDetails']['quantity'] ?? 0;
-                                        $totalPrice = $notification['parsedDetails']['total_price'] ?? 0.0;
-                                        $unitPrice = ($quantity > 0) ? $totalPrice / $quantity : 0.0;
-                                    @endphp
-                                    <p><strong>Game Price:</strong> ${{ number_format($unitPrice, 2) }}</p>
-                                    <p><strong>Total Price:</strong> ${{ number_format($totalPrice, 2) }}</p>
+                                    @if($notification['type'] === 'Game')
+                                        <p><strong>Game:</strong> {{ $notification['parsedDetails']['game_name'] ?? 'Unknown Game' }}</p>
+                                        <p><strong>Quantity:</strong> {{ $notification['parsedDetails']['quantity'] ?? 'N/A' }}</p>
+                                        @php
+                                            $quantity = $notification['parsedDetails']['quantity'] ?? 0;
+                                            $totalPrice = $notification['parsedDetails']['total_price'] ?? 0.0;
+                                            $unitPrice = ($quantity > 0) ? $totalPrice / $quantity : 0.0;
+                                        @endphp
+                                        <p><strong>Game Price:</strong> ${{ number_format($unitPrice, 2) }}</p>
+                                        <p><strong>Total Price:</strong> ${{ number_format($totalPrice, 2) }}</p>
+                                    @elseif($notification['type'] === 'Review')
+                                        <p><strong>Game:</strong> {{ $notification['parsedDetails']['game_name'] ?? 'Unknown Game' }}</p>
+                                        <p><strong>Review Author:</strong> {{ $notification['parsedDetails']['review_author'] ?? 'Unknown Author' }}</p>
+                                        <p><strong>Review Type:</strong> {{ $notification['parsedDetails']['review_type'] ?? 'Unknown' }}</p>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -139,6 +147,7 @@
     @endif
 </div>
 @endsection
+
 
 
 
