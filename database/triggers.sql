@@ -64,3 +64,40 @@ CREATE TRIGGER trg_check_review_eligibility
 BEFORE INSERT ON Review
 FOR EACH ROW
 EXECUTE FUNCTION check_review_eligibility();
+
+
+-- Trigger to clean notifications table after shoppingCartNotifications or wishlistNotifications entries are deleted
+CREATE OR REPLACE FUNCTION delete_notification_after_specific_notification_delete()
+RETURNS trigger AS $$
+BEGIN
+    DELETE FROM Notifications WHERE id = OLD.id;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER delete_notification_after_shoppingcart
+AFTER DELETE ON NotificationShoppingCart
+FOR EACH ROW
+EXECUTE PROCEDURE delete_notification_after_specific_notification_delete();
+
+CREATE TRIGGER delete_notification_after_wishlist
+AFTER DELETE ON NotificationWishlist
+FOR EACH ROW
+EXECUTE PROCEDURE delete_notification_after_specific_notification_delete();
+
+CREATE TRIGGER delete_notification_after_review
+AFTER DELETE ON NotificationReview
+FOR EACH ROW
+EXECUTE PROCEDURE delete_notification_after_specific_notification_delete();
+
+CREATE TRIGGER delete_notification_after_game
+AFTER DELETE ON NotificationGame
+FOR EACH ROW
+EXECUTE PROCEDURE delete_notification_after_specific_notification_delete();
+
+CREATE TRIGGER delete_notification_after_order
+AFTER DELETE ON NotificationOrder
+FOR EACH ROW
+EXECUTE PROCEDURE delete_notification_after_specific_notification_delete();
+
+
