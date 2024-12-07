@@ -14,6 +14,7 @@ use App\Models\OrderNotification;
 use App\Models\WishlistNotification;
 use App\Models\ShoppingCartNotification;
 use App\Models\GameNotification;
+use App\Models\ReviewNotification;
 use Illuminate\Support\Facades\DB;
 use Exception;
 
@@ -209,7 +210,7 @@ class NotificationController extends Controller{
             ]);
     
             // Create the specialized notification linking to the review
-            NotificationReview::create([
+            ReviewNotification::create([
                 'id' => $notification->id,
                 'review' => $review->id,
             ]);
@@ -324,10 +325,10 @@ class NotificationController extends Controller{
         try {
             $sellerId = auth_user()->id;
     
-            $notifications = NotificationReview::whereHas('getReview.getGame', function ($query) use ($sellerId) {
+            $notifications = ReviewNotification::whereHas('getReview.getGame', function ($query) use ($sellerId) {
                 $query->where('owner', $sellerId);
             })
-            ->with(['getNotification', 'getReview.getGame', 'getReview.author'])
+            ->with(['getNotification', 'getReview.getGame', 'getReview.getAuthor'])
             ->get();
     
             // Sort by notification time descending
@@ -591,17 +592,17 @@ class NotificationController extends Controller{
                     $buyerId = auth_user()->id;
     
                     $userOrders = Order::where('buyer', $buyerId)->pluck('id');
-                    $unreadOrderNotifications = NotificationOrder::whereIn('order_', $userOrders)
+                    $unreadOrderNotifications = OrderNotification::whereIn('order_', $userOrders)
                         ->whereHas('getNotification', fn($q) => $q->where('is_read', false))
                         ->count();
     
                     $userWishlists = Wishlist::where('buyer', $buyerId)->pluck('id');
-                    $unreadWishlistNotifications = NotificationWishlist::whereIn('wishlist', $userWishlists)
+                    $unreadWishlistNotifications = WishlistNotification::whereIn('wishlist', $userWishlists)
                         ->whereHas('getNotification', fn($q) => $q->where('is_read', false))
                         ->count();
     
                     $userShoppingCarts = ShoppingCart::where('buyer', $buyerId)->pluck('id');
-                    $unreadShoppingCartNotifications = NotificationShoppingCart::whereIn('shopping_cart', $userShoppingCarts)
+                    $unreadShoppingCartNotifications = ShoppingCartNotification::whereIn('shopping_cart', $userShoppingCarts)
                         ->whereHas('getNotification', fn($q) => $q->where('is_read', false))
                         ->count();
     
@@ -612,11 +613,11 @@ class NotificationController extends Controller{
                     $sellerId = auth_user()->id;
                     $sellerGames = Game::where('owner', $sellerId)->pluck('id');
     
-                    $unreadGameNotifications = NotificationGame::whereIn('game', $sellerGames)
+                    $unreadGameNotifications = GameNotification::whereIn('game', $sellerGames)
                         ->whereHas('getNotification', fn($q) => $q->where('is_read', false))
                         ->count();
     
-                    $unreadReviewNotifications = NotificationReview::whereHas('getReview.getGame', function ($query) use ($sellerId) {
+                    $unreadReviewNotifications = ReviewNotification::whereHas('getReview.getGame', function ($query) use ($sellerId) {
                         $query->where('owner', $sellerId);
                     })
                     ->whereHas('getNotification', fn($q) => $q->where('is_read', false))
