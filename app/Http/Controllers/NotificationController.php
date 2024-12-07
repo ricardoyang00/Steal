@@ -200,7 +200,7 @@ class NotificationController extends Controller{
         try {
             $reviewAuthor = $review->getAuthor->user->username;
             $gameName = $review->getGame->name;
-            $reviewType = $review->is_positive ? 'positive' : 'negative';
+            $reviewType = $review->is_positive ? 'Positive' : 'Negative';
     
             $notification = Notification::create([
                 'title' => "Game Reviewed",
@@ -356,13 +356,13 @@ class NotificationController extends Controller{
                     'review_type' => null,
                 ];
     
-                if (preg_match('/Review Author:\s?([^,]+),\s?Reviewed Game:\s?([^,]+),\s?reviewType:\s?(positive|negative)/', $desc, $matches)) {
+                if (preg_match('/Review Author:\s?([^,]+),\s?Reviewed Game:\s?([^,]+),\s?reviewType:\s?(Positive|Negative)/', $desc, $matches)) {
                     $parsedNotification['review_author'] = $matches[1] ?? null;
                     $parsedNotification['game_name'] = $matches[2] ?? null;
                     $parsedNotification['review_type'] = $matches[3] ?? null;
     
                     // Remove the parsed details from the description
-                    $desc = preg_replace('/Review Author:\s?[^,]+,\s?Reviewed Game:\s?[^,]+,\s?reviewType:\s?(positive|negative)/', '', $desc);
+                    $desc = preg_replace('/Review Author:\s?[^,]+,\s?Reviewed Game:\s?[^,]+,\s?reviewType:\s?(Positive|Negative)/', '', $desc);
                     $desc = trim($desc);
                     $notification->description = $desc;
                 }
@@ -647,13 +647,13 @@ class NotificationController extends Controller{
             return response()->json(['error' => 'Notification not found'], 404);
         }
 
-        $orderNotification = $notification->orderNotification;
-        $wishlistNotification = $notification->wishlistNotification;
-        $shoppingCartNotification = $notification->shoppingCartNotification;
-        $gameNotification = $notification->gameNotification;
-        $reviewNotification = $notification->reviewNotification; // Added for review notifications
+        $orderNotification = $notification->getOrderNotification;
+        $wishlistNotification = $notification->getWishlistNotification;
+        $shoppingCartNotification = $notification->getShoppingCartNotification;
+        $gameNotification = $notification->getGameNotification;
+        $reviewNotification = $notification->getReviewNotification;
 
-        $userId = auth()->id();
+        $userId = auth_user()->id;
 
         if ($orderNotification && $orderNotification->getOrder && $orderNotification->getOrder->buyer === $userId) {
             $notification->delete();
