@@ -68,6 +68,7 @@ class CheckoutController extends Controller
             foreach ($availableCDKs as $cdk) {
                 $purchasedItems[] = [
                     'game' => $game,
+                    'gameName' => $game->name,
                     'cdk' => $cdk->id,
                     'cdkCode' => $cdk->code,
                     'value' => $game->price,
