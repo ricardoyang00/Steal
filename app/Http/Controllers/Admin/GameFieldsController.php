@@ -15,9 +15,13 @@ use App\Models\Language;
 
 class GameFieldsController extends Controller
 {
-    public function create()
+    public function index()
     {
-        return view('admin.games.create-game-field');
+        $categories = Category::all();
+        $platforms = Platform::all();
+        $languages = Language::all();
+
+        return view('admin.games.index-game-field', compact('categories', 'platforms', 'languages'));
     }
 
     public function store(Request $request)
@@ -40,15 +44,6 @@ class GameFieldsController extends Controller
         }
 
         return redirect()->route('admin.indexGameField')->withSuccess(ucfirst($request->type) . ' created successfully.');
-    }
-
-    public function index()
-    {
-        $categories = Category::all();
-        $platforms = Platform::all();
-        $languages = Language::all();
-
-        return view('admin.games.index-game-field', compact('categories', 'platforms', 'languages'));
     }
 
     public function edit($type, $id)

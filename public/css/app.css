@@ -191,7 +191,7 @@ header .icon-button:hover {
 }
 
 .navbar .btn-link.active {
-  background-color: var(--explore-table-color);
+  background-color: var(--highlight-color);
   color: var(--highlight-text-color);
 }
 

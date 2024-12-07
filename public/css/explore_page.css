@@ -78,12 +78,12 @@
 }
 
 .explore-page .explore-navbar .btn:hover {
-    background-color: var(--hover-background-color);
+    background-color: var(--highlight-hover-color);
     border-radius: 4px;
 }
 
 .explore-page .explore-navbar .btn-link.active {
-    background-color: var(--hover-background-color);
+    background-color: var(--highlight-color);
     color: var(--highlight-text-color);
     border-radius: 4px;
 }
@@ -161,7 +161,7 @@
 }
 
 .tag {
-    background-color: var(--explore-table-color);
+    background-color: var(--cart-control-button);
     color: var(--text-color);
     padding: 4px 8px;
     border-radius: 4px;
@@ -174,7 +174,7 @@
 }
 
 .tag:hover {
-    background-color: var(--cart-control-button);
+    background-color: var(--highlight-color);
 }
 
 /* Platforms and Release Date */

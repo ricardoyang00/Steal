@@ -6,6 +6,26 @@
 <div class="container">
     <h1>Game Fields</h1>
 
+    <!-- Create New Game Field Form -->
+    <h2>Create New Game Field</h2>
+    <form action="{{ route('admin.storeGameField') }}" method="POST">
+        @csrf
+        <div class="form-group">
+            <label for="type">Type</label>
+            <select class="form-control" id="type" name="type" required>
+                <option value="category">Category</option>
+                <option value="platform">Platform</option>
+                <option value="language">Language</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+
+    <!-- List of Categories -->
     <h2>Categories</h2>
     <ul>
         @foreach($categories as $category)
@@ -21,6 +41,7 @@
         @endforeach
     </ul>
 
+    <!-- List of Platforms -->
     <h2>Platforms</h2>
     <ul>
         @foreach($platforms as $platform)
@@ -36,6 +57,7 @@
         @endforeach
     </ul>
 
+    <!-- List of Languages -->
     <h2>Languages</h2>
     <ul>
         @foreach($languages as $language)

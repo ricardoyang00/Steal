@@ -121,7 +121,6 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::controller(UserController::class)->group(function () {
         Route::get('/users/search', 'searchUsers')->name('admin.users.search');
         Route::get('/users/{id}', 'viewProfile')->name('admin.users.profile');
-        Route::get('/all-users', 'listBuyersAndSellers')->name('admin.users.all');
         Route::put('/admin/users/{id}/reset-picture', 'resetPicture')->name('admin.users.resetPicture');
         Route::post('/users/{id}/change-username', 'changeUsername')->name('admin.users.changeUsername');
         Route::post('/users/{id}/change-name', 'changeName')->name('admin.users.changeName');
@@ -129,12 +128,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::post('/admin/users/{id}/block', 'blockUser')->name('admin.users.block');
         Route::post('/admin/users/{id}/unblock', 'unblockUser')->name('admin.users.unblock');
         Route::post('/admin/users/{id}/deactivate', 'adminDeactivateUser')->name('admin.users.deactivate');
-        //Route::get('/users/buyers', 'listBuyers')->name('admin.users.buyers');
-        //Route::get('/users/sellers', 'listSellers')->name('admin.users.sellers');
     });
 
     Route::controller(GameFieldsController::class)->group(function () {
-        Route::get('games/create-game-field', 'create')->name('admin.createGameField');
         Route::post('games/store-game-field', 'store')->name('admin.storeGameField');
         Route::get('games/index-game-field', 'index')->name('admin.indexGameField');
         Route::get('games/edit-game-field/{type}/{id}', 'edit')->name('admin.editGameField');

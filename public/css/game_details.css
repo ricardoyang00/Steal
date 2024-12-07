@@ -193,26 +193,20 @@
     .game-reviews {
         .reviews .add-review-container {
             display: flex;
-            .btn-close-div{
+            input, textarea {
+                border: 1px solid var(--text-color);
+                margin-top: 3px;
+            }
+            .btn-close-div {
                 display: flex;
                 justify-content: space-between;
                 flex-direction: row;
-            }
-            .btn-close-review-form {
-                cursor: pointer;
-                margin-right: 0;
-                background-color: whitesmoke;
-                border-radius: 4px;
-            }
-            .btn-close-review-form:hover {
-                background-color: lightgray;
             }
             .btn-submit-div{
                 text-align: center;
                 margin-bottom: 16px;
                 .btn-submit {
                     background-color: var(--buy-button-color);
-                    color: var(--text-color);
                     border: none;
                 }
                 .btn-submit:hover {
