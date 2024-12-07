@@ -12,7 +12,12 @@ Class ShoppingCartNotification extends Model{
 
     public $timestamps = false;
 
-    protected $fillable = ['title', 'description', 'time', 'is_read' ,'shopping_cart'];
+    protected $fillable = ['id', 'shopping_cart'];
+
+    public function notification()
+    {
+        return $this->belongsTo(Notification::class, 'id', 'id');
+    }
 
     public function getShoppingCart(){
         return $this->belongsTo(ShoppingCart::class, 'shopping_cart', 'id');

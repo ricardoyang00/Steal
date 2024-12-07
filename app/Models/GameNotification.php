@@ -12,7 +12,12 @@ Class GameNotification extends Model{
 
     public $timestamps = false;
 
-    protected $fillable = ['title', 'description', 'time', 'is_read' ,'game'];
+    protected $fillable = ['id' ,'game'];
+
+    public function notification()
+    {
+        return $this->belongsTo(Notification::class, 'id', 'id');
+    }
 
     public function getGame(){
         return $this->belongsTo(Game::class, 'game', 'id');

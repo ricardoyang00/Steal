@@ -13,7 +13,12 @@ Class OrderNotification extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['title', 'description', 'time', 'is_read' ,'order_',];
+    protected $fillable = ['id', 'order_',];
+
+    public function notification()
+    {
+        return $this->belongsTo(Notification::class, 'id', 'id');
+    }
 
     public function getOrder(){
         return $this->belongsTo(Order::class, 'order_', 'id');

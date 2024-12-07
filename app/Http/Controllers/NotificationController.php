@@ -485,7 +485,7 @@ class NotificationController extends Controller{
                 return response()->json(['message' => 'Game notification deleted successfully'], 200);
             }
         } elseif ($notification instanceof GameNotification) {
-            if ($notification->getGame && $notification->getGame->seller === auth()->id()) {
+            if ($notification->getGame && $notification->getGame->owner === auth()->id()) {
                 $notification->delete();
                 return response()->json(['message' => 'Game notification deleted successfully'], 200);
             }
