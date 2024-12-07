@@ -251,6 +251,8 @@ class NotificationController extends Controller{
                     $parsedNotification['game_name'] = $matches[1] ?? null;
                     $parsedNotification['quantity'] = $matches[2] ?? null;
                     $parsedNotification['total_price'] = $matches[3] ?? null;
+                    $notification->description = preg_replace('/GameName:\s?[^,]+,\s?quantity:\s?\d+,\s?totalPrice:\s?[\d.]+/', '', $notification->description);
+                    $notification->description = trim($notification->description);
                 }
     
                 $notification->parsedDetails = $parsedNotification;
