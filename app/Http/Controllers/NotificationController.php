@@ -90,6 +90,47 @@ class NotificationController extends Controller{
             \Log::error("Error creating stock wishlist notifications: " . $e->getMessage());
         }
     }
+
+    public function createGameNotifications($purchasedItems) {
+        try {
+            $gamePurchases = [];
+    
+            foreach ($purchasedItems as $item) {
+                $game = $item['game'];
+                $value = $item['value'];
+                $gameId = $game->id;
+    
+                if (!isset($gamePurchases[$gameId])) {
+                    $gamePurchases[$gameId] = [
+                        'game' => $game,
+                        'quantity' => 0,
+                        'totalValue' => 0.0,
+                    ];
+                }
+    
+                $gamePurchases[$gameId]['quantity'] += 1;
+                $gamePurchases[$gameId]['totalValue'] += $value;
+            }
+    
+            foreach ($gamePurchases as $data) {
+                $game = $data['game'];
+                $quantity = $data['quantity'];
+                $totalValue = $data['totalValue'];
+    
+                GameNotification::create([
+                    'title' => "Game Sold",
+                    'description' => "One of your games has been purchased. GameName: {$game->name}, quantity: {$quantity}, totalPrice: {$totalValue}",
+                    'time' => now(),
+                    'is_read' => false,
+                    'game' => $game->id,
+                ]);
+            }
+        } catch (\Exception $e) {
+            \Log::error("Error creating game notifications: " . $e->getMessage());
+        }
+    }
+    
+    
     
     private function getNotifications() {
         $orderNotifications = $this->getOrderNotifications()->toArray();
@@ -188,9 +229,42 @@ class NotificationController extends Controller{
     }
 
     private function getGameNotifications() {
-        // TODO
-        return collect();
+        try {
+            $sellerId = auth()->id();
+    
+            $notifications = GameNotification::whereHas('getGame', function ($query) use ($sellerId) {
+                $query->where('seller', $sellerId);
+            })
+            ->get()
+            ->map(function ($notification) {
+                // Set the notification type
+                $notification->type = 'Game';
+    
+                // Default parsed details
+                $parsedNotification = [
+                    'game_name' => null,
+                    'quantity' => null,
+                    'total_price' => null,
+                ];
+    
+                if (preg_match('/GameName:\s?([^,]+),\s?quantity:\s?(\d+),\s?totalPrice:\s?([\d.]+)/', $notification->description, $matches)) {
+                    $parsedNotification['game_name'] = $matches[1] ?? null;
+                    $parsedNotification['quantity'] = $matches[2] ?? null;
+                    $parsedNotification['total_price'] = $matches[3] ?? null;
+                }
+    
+                $notification->parsedDetails = $parsedNotification;
+    
+                return $notification;
+            });
+    
+            return $notifications;
+        } catch (\Exception $e) {
+            \Log::error("Error fetching game notifications: " . $e->getMessage());
+            return collect();
+        }
     }
+    
 
     private function getWishlistNotifications() {
         try {
@@ -202,10 +276,10 @@ class NotificationController extends Controller{
             ->orderBy('time', 'desc')
             ->get()
             ->map(function ($notification) {
-                // Set the general notification type
+
                 $notification->type = 'Wishlist';
     
-                // Default parsed details
+
                 $parsedNotification = [
                     'game_name' => null,
                     'specific_type' => 'Unknown',
