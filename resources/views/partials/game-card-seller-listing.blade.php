@@ -63,7 +63,7 @@
         </a>
     </div>
     <div class="game-history-button">
-        <a href="{{ route('games.edit', ['id' => $game->id]) }}" class="btn-edit-game btn btn-primary" style="color:white;">
+        <a href="{{ route('games.history', ['id' => $game->id]) }}" class="btn-edit-game btn btn-primary" style="color:white;">
             <i class="fa-solid fa-chart-line"></i> Purchase History
         </a>
     </div>

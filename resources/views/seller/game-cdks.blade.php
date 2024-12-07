@@ -10,12 +10,6 @@
         </a>Manage CDKs for {{ $game->name }}
     </h1>
 
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <div class="mb-3">
         <form action="{{ route('games.cdks.add', $game->id) }}" method="POST">
             @csrf

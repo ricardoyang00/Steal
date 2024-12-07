@@ -16,6 +16,7 @@ use App\Http\Controllers\NotificationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
 
 class GameController extends Controller
 {    
@@ -404,5 +405,21 @@ class GameController extends Controller
         } while (CDK::where('code', $randomString)->exists());
 
         return $randomString;
+    }
+
+    public function purchaseHistory($id)
+    {
+        $game = Game::findOrFail($id);
+        $purchases = DB::table('deliveredpurchase')
+            ->join('cdk', 'deliveredpurchase.cdk', '=', 'cdk.id')
+            ->join('purchase', 'deliveredpurchase.id', '=', 'purchase.id')
+            ->join('orders', 'purchase.order_', '=', 'orders.id')
+            ->join('users', 'orders.buyer', '=', 'users.id')
+            ->where('cdk.game', $id)
+            ->select('deliveredpurchase.*', 'cdk.code as cdk_code', 'purchase.value', 'orders.time', 'users.name as buyer_name')
+            ->orderBy('orders.time', 'desc')
+            ->paginate(25);
+
+        return view('seller.game-history', compact('game', 'purchases'));
     }
 }

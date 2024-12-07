@@ -68,6 +68,26 @@ class PurchaseHistoryController extends Controller
         return view('pages.purchase-history', compact('orderHistory', 'orders'));
     }
 
+    public function sellerPurchaseDetails($id)
+    {
+        $purchase = DB::table('deliveredpurchase')
+            ->join('cdk', 'deliveredpurchase.cdk', '=', 'cdk.id')
+            ->join('purchase', 'deliveredpurchase.id', '=', 'purchase.id')
+            ->join('orders', 'purchase.order_', '=', 'orders.id')
+            ->join('users', 'orders.buyer', '=', 'users.id')
+            ->join('payment', 'orders.payment', '=', 'payment.id')
+            ->join('paymentmethod', 'payment.method', '=', 'paymentmethod.id')
+            ->where('deliveredpurchase.id', $id)
+            ->select('deliveredpurchase.*', 'cdk.code as cdk_code', 'purchase.value', 'orders.time', 'users.name as buyer_name', 'users.email as buyer_email', 'paymentmethod.name as payment_method_name', 'paymentmethod.image_path as payment_method_image')
+            ->first();
+
+        if (!$purchase) {
+            return redirect()->back()->with('error', 'Purchase not found.');
+        }
+
+        return view('seller.purchase-details', compact('purchase'));
+    }
+
     private function formatOrderTime($orderTime)
     {
         $orderDateTime = new \DateTime($orderTime);

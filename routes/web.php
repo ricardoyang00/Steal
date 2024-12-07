@@ -87,6 +87,7 @@ Route::middleware('auth')->group(function () {
 // Purchase History
 Route::middleware('auth')->group(function (){
     Route::get('/user/{id}/order-history', [PurchaseHistoryController::class, 'orderHistory'])->name('purchaseHistory');
+    Route::get('/seller/purchases/{id}/details', [PurchaseHistoryController::class, 'sellerPurchaseDetails'])->name('seller.purchases.details');
 });
 
 // Notifications
@@ -163,6 +164,7 @@ Route::get('/games/create', [GameController::class, 'create'])->name('games.crea
 Route::post('/games', [GameController::class, 'store'])->name('games.store');
 Route::get('/games/{id}/cdks', [GameController::class, 'showCdks'])->name('games.cdks');
 Route::post('/games/{id}/cdks/add', [GameController::class, 'addCdks'])->name('games.cdks.add');
+Route::get('/games/{id}/purchasehistory', [GameController::class, 'purchaseHistory'])->name('games.history');
 
 // Static Pages
 Route::controller(StaticPagesController::class)->group(function () {
