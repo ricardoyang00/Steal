@@ -14,7 +14,7 @@ Class ShoppingCartNotification extends Model{
 
     protected $fillable = ['id', 'shopping_cart'];
 
-    public function notification()
+    public function getNotification()
     {
         return $this->belongsTo(Notification::class, 'id', 'id');
     }

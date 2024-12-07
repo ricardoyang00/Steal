@@ -443,10 +443,7 @@ class NotificationController extends Controller{
     public function markNotificationAsRead($notificationId)
 {
     try {
-        $notification = OrderNotification::find($notificationId) ??
-                        WishlistNotification::find($notificationId) ??
-                        ShoppingCartNotification::find($notificationId) ??
-                        GameNotification::find($notificationId);
+        $notification = Notification::find($notificationId);
 
         if (!$notification) {
             return response()->json(['error' => 'Notification not found'], 404);
@@ -464,102 +461,95 @@ class NotificationController extends Controller{
     }
 }
 
+
     
 
     public function getUnreadCount() {
         try {
-            if(auth_user()){
-
+            if (auth_user()) {
                 $unreadCount = 0;
 
-                if(auth_user()->buyer){
-
+                if (auth_user()->buyer) {
                     $buyerId = auth_user()->id;
 
                     $userOrders = Order::where('buyer', $buyerId)->pluck('id');
                     $unreadOrderNotifications = OrderNotification::whereIn('order_', $userOrders)
-                    ->where('is_read', false)
-                    ->count();
+                        ->whereHas('getNotification', fn($q) => $q->where('is_read', false))
+                        ->count();
 
                     $userWishlists = Wishlist::where('buyer', $buyerId)->pluck('id');
                     $unreadWishlistNotifications = WishlistNotification::whereIn('wishlist', $userWishlists)
-                    ->where('is_read', false)
-                    ->count();
+                        ->whereHas('getNotification', fn($q) => $q->where('is_read', false))
+                        ->count();
 
                     $userShoppingCarts = ShoppingCart::where('buyer', $buyerId)->pluck('id');
                     $unreadShoppingCartNotifications = ShoppingCartNotification::whereIn('shopping_cart', $userShoppingCarts)
-                    ->where('is_read', false)
-                    ->count();
+                        ->whereHas('getNotification', fn($q) => $q->where('is_read', false))
+                        ->count();
 
                     $unreadCount = $unreadOrderNotifications + $unreadWishlistNotifications + $unreadShoppingCartNotifications;
-    
-                }
 
-
-                else if(auth_user()->seller){
-
+                } elseif (auth_user()->seller) {
                     $sellerId = auth_user()->id;
                     $sellerGames = Game::where('owner', $sellerId)->pluck('id');
-                    $unreadGameNotifications = GameNotification::whereIn('game', $sellerGames)
-                    ->where('is_read', false)
-                    ->count();
-                    
-                    $unreadCount = $unreadGameNotifications;
 
+                    $unreadGameNotifications = GameNotification::whereIn('game', $sellerGames)
+                        ->whereHas('getNotification', fn($q) => $q->where('is_read', false))
+                        ->count();
+
+                    $unreadCount = $unreadGameNotifications;
                 }
+
                 return response()->json(['unread_count' => $unreadCount], 200);
             }
 
+            return response()->json(['unread_count' => 0], 200);
         } catch (\Exception $e) {
             \Log::error("Error fetching unread notifications count: " . $e->getMessage());
             return response()->json(['error' => 'Unable to fetch unread notifications count'], 500);
         }
-
     }
     
 
     public function deleteNotification($notificationId)
-{
-    try {
-        $notification = null;
+    {
+        try {
+            $notification = Notification::find($notificationId);
 
-        $notification = OrderNotification::find($notificationId) ??
-                        WishlistNotification::find($notificationId) ??
-                        ShoppingCartNotification::find($notificationId) ??
-                        GameNotification::find($notificationId);
+            if (!$notification) {
+                return response()->json(['error' => 'Notification not found'], 404);
+            }
 
-        if (!$notification) {
-            return response()->json(['error' => 'Notification not found'], 404);
-        }
+            $orderNotification = $notification->getOrderNotification;
+            $wishlistNotification = $notification->getWishlistNotification;
+            $shoppingCartNotification = $notification->getShoppingCartNotification;
+            $gameNotification = $notification->getGameNotification;
 
-        if ($notification instanceof OrderNotification) {
-            if ($notification->getOrder && $notification->getOrder->buyer === auth()->id()) {
+            if ($orderNotification && $orderNotification->getOrder && $orderNotification->getOrder->buyer === auth()->id()) {
                 $notification->delete();
                 return response()->json(['message' => 'Order notification deleted successfully'], 200);
-            }
-        } elseif ($notification instanceof WishlistNotification) {
-            if ($notification->getWishlist && $notification->getWishlist->buyer === auth()->id()) {
+
+            } elseif ($wishlistNotification && $wishlistNotification->getWishlist && $wishlistNotification->getWishlist->buyer === auth()->id()) {
                 $notification->delete();
                 return response()->json(['message' => 'Wishlist notification deleted successfully'], 200);
-            }
-        } elseif ($notification instanceof ShoppingCartNotification) {
-            if ($notification->getShoppingCart && $notification->getShoppingCart->buyer === auth()->id()) {
-                $notification->delete();
-                return response()->json(['message' => 'Game notification deleted successfully'], 200);
-            }
-        } elseif ($notification instanceof GameNotification) {
-            if ($notification->getGame && $notification->getGame->owner === auth()->id()) {
-                $notification->delete();
-                return response()->json(['message' => 'Game notification deleted successfully'], 200);
-            }
-        }
 
-        return response()->json(['error' => 'Unauthorized'], 403);
-    } catch (\Exception $e) {
-        \Log::error('Error deleting notification: ' . $e->getMessage());
-        return response()->json(['error' => 'Unable to delete notification'], 500);
+            } elseif ($shoppingCartNotification && $shoppingCartNotification->getShoppingCart && $shoppingCartNotification->getShoppingCart->buyer === auth()->id()) {
+                $notification->delete();
+                return response()->json(['message' => 'Shopping cart notification deleted successfully'], 200);
+
+            } elseif ($gameNotification && $gameNotification->getGame && $gameNotification->getGame->owner === auth()->id()) {
+                $notification->delete();
+                return response()->json(['message' => 'Game notification deleted successfully'], 200);
+
+            }
+
+            return response()->json(['error' => 'Unauthorized'], 403);
+        } catch (\Exception $e) {
+            \Log::error('Error deleting notification: ' . $e->getMessage());
+            return response()->json(['error' => 'Unable to delete notification'], 500);
+        }
     }
-}
+
 
 
 

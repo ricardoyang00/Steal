@@ -14,27 +14,27 @@ Class Notification extends Model{
 
     protected $fillable = ['id', 'title', 'description', 'time', 'is_read'];
 
-    public function wishlistNotification()
+    public function getWishlistNotification()
     {
         return $this->hasOne(WishlistNotification::class, 'id', 'id');
     }
 
-    public function shoppingCartNotification()
+    public function getShoppingCartNotification()
     {
         return $this->hasOne(ShoppingCartNotification::class, 'id', 'id');
     }
 
-    public function gameNotification()
+    public function getGameNotification()
     {
         return $this->hasOne(GameNotification::class, 'id', 'id');
     }
 
-    public function orderNotification()
+    public function getOrderNotification()
     {
         return $this->hasOne(OrderNotification::class, 'id', 'id');
     }
 
-    public function reviewNotification()
+    public function getReviewNotification()
     {
         return $this->hasOne(ReviewNotification::class, 'id', 'id');
     }

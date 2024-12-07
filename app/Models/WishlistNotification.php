@@ -14,7 +14,7 @@ Class WishlistNotification extends Model{
 
     protected $fillable = ['id', 'wishlist'];
 
-    public function notification()
+    public function getNotification()
     {
         return $this->belongsTo(Notification::class, 'id', 'id');
     }
