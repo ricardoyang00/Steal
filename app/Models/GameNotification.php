@@ -14,7 +14,7 @@ Class GameNotification extends Model{
 
     protected $fillable = ['id' ,'game'];
 
-    public function notification()
+    public function getNotification()
     {
         return $this->belongsTo(Notification::class, 'id', 'id');
     }

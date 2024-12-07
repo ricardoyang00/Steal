@@ -117,18 +117,22 @@ class NotificationController extends Controller{
                 $quantity = $data['quantity'];
                 $totalValue = $data['totalValue'];
     
-                GameNotification::create([
+                $notification = Notification::create([
                     'title' => "Game Sold",
                     'description' => "One of your games has been purchased. GameName: {$game->name}, quantity: {$quantity}, totalPrice: {$totalValue}",
                     'time' => now(),
                     'is_read' => false,
+                ]);
+    
+                NotificationGame::create([
+                    'id' => $notification->id,
                     'game' => $game->id,
                 ]);
             }
         } catch (\Exception $e) {
             \Log::error("Error creating game notifications: " . $e->getMessage());
         }
-    }
+    }    
     
     
     
@@ -232,29 +236,40 @@ class NotificationController extends Controller{
         try {
             $sellerId = auth_user()->id;
     
-            $notifications = GameNotification::whereHas('getGame', function ($query) use ($sellerId) {
+            $notifications = NotificationGame::whereHas('getGame', function ($query) use ($sellerId) {
                 $query->where('owner', $sellerId);
             })
+            ->with(['notification', 'getGame'])
             ->get()
             ->map(function ($notification) {
                 // Set the notification type
                 $notification->type = 'Game';
     
-                // Default parsed details
+                $desc = $notification->getNotification->description;
+                $title = $notification->getNotification->title;
+                $isRead = $notification->getNotification->is_read;
+                $time = $notification->getNotification->time;
+    
                 $parsedNotification = [
                     'game_name' => null,
                     'quantity' => null,
                     'total_price' => null,
                 ];
     
-                if (preg_match('/GameName:\s?([^,]+),\s?quantity:\s?(\d+),\s?totalPrice:\s?([\d.]+)/', $notification->description, $matches)) {
+                if (preg_match('/GameName:\s?([^,]+),\s?quantity:\s?(\d+),\s?totalPrice:\s?([\d.]+)/', $desc, $matches)) {
                     $parsedNotification['game_name'] = $matches[1] ?? null;
                     $parsedNotification['quantity'] = $matches[2] ?? null;
                     $parsedNotification['total_price'] = $matches[3] ?? null;
-                    $notification->description = preg_replace('/GameName:\s?[^,]+,\s?quantity:\s?\d+,\s?totalPrice:\s?[\d.]+/', '', $notification->description);
-                    $notification->description = trim($notification->description);
+    
+                    // Remove the parsed details from the description
+                    $desc = preg_replace('/GameName:\s?[^,]+,\s?quantity:\s?\d+,\s?totalPrice:\s?[\d.]+/', '', $desc);
+                    $desc = trim($desc);
                 }
     
+                $notification->title = $title;
+                $notification->description = $desc;
+                $notification->time = $time;
+                $notification->is_read = $isRead;
                 $notification->parsedDetails = $parsedNotification;
     
                 return $notification;
@@ -266,6 +281,7 @@ class NotificationController extends Controller{
             return collect();
         }
     }
+    
     
 
     private function getWishlistNotifications() {
