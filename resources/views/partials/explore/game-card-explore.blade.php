@@ -1,3 +1,5 @@
+<script src="{{ asset('js/explore/tag-filter.js') }}" defer></script>
+
 <div class="game-card" data-url="{{ route('game.details', ['id' => $game->id]) }}">
     <!-- Game Thumbnail -->
     <div class="game-thumbnail">
@@ -16,10 +18,10 @@
         <!-- Game Tags (Categories and Players) -->
         <div class="game-tags">
             @foreach($game->categories as $category)
-                <a href="javascript:void(0);" class="tag">{{ $category->name }}</a>
+                <a href="#" class="tag" data-category-id="{{ $category->id }}" onclick="filterByCategory({{ $category->id }})">{{ $category->name }}</a>
             @endforeach
             @foreach($game->players as $player)
-                <a href="javascript:void(0);" class="tag">{{ $player->name }}</a>
+                <a href="#" class="tag" data-player-id="{{ $player->id }}" onclick="filterByPlayer({{ $player->id }})">{{ $player->name }}</a>
             @endforeach
         </div>
         <!-- Game Platforms and Release Date -->
