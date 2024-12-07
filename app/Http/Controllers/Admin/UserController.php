@@ -19,25 +19,42 @@ class UserController extends Controller
     public function searchUsers(Request $request): View
     {
         $userQuery = $request->input('user_query');
+        $statusFilter = $request->input('status');
+
+        $buyersQuery = User::whereHas('buyer');
+        $sellersQuery = User::whereHas('seller');
 
         if ($userQuery) {
-            $buyers = User::whereHas('buyer')
-                ->where(function ($query) use ($userQuery) {
-                    $query->whereRaw('LOWER(username) LIKE ?', ['%' . strtolower($userQuery) . '%'])
-                        ->orWhereRaw('LOWER(email) LIKE ?', ['%' . strtolower($userQuery) . '%']);
-                })
-                ->get();
+            $buyersQuery->where(function ($query) use ($userQuery) {
+                $query->whereRaw('LOWER(username) LIKE ?', ['%' . strtolower($userQuery) . '%'])
+                    ->orWhereRaw('LOWER(email) LIKE ?', ['%' . strtolower($userQuery) . '%']);
+            });
 
-            $sellers = User::whereHas('seller')
-                ->where(function ($query) use ($userQuery) {
-                    $query->whereRaw('LOWER(username) LIKE ?', ['%' . strtolower($userQuery) . '%'])
-                        ->orWhereRaw('LOWER(email) LIKE ?', ['%' . strtolower($userQuery) . '%']);
-                })
-                ->get();
-        } else {
-            $buyers = User::whereHas('buyer')->get();
-            $sellers = User::whereHas('seller')->get();
+            $sellersQuery->where(function ($query) use ($userQuery) {
+                $query->whereRaw('LOWER(username) LIKE ?', ['%' . strtolower($userQuery) . '%'])
+                    ->orWhereRaw('LOWER(email) LIKE ?', ['%' . strtolower($userQuery) . '%']);
+            });
         }
+
+        if ($statusFilter) {
+            switch ($statusFilter) {
+                case 'active':
+                    $buyersQuery->where('is_active', true)->where('is_blocked', false);
+                    $sellersQuery->where('is_active', true)->where('is_blocked', false);
+                    break;
+                case 'blocked':
+                    $buyersQuery->where('is_blocked', true);
+                    $sellersQuery->where('is_blocked', true);
+                    break;
+                case 'disabled':
+                    $buyersQuery->where('is_active', false);
+                    $sellersQuery->where('is_active', false);
+                    break;
+            }
+        }
+
+        $buyers = $buyersQuery->get();
+        $sellers = $sellersQuery->get();
 
         return view('admin.users.index', compact('buyers', 'sellers'));
     }

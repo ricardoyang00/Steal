@@ -4,11 +4,24 @@
 
 @section('content')
 
+<script src="{{ asset('js/admin/manage-users.js') }}" defer></script>
+
 <div class="admin-user-index">
     <h1>Manage Users</h1>
     <form method="GET" action="{{ route('admin.users.search') }}">
-        <input type="text" name="user_query" placeholder="Input username or email..." value="{{ request('user_query') }}">
-        <button type="submit">Search</button>
+        <div class="search-container">
+            <input type="text" name="user_query" placeholder="Input username or email..." value="{{ request('user_query') }}">
+            <button type="submit">Search</button>
+        </div>
+        <div class="filter-buttons">
+            <button id="filter-user-search" type="submit" name="status" value="active" 
+                class="{{ request('status') === 'active' ? 'active' : '' }}">Active</button>
+            <button id="filter-user-search" type="submit" name="status" value="blocked" 
+                class="{{ request('status') === 'blocked' ? 'active' : '' }}">Blocked</button>
+            <button id="filter-user-search" type="submit" name="status" value="disabled" 
+                class="{{ request('status') === 'disabled' ? 'active' : '' }}">Disabled</button>
+        </div>
+        
     </form>
 
     <div class="list-buyers-sellers">

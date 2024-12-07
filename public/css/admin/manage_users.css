@@ -25,12 +25,13 @@
     background-color: var(--highlight-hover-color);
 }
 
-.admin-user-index form {
+.admin-user-index .search-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
+/* Input Field */
 .admin-user-index form input[type="text"] {
     padding: 10px;
     border: 1px solid var(--secondary-background-color);
@@ -40,6 +41,7 @@
     outline: none;
 }
 
+/* Search Button */
 .admin-user-index form button {
     padding: 10px 20px;
     border: none;
@@ -50,7 +52,34 @@
     transition: background-color 0.3s;
 }
 
-.admin-user-index form button:hover {
+/* Filter Buttons Container */
+.admin-user-index .filter-buttons {
+    display: flex;
+    justify-content: center; /* Center the buttons */
+    gap: 10px; /* Space between buttons */
+    flex-wrap: wrap;
+    margin-top: 10px; /* Add spacing from the search bar */
+}
+
+/* Filter Buttons Styling */
+.admin-user-index .filter-buttons #filter-user-search {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: grey;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Active Button Styling */
+.admin-user-index .filter-buttons #filter-user-search.active {
+    background-color: var(--highlight-color);
+    color: var(--text-color);
+}
+
+/* Hover State */
+.admin-user-index .filter-buttons #filter-user-search:hover {
     background-color: var(--highlight-hover-color);
 }
 
