@@ -28,6 +28,21 @@ class NotificationController extends Controller{
         }
     }
 
+    public function fetchNotificationsJSON() {
+        if (auth_user()) {
+            $notifications = $this->getNotifications();
+            $notificationsArray = $notifications->toArray();
+    
+            // $notificationsArray has pagination info and 'data' => [...] key containing the notifications
+            // Return only the 'data' array so the frontend can do notifications.forEach(...)
+            return response()->json(['notifications' => $notificationsArray['data']], 200);
+        } else {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+    }
+    
+    
+
     public function createOrderNotification($order, $purchasedItems, $canceledItems) {
         $title = 'Order Processed';
         $description = '';

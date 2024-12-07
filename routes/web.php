@@ -95,6 +95,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/notifications/unread-count', [NotificationController::class, 'getUnreadCount'])->name('notifications.unreadCount');
     Route::delete('/notifications/{id}', [NotificationController::class, 'deleteNotification'])->name('notifications.delete');
     Route::post('/notifications/{id}/mark-as-read', [NotificationController::class, 'markNotificationAsRead'])->name('notifications.markAsRead');
+    Route::get('/notifications/fetchNotifications', [NotificationController::class, 'fetchNotificationsJSON'])->name('notifications.fetchJSON');
 });
 
 // Redirect GET /profile/edit to /profile
