@@ -194,6 +194,30 @@ class NotificationController extends Controller{
             \Log::error("Error creating game notifications: " . $e->getMessage());
         }
     }    
+
+    public function createReviewNotifications($review){
+        try {
+            $reviewAuthor = $review->getAuthor->user->username;
+            $gameName = $review->getGame->name;
+            $reviewType = $review->is_positive ? 'positive' : 'negative';
+    
+            $notification = Notification::create([
+                'title' => "Game Reviewed",
+                'description' => "One of your games has been reviewed. Review Author: {$reviewAuthor}, Reviewed Game: {$gameName}, reviewType: {$reviewType}",
+                'time' => now(),
+                'is_read' => false,
+            ]);
+    
+            // Create the specialized notification linking to the review
+            NotificationReview::create([
+                'id' => $notification->id,
+                'review' => $review->id,
+            ]);
+        } catch (\Exception $e) {
+            \Log::error("Error creating review notification: " . $e->getMessage());
+        }
+    }
+    
     
     
     
@@ -297,9 +321,63 @@ class NotificationController extends Controller{
     
     
     private function getReviewNotifications() {
-        // TODO
-        return collect();
+        try {
+            $sellerId = auth_user()->id;
+    
+            $notifications = NotificationReview::whereHas('getReview.getGame', function ($query) use ($sellerId) {
+                $query->where('owner', $sellerId);
+            })
+            ->with(['getNotification', 'getReview.getGame', 'getReview.author'])
+            ->get();
+    
+            // Sort by notification time descending
+            $notifications = $notifications->sortByDesc(fn($n) => $n->getNotification->time)->values();
+    
+            return $notifications->map(function ($notification) {
+                // Set notification type
+                $notification->type = 'Review';
+    
+                // Extract fields from the related Notification record
+                $title = $notification->getNotification->title;
+                $desc = $notification->getNotification->description;
+                $time = $notification->getNotification->time;
+                $isRead = $notification->getNotification->is_read;
+    
+                // Assign fields to the notification for convenience
+                $notification->title = $title;
+                $notification->description = $desc;
+                $notification->time = $time;
+                $notification->is_read = $isRead;
+    
+                $parsedNotification = [
+                    'game_name' => null,
+                    'review_author' => null,
+                    'review_type' => null,
+                ];
+    
+                // The description format is:
+                // "One of your games has been reviewed. Review Author: {author}, Reviewed Game: {gameName}, reviewType: {positive/negative}"
+                if (preg_match('/Review Author:\s?([^,]+),\s?Reviewed Game:\s?([^,]+),\s?reviewType:\s?(positive|negative)/', $desc, $matches)) {
+                    $parsedNotification['review_author'] = $matches[1] ?? null;
+                    $parsedNotification['game_name'] = $matches[2] ?? null;
+                    $parsedNotification['review_type'] = $matches[3] ?? null;
+    
+                    // Remove the parsed details from the description
+                    $desc = preg_replace('/Review Author:\s?[^,]+,\s?Reviewed Game:\s?[^,]+,\s?reviewType:\s?(positive|negative)/', '', $desc);
+                    $desc = trim($desc);
+                    $notification->description = $desc;
+                }
+    
+                $notification->parsedDetails = $parsedNotification;
+    
+                return $notification;
+            });
+        } catch (\Exception $e) {
+            \Log::error("Error fetching review notifications: " . $e->getMessage());
+            return collect();
+        }
     }
+    
 
     private function getGameNotifications() {
         try {
