@@ -161,6 +161,7 @@ Route::post('/games', [GameController::class, 'store'])->name('games.store');
 Route::get('/games/{id}/cdks', [GameController::class, 'showCdks'])->name('games.cdks');
 Route::post('/games/{id}/cdks/add', [GameController::class, 'addCdks'])->name('games.cdks.add');
 Route::get('/games/{id}/purchasehistory', [GameController::class, 'purchaseHistory'])->name('games.history');
+Route::delete('/games/media/{id}', [GameController::class, 'deleteMedia'])->name('games.media.delete');
 
 // Static Pages
 Route::controller(StaticPagesController::class)->group(function () {

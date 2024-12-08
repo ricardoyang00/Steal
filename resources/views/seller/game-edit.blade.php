@@ -2,6 +2,8 @@
 
 @section('title', 'Edit Game')
 
+<script src="{{ asset('js/seller/edit-game.js') }}" defer></script>
+
 @section('content')
 <div class="container mt-5">
     <h1><a href="{{ url('seller/products') }}"><i class="fa-solid fa-chevron-left" style="color: white;"></i></a>Edit Game</h1>
@@ -96,35 +98,28 @@
         <!-- large thumbnails -->
         <div class="form-group">
             <label for="thumbnail_large_path">Thumbnail Large (16:9)</label>
-            <input type="file" name="thumbnail_large_path" class="form-control-file">
+            <input type="file" name="thumbnail_large_path" class="form-control-file" id="thumbnail_large_path">
             <small class="form-text text-muted">Recommended aspect ratio: 16:9</small>
-            @if($game->thumbnail_large_path)
-                <img src="{{ asset($game->thumbnail_large_path) }}" alt="Thumbnail Large" style="width: 320px; height: 180px;">
-            @endif
+            <img src="{{ asset($game->getThumbnailLargePath()) }}" alt="Thumbnail Large" style="width: 320px; height: 180px;" id="thumbnail_large_preview">
         </div>
         <!-- small thumbnails -->
         <div class="form-group">
             <label for="thumbnail_small_path">Thumbnail Small (270x400)</label>
-            <input type="file" name="thumbnail_small_path" class="form-control-file">
+            <input type="file" name="thumbnail_small_path" class="form-control-file" id="thumbnail_small_path">
             <small class="form-text text-muted">Recommended size: 270x400</small>
-            @if($game->thumbnail_small_path)
-                <img src="{{ asset($game->thumbnail_small_path) }}" alt="Thumbnail Small" style="width: 270px; height: 400px;">
-            @endif
+            <img src="{{ asset($game->getThumbnailSmallPath()) }}" alt="Thumbnail Small" style="width: 270px; height: 400px;" id="thumbnail_small_preview">
         </div>
         <!-- additional images -->
         <div class="form-group">
             <label for="additional_images">Additional Large Images (16:9)</label>
-            <input type="file" name="additional_images[]" class="form-control-file" multiple>
+            <input type="file" name="additional_images[]" class="form-control-file" id="additional_images" multiple>
             <small class="form-text text-muted">Recommended aspect ratio: 16:9. You can upload multiple images.</small>
-            <div class="d-flex flex-wrap">
-                @if ($game->media)
-                    @foreach($game->media as $media)
-                        <div class="position-relative m-2">
-                            <img src="{{ asset($media->path) }}" alt="Additional Image" style="width: 320px; height: 180px;">
-                            <a href="{{ route('games.media.delete', $media->id) }}" class="btn btn-danger btn-sm position-absolute" style="top: 5px; right: 5px;"><i class="fa-solid fa-trash"></i></a>
-                        </div>
-                    @endforeach
-                @endif
+            <div class="d-flex flex-wrap" id="additional_images_preview">
+                @foreach($game->images as $media)
+                    <div class="position-relative m-2">
+                        <img src="{{ asset($media->path) }}" alt="Additional Image" style="width: 320px; height: 180px;">
+                    </div>
+                @endforeach
             </div>
         </div>
         

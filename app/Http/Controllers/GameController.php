@@ -222,7 +222,7 @@ class GameController extends Controller
     }
 
     public function edit($id) {
-        $game = Game::with(['categories', 'platforms', 'languages', 'players'])->findOrFail($id);
+        $game = Game::with(['categories', 'platforms', 'languages', 'players', 'images'])->findOrFail($id);
         $categories = Category::all();
         $platforms = Platform::all();
         $languages = Language::all();
@@ -263,6 +263,15 @@ class GameController extends Controller
 
         // Handle additional images
         if ($request->hasFile('additional_images')) {
+            // Delete existing images
+            foreach ($game->images as $media) {
+                if (File::exists(public_path($media->path))) {
+                    File::delete(public_path($media->path));
+                }
+                $media->delete();
+            }
+
+            // Upload new images
             foreach ($request->file('additional_images') as $image) {
                 $imagePath = 'images/gamemedia/' . uniqid() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('images/gamemedia'), $imagePath);
@@ -449,5 +458,20 @@ class GameController extends Controller
             ->paginate(25);
 
         return view('seller.game-history', compact('game', 'purchases'));
+    }
+
+    public function deleteMedia($id)
+    {
+        $media = GameMedia::findOrFail($id);
+
+        // Delete the media file from the storage
+        if (File::exists(public_path($media->path))) {
+            File::delete(public_path($media->path));
+        }
+
+        // Delete the media record from the database
+        $media->delete();
+
+        return redirect()->back()->withSuccess('Media deleted successfully.');
     }
 }
