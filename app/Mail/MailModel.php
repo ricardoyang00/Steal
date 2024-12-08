@@ -46,7 +46,7 @@ class MailModel extends Mailable
     public function content()
     {
         return new Content(
-            view: 'emails.welcome-mail',
+            view: 'emails.password-reset',
         );
     }
 

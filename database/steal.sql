@@ -77,6 +77,13 @@ CREATE TABLE Seller(
     id INT PRIMARY KEY REFERENCES Users(id) ON UPDATE CASCADE
 );
 
+CREATE TABLE PasswordReset (
+    email TEXT NOT NULL,
+    token TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    PRIMARY KEY (email)
+);
+
 CREATE TABLE Age (
     id SERIAL PRIMARY KEY,
     minimum_age INT NOT NULL,

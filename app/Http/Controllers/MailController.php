@@ -7,11 +7,29 @@ use Illuminate\Http\Request;
 use App\Mail\MailModel;
 use TransportException;
 use Exception;
+use App\Models\User;
+use App\Models\Administrator;
+use App\Models\PasswordReset;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class MailController extends Controller
 {
-    function send(Request $request) {
+    public function showRequestForm()
+    {
+        return view('auth.forgot-password');
+    }
 
+    public function sendPasswordReset(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        // Check for SMTP environment variables
         $missingVariables = [];
         $requiredEnvVariables = [
             'MAIL_MAILER',
@@ -23,40 +41,68 @@ class MailController extends Controller
             'MAIL_FROM_ADDRESS',
             'MAIL_FROM_NAME',
         ];
-    
+
         foreach ($requiredEnvVariables as $envVar) {
             if (empty(env($envVar))) {
                 $missingVariables[] = $envVar;
             }
         }
-    
-        if (empty($missingVariables)) {
 
-            $mailData = [
-                'name' => $request->name,
-                'email' => $request->email,
-            ];
-
-            try {
-                Mail::to($request->email)->send(new MailModel($mailData));
-                $status = 'Success!';
-                $message = $request->name . ', an email has been sent to ' . $request->email;
-            } catch (TransportException $e) {
-                $status = 'Error!';
-                $message = 'SMTP connection error occurred during the email sending process to ' . $request->email;
-            } catch (Exception $e) {
-                $status = 'Error!';
-                $message = 'An unhandled exception occurred during the email sending process to ' . $request->email;
-            }
-
-        } else {
-            $status = 'Error!';
-            $message = 'The SMTP server cannot be reached due to missing environment variables:';
+        if (!empty($missingVariables)) {
+            return back()->withErrors([
+                'email' => 'Missing SMTP configuration: ' . implode(', ', $missingVariables),
+            ]);
         }
 
+        // Check if the user exists in the Users table
+        $user = User::where('email', $request->email)->first();
+
+        // If not found in Users table, check in the Administrator table
+        if (!$user) {
+            $user = Administrator::where('email', $request->email)->first();
+        }
+
+        if (!$user) {
+            return back()->withErrors(['email' => 'No user found with this email address.']);
+        }
+
+        // Generate a password reset token
+        $token = Str::random(60);
+
+        // Save the token to the database
+        PasswordReset::updateOrCreate(
+            ['email' => $user->email], // Match by email
+            [
+                'token' => Hash::make($token), // Save the hashed token
+                'created_at' => Carbon::now(), // Set created_at timestamp
+            ]
+        );
+
+        // Prepare email data
+        $resetLink = url('/password/reset?token=' . $token . '&email=' . $user->email);
+        $mailData = [
+            'name' => $user->name,
+            'email' => $user->email,
+            'resetLink' => $resetLink,
+        ];
+
+        // Try sending the email
+        try {
+            Mail::to($user->email)->send(new MailModel($mailData));
+            $status = 'Success!';
+            $message = 'Password reset link sent to ' . $user->email;
+        } catch (TransportException $e) {
+            $status = 'Error!';
+            $message = 'SMTP connection error: ' . $e->getMessage();
+        } catch (Exception $e) {
+            $status = 'Error!';
+            $message = 'An error occurred: ' . $e->getMessage();
+        }
+
+        // Store feedback in session and redirect
         $request->session()->flash('status', $status);
         $request->session()->flash('message', $message);
-        $request->session()->flash('details', $missingVariables);
-        return redirect()->route('home');
+
+        return redirect()->route('home')->withSuccess('We have sent a password reset link to your email. Please check your inbox to reset your password.');
     }
 }

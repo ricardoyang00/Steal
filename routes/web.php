@@ -177,4 +177,5 @@ Route::controller(StaticPagesController::class)->group(function () {
 Route::get('/age/{id}', [AgeController::class, 'show'])->name('age.show');
 
 // Mail
-Route::post('/send', [MailController::class, 'send']);
+Route::get('/forgot-password', [MailController::class, 'showRequestForm'])->name('password.request');
+Route::post('/forgot-password', [MailController::class, 'sendPasswordReset'])->name('password.email');
