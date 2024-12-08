@@ -18,6 +18,8 @@ use App\Http\Controllers\StaticPagesController;
 use App\Http\Controllers\AgeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\Auth\PasswordResetController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -179,3 +181,7 @@ Route::get('/age/{id}', [AgeController::class, 'show'])->name('age.show');
 // Mail
 Route::get('/forgot-password', [MailController::class, 'showRequestForm'])->name('password.request');
 Route::post('/forgot-password', [MailController::class, 'sendPasswordReset'])->name('password.email');
+
+// Reset password
+Route::get('/password/reset', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
+Route::post('/password/reset', [PasswordResetController::class, 'resetPassword'])->name('password.update');
