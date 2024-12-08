@@ -49,9 +49,9 @@ class MailController extends Controller
         }
 
         if (!empty($missingVariables)) {
-            return back()->withErrors([
-                'email' => 'Missing SMTP configuration: ' . implode(', ', $missingVariables),
-            ]);
+            return back()->withErrors(
+                'Missing SMTP configuration: ' . implode(', ', $missingVariables),
+            );
         }
 
         // Check if the user exists in the Users table
@@ -63,7 +63,7 @@ class MailController extends Controller
         }
 
         if (!$user) {
-            return back()->withErrors(['email' => 'No user found with this email address.']);
+            return back()->withErrors('No user found with this email address.');
         }
 
         // Generate a password reset token
@@ -89,19 +89,12 @@ class MailController extends Controller
         // Try sending the email
         try {
             Mail::to($user->email)->send(new MailModel($mailData));
-            $status = 'Success!';
-            $message = 'Password reset link sent to ' . $user->email;
+            return redirect()->route('home')->withSuccess('We have sent a password reset link to ' . $user->email);
         } catch (TransportException $e) {
-            $status = 'Error!';
-            $message = 'SMTP connection error: ' . $e->getMessage();
+            return redirect()->back()->withErrors('SMTP connection error: ' . $e->getMessage());
         } catch (Exception $e) {
-            $status = 'Error!';
-            $message = 'An error occurred: ' . $e->getMessage();
+            return redirect()->back()->withErrors('An error occurred: ' . $e->getMessage());
         }
-
-        // Store feedback in session and redirect
-        $request->session()->flash('status', $status);
-        $request->session()->flash('message', $message);
 
         return redirect()->route('home')->withSuccess('We have sent a password reset link to your email. Please check your inbox to reset your password.');
     }

@@ -179,9 +179,11 @@ Route::controller(StaticPagesController::class)->group(function () {
 Route::get('/age/{id}', [AgeController::class, 'show'])->name('age.show');
 
 // Mail
-Route::get('/forgot-password', [MailController::class, 'showRequestForm'])->name('password.request');
-Route::post('/forgot-password', [MailController::class, 'sendPasswordReset'])->name('password.email');
+Route::middleware('guest')->group(function () {
+    Route::get('/forgot-password', [MailController::class, 'showRequestForm'])->name('password.request');
+    Route::post('/forgot-password', [MailController::class, 'sendPasswordReset'])->name('password.email');
 
-// Reset password
-Route::get('/password/reset', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
-Route::post('/password/reset', [PasswordResetController::class, 'resetPassword'])->name('password.update');
+    // Reset password
+    Route::get('/password/reset', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
+    Route::post('/password/reset', [PasswordResetController::class, 'resetPassword'])->name('password.update');
+});

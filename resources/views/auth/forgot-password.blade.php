@@ -6,12 +6,6 @@
     <h1>Forgot Your Password?</h1>
     <p>Enter your email address, and we’ll send you a link to reset your password.</p>
 
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
-
     <form method="POST" action="{{ route('password.email') }}">
         @csrf
         <div>
