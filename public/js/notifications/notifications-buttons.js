@@ -340,7 +340,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 detailsContentDiv.appendChild(quantityP);
 
                 const gamePriceP = document.createElement('p');
-                gamePriceP.innerHTML = `<strong>Game Price:</strong> $${unitPrice}`;
+                gamePriceP.innerHTML = `<strong>Unit Price:</strong> $${unitPrice}`;
                 detailsContentDiv.appendChild(gamePriceP);
 
                 const totalPriceP = document.createElement('p');
@@ -356,11 +356,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 detailsContentDiv.appendChild(gameNameP);
 
                 const authorP = document.createElement('p');
-                authorP.innerHTML = `<strong>Review Author:</strong> ${notification.parsedDetails.review_author ?? 'Unknown Author'}`;
+                authorP.innerHTML = `<strong>Author:</strong> ${notification.parsedDetails.review_author ?? 'Unknown Author'}`;
                 detailsContentDiv.appendChild(authorP);
 
                 const reviewTypeP = document.createElement('p');
-                reviewTypeP.innerHTML = `<strong>Review Type:</strong> ${notification.parsedDetails.review_type ?? 'Unknown'}`;
+                reviewTypeP.innerHTML = `<strong>Rating:</strong> ${notification.parsedDetails.review_type ?? 'Unknown'}`;
                 detailsContentDiv.appendChild(reviewTypeP);
             }
 
