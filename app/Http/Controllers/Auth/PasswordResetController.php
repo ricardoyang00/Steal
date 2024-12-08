@@ -75,6 +75,12 @@ class PasswordResetController extends Controller
         }
 
         if ($user) {
+            // Check if the new password is the same as the current password
+            if (Hash::check($request->input('password'), $user->password)) {
+                return redirect()->back()->withErrors('The new password cannot be the same as the current password.')->withInput();
+            }
+
+            // Update the password
             $user->password = Hash::make($request->input('password'));
             $user->save();
         }
