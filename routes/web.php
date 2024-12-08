@@ -17,6 +17,7 @@ use App\Http\Controllers\PurchaseHistoryController;
 use App\Http\Controllers\StaticPagesController;
 use App\Http\Controllers\AgeController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -174,3 +175,6 @@ Route::controller(StaticPagesController::class)->group(function () {
 });
 
 Route::get('/age/{id}', [AgeController::class, 'show'])->name('age.show');
+
+// Mail
+Route::post('/send', [MailController::class, 'send']);
