@@ -215,6 +215,7 @@ class GameController extends Controller
         $sellerId = auth()->user()->id;
         $games = Game::where('owner', $sellerId)
                     ->with(['platforms', 'categories', 'languages', 'players'])
+                    ->orderBy('name', 'asc')
                     ->paginate(10);
 
         return view('seller.products', compact('games'));
@@ -236,22 +237,50 @@ class GameController extends Controller
         $game = Game::findOrFail($id);
 
         $oldPrice = $game->price;
-        $oldStock = $game->stock;
 
-        $game->update($request->all());
+        // Update game attributes
+        $game->update($request->except(['thumbnail_large_path', 'thumbnail_small_path', 'additional_images']));
 
         // Update relationships
         $game->categories()->sync($request->input('categories', []));
         $game->platforms()->sync($request->input('platforms', []));
         $game->languages()->sync($request->input('languages', []));
         $game->players()->sync($request->input('players', []));
-        
+
+        // Handle thumbnail large image
+        if ($request->hasFile('thumbnail_large_path')) {
+            $thumbnailLargePath = 'images/gamemedia/' . uniqid() . '.' . $request->file('thumbnail_large_path')->getClientOriginalExtension();
+            $request->file('thumbnail_large_path')->move(public_path('images/gamemedia'), $thumbnailLargePath);
+            $game->thumbnail_large_path = $thumbnailLargePath;
+        }
+
+        // Handle thumbnail small image
+        if ($request->hasFile('thumbnail_small_path')) {
+            $thumbnailSmallPath = 'images/gamemedia/' . uniqid() . '.' . $request->file('thumbnail_small_path')->getClientOriginalExtension();
+            $request->file('thumbnail_small_path')->move(public_path('images/gamemedia'), $thumbnailSmallPath);
+            $game->thumbnail_small_path = $thumbnailSmallPath;
+        }
+
+        // Handle additional images
+        if ($request->hasFile('additional_images')) {
+            foreach ($request->file('additional_images') as $image) {
+                $imagePath = 'images/gamemedia/' . uniqid() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('images/gamemedia'), $imagePath);
+                GameMedia::create([
+                    'path' => $imagePath,
+                    'game' => $game->id
+                ]);
+                Log::info('Additional image uploaded', ['path' => $imagePath]);
+            }
+        }
+
+        $game->save();
+
         if ($oldPrice != $game->price) {
             $this->notificationController->createPriceNotifications($game, $oldPrice, $game->price);
         }
-        
 
-        return redirect()->route('games.edit', $game->id)->withSuccess('Game updated successfully.');
+        return redirect()->route('seller.products')->withSuccess('Game updated successfully.');
     }
 
     public function create()
@@ -337,15 +366,14 @@ class GameController extends Controller
             Log::info('Players synced', ['players' => $request->players]);
             
             if ($request->hasFile('additional_images')) {
-                foreach ($request->file('additional_images') as $index => $image) {
+                foreach ($request->file('additional_images') as $image) {
                     $imagePath = 'images/gamemedia/' . uniqid() . '.' . $image->getClientOriginalExtension();
                     $image->move(public_path('images/gamemedia'), $imagePath);
                     GameMedia::create([
                         'path' => $imagePath,
-                        'game' => $game->id,
-                        'order_' => $index
+                        'game' => $game->id
                     ]);
-                    Log::info('Additional image uploaded', ['path' => $imagePath, 'order' => $index]);
+                    Log::info('Additional image uploaded', ['path' => $imagePath]);
                 }
             }
 

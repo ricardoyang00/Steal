@@ -4,30 +4,42 @@
 
 @section('content')
 <div class="container mt-5">
-    <h1><a href=" {{ url('seller/products') }} "><i class="fa-solid fa-chevron-left" style="color: white;"></i></a>Edit Game</h1>
+    <h1><a href="{{ url('seller/products') }}"><i class="fa-solid fa-chevron-left" style="color: white;"></i></a>Edit Game</h1>
 
-    <form action="{{ route('games.update', $game->id) }}" method="POST">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form action="{{ route('games.update', $game->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
+        <!-- name -->
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" name="name" class="form-control" value="{{ $game->name }}" required>
         </div>
-
+        <!-- description -->
         <div class="form-group">
             <label for="description">Description</label>
             <textarea name="description" class="form-control" required>{{ $game->description }}</textarea>
         </div>
-
+        <!-- price -->
         <div class="form-group">
             <label for="price">Price (€)</label>
             <input type="number" name="price" class="form-control" value="{{ $game->price }}" step="0.01" required>
         </div>
-
+        <!-- release date -->
         <div class="form-group">
             <label for="release_date">Release Date</label>
             <input type="date" name="release_date" class="form-control" value="{{ $game->release_date }}" required>
         </div>
-
+        <!-- age restriction -->
         <div class="form-group">
             <label for="age_id">Age Restriction</label>
             @foreach($ages as $age)
@@ -41,7 +53,7 @@
                 </div>
             @endforeach
         </div>
-
+        <!-- categories -->
         <div class="form-group">
             <label for="categories">Categories</label>
             @foreach($categories as $category)
@@ -51,7 +63,7 @@
                 </div>
             @endforeach
         </div>
-
+        <!-- platforms -->
         <div class="form-group">
             <label for="platforms">Platforms</label>
             @foreach($platforms as $platform)
@@ -61,7 +73,7 @@
                 </div>
             @endforeach
         </div>
-
+        <!-- languages -->
         <div class="form-group">
             <label for="languages">Languages</label>
             @foreach($languages as $language)
@@ -71,7 +83,7 @@
                 </div>
             @endforeach
         </div>
-
+        <!-- players -->
         <div class="form-group">
             <label for="players">Players</label>
             @foreach($players as $player)
@@ -80,6 +92,40 @@
                     <label class="form-check-label" for="player{{ $player->id }}">{{ $player->name }}</label>
                 </div>
             @endforeach
+        </div>
+        <!-- large thumbnails -->
+        <div class="form-group">
+            <label for="thumbnail_large_path">Thumbnail Large (16:9)</label>
+            <input type="file" name="thumbnail_large_path" class="form-control-file">
+            <small class="form-text text-muted">Recommended aspect ratio: 16:9</small>
+            @if($game->thumbnail_large_path)
+                <img src="{{ asset($game->thumbnail_large_path) }}" alt="Thumbnail Large" style="width: 320px; height: 180px;">
+            @endif
+        </div>
+        <!-- small thumbnails -->
+        <div class="form-group">
+            <label for="thumbnail_small_path">Thumbnail Small (270x400)</label>
+            <input type="file" name="thumbnail_small_path" class="form-control-file">
+            <small class="form-text text-muted">Recommended size: 270x400</small>
+            @if($game->thumbnail_small_path)
+                <img src="{{ asset($game->thumbnail_small_path) }}" alt="Thumbnail Small" style="width: 270px; height: 400px;">
+            @endif
+        </div>
+        <!-- additional images -->
+        <div class="form-group">
+            <label for="additional_images">Additional Large Images (16:9)</label>
+            <input type="file" name="additional_images[]" class="form-control-file" multiple>
+            <small class="form-text text-muted">Recommended aspect ratio: 16:9. You can upload multiple images.</small>
+            <div class="d-flex flex-wrap">
+                @if ($game->media)
+                    @foreach($game->media as $media)
+                        <div class="position-relative m-2">
+                            <img src="{{ asset($media->path) }}" alt="Additional Image" style="width: 320px; height: 180px;">
+                            <a href="{{ route('games.media.delete', $media->id) }}" class="btn btn-danger btn-sm position-absolute" style="top: 5px; right: 5px;"><i class="fa-solid fa-trash"></i></a>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
         </div>
         
         <button type="submit" class="btn btn-primary">Update Game</button>

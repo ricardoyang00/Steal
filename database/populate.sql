@@ -673,8 +673,8 @@ insert into GameStock (game, quantity) values (49, 20);
 insert into GameStock (game, quantity) values (50, 0);
 
 -- GAME MEDIA
-insert into GameMedia (path, game, order_) values ('images/gamemedia/gamemedia_1.jpg', 32, 1);
-insert into GameMedia (path, game, order_) values ('images/gamemedia/gamemedia_2.jpg', 32, 2);
+insert into GameMedia (path, game) values ('images/gamemedia/gamemedia_1.jpg', 32);
+insert into GameMedia (path, game) values ('images/gamemedia/gamemedia_2.jpg', 32);
 
 -- PLATFORM
 insert into Platform (name) values ('Steam');

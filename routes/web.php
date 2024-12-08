@@ -155,7 +155,7 @@ Route::get('/explore', [GameController::class, 'explore'])->name('explore');
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.details');
 Route::get('/seller/products', [GameController::class, 'listProducts'])->name('seller.products');
 Route::get('/games/{id}/edit', [GameController::class, 'edit'])->name('games.edit');
-Route::post('/games/{id}/update', [GameController::class, 'update'])->name('games.update');
+Route::put('/games/{id}/update', [GameController::class, 'update'])->name('games.update');
 Route::get('/games/create', [GameController::class, 'create'])->name('games.create');
 Route::post('/games', [GameController::class, 'store'])->name('games.store');
 Route::get('/games/{id}/cdks', [GameController::class, 'showCdks'])->name('games.cdks');
