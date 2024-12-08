@@ -155,14 +155,16 @@ Route::get('/explore', [GameController::class, 'explore'])->name('explore');
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.details');
 
 // Seller
-Route::get('/seller/products', [GameController::class, 'listProducts'])->name('seller.products');
-Route::get('/games/{id}/edit', [GameController::class, 'edit'])->name('games.edit');
-Route::put('/games/{id}/update', [GameController::class, 'update'])->name('games.update');
-Route::get('/games/create', [GameController::class, 'create'])->name('games.create');
-Route::post('/games', [GameController::class, 'store'])->name('games.store');
-Route::get('/games/{id}/cdks', [GameController::class, 'showCdks'])->name('games.cdks');
-Route::post('/games/{id}/cdks/add', [GameController::class, 'addCdks'])->name('games.cdks.add');
-Route::get('/games/{id}/purchasehistory', [GameController::class, 'purchaseHistory'])->name('games.history');
+Route::prefix('seller')->middleware('auth:seller')->group(function () {
+    Route::get('/products', [GameController::class, 'listProducts'])->name('seller.products');
+    Route::get('/games/{id}/edit', [GameController::class, 'edit'])->name('games.edit');
+    Route::put('/games/{id}/update', [GameController::class, 'update'])->name('games.update');
+    Route::get('/games/create', [GameController::class, 'create'])->name('games.create');
+    Route::post('/games', [GameController::class, 'store'])->name('games.store');
+    Route::get('/games/{id}/cdks', [GameController::class, 'showCdks'])->name('games.cdks');
+    Route::post('/games/{id}/cdks/add', [GameController::class, 'addCdks'])->name('games.cdks.add');
+    Route::get('/games/{id}/purchasehistory', [GameController::class, 'purchaseHistory'])->name('games.history');
+});
 
 // Static Pages
 Route::controller(StaticPagesController::class)->group(function () {
