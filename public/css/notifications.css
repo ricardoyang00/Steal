@@ -182,4 +182,14 @@
     color: #ffffff;
 }
 
+.notification-details a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.notification-details a:hover {
+    text-decoration: underline;
+}
+
+
 

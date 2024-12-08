@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const ulPurchased = document.createElement('ul');
                     deliveredGames.forEach(p => {
                         const li = document.createElement('li');
-                        li.textContent = `${p.gameName} - $${p.value}`;
+                        li.innerHTML = `<a href="/game/${p.gameId}">${p.gameName}</a> - $${p.value}`;
                         ulPurchased.appendChild(li);
                     });
                     detailsContentDiv.appendChild(ulPurchased);
@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     const ulCanceled = document.createElement('ul');
                     canceledGames.forEach(p => {
                         const li = document.createElement('li');
-                        li.textContent = `${p.gameName} - $${p.value}`;
+                        li.innerHTML = `<a href="/game/${p.gameId}">${p.gameName}</a> - $${p.value}`;
                         ulCanceled.appendChild(li);
                     });
                     detailsContentDiv.appendChild(ulCanceled);
@@ -253,8 +253,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 detailsContentDiv.appendChild(totalPriceP);
 
             } else if ((notification.type === 'Wishlist' || notification.type === 'ShoppingCart') && notification.parsedDetails) {
+
                 const gameNameP = document.createElement('p');
-                gameNameP.innerHTML = `<strong>Game:</strong> ${notification.parsedDetails.game_name ?? 'Unknown Game'}`;
+                gameNameP.innerHTML = `<strong>Game:</strong> <a href="/game/${notification.parsedDetails.game_id}">${notification.parsedDetails.game_name ?? 'Unknown Game'}</a>`;
                 detailsContentDiv.appendChild(gameNameP);
 
                 if (notification.parsedDetails.specific_type === 'Price') {
@@ -272,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             } else if (notification.type === 'Game' && notification.parsedDetails) {
                 const gameNameP = document.createElement('p');
-                gameNameP.innerHTML = `<strong>Game:</strong> ${notification.parsedDetails.game_name ?? 'Unknown Game'}`;
+                gameNameP.innerHTML = `<strong>Game:</strong> <a href="/game/${notification.gameId}">${notification.parsedDetails.game_name ?? 'Unknown Game'}</a>`;
                 detailsContentDiv.appendChild(gameNameP);
 
                 const quantity = notification.parsedDetails.quantity ?? 0;
@@ -292,9 +293,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 totalPriceP.innerHTML = `<strong>Total Price:</strong> $${totalPrice.toFixed(2)}`;
                 detailsContentDiv.appendChild(totalPriceP);
             } else if (notification.type === 'Review' && notification.parsedDetails) {
-                // Review notification details
                 const gameNameP = document.createElement('p');
-                gameNameP.innerHTML = `<strong>Game:</strong> ${notification.parsedDetails.game_name ?? 'Unknown Game'}`;
+                gameNameP.innerHTML = `<strong>Game:</strong> <a href="/game/${notification.parsedDetails.game_id}">${notification.parsedDetails.game_name ?? 'Unknown Game'}</a>`;
                 detailsContentDiv.appendChild(gameNameP);
 
                 const authorP = document.createElement('p');

@@ -55,7 +55,7 @@ class NotificationController extends Controller{
             $description = 'Your order was successfully completed. All items have been purchased.';
         } else {
             $description = 'Your order was partially completed. ';
-            $description .= 'Unfortunately, the following items could not be purchased, due to insufficient stock: ';
+            $description .= 'Unfortunately, some items could not be purchased, due to insufficient stock: ';
             $canceledGameNames = array_column($canceledItems, 'gameName');
             $description .= implode(', ', $canceledGameNames) . '.';
         }
@@ -81,6 +81,7 @@ class NotificationController extends Controller{
 
     public function createPriceNotifications($game, $oldPrice, $newPrice) {
         try {
+            $gameId = $game->id;
             $gameName = $game->name;
     
             // Fetch related wishlists
@@ -91,7 +92,7 @@ class NotificationController extends Controller{
             foreach ($wishlists as $wishlist) {
                 $notification = Notification::create([
                     'title' => "Wishlist Game Price Update",
-                    'description' => "A game on your wishlist had its price updated. Game Name: {$gameName}, Old Price: $ {$oldPrice}, New Price: $ {$newPrice}, Type: Price",
+                    'description' => "A game on your wishlist had its price updated. Game Id: {$gameId}, Game Name: {$gameName}, Old Price: $ {$oldPrice}, New Price: $ {$newPrice}, Type: Price",
                     'time' => now(),
                     'is_read' => false,
                 ]);
@@ -109,7 +110,7 @@ class NotificationController extends Controller{
             foreach ($shoppingCarts as $shoppingCart) {
                 $notification = Notification::create([
                     'title' => "Shopping Cart Game Price Update",
-                    'description' => "A game on your shopping cart had its price updated. Game Name: {$gameName}, Old Price: $ {$oldPrice}, New Price: $ {$newPrice}, Type: Price",
+                    'description' => "A game on your shopping cart had its price updated. Game Id: {$gameId}, Game Name: {$gameName}, Old Price: $ {$oldPrice}, New Price: $ {$newPrice}, Type: Price",
                     'time' => now(),
                     'is_read' => false,
                 ]);
@@ -199,12 +200,13 @@ class NotificationController extends Controller{
     public function createReviewNotifications($review){
         try {
             $reviewAuthor = $review->getAuthor->user->username;
+            $gameId = $review->getGame->id;
             $gameName = $review->getGame->name;
             $reviewType = $review->is_positive ? 'Positive' : 'Negative';
     
             $notification = Notification::create([
                 'title' => "Game Reviewed",
-                'description' => "One of your games has been reviewed. Review Author: {$reviewAuthor}, Reviewed Game: {$gameName}, reviewType: {$reviewType}",
+                'description' => "One of your games has been reviewed. Review Author: {$reviewAuthor}, Reviewed Game Id: {$gameId}, Reviewed Game: {$gameName}, reviewType: {$reviewType}",
                 'time' => now(),
                 'is_read' => false,
             ]);
@@ -218,8 +220,6 @@ class NotificationController extends Controller{
             \Log::error("Error creating review notification: " . $e->getMessage());
         }
     }
-    
-    
     
     
     private function getNotifications() {
@@ -291,6 +291,7 @@ class NotificationController extends Controller{
                             $game = $purchase->getDeliveredPurchase->getCDK->getGame ?? null;
                             return [
                                 'type' => 'Delivered',
+                                'gameId' => $game->id,
                                 'gameName' => $game->name ?? 'Unknown Game',
                                 'value' => $purchase->getValue(),
                             ];
@@ -298,6 +299,7 @@ class NotificationController extends Controller{
                             $game = $purchase->getCanceledPurchase->getGame ?? null;
                             return [
                                 'type' => 'Canceled',
+                                'gameId' => $game->id,
                                 'gameName' => $game->name ?? 'Unknown Game',
                                 'value' => $purchase->getValue(),
                             ];
@@ -356,13 +358,14 @@ class NotificationController extends Controller{
                     'review_type' => null,
                 ];
     
-                if (preg_match('/Review Author:\s?([^,]+),\s?Reviewed Game:\s?([^,]+),\s?reviewType:\s?(Positive|Negative)/', $desc, $matches)) {
+                if (preg_match('/Review Author:\s?([^,]+),\s?Reviewed Game Id:\s?([^,]+),\s?Reviewed Game:\s?([^,]+),\s?reviewType:\s?([^,]+)/', $desc, $matches)) {
                     $parsedNotification['review_author'] = $matches[1] ?? null;
-                    $parsedNotification['game_name'] = $matches[2] ?? null;
-                    $parsedNotification['review_type'] = $matches[3] ?? null;
+                    $parsedNotification['game_id'] = $matches[2] ?? null;
+                    $parsedNotification['game_name'] = $matches[3] ?? null;
+                    $parsedNotification['review_type'] = $matches[4] ?? null;
     
                     // Remove the parsed details from the description
-                    $desc = preg_replace('/Review Author:\s?[^,]+,\s?Reviewed Game:\s?[^,]+,\s?reviewType:\s?(Positive|Negative)/', '', $desc);
+                    $desc = preg_replace('/Review Author:\s?[^,]+,\s?Reviewed Game Id:\s?([^,]+),\s?Reviewed Game:\s?[^,]+,\s?reviewType:\s?(Positive|Negative)/', '', $desc);
                     $desc = trim($desc);
                     $notification->description = $desc;
                 }
@@ -393,6 +396,7 @@ class NotificationController extends Controller{
             return $notifications->map(function ($notification) {
                 $notification->type = 'Game';
     
+                $gameId = $notification->getGame->id;
                 $title = $notification->getNotification->title;
                 $desc = $notification->getNotification->description;
                 $time = $notification->getNotification->time;
@@ -414,6 +418,7 @@ class NotificationController extends Controller{
                     $desc = trim($desc);
                 }
     
+                $notification->gameId = $gameId;
                 $notification->title = $title;
                 $notification->description = $desc;
                 $notification->time = $time;
@@ -460,8 +465,9 @@ class NotificationController extends Controller{
                     'specific_type' => 'Unknown',
                 ];
     
-                if (preg_match("/Game Name: ?'?([^,']+)'?/", $desc, $gameNameMatches)) {
-                    $parsedNotification['game_name'] = $gameNameMatches[1] ?? null;
+                if (preg_match("/Game Id: (\d+), Game Name: ([^,]+)/", $desc, $matches)) {
+                    $parsedNotification['game_id'] = $matches[1] ?? null;
+                    $parsedNotification['game_name'] = $matches[2] ?? null;
                 }
     
                 if (strpos($desc, 'Type: Price') !== false) {
@@ -473,7 +479,7 @@ class NotificationController extends Controller{
                     }
     
                     // Remove the price details from the description
-                    $desc = preg_replace('/Game Name: ?\'?[^,]+\'?, Old Price: \$\s?\d+(?:\.\d{1,2})?, New Price: \$\s?\d+(?:\.\d{1,2})?, Type: Price/', '', $desc);
+                    $desc = preg_replace('/Game Id: \d+, Game Name: ?\'?[^,]+\'?, Old Price: \$\s?\d+(?:\.\d{1,2})?, New Price: \$\s?\d+(?:\.\d{1,2})?, Type: Price/', '', $desc);
                     $desc = trim($desc);
                     $notification->description = $desc;
     
@@ -526,8 +532,9 @@ class NotificationController extends Controller{
                     'specific_type' => 'Unknown',
                 ];
     
-                if (preg_match("/Game Name: ?'?([^,']+)'?/", $desc, $gameNameMatches)) {
-                    $parsedNotification['game_name'] = $gameNameMatches[1] ?? null;
+                if (preg_match("/Game Id: (\d+), Game Name: ([^,]+)/", $desc, $matches)) {
+                    $parsedNotification['game_id'] = $matches[1] ?? null;
+                    $parsedNotification['game_name'] = $matches[2] ?? null;
                 }
     
                 if (strpos($desc, 'Type: Price') !== false) {
@@ -538,7 +545,7 @@ class NotificationController extends Controller{
                         $parsedNotification['new_price'] = $matches[2] ?? null;
                     }
     
-                    $desc = preg_replace('/Game Name: ?\'?[^,]+\'?, Old Price: \$\s?\d+(?:\.\d{1,2})?, New Price: \$\s?\d+(?:\.\d{1,2})?, Type: Price/', '', $desc);
+                    $desc = preg_replace('/Game Id: \d+, Game Name: ?\'?[^,]+\'?, Old Price: \$\s?\d+(?:\.\d{1,2})?, New Price: \$\s?\d+(?:\.\d{1,2})?, Type: Price/', '', $desc);
                     $desc = trim($desc);
                     $notification->description = $desc;
     
