@@ -132,10 +132,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-        // **Removed: Retrieval of User ID as it's no longer required**
-        // const userIdMeta = document.querySelector('meta[name="user-id"]');
-        // const userId = userIdMeta ? userIdMeta.getAttribute('content') : null;
-
         notifications.forEach(notification => {
             const notificationDiv = document.createElement('div');
             notificationDiv.classList.add('notification');
@@ -149,7 +145,6 @@ document.addEventListener('DOMContentLoaded', function () {
             headerDiv.classList.add('notification-header');
             const titleH5 = document.createElement('h5');
             titleH5.classList.add('notification-title');
-
             let titleHTML = notification.title;
 
             switch(notification.type) {
@@ -178,7 +173,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             titleH5.innerHTML = titleHTML;
-
             headerDiv.appendChild(titleH5);
 
             const deleteButton = document.createElement('button');
@@ -230,9 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 detailsButton.textContent = 'View Details';
             } else if (notification.type === 'Order') {
                 detailsButton.textContent = 'View Order Details';
-            } else if (['Game', 'Review'].includes(notification.type)) {
-                detailsButton.textContent = 'View Details';
-            } else {
+            } else if (notification.type === 'Game' || notification.type === 'Review') {
                 detailsButton.textContent = 'View Details';
             }
 
@@ -263,7 +255,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     const ulPurchased = document.createElement('ul');
                     deliveredGames.forEach(p => {
                         const li = document.createElement('li');
-                        // Wrap game name in a link to game details
                         if (p.gameId) {
                             li.innerHTML = `<a href="/game/${p.gameId}">${p.gameName}</a> - $${p.value}`;
                         } else {
@@ -282,7 +273,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     const ulCanceled = document.createElement('ul');
                     canceledGames.forEach(p => {
                         const li = document.createElement('li');
-                        // Wrap game name in a link to game details
                         if (p.gameId) {
                             li.innerHTML = `<a href="/game/${p.gameId}">${p.gameName}</a> - $${p.value}`;
                         } else {
@@ -297,10 +287,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 totalPriceP.innerHTML = `<strong>Total Price:</strong> $${notification.orderDetails.totalPrice ?? 0.0}`;
                 detailsContentDiv.appendChild(totalPriceP);
 
-            } else if (['Wishlist', 'ShoppingCart'].includes(notification.type) && notification.parsedDetails) {
-
+            } else if ((notification.type === 'Wishlist' || notification.type === 'ShoppingCart') && notification.parsedDetails) {
                 const gameNameP = document.createElement('p');
-                // Check if game_id exists to create a link
                 if (notification.parsedDetails.game_id) {
                     gameNameP.innerHTML = `<strong>Game:</strong> <a href="/game/${notification.parsedDetails.game_id}">${notification.parsedDetails.game_name ?? 'Unknown Game'}</a>`;
                 } else {
@@ -340,13 +328,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 detailsContentDiv.appendChild(quantityP);
 
                 const gamePriceP = document.createElement('p');
-                gamePriceP.innerHTML = `<strong>Unit Price:</strong> $${unitPrice}`;
+                gamePriceP.innerHTML = `<strong>Game Price:</strong> $${unitPrice.toFixed(2)}`;
                 detailsContentDiv.appendChild(gamePriceP);
 
                 const totalPriceP = document.createElement('p');
-                totalPriceP.innerHTML = `<strong>Total Price:</strong> $${totalPrice}`;
+                totalPriceP.innerHTML = `<strong>Total Price:</strong> $${totalPrice.toFixed(2)}`;
                 detailsContentDiv.appendChild(totalPriceP);
             } else if (notification.type === 'Review' && notification.parsedDetails) {
+                // Review notification details
                 const gameNameP = document.createElement('p');
                 if (notification.parsedDetails.game_id) {
                     gameNameP.innerHTML = `<strong>Game:</strong> <a href="/game/${notification.parsedDetails.game_id}">${notification.parsedDetails.game_name ?? 'Unknown Game'}</a>`;
@@ -356,11 +345,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 detailsContentDiv.appendChild(gameNameP);
 
                 const authorP = document.createElement('p');
-                authorP.innerHTML = `<strong>Author:</strong> ${notification.parsedDetails.review_author ?? 'Unknown Author'}`;
+                authorP.innerHTML = `<strong>Review Author:</strong> ${notification.parsedDetails.review_author ?? 'Unknown Author'}`;
                 detailsContentDiv.appendChild(authorP);
 
                 const reviewTypeP = document.createElement('p');
-                reviewTypeP.innerHTML = `<strong>Rating:</strong> ${notification.parsedDetails.review_type ?? 'Unknown'}`;
+                reviewTypeP.innerHTML = `<strong>Review Type:</strong> ${notification.parsedDetails.review_type ?? 'Unknown'}`;
                 detailsContentDiv.appendChild(reviewTypeP);
             }
 
@@ -406,9 +395,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // Fetch and update notifications every 10 seconds
     setInterval(fetchNewNotifications, 10000);
 
-    // Initially fetch and render notifications
-    fetchNewNotifications();
+    // Initially attach event handlers for currently rendered notifications
+    reattachEventHandlers();
 });
+
 
 
 

@@ -9,7 +9,7 @@
 <div id="notifications-tab" class="notifications-container">
     <h1>Notifications</h1>
 
-    @if(auth()->user()->buyer)
+    @if(auth_user()->buyer)
         @if($notifications->isEmpty())
             <div class="no-notifications">
                 You have no notifications at the moment.
@@ -17,12 +17,6 @@
         @else
             <div class="notifications">
                 @foreach ($notifications as $notification)
-                    @php
-                        // Since 'Review' notifications are only for sellers, ensure they are not processed here
-                        if ($notification['type'] === 'Review') {
-                            continue; // Skip 'Review' notifications for buyers
-                        }
-                    @endphp
                     <div class="notification" data-id="{{ $notification['id'] }}" data-type="{{ $notification['type'] }}">
                         <div class="notification-card">
                             <div class="notification-header">
@@ -45,7 +39,6 @@
                                 @else
                                     <h5 class="notification-title">{{ $notification['title'] }}</h5>
                                 @endif
-                                <!-- **Modification End** -->
                                 <button class="delete-notification-button" data-id="{{ $notification['id'] }}" aria-label="Delete notification">
                                     <i class="fas fa-trash"></i>
                                 </button>
@@ -53,19 +46,13 @@
                             <div class="notification-body">
                                 <p class="notification-text">{{ $notification['description'] }}</p>
                                 <small class="notification-time">
-                                    {{ \Carbon\Carbon::parse($notification['time'])->format('F d Y, H:i') }}
+                                    {{ (new \DateTime($notification['time']))->format('F d Y, H:i') }}
                                 </small>
                                 @if(!$notification['is_read'])
                                     <span class="unread-notification-indicator"></span>
                                 @endif
                                 <button class="view-notification-details" type="button" data-toggle="collapse" data-target="#details-{{ $notification['id'] }}" aria-expanded="false" aria-controls="details-{{ $notification['id'] }}">
-                                    @if($notification['type'] === 'Order')
-                                        View Order Details
-                                    @elseif(in_array($notification['type'], ['Wishlist', 'ShoppingCart']))
-                                        View Details
-                                    @else
-                                        View Details
-                                    @endif
+                                    {{ in_array($notification['type'], ['Wishlist', 'ShoppingCart']) ? 'View Details' : ($notification['type'] === 'Order' ? 'View Order Details' : 'View Details') }}
                                 </button>
                             </div>
                             <div class="notifications-collapse collapse" id="details-{{ $notification['id'] }}">
@@ -80,8 +67,7 @@
                                             <ul>
                                                 @foreach($notification['orderDetails']['purchases'] as $purchase)
                                                     @if($purchase['type'] === 'Delivered')
-                                                        <li>
-                                                            @if(isset($purchase['gameId']))
+                                                        <li>@if(isset($purchase['gameId']))
                                                                 <a href="{{ route('game.details', ['id' => $purchase['gameId']]) }}">
                                                                     {{ $purchase['gameName'] }}
                                                                 </a>
@@ -111,14 +97,15 @@
                                                                 {{ $purchase['gameName'] }}
                                                             @endif
                                                              - ${{ number_format($purchase['value'], 2) }}
+
                                                         </li>
                                                     @endif
                                                 @endforeach
                                             </ul>
                                         @endif
-                                        <p><strong>Total Price:</strong> ${{ number_format($notification['orderDetails']['totalPrice'] ?? 0.0, 2) }}</p>
+                                        <p><strong>Total Price:</strong> ${{ $notification['orderDetails']['totalPrice'] ?? 0.0 }}</p>
                                     @elseif(in_array($notification['type'], ['Wishlist', 'ShoppingCart']))
-                                        <p><strong>Game:</strong>
+                                        <p><strong>Game:</strong> 
                                             @if(isset($notification['parsedDetails']['game_id']))
                                                 <a href="{{ route('game.details', ['id' => $notification['parsedDetails']['game_id']]) }}">
                                                     {{ $notification['parsedDetails']['game_name'] ?? 'Unknown Game' }}
@@ -128,8 +115,8 @@
                                             @endif
                                         </p>
                                         @if($notification['parsedDetails']['specific_type'] === 'Price')
-                                            <p><strong>Old Price:</strong> ${{ number_format($notification['parsedDetails']['old_price'] ?? 0, 2) }}</p>
-                                            <p><strong>New Price:</strong> ${{ number_format($notification['parsedDetails']['new_price'] ?? 0, 2) }}</p>
+                                            <p><strong>Old Price:</strong> ${{ $notification['parsedDetails']['old_price'] ?? 'N/A' }}</p>
+                                            <p><strong>New Price:</strong> ${{ $notification['parsedDetails']['new_price'] ?? 'N/A' }}</p>
                                         @elseif($notification['parsedDetails']['specific_type'] === 'Stock')
                                             <p><strong>Update:</strong> {{ $notification['description'] }}</p>
                                         @endif
@@ -137,13 +124,14 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-                </div>
-                <div class="pagination-links">
-                    {{ $notifications->links() }}
-                </div>
-            @endif
-    @elseif(auth()->user()->seller)
+                    </div>
+                @endforeach
+            </div>
+            <div class="pagination-links">
+                {{ $notifications->links() }}
+            </div>
+        @endif
+    @elseif(auth_user()->seller)
         @if($notifications->isEmpty())
             <div class="no-notifications">
                 You have no notifications at the moment.
@@ -180,7 +168,7 @@
                             <div class="notification-body">
                                 <p class="notification-text">{{ $notification['description'] }}</p>
                                 <small class="notification-time">
-                                    {{ \Carbon\Carbon::parse($notification['time'])->format('F d Y, H:i') }}
+                                    {{ (new \DateTime($notification['time']))->format('F d Y, H:i') }}
                                 </small>
                                 @if(!$notification['is_read'])
                                     <span class="unread-notification-indicator"></span>
@@ -194,7 +182,7 @@
                             <div class="notifications-collapse collapse" id="details-{{ $notification['id'] }}">
                                 <div class="notification-details">
                                     @if($notification['type'] === 'Game')
-                                        <p><strong>Game:</strong>
+                                        <p><strong>Game:</strong> 
                                             @if(isset($notification['gameId']))
                                                 <a href="{{ route('game.details', ['id' => $notification['gameId']]) }}">
                                                     {{ $notification['parsedDetails']['game_name'] ?? 'Unknown Game' }}
@@ -209,10 +197,10 @@
                                             $totalPrice = $notification['parsedDetails']['total_price'] ?? 0.0;
                                             $unitPrice = ($quantity > 0) ? $totalPrice / $quantity : 0.0;
                                         @endphp
-                                        <p><strong>Unit Price:</strong> ${{ number_format($unitPrice, 2) }}</p>
+                                        <p><strong>Game Price:</strong> ${{ number_format($unitPrice, 2) }}</p>
                                         <p><strong>Total Price:</strong> ${{ number_format($totalPrice, 2) }}</p>
                                     @elseif($notification['type'] === 'Review')
-                                        <p><strong>Game:</strong>
+                                        <p><strong>Game:</strong> 
                                             @if(isset($notification['parsedDetails']['game_id']))
                                                 <a href="{{ route('game.details', ['id' => $notification['parsedDetails']['game_id']]) }}">
                                                     {{ $notification['parsedDetails']['game_name'] ?? 'Unknown Game' }}
@@ -221,8 +209,8 @@
                                                 {{ $notification['parsedDetails']['game_name'] ?? 'Unknown Game' }}
                                             @endif
                                         </p>
-                                        <p><strong>Author:</strong> {{ $notification['parsedDetails']['review_author'] ?? 'Unknown Author' }}</p>
-                                        <p><strong>Rating:</strong> {{ $notification['parsedDetails']['review_type'] ?? 'Unknown' }}</p>
+                                        <p><strong>Review Author:</strong> {{ $notification['parsedDetails']['review_author'] ?? 'Unknown Author' }}</p>
+                                        <p><strong>Review Type:</strong> {{ $notification['parsedDetails']['review_type'] ?? 'Unknown' }}</p>
                                     @endif
                                 </div>
                             </div>
@@ -237,6 +225,7 @@
     @endif
 </div>
 @endsection
+
 
 
 
