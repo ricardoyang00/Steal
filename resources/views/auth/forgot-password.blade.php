@@ -11,9 +11,6 @@
         <div>
             <label for="email">Email Address</label>
             <input type="email" name="email" id="email" required autofocus>
-            @error('email')
-                <span>{{ $message }}</span>
-            @enderror
         </div>
         <button type="submit">Send Reset Link</button>
     </form>

@@ -8,7 +8,7 @@
 <div class="form-container login-page">
 
 <form method="POST" action="{{ route('login') }}">
-    {{ csrf_field() }}
+    @csrf
 
     <h1>Sign In</h1>
 

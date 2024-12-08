@@ -23,7 +23,7 @@
             <img src="{{ $profilePicture }}" alt="Profile Picture" id="editable-profile-picture">
             @if ($user->is_active)
                 <form method="POST" action="{{ route('admin.users.resetPicture', $user->id) }}" id="reset-profile-picture-form">
-                    {{ csrf_field() }}
+                    @csrf
                     @method('PUT')
                     <button type="button" id="reset-profile-picture-btn" class="confirmation-btn"
                             data-title="Reset Profile Picture to Default"
@@ -47,7 +47,7 @@
                     {{ $user->username }}
                     @if ($user->is_active)
                     <form id="change-username-form" method="POST" action="{{ route('admin.users.changeUsername', $user->id) }}">
-                        {{ csrf_field() }}
+                        @csrf
                         <button type="button" id="change-button" class="confirmation-btn"
                                 data-title="Change Username"
                                 data-message="Are you sure you want to change this user's username?"
@@ -64,7 +64,7 @@
                     {{ $user->name }}
                     @if ($user->is_active)
                         <form id="change-name-form" method="POST" action="{{ route('admin.users.changeName', $user->id) }}">
-                            {{ csrf_field() }}
+                            @csrf
                             <button type="button" id="change-button" class="confirmation-btn"
                                     data-title="Change Name"
                                     data-message="Are you sure you want to change this user's ame?"
@@ -119,7 +119,7 @@
                                 <i class="fas fa-pen"></i>
                             </button>
                             <form id="change-coins-form" method="POST" action="{{ route('admin.users.changeCoins', $user->id) }}" style="display: none; margin-left: 10px;">
-                                {{ csrf_field() }}
+                                @csrf
                                 <input type="number" name="coins" value="{{ $user->buyer->coins }}">
                                 <button type="button" id="cancel-change-coins-btn">Cancel</button>
                                 <button type="submit" id="confirm-change-coins-btn">Confirm</button>
@@ -134,18 +134,18 @@
                 @if ($user->is_active)
                     @if ($user->is_blocked)
                         <form id="unblock-user-form" method="POST" action="{{ route('admin.users.unblock', $user->id) }}">
-                            {{ csrf_field() }}
+                            @csrf
                             <button type="button" class="confirmation-btn" id="block-unblock-btn" data-title="Unblock User" data-message="Are you sure you want to unblock this user?" data-form-id="unblock-user-form">Unblock User</button>
                         </form>
                     @else
                         <form id="block-user-form" method="POST" action="{{ route('admin.users.block', $user->id) }}">
-                            {{ csrf_field() }}
+                            @csrf
                             <button type="button" class="confirmation-btn" id="block-unblock-btn" data-title="Block User" data-message="Are you sure you want to block this user?" data-form-id="block-user-form">Block User</button>
                         </form>
                     @endif
 
                     <form id="deactivate-user-form" method="POST" action="{{ route('admin.users.deactivate', $user->id) }}">
-                        {{ csrf_field() }}
+                        @csrf
                         <button type="button" class="confirmation-btn" id="deactivate-btn" data-title="Deactivate User" data-message="Are you sure you want to deactivate this user? This action is irreversible and all data will be anonymized, be careful!" data-form-id="deactivate-user-form">Deactivate User</button>
                     </form>
                 @endif

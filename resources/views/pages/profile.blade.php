@@ -73,7 +73,7 @@
             
             @if (!is_admin())
                 <form method="POST" action="{{ route('profile.deactivate') }}" id="deactivate-account-form" class="deactivate-form">
-                    {{ csrf_field() }}
+                    @csrf
                     <button type="button" id="delete-account-btn" class="confirmation-btn" 
                             data-title="Are you sure you want to delete your account?"
                             data-message="Please note that this action is irreversible and all your data will be anonymized as part of this process."
@@ -89,7 +89,7 @@
 <!-- Edit Profile -->
 <section id="edit-profile" style="display: {{ $errors->any() && !$errors->has('current_password') && !$errors->has('new_password') && !$errors->has('new_password_confirmation') ? 'flex' : 'none' }};">
     <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
-        {{ csrf_field() }}
+        @csrf
         @method('PUT')
 
         <div class="profile-card">
@@ -145,7 +145,7 @@
 <!-- Change Password -->
 <div id="change-password" style="display: {{ $errors->has('current_password') || $errors->has('new_password') || $errors->has('new_password_confirmation') ? 'block' : 'none' }};">
     <form method="POST" action="{{ route('profile.updatePassword') }}">
-        {{ csrf_field() }}
+        @csrf
         @method('PUT')
 
         <div class="profile-card-password">

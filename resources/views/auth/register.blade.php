@@ -9,7 +9,7 @@
 <div class="form-container register-page">
 
 <form method="POST" action="{{ route('register') }}">
-    {{ csrf_field() }}
+    @csrf
 
     <h1>{{ is_admin() ? 'Create Account' : 'Sign Up' }}</h1>
 

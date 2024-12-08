@@ -25,6 +25,8 @@
         <link href="{{ url('css/wishlist.css') }}" rel="stylesheet">
         <link href="{{ url('css/profile.css') }}" rel="stylesheet">
         <link href="{{ url('css/notifications.css') }}" rel="stylesheet">
+        <link href="{{ url('css/forgot_password.css') }}" rel="stylesheet">
+        <link href="{{ url('css/password_reset.css') }}" rel="stylesheet">
         <script type="text/javascript">
             // Fix for Firefox autofocus CSS bug
             // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
