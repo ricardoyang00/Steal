@@ -153,6 +153,8 @@ Route::get('/explore', function () {
 Route::get('/explore', [GameController::class, 'index']);
 Route::get('/explore', [GameController::class, 'explore'])->name('explore');
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.details');
+
+// Seller
 Route::get('/seller/products', [GameController::class, 'listProducts'])->name('seller.products');
 Route::get('/games/{id}/edit', [GameController::class, 'edit'])->name('games.edit');
 Route::put('/games/{id}/update', [GameController::class, 'update'])->name('games.update');
@@ -161,7 +163,6 @@ Route::post('/games', [GameController::class, 'store'])->name('games.store');
 Route::get('/games/{id}/cdks', [GameController::class, 'showCdks'])->name('games.cdks');
 Route::post('/games/{id}/cdks/add', [GameController::class, 'addCdks'])->name('games.cdks.add');
 Route::get('/games/{id}/purchasehistory', [GameController::class, 'purchaseHistory'])->name('games.history');
-Route::delete('/games/media/{id}', [GameController::class, 'deleteMedia'])->name('games.media.delete');
 
 // Static Pages
 Route::controller(StaticPagesController::class)->group(function () {
