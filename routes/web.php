@@ -158,7 +158,7 @@ Route::get('/explore', [GameController::class, 'explore'])->name('explore');
 Route::get('/game/{id}', [GameController::class, 'show'])->name('game.details');
 
 // Seller
-Route::prefix('seller')->middleware('auth:seller')->group(function () {
+Route::prefix('seller')->middleware(['auth:web', 'check.seller'])->group(function () {
     Route::get('/products', [GameController::class, 'listProducts'])->name('seller.products');
     Route::get('/games/{id}/edit', [GameController::class, 'edit'])->name('games.edit');
     Route::put('/games/{id}/update', [GameController::class, 'update'])->name('games.update');
