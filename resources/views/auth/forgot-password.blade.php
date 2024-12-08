@@ -6,7 +6,7 @@
 
 <script src="{{ asset('js/forgot_password/forgot-password.js') }}" defer></script>
 
-<div class="password-reset-form">
+<div class="password-forgot-form">
     <div class="form-container">
         <h1>Forgot Your Password?</h1>
         <p>Enter your email address, and we’ll send you a link to reset your password.</p>
