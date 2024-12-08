@@ -17,10 +17,35 @@
         @else
             <div class="notifications">
                 @foreach ($notifications as $notification)
+                    @php
+                        // Since 'Review' notifications are only for sellers, ensure they are not processed here
+                        if ($notification['type'] === 'Review') {
+                            continue; // Skip 'Review' notifications for buyers
+                        }
+                    @endphp
                     <div class="notification" data-id="{{ $notification['id'] }}" data-type="{{ $notification['type'] }}">
                         <div class="notification-card">
                             <div class="notification-header">
-                                <h5 class="notification-title">{{ $notification['title'] }}</h5>
+                                @if(in_array($notification['type'], ['Order', 'ShoppingCart', 'Wishlist']))
+                                    <h5 class="notification-title">
+                                        @if($notification['type'] === 'Order')
+                                            <a href="{{ route('purchaseHistory') }}" class="notification-title-link">
+                                                {{ $notification['title'] }}
+                                            </a>
+                                        @elseif($notification['type'] === 'ShoppingCart')
+                                            <a href="{{ route('shopping_cart') }}" class="notification-title-link">
+                                                {{ $notification['title'] }}
+                                            </a>
+                                        @elseif($notification['type'] === 'Wishlist')
+                                            <a href="{{ route('wishlist') }}" class="notification-title-link">
+                                                {{ $notification['title'] }}
+                                            </a>
+                                        @endif
+                                    </h5>
+                                @else
+                                    <h5 class="notification-title">{{ $notification['title'] }}</h5>
+                                @endif
+                                <!-- **Modification End** -->
                                 <button class="delete-notification-button" data-id="{{ $notification['id'] }}" aria-label="Delete notification">
                                     <i class="fas fa-trash"></i>
                                 </button>
@@ -34,7 +59,13 @@
                                     <span class="unread-notification-indicator"></span>
                                 @endif
                                 <button class="view-notification-details" type="button" data-toggle="collapse" data-target="#details-{{ $notification['id'] }}" aria-expanded="false" aria-controls="details-{{ $notification['id'] }}">
-                                    {{ in_array($notification['type'], ['Wishlist', 'ShoppingCart']) ? 'View Details' : ($notification['type'] === 'Order' ? 'View Order Details' : 'View Details') }}
+                                    @if($notification['type'] === 'Order')
+                                        View Order Details
+                                    @elseif(in_array($notification['type'], ['Wishlist', 'ShoppingCart']))
+                                        View Details
+                                    @else
+                                        View Details
+                                    @endif
                                 </button>
                             </div>
                             <div class="notifications-collapse collapse" id="details-{{ $notification['id'] }}">
@@ -106,13 +137,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
-            <div class="pagination-links">
-                {{ $notifications->links() }}
-            </div>
-        @endif
+                    @endforeach
+                </div>
+                <div class="pagination-links">
+                    {{ $notifications->links() }}
+                </div>
+            @endif
     @elseif(auth()->user()->seller)
         @if($notifications->isEmpty())
             <div class="no-notifications">
@@ -124,7 +154,25 @@
                     <div class="notification" data-id="{{ $notification['id'] }}" data-type="{{ $notification['type'] }}">
                         <div class="notification-card">
                             <div class="notification-header">
-                                <h5 class="notification-title">{{ $notification['title'] }}</h5>
+                                @if(in_array($notification['type'], ['Game', 'Review']))
+                                    <h5 class="notification-title">
+                                        @if($notification['type'] === 'Game')
+                                            <a href="{{ route('seller.products') }}" class="notification-title-link">
+                                                {{ $notification['title'] }}
+                                            </a>
+                                        @elseif($notification['type'] === 'Review')
+                                            @if(isset($notification['parsedDetails']['game_id']))
+                                                <a href="{{ route('game.details', ['id' => $notification['parsedDetails']['game_id']]) }}" class="notification-title-link">
+                                                    {{ $notification['title'] }}
+                                                </a>
+                                            @else
+                                                {{ $notification['title'] }}
+                                            @endif
+                                        @endif
+                                    </h5>
+                                @else
+                                    <h5 class="notification-title">{{ $notification['title'] }}</h5>
+                                @endif
                                 <button class="delete-notification-button" data-id="{{ $notification['id'] }}" aria-label="Delete notification">
                                     <i class="fas fa-trash"></i>
                                 </button>

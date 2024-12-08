@@ -86,7 +86,7 @@ Route::middleware('auth')->group(function () {
 
 // Purchase History
 Route::middleware('auth')->group(function (){
-    Route::get('/user/{id}/order-history', [PurchaseHistoryController::class, 'orderHistory'])->name('purchaseHistory');
+    Route::get('/user/order-history', [PurchaseHistoryController::class, 'orderHistory'])->name('purchaseHistory');
 });
 
 // Notifications
