@@ -96,6 +96,6 @@ class MailController extends Controller
             return redirect()->back()->withErrors('An error occurred: ' . $e->getMessage());
         }
 
-        return redirect()->route('home')->withSuccess('We have sent a password reset link to your email. Please check your inbox to reset your password.');
+        return redirect()->route('home');
     }
 }

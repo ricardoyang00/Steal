@@ -26,12 +26,12 @@ class PasswordResetController extends Controller
         $passwordReset = PasswordReset::where('email', $email)->first();
 
         if (!$passwordReset || !Hash::check($token, $passwordReset->token)) {
-            return redirect()->route('password.request')->withErrors(['email' => 'Invalid token or email.']);
+            return redirect()->route('password.request')->withErrors('Invalid token or email.');
         }
 
         // Check if the token has expired (15 minutes expiration)
         if (Carbon::parse($passwordReset->created_at)->addMinutes(15)->isPast()) {
-            return redirect()->route('password.request')->withErrors(['email' => 'This password reset link has expired.']);
+            return redirect()->route('password.request')->withErrors('This password reset link has expired.');
         }
 
         // Token is valid, show the reset form
@@ -60,12 +60,12 @@ class PasswordResetController extends Controller
         $passwordReset = PasswordReset::where('email', $email)->first();
 
         if (!$passwordReset || !Hash::check($token, $passwordReset->token)) {
-            throw ValidationException::withMessages(['email' => ['Invalid token or email.']]);
+            throw ValidationException::withMessages('Invalid token or email.');
         }
 
         // Check if the token has expired (15 minutes expiration)
         if (Carbon::parse($passwordReset->created_at)->addMinutes(15)->isPast()) {
-            return redirect()->route('password.request')->withErrors(['email' => 'This password reset link has expired.']);
+            return redirect()->route('password.request')->withErrors('This password reset link has expired.');
         }
 
         // Find the user or administrator and update the password
