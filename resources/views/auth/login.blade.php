@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Login')
+
 @section('content')
 
 <script src="{{ asset('js/common/toggle-password.js') }}" defer></script>
