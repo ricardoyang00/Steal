@@ -11,7 +11,7 @@
         <h1>Forgot Your Password?</h1>
         <p>Enter your email address, and we’ll send you a link to reset your password.</p>
 
-        <form id="reset-form" method="POST" action="{{ route('password.email') }}">
+        <form id="forgot-form" method="POST" action="{{ route('password.email') }}">
             @csrf
             <div>
                 <label for="email">Email Address</label>

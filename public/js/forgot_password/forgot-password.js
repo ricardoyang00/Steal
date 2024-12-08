@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('reset-form');
+    const form = document.getElementById('forgot-form');
     const loading = document.getElementById('loading');
-    const formContainer = document.querySelector('.password-reset-form');
+    const formContainer = document.querySelector('.password-forgot-form');
 
     form.addEventListener('submit', function(event) {
         // Show the flip animation immediately when the submit button is clicked
