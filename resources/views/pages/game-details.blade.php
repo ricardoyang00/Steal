@@ -51,6 +51,18 @@
             <button id="add-to-cart-{{ $game['id'] }}" data-id="{{ $game['id'] }}" class="btn-add-to-cart btn btn-primary">
                 Add to Cart
             </button>
+        @elseif (is_admin())
+            @if ($game->is_active)
+                <form action="{{ route('admin.games.block', $game->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Block</button>
+                </form>
+            @else
+                <form action="{{ route('admin.games.unblock', $game->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    <button type="submit" class="btn btn-success">Unblock</button>
+                </form>
+            @endif
         @endif
     </div>
     
@@ -89,11 +101,6 @@
             <div class="review-form-message">
                 <button class="btn-review-form-toggle">Add Review</button>
                 <button class="btn-review-remove" style="display: none;">Remove Review</button>
-                @if ($errors->any())
-                    <div class="error error-reviews">
-                        {{ $errors->first() }}
-                    </div>
-                @endif
             </div>
             @elseif (auth_user() && auth_user()->buyer && !$game->hasReviewedGame(auth()->user()))
                 <p class="review-form-message">

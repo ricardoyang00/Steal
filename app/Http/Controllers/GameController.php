@@ -139,8 +139,10 @@ class GameController extends Controller
 
     public function show($id)
     {
-        $game = Game::with(['seller', 'platforms', 'categories', 'languages', 'players'])->find($id);
-        
+        $game = Game::with(['seller', 'platforms', 'categories', 'languages', 'players'])
+                ->where('is_active', true)
+                ->findOrFail($id);
+
         if (auth_user()){
             $userId = auth_user()->id;
         } else {

@@ -69,6 +69,7 @@
                                         <a class="dropdown-item" href="{{ url('/register') }}">Create Accounts</a>
                                         <a class="dropdown-item" href="{{ route('admin.users.search') }}">Manage Users</a>
                                         <a class="dropdown-item" href="{{ route('admin.indexGameField') }}">Manage Game Fields</a>
+                                        <a class="dropdown-item" href="{{ route('admin.games.blocked-games') }}">Manage Blocked Games</a>
                                     @endif
                                     <a class="dropdown-item" id="logout" href="{{ url('/logout') }}">Logout</a>
                                 </div>

@@ -6,8 +6,12 @@ use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\Auth\PasswordResetController;
+
 use App\Http\Controllers\Admin\GameFieldsController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ProductController;
+
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ShoppingCartController;
 use App\Http\Controllers\WishlistController;
@@ -18,7 +22,7 @@ use App\Http\Controllers\StaticPagesController;
 use App\Http\Controllers\AgeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\MailController;
-use App\Http\Controllers\Auth\PasswordResetController;
+
 
 
 /*
@@ -139,6 +143,12 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::get('/games/edit-game-field/{type}/{id}', 'edit')->name('admin.editGameField');
         Route::post('/games/update-game-field/{type}/{id}', 'update')->name('admin.updateGameField');
         Route::delete('/games/destroy-game-field/{type}/{id}', 'destroy')->name('admin.destroyGameField');
+    });
+
+    Route::controller(ProductController::class)->group(function () {
+        Route::post('/games/{id}/block', 'block')->name('admin.games.block');
+        Route::post('/games/{id}/unblock', 'unblock')->name('admin.games.unblock');
+        Route::get('/games/blocked', 'listBlockedGames')->name('admin.games.blocked-games');
     });
 });
 
