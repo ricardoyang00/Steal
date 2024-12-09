@@ -98,6 +98,8 @@ CREATE TABLE Game(
     description TEXT NOT NULL,
     price FLOAT NOT NULL CHECK(price > 0.0),
     overall_rating INT NOT NULL CHECK(overall_rating >= 0 AND overall_rating <= 100) DEFAULT 0,
+    positive_reviews INT NOT NULL CHECK(positive_reviews >= 0) DEFAULT 0,
+    negative_reviews INT NOT NULL CHECK(negative_reviews >= 0) DEFAULT 0,
     owner INT NOT NULL REFERENCES Seller(id) ON UPDATE CASCADE,
     is_active BOOLEAN DEFAULT TRUE,
     release_date DATE CHECK(release_date <= CURRENT_DATE),
