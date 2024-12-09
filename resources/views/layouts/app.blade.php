@@ -70,6 +70,13 @@
                                         <a class="dropdown-item" href="{{ route('admin.users.search') }}">Manage Users</a>
                                         <a class="dropdown-item" href="{{ route('admin.indexGameField') }}">Manage Game Fields</a>
                                     @endif
+                                    @if (auth_user()->seller)
+                                        <a class="dropdown-item" href="{{ url('/seller/products') }}">My Products</a>
+                                        <a class="dropdown-item" href="">Statistics</a>
+                                    @endif
+                                    @if (auth_user()->buyer)
+                                        <a class="dropdown-item" href="{{ route('purchaseHistory', ['id' => auth_user()->id]) }}">My Orders</a>
+                                    @endif
                                     <a class="dropdown-item" id="logout" href="{{ url('/logout') }}">Logout</a>
                                 </div>
                             </div>
@@ -77,14 +84,6 @@
                             @if (auth_user()->buyer)
                                 <a class="icon-button" href="{{ url('/cart') }}">
                                     <i class="fas fa-shopping-cart"></i>
-                                </a>
-                                <a class="icon-button" href="{{ route('purchaseHistory', ['id' => auth_user()->id]) }}">
-                                    <i class="fas fa-wallet"></i>
-                                </a>
-                            @endif
-                            @if (auth_user()->seller)
-                                <a class="icon-button" href="{{ url('/seller/products/') }}">
-                                    <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
                             @endif
                             <a class="icon-button" href="{{ url('/notifications') }}">
