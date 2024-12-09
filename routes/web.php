@@ -18,6 +18,7 @@ use App\Http\Controllers\StaticPagesController;
 use App\Http\Controllers\AgeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\Admin\SalesReportController;
 use App\Http\Controllers\Auth\PasswordResetController;
 
 
@@ -186,4 +187,12 @@ Route::middleware('guest')->group(function () {
     // Reset password
     Route::get('/password/reset', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
     Route::post('/password/reset', [PasswordResetController::class, 'resetPassword'])->name('password.update');
+});
+
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
+    Route::get('/admin/sales-report', [SalesReportController::class, 'index'])->name('admin.salesReport');
+    Route::get('/admin/sales-report/daily', [SalesReportController::class, 'daily'])->name('admin.salesReport.daily');
+    Route::get('/admin/sales-report/weekly', [SalesReportController::class, 'weekly'])->name('admin.salesReport.weekly');
+    Route::get('/admin/sales-report/monthly', [SalesReportController::class, 'monthly'])->name('admin.salesReport.monthly');
+    Route::get('/admin/sales-report/custom', [SalesReportController::class, 'custom'])->name('admin.salesReport.custom');
 });
