@@ -197,7 +197,7 @@
                                             $totalPrice = $notification['parsedDetails']['total_price'] ?? 0.0;
                                             $unitPrice = ($quantity > 0) ? $totalPrice / $quantity : 0.0;
                                         @endphp
-                                        <p><strong>Game Price:</strong> ${{ number_format($unitPrice, 2) }}</p>
+                                        <p><strong>Unit Price:</strong> ${{ number_format($unitPrice, 2) }}</p>
                                         <p><strong>Total Price:</strong> ${{ number_format($totalPrice, 2) }}</p>
                                     @elseif($notification['type'] === 'Review')
                                         <p><strong>Game:</strong> 
@@ -209,8 +209,8 @@
                                                 {{ $notification['parsedDetails']['game_name'] ?? 'Unknown Game' }}
                                             @endif
                                         </p>
-                                        <p><strong>Review Author:</strong> {{ $notification['parsedDetails']['review_author'] ?? 'Unknown Author' }}</p>
-                                        <p><strong>Review Type:</strong> {{ $notification['parsedDetails']['review_type'] ?? 'Unknown' }}</p>
+                                        <p><strong>Author:</strong> {{ $notification['parsedDetails']['review_author'] ?? 'Unknown Author' }}</p>
+                                        <p><strong>Rating:</strong> {{ $notification['parsedDetails']['review_type'] ?? 'Unknown' }}</p>
                                     @endif
                                 </div>
                             </div>

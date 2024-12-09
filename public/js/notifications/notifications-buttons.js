@@ -328,14 +328,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 detailsContentDiv.appendChild(quantityP);
 
                 const gamePriceP = document.createElement('p');
-                gamePriceP.innerHTML = `<strong>Game Price:</strong> $${unitPrice.toFixed(2)}`;
+                gamePriceP.innerHTML = `<strong>Unit Price:</strong> $${unitPrice.toFixed(2)}`;
                 detailsContentDiv.appendChild(gamePriceP);
 
                 const totalPriceP = document.createElement('p');
                 totalPriceP.innerHTML = `<strong>Total Price:</strong> $${totalPrice.toFixed(2)}`;
                 detailsContentDiv.appendChild(totalPriceP);
             } else if (notification.type === 'Review' && notification.parsedDetails) {
-                // Review notification details
                 const gameNameP = document.createElement('p');
                 if (notification.parsedDetails.game_id) {
                     gameNameP.innerHTML = `<strong>Game:</strong> <a href="/game/${notification.parsedDetails.game_id}">${notification.parsedDetails.game_name ?? 'Unknown Game'}</a>`;
@@ -345,11 +344,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 detailsContentDiv.appendChild(gameNameP);
 
                 const authorP = document.createElement('p');
-                authorP.innerHTML = `<strong>Review Author:</strong> ${notification.parsedDetails.review_author ?? 'Unknown Author'}`;
+                authorP.innerHTML = `<strong>Author:</strong> ${notification.parsedDetails.review_author ?? 'Unknown Author'}`;
                 detailsContentDiv.appendChild(authorP);
 
                 const reviewTypeP = document.createElement('p');
-                reviewTypeP.innerHTML = `<strong>Review Type:</strong> ${notification.parsedDetails.review_type ?? 'Unknown'}`;
+                reviewTypeP.innerHTML = `<strong>Rating:</strong> ${notification.parsedDetails.review_type ?? 'Unknown'}`;
                 detailsContentDiv.appendChild(reviewTypeP);
             }
 
