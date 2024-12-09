@@ -7,9 +7,17 @@ use App\Models\Review;
 use App\Models\User;
 use App\Models\Game;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\NotificationController;
 
 class ReviewsController extends Controller
 {
+
+    public function __construct(NotificationController $notificationController)
+    {
+        $this->notificationController = $notificationController;
+    }
+
+
     public function getReviews(Request $request)
     {
         $gameId = $request->input('game_id');
@@ -41,15 +49,19 @@ class ReviewsController extends Controller
             $review->description = $request->input('description');
             $review->positive = $request->input('positive');
             $review->author = auth_user()->id;
-
             $review->save();
+
 
             $gameId = $request->input('game_id');
             $game = Game::find($gameId);
+            $game->updateRatings();
+            $game->save();
+
+
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred while adding the review.']);
         }
-
+        $this->notificationController->createReviewNotifications($review);
         return redirect()->route('game.details', ['id' => $gameId])->with(['success' => 'Review added successfully!']);
     }
 
@@ -60,9 +72,12 @@ class ReviewsController extends Controller
         $review = Review::find($reviewId);
 
         $gameId = $review->game;
-        $game = Game::find($gameId);
 
         $review->delete();
+
+        $game = Game::find($gameId);
+        $game->updateRatings();
+        $game->save();
 
         return response()->json([
             'success' => true,
@@ -76,14 +91,16 @@ class ReviewsController extends Controller
 
             $review = Review::find($reviewId);
 
-            $gameId = $review->game;
-            $game = Game::find($gameId);
 
             $review->title = $request->input('title');
             $review->description = $request->input('description');
             $review->positive = $request->input('positive');
-
+            $gameId = $review->game;
             $review->save();
+
+            $game = Game::find($gameId);
+            $game->updateRatings();
+            $game->save();
 
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred while updating the review.']);

@@ -20,4 +20,12 @@ class Review extends Model
 
     public $timestamps = false;
 
+    public function getAuthor(){
+        return $this->belongsTo(Buyer::class, 'author', 'id');
+    }
+
+    public function getGame(){
+        return $this->belongsTo(Game::class, 'game', 'id');
+    }
+
 }

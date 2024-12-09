@@ -5,22 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-Class ShoppingCartNotification extends Model{
+Class ReviewNotification extends Model
+{
     use HasFactory;
 
-    protected $table = 'notificationshoppingcart';
+    protected $table = 'notificationreview';
 
     public $timestamps = false;
 
-    protected $fillable = ['id', 'shopping_cart'];
+    protected $fillable = ['id', 'review',];
 
     public function getNotification()
     {
         return $this->belongsTo(Notification::class, 'id', 'id');
     }
 
-    public function getShoppingCart(){
-        return $this->belongsTo(ShoppingCart::class, 'shopping_cart', 'id');
+    public function getReview(){
+        return $this->belongsTo(Review::class, 'review', 'id');
     }
 
 }

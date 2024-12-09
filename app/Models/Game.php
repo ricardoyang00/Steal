@@ -20,6 +20,8 @@ class Game extends Model
         'description',
         'price',
         'overall_rating',
+        'positive_reviews',
+        'negative_reviews',
         'owner',
         'is_active',
         'release_date',
@@ -120,5 +122,14 @@ class Game extends Model
     public function hasReviews()
     {
         return $this->reviews()->exists();
+    }
+
+    public function updateRatings()
+    {
+        // count positive and negative reviews
+        $this->positive_reviews = $this->reviews()->where('positive', true)->count();
+        $this->negative_reviews = $this->reviews()->where('positive', false)->count();
+        $totalReviews = $this->positive_reviews + $this->negative_reviews;
+        $this->overall_rating = $totalReviews > 0 ? intval((100 * $this->positive_reviews) / $totalReviews) : 0;
     }
 }
