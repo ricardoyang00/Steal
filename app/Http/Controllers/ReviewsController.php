@@ -7,9 +7,17 @@ use App\Models\Review;
 use App\Models\User;
 use App\Models\Game;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\NotificationController;
 
 class ReviewsController extends Controller
 {
+
+    public function __construct(NotificationController $notificationController)
+    {
+        $this->notificationController = $notificationController;
+    }
+
+
     public function getReviews(Request $request)
     {
         $gameId = $request->input('game_id');
@@ -53,7 +61,7 @@ class ReviewsController extends Controller
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred while adding the review.']);
         }
-
+        $this->notificationController->createReviewNotifications($review);
         return redirect()->route('game.details', ['id' => $gameId])->with(['success' => 'Review added successfully!']);
     }
 

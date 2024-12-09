@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class PurchaseHistoryController extends Controller
 {
-    public function orderHistory($userId, Request $request)
+    public function orderHistory(Request $request)
     {
         if (!auth_user() || !auth_user()->buyer) {
             return redirect()->route('login');
