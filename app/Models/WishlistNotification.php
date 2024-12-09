@@ -12,7 +12,12 @@ Class WishlistNotification extends Model{
 
     public $timestamps = false;
 
-    protected $fillable = ['title', 'description', 'time', 'is_read' ,'wishlist'];
+    protected $fillable = ['id', 'wishlist'];
+
+    public function getNotification()
+    {
+        return $this->belongsTo(Notification::class, 'id', 'id');
+    }
 
     public function getWishlist(){
         return $this->belongsTo(Wishlist::class, 'wishlist', 'id');

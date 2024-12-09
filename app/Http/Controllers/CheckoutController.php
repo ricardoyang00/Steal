@@ -15,12 +15,20 @@ use App\Models\Purchase;
 use App\Models\DeliveredPurchase;
 use App\Models\CanceledPurchase;
 use App\Models\OrderNotification;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
 
 class CheckoutController extends Controller
 {
+
+    public function __construct(NotificationController $notificationController)
+    {
+        $this->notificationController = $notificationController;
+    }
+
+
     public function index(){
         if(auth_user()){
             if(auth_user()->buyer){
@@ -59,6 +67,7 @@ class CheckoutController extends Controller
             $total += ($game->price * $cartItem->quantity);
             foreach ($availableCDKs as $cdk) {
                 $purchasedItems[] = [
+                    'game' => $game,
                     'gameName' => $game->name,
                     'cdk' => $cdk->id,
                     'cdkCode' => $cdk->code,
@@ -101,8 +110,8 @@ class CheckoutController extends Controller
                     ]);
                 }
                 $order->refresh();
-                $orderNotification = new OrderNotification();
-                $orderNotification->createOrderNotification($order, $purchasedItems, $canceledItems);
+                $this->notificationController->createOrderNotification($order, $purchasedItems, $canceledItems);
+                $this->notificationController->createGameNotifications($purchasedItems);
                 session()->forget('payment_method');
                 ShoppingCart::where('buyer', $buyerId)->delete();
                 DB::commit();
