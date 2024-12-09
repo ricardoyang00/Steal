@@ -140,15 +140,17 @@ class GameController extends Controller
     public function show($id)
     {
         $game = Game::with(['seller', 'platforms', 'categories', 'languages', 'players'])
-                ->where('is_active', true)
                 ->findOrFail($id);
 
-        if (auth_user()){
-            $userId = auth_user()->id;
-        } else {
-            $userId = -1;
-        }
+        $user = auth_user();
+        $userId = $user ? $user->id : -1;
         
+        if (!$user || $user->buyer || ($user->seller && $game->seller->id != $userId)) {
+            if (!$game->is_active) {
+                abort(403, 'This game has been blocked');
+            }
+        }
+
         $review = Review::where('game', $game->id)->where('author', $userId)->first();
 
         if (!$review) {
