@@ -22,6 +22,7 @@ class Game extends Model
         'overall_rating',
         'owner',
         'is_active',
+        'block_reason',
         'release_date',
         'age_id',
         'thumbnail_small_path',

@@ -15,13 +15,18 @@ class ProductController extends Controller
     /**
      * Block the specified game.
      */
-    public function block($id): RedirectResponse
+    public function block(Request $request, $id): RedirectResponse
     {
+        $request->validate([
+            'reason' => 'required|string|max:200',
+        ]);
+
         $game = Game::findOrFail($id);
 
         $this->authorize('block', $game);
 
         $game->is_active = false;
+        $game->block_reason = $request->input('reason');
         $game->save();
 
         return redirect()->back()->withSuccess('Game blocked successfully.');
@@ -37,6 +42,7 @@ class ProductController extends Controller
         $this->authorize('unblock', $game);
 
         $game->is_active = true;
+        $game->block_reason = null;
         $game->save();
 
         return redirect()->back()->withSuccess('Game unblocked successfully.');

@@ -12,6 +12,7 @@
             <tr>
                 <th>Name</th>
                 <th>Owner</th>
+                <th>Reason</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -20,6 +21,7 @@
                 <tr>
                     <td>{{ $game->name }}</td>
                     <td>{{ $game->seller->name }}</td>
+                    <td>{{ $game->block_reason ?? 'N/A' }}</td>
                     <td>
                         <form action="{{ route('admin.games.unblock', $game->id) }}" method="POST" style="display:inline;">
                             @csrf

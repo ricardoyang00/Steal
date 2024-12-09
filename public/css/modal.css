@@ -1,0 +1,78 @@
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: var(--background-color);
+    margin: 20% auto;
+    padding: 20px;
+    border: 1px solid var(--text-color);
+    width: 80%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.close {
+    color: var(--secondary-text-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--highlight-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.confirm-btn, .cancel-btn {
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.confirm-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.cancel-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Admin Block Modal */
+#blockForm label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+#blockForm textarea {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid var(--text-color);
+    border-radius: 4px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    resize: vertical;
+    margin-bottom: 20px;
+    display: center;
+}
+
+#blockForm textarea:focus {
+    outline: none;
+    border-color: var(--highlight-color);
+}

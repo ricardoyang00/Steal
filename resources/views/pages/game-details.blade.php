@@ -5,10 +5,13 @@
 @section('content')
 
 @if (!auth_user() || auth_user()->buyer)
-<script src="{{ asset('js/wishlist/add-to-wishlist.js') }}" defer></script>
-<script src="{{ asset('js/cart/add-to-cart.js') }}" defer ></script>
-<script src="{{ asset('js/game_details/game_details.js') }}" defer></script>
+    <script src="{{ asset('js/wishlist/add-to-wishlist.js') }}" defer></script>
+    <script src="{{ asset('js/cart/add-to-cart.js') }}" defer ></script>
+    <script src="{{ asset('js/game_details/game_details.js') }}" defer></script>
 @endif
+
+<script src="{{ asset('js/admin/block-modal.js') }}" defer></script>
+@include('partials.admin.block-modal')
 
 <div class="game-details-page">
     <!-- Game Images -->
@@ -55,12 +58,11 @@
             @if ($game->is_active)
                 <form action="{{ route('admin.games.block', $game->id) }}" method="POST" style="display:inline;">
                     @csrf
-                    <button type="submit" class="btn btn-danger">Block</button>
-                </form>
+                    <button type="submit" class="btn-add-to-cart btn btn-primary" id="block-game" onclick="showBlockModal({{ $game->id }})">Block</button>
             @else
                 <form action="{{ route('admin.games.unblock', $game->id) }}" method="POST" style="display:inline;">
                     @csrf
-                    <button type="submit" class="btn btn-success">Unblock</button>
+                    <button type="submit" class="btn-add-to-cart btn btn-primary" id="unblock-game">Unblock</button>
                 </form>
             @endif
         @endif
@@ -208,6 +210,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection
