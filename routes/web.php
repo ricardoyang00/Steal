@@ -91,7 +91,7 @@ Route::middleware('auth')->group(function () {
 // Purchase History
 Route::middleware('auth')->group(function (){
     Route::get('/user/order-history', [PurchaseHistoryController::class, 'orderHistory'])->name('purchaseHistory');
-    Route::get('/seller/purchases/{id}/details', [PurchaseHistoryController::class, 'sellerPurchaseDetails'])->name('seller.purchases.details');
+    Route::get('/seller/purchases/{id}/details', [PurchaseHistoryController::class, 'purchaseDetails'])->name('seller.purchases.details');
 });
 
 // Notifications
@@ -191,9 +191,10 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
-    Route::get('/admin/sales-report', [SalesReportController::class, 'index'])->name('admin.salesReport');
-    Route::get('/admin/sales-report/daily', [SalesReportController::class, 'daily'])->name('admin.salesReport.daily');
-    Route::get('/admin/sales-report/weekly', [SalesReportController::class, 'weekly'])->name('admin.salesReport.weekly');
-    Route::get('/admin/sales-report/monthly', [SalesReportController::class, 'monthly'])->name('admin.salesReport.monthly');
-    Route::get('/admin/sales-report/custom', [SalesReportController::class, 'custom'])->name('admin.salesReport.custom');
+    Route::get('/sales-report', [SalesReportController::class, 'index'])->name('admin.salesReport');
+    Route::get('/sales-report/daily', [SalesReportController::class, 'daily'])->name('admin.salesReport.daily');
+    Route::get('/sales-report/weekly', [SalesReportController::class, 'weekly'])->name('admin.salesReport.weekly');
+    Route::get('/sales-report/monthly', [SalesReportController::class, 'monthly'])->name('admin.salesReport.monthly');
+    Route::get('/sales-report/custom', [SalesReportController::class, 'custom'])->name('admin.salesReport.custom');
+    Route::get('/purchases/{id}/details', [PurchaseHistoryController::class, 'purchaseDetails'])->name('admin.purchases.details');
 });
