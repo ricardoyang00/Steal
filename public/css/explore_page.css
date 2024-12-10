@@ -229,13 +229,19 @@
     border-bottom-left-radius: 5px;
 }
 
+.explore-page .rating-no-reviews {
+    background-color: gray;
+    height: 100%;
+    border-radius: 5px;
+}
+
 .explore-page .rating-labels {
     display: flex;
     justify-content: space-between;
     width: 200px;
 }
 
-.explore-page .positive-label, .negative-label {
+.explore-page .positive-label, .negative-label, .no-reviews-label {
     font-size: 0.9rem;
     margin-top: 10px;
 }
@@ -246,6 +252,10 @@
 
 .explore-page .negative-label {
     color: var(--negative);
+}
+
+.explore-page .no-reviews-label {
+    color: gray;
 }
 
 /* Wishlist Button */

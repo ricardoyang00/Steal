@@ -36,12 +36,21 @@
         <!-- Rating -->
         <div class="game-rating">
             <div class="rating-labels">
-                <span class="positive-label">{{ $game->overall_rating }}% <i class="fa fa-thumbs-up"></i></span>
-                <span class="negative-label">{{ 100 - $game->overall_rating }}% <i class="fa fa-thumbs-down"></i></span>
+                @if ($game->hasReviews())
+                    <span class="positive-label">{{ $game->overall_rating }}% <i class="fa fa-thumbs-up"></i></span>
+                    <span class="negative-label">{{ 100 - $game->overall_rating }}% <i class="fa fa-thumbs-down"></i></span>
+                @else
+                    <span class="no-reviews-label">0% <i class="fa fa-thumbs-up"></i></span>
+                    <span class="no-reviews-label">0% <i class="fa fa-thumbs-down"></i></span>
+                @endif
             </div>
             <div class="rating-bar">
-                <div class="rating-positive" style="width: {{ $game->overall_rating }}%;"></div>
-                <div class="rating-negative" style="width: {{ 100 - $game->overall_rating }}%;"></div>
+                @if ($game->hasReviews())
+                    <div class="rating-positive" style="width: {{ $game->overall_rating }}%;"></div>
+                    <div class="rating-negative" style="width: {{ 100 - $game->overall_rating }}%;"></div>
+                @else
+                    <div class="rating-no-reviews" style="width: 100%;"></div>
+                @endif
             </div>
         </div>
     </div>
