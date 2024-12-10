@@ -23,6 +23,7 @@ use App\Http\Controllers\AgeController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\MailController;
 
+use App\Http\Controllers\Admin\SalesReportController;
 
 
 /*
@@ -94,7 +95,7 @@ Route::middleware('auth')->group(function () {
 // Purchase History
 Route::middleware('auth')->group(function (){
     Route::get('/user/order-history', [PurchaseHistoryController::class, 'orderHistory'])->name('purchaseHistory');
-    Route::get('/seller/purchases/{id}/details', [PurchaseHistoryController::class, 'sellerPurchaseDetails'])->name('seller.purchases.details');
+    Route::get('/seller/purchases/{id}/details', [PurchaseHistoryController::class, 'purchaseDetails'])->name('seller.purchases.details');
 });
 
 // Notifications
@@ -197,4 +198,19 @@ Route::middleware('guest')->group(function () {
     // Reset password
     Route::get('/password/reset', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
     Route::post('/password/reset', [PasswordResetController::class, 'resetPassword'])->name('password.update');
+});
+
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
+    Route::get('/sales-report', [SalesReportController::class, 'index'])->name('admin.salesReport');
+    Route::get('/sales-report/daily', [SalesReportController::class, 'daily'])->name('admin.salesReport.daily');
+    Route::get('/sales-report/weekly', [SalesReportController::class, 'weekly'])->name('admin.salesReport.weekly');
+    Route::get('/sales-report/monthly', [SalesReportController::class, 'monthly'])->name('admin.salesReport.monthly');
+    Route::get('/sales-report/custom', [SalesReportController::class, 'custom'])->name('admin.salesReport.custom');
+    
+    Route::get('/sales-report/daily-content', [SalesReportController::class, 'dailyContent'])->name('admin.salesReport.dailyContent');
+    Route::get('/sales-report/weekly-content', [SalesReportController::class, 'weeklyContent'])->name('admin.salesReport.weeklyContent');
+    Route::get('/sales-report/monthly-content', [SalesReportController::class, 'monthlyContent'])->name('admin.salesReport.monthlyContent');
+    Route::get('/sales-report/custom-content', [SalesReportController::class, 'customContent'])->name('admin.salesReport.customContent');
+    
+    Route::get('/purchases/{id}/details', [PurchaseHistoryController::class, 'purchaseDetails'])->name('admin.purchases.details');
 });

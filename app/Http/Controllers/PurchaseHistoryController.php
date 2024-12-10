@@ -68,7 +68,7 @@ class PurchaseHistoryController extends Controller
         return view('pages.purchase-history', compact('orderHistory', 'orders'));
     }
 
-    public function sellerPurchaseDetails($id)
+    public function purchaseDetails($id)
     {
         $purchase = DB::table('deliveredpurchase')
             ->join('cdk', 'deliveredpurchase.cdk', '=', 'cdk.id')
@@ -85,7 +85,24 @@ class PurchaseHistoryController extends Controller
             return redirect()->back()->with('error', 'Purchase not found.');
         }
 
-        return view('seller.purchase-details', compact('purchase'));
+        $game = DB::table('game')
+        ->join('cdk', 'game.id', '=', 'cdk.game')
+        ->where('cdk.id', $purchase->cdk)
+        ->select('game.*')
+        ->first();
+
+        $seller = null;
+
+        if (is_admin()) {
+
+            $seller = DB::table('users')
+                ->join('game', 'users.id', '=', 'game.owner')
+                ->where('game.id', $game->id)
+                ->select('users.name as seller_name', 'users.email as seller_email')
+                ->first();
+        }
+
+        return view('pages.purchase-details', compact('purchase', 'game', 'seller'));
     }
 
     private function formatOrderTime($orderTime)
