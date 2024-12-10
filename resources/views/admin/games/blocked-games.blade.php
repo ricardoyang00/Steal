@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="container">
+<div class="blocked-games-container">
     <h1>Blocked Games</h1>
 
     <table class="table table-striped">
