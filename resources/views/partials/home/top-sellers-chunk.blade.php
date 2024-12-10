@@ -1,4 +1,5 @@
 <script src="{{ asset('js/cart/add-to-cart.js') }}" defer></script>
+<script src="{{ asset('js/admin/block-modal.js') }}" defer></script>
 
 <div class="top-sellers-section" id="top-sellers-{{ $chunkIndex }}">
     @foreach($topSellersChunk as $game)
@@ -47,6 +48,14 @@
                         <button id="add-to-cart-{{ $game['id'] }}" data-id="{{ $game['id'] }}" class="btn-add-to-cart btn btn-primary">
                             Add to Cart
                         </button>
+                    @elseif (is_admin())
+                        @include('partials.admin.block-modal')
+                        @if ($game->is_active)
+                            <form action="{{ route('admin.games.block', $game->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="button" class="btn-add-to-cart btn btn-primary" id="block-game" onclick="showBlockModal({{ $game->id }})">Block</button>
+                            </form>
+                        @endif
                     @endif
                 </div>
             </div>

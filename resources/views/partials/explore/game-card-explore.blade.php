@@ -1,4 +1,6 @@
 <script src="{{ asset('js/explore/tag-filter.js') }}" defer></script>
+<script src="{{ asset('js/admin/block-modal.js') }}" defer></script>
+@include('partials.admin.block-modal')
 
 <div class="game-card" data-url="{{ route('game.details', ['id' => $game->id]) }}">
     <!-- Game Thumbnail -->
@@ -62,6 +64,13 @@
             <button id="add-to-cart-{{ $game->id }}" data-id="{{ $game->id }}" class="btn-add-to-cart btn btn-primary">
                 Add to Cart
             </button>
+        @elseif (is_admin())
+            @if ($game->is_active)
+                <form action="{{ route('admin.games.block', $game->id) }}" method="POST" style="display:inline;">
+                    @csrf
+                    <button type="button" class="btn-add-to-cart btn btn-primary" id="block-game" onclick="showBlockModal({{ $game->id }})">Block</button>
+                </form>
+            @endif
         @endif
     </div>
 </div>

@@ -36,7 +36,7 @@ class UserController extends Controller
             });
         }
 
-        if ($statusFilter) {
+        if ($statusFilter && $statusFilter !== 'all') {
             switch ($statusFilter) {
                 case 'active':
                     $buyersQuery->where('is_active', true)->where('is_blocked', false);

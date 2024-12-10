@@ -377,3 +377,23 @@
 #reset-profile-picture-btn:hover {
     background-color: #a71d2a;
 }
+
+/* Back Button Styling */
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.back-button a {
+    display: inline-block;
+    color: var(--button-highlight-color);
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.back-button a:hover {
+    color: var(--secondary-text-color);
+}
