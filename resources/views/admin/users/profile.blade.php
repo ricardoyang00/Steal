@@ -17,7 +17,14 @@
 @endphp
 
 <div id="admin-check-user-profile" style="display: flex; justify-content: center">
-    <div class="profile-card-admin-view">
+    <div class="profile-card-admin-view" style="position: relative;">
+        <!-- Back Button -->
+        <div class="back-button">
+            <a href="{{ route('admin.users.search') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Manage Users
+            </a>
+        </div>
+
         <!-- Profile Picture -->
         <div class="profile-picture-admin-view">
             <img src="{{ $profilePicture }}" alt="Profile Picture" id="editable-profile-picture">

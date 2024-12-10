@@ -14,6 +14,8 @@
             <button type="submit">Search</button>
         </div>
         <div class="filter-buttons">
+            <button id="filter-user-search" type="submit" name="status" value="all" 
+                class="{{ request('status') === 'all' ? 'active' : '' }}">All</button>
             <button id="filter-user-search" type="submit" name="status" value="active" 
                 class="{{ request('status') === 'active' ? 'active' : '' }}">Active</button>
             <button id="filter-user-search" type="submit" name="status" value="blocked" 
