@@ -411,8 +411,10 @@ class GameController extends Controller
         }
 
         $cdks = $query->orderBy('id', 'desc')->paginate(25);
+        $totalAvailable = $query->whereDoesntHave('deliveredPurchase')->count();
 
-        return view('seller.game-cdks', compact('game', 'cdks', 'filter'));
+
+        return view('seller.game-cdks', compact('game', 'cdks', 'filter', 'totalAvailable'));
     }
 
     public function addCdks(Request $request, $id)

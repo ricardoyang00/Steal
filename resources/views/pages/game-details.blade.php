@@ -7,9 +7,9 @@
 @if (!auth_user() || auth_user()->buyer)
     <script src="{{ asset('js/wishlist/add-to-wishlist.js') }}" defer></script>
     <script src="{{ asset('js/cart/add-to-cart.js') }}" defer ></script>
-    <script src="{{ asset('js/game_details/game_details.js') }}" defer></script>
 @endif
 
+<script src="{{ asset('js/game_details/game_details.js') }}" defer></script>
 <script src="{{ asset('js/admin/block-modal.js') }}" defer></script>
 @include('partials.admin.block-modal')
 
