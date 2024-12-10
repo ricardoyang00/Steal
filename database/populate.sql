@@ -1139,7 +1139,7 @@ insert into Payment (method, value) values (1, 304.71);
 
 
 -- Orders
-insert into Orders (buyer, payment, time) values (1, 1, '2021-06-01 12:00:00');
+insert into Orders (buyer, payment, time) values (1, 1, '2024-12-01 12:00:00');
 
 
 -- Purchase

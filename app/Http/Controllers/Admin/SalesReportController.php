@@ -14,8 +14,19 @@ class SalesReportController extends Controller
 {
     public function index()
     {
-        return view('admin.sales-report.index');
+        // Fetch the daily report data by default
+        $sales = DeliveredPurchase::with(['getpurchase.getorder', 'getcdk.getgame'])
+            ->whereHas('getpurchase.getorder', function ($query) {
+                $query->whereDate('time', Carbon::today());
+            })->get();
+
+        $total = $sales->sum(function ($sale) {
+            return $sale->getpurchase->value;
+        });
+
+        return view('admin.sales-report.index', compact('sales', 'total'));
     }
+
 
     public function daily()
     {
@@ -23,29 +34,72 @@ class SalesReportController extends Controller
             ->whereHas('getpurchase.getorder', function ($query) {
                 $query->whereDate('time', Carbon::today());
             })->get();
-        return view('admin.sales-report.daily', compact('sales'));
-    }
 
+        $total = $sales->sum(function ($sale) {
+            return $sale->getpurchase->value;
+        });
+
+        return view('partials.admin.sales-report.daily', compact('sales', 'total'));
+    }
+    
     public function weekly()
     {
         $sales = DeliveredPurchase::with(['getpurchase.getorder', 'getcdk.getgame'])
             ->whereHas('getpurchase.getorder', function ($query) {
                 $query->whereBetween('time', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
             })->get();
-        return view('admin.sales-report.weekly', compact('sales'));
+        $total = $sales->sum(function ($sale) {
+            return $sale->getpurchase->value;
+        });
+        return view('partials.admin.sales-report.weekly', compact('sales', 'total'));
     }
 
     public function monthly()
     {
-        $sales = Purchase::whereMonth('created_at', Carbon::now()->month)->get();
-        return view('admin.sales-report.monthly', compact('sales'));
+        $sales = DeliveredPurchase::with(['getpurchase.getorder', 'getcdk.getgame'])
+            ->whereHas('getpurchase.getorder', function ($query) {
+                $query->whereMonth('time', Carbon::now()->month());
+            })->get();
+        $total = $sales->sum(function ($sale) {
+            return $sale->getpurchase->value;
+        });
+        return view('partials.admin.sales-report.monthly', compact('sales', 'total'));
     }
 
     public function custom(Request $request)
     {
         $startDate = Carbon::parse($request->input('start_date'));
         $endDate = Carbon::parse($request->input('end_date'));
-        $sales = Purchase::whereBetween('created_at', [$startDate, $endDate])->get();
-        return view('admin.sales-report.custom', compact('sales', 'startDate', 'endDate'));
+        
+        $sales = DeliveredPurchase::with(['getpurchase.getorder', 'getcdk.getgame'])
+            ->whereHas('getpurchase.getorder', function ($query) use ($startDate, $endDate) {
+                $query->whereBetween('time', [$startDate, $endDate]);
+            })->get();
+
+        $total = $sales->sum(function ($sale) {
+            return $sale->getpurchase->value;
+        });
+
+        return view('partials.admin.sales-report.custom', compact('sales', 'startDate', 'endDate', 'total'));
+    }
+    
+    public function dailyContent()
+    {
+        return view('partials.admin.sales-report.daily');
+    }
+
+    public function weeklyContent()
+    {
+        return view('partials.admin.sales-report.weekly');
+    }
+
+    public function monthlyContent()
+    {
+        return view('partials.admin.sales-report.monthly');
+    }
+
+    public function customContent()
+    {
+        return view('partials.admin.sales-report.custom');
     }
 }
