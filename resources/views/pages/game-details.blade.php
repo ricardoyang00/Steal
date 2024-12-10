@@ -58,11 +58,11 @@
             @if ($game->is_active)
                 <form action="{{ route('admin.games.block', $game->id) }}" method="POST" style="display:inline;">
                     @csrf
-                    <button type="submit" class="btn-add-to-cart btn btn-primary" id="block-game" onclick="showBlockModal({{ $game->id }})">Block</button>
+                    <button type="button" class="btn-add-to-cart btn btn-primary" id="block-game" onclick="showBlockModal({{ $game->id }})">Block</button>
             @else
                 <form action="{{ route('admin.games.unblock', $game->id) }}" method="POST" style="display:inline;">
                     @csrf
-                    <button type="submit" class="btn-add-to-cart btn btn-primary" id="unblock-game">Unblock</button>
+                    <button type="button" class="btn-add-to-cart btn btn-primary" id="unblock-game">Unblock</button>
                 </form>
             @endif
         @endif
@@ -112,11 +112,6 @@
                 <div class="review-form-message">
                     <button class="btn-review-form-toggle">Edit Review</button>
                     <button class="btn-review-remove" data-id="{{ $review->id }}">Remove Review</button>
-                    @if ($errors->any())
-                        <div class="error error-reviews">
-                            {{ $errors->first() }}
-                        </div>
-                    @endif
                 </div>
             @elseif (!auth_user())
                 <p class="review-form-message">
