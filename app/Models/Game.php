@@ -25,10 +25,15 @@ class Game extends Model
         'owner',
         'is_active',
         'block_reason',
+        'block_time',
         'release_date',
         'age_id',
         'thumbnail_small_path',
         'thumbnail_large_path'
+    ];
+    
+    protected $casts = [
+        'block_time' => 'datetime',
     ];
 
     public function seller()

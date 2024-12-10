@@ -41,8 +41,17 @@
     vertical-align: top; /* Ensure top alignment for wrapped text */
 }
 
+.table td a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.table td a:hover {
+    color: var(--secondary-text-color);
+}
+
 /* Ensure the Reason column wraps text */
-.table td:nth-child(3) { /* Target the "Reason" column */
+.table td:nth-child(4) { /* Target the "Reason" column */
     white-space: normal; /* Allow wrapping */
     word-wrap: break-word; /* Force long words to break */
     max-width: 200px; /* Limit the width of the reason column */
@@ -54,11 +63,11 @@
 }
 
 .table tbody tr:hover {
-    background-color: #333; /* Highlight row on hover */
+    background-color: var(--hover-background-color); /* Highlight row on hover */
 }
 
 /* Action button styles */
-.table .btn-success {
+.table #btn-unblock {
     background-color: #6a2efb;
     color: #fff;
     border: none;
@@ -69,7 +78,7 @@
     transition: background-color 0.3s ease;
 }
 
-.table .btn-success:hover {
+.table #btn-unblock:hover {
     background-color: #4f1eb0; /* Darker hover effect */
 }
 

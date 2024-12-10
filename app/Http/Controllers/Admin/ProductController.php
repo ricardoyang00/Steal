@@ -9,6 +9,7 @@ use Illuminate\View\View;
 
 use App\Models\Game;
 use App\Models\Administrator;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
@@ -27,6 +28,7 @@ class ProductController extends Controller
 
         $game->is_active = false;
         $game->block_reason = $request->input('reason');
+        $game->block_time = Carbon::now();
         $game->save();
 
         return redirect()->back()->withSuccess('Game blocked successfully.');
@@ -43,6 +45,7 @@ class ProductController extends Controller
 
         $game->is_active = true;
         $game->block_reason = null;
+        $game->block_time = null;
         $game->save();
 
         return redirect()->back()->withSuccess('Game unblocked successfully.');
@@ -53,7 +56,9 @@ class ProductController extends Controller
      */
     public function listBlockedGames(): View
     {
-        $blockedGames = Game::where('is_active', false)->paginate(10);
+        $blockedGames = Game::where('is_active', false)
+                            ->orderBy('block_time', 'desc')
+                            ->paginate(10);
 
         return view('admin.games.blocked-games', compact('blockedGames'));
     }

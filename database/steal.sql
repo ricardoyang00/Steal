@@ -104,6 +104,7 @@ CREATE TABLE Game(
     owner INT NOT NULL REFERENCES Seller(id) ON UPDATE CASCADE,
     is_active BOOLEAN DEFAULT TRUE,
     block_reason TEXT,
+    block_time TIMESTAMP,
     release_date DATE CHECK(release_date <= CURRENT_DATE),
     age_id INT NOT NULL REFERENCES Age(id) ON UPDATE CASCADE,
     thumbnail_small_path TEXT,
