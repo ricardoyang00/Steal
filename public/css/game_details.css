@@ -271,4 +271,9 @@
     }
 }
 
+.game-details-page {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
 /* End of More Game Details Styling */
