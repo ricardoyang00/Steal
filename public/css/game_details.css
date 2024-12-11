@@ -155,31 +155,22 @@
     flex-direction: row;
 }
 
-.game-details-page .review-controls {
-    .review-form-message{
+.game-details-page .reviews-bar {
+    .review-buttons{
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: flex-start;
         align-items: center;
         gap: 16px;
-        button{
-
+        .btn-review-remove {
+            background-color: var(--error-color);
+            color: white;
         }
     }
     padding: 32px;
     background-color: var(--explore-table-color);
     border-radius: 8px;
-    margin-right: 32px;
-}
-
-.game-details-page .game-reviews{
-    > :nth-child(1) {
-        flex: 1;
-    }
-
-    > :nth-child(2) {
-        flex: 3;
-    }
+    margin-bottom: 16px;
 }
 
 .game-details-page .no-reviews-message {
@@ -214,6 +205,16 @@
                 }
             }
         }
+    }
+}
+
+.game-details-page .game-reviews {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: space-between;
+    .reviews-bar {
+
     }
 }
 
