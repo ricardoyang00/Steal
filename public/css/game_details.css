@@ -218,6 +218,20 @@
     justify-content: space-between;
 }
 
+.game-details-page .reviews {
+    .btn-report {
+        margin-top: 32px;
+        font-size: 0.9rem;
+        padding: 6px 16px;
+        background-color: var(--buy-button-color);
+        border: none;
+        color: var(--text-color);
+    }
+    .btn-report:hover {
+        background-color: var(--buy-button-hover-color);
+    }
+}
+
 /* End of Review Section */
 
 
