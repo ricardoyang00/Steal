@@ -43,6 +43,28 @@
                 @endforeach
             @endif
         </div>
+        <div class="buy-product-div">
+            <h1>{{ $game->name }}</h1>
+            <div class="game-price-add-cart-div">
+                <p class="game-price"><strong>${{ $game->price }}</strong></p>
+                @if (!auth_user() || auth_user()->buyer)
+                    <button id="add-to-cart-{{ $game['id'] }}" data-id="{{ $game['id'] }}" class="btn-add-to-cart btn btn-primary">
+                        Add to Cart
+                    </button>
+                @elseif (is_admin())
+                    @if ($game->is_active)
+                        <form action="{{ route('admin.games.block', $game->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            <button type="button" class="btn-add-to-cart btn btn-primary" id="block-game" onclick="showBlockModal({{ $game->id }})">Block</button>
+                    @else
+                        <form action="{{ route('admin.games.unblock', $game->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            <button type="button" class="btn-add-to-cart btn btn-primary" id="unblock-game">Unblock</button>
+                        </form>
+                    @endif
+                @endif
+            </div>
+        </div>
         <p><strong>Description:</strong> {{ $game->description }}</p>
         <p><strong>Owner:</strong> {{ $game->seller->name }}</p>
         <p><strong>Minimum Age:</strong>
@@ -50,25 +72,8 @@
                 <img src="{{ asset($game->age->image_path) }}" alt={{ $game->age->name }} style="width: 50px; height: auto;">
             </a>
         </p>
-        <p><strong>Price:</strong> ${{ $game->price }}</p>
         <p><strong>Release Date:</strong> {{ $game->getReleaseDate() }}</p>
         <p><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
-        @if (!auth_user() || auth_user()->buyer)
-            <button id="add-to-cart-{{ $game['id'] }}" data-id="{{ $game['id'] }}" class="btn-add-to-cart btn btn-primary">
-                Add to Cart
-            </button>
-        @elseif (is_admin())
-            @if ($game->is_active)
-                <form action="{{ route('admin.games.block', $game->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    <button type="button" class="btn-add-to-cart btn btn-primary" id="block-game" onclick="showBlockModal({{ $game->id }})">Block</button>
-            @else
-                <form action="{{ route('admin.games.unblock', $game->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    <button type="button" class="btn-add-to-cart btn btn-primary" id="unblock-game">Unblock</button>
-                </form>
-            @endif
-        @endif
     </div>
     
     <p><strong>Available Platforms:</strong></p>

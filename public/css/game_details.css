@@ -260,7 +260,7 @@
     background-color: rgb(0, 99, 0);
 }
 
-.game-details {
+.game-details-page .game-details {
     .game-title-div {
         padding: 1rem;
         background-color: var(--explore-table-color);
@@ -289,6 +289,36 @@
         .add-to-wishlist:hover {
             background-color: #2b2b2b;
         }
+    }
+}
+
+.game-details-page .buy-product-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--explore-table-color);
+    padding: 0 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+    .game-price-add-cart-div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 32px;
+        .game-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-color);
+        }
+        .btn-add-to-cart {
+            font-size: 1.25rem;
+            padding: 8px 16px;
+        }
+    }
+    h1 {
+        font-size: 2rem;
     }
 }
 
