@@ -52,7 +52,9 @@
     color: var(--error-color);
 }
 
-/* Review Section */
+
+/* Start of Review Section */
+
 .game-details-page .review-card {
     margin-bottom: 32px;
     background-color: var(--game-card-background);
@@ -214,10 +216,12 @@
     flex-direction: column;
     gap: 16px;
     justify-content: space-between;
-    .reviews-bar {
-
-    }
 }
+
+/* End of Review Section */
+
+
+/* More Game Details Styling */
 
 #block-game {
     background-color: var(--red);
@@ -234,3 +238,38 @@
 #unblock-game:hover {
     background-color: rgb(0, 99, 0);
 }
+
+.game-details {
+    .game-title-div {
+        padding: 1rem;
+        background-color: var(--explore-table-color);
+        border-radius: 8px;
+        margin-bottom: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 16px;
+        h1 {
+            font-size: 2rem;
+
+        }
+        .add-to-wishlist {
+            font-size: 0.9rem;
+            background-color: black;
+            padding: 0 16px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            .heart {
+                margin-left: 8px;
+                font-size: 1.2rem;
+            }
+        }
+        .add-to-wishlist:hover {
+            background-color: #2b2b2b;
+        }
+    }
+}
+
+/* End of More Game Details Styling */

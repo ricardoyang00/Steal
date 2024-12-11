@@ -30,7 +30,19 @@
         @endif
     </div>
     <div class="game-details">
-        <h1>{{ $game->name }}</h1>
+        <div class="game-title-div">
+            <h1>{{ $game->name }}</h1>
+            @if (auth_user() && auth_user()->buyer)
+                <button class="add-to-wishlist btn-add-to-wishlist" data-id="{{ $game->id }}">
+                    <p>Wishlist</p>
+                    <i class="heart far fa-heart"></i>
+                </button>
+            @elseif (!auth_user())
+                <button onclick="window.location.href = '/login';" class="add-to-wishlist">
+                    <i class="far fa-heart"></i>
+                </button>
+            @endif
+        </div>
         <p><strong>Description:</strong> {{ $game->description }}</p>
         <p><strong>Owner:</strong> {{ $game->seller->name }}</p>
         <p><strong>Minimum Age:</strong>
@@ -41,15 +53,6 @@
         <p><strong>Price:</strong> ${{ $game->price }}</p>
         <p><strong>Release Date:</strong> {{ $game->getReleaseDate() }}</p>
         <p><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
-        @if (auth_user() && auth_user()->buyer)
-            <button class="add-to-wishlist btn-add-to-wishlist" data-id="{{ $game->id }}">
-                <i class="far fa-heart"></i>
-            </button>
-        @elseif (!auth_user())
-            <button onclick="window.location.href = '/login';" class="add-to-wishlist">
-                <i class="far fa-heart"></i>
-            </button>
-        @endif
         @if (!auth_user() || auth_user()->buyer)
             <button id="add-to-cart-{{ $game['id'] }}" data-id="{{ $game['id'] }}" class="btn-add-to-cart btn btn-primary">
                 Add to Cart
