@@ -253,7 +253,7 @@
 
         }
         .add-to-wishlist {
-            font-size: 0.9rem;
+            font-size: 1rem;
             background-color: black;
             padding: 0 16px;
             border-radius: 4px;
@@ -261,8 +261,8 @@
             align-items: center;
             flex-direction: row;
             .heart {
-                margin-left: 8px;
-                font-size: 1.2rem;
+                margin-left: 16px;
+                font-size: 1.5rem;
             }
         }
         .add-to-wishlist:hover {
