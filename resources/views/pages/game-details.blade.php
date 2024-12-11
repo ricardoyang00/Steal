@@ -43,67 +43,75 @@
                 @endforeach
             @endif
         </div>
-        <div class="buy-product-div">
-            <h1>{{ $game->name }}</h1>
-            <div class="game-price-add-cart-div">
-                <p class="game-price"><strong>${{ $game->price }}</strong></p>
-                @if (!auth_user() || auth_user()->buyer)
-                    <button id="add-to-cart-{{ $game['id'] }}" data-id="{{ $game['id'] }}" class="btn-add-to-cart btn btn-primary">
-                        Add to Cart
-                    </button>
-                @elseif (is_admin())
-                    @if ($game->is_active)
-                        <form action="{{ route('admin.games.block', $game->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            <button type="button" class="btn-add-to-cart btn btn-primary" id="block-game" onclick="showBlockModal({{ $game->id }})">Block</button>
-                    @else
-                        <form action="{{ route('admin.games.unblock', $game->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            <button type="button" class="btn-add-to-cart btn btn-primary" id="unblock-game">Unblock</button>
-                        </form>
-                    @endif
-                @endif
+        <div class="game-details-info">
+            <div class="game-details-info-left">
+                <div class="buy-product-div">
+                    <h1>{{ $game->name }}</h1>
+                    <div class="game-price-add-cart-div">
+                        <p class="game-price"><strong>${{ $game->price }}</strong></p>
+                        @if (!auth_user() || auth_user()->buyer)
+                            <button id="add-to-cart-{{ $game['id'] }}" data-id="{{ $game['id'] }}" class="btn-add-to-cart btn btn-primary">
+                                Add to Cart
+                            </button>
+                        @elseif (is_admin())
+                            @if ($game->is_active)
+                                <form action="{{ route('admin.games.block', $game->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="button" class="btn-add-to-cart btn btn-primary" id="block-game" onclick="showBlockModal({{ $game->id }})">Block</button>
+                            @else
+                                <form action="{{ route('admin.games.unblock', $game->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="button" class="btn-add-to-cart btn btn-primary" id="unblock-game">Unblock</button>
+                                </form>
+                            @endif
+                        @endif
+                    </div>
+                </div>
+                <div class="description-div">
+                    <h2><strong>Description</strong></h2>
+                    <p>{{ $game->description }}</p>
+                </div>
+            </div>
+            <div class="game-details-info-right">
+                <p><strong>Owner:</strong> {{ $game->seller->name }}</p>
+                <p><strong>Minimum Age:</strong>
+                    <a href="{{ url('age/' . $game->age->id) }}">
+                        <img src="{{ asset($game->age->image_path) }}" alt={{ $game->age->name }} style="width: 50px; height: auto;">
+                    </a>
+                </p>
+                <p><strong>Release Date:</strong> {{ $game->getReleaseDate() }}</p>
+                <p><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
+                <p><strong>Available Platforms:</strong></p>
+                <ul>
+                    @foreach($game->platforms as $platform)
+                    <li>{{ $platform->name }}</li>
+                    @endforeach
+                </ul>
+
+                <p><strong>Categories:</strong></p>
+                <ul>
+                    @foreach($game->categories as $category)
+                    <li>{{ $category->name }}</li>
+                    @endforeach
+                </ul>
+
+                <p><strong>Languages:</strong></p>
+                <ul>
+                    @foreach($game->languages as $language)
+                    <li>{{ $language->name }}</li>
+                    @endforeach
+                </ul>
+
+                <p><strong>Players:</strong></p>
+                <ul>
+                    @foreach($game->players as $player)
+                    <li>{{ $player->name }}</li>
+                    @endforeach
+                </ul>
             </div>
         </div>
-        <p><strong>Description:</strong> {{ $game->description }}</p>
-        <p><strong>Owner:</strong> {{ $game->seller->name }}</p>
-        <p><strong>Minimum Age:</strong>
-            <a href="{{ url('age/' . $game->age->id) }}">
-                <img src="{{ asset($game->age->image_path) }}" alt={{ $game->age->name }} style="width: 50px; height: auto;">
-            </a>
-        </p>
-        <p><strong>Release Date:</strong> {{ $game->getReleaseDate() }}</p>
-        <p><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
     </div>
-    
-    <p><strong>Available Platforms:</strong></p>
-    <ul>
-        @foreach($game->platforms as $platform)
-        <li>{{ $platform->name }}</li>
-        @endforeach
-    </ul>
-    
-    <p><strong>Categories:</strong></p>
-    <ul>
-        @foreach($game->categories as $category)
-        <li>{{ $category->name }}</li>
-        @endforeach
-    </ul>
-    
-    <p><strong>Languages:</strong></p>
-    <ul>
-        @foreach($game->languages as $language)
-        <li>{{ $language->name }}</li>
-        @endforeach
-    </ul>
-    
-    <p><strong>Players:</strong></p>
-    <ul>
-        @foreach($game->players as $player)
-        <li>{{ $player->name }}</li>
-        @endforeach
-    </ul>
-    
+
     <h2>Reviews</h2>
     <div class="game-reviews" data-id="{{ $game->id }}">
         <div class="reviews-bar">

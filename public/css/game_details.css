@@ -292,33 +292,72 @@
     }
 }
 
-.game-details-page .buy-product-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--explore-table-color);
-    padding: 0 16px;
-    border-radius: 8px;
-    margin: 16px 0;
-    .game-price-add-cart-div {
+.game-details-page {
+    .game-details-info{
         display: flex;
         flex-direction: row;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 32px;
-        .game-price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--text-color);
+        justify-content: stretch;
+        gap: 16px;
+        width: 100%;
+        .game-details-info-left{
+            flex: 3;
+            .buy-product-div {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                background-color: var(--explore-table-color);
+                padding: 0 16px;
+                border-radius: 8px;
+                margin: 16px 0;
+
+                .game-price-add-cart-div {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-end;
+                    gap: 32px;
+                    margin: 0 0 0 16px;
+                    .game-price {
+                        font-size: 1.5rem;
+                        font-weight: bold;
+                        color: var(--text-color);
+                    }
+                    .btn-add-to-cart {
+                        font-size: 1.25rem;
+                        padding: 8px 16px;
+                        box-shadow: 0 0 1px 0 darkgray;
+                    }
+                }
+
+                h1 {
+                    font-size: 2rem;
+                }
+            }
+            .description-div {
+                background-color: var(--game-card-background);
+                border-radius: 8px;
+                padding: 16px;
+                margin: 16px 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                h2 {
+                    font-size: 1.5rem;
+                }
+            }
         }
-        .btn-add-to-cart {
-            font-size: 1.25rem;
-            padding: 8px 16px;
+        .game-details-info-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            border-radius: 8px;
+            background-color: var(--explore-table-color);
+            padding: 16px 32px 32px 32px;
+            margin: 16px 0;
         }
-    }
-    h1 {
-        font-size: 2rem;
     }
 }
 
