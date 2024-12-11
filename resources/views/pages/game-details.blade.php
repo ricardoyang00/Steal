@@ -14,21 +14,6 @@
 @include('partials.admin.block-modal')
 
 <div class="game-details-page">
-    <!-- Game Images -->
-    <div class="game-images">
-        <!-- Large Thumbnail -->
-        <div class="game-image">
-            <img src="{{ asset($game->getThumbnailLargePath()) }}" class="img-fluid" alt="{{ $game->name }}">
-        </div>
-        <!-- Additional Images -->
-        @if ($game->images)
-            @foreach($game->images as $image)
-                <div class="game-image">
-                    <img src="{{ asset($image->path) }}" class="img-fluid" alt="{{ $game->name }}">
-                </div>
-            @endforeach
-        @endif
-    </div>
     <div class="game-details">
         <div class="game-title-div">
             <h1>{{ $game->name }}</h1>
@@ -41,6 +26,21 @@
                 <button onclick="window.location.href = '/login';" class="add-to-wishlist">
                     <i class="far fa-heart"></i>
                 </button>
+            @endif
+        </div>
+        <!-- Game Images -->
+        <div class="game-images">
+            <!-- Large Thumbnail -->
+            <div class="game-image">
+                <img src="{{ asset($game->getThumbnailLargePath()) }}" class="img-fluid" alt="{{ $game->name }}">
+            </div>
+            <!-- Additional Images -->
+            @if ($game->images)
+                @foreach($game->images as $image)
+                    <div class="game-image">
+                        <img src="{{ asset($image->path) }}" class="img-fluid" alt="{{ $game->name }}">
+                    </div>
+                @endforeach
             @endif
         </div>
         <p><strong>Description:</strong> {{ $game->description }}</p>
