@@ -121,6 +121,17 @@
                     You must be logged in to leave a review.
                 </p>
             @endif
+            <!-- Rating -->
+            <div class="game-rating">
+                <div class="rating-labels">
+                    <span class="positive-label">{{ $game->overall_rating }}% <i class="fa fa-thumbs-up"></i></span>
+                    <span class="negative-label">{{ 100 - $game->overall_rating }}% <i class="fa fa-thumbs-down"></i></span>
+                </div>
+                <div class="rating-bar">
+                    <div class="rating-positive" style="width: {{ $game->overall_rating }}%;"></div>
+                    <div class="rating-negative" style="width: {{ 100 - $game->overall_rating }}%;"></div>
+                </div>
+            </div>
         </div>
         <div class="reviews">
             @if (!$game->hasReviews())

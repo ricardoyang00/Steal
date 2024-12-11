@@ -158,6 +158,10 @@
 }
 
 .game-details-page .reviews-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     .review-buttons{
         display: flex;
         flex-direction: row;
@@ -219,23 +223,26 @@
 }
 
 .game-details-page .reviews {
-    .btn-report {
-        margin-top: 32px;
-        font-size: 0.9rem;
-        padding: 6px 16px;
-        background-color: var(--buy-button-color);
-        border: none;
-        color: var(--text-color);
-    }
-    .btn-report:hover {
-        background-color: var(--buy-button-hover-color);
+    .review-card {
+        padding: 16px 16px 32px 16px;
+        .btn-report {
+            margin-top: 32px;
+            font-size: 0.9rem;
+            padding: 6px 16px;
+            background-color: var(--buy-button-color);
+            border: none;
+            color: var(--text-color);
+        }
+        .btn-report:hover {
+            background-color: var(--buy-button-hover-color);
+        }
     }
 }
 
 /* End of Review Section */
 
 
-/* More Game Details Styling */
+/* More Game Details General Styling */
 
 #block-game {
     background-color: var(--red);
@@ -290,4 +297,52 @@
     margin: 0 auto;
 }
 
-/* End of More Game Details Styling */
+/* End of More Game Details General Styling */
+
+
+/* Rating Bar Container */
+
+.game-details-page .reviews-bar .rating-bar {
+    display: flex;
+    height: 8px;
+    width: 200px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 8px 16px 8px 0;
+}
+
+.game-details-page .reviews-bar .rating-positive {
+    background-color: var(--positive);
+    height: 100%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-right: 2px;
+}
+
+.game-details-page .reviews-bar .rating-negative {
+    background-color: var(--negative);
+    height: 100%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.game-details-page .reviews-bar .rating-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.game-details-page .reviews-bar .positive-label, .negative-label {
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.game-details-page .reviews-bar .positive-label {
+    color: var(--positive);
+}
+
+.game-details-page .reviews-bar .negative-label {
+    color: var(--negative);
+}
+
+/* End of Rating Bar Container */
