@@ -198,6 +198,7 @@
                 margin-bottom: 16px;
                 .btn-submit {
                     background-color: var(--buy-button-color);
+                    color: var(--text-color);
                     border: none;
                 }
                 .btn-submit:hover {
