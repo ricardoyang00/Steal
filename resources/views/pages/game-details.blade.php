@@ -29,21 +29,95 @@
                 </button>
             @endif
         </div>
-        <!-- Game Images -->
-        <div class="game-images">
-            <!-- Large Thumbnail -->
-            <div class="game-image">
+        <!-- Game Box -->
+        <div class="game-box">
+            <!-- Game Images -->
+            <div class="game-images">
                 <img src="{{ asset($game->getThumbnailLargePath()) }}" class="img-fluid" alt="{{ $game->name }}">
+                <!-- Additional Images -->
+                {{-- @if ($game->images)
+                    @foreach($game->images as $image)
+                        <div class="game-image">
+                            <img src="{{ asset($image->path) }}" class="img-fluid" alt="{{ $game->name }}">
+                        </div>
+                    @endforeach
+                @endif --}}
             </div>
-            <!-- Additional Images -->
-            @if ($game->images)
-                @foreach($game->images as $image)
-                    <div class="game-image">
-                        <img src="{{ asset($image->path) }}" class="img-fluid" alt="{{ $game->name }}">
+            <div class="game-info">
+                <!-- Large Thumbnail -->
+                <div class="game-image">
+                    <img src="{{ asset($game->getThumbnailLargePath()) }}" class="img-fluid" alt="{{ $game->name }}">
+                </div>
+
+                <!-- Game Info -->
+                <div class="description-div">
+                    <p>{{ $game->description }}</p>
+                </div>
+
+                <!-- Rating -->
+                <div class="info-container">
+                    <div class="info-label">Rating</div>
+                    <div class="info-content">
+                        <div class="game-rating">
+                            <div class="rating-labels">
+                                @if ($game->hasReviews())
+                                    <span class="positive-label">{{ $game->overall_rating }}% <i class="fa fa-thumbs-up"></i></span>
+                                    <span class="negative-label">{{ 100 - $game->overall_rating }}% <i class="fa fa-thumbs-down"></i></span>
+                                @else
+                                    <span class="no-reviews-label">0% <i class="fa fa-thumbs-up"></i></span>
+                                    <span class="no-reviews-label">0% <i class="fa fa-thumbs-down"></i></span>
+                                @endif
+                            </div>
+                            <div class="rating-bar">
+                                @if ($game->hasReviews())
+                                    <div class="rating-positive" style="width: {{ $game->overall_rating }}%;"></div>
+                                    <div class="rating-negative" style="width: {{ 100 - $game->overall_rating }}%;"></div>
+                                @else
+                                    <div class="rating-no-reviews" style="width: 100%;"></div>
+                                @endif
+                            </div>
+                        </div>
                     </div>
-                @endforeach
-            @endif
+                </div>
+                
+                <!-- Release Date -->
+                <div class="info-container">
+                    <div class="info-label">Release Date</div>
+                    <div class="info-content">{{ $game->getReleaseDate() }}</div>
+                </div>
+
+                <!-- Platforms -->
+                <div class="info-container">
+                    <div class="info-label" id="platform-label">Platform</div>
+                    <div class="info-content">
+                        @foreach($game->platforms as $platform)
+                            <img src="{{ asset('images/platform_logos/' . $platform->id . '.svg') }}" alt="{{ $platform->name }} logo" style="width: 20px; height: 30px;">
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="info-container">
+                    <div class="info-label">Owner</div>
+                    <div class="info-content">{{ $game->seller->name }}</div>
+                </div>
+
+                <div class="tags-label">Tags</div>
+                <div class="game-tags">
+                    @foreach($game->categories as $category)
+                        <span class="tag">{{ $category->name }}</span>
+                    @endforeach
+                    
+                    @foreach($game->languages as $language)
+                        <span class="tag">{{ $language->name }}</span>
+                    @endforeach
+                    
+                    @foreach($game->players as $player)
+                        <span class="tag">{{ $player->name }}</span>
+                    @endforeach
+                </div>
+            </div>
         </div>
+
         <div class="game-details-info">
             <div class="game-details-info-left">
                 <div class="buy-product-div">
@@ -68,47 +142,13 @@
                         @endif
                     </div>
                 </div>
-                <div class="description-div">
-                    <h2><strong>Description</strong></h2>
-                    <p>{{ $game->description }}</p>
-                </div>
             </div>
             <div class="game-details-info-right">
-                <p><strong>Owner:</strong> {{ $game->seller->name }}</p>
                 <p><strong>Minimum Age:</strong>
                     <a href="{{ url('age/' . $game->age->id) }}">
                         <img src="{{ asset($game->age->image_path) }}" alt={{ $game->age->name }} style="width: 50px; height: auto;">
                     </a>
                 </p>
-                <p><strong>Release Date:</strong> {{ $game->getReleaseDate() }}</p>
-                <p><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
-                <p><strong>Available Platforms:</strong></p>
-                <ul>
-                    @foreach($game->platforms as $platform)
-                    <li>{{ $platform->name }}</li>
-                    @endforeach
-                </ul>
-
-                <p><strong>Categories:</strong></p>
-                <ul>
-                    @foreach($game->categories as $category)
-                    <li>{{ $category->name }}</li>
-                    @endforeach
-                </ul>
-
-                <p><strong>Languages:</strong></p>
-                <ul>
-                    @foreach($game->languages as $language)
-                    <li>{{ $language->name }}</li>
-                    @endforeach
-                </ul>
-
-                <p><strong>Players:</strong></p>
-                <ul>
-                    @foreach($game->players as $player)
-                    <li>{{ $player->name }}</li>
-                    @endforeach
-                </ul>
             </div>
         </div>
     </div>

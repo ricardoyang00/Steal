@@ -112,7 +112,7 @@ class Game extends Model
             return 'Not realeased yet';
         }
 
-        return Carbon::parse($this->release_date)->format('d M, Y');
+        return Carbon::parse($this->release_date)->format('d M Y');
     }
 
     public function reviews()
