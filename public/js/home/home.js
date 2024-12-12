@@ -73,12 +73,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Function to start the interval
     function startInterval() {
-        intervalId = setInterval(autoChangePage, 5000);
+        if (!intervalId) {
+            intervalId = setInterval(autoChangePage, 5000);
+        }
     }
 
     // Function to stop the interval
     function stopInterval() {
-        clearInterval(intervalId);
+        if (intervalId) {
+            clearInterval(intervalId);
+            intervalId = null;
+        }
     }
 
     // Handle page visibility change
