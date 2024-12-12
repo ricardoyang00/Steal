@@ -24,7 +24,8 @@
                 </button>
             @elseif (!auth_user())
                 <button onclick="window.location.href = '/login';" class="add-to-wishlist">
-                    <i class="far fa-heart"></i>
+                    <p>Wishlist</p>
+                    <i class="heart far fa-heart"></i>
                 </button>
             @endif
         </div>
