@@ -16,4 +16,9 @@
     background-color: var(--buy-button-hover-color);
 }
 
+.wishlist {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
 

@@ -14,110 +14,137 @@
 @include('partials.admin.block-modal')
 
 <div class="game-details-page">
-    <!-- Game Images -->
-    <div class="game-images">
-        <!-- Large Thumbnail -->
-        <div class="game-image">
-            <img src="{{ asset($game->getThumbnailLargePath()) }}" class="img-fluid" alt="{{ $game->name }}">
-        </div>
-        <!-- Additional Images -->
-        @if ($game->images)
-            @foreach($game->images as $image)
-                <div class="game-image">
-                    <img src="{{ asset($image->path) }}" class="img-fluid" alt="{{ $game->name }}">
-                </div>
-            @endforeach
-        @endif
-    </div>
     <div class="game-details">
-        <h1>{{ $game->name }}</h1>
-        <p><strong>Description:</strong> {{ $game->description }}</p>
-        <p><strong>Owner:</strong> {{ $game->seller->name }}</p>
-        <p><strong>Minimum Age:</strong>
-            <a href="{{ url('age/' . $game->age->id) }}">
-                <img src="{{ asset($game->age->image_path) }}" alt={{ $game->age->name }} style="width: 50px; height: auto;">
-            </a>
-        </p>
-        <p><strong>Price:</strong> ${{ $game->price }}</p>
-        <p><strong>Release Date:</strong> {{ $game->getReleaseDate() }}</p>
-        <p><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
-        @if (auth_user() && auth_user()->buyer)
-            <button class="add-to-wishlist btn-add-to-wishlist" data-id="{{ $game->id }}">
-                <i class="far fa-heart"></i>
-            </button>
-        @elseif (!auth_user())
-            <button onclick="window.location.href = '/login';" class="add-to-wishlist">
-                <i class="far fa-heart"></i>
-            </button>
-        @endif
-        @if (!auth_user() || auth_user()->buyer)
-            <button id="add-to-cart-{{ $game['id'] }}" data-id="{{ $game['id'] }}" class="btn-add-to-cart btn btn-primary">
-                Add to Cart
-            </button>
-        @elseif (is_admin())
-            @if ($game->is_active)
-                <form action="{{ route('admin.games.block', $game->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    <button type="button" class="btn-add-to-cart btn btn-primary" id="block-game" onclick="showBlockModal({{ $game->id }})">Block</button>
-            @else
-                <form action="{{ route('admin.games.unblock', $game->id) }}" method="POST" style="display:inline;">
-                    @csrf
-                    <button type="button" class="btn-add-to-cart btn btn-primary" id="unblock-game">Unblock</button>
-                </form>
+        <div class="game-title-div">
+            <h1>{{ $game->name }}</h1>
+            @if (auth_user() && auth_user()->buyer)
+                <button class="add-to-wishlist btn-add-to-wishlist" data-id="{{ $game->id }}">
+                    <p>Wishlist</p>
+                    <i class="heart far fa-heart"></i>
+                </button>
+            @elseif (!auth_user())
+                <button onclick="window.location.href = '/login';" class="add-to-wishlist">
+                    <i class="far fa-heart"></i>
+                </button>
             @endif
-        @endif
+        </div>
+        <!-- Game Images -->
+        <div class="game-images">
+            <!-- Large Thumbnail -->
+            <div class="game-image">
+                <img src="{{ asset($game->getThumbnailLargePath()) }}" class="img-fluid" alt="{{ $game->name }}">
+            </div>
+            <!-- Additional Images -->
+            @if ($game->images)
+                @foreach($game->images as $image)
+                    <div class="game-image">
+                        <img src="{{ asset($image->path) }}" class="img-fluid" alt="{{ $game->name }}">
+                    </div>
+                @endforeach
+            @endif
+        </div>
+        <div class="game-details-info">
+            <div class="game-details-info-left">
+                <div class="buy-product-div">
+                    <h1>{{ $game->name }}</h1>
+                    <div class="game-price-add-cart-div">
+                        <p class="game-price"><strong>${{ $game->price }}</strong></p>
+                        @if (!auth_user() || auth_user()->buyer)
+                            <button id="add-to-cart-{{ $game['id'] }}" data-id="{{ $game['id'] }}" class="btn-add-to-cart btn btn-primary">
+                                Add to Cart
+                            </button>
+                        @elseif (is_admin())
+                            @if ($game->is_active)
+                                <form action="{{ route('admin.games.block', $game->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="button" class="btn-add-to-cart btn btn-primary" id="block-game" onclick="showBlockModal({{ $game->id }})">Block</button>
+                            @else
+                                <form action="{{ route('admin.games.unblock', $game->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    <button type="button" class="btn-add-to-cart btn btn-primary" id="unblock-game">Unblock</button>
+                                </form>
+                            @endif
+                        @endif
+                    </div>
+                </div>
+                <div class="description-div">
+                    <h2><strong>Description</strong></h2>
+                    <p>{{ $game->description }}</p>
+                </div>
+            </div>
+            <div class="game-details-info-right">
+                <p><strong>Owner:</strong> {{ $game->seller->name }}</p>
+                <p><strong>Minimum Age:</strong>
+                    <a href="{{ url('age/' . $game->age->id) }}">
+                        <img src="{{ asset($game->age->image_path) }}" alt={{ $game->age->name }} style="width: 50px; height: auto;">
+                    </a>
+                </p>
+                <p><strong>Release Date:</strong> {{ $game->getReleaseDate() }}</p>
+                <p><strong>Rating:</strong> {{ $game->overall_rating }}%</p>
+                <p><strong>Available Platforms:</strong></p>
+                <ul>
+                    @foreach($game->platforms as $platform)
+                    <li>{{ $platform->name }}</li>
+                    @endforeach
+                </ul>
+
+                <p><strong>Categories:</strong></p>
+                <ul>
+                    @foreach($game->categories as $category)
+                    <li>{{ $category->name }}</li>
+                    @endforeach
+                </ul>
+
+                <p><strong>Languages:</strong></p>
+                <ul>
+                    @foreach($game->languages as $language)
+                    <li>{{ $language->name }}</li>
+                    @endforeach
+                </ul>
+
+                <p><strong>Players:</strong></p>
+                <ul>
+                    @foreach($game->players as $player)
+                    <li>{{ $player->name }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
     </div>
-    
-    <p><strong>Available Platforms:</strong></p>
-    <ul>
-        @foreach($game->platforms as $platform)
-        <li>{{ $platform->name }}</li>
-        @endforeach
-    </ul>
-    
-    <p><strong>Categories:</strong></p>
-    <ul>
-        @foreach($game->categories as $category)
-        <li>{{ $category->name }}</li>
-        @endforeach
-    </ul>
-    
-    <p><strong>Languages:</strong></p>
-    <ul>
-        @foreach($game->languages as $language)
-        <li>{{ $language->name }}</li>
-        @endforeach
-    </ul>
-    
-    <p><strong>Players:</strong></p>
-    <ul>
-        @foreach($game->players as $player)
-        <li>{{ $player->name }}</li>
-        @endforeach
-    </ul>
-    
+
     <h2>Reviews</h2>
     <div class="game-reviews" data-id="{{ $game->id }}">
-        <div class="review-controls">
+        <div class="reviews-bar">
             @if (auth_user() && auth_user()->buyer && auth()->user()->hasDeliveredPurchase($game->id) && !$game->hasReviewedGame(auth()->user()))
-            <div class="review-form-message">
+            <div class="review-buttons">
                 <button class="btn-review-form-toggle">Add Review</button>
                 <button class="btn-review-remove" style="display: none;">Remove Review</button>
             </div>
             @elseif (auth_user() && auth_user()->buyer && !$game->hasReviewedGame(auth()->user()))
-                <p class="review-form-message">
+                <p class="review-buttons">
                     You must have purchased this game to leave a review.
                 </p>
             @elseif (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
-                <div class="review-form-message">
+                <div class="review-buttons">
                     <button class="btn-review-form-toggle">Edit Review</button>
                     <button class="btn-review-remove" data-id="{{ $review->id }}">Remove Review</button>
                 </div>
             @elseif (!auth_user())
-                <p class="review-form-message">
+                <p class="review-buttons">
                     You must be logged in to leave a review.
                 </p>
             @endif
+            <!-- Rating -->
+            <div class="game-rating">
+                <div class="rating-labels">
+                    <span class="positive-label">{{ $game->overall_rating }}% <i class="fa fa-thumbs-up"></i></span>
+                    <span class="negative-label">{{ 100 - $game->overall_rating }}% <i class="fa fa-thumbs-down"></i></span>
+                </div>
+                <div class="rating-bar">
+                    <div class="rating-positive" style="width: {{ $game->overall_rating }}%;"></div>
+                    <div class="rating-negative" style="width: {{ 100 - $game->overall_rating }}%;"></div>
+                </div>
+            </div>
         </div>
         <div class="reviews">
             @if (!$game->hasReviews())

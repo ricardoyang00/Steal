@@ -108,4 +108,15 @@ class ReviewsController extends Controller
 
         return redirect()->route('game.details', ['id' => $gameId])->with(['success' => 'Review updated successfully!']);
     }
+
+    public function reportReview(Request $request)
+    {
+        $reviewId = $request->input('review_id');
+        $review = Review::find($reviewId);
+        $review->reported = true;
+        $review->save();
+        return response()->json([
+            'success' => true,
+        ]);
+    }
 }
