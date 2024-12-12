@@ -5,7 +5,7 @@
     border-radius: 8px;
 }
 
-/* Game Box */
+/* Game Title */
 .game-details-page .game-details {
     .game-title-div {
         padding: 0rem 1rem;
@@ -37,6 +37,7 @@
     }
 }
 
+/* Game Box */
 .game-box {
     display: flex;
     flex-direction: row;
@@ -45,6 +46,7 @@
     background-color: var(--game-card-background);
     border-radius: 10px;
     align-items: flex-start;
+    margin-bottom: 16px;
 
     .game-images {
         flex: 2.20;
@@ -65,136 +67,178 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 0px 20px;
         border-radius: 10px;
-        img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-    }
 
-    .description-div {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        color: var(--text-color);
-        height: 100px;
-        overflow-y: auto;
-        padding: 0 10px;
-        border-radius: 10px;
-        background-color: var(--explore-table-color);
-        display: flex;
-        align-items: flex-start;
-        scrollbar-width: none;
-        > *:first-child {
+        .game-image-container {
+            position: relative;
+            display: inline-block;
+
+            .age-icon {
+                position: absolute;
+                right: 0px;
+                z-index: 10;
+                img {
+                    border-top-right-radius: 10px;
+                }
+            }
+            
+            .game-image img {
+                width: 100%;
+                height: auto;
+                border-radius: 10px;
+            }
+        }
+
+        .description-div {
             margin-top: 10px;
-            padding-top: 0;
+            margin-bottom: 10px;
+            color: var(--text-color);
+            height: 100px;
+            overflow-y: auto;
+            padding: 0 10px;
+            border-radius: 10px;
+            background-color: var(--explore-table-color);
+            display: flex;
+            align-items: flex-start;
+            scrollbar-width: none;
+            > *:first-child {
+                margin-top: 10px;
+                padding-top: 0;
+            }
         }
-    }
-
-    /* Hide scrollbar for WebKit browsers */
-    .description-div::-webkit-scrollbar {
-        width: 0;
-        height: 0;
-    }
     
-    /* Show scrollbar on hover */
-    .description-div:hover {
-        scrollbar-width: thin;
-    }
+        /* Hide scrollbar for WebKit browsers */
+        .description-div::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+        
+        /* Show scrollbar on hover */
+        .description-div:hover {
+            scrollbar-width: thin;
+        }
+        
+        .description-div:hover::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
     
-    .description-div:hover::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-    }
-
-    /* Game Info */
-    .info-container {
-        display: flex;
-        align-items: flex-end;
-        margin-bottom: 20px;
-    }
-
-    .info-label {
-        min-width: 100px;
-        margin-right: 10px;
-        text-align: left;
-        font-size: 0.9rem;
-        color: var(--secondary-text-color)
-    }
-
-    .info-content {
-        flex: 1;
-    }
-
-    .rating-bar {
-        display: flex;
-        height: 5px;
-        width: 150px;
-        border-radius: 5px;
-        overflow: hidden;
-        margin-top: 8px;
-        margin-bottom: 0px;
-    }
-
-    .rating-positive {
-        background-color: var(--positive);
-        height: 100%;
-        border-top-right-radius: 5px;
-        border-bottom-right-radius: 5px;
-        margin-right: 2px;
-    }
-
-    .rating-negative {
-        background-color: var(--negative);
-        height: 100%;
-        border-top-left-radius: 5px;
-        border-bottom-left-radius: 5px;
-    }
-
-    .rating-no-reviews {
-        background-color: gray;
-        height: 100%;
-        border-radius: 5px;
-    }
-
-    .rating-labels {
-        display: flex;
-        justify-content: space-between;
-        width: 150px;
-    }
-
-    .positive-label, .negative-label, .no-reviews-label {
-        font-size: 0.8rem;
-        margin-top: 10px;
-    }
-
-    .positive-label {
-        color: var(--positive);
-    }
-
-    .negative-label {
-        color: var(--negative);
-    }
-
-    .no-reviews-label {
-        color: gray;
-    }
-
-    #platform-label {
-        margin-bottom: 8px;
-    }
-
-    .tags-label {
-        min-width: 100px;
-        margin-right: 10px;
-        text-align: left;
-        font-size: 0.9rem;
-        color: var(--secondary-text-color);
-        margin-bottom: 10px;
+        /* Game Info */
+        .info-container {
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 20px;
+        }
+    
+        .info-label {
+            min-width: 100px;
+            margin-right: 10px;
+            text-align: left;
+            font-size: 0.9rem;
+            color: var(--secondary-text-color)
+        }
+    
+        .info-content {
+            flex: 1;
+        }
+    
+        .rating-bar {
+            display: flex;
+            height: 5px;
+            width: 150px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 8px;
+            margin-bottom: 0px;
+        }
+    
+        .rating-positive {
+            background-color: var(--positive);
+            height: 100%;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            margin-right: 2px;
+        }
+    
+        .rating-negative {
+            background-color: var(--negative);
+            height: 100%;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+    
+        .rating-no-reviews {
+            background-color: gray;
+            height: 100%;
+            border-radius: 5px;
+        }
+    
+        .rating-labels {
+            display: flex;
+            justify-content: space-between;
+            width: 150px;
+        }
+    
+        .positive-label, .negative-label, .no-reviews-label {
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+    
+        .positive-label {
+            color: var(--positive);
+        }
+    
+        .negative-label {
+            color: var(--negative);
+        }
+    
+        .no-reviews-label {
+            color: gray;
+        }
+    
+        #platform-label {
+            margin-bottom: 8px;
+        }
+    
+        .tags-label {
+            min-width: 100px;
+            margin-right: 10px;
+            text-align: left;
+            font-size: 0.9rem;
+            color: var(--secondary-text-color);
+            margin-bottom: 10px;
+        }
     }
 }
 
+/* Buy Game */
+.game-details-page {
+    .buy-product-div {
+        padding: 1rem 1rem;
+        background-color: var(--game-card-background);
+        border-radius: 8px;
+        margin-bottom: 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 70%;
+        h1 {
+            font-size: 1.4rem;
+        }
+    }
+
+    .game-price-add-cart-div {
+        display: flex;
+        justify-content: flex-end; /* Align items to the right */
+        align-items: center;
+        gap: 20px; /* Adjust the spacing between elements */
+    }
+
+    .game-price {
+        margin: 0;
+        font-size: 1.2rem; /* Adjust the font size as needed */
+    }
+}
 
 /* Add to Cart Button */
 .game-details-page .btn-add-to-cart {
