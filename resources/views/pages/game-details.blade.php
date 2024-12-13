@@ -50,6 +50,15 @@
                         </div>
                     @endif
                 </div>
+                <div class="carousel-pagination-controls" data-total-items="{{ count($game->images) }}">
+                    @if (count($game->images) > 0)
+                        @foreach ($game->images as $index => $image)
+                            <button class="carousel-pagination-btn" onclick="showCarouselItem({{ $index }})">{{ $index + 1 }}</button>
+                        @endforeach
+                    @else
+                        <button class="carousel-pagination-btn active" onclick="showCarouselItem(0)">1</button>
+                    @endif
+                </div>
                 @if (count($game->images) > 1)
                     <button class="carousel-control-prev" onclick="prevSlide()"><i class="fa fa-chevron-left"></i></button>
                     <button class="carousel-control-next" onclick="nextSlide()"><i class="fa fa-chevron-right"></i></button>

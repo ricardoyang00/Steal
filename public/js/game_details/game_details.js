@@ -4,11 +4,19 @@ document.addEventListener('DOMContentLoaded', function() {
     /* Images Carousel */
     const carouselInner = document.querySelector('.carousel-inner');
     const carouselItems = document.querySelectorAll('.carousel-item');
+    const paginationButtons = document.querySelectorAll('.carousel-pagination-btn');
     let currentIndex = 0;
 
     function updateCarousel() {
         const offset = -currentIndex * 100;
         carouselInner.style.transform = `translateX(${offset}%)`;
+        updatePaginationButtons();
+    }
+
+    function updatePaginationButtons() {
+        paginationButtons.forEach((button, index) => {
+            button.classList.toggle('active', index === currentIndex);
+        });
     }
 
     window.prevSlide = function() {
@@ -20,8 +28,16 @@ document.addEventListener('DOMContentLoaded', function() {
         currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0;
         updateCarousel();
     };
+
+    window.showCarouselItem = function(index) {
+        currentIndex = index;
+        updateCarousel();
+    };
+
+    // Initialize the carousel to show the first item
+    updateCarousel();
     /*              */
-    
+
     const reviewsContainer = document.querySelector('.reviews');
     if (!reviewsContainer) {
         return;
