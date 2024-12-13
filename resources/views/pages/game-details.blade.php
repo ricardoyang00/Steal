@@ -227,95 +227,68 @@
                             <button class="btn-review-remove" data-id="{{ $review->id }}">Remove Review</button>
                         </div>
                     @endif
-                @else
-                        <p class="review-buttons">
-                            You must be logged in to leave a review
-                        </p>
+                @elseif (!auth_user())
+                    <p class="review-buttons">
+                        You must be logged in to leave a review
+                    </p>
+                @elseif (is_admin() || (auth_user()->seller))
+                    <p class="review-buttons">
+                        You cannot review games
+                    </p>
                 @endif
             </div>
         </div>
         
         <div class="reviews">
-            @if (!$game->hasReviews())
-                <p class="no-reviews-message">
-                    There are no reviews for this game yet
-                </p>
-            @endif
-            @if (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
-                <div class="add-review-container edit" style="display: none;">
-            @else
-                <div class="add-review-container" style="display: none;">
-            @endif
+            @php
+                $isAuthor = auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user());
+            @endphp
+        
+            <div class="add-review-container {{ $isAuthor ? 'edit' : '' }}" style="display: none;">
                 <div class="btn-close-div">
-                    @if (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
-                        <h3>Edit Review</h3>
-                    @else
-                        <h3>Add Review</h3>
-                    @endif
+                    <h3>{{ $isAuthor ? 'Edit Review' : 'Add Review' }}</h3>
                 </div>
-                @if (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
-                    <form class="edit-review-form" action="{{ url('reviews/update') }}" method="POST">
-                @else
-                    <form class="add-review-form" action="{{ url('reviews/add') }}" method="POST">
-                @endif
-                @csrf
-                @if (auth_user() && auth_user()->buyer && !$game->hasReviewedGame(auth()->user()))
+                <form class="{{ $isAuthor ? 'edit-review-form' : 'add-review-form' }}" action="{{ url($isAuthor ? 'reviews/update' : 'reviews/add') }}" method="POST">
+                    @csrf
                     <input type="hidden" name="game_id" value="{{ $game->id }}">
+                    @if ($isAuthor)
+                        <input type="hidden" name="review_id" value="{{ $review->id ?? '' }}">
+                    @endif
                     <div class="form-group">
                         <label for="review-title">Title</label>
-                        <input type="text" class="form-control" id="review-title" name="title" required>
+                        <input type="text" class="form-control" id="review-title" name="title" value="{{ $isAuthor ? $review->title ?? '' : '' }}" required>
                     </div>
                     <div class="form-group">
                         <label for="review-description">Description</label>
-                        <textarea class="form-control" id="review-description" name="description" rows="3" required></textarea>
+                        <textarea class="form-control" id="review-description" name="description" rows="3" required>{{ $isAuthor ? $review->description ?? '' : '' }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="review-rating">Rating</label>
                         <div class="form-check thumbs-up">
-                            <input class="form-check-input" type="radio" name="positive" id="review-positive" value="true" required>
+                            <input class="form-check-input" type="radio" name="positive" id="review-positive" value="true" {{ $isAuthor && isset($review) && $review->positive ? 'checked' : '' }} required>
                             <label class="form-check-label" for="review-positive">
                                 <i class="fas fa-thumbs-up" style="color: #4ab757;"></i> Positive
                             </label>
                         </div>
                         <div class="form-check thumbs-up">
-                            <input class="form-check-input" type="radio" name="positive" id="review-negative" value="false" required>
+                            <input class="form-check-input" type="radio" name="positive" id="review-negative" value="false" {{ $isAuthor && isset($review) && !$review->positive ? 'checked' : '' }} required>
                             <label class="form-check-label" for="review-negative">
                                 <i class="fas fa-thumbs-down" style="color: #b7574a;"></i> Negative
                             </label>
                         </div>
                     </div>
-                @else
-                    <input type="hidden" name="game_id" value="{{ $game->id }}">
-                    <input type="hidden" name="review_id" value="{{ $review->id ?? '' }}">
-                    <div class="form-group">
-                        <label for="review-title">Title</label>
-                        <input type="text" class="form-control" id="review-title" name="title" value="{{ $review->title ?? '' }}" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="review-description">Description</label>
-                        <textarea class="form-control" id="review-description" name="description" rows="3" required>{{ $review->description ?? '' }}</textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="review-rating">Rating</label>
-                        <div class="form-check thumbs-up">
-                            <input class="form-check-input" type="radio" name="positive" id="review-positive" value="true" {{ isset($review) && $review->positive ? 'checked' : '' }} required>
-                            <label class="form-check-label" for="review-positive">
-                                <i class="fas fa-thumbs-up" style="color: #4ab757;"></i> Positive
-                            </label>
-                        </div>
-                        <div class="form-check thumbs-up">
-                            <input class="form-check-input" type="radio" name="positive" id="review-negative" value="false" {{ isset($review) && !$review->positive ? 'checked' : '' }} required>
-                            <label class="form-check-label" for="review-negative">
-                                <i class="fas fa-thumbs-down" style="color: #b7574a;"></i> Negative
-                            </label>
-                        </div>
-                    </div>
-                @endif
                     <div class="btn-submit-div">
                         <button type="submit" class="btn btn-primary btn-submit">Submit Review</button>
                     </div>
                 </form>
             </div>
+
+            @if (!$game->hasReviews())
+                <p class="no-reviews-message">
+                    There are no reviews for this game yet
+                </p>
+            @endif
+            
             <!-- Reviews will be loaded here by the JS -->
         </div>
     </div>

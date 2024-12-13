@@ -124,8 +124,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    const closeReviewForm = document.querySelector('.btn-close-review-form');
-    closeReviewForm.addEventListener('click', closeFormEvent);
     const removeReviewBtns = document.querySelectorAll('.btn-review-remove');
     removeReviewBtns.forEach(btn => {
         btn.addEventListener('click', function() {
