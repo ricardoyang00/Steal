@@ -45,17 +45,68 @@
     margin-bottom: 16px;
     height: 680px;
 
-    .game-images {
+    .game-images-carousel {
         flex: 2.20;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
-        img {
-            max-width: 100%;
-            height: auto;
-            object-fit: contain;
+        overflow: hidden;
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 640px;
             border-radius: 10px;
+            object-fit: cover;
+        }
+        
+        .carousel-control-prev,
+        .carousel-control-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            user-select: none;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 60px;
+        }
+        
+        .carousel-control-prev {
+            left: 10px;
+        }
+        
+        .carousel-control-next {
+            right: 10px;
+        }
+        
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            background-color: rgba(255, 255, 255, 0.3); /* Slightly lighter background on hover */
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .carousel-control-prev i,
+        .carousel-control-next i {
+            font-size: 1.5rem; /* Icon size */
         }
     }
 

@@ -32,16 +32,24 @@
         <!-- Game Box -->
         <div class="game-box">
             <!-- Game Images -->
-            <div class="game-images">
-                <img src="{{ asset($game->getThumbnailLargePath()) }}" class="img-fluid" alt="{{ $game->name }}">
-                <!-- Additional Images -->
-                {{-- @if ($game->images)
-                    @foreach($game->images as $image)
-                        <div class="game-image">
-                            <img src="{{ asset($image->path) }}" class="img-fluid" alt="{{ $game->name }}">
+            <div class="game-images-carousel">
+                <div class="carousel-inner">
+                    @if ($game->images && count($game->images) > 0)
+                        @foreach($game->images as $image)
+                            <div class="carousel-item">
+                                <img src="{{ asset($image->path) }}" class="img-fluid" alt="{{ $game->name }}">
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="carousel-item">
+                            <img src="{{ asset($game->getThumbnailLargePath()) }}" class="img-fluid" alt="{{ $game->name }}">
                         </div>
-                    @endforeach
-                @endif --}}
+                    @endif
+                </div>
+                @if (count($game->images) > 0)
+                    <button class="carousel-control-prev" onclick="prevSlide()"><i class="fa fa-chevron-left"></i></button>
+                    <button class="carousel-control-next" onclick="nextSlide()"><i class="fa fa-chevron-right"></i></button>
+                @endif
             </div>
             <div class="game-info">
                 <div class="game-image-container">

@@ -1,5 +1,27 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM fully loaded and parsed');
+
+    /* Images Carousel */
+    const carouselInner = document.querySelector('.carousel-inner');
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    let currentIndex = 0;
+
+    function updateCarousel() {
+        const offset = -currentIndex * 100;
+        carouselInner.style.transform = `translateX(${offset}%)`;
+    }
+
+    window.prevSlide = function() {
+        currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselItems.length - 1;
+        updateCarousel();
+    };
+
+    window.nextSlide = function() {
+        currentIndex = (currentIndex < carouselItems.length - 1) ? currentIndex + 1 : 0;
+        updateCarousel();
+    };
+    /*              */
+    
     const reviewsContainer = document.querySelector('.reviews');
     if (!reviewsContainer) {
         return;
