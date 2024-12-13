@@ -1,10 +1,3 @@
-/* Game Details Image Styling */
-.game-details-page .game-image .img-fluid {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
-}
-
 /* Game Title */
 .game-details-page .game-details {
     .game-title-div {
@@ -16,11 +9,14 @@
         justify-content: space-between;
         align-items: center;
         h1 {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
         }
         .add-to-wishlist {
+            justify-content: center;
             font-size: 1rem;
             background-color: black;
+            margin: 16px 0px;
+            width: 150px;
             padding: 0 16px;
             border-radius: 4px;
             display: flex;
@@ -47,6 +43,7 @@
     border-radius: 10px;
     align-items: flex-start;
     margin-bottom: 16px;
+    height: 680px;
 
     .game-images {
         flex: 2.20;
