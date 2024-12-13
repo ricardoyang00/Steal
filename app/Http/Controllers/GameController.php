@@ -465,19 +465,4 @@ class GameController extends Controller
 
         return view('seller.game-history', compact('game', 'purchases'));
     }
-
-    public function deleteMedia($id)
-    {
-        $media = GameMedia::findOrFail($id);
-
-        // Delete the media file from the storage
-        if (File::exists(public_path($media->path))) {
-            File::delete(public_path($media->path));
-        }
-
-        // Delete the media record from the database
-        $media->delete();
-
-        return redirect()->back()->withSuccess('Media deleted successfully.');
-    }
 }
