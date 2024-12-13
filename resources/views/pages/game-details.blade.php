@@ -34,10 +34,13 @@
             <!-- Game Images -->
             <div class="game-images-carousel">
                 <div class="carousel-inner">
+                    <div class="carousel-item">
+                        <img src="{{ asset($game->getThumbnailLargePath()) }}" class="img-fluid" alt="{{ $game->name }}">
+                    </div>
                     @if ($game->images && count($game->images) > 0)
                         @foreach($game->images as $image)
                             <div class="carousel-item">
-                                <img src="{{ asset($image->path) }}" class="img-fluid" alt="{{ $game->name }}">
+                                <img src="{{ asset($image->path) }}" class="img-fluid" alt="{{ $game->name }}" style="width: 971px">
                             </div>
                         @endforeach
                     @else
