@@ -6,22 +6,26 @@
 <div class="container mt-5">
     <h1 class="text-primary">My Products</h1>
 
-    <a href="{{ route('games.create') }}" class="btn btn-primary mb-3">New Game</a>
-    
-    <div class="product-list">
-        @if ($games->isEmpty())
-            <p>No products found.</p>
-        @else
-                
-            @foreach($games as $game)
-                @include('partials.game-card-seller-listing', ['game' => $game])
-            @endforeach
+    <div class = "new-game-btn">
+        <a href="{{ route('games.create') }}">New Game</a>
+    </div>
 
-            <!-- Pagination Links -->
-            <div class="pagination-links">
-                {{ $games->links() }}
-            </div>
-        @endif
+    <div class="seller-product-list">
+        <div class="game-cards">
+            @if ($games->isEmpty())
+                <p>No products found.</p>
+            @else
+                    
+                @foreach($games as $game)
+                    @include('partials.game-card-seller-listing', ['game' => $game])
+                @endforeach
+
+                <!-- Pagination Links -->
+                <div class="pagination-links">
+                    {{ $games->links() }}
+                </div>
+            @endif
+        </div>
     </div>
 </div>
 @endsection

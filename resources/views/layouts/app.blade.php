@@ -18,6 +18,7 @@
         <link href="{{ url('css/app.css') }}" rel="stylesheet">
         <link href="{{ url('css/register_login.css') }}" rel="stylesheet">
         <link href="{{ url('css/explore_page.css') }}" rel="stylesheet">
+        <link href="{{ url('css/seller_page.css') }}" rel="stylesheet">
         <link href="{{ url('css/game_details.css') }}" rel="stylesheet">
         <link href="{{ url('css/admin/manage_users.css') }}" rel="stylesheet">
         <link href="{{ url('css/admin/blocked_games.css') }}" rel="stylesheet">
@@ -76,7 +77,6 @@
                                     @endif
                                     @if (auth_user()->seller)
                                         <a class="dropdown-item" href="{{ url('/seller/products') }}">My Products</a>
-                                        <a class="dropdown-item" href="">Statistics</a>
                                     @endif
                                     @if (auth_user()->buyer)
                                         <a class="dropdown-item" href="{{ route('purchaseHistory', ['id' => auth_user()->id]) }}">My Orders</a>

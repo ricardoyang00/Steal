@@ -1,0 +1,290 @@
+/* Explore Page Layout */
+.seller-product-list {
+    display: flex;
+    gap: 16px;
+}
+
+/* General Card Styling */
+.seller-product-list .game-cards {
+    flex-grow: 1;
+}
+
+.seller-product-list .game-cards .text-center {
+    margin-left: 10px;
+    margin-bottom: 30px;
+}
+
+.seller-product-list .game-card {
+    background-color: var(--game-card-background);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+    color: var(--text-color);
+    display: flex;
+    align-items: stretch;
+    gap: 16px;
+    position: relative; 
+    transition: transform 0.2s, box-shadow 0.2s;
+    max-width: 100%;
+    cursor: pointer;
+}
+
+.seller-product-list .game-card:hover {
+    background-color: var(--hover-background-color);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* Thumbnail */
+.seller-product-list .game-card .img.card-img-top {
+    border-radius: 4px;
+    width: 250px;
+    height: 160px;
+}
+
+/* Game Details */
+.seller-product-list .game-details {
+    flex-grow: 1; 
+    max-width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    height: 100%; 
+}
+
+.seller-product-list .game-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+    margin-top: 4px;
+}
+
+.seller-product-list .game-title a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.seller-product-list .game-title a:hover {
+    color: var(--cart-control-button);
+}
+
+/* Game Tags Container */
+.game-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-width: 100%;
+    margin-top: 4px;
+}
+
+.tag {
+    background-color: var(--cart-control-button);
+    color: var(--text-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.tag:hover {
+    background-color: var(--highlight-color);
+}
+
+/* Platforms and Release Date */
+.seller-product-list .game-release-date {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    margin-top: 16px;
+    margin-left: 2px;
+}
+
+/* Rating Bar Container */
+.seller-product-list .rating-bar {
+    display: flex;
+    height: 8px;
+    width: 200px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 8px 0;
+}
+
+.seller-product-list .rating-positive {
+    background-color: var(--positive);
+    height: 100%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-right: 2px;
+}
+
+.seller-product-list .rating-negative {
+    background-color: var(--negative);
+    height: 100%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.seller-product-list .rating-no-reviews {
+    background-color: gray;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.seller-product-list .rating-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.seller-product-list .positive-label, .negative-label, .no-reviews-label {
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.seller-product-list .positive-label {
+    color: var(--positive);
+}
+
+.seller-product-list .negative-label {
+    color: var(--negative);
+}
+
+.seller-product-list .no-reviews-label {
+    color: gray;
+}
+
+/* Price */
+.seller-product-list .game-price {
+    display: flex;
+    flex-direction: row;
+
+    position: absolute;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-right: 20px;
+    margin-bottom: 4px;
+    bottom: 16px;
+    right: 16px;
+}
+
+/* Buttons Container */
+.seller-product-list .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+}
+
+/* General Button Styling */
+.seller-product-list .buttons .btn-edit-game {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.seller-product-list .buttons .btn-edit-game i {
+    margin-right: 8px;
+}
+
+/* Edit Button */
+.seller-product-list .buttons .game-edit-button .btn-edit-game {
+    background-color: var(--edit-button-color);
+    color: var(--text-color);
+}
+
+.seller-product-list .buttons .game-edit-button .btn-edit-game:hover {
+    background-color: var(--edit-button-hover-color);
+    transform: scale(1.05);
+    color: var(--cart-control-button);
+}
+
+/* Add Stock Button */
+.seller-product-list .buttons .game-stock-button .btn-edit-game {
+    background-color: var(--add-stock-button-color);
+    color: var(--text-color);
+}
+
+.seller-product-list .buttons .game-stock-button .btn-edit-game:hover {
+    background-color: var(--add-stock-button-hover-color);
+    transform: scale(1.05);
+    color: var(--cart-control-button);
+}
+
+/* Purchase History Button */
+.seller-product-list .buttons .game-history-button .btn-edit-game {
+    background-color: var(--history-button-color);
+    color: var(--text-color);
+}
+
+.seller-product-list .buttons .game-history-button .btn-edit-game:hover {
+    background-color: var(--history-button-hover-color);
+    transform: scale(1.05);
+    color: var(--cart-control-button);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .seller-product-list {
+        flex-direction: column;
+    }
+    .seller-product-list .game-card {
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 100%;
+    }
+    .seller-product-list .game-price-add-cart {
+        position: static;
+        align-items: flex-start;
+        margin-top: 16px;
+    }
+    .seller-product-list .game-thumbnail img {
+        width: 100%;
+    }
+}
+
+/* Title Styling */
+.container h1.text-primary {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+/* New Game Button Styling */
+.new-game-btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.new-game-btn a {
+    display: inline-block;
+    font-weight: bold;
+    background-color: #6419cc; 
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.new-game-btn a:hover {
+    background-color: #4e13a3;
+}
