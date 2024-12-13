@@ -34,7 +34,8 @@ class WishlistController extends Controller
                     $products[] = [
                         'id' => $game->id,
                         'name' => $game->name,
-                        'price' => $game->price
+                        'price' => $game->price,
+                        'thumbnail_small_path' => $game->getThumbnailSmallPath()
                     ];
                 }
                 $total += $game->price;

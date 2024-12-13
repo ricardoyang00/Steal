@@ -25,7 +25,7 @@
                             <li id="product-{{ $product['id'] }}">
                                 <div class="product-container">
                                     <a href="{{ route('game.details', ['id' => $product['id']]) }}">
-                                        <img src="{{ asset('images/default-game-poster.jpg') }}" class="img-fluid" alt="{{ $product['name'] }}">
+                                        <img src="{{ asset($product['thumbnail_small_path']) }}" class="img-fluid" alt="{{ $product['name'] }}">
                                     </a>
                                     <div class="product-details">
                                         <a href="{{ route('game.details', ['id' => $product['id']]) }}">

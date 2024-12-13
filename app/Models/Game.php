@@ -94,11 +94,15 @@ class Game extends Model
     }
 
     public function getThumbnailSmallPath() {
-        return $this->thumbnail_small_path ?? 'images/thumbnail_small/default_thumbnail_small.jpg';
+        $thumbnailSmallPath = $this->thumbnail_small_path ?? 'images/thumbnail_small/default_thumbnail_small.jpg';
+        $thumbnailSmallFullPath = public_path($thumbnailSmallPath);
+        return file_exists($thumbnailSmallFullPath) ? asset($thumbnailSmallPath) : asset('images/thumbnail_small/default_thumbnail_small.jpg');
     }
-
+    
     public function getThumbnailLargePath() {
-        return $this->thumbnail_large_path ?? 'images/thumbnail_large/default_thumbnail_large.jpg';
+        $thumbnailLargePath = $this->thumbnail_large_path ?? 'images/thumbnail_large/default_thumbnail_large.jpg';
+        $thumbnailLargeFullPath = public_path($thumbnailLargePath);
+        return file_exists($thumbnailLargeFullPath) ? asset($thumbnailLargePath) : asset('images/thumbnail_large/default_thumbnail_large.jpg');
     }
 
     public function images()

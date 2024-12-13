@@ -34,13 +34,14 @@
             <!-- Game Images -->
             <div class="game-images-carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item">
-                        <img src="{{ asset($game->getThumbnailLargePath()) }}" class="img-fluid" alt="{{ $game->name }}">
-                    </div>
                     @if ($game->images && count($game->images) > 0)
                         @foreach($game->images as $image)
+                            @php
+                                $imagePath = public_path($image->path);
+                                $imageUrl = file_exists($imagePath) ? asset($image->path) : asset('images/thumbnail_large/default_thumbnail_large.jpg');
+                            @endphp
                             <div class="carousel-item">
-                                <img src="{{ asset($image->path) }}" class="img-fluid" alt="{{ $game->name }}" style="width: 971px">
+                                <img src="{{ $imageUrl }}" class="img-fluid" alt="{{ $game->name }}" style="width: 971px">
                             </div>
                         @endforeach
                     @else
@@ -49,7 +50,7 @@
                         </div>
                     @endif
                 </div>
-                @if (count($game->images) > 0)
+                @if (count($game->images) > 1)
                     <button class="carousel-control-prev" onclick="prevSlide()"><i class="fa fa-chevron-left"></i></button>
                     <button class="carousel-control-next" onclick="nextSlide()"><i class="fa fa-chevron-right"></i></button>
                 @endif
