@@ -41,7 +41,7 @@
                                 $imageUrl = file_exists($imagePath) ? asset($image->path) : asset('images/thumbnail_large/default_thumbnail_large.jpg');
                             @endphp
                             <div class="carousel-item">
-                                <img src="{{ $imageUrl }}" class="img-fluid" alt="{{ $game->name }}" style="width: 971px">
+                                <img src="{{ $imageUrl }}" class="img-fluid" alt="{{ $game->name }}">
                             </div>
                         @endforeach
                     @else
