@@ -62,10 +62,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const iconFas = document.createElement('i');
             if (review.positive) {
                 iconFas.classList.add('fas', 'fa-thumbs-up');
-                iconFas.style.color = 'lightgreen';
+                iconFas.style.color = '#4ab757';
             } else {
                 iconFas.classList.add('fas', 'fa-thumbs-down');
-                iconFas.style.color = 'red';
+                iconFas.style.color = '#b7574a';
             }
 
             reviewElement.innerHTML = `

@@ -185,50 +185,60 @@
     <h2>Reviews</h2>
     <div class="game-reviews" data-id="{{ $game->id }}">
         <div class="reviews-bar">
-            @if (auth_user() && auth_user()->buyer && auth()->user()->hasDeliveredPurchase($game->id) && !$game->hasReviewedGame(auth()->user()))
-            <div class="review-buttons">
-                <button class="btn-review-form-toggle">Add Review</button>
-                <button class="btn-review-remove" style="display: none;">Remove Review</button>
-            </div>
-            @elseif (auth_user() && auth_user()->buyer && !$game->hasReviewedGame(auth()->user()))
-                <p class="review-buttons">
-                    You must have purchased this game to leave a review.
-                </p>
-            @elseif (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
-                <div class="review-buttons">
-                    <button class="btn-review-form-toggle">Edit Review</button>
-                    <button class="btn-review-remove" data-id="{{ $review->id }}">Remove Review</button>
-                </div>
-            @elseif (!auth_user())
-                <p class="review-buttons">
-                    You must be logged in to leave a review.
-                </p>
-            @endif
             <!-- Rating -->
-            <div class="game-rating">
-                <div class="rating-labels">
-                    @if ($game->hasReviews())
-                        <span class="positive-label">{{ $game->overall_rating }}% <i class="fa fa-thumbs-up"></i></span>
-                        <span class="negative-label">{{ 100 - $game->overall_rating }}% <i class="fa fa-thumbs-down"></i></span>
-                    @else
-                        <span class="no-reviews-label">0% <i class="fa fa-thumbs-up"></i></span>
-                        <span class="no-reviews-label">0% <i class="fa fa-thumbs-down"></i></span>
-                    @endif
+            <div class="rating-container">
+                <p>Overall Reviews</p>
+                <div class="game-rating">
+                    <div class="rating-labels">
+                        @if ($game->hasReviews())
+                            <span class="positive-label">{{ $game->overall_rating }}% <i class="fa fa-thumbs-up"></i></span>
+                            <span class="negative-label">{{ 100 - $game->overall_rating }}% <i class="fa fa-thumbs-down"></i></span>
+                        @else
+                            <span class="no-reviews-label">0% <i class="fa fa-thumbs-up"></i></span>
+                            <span class="no-reviews-label">0% <i class="fa fa-thumbs-down"></i></span>
+                        @endif
+                    </div>
+                    <div class="rating-bar">
+                        @if ($game->hasReviews())
+                            <div class="rating-positive" style="width: {{ $game->overall_rating }}%;"></div>
+                            <div class="rating-negative" style="width: {{ 100 - $game->overall_rating }}%;"></div>
+                        @else
+                            <div class="rating-no-reviews" style="width: 100%;"></div>
+                        @endif
+                    </div>
                 </div>
-                <div class="rating-bar">
-                    @if ($game->hasReviews())
-                        <div class="rating-positive" style="width: {{ $game->overall_rating }}%;"></div>
-                        <div class="rating-negative" style="width: {{ 100 - $game->overall_rating }}%;"></div>
-                    @else
-                        <div class="rating-no-reviews" style="width: 100%;"></div>
+                <p>{{ count($game->reviews) }} {{ count($game->reviews) == 1 ? 'Review' : 'Reviews' }} </p>
+            </div>
+
+            <div class="review-bar-end">
+                @if (auth_user() && auth_user()->buyer)
+                    @if (auth()->user()->hasDeliveredPurchase($game->id) && !$game->hasReviewedGame(auth()->user()))
+                        <div class="review-buttons">
+                            <button class="btn-review-form-toggle">Add Review</button>
+                            <button class="btn-review-remove" style="display: none;">Remove Review</button>
+                        </div>
+                    @elseif (!$game->hasReviewedGame(auth()->user()))
+                        <p class="review-buttons">
+                            You must have purchased this game to leave a review
+                        </p>
+                    @elseif ($game->hasReviewedGame(auth()->user()))
+                        <div class="review-buttons">
+                            <button class="btn-review-form-toggle">Edit Review</button>
+                            <button class="btn-review-remove" data-id="{{ $review->id }}">Remove Review</button>
+                        </div>
                     @endif
-                </div>
+                @else
+                        <p class="review-buttons">
+                            You must be logged in to leave a review
+                        </p>
+                @endif
             </div>
         </div>
+        
         <div class="reviews">
             @if (!$game->hasReviews())
                 <p class="no-reviews-message">
-                    There are no reviews for this game yet.
+                    There are no reviews for this game yet
                 </p>
             @endif
             @if (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
@@ -242,7 +252,6 @@
                     @else
                         <h3>Add Review</h3>
                     @endif
-                    <button class="btn-close-review-form">Close</button>
                 </div>
                 @if (auth_user() && auth_user()->buyer && $game->hasReviewedGame(auth()->user()))
                     <form class="edit-review-form" action="{{ url('reviews/update') }}" method="POST">
@@ -291,13 +300,13 @@
                         <div class="form-check thumbs-up">
                             <input class="form-check-input" type="radio" name="positive" id="review-positive" value="true" {{ isset($review) && $review->positive ? 'checked' : '' }} required>
                             <label class="form-check-label" for="review-positive">
-                                <i class="fas fa-thumbs-up" style="color: lightgreen;"></i> Positive
+                                <i class="fas fa-thumbs-up" style="color: #4ab757;"></i> Positive
                             </label>
                         </div>
                         <div class="form-check thumbs-up">
                             <input class="form-check-input" type="radio" name="positive" id="review-negative" value="false" {{ isset($review) && !$review->positive ? 'checked' : '' }} required>
                             <label class="form-check-label" for="review-negative">
-                                <i class="fas fa-thumbs-down" style="color: red;"></i> Negative
+                                <i class="fas fa-thumbs-down" style="color: #b7574a;"></i> Negative
                             </label>
                         </div>
                     </div>

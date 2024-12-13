@@ -350,6 +350,133 @@
     background-color: var(--buy-button-hover-color);
 }
 
+/* Admin "Add to Cart" Button */
+#block-game {
+    background-color: var(--red);
+}
+
+#block-game:hover {
+    background-color: var(--red-hover);
+}
+
+#btn-unblock {
+    background-color: #28a745;
+}
+
+#btn-unblock:hover {
+    background-color: rgb(0, 99, 0);
+}
+
+
+/* Rating Bar Container */
+.reviews-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--game-card-background);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.rating-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    p {
+        margin: 0px 10px;
+        margin-bottom: -8px;
+        color: var(--secondary-text-color);
+    }
+}
+
+.game-details-page .reviews-bar .rating-bar {
+    display: flex;
+    height: 8px;
+    width: 200px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 8px 16px 8px 0;
+}
+
+.game-details-page .reviews-bar .rating-positive {
+    background-color: var(--positive);
+    height: 100%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-right: 2px;
+}
+
+.game-details-page .reviews-bar .rating-negative {
+    background-color: var(--negative);
+    height: 100%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.game-details-page .reviews-bar .rating-no-reviews {
+    background-color: grey;
+    height: 100%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.game-details-page .reviews-bar .rating-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+}
+
+.game-details-page .reviews-bar .positive-label, .negative-label {
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.game-details-page .reviews-bar .positive-label {
+    color: var(--positive);
+}
+
+.game-details-page .reviews-bar .negative-label {
+    color: var(--negative);
+}
+
+.game-details-page .reviews-bar .no-reviews-label {
+    color: grey;
+}
+
+.review-bar-end {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    .review-buttons {
+        margin-right: 10px;
+        .btn-review-form-toggle, .btn-review-remove {
+            padding: 8px 16px;
+            color: var(--text-color);
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn-review-form-toggle {
+            background-color: var(--positive);
+        }
+        .btn-review-form-toggle:hover {
+            background-color: var(--positive-hover);
+        }
+        .btn-review-remove {
+            background-color: var(--negative);
+        }
+        .btn-review-remove:hover {
+            background-color: var(--negative-hover);
+        }
+    }
+}
+
+/* End of Rating Bar Container */
+
 /* Start of Review Section */
 
 .game-details-page .review-card {
@@ -454,28 +581,6 @@
     flex-direction: row;
 }
 
-.game-details-page .reviews-bar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    .review-buttons{
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 16px;
-        .btn-review-remove {
-            background-color: var(--error-color);
-            color: white;
-        }
-    }
-    padding: 32px;
-    background-color: var(--explore-table-color);
-    border-radius: 8px;
-    margin-bottom: 16px;
-}
-
 .game-details-page .no-reviews-message {
     font-size: 1.25rem;
     text-align: center;
@@ -537,67 +642,3 @@
 }
 
 /* End of Review Section */
-
-/* Rating Bar Container */
-
-.game-details-page .reviews-bar .rating-bar {
-    display: flex;
-    height: 8px;
-    width: 200px;
-    border-radius: 5px;
-    overflow: hidden;
-    margin: 8px 16px 8px 0;
-}
-
-.game-details-page .reviews-bar .rating-positive {
-    background-color: var(--positive);
-    height: 100%;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    margin-right: 2px;
-}
-
-.game-details-page .reviews-bar .rating-negative {
-    background-color: var(--negative);
-    height: 100%;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
-.game-details-page .reviews-bar .rating-labels {
-    display: flex;
-    justify-content: space-between;
-    width: 200px;
-}
-
-.game-details-page .reviews-bar .positive-label, .negative-label {
-    font-size: 0.9rem;
-    margin-top: 10px;
-}
-
-.game-details-page .reviews-bar .positive-label {
-    color: var(--positive);
-}
-
-.game-details-page .reviews-bar .negative-label {
-    color: var(--negative);
-}
-
-/* End of Rating Bar Container */
-
-
-#block-game {
-    background-color: var(--red);
-}
-
-#block-game:hover {
-    background-color: var(--red-hover);
-}
-
-#btn-unblock {
-    background-color: #28a745;
-}
-
-#btn-unblock:hover {
-    background-color: rgb(0, 99, 0);
-}
