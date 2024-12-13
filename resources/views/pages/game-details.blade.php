@@ -10,8 +10,8 @@
 @endif
 
 <script src="{{ asset('js/game_details/game_details.js') }}" defer></script>
+<script src="{{ asset('js/common/confirmation-modal.js') }}" defer></script>
 <script src="{{ asset('js/admin/block-modal.js') }}" defer></script>
-@include('partials.admin.block-modal')
 
 <div class="game-details-page">
     <div class="game-details">
@@ -161,13 +161,20 @@
                     </button>
                 @elseif (is_admin())
                     @if ($game->is_active)
+                        @include('partials.admin.block-modal')
                         <form action="{{ route('admin.games.block', $game->id) }}" method="POST" style="display:inline;">
                             @csrf
                             <button type="button" class="btn-add-to-cart btn btn-primary" id="block-game" onclick="showBlockModal({{ $game->id }})">Block</button>
                     @else
-                        <form action="{{ route('admin.games.unblock', $game->id) }}" method="POST" style="display:inline;">
+                        @include('partials.common.confirmation-modal')
+                        <form action="{{ route('admin.games.unblock', $game->id) }}" method="POST" style="display:inline;" id="unblock-game-form">
                             @csrf
-                            <button type="button" class="btn-add-to-cart btn btn-primary" id="unblock-game">Unblock</button>
+                            <button type="button" class="confirmation-btn btn-add-to-cart btn btn-primary" id="btn-unblock"
+                                    data-title="Unblock Game"
+                                    data-message="Are you sure you want to unblock {{ $game->name }} ?"
+                                    data-form-id="unblock-game-form">
+                                Unblock
+                            </button>
                         </form>
                     @endif
                 @endif
@@ -200,12 +207,21 @@
             <!-- Rating -->
             <div class="game-rating">
                 <div class="rating-labels">
-                    <span class="positive-label">{{ $game->overall_rating }}% <i class="fa fa-thumbs-up"></i></span>
-                    <span class="negative-label">{{ 100 - $game->overall_rating }}% <i class="fa fa-thumbs-down"></i></span>
+                    @if ($game->hasReviews())
+                        <span class="positive-label">{{ $game->overall_rating }}% <i class="fa fa-thumbs-up"></i></span>
+                        <span class="negative-label">{{ 100 - $game->overall_rating }}% <i class="fa fa-thumbs-down"></i></span>
+                    @else
+                        <span class="no-reviews-label">0% <i class="fa fa-thumbs-up"></i></span>
+                        <span class="no-reviews-label">0% <i class="fa fa-thumbs-down"></i></span>
+                    @endif
                 </div>
                 <div class="rating-bar">
-                    <div class="rating-positive" style="width: {{ $game->overall_rating }}%;"></div>
-                    <div class="rating-negative" style="width: {{ 100 - $game->overall_rating }}%;"></div>
+                    @if ($game->hasReviews())
+                        <div class="rating-positive" style="width: {{ $game->overall_rating }}%;"></div>
+                        <div class="rating-negative" style="width: {{ 100 - $game->overall_rating }}%;"></div>
+                    @else
+                        <div class="rating-no-reviews" style="width: 100%;"></div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -249,13 +265,13 @@
                         <div class="form-check thumbs-up">
                             <input class="form-check-input" type="radio" name="positive" id="review-positive" value="true" required>
                             <label class="form-check-label" for="review-positive">
-                                <i class="fas fa-thumbs-up" style="color: lightgreen;"></i> Positive
+                                <i class="fas fa-thumbs-up" style="color: #4ab757;"></i> Positive
                             </label>
                         </div>
                         <div class="form-check thumbs-up">
                             <input class="form-check-input" type="radio" name="positive" id="review-negative" value="false" required>
                             <label class="form-check-label" for="review-negative">
-                                <i class="fas fa-thumbs-down" style="color: red;"></i> Negative
+                                <i class="fas fa-thumbs-down" style="color: #b7574a;"></i> Negative
                             </label>
                         </div>
                     </div>
