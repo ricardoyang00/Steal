@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Review;
+use App\Models\ReviewLike;
 use App\Models\User;
 use App\Models\Game;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\NotificationController;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewsController extends Controller
 {
@@ -17,37 +20,19 @@ class ReviewsController extends Controller
         $this->notificationController = $notificationController;
     }
 
-
-    public function getReviews(Request $request)
-    {
-        $gameId = $request->input('game_id');
-
-        $reviews = Review::where('game', $gameId)->get();
-
-        // get all author id in $reviews
-        $authorIds = $reviews->pluck('author');
-
-        for ($i = 0; $i < count($authorIds); $i++) {
-            $authorNames[$i] = User::find($authorIds[$i])->name;
-        }
-
-        for ($i = 0; $i < count($reviews); $i++) {
-            $reviews[$i]->author = $authorNames[$i];
-        }
-
-        return response()->json([
-            'reviews' => $reviews,
-        ]);
-    }
-
     public function addReview(Request $request)
     {
+        $request->validate([
+            'title' => 'required|string|max:100|regex:/^[a-zA-Z0-9\s,\.]+$/',
+            'description' => 'required|string|max:500|regex:/^[a-zA-Z0-9\s,\.]+$/',
+        ]);        
+
         try {
             $review = new Review();
             $review->title = $request->input('title');
             $review->game = $request->input('game_id');
             $review->description = $request->input('description');
-            $review->positive = $request->input('positive');
+            $review->positive = $request->input('rating');
             $review->author = auth_user()->id;
             $review->save();
 
@@ -65,36 +50,39 @@ class ReviewsController extends Controller
         return redirect()->route('game.details', ['id' => $gameId])->with(['success' => 'Review added successfully!']);
     }
 
-    public function deleteReview(Request $request)
+    public function deleteReview($id)
     {
-        $reviewId = $request->input('review_id');
-
-        $review = Review::find($reviewId);
-
-        $gameId = $review->game;
-
-        $review->delete();
-
-        $game = Game::find($gameId);
-        $game->updateRatings();
-        $game->save();
-
-        return response()->json([
-            'success' => true,
-        ]);
+        try {
+            $review = Review::findOrFail($id);
+            $gameId = $review->game;
+            $review->delete();
+    
+            $game = Game::findOrFail($gameId);
+            $game->updateRatings();
+            $game->save();
+    
+            return redirect()->route('game.details', ['id' => $gameId])->withSuccess('Review removed successfully!');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'An error occurred while removing the review.']);
+        }
     }
 
     public function updateReview(Request $request)
     {
+        $request->validate([
+            'title' => 'required|string|max:100|regex:/^[a-zA-Z0-9\s,\.]+$/',
+            'description' => 'required|string|max:500|regex:/^[a-zA-Z0-9\s,\.]+$/',
+        ]);        
+
         try {
             $reviewId = $request->input('review_id');
 
-            $review = Review::find($reviewId);
+            $review = Review::findOrFail($reviewId);
 
 
             $review->title = $request->input('title');
             $review->description = $request->input('description');
-            $review->positive = $request->input('positive');
+            $review->positive = $request->input('rating');
             $gameId = $review->game;
             $review->save();
 
@@ -106,7 +94,35 @@ class ReviewsController extends Controller
             return back()->withErrors(['error' => 'An error occurred while updating the review.']);
         }
 
-        return redirect()->route('game.details', ['id' => $gameId])->with(['success' => 'Review updated successfully!']);
+        return redirect()->route('game.details', ['id' => $gameId])->withSuccess('Review updated successfully!');
+    }
+
+    public function like(Request $request, $reviewId)
+    {
+        $user = auth_user();
+        if (!$user) {
+            return redirect()->route('login');
+        }
+    
+        $review = Review::findOrFail($reviewId);
+    
+        // Check if the user has already liked the review
+        $existingLike = ReviewLike::where('review', $reviewId)->where('author', $user->id)->first();
+        if ($existingLike) {
+            // Unlike the review
+            $existingLike->delete();
+        } else {
+            // Create a new like
+            ReviewLike::create([
+                'review' => $reviewId,
+                'author' => $user->id,
+            ]);
+        }
+    
+        // Get the updated likes count
+        $likesCount = $review->likes()->count();
+    
+        return response()->json(['success' => true, 'likes_count' => $likesCount]);
     }
 
     public function reportReview(Request $request)

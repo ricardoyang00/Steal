@@ -17,6 +17,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Redirect;
 
 class GameController extends Controller
 {    
@@ -140,30 +142,67 @@ class GameController extends Controller
     public function show($id)
     {
         $game = Game::with(['seller', 'platforms', 'categories', 'languages', 'players'])
-                ->findOrFail($id);
+                    ->findOrFail($id);
 
         $user = auth_user();
         $userId = $user ? $user->id : -1;
-        
+
         if (!$user || $user->buyer || ($user->seller && $game->seller->id != $userId)) {
             if (!$game->is_active) {
                 abort(403, 'This game has been blocked');
             }
         }
 
-        $review = Review::where('game', $game->id)->where('author', $userId)->first();
+        // Fetch the logged-in user's review if it exists
+        $userReview = Review::where('game', $game->id)->where('author', $userId)->first();
 
-        if (!$review) {
-            $review = new Review();
-            $review->id = null;
-            $review->game = $game->id;
-            $review->author = $userId;
-            $review->positive = true;
-            $review->title = '';
-            $review->description = '';
+        // Fetch reviews and handle pagination
+        $reviews = $this->fetchReviews($game->id, $userId, $userReview);
+
+        return view('pages.game-details', compact('game', 'reviews', 'userReview'));
+    }
+
+    private function fetchReviews($gameId, $userId, $userReview)
+    {
+        // Fetch all other reviews excluding the logged-in user's review, ordered by ID in descending order
+        $otherReviewsQuery = Review::where('game', $gameId)
+                                    ->where('author', '!=', $userId)
+                                    ->orderBy('id', 'desc');
+
+        // Determine the total reviews and calculate total pages
+        $totalReviews = $otherReviewsQuery->count() + ($userReview ? 1 : 0);
+        $perPage = 5;
+        $lastPage = ceil($totalReviews / $perPage);
+
+        // Determine the current page from the URL, defaulting to 1
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        if ($currentPage > $lastPage && $lastPage > 0) {
+            // Redirect to the last page if the requested page exceeds it
+            return Redirect::to(request()->url() . '?page=' . $lastPage);
         }
 
-        return view('pages.game-details', compact('game', 'review'));
+        // Initialize reviews collection
+        $reviewsCollection = collect();
+
+        if ($currentPage == 1 && $userReview) {
+            // On the first page, include the user's review and fetch only 4 additional reviews
+            $otherReviews = $otherReviewsQuery->limit($perPage - 1)->get();
+            $reviewsCollection = collect([$userReview])->merge($otherReviews);
+        } else {
+            // On other pages, fetch the correct 5 reviews using offset
+            $offset = $userReview ? (($currentPage - 2) * $perPage + ($perPage - 1)) : (($currentPage - 1) * $perPage);
+            $otherReviews = $otherReviewsQuery->skip($offset)->take($perPage)->get();
+            $reviewsCollection = $otherReviews;
+        }
+
+        // Create the paginator
+        return new LengthAwarePaginator(
+            $reviewsCollection,
+            $totalReviews,
+            $perPage,
+            $currentPage,
+            ['path' => LengthAwarePaginator::resolveCurrentPath()]
+        );
     }
 
     protected function applySearchQuery($gamesQuery, $query)
