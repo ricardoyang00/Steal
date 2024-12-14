@@ -36,7 +36,7 @@
                                         </button>
                                     </div>
                                     <div class="product-actions">
-                                        <p class="product-price">{{ $product['price'] }}€</p>
+                                        <p class="product-price">€{{ $product['price'] }}</p>
                                         @if (!auth_user() || auth_user()->buyer)
                                             <button id="add-to-cart-{{ $product['id'] }}" data-id="{{ $product['id'] }}" class="btn-add-to-cart btn btn-primary">
                                                 Add to Cart

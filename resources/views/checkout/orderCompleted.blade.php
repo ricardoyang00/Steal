@@ -26,7 +26,7 @@
                         <tr>
                             <td>{{ $item['gameName'] ?? 'Unknown' }}</td>
                             <td>{{ $item['cdkCode'] ?? 'Unknown' }}</td>
-                            <td>${{ number_format($item['value'], 2) }}</td>
+                            <td>€{{ number_format($item['value'], 2) }}</td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -48,7 +48,7 @@
 
         <!-- Total Price -->
         <div class="total mt-4">
-            <h3>Total Price: ${{ number_format($total, 2) }}</h3>
+            <h3>Total Price: €{{ number_format($total, 2) }}</h3>
         </div>
     </div>
 

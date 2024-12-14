@@ -145,7 +145,7 @@
             @endif
 
             <div class="game-price-add-cart-div">
-                <p class="game-price"><strong>${{ $game->price }}</strong></p>
+                <p class="game-price"><strong>€{{ $game->price }}</strong></p>
                 @if (!auth_user() || auth_user()->buyer)
                     <button id="add-to-cart-{{ $game['id'] }}" data-id="{{ $game['id'] }}" class="btn-add-to-cart btn btn-primary">
                         Add to Cart

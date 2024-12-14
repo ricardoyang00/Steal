@@ -74,7 +74,7 @@
                                                             @else
                                                                 {{ $purchase['gameName'] }}
                                                             @endif
-                                                             - ${{ number_format($purchase['value'], 2) }}
+                                                             - €{{ number_format($purchase['value'], 2) }}
                                                         </li>
                                                     @endif
                                                 @endforeach
@@ -96,14 +96,14 @@
                                                             @else
                                                                 {{ $purchase['gameName'] }}
                                                             @endif
-                                                             - ${{ number_format($purchase['value'], 2) }}
+                                                             - €{{ number_format($purchase['value'], 2) }}
 
                                                         </li>
                                                     @endif
                                                 @endforeach
                                             </ul>
                                         @endif
-                                        <p><strong>Total Price:</strong> ${{ $notification['orderDetails']['totalPrice'] ?? 0.0 }}</p>
+                                        <p><strong>Total Price:</strong> €{{ $notification['orderDetails']['totalPrice'] ?? 0.0 }}</p>
                                     @elseif(in_array($notification['type'], ['Wishlist', 'ShoppingCart']))
                                         <p><strong>Game:</strong> 
                                             @if(isset($notification['parsedDetails']['game_id']))
@@ -115,8 +115,8 @@
                                             @endif
                                         </p>
                                         @if($notification['parsedDetails']['specific_type'] === 'Price')
-                                            <p><strong>Old Price:</strong> ${{ $notification['parsedDetails']['old_price'] ?? 'N/A' }}</p>
-                                            <p><strong>New Price:</strong> ${{ $notification['parsedDetails']['new_price'] ?? 'N/A' }}</p>
+                                            <p><strong>Old Price:</strong> €{{ $notification['parsedDetails']['old_price'] ?? 'N/A' }}</p>
+                                            <p><strong>New Price:</strong> €{{ $notification['parsedDetails']['new_price'] ?? 'N/A' }}</p>
                                         @elseif($notification['parsedDetails']['specific_type'] === 'Stock')
                                             <p><strong>Update:</strong> {{ $notification['description'] }}</p>
                                         @endif
@@ -197,8 +197,8 @@
                                             $totalPrice = $notification['parsedDetails']['total_price'] ?? 0.0;
                                             $unitPrice = ($quantity > 0) ? $totalPrice / $quantity : 0.0;
                                         @endphp
-                                        <p><strong>Unit Price:</strong> ${{ number_format($unitPrice, 2) }}</p>
-                                        <p><strong>Total Price:</strong> ${{ number_format($totalPrice, 2) }}</p>
+                                        <p><strong>Unit Price:</strong> €{{ number_format($unitPrice, 2) }}</p>
+                                        <p><strong>Total Price:</strong> €{{ number_format($totalPrice, 2) }}</p>
                                     @elseif($notification['type'] === 'Review')
                                         <p><strong>Game:</strong> 
                                             @if(isset($notification['parsedDetails']['game_id']))

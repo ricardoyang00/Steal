@@ -35,7 +35,7 @@
                                         </button>
                                     </div>
                                     <div class="product-actions">
-                                        <p class="product-price">{{ $product['price'] }}€</p>
+                                        <p class="product-price">€{{ $product['price'] }}</p>
                                         <div class="quantity-controls">
                                             <button class="btn-decrease" data-id="{{ $product['id'] }}">-</button>
                                             <span class="prod_quantity">{{ $product['quantity'] }}</span>
@@ -52,9 +52,9 @@
         <div class="summary">
             <h2>Summary</h2>
             <div class="cart-summary">
-                <p class="price-item grey-text">Official price<span id="total_price">{{ $total }}€</span></p>
-                <p class="price-item grey-text">Discount<span id="discount">-0.00€</span></p>
-                <p class="price-item subtotal">Subtotal<span id="subtotal">{{ $total }}€</span></p> <!-- Later change cart.js updateQuantity function so subtotal is calculated with discounts -->
+                <p class="price-item grey-text">Official price<span id="total_price">€ {{ $total }}</span></p>
+                <p class="price-item grey-text">Discount<span id="discount">- € 0.00</span></p>
+                <p class="price-item subtotal">Subtotal<span id="subtotal">€ {{ $total }}</span></p> <!-- Later change cart.js updateQuantity function so subtotal is calculated with discounts -->
                 @if (count($products) == 0)
                     <button id="checkout_button" class="disabled" data-authenticated="false" disabled>Checkout <span class="forward-symbol">&rsaquo;</span></button>
                 @else

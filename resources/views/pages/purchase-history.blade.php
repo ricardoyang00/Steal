@@ -86,14 +86,14 @@
                                 <tr>
                                     <td>{{ $purchase['game'] }}</td>
                                     <td>{{ $purchase['cdk'] }}</td>
-                                    <td>${{ number_format($purchase['value'], 2) }}</td>
+                                    <td>€{{ number_format($purchase['value'], 2) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                         <tfoot>
                             <tr>
                                 <td colspan="2" class="text-right"><strong>Total Price:</strong></td>
-                                <td><strong>${{ number_format($history['totalPrice'], 2) }}</strong></td>
+                                <td><strong>€{{ number_format($history['totalPrice'], 2) }}</strong></td>
                             </tr>
                         </tfoot>
                     </table>
