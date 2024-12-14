@@ -79,22 +79,6 @@
     margin-top: 4px;
 }
 
-.tag {
-    background-color: var(--cart-control-button);
-    color: var(--text-color);
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-decoration: none;
-    transition: background-color 0.2s;
-}
-
-.tag:hover {
-    background-color: var(--highlight-color);
-}
 
 /* Platforms and Release Date */
 .seller-product-list .game-release-date {
@@ -286,10 +270,33 @@
     margin-bottom: 20px;
 }
 
-.new-game-page .image-hint {
-    color: #d70909;
-    font-size: 0.875rem;
-    margin-top: 5px;
-    display: block;
+.seller-product-list {
+    .stock-warning {
+        margin-top: 10px;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .low-stock {
+        background-color: #ffcc00; 
+        border: 2px solid #ff9900; 
+        color: #cc0000;
+    }
+
+    .out-of-stock {
+        background-color: #ff6666;
+        border: 2px solid #cc0000;
+    }
+    
+    .stock-warning .text-warning {
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .stock-warning .fa-exclamation-triangle {
+        margin-right: 5px;
+    }
 }
 

@@ -249,18 +249,21 @@ class GameController extends Controller
         }
     }
     
-
+    // Seller function, where the seller can see the list of their products
     public function listProducts(Request $request) {
         if (!auth_user() || !auth_user()->seller) {
             return redirect()->route('login');
         }
-
+    
         $sellerId = auth()->user()->id;
         $games = Game::where('owner', $sellerId)
                     ->with(['platforms', 'categories', 'languages', 'players'])
+                    ->withCount(['getcdks as stock' => function ($query) {
+                        $query->whereDoesntHave('deliveredPurchase');
+                    }])
                     ->orderBy('name', 'asc')
                     ->paginate(10);
-
+    
         return view('seller.products', compact('games'));
     }
 
@@ -322,7 +325,6 @@ class GameController extends Controller
                     'path' => $imagePath,
                     'game' => $game->id
                 ]);
-                Log::info('Additional image uploaded', ['path' => $imagePath]);
             }
         }
 
@@ -385,7 +387,6 @@ class GameController extends Controller
                 $smallPath = 'images/thumbnail_small/' . uniqid() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('images/thumbnail_small'), $smallPath);
                 $game->thumbnail_small_path = $smallPath;
-                Log::info('Small thumbnail uploaded', ['path' => $smallPath]);
             }
             // Handle large thumbnail upload
             if ($request->hasFile('thumbnail_large_path')) {
@@ -399,23 +400,17 @@ class GameController extends Controller
                 $largePath = 'images/thumbnail_large/' . uniqid() . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('images/thumbnail_large'), $largePath);
                 $game->thumbnail_large_path = $largePath;
-                Log::info('Large thumbnail uploaded', ['path' => $largePath]);
             }
 
             $game->save();
-            Log::info('Game created successfully', ['game_id' => $game->id]);
 
             $game->categories()->sync($request->categories);
-            Log::info('Categories synced', ['categories' => $request->categories]);
 
             $game->platforms()->sync($request->platforms);
-            Log::info('Platforms synced', ['platforms' => $request->platforms]);
 
             $game->languages()->sync($request->languages);
-            Log::info('Languages synced', ['languages' => $request->languages]);
 
             $game->players()->sync($request->players);
-            Log::info('Players synced', ['players' => $request->players]);
             
             if ($request->hasFile('additional_images')) {
                 foreach ($request->file('additional_images') as $image) {
@@ -425,13 +420,11 @@ class GameController extends Controller
                         'path' => $imagePath,
                         'game' => $game->id
                     ]);
-                    Log::info('Additional image uploaded', ['path' => $imagePath]);
                 }
             }
 
             return redirect()->route('seller.products')->withSuccess('Game created successfully.');
         } catch (\Exception $e) {
-            Log::error('Error creating game', ['error' => $e->getMessage()]);
             return redirect()->route('seller.products')->withErrors('Failed to create game.');
         }
     }

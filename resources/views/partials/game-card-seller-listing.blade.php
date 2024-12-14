@@ -57,6 +57,17 @@
                 @endif
             </div>
         </div>
+
+        <!-- Stock Warning -->
+        @if ($game->stock == 0)
+            <div class="stock-warning out-of-stock">
+                <p class="text-warning"><i class="fa fa-exclamation-triangle"></i> Out of Stock!</p>
+            </div>
+        @elseif ($game->stock < 10)
+            <div class="stock-warning low-stock">
+                <p class="text-warning"><i class="fa fa-exclamation-triangle"></i> Low Stock: Only {{ $game->stock }} left!</p>
+            </div>
+        @endif
         
         <!-- Game Price -->
         <div class="game-price">

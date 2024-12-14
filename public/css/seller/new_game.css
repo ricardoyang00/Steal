@@ -112,6 +112,13 @@
     display: block;
 }
 
+.new-game-page .image-hint {
+    color: #d70909;
+    font-size: 0.875rem;
+    margin-top: 5px;
+    display: block;
+}
+
 /* Image Preview */
 
 #thumbnail_large_preview {
