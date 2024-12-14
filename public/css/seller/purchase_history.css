@@ -1,0 +1,62 @@
+/* General Page Styles */
+.seller-purchase-history-page {
+    color: white;
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #2c2f33;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.seller-purchase-history-page h1 {
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Table Styling */
+.seller-purchase-history-page .table {
+    margin-top: 20px;
+    color: white;
+    background-color: #23272a;
+    border: 1px solid #681fcf;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.seller-purchase-history-page .table th, .seller-purchase-history-page .table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #150035;
+}
+
+.seller-purchase-history-page .table th {
+    background-color: #681fcf;
+    color: white;
+    font-weight: bold;
+}
+
+.seller-purchase-history-page .table a.btn {
+    color: white;
+    background-color: #681fcf;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.seller-purchase-history-page .table a.btn:hover {
+    background-color: #4e13a3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .seller-purchase-history-page {
+        padding: 15px;
+    }
+}
