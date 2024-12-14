@@ -11,7 +11,7 @@
                     <img src="{{ asset($game->age->image_path) }}" alt={{ $game->age->name }} class="pegi-age">
                 </a>
                 <!-- Game Big Image -->
-                <img src="{{ asset($game->getThumbnailSmallPath()) }}" class="card-img-top" alt="{{ $game->name }}" width="270px" height="400px">
+                <img src="{{ asset($game->getThumbnailSmallPath()) }}" class="card-img-top" alt="{{ $game->name }}" width="270px" height="400px" style="object-fit: cover;">
                 <!-- Game Price -->
                 <p class="game-price-thumbnail">
                     €{{ number_format($game->price, 2) }}
