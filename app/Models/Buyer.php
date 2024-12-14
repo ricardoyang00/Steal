@@ -23,4 +23,9 @@ class Buyer extends Model
     {
         return $this->belongsTo(User::class, 'id', 'id');
     }
+
+    public function reviewLikes()
+    {
+        return $this->hasMany(ReviewLike::class, 'author');
+    }
 }

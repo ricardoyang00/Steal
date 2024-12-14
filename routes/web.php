@@ -80,11 +80,11 @@ Route::post('/wishlist/add', [WishlistController::class, 'addProduct'])->name('w
 Route::post('/wishlist/is_in_wishlist', [WishlistController::class, 'isInWishlist'])->name('wishlist.isInWishlist');
 
 // Reviews
-Route::post('/reviews', [ReviewsController::class, 'getReviews'])->name('reviews');
 Route::post('/reviews/add', [ReviewsController::class, 'addReview'])->name('reviews.add');
-Route::post('/reviews/delete', [ReviewsController::class, 'deleteReview'])->name('reviews.delete');
+Route::delete('/reviews/{id}', [ReviewsController::class, 'deleteReview'])->name('reviews.delete');
 Route::post('/reviews/update', [ReviewsController::class, 'updateReview'])->name('reviews.update');
 Route::post('/reviews/report', [ReviewsController::class, 'reportReview'])->name('reviews.report');
+Route::post('/reviews/{review}/like', [ReviewsController::class, 'like'])->name('reviews.like');
 
 // Checkout
 Route::middleware('auth')->group(function () {
