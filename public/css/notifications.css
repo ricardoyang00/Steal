@@ -37,9 +37,7 @@
     justify-content: space-between;
 }
 
-.notification-card:hover {
-    transform: translateY(-5px);
-}
+
 
 .notification-card-body {
     display: flex;
