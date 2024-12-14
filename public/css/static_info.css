@@ -1,0 +1,152 @@
+/* About Us Page Styles */
+#about {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    color: white;
+    background-color: #2c2f33;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+    a {
+        font-weight: bold;
+        color: white;
+        text-decoration: underline;
+    }
+}
+
+#about h1 {
+    font-size: 28px;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#about h2 {
+    font-size: 22px;
+    color: var(--cart-control-button);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#about p {
+    line-height: 1.6;
+    color: #dcdfe4;
+    margin-bottom: 20px;
+}
+
+#about ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    color: #dcdfe4;
+}
+
+#about ul li {
+    margin-bottom: 5px;
+}
+
+/* Contact Us Page Styles */
+#contacts {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    color: white;
+    background-color: #2c2f33;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#contacts h1 {
+    font-size: 28px;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#contacts p {
+    line-height: 1.6;
+    color: #dcdfe4;
+    margin-bottom: 20px;
+}
+
+#contacts ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    color: #dcdfe4;
+}
+
+#contacts ul li {
+    margin-bottom: 5px;
+}
+
+/* FAQs Page Styles */
+#faqs {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    color: white;
+    background-color: #2c2f33;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+    a {
+        font-weight: bold;
+        color: white;
+        text-decoration: underline;
+    }
+}
+
+#faqs h1 {
+    font-size: 28px;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#faqs h2 {
+    font-size: 20px;
+    color: var(--cart-control-button);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+#faqs p {
+    line-height: 1.6;
+    color: #dcdfe4;
+    margin-bottom: 20px;
+}
+
+#faqs ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+    color: #dcdfe4;
+}
+
+#faqs ul li {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #3a3f44;
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #about, #contacts, #faqs {
+        padding: 15px;
+    }
+
+    #about h1 {
+        font-size: 24px;
+    }
+
+    #about h2 {
+        font-size: 20px;
+    }
+
+    #about p, #about ul {
+        font-size: 14px;
+    }
+}
