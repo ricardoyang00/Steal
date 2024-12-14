@@ -104,14 +104,14 @@
             <label for="thumbnail_large_path">Thumbnail Large (16:9)</label>
             <input type="file" name="thumbnail_large_path" class="form-control-file" required>
             <small class="form-text text-muted">Recommended aspect ratio: 16:9</small>
-            <img id="thumbnail_large_preview" src="#" alt="Thumbnail Large Preview" style="display: none; width: 320px; height: 180px;"/>
+            <img id="thumbnail_large_preview" src="#" alt="Thumbnail Large Preview" style="display: none;"/>
         </div>
         <!-- small thumbnails -->
         <div class="form-group">
             <label for="thumbnail_small_path">Thumbnail Small (270x400)</label>
             <input type="file" name="thumbnail_small_path" class="form-control-file" required>
             <small class="form-text text-muted">Recommended size: 270x400</small>
-            <img id="thumbnail_small_preview" src="#" alt="Thumbnail Small Preview" style="display: none; width: 270px; height: 400px;"/>
+            <img id="thumbnail_small_preview" src="#" alt="Thumbnail Small Preview" style="display: none;"/>
         </div>
         <!-- additional images -->
         <div class="form-group">

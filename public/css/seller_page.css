@@ -291,7 +291,6 @@
 }
 
 #thumbnail_large_preview {
-    display: none; 
     width: 640px; /* Double the width */
     height: 360px; /* Double the height */
     object-fit: cover; 
@@ -299,7 +298,6 @@
 }
 
 #thumbnail_small_preview {
-    display: none; 
     width: 270px; 
     height: 400px; 
     object-fit: cover; 

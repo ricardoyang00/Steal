@@ -100,14 +100,14 @@
             <label for="thumbnail_large_path">Thumbnail Large (16:9)</label>
             <input type="file" name="thumbnail_large_path" class="form-control-file" id="thumbnail_large_path">
             <small class="form-text text-muted">Recommended aspect ratio: 16:9</small>
-            <img src="{{ asset($game->getThumbnailLargePath()) }}" alt="Thumbnail Large" style="width: 320px; height: 180px;" id="thumbnail_large_preview">
+            <img src="{{ asset($game->getThumbnailLargePath()) }}" alt="Thumbnail Large" id="thumbnail_large_preview">
         </div>
         <!-- small thumbnails -->
         <div class="form-group">
             <label for="thumbnail_small_path">Thumbnail Small (270x400)</label>
             <input type="file" name="thumbnail_small_path" class="form-control-file" id="thumbnail_small_path">
             <small class="form-text text-muted">Recommended size: 270x400</small>
-            <img src="{{ asset($game->getThumbnailSmallPath()) }}" alt="Thumbnail Small" style="width: 270px; height: 400px;" id="thumbnail_small_preview">
+            <img src="{{ asset($game->getThumbnailSmallPath()) }}" alt="Thumbnail Small" id="thumbnail_small_preview">
         </div>
         <!-- additional images -->
         <div class="form-group">
