@@ -256,11 +256,11 @@
                     @endif
                     <div class="form-group">
                         <label for="review-title">Title</label>
-                        <input type="text" class="form-control" id="review-title" name="title" value="{{ $isAuthor ? $review->title ?? '' : '' }}" required>
+                        <input type="text" class="form-control" id="review-title" name="title" value="{{ $isAuthor ? $review->title ?? '' : '' }}" maxlength="100" required>
                     </div>
                     <div class="form-group">
                         <label for="review-description">Description</label>
-                        <textarea class="form-control" id="review-description" name="description" rows="3" required>{{ $isAuthor ? $review->description ?? '' : '' }}</textarea>
+                        <textarea class="form-control" id="review-description" name="description" rows="3" maxlength="500" required>{{ $isAuthor ? $review->description ?? '' : '' }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="review-rating">Rating</label>

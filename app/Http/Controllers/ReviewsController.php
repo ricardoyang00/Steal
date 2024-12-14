@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Game;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\NotificationController;
+use Illuminate\Support\Facades\Validator;
 
 class ReviewsController extends Controller
 {
@@ -28,7 +29,7 @@ class ReviewsController extends Controller
         $authorIds = $reviews->pluck('author');
 
         for ($i = 0; $i < count($authorIds); $i++) {
-            $authorNames[$i] = User::find($authorIds[$i])->name;
+            $authorNames[$i] = User::find($authorIds[$i])->username;
         }
 
         for ($i = 0; $i < count($reviews); $i++) {
@@ -42,6 +43,11 @@ class ReviewsController extends Controller
 
     public function addReview(Request $request)
     {
+        $request->validate([
+            'title' => 'required|string|max:100|regex:/^[a-zA-Z0-9\s]+$/',
+            'description' => 'required|string|max:500|regex:/^[a-zA-Z0-9\s]+$/',
+        ]);
+
         try {
             $review = new Review();
             $review->title = $request->input('title');

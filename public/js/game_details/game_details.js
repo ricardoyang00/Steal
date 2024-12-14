@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    /* Add/Edit/Cancel Review */
     const reviewForm = document.querySelector('.add-review-container');
     const reviewFormToggle = document.querySelector('.btn-review-form-toggle');
     if (!reviewFormToggle) {
@@ -116,13 +117,29 @@ document.addEventListener('DOMContentLoaded', function() {
         reviewForm.style.display = reviewForm.classList.contains('visible') ? 'none' : 'block';
         reviewForm.classList.toggle('visible');
         if (reviewForm.classList.contains('visible')) {
-            reviewFormToggle.textContent = 'Close form';
+            reviewFormToggle.textContent = 'Cancel';
+            reviewFormToggle.classList.add('cancel-mode');
         } else if (reviewForm.classList.contains('edit')) {
             reviewFormToggle.textContent = 'Edit review';
+            reviewFormToggle.classList.remove('cancel-mode');
         } else {
             reviewFormToggle.textContent = 'Add review';
+            reviewFormToggle.classList.remove('cancel-mode');
         }
     });
+
+    /* Review Text Restrictions */
+    const reviewTitle = document.getElementById('review-title');
+    const reviewDescription = document.getElementById('review-description');
+
+    function restrictInput(event) {
+        const regex = /[^a-zA-Z0-9\s]/g;
+        event.target.value = event.target.value.replace(regex, '');
+    }
+
+    reviewTitle.addEventListener('input', restrictInput);
+    reviewDescription.addEventListener('input', restrictInput);
+
 
     const removeReviewBtns = document.querySelectorAll('.btn-review-remove');
     removeReviewBtns.forEach(btn => {
@@ -150,15 +167,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
-
-function closeFormEvent() {
-    reviewFormToggle = document.querySelector('.btn-review-form-toggle');
-    reviewForm = document.querySelector('.add-review-container');
-    reviewForm.style.display = 'none';
-    reviewForm.classList.remove('visible');
-    if (reviewForm.classList.contains('edit')) {
-        reviewFormToggle.textContent = 'Edit review';
-    } else {
-        reviewFormToggle.textContent = 'Add review';
-    }
-}

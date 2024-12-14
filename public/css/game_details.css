@@ -466,6 +466,12 @@
         .btn-review-form-toggle:hover {
             background-color: var(--positive-hover);
         }
+        .btn-review-form-toggle.cancel-mode {
+            background-color: var(--negative);
+        }
+        .btn-review-form-toggle.cancel-mode:hover {
+            background-color: var(--negative-hover);
+        }
         .btn-review-remove {
             background-color: var(--negative);
         }
