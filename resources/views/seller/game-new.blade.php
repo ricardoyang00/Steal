@@ -41,9 +41,9 @@
             <label for="release_date">Release Date</label>
             <input type="date" name="release_date" class="form-control">
         </div>
-        <div class="form-check mb-3">
+        <div class="form-group">
             <input type="checkbox" class="form-check-input" id="pre_release" name="pre_release">
-            <label class="form-check-label" for="pre_release">Pre-Release</label>
+            <label class="form-check-label" for="pre_release">❗️ Pre-Release</label>
         </div>
         <!-- age restriction -->
         <div class="form-group">
@@ -52,9 +52,9 @@
                 <div class="form-check">
                     <input type="radio" name="age_id" value="{{ $age->id }}" class="form-check-input" id="age{{ $age->id }}" required>
                     <label class="form-check-label" for="age{{ $age->id }}">
-                        <img src="{{ asset($age->image_path) }}" alt="{{ $age->name }}" style="width: 50px; height: auto;">
+                        <img src="{{ asset($age->image_path) }}" alt="{{ $age->name }}">
                         {{ $age->name }}
-                        <a href="{{ url('/age/' . $age->id) }}" class="btn btn-info btn-sm" target="_blank"><i class="fa-solid fa-circle-info" style="color: white;"></i></a>
+                        <a href="{{ url('/age/' . $age->id) }}" class="btn-info" target="_blank"><i class="fa-solid fa-circle-info" style="color: white;"></i></a>
                     </label>
                 </div>
             @endforeach
@@ -101,23 +101,23 @@
         </div>
         <!-- large thumbnails -->
         <div class="form-group">
-            <label for="thumbnail_large_path">Thumbnail Large (16:9)</label>
+            <label for="thumbnail_large_path">Thumbnail Large</label>
             <input type="file" name="thumbnail_large_path" class="form-control-file" required>
-            <small class="form-text text-muted">Recommended aspect ratio: 16:9</small>
+            <small class="image-hint">Recommended aspect ratio: 16:9 (1920x1080). Max size 2MB.</small>
             <img id="thumbnail_large_preview" src="#" alt="Thumbnail Large Preview" style="display: none;"/>
         </div>
         <!-- small thumbnails -->
         <div class="form-group">
-            <label for="thumbnail_small_path">Thumbnail Small (270x400)</label>
+            <label for="thumbnail_small_path">Thumbnail Small</label>
             <input type="file" name="thumbnail_small_path" class="form-control-file" required>
-            <small class="form-text text-muted">Recommended size: 270x400</small>
+            <small class="image-hint">Recommended size: 270x400. Max size 2MB.</small>
             <img id="thumbnail_small_preview" src="#" alt="Thumbnail Small Preview" style="display: none;"/>
         </div>
         <!-- additional images -->
         <div class="form-group">
-            <label for="additional_images">Additional Large Images (16:9)</label>
+            <label for="additional_images">Additional Large Images</label>
             <input type="file" name="additional_images[]" class="form-control-file" multiple>
-            <small class="form-text text-muted">Recommended aspect ratio: 16:9. You can upload multiple images.</small>
+            <small class="image-hint">Recommended aspect ratio: 16:9. You can upload multiple images. Max size per image 2MB.</small>
             <div id="additional_images_preview" class="d-flex flex-wrap"></div>
         </div>
 

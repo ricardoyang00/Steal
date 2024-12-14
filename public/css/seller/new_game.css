@@ -82,7 +82,6 @@
     height: 360px;
     object-fit: cover; 
     object-position: top;
-    border: 2px solid #7289da;
     border-radius: 5px;
 }
 
@@ -91,13 +90,11 @@
     height: 400px; 
     object-fit: cover; 
     object-position: top;
-    border: 2px solid #7289da;
     border-radius: 5px;
 }
 
 .new-game-page #additional_images_preview img {
     margin: 5px;
-    border: 2px solid #7289da;
     border-radius: 5px;
 }
 

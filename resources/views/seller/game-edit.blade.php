@@ -34,7 +34,7 @@
         <!-- price -->
         <div class="form-group">
             <label for="price">Price (€)</label>
-            <input type="number" name="price" class="form-control" value="{{ $game->price }}" step="0.01" required>
+            <input type="number" name="price" class="form-control" value="{{ $game->price }}" step="0.01" max="9999.99" required>
         </div>
         <!-- release date -->
         <div class="form-group">
@@ -99,21 +99,21 @@
         <div class="form-group">
             <label for="thumbnail_large_path">Thumbnail Large</label>
             <input type="file" name="thumbnail_large_path" class="form-control-file" id="thumbnail_large_path">
-            <small class="image-hint">Recommended aspect ratio: 16:9 (1920x1080). Max size 2MB</small><br>
+            <small class="image-hint">Recommended aspect ratio: 16:9 (1920x1080). Max size 2MB.</small><br>
             <img src="{{ asset($game->getThumbnailLargePath()) }}" alt="Thumbnail Large" id="thumbnail_large_preview">
         </div>
         <!-- small thumbnails -->
         <div class="form-group">
             <label for="thumbnail_small_path">Thumbnail Small</label>
             <input type="file" name="thumbnail_small_path" class="form-control-file" id="thumbnail_small_path">
-            <small class="image-hint">Recommended size: 270x400. Max size 2MB</small><br>
+            <small class="image-hint">Recommended size: 270x400. Max size 2MB.</small><br>
             <img src="{{ asset($game->getThumbnailSmallPath()) }}" alt="Thumbnail Small" id="thumbnail_small_preview">
         </div>
         <!-- additional images -->
         <div class="form-group">
             <label for="additional_images">Additional Large Images</label>
             <input type="file" name="additional_images[]" class="form-control-file" id="additional_images" multiple>
-            <small class="image-hint">Recommended aspect ratio: 16:9. You can upload multiple images. Max size per image 2MB</small><br>
+            <small class="image-hint">Recommended aspect ratio: 16:9. You can upload multiple images. Max size per image 2MB.</small><br>
             <div class="d-flex flex-wrap" id="additional_images_preview">
                 @foreach($game->images as $media)
                     <div class="position-relative m-2">
