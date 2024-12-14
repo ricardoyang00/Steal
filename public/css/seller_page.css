@@ -35,10 +35,12 @@
 }
 
 /* Thumbnail */
-.seller-product-list .game-card .img.card-img-top {
+.seller-product-list .game-card .game-thumbnail .card-img-top {
     border-radius: 4px;
     width: 250px;
     height: 160px;
+    object-fit: cover;
+    object-position: top;
 }
 
 /* Game Details */
@@ -187,8 +189,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 8px;
-    border-radius: 4px;
+    padding: 0px 8px;
     text-decoration: none;
     transition: background-color 0.3s, transform 0.3s;
 }
@@ -287,4 +288,20 @@
 
 .new-game-btn a:hover {
     background-color: #4e13a3;
+}
+
+#thumbnail_large_preview {
+    display: none; 
+    width: 640px; /* Double the width */
+    height: 360px; /* Double the height */
+    object-fit: cover; 
+    object-position: top;
+}
+
+#thumbnail_small_preview {
+    display: none; 
+    width: 270px; 
+    height: 400px; 
+    object-fit: cover; 
+    object-position: top;
 }
