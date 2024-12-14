@@ -291,16 +291,17 @@
                 </form>
             </div>
 
-            @if ($reviews->isEmpty())
-                <p class="no-reviews-message">
-                    There are no reviews for this game yet
-                </p>
-            @else
-                @foreach ($reviews as $review)
-                    @include('partials.review.review-card', ['review' => $review])
-                @endforeach
-            @endif
-
+            <div class="reviews-section">
+                @if ($reviews->isEmpty())
+                    <p class="no-reviews-message">
+                        There are no reviews for this game yet
+                    </p>
+                @else
+                    @foreach ($reviews as $review)
+                        @include('partials.review.review-card', ['review' => $review])
+                    @endforeach
+                @endif
+            </div>
         </div>
     </div>
 </div>

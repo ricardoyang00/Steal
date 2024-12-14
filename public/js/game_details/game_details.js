@@ -40,12 +40,17 @@ document.addEventListener('DOMContentLoaded', function() {
     /* Add/Edit/Cancel Review */
     const reviewForm = document.querySelector('.add-review-container');
     const reviewFormToggle = document.querySelector('.btn-review-form-toggle');
+    const reviewsSection = document.querySelector('.reviews-section');
+
     if (!reviewFormToggle) {
         return;
     }
+
     reviewFormToggle.addEventListener('click', function() {
         reviewForm.style.display = reviewForm.classList.contains('visible') ? 'none' : 'block';
         reviewForm.classList.toggle('visible');
+        reviewsSection.style.display = reviewForm.classList.contains('visible') ? 'none' : 'block';
+
         if (reviewForm.classList.contains('visible')) {
             reviewFormToggle.textContent = 'Cancel';
             reviewFormToggle.classList.add('cancel-mode');
