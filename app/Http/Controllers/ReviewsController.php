@@ -47,7 +47,7 @@ class ReviewsController extends Controller
             return back()->withErrors(['error' => 'An error occurred while adding the review.']);
         }
         $this->notificationController->createReviewNotifications($review);
-        return redirect()->route('game.details', ['id' => $gameId])->with(['success' => 'Review added successfully!']);
+        return redirect()->route('game.details', ['id' => $gameId])->withSuccess('Review added successfully!');
     }
 
     public function deleteReview($id)
@@ -123,16 +123,5 @@ class ReviewsController extends Controller
         $likesCount = $review->likes()->count();
     
         return response()->json(['success' => true, 'likes_count' => $likesCount]);
-    }
-
-    public function reportReview(Request $request)
-    {
-        $reviewId = $request->input('review_id');
-        $review = Review::find($reviewId);
-        $review->reported = true;
-        $review->save();
-        return response()->json([
-            'success' => true,
-        ]);
     }
 }
