@@ -1169,7 +1169,15 @@ insert into Review (title, description, positive, author, game) values ('Immersi
 insert into Review (title, description, positive, author, game) values ('Lack of Content', 'The game lacks content and gets repetitive quickly.', false, 1, 8);
 insert into Review (title, description, positive, author, game) values ('Fun and Addictive', 'The game is very fun and addictive. Cannot stop playing!', true, 1, 9);
 insert into Review (title, description, positive, author, game) values ('Poor Controls', 'The controls are not responsive and hard to use.', false, 1, 10);
-
+insert into Review (title, description, positive, author, game) values ('Great Graphics', 'The graphics are stunning and very detailed.', true, 2, 10);
+insert into Review (title, description, positive, author, game) values ('Boring Gameplay', 'The gameplay is repetitive and gets boring quickly.', false, 3, 10);
+insert into Review (title, description, positive, author, game) values ('Excellent Storyline', 'The storyline is captivating and well-written.', true, 4, 10);
+insert into Review (title, description, positive, author, game) values ('Too Many Bugs', 'The game has too many bugs and crashes often.', false, 5, 10);
+insert into Review (title, description, positive, author, game) values ('Amazing Soundtrack', 'The soundtrack is amazing and fits the game perfectly.', true, 6, 10);
+insert into Review (title, description, positive, author, game) values ('Lack of Content', 'The game lacks content and feels incomplete.', false, 7, 10);
+insert into Review (title, description, positive, author, game) values ('Fun Multiplayer', 'The multiplayer mode is fun and engaging.', true, 8, 10);
+insert into Review (title, description, positive, author, game) values ('Pay to Win', 'The game is pay to win and not enjoyable without spending money.', false, 9, 10);
+insert into Review (title, description, positive, author, game) values ('Great Replay Value', 'The game has great replay value and keeps you coming back.', true, 10, 10);
 
 -- Review Like
 insert into ReviewLike (review, author) values (1, 2);

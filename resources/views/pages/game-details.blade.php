@@ -300,6 +300,11 @@
                     @foreach ($reviews as $review)
                         @include('partials.review.review-card', ['review' => $review])
                     @endforeach
+
+                    <!-- Pagination Links -->
+                    <div class="pagination-links">
+                        {{ $reviews->links() }}
+                    </div>
                 @endif
             </div>
         </div>
