@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Review;
+use App\Models\ReviewLike;
 use App\Models\User;
 use App\Models\Game;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewsController extends Controller
 {
@@ -21,9 +23,9 @@ class ReviewsController extends Controller
     public function addReview(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:100|regex:/^[a-zA-Z0-9\s]+$/',
-            'description' => 'required|string|max:500|regex:/^[a-zA-Z0-9\s]+$/',
-        ]);
+            'title' => 'required|string|max:100|regex:/^[a-zA-Z0-9\s,\.]+$/',
+            'description' => 'required|string|max:500|regex:/^[a-zA-Z0-9\s,\.]+$/',
+        ]);        
 
         try {
             $review = new Review();
@@ -68,9 +70,9 @@ class ReviewsController extends Controller
     public function updateReview(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:100|regex:/^[a-zA-Z0-9\s]+$/',
-            'description' => 'required|string|max:500|regex:/^[a-zA-Z0-9\s]+$/',
-        ]);
+            'title' => 'required|string|max:100|regex:/^[a-zA-Z0-9\s,\.]+$/',
+            'description' => 'required|string|max:500|regex:/^[a-zA-Z0-9\s,\.]+$/',
+        ]);        
 
         try {
             $reviewId = $request->input('review_id');
@@ -93,6 +95,34 @@ class ReviewsController extends Controller
         }
 
         return redirect()->route('game.details', ['id' => $gameId])->withSuccess('Review updated successfully!');
+    }
+
+    public function like(Request $request, $reviewId)
+    {
+        $user = auth_user();
+        if (!$user) {
+            return redirect()->route('login');
+        }
+    
+        $review = Review::findOrFail($reviewId);
+    
+        // Check if the user has already liked the review
+        $existingLike = ReviewLike::where('review', $reviewId)->where('author', $user->id)->first();
+        if ($existingLike) {
+            // Unlike the review
+            $existingLike->delete();
+        } else {
+            // Create a new like
+            ReviewLike::create([
+                'review' => $reviewId,
+                'author' => $user->id,
+            ]);
+        }
+    
+        // Get the updated likes count
+        $likesCount = $review->likes()->count();
+    
+        return response()->json(['success' => true, 'likes_count' => $likesCount]);
     }
 
     public function reportReview(Request $request)

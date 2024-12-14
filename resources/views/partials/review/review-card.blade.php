@@ -17,8 +17,14 @@
             <span class="username">{{ $review->getAuthor->user->username }}</span>
         </div>
         <div class="review-likes">
-            <i class="fas fa-heart like-button {{ $isLikedByUser ? 'liked' : '' }}" data-id="{{ $review->id }}"></i> <span class="like-count">{{ $review->likes->count() }}</span> Likes
-        </div>
+            @if ($isOwnReview || (auth_user() && auth_user()->seller) || is_admin())
+                <i class="fas fa-heart" style="color: white;"></i>
+            @else
+                <i class="fas fa-heart like-button {{ $isLikedByUser ? 'liked' : '' }}" data-id="{{ $review->id }}" data-liked="{{ $isLikedByUser ? 'true' : 'false' }}"></i>
+            @endif
+            <span class="like-count">{{ $review->likes->count() }}</span>
+            <span class="like-text">{{ $review->likes->count() === 1 ? ' Like' : ' Likes' }}</span>
+        </div>        
     </div>
 
     <div class="recommendation">
