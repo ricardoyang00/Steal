@@ -472,10 +472,12 @@
         .btn-review-form-toggle.cancel-mode:hover {
             background-color: var(--negative-hover);
         }
-        .btn-review-remove {
+        #btn-review-remove {
+            color: var(--text-color);
             background-color: var(--negative);
         }
-        .btn-review-remove:hover {
+        #btn-review-remove:hover {
+            color: var(--text-color);
             background-color: var(--negative-hover);
         }
     }
@@ -505,17 +507,6 @@
         font-size: 1rem;
         color: var(--text-color);
     }
-}
-
-.game-details-page .btn-review-form-toggle {
-    margin-top: 0;
-    padding: 8px 16px;
-    background-color: whitesmoke;
-    color: black;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .game-details-page .add-review-container {
@@ -564,20 +555,6 @@
     margin-top: 10px;
 }
 
-.game-details-page .game-reviews button {
-    padding: 8px 16px;
-    background-color: whitesmoke;
-    color: black;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.game-details-page .add-review-container button:hover {
-    background-color: lightgray;
-}
-
 .game-details-page .error-reviews {
     margin-left: 0;
 }
@@ -611,9 +588,14 @@
                 text-align: center;
                 margin-bottom: 16px;
                 .btn-submit {
+                    padding: 8px 16px;
                     background-color: var(--buy-button-color);
                     color: var(--text-color);
                     border: none;
+                    border-radius: 4px;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    transition: background-color 0.3s;
                 }
                 .btn-submit:hover {
                     background-color: var(--buy-button-hover-color);

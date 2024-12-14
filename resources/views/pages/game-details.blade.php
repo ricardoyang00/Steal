@@ -215,7 +215,6 @@
                     @if (auth()->user()->hasDeliveredPurchase($game->id) && !$game->hasReviewedGame(auth()->user()))
                         <div class="review-buttons">
                             <button class="btn-review-form-toggle">Add Review</button>
-                            <button class="btn-review-remove" style="display: none;">Remove Review</button>
                         </div>
                     @elseif (!$game->hasReviewedGame(auth()->user()))
                         <p class="review-buttons">
@@ -224,7 +223,17 @@
                     @elseif ($game->hasReviewedGame(auth()->user()))
                         <div class="review-buttons">
                             <button class="btn-review-form-toggle">Edit Review</button>
-                            <button class="btn-review-remove" data-id="{{ $review->id }}">Remove Review</button>
+                            @include('partials.common.confirmation-modal')
+                            <form action="{{ route('reviews.delete', ['id' => $review->id]) }}" method="POST" id="remove-review-form" style="display: inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="button" class="confirmation-btn btn-add-to-cart btn btn-primary" id="btn-review-remove"
+                                        data-title="Remove Review"
+                                        data-message="Are you sure you want to remove your review?"
+                                        data-form-id="remove-review-form">
+                                    Remove Review
+                                </button>
+                            </form>
                         </div>
                     @endif
                 @elseif (!auth_user())
@@ -265,13 +274,13 @@
                     <div class="form-group">
                         <label for="review-rating">Rating</label>
                         <div class="form-check thumbs-up">
-                            <input class="form-check-input" type="radio" name="positive" id="review-positive" value="true" {{ $isAuthor && isset($review) && $review->positive ? 'checked' : '' }} required>
+                            <input class="form-check-input" type="radio" name="rating" id="review-positive" value="true" {{ $isAuthor && isset($review) && $review->positive ? 'checked' : '' }} required>
                             <label class="form-check-label" for="review-positive">
                                 <i class="fas fa-thumbs-up" style="color: #4ab757;"></i> Positive
                             </label>
                         </div>
                         <div class="form-check thumbs-up">
-                            <input class="form-check-input" type="radio" name="positive" id="review-negative" value="false" {{ $isAuthor && isset($review) && !$review->positive ? 'checked' : '' }} required>
+                            <input class="form-check-input" type="radio" name="rating" id="review-negative" value="false" {{ $isAuthor && isset($review) && !$review->positive ? 'checked' : '' }} required>
                             <label class="form-check-label" for="review-negative">
                                 <i class="fas fa-thumbs-down" style="color: #b7574a;"></i> Negative
                             </label>
@@ -287,9 +296,12 @@
                 <p class="no-reviews-message">
                     There are no reviews for this game yet
                 </p>
+            @else
+                @foreach ($game->reviews as $review)
+                    @include('partials.review.review-card', ['review' => $review])
+                @endforeach
             @endif
-            
-            <!-- Reviews will be loaded here by the JS -->
+
         </div>
     </div>
 </div>

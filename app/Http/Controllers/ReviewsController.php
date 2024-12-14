@@ -53,7 +53,7 @@ class ReviewsController extends Controller
             $review->title = $request->input('title');
             $review->game = $request->input('game_id');
             $review->description = $request->input('description');
-            $review->positive = $request->input('positive');
+            $review->positive = $request->input('rating');
             $review->author = auth_user()->id;
             $review->save();
 
@@ -71,36 +71,39 @@ class ReviewsController extends Controller
         return redirect()->route('game.details', ['id' => $gameId])->with(['success' => 'Review added successfully!']);
     }
 
-    public function deleteReview(Request $request)
+    public function deleteReview($id)
     {
-        $reviewId = $request->input('review_id');
-
-        $review = Review::find($reviewId);
-
-        $gameId = $review->game;
-
-        $review->delete();
-
-        $game = Game::find($gameId);
-        $game->updateRatings();
-        $game->save();
-
-        return response()->json([
-            'success' => true,
-        ]);
+        try {
+            $review = Review::findOrFail($id);
+            $gameId = $review->game;
+            $review->delete();
+    
+            $game = Game::findOrFail($gameId);
+            $game->updateRatings();
+            $game->save();
+    
+            return redirect()->route('game.details', ['id' => $gameId])->withSuccess('Review removed successfully!');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'An error occurred while removing the review.']);
+        }
     }
 
     public function updateReview(Request $request)
     {
+        $request->validate([
+            'title' => 'required|string|max:100|regex:/^[a-zA-Z0-9\s]+$/',
+            'description' => 'required|string|max:500|regex:/^[a-zA-Z0-9\s]+$/',
+        ]);
+
         try {
             $reviewId = $request->input('review_id');
 
-            $review = Review::find($reviewId);
+            $review = Review::findOrFail($reviewId);
 
 
             $review->title = $request->input('title');
             $review->description = $request->input('description');
-            $review->positive = $request->input('positive');
+            $review->positive = $request->input('rating');
             $gameId = $review->game;
             $review->save();
 
