@@ -75,6 +75,42 @@
     }
 }
 
+
+.new-game-page .hint-icon {
+    display: inline-block;
+    background-color: #7289da;
+    color: #ffffff;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    text-align: center;
+    line-height: 18px;
+    margin-left: 5px;
+    cursor: pointer;
+    position: relative;
+    font-weight: normal;
+}
+
+.new-game-page .hint-icon::after {
+    content: attr(data-tooltip);
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 125%;
+    background-color: #333;
+    color: #ffffff;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 1;
+    font-size: 0.875rem;
+}
+
+.new-game-page .hint-icon:hover::after {
+    display: block;
+}
+
 /* Image Preview */
 
 #thumbnail_large_preview {

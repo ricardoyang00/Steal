@@ -101,21 +101,27 @@
         </div>
         <!-- large thumbnails -->
         <div class="form-group">
-            <label for="thumbnail_large_path">Thumbnail Large</label>
+            <label for="thumbnail_large_path">Thumbnail Large
+                <span class="hint-icon" data-tooltip="The large thumbnail is the main image that will be shown on the home page and in search or browse results.">?</span>
+            </label>
             <input type="file" name="thumbnail_large_path" class="form-control-file" required>
             <small class="image-hint">Recommended aspect ratio: 16:9 (1920x1080). Max size 2MB.</small>
             <img id="thumbnail_large_preview" src="#" alt="Thumbnail Large Preview" style="display: none;"/>
         </div>
         <!-- small thumbnails -->
         <div class="form-group">
-            <label for="thumbnail_small_path">Thumbnail Small</label>
+            <label for="thumbnail_small_path">Thumbnail Small
+                <span class="hint-icon" data-tooltip="The small thumbnail is the one that will be shown as a card in the user's shopping cart or wish list.">?</span>
+            </label>
             <input type="file" name="thumbnail_small_path" class="form-control-file" required>
             <small class="image-hint">Recommended size: 270x400. Max size 2MB.</small>
             <img id="thumbnail_small_preview" src="#" alt="Thumbnail Small Preview" style="display: none;"/>
         </div>
         <!-- additional images -->
         <div class="form-group">
-            <label for="additional_images">Additional Large Images</label>
+            <label for="additional_images">Additional Large Images
+                <span class="hint-icon" data-tooltip="The additional images provide more details and will be shown on the product's page.">?</span>
+            </label>
             <input type="file" name="additional_images[]" class="form-control-file" multiple>
             <small class="image-hint">Recommended aspect ratio: 16:9. You can upload multiple images. Max size per image 2MB.</small>
             <div id="additional_images_preview" class="d-flex flex-wrap"></div>
