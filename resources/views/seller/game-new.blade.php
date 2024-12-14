@@ -6,7 +6,7 @@
 
 <script src="{{ asset('js/seller/new-game.js') }}" defer></script>
 
-<div class="container mt-5">
+<div class="new-game-page">
     <h1><a href="{{ url('seller/products') }}"><i class="fa-solid fa-chevron-left" style="color: white;"></i></a>New Game</h1>
 
     @if ($errors->any())
@@ -122,7 +122,7 @@
         </div>
 
         
-        <button type="submit" class="btn btn-primary">Create Game</button>
+        <button type="submit" class="create-game-btn">Create Game</button>
     </form>
 </div>
 @endsection

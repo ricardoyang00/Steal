@@ -5,7 +5,7 @@
 <script src="{{ asset('js/seller/edit-game.js') }}" defer></script>
 
 @section('content')
-<div class="container mt-5">
+<div class="new-game-page">
     <h1><a href="{{ url('seller/products') }}"><i class="fa-solid fa-chevron-left" style="color: white;"></i></a>Edit Game</h1>
 
     @if ($errors->any())
@@ -48,9 +48,9 @@
                 <div class="form-check">
                     <input type="radio" name="age_id" value="{{ $age->id }}" class="form-check-input" id="age{{ $age->id }}" {{ $game->age_id == $age->id ? 'checked' : '' }}>
                     <label class="form-check-label" for="age{{ $age->id }}">
-                        <img src="{{ asset($age->image_path) }}" alt="{{ $age->name }}" style="width: 50px; height: auto;">
+                        <img src="{{ asset($age->image_path) }}" alt="{{ $age->name }}" class="age-image">
                         {{ $age->name }}
-                        <a href="{{ url('/age/' . $age->id) }}" class="btn btn-info btn-sm" target="_blank"><i class="fa-solid fa-circle-info" style="color: white;"></i></a>
+                        <a href="{{ url('/age/' . $age->id) }}" class="btn-info" target="_blank"><i class="fa-solid fa-circle-info"></i></a>
                     </label>
                 </div>
             @endforeach
@@ -97,23 +97,23 @@
         </div>
         <!-- large thumbnails -->
         <div class="form-group">
-            <label for="thumbnail_large_path">Thumbnail Large (16:9)</label>
+            <label for="thumbnail_large_path">Thumbnail Large</label>
             <input type="file" name="thumbnail_large_path" class="form-control-file" id="thumbnail_large_path">
-            <small class="form-text text-muted">Recommended aspect ratio: 16:9</small>
+            <small class="image-hint">Recommended aspect ratio: 16:9 (1920x1080). Max size 2MB</small><br>
             <img src="{{ asset($game->getThumbnailLargePath()) }}" alt="Thumbnail Large" id="thumbnail_large_preview">
         </div>
         <!-- small thumbnails -->
         <div class="form-group">
-            <label for="thumbnail_small_path">Thumbnail Small (270x400)</label>
+            <label for="thumbnail_small_path">Thumbnail Small</label>
             <input type="file" name="thumbnail_small_path" class="form-control-file" id="thumbnail_small_path">
-            <small class="form-text text-muted">Recommended size: 270x400</small>
+            <small class="image-hint">Recommended size: 270x400. Max size 2MB</small><br>
             <img src="{{ asset($game->getThumbnailSmallPath()) }}" alt="Thumbnail Small" id="thumbnail_small_preview">
         </div>
         <!-- additional images -->
         <div class="form-group">
-            <label for="additional_images">Additional Large Images (16:9)</label>
+            <label for="additional_images">Additional Large Images</label>
             <input type="file" name="additional_images[]" class="form-control-file" id="additional_images" multiple>
-            <small class="form-text text-muted">Recommended aspect ratio: 16:9. You can upload multiple images.</small>
+            <small class="image-hint">Recommended aspect ratio: 16:9. You can upload multiple images. Max size per image 2MB</small><br>
             <div class="d-flex flex-wrap" id="additional_images_preview">
                 @foreach($game->images as $media)
                     <div class="position-relative m-2">
@@ -123,7 +123,7 @@
             </div>
         </div>
         
-        <button type="submit" class="btn btn-primary">Update Game</button>
+        <button type="submit" class="edit-game-btn">Update Game</button>
     </form>
 </div>
 @endsection

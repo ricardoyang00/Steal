@@ -1,0 +1,152 @@
+/* General Page Styles */
+.new-game-page {
+    color: white;
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #2c2f33;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.new-game-page h1 {
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Form Styling */
+.new-game-page form {
+    margin-top: 20px;
+}
+
+.new-game-page .form-group {
+    margin-bottom: 15px;
+}
+
+.new-game-page .form-group {
+    label {
+        color: #ffffff;
+        margin-bottom: 5px;
+        display: inline-block;
+    }
+
+    > label {
+        font-weight: bold;
+    }
+
+}
+
+.btn-info {
+    margin-left: 20px;
+    color: rgb(196, 196, 196);
+    width: 10px;
+}
+
+.new-game-page .form-control,
+.new-game-page .form-control-file {
+    background-color: #23272a;
+    color: #ffffff;
+    border: 1px solid #681fcf;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+
+
+.new-game-page textarea.form-control {
+    resize: none;
+    height: 200px;
+}
+
+/* Checkbox and Radio Buttons */
+.new-game-page .form-check {
+    margin-left: 30px;
+
+    img {
+        max-height: 24px;
+        margin-right: 5px;
+    }
+}
+
+/* Image Preview */
+
+#thumbnail_large_preview {
+    width: 640px;
+    height: 360px;
+    object-fit: cover; 
+    object-position: top;
+    border: 2px solid #7289da;
+    border-radius: 5px;
+}
+
+#thumbnail_small_preview {
+    width: 270px; 
+    height: 400px; 
+    object-fit: cover; 
+    object-position: top;
+    border: 2px solid #7289da;
+    border-radius: 5px;
+}
+
+.new-game-page #additional_images_preview img {
+    margin: 5px;
+    border: 2px solid #7289da;
+    border-radius: 5px;
+}
+
+.new-game-page .d-flex {
+    display: flex;
+}
+
+.new-game-page .flex-wrap {
+    flex-wrap: wrap;
+}
+
+/* Submit Button */
+.new-game-page .create-game-btn, .new-game-page .edit-game-btn {
+    margin-top: 2em;
+    background-color: var(--buy-button-color);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.new-game-page .create-game-btn:hover, .new-game-page .edit-game-btn:hover {
+    background-color: #4e13a3;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .new-game-page {
+        padding: 15px;
+    }
+
+    .new-game-page .form-check {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .new-game-page #additional_images_preview img {
+        width: 100px;
+        height: 56px;
+    }
+}
+
+.new-game-page .image-hint {
+    color: #ff6b6b;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

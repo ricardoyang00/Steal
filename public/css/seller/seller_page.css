@@ -286,20 +286,10 @@
     margin-bottom: 20px;
 }
 
-.new-game-btn a:hover {
-    background-color: #4e13a3;
+.new-game-page .image-hint {
+    color: #d70909;
+    font-size: 0.875rem;
+    margin-top: 5px;
+    display: block;
 }
 
-#thumbnail_large_preview {
-    width: 640px; /* Double the width */
-    height: 360px; /* Double the height */
-    object-fit: cover; 
-    object-position: top;
-}
-
-#thumbnail_small_preview {
-    width: 270px; 
-    height: 400px; 
-    object-fit: cover; 
-    object-position: top;
-}
