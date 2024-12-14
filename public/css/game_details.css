@@ -487,28 +487,6 @@
 
 /* Start of Review Section */
 
-.game-details-page .review-card {
-    margin-bottom: 32px;
-    background-color: var(--game-card-background);
-    padding: 16px;
-    border-radius: 8px;
-    color: var(--text-color);
-}
-
-.game-details-page .review-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .h4 {
-        font-size: 1.25rem;
-    }
-    p {
-        margin: 0;
-        font-size: 1rem;
-        color: var(--text-color);
-    }
-}
-
 .game-details-page .add-review-container {
     margin-bottom: 32px;
     padding: 16px;
@@ -555,24 +533,16 @@
     margin-top: 10px;
 }
 
-.game-details-page .error-reviews {
-    margin-left: 0;
-}
-
-.game-details-page .game-reviews {
-    display: flex;
-    flex-direction: row;
-}
-
 .game-details-page .no-reviews-message {
     font-size: 1.25rem;
     text-align: center;
-    margin: auto;
-    margin-top: 32px;
+    margin: 32px;
 }
 
+/* Add/Edit Review Form */
 .game-details-page {
     .game-reviews {
+        padding-top: 10%;
         .reviews .add-review-container {
             display: flex;
             input, textarea {
@@ -605,28 +575,115 @@
     }
 }
 
-.game-details-page .game-reviews {
+/* Review Card */
+.review-card {
+    background-color: var(--game-card-background);
+    color: var(--text-color);
+    border-radius: 8px;
+    padding: 15px 20px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    justify-content: space-between;
+    gap: 15px;
+    max-width: 100%;
+    margin: 10px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-.game-details-page .reviews {
-    .review-card {
-        padding: 16px 16px 32px 16px;
-        .btn-report {
-            margin-top: 32px;
-            font-size: 0.9rem;
-            padding: 6px 16px;
-            background-color: var(--buy-button-color);
-            border: none;
-            color: var(--text-color);
-        }
-        .btn-report:hover {
-            background-color: var(--buy-button-hover-color);
-        }
+/* Header Styling */
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon-and-username {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    #review-profile-picture {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        object-fit: cover;
     }
 }
+
+.icon-and-username i {
+    font-size: 18px;
+}
+
+.review-header .post-date {
+    font-size: 12px;
+    color: #ccc;
+}
+
+/* Recommendation Box */
+.recommendation {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #aaa;
+    border-radius: 6px;
+    padding: 10px 15px;
+}
+
+/* Recommendation Box Styling */
+.recommend-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    color: #fff;
+}
+
+/* Square Background for Icons */
+.thumb-icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+}
+
+.thumb-icon-box i {
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+/* Positive and Negative Backgrounds */
+.thumb-icon-box.positive-bg {
+    background-color: var(--positive);
+}
+
+.thumb-icon-box.negative-bg {
+    background-color: var(--negative);
+}
+
+
+/* Review Content */
+.review-content {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    word-wrap: break-word;
+}
+
+/* Report Button */
+.btn-report {
+    align-self: flex-end;
+    padding: 5px 10px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #b7574a;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-report:hover {
+    background-color: #a0453a;
+}
+
 
 /* End of Review Section */

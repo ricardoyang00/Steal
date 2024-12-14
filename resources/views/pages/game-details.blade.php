@@ -182,7 +182,6 @@
         </div>
     </div>
 
-    <h2>Reviews</h2>
     <div class="game-reviews" data-id="{{ $game->id }}">
         <div class="reviews-bar">
             <!-- Rating -->
@@ -224,7 +223,7 @@
                         <div class="review-buttons">
                             <button class="btn-review-form-toggle">Edit Review</button>
                             @include('partials.common.confirmation-modal')
-                            <form action="{{ route('reviews.delete', ['id' => $review->id]) }}" method="POST" id="remove-review-form" style="display: inline;">
+                            <form action="{{ route('reviews.delete', ['id' => $userReview->id]) }}" method="POST" id="remove-review-form" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" class="confirmation-btn btn-add-to-cart btn btn-primary" id="btn-review-remove"
@@ -261,26 +260,26 @@
                     @csrf
                     <input type="hidden" name="game_id" value="{{ $game->id }}">
                     @if ($isAuthor)
-                        <input type="hidden" name="review_id" value="{{ $review->id ?? '' }}">
+                        <input type="hidden" name="review_id" value="{{ $userReview->id ?? '' }}">
                     @endif
                     <div class="form-group">
                         <label for="review-title">Title</label>
-                        <input type="text" class="form-control" id="review-title" name="title" value="{{ $isAuthor ? $review->title ?? '' : '' }}" maxlength="100" required>
+                        <input type="text" class="form-control" id="review-title" name="title" value="{{ $isAuthor ? $userReview->title ?? '' : '' }}" maxlength="100" required>
                     </div>
                     <div class="form-group">
                         <label for="review-description">Description</label>
-                        <textarea class="form-control" id="review-description" name="description" rows="3" maxlength="500" required>{{ $isAuthor ? $review->description ?? '' : '' }}</textarea>
+                        <textarea class="form-control" id="review-description" name="description" rows="3" maxlength="500" required>{{ $isAuthor ? $userReview->description ?? '' : '' }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="review-rating">Rating</label>
                         <div class="form-check thumbs-up">
-                            <input class="form-check-input" type="radio" name="rating" id="review-positive" value="true" {{ $isAuthor && isset($review) && $review->positive ? 'checked' : '' }} required>
+                            <input class="form-check-input" type="radio" name="rating" id="review-positive" value="true" {{ $isAuthor && isset($review) && $userReview->positive ? 'checked' : '' }} required>
                             <label class="form-check-label" for="review-positive">
                                 <i class="fas fa-thumbs-up" style="color: #4ab757;"></i> Positive
                             </label>
                         </div>
                         <div class="form-check thumbs-up">
-                            <input class="form-check-input" type="radio" name="rating" id="review-negative" value="false" {{ $isAuthor && isset($review) && !$review->positive ? 'checked' : '' }} required>
+                            <input class="form-check-input" type="radio" name="rating" id="review-negative" value="false" {{ $isAuthor && isset($review) && !$userReview->positive ? 'checked' : '' }} required>
                             <label class="form-check-label" for="review-negative">
                                 <i class="fas fa-thumbs-down" style="color: #b7574a;"></i> Negative
                             </label>
