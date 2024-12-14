@@ -292,12 +292,12 @@
                 </form>
             </div>
 
-            @if (!$game->hasReviews())
+            @if ($reviews->isEmpty())
                 <p class="no-reviews-message">
                     There are no reviews for this game yet
                 </p>
             @else
-                @foreach ($game->reviews as $review)
+                @foreach ($reviews as $review)
                     @include('partials.review.review-card', ['review' => $review])
                 @endforeach
             @endif

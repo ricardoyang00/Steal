@@ -36,32 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize the carousel to show the first item
     updateCarousel();
-    /*              */
-
-    const reportBtns = document.querySelectorAll('.btn-report');
-    reportBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            console.log("button clicked");
-            reviewId = btn.getAttribute('data-id');
-            console.log("review id: ", reviewId);
-            fetch('/reviews/report', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': csrfToken,
-                },
-                body: JSON.stringify({ review_id: reviewId }),
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    console.log("received response");
-                    alert('Review reported successfully.');
-                }
-            })
-            .catch(error => console.error('Error reporting review:', error));
-        });
-    });
 
     /* Add/Edit/Cancel Review */
     const reviewForm = document.querySelector('.add-review-container');
@@ -95,4 +69,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     reviewTitle.addEventListener('input', restrictInput);
     reviewDescription.addEventListener('input', restrictInput);
+
+    /* Report (NOT VIABLE, CHANGE) */
+    const reportBtns = document.querySelectorAll('.btn-report');
+    reportBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            console.log("button clicked");
+            reviewId = btn.getAttribute('data-id');
+            console.log("review id: ", reviewId);
+            fetch('/reviews/report', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrfToken,
+                },
+                body: JSON.stringify({ review_id: reviewId }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log("received response");
+                    alert('Review reported successfully.');
+                }
+            })
+            .catch(error => console.error('Error reporting review:', error));
+        });
+    });
 });

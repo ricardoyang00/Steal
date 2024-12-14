@@ -151,19 +151,19 @@ class GameController extends Controller
             }
         }
 
-        $review = Review::where('game', $game->id)->where('author', $userId)->first();
-
-        if (!$review) {
-            $review = new Review();
-            $review->id = null;
-            $review->game = $game->id;
-            $review->author = $userId;
-            $review->positive = true;
-            $review->title = '';
-            $review->description = '';
-        }
-
-        return view('pages.game-details', compact('game', 'review'));
+        // Fetch the logged-in user's review if it exists
+        $userReview = Review::where('game', $game->id)->where('author', $userId)->first();
+        
+        // Fetch all other reviews excluding the logged-in user's review, ordered by ID in descending order
+        $otherReviews = Review::where('game', $game->id)
+                                ->where('author', '!=', $userId)
+                                ->orderBy('id', 'desc')
+                                ->get();
+        
+        // Combine the user's review with the other reviews, placing the user's review at the top
+        $reviews = $userReview ? $otherReviews->prepend($userReview) : $otherReviews;
+        
+        return view('pages.game-details', compact('game', 'reviews', 'userReview'));
     }
 
     protected function applySearchQuery($gamesQuery, $query)

@@ -80,7 +80,6 @@ Route::post('/wishlist/add', [WishlistController::class, 'addProduct'])->name('w
 Route::post('/wishlist/is_in_wishlist', [WishlistController::class, 'isInWishlist'])->name('wishlist.isInWishlist');
 
 // Reviews
-Route::post('/reviews', [ReviewsController::class, 'getReviews'])->name('reviews');
 Route::post('/reviews/add', [ReviewsController::class, 'addReview'])->name('reviews.add');
 Route::delete('/reviews/{id}', [ReviewsController::class, 'deleteReview'])->name('reviews.delete');
 Route::post('/reviews/update', [ReviewsController::class, 'updateReview'])->name('reviews.update');

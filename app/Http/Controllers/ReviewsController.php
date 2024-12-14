@@ -18,29 +18,6 @@ class ReviewsController extends Controller
         $this->notificationController = $notificationController;
     }
 
-
-    public function getReviews(Request $request)
-    {
-        $gameId = $request->input('game_id');
-
-        $reviews = Review::where('game', $gameId)->get();
-
-        // get all author id in $reviews
-        $authorIds = $reviews->pluck('author');
-
-        for ($i = 0; $i < count($authorIds); $i++) {
-            $authorNames[$i] = User::find($authorIds[$i])->username;
-        }
-
-        for ($i = 0; $i < count($reviews); $i++) {
-            $reviews[$i]->author = $authorNames[$i];
-        }
-
-        return response()->json([
-            'reviews' => $reviews,
-        ]);
-    }
-
     public function addReview(Request $request)
     {
         $request->validate([
@@ -115,7 +92,7 @@ class ReviewsController extends Controller
             return back()->withErrors(['error' => 'An error occurred while updating the review.']);
         }
 
-        return redirect()->route('game.details', ['id' => $gameId])->with(['success' => 'Review updated successfully!']);
+        return redirect()->route('game.details', ['id' => $gameId])->withSuccess('Review updated successfully!');
     }
 
     public function reportReview(Request $request)
