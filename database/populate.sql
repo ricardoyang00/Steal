@@ -1180,14 +1180,14 @@ insert into Review (title, description, positive, author, game) values ('Pay to 
 insert into Review (title, description, positive, author, game) values ('Great Replay Value', 'The game has great replay value and keeps you coming back.', true, 10, 10);
 
 -- Review Like
-insert into ReviewLike (review, author) values (1, 2);
-insert into ReviewLike (review, author) values (1, 3);
-insert into ReviewLike (review, author) values (1, 4);
-insert into ReviewLike (review, author) values (1, 5);
-insert into ReviewLike (review, author) values (1, 6);
-insert into ReviewLike (review, author) values (1, 7);
-insert into ReviewLike (review, author) values (1, 8);
-insert into ReviewLike (review, author) values (1, 9);
+insert into ReviewLike (review, author) values (10, 2);
+insert into ReviewLike (review, author) values (10, 3);
+insert into ReviewLike (review, author) values (10, 4);
+insert into ReviewLike (review, author) values (10, 5);
+insert into ReviewLike (review, author) values (10, 6);
+insert into ReviewLike (review, author) values (10, 7);
+insert into ReviewLike (review, author) values (10, 8);
+insert into ReviewLike (review, author) values (10, 9);
 
 
 -- Reason

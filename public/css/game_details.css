@@ -691,4 +691,17 @@
 }
 
 
-/* End of Review Section */
+/* Like Button */
+.like-button {
+    color: grey;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.like-button:hover {
+    color: red;
+}
+
+.like-button.liked {
+    color: red;
+}

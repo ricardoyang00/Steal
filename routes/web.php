@@ -84,6 +84,7 @@ Route::post('/reviews/add', [ReviewsController::class, 'addReview'])->name('revi
 Route::delete('/reviews/{id}', [ReviewsController::class, 'deleteReview'])->name('reviews.delete');
 Route::post('/reviews/update', [ReviewsController::class, 'updateReview'])->name('reviews.update');
 Route::post('/reviews/report', [ReviewsController::class, 'reportReview'])->name('reviews.report');
+Route::post('/reviews/{review}/like', [ReviewsController::class, 'like'])->name('reviews.like');
 
 // Checkout
 Route::middleware('auth')->group(function () {
