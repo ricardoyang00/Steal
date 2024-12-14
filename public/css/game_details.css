@@ -673,7 +673,7 @@
 .btn-report {
     align-self: flex-end;
     padding: 5px 10px;
-    font-size: 12px;
+    font-size: 0.9rem;
     color: #fff;
     background-color: #b7574a;
     border: none;
@@ -683,6 +683,11 @@
 
 .btn-report:hover {
     background-color: #a0453a;
+}
+
+/* Own review */
+#own-review {
+    border: 2px solid var(--highlight-color);
 }
 
 

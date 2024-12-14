@@ -273,13 +273,13 @@
                     <div class="form-group">
                         <label for="review-rating">Rating</label>
                         <div class="form-check thumbs-up">
-                            <input class="form-check-input" type="radio" name="rating" id="review-positive" value="true" {{ $isAuthor && isset($review) && $userReview->positive ? 'checked' : '' }} required>
+                            <input class="form-check-input" type="radio" name="rating" id="review-positive" value="true" {{ $isAuthor && isset($userReview) && $userReview->positive ? 'checked' : '' }} required>
                             <label class="form-check-label" for="review-positive">
                                 <i class="fas fa-thumbs-up" style="color: #4ab757;"></i> Positive
                             </label>
                         </div>
                         <div class="form-check thumbs-up">
-                            <input class="form-check-input" type="radio" name="rating" id="review-negative" value="false" {{ $isAuthor && isset($review) && !$userReview->positive ? 'checked' : '' }} required>
+                            <input class="form-check-input" type="radio" name="rating" id="review-negative" value="false" {{ $isAuthor && isset($userReview) && !$userReview->positive ? 'checked' : '' }} required>
                             <label class="form-check-label" for="review-negative">
                                 <i class="fas fa-thumbs-down" style="color: #b7574a;"></i> Negative
                             </label>
