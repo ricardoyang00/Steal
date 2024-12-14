@@ -3,7 +3,7 @@
 @section('title', 'Manage CDKs for ' . $game->name)
 
 @section('content')
-<div class="container mt-5">
+<div class="add-cdks-page">
     <h1>
         <a href=" {{ url('seller/products') }} ">
             <i class="fa-solid fa-chevron-left" style="color: white;"></i>
@@ -15,16 +15,18 @@
         <form action="{{ route('games.cdks.add', $game->id) }}" method="POST">
             @csrf
             <div class="form-group">
-                <label for="quantity">Add CDKs</label>
+                <label for="quantity">Add CDKs
+                    <span class="hint-icon" data-tooltip="Auto-Generate Keys, not real">?</span>
+                </label>
                 <input type="number" name="quantity" class="form-control" min="1" required>
             </div>
-            <button type="submit" class="btn btn-primary mt-2">Add CDKs</button>
+            <button type="submit" class="btn-add-cdks">Add CDKs</button>
         </form>
     </div>
 
     <div class="mb-3">
         <form action="{{ route('games.cdks', $game->id) }}" method="GET">
-            <label for="filter">Sort by:</label>
+            <label for="filter">Filter:</label>
             <select id="filter" name="filter" class="form-control" onchange="this.form.submit()">
                 <option value="all" {{ $filter === 'all' ? 'selected' : '' }}>All</option>
                 <option value="available" {{ $filter === 'available' ? 'selected' : '' }}>Available</option>

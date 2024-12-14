@@ -1,0 +1,93 @@
+/* General Page Styles */
+.add-cdks-page {
+    color: white;
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #2c2f33;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.add-cdks-page h1 {
+    font-size: 24px;
+    color: #ffffff;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Form Styling */
+.add-cdks-page form {
+    margin-top: 20px;
+}
+
+.add-cdks-page .form-group {
+    margin-bottom: 15px;
+}
+
+.add-cdks-page label {
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.add-cdks-page .form-control {
+    background-color: #23272a;
+    color: #ffffff;
+    border: 1px solid #681fcf;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Table Styling */
+.add-cdks-page .table {
+    margin-top: 20px;
+    color: white;
+    background-color: #23272a;
+    border: 1px solid #681fcf;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.add-cdks-page .table th, .add-cdks-page .table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #150035;
+}
+
+.add-cdks-page .table th {
+    background-color: #681fcf;
+    color: white;
+    font-weight: bold;
+}
+
+/* Button Styling */
+.add-cdks-page .btn-add-cdks {
+    display: inline-block;
+    font-weight: bold;
+    background-color: #6419cc; 
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.add-cdks-page .btn-add-cdks:hover {
+    background-color: #4e13a3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .add-cdks-page {
+        padding: 15px;
+    }
+}

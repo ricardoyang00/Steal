@@ -3,7 +3,7 @@
 @section('title', 'Purchase History for ' . $game->name)
 
 @section('content')
-<div class="container mt-5">
+<div class="seller-purchase-history-page">
     <h1>
         <a href=" {{ url('seller/products') }} ">
             <i class="fa-solid fa-chevron-left" style="color: white;"></i>

@@ -75,8 +75,9 @@
     }
 }
 
+/* Hint Hover*/
 
-.new-game-page .hint-icon {
+.hint-icon {
     display: inline-block;
     background-color: #7289da;
     color: #ffffff;
@@ -91,7 +92,7 @@
     font-weight: normal;
 }
 
-.new-game-page .hint-icon::after {
+.hint-icon::after {
     content: attr(data-tooltip);
     display: none;
     position: absolute;
@@ -107,7 +108,7 @@
     font-size: 0.875rem;
 }
 
-.new-game-page .hint-icon:hover::after {
+.hint-icon:hover::after {
     display: block;
 }
 

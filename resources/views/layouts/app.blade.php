@@ -20,6 +20,7 @@
         <link href="{{ url('css/explore_page.css') }}" rel="stylesheet">
         <link href="{{ url('css/seller/seller_page.css') }}" rel="stylesheet">
         <link href="{{ url('css/seller/new_game.css') }}" rel="stylesheet">
+        <link href="{{ url('css/seller/add_cdks.css') }}" rel="stylesheet">
         <link href="{{ url('css/game_details.css') }}" rel="stylesheet">
         <link href="{{ url('css/admin/manage_users.css') }}" rel="stylesheet">
         <link href="{{ url('css/admin/blocked_games.css') }}" rel="stylesheet">

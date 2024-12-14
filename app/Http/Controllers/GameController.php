@@ -440,6 +440,8 @@ class GameController extends Controller
     {
         $game = Game::findOrFail($id);
         $filter = $request->input('filter', 'all');
+        
+        $totalAvailable = CDK::where('game', $id)->whereDoesntHave('deliveredPurchase')->count();
 
         $query = CDK::where('game', $id);
 
@@ -450,8 +452,6 @@ class GameController extends Controller
         }
 
         $cdks = $query->orderBy('id', 'desc')->paginate(25);
-        $totalAvailable = $query->whereDoesntHave('deliveredPurchase')->count();
-
 
         return view('seller.game-cdks', compact('game', 'cdks', 'filter', 'totalAvailable'));
     }
