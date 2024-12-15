@@ -40,7 +40,7 @@
                 <label class="collapsible">Category</label>
                 <div class="content category">
                     @foreach($categories as $category)
-                        <div class="form-check {{ $loop->index >= 5 ? 'hidden-category' : '' }}">
+                        <div class="form-check-container {{ $loop->index >= 5 ? 'hidden-category' : '' }}">
                             <input type="checkbox" name="categories[]" value="{{ $category->id }}" class="form-check-input" id="category{{ $category->id }}" {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }}>
                             <label class="form-check-label" for="category{{ $category->id }}">{{ $category->name }}</label>
                         </div>
@@ -55,7 +55,7 @@
                 <label class="collapsible">Platform</label>
                 <div class="content platform">
                     @foreach($platforms as $platform)
-                        <div class="form-check {{ $loop->index >= 5 ? 'hidden-category' : '' }}">
+                        <div class="form-check-container {{ $loop->index >= 5 ? 'hidden-category' : '' }}">
                             <input type="checkbox" name="platforms[]" value="{{ $platform->id }}" class="form-check-input" id="platform{{ $platform->id }}" {{ in_array($platform->id, request('platforms', [])) ? 'checked' : '' }}>
                             <label class="form-check-label" for="platform{{ $platform->id }}">{{ $platform->name }}</label>
                         </div>
@@ -70,7 +70,7 @@
                 <label class="collapsible">Language</label>
                 <div class="content language">
                     @foreach($languages as $language)
-                        <div class="form-check {{ $loop->index >= 5 ? 'hidden-category' : '' }}">
+                        <div class="form-check-container {{ $loop->index >= 5 ? 'hidden-category' : '' }}">
                             <input type="checkbox" name="languages[]" value="{{ $language->id }}" class="form-check-input" id="language{{ $language->id }}" {{ in_array($language->id, request('languages', [])) ? 'checked' : '' }}>
                             <label class="form-check-label" for="language{{ $language->id }}">{{ $language->name }}</label>
                         </div>
@@ -85,7 +85,7 @@
                 <label class="collapsible">Player</label>
                 <div class="content">
                     @foreach($players as $player)
-                        <div class="form-check">
+                        <div class="form-check-container">
                             <input type="checkbox" name="players[]" value="{{ $player->id }}" class="form-check-input" id="player{{ $player->id }}" {{ in_array($player->id, request('players', [])) ? 'checked' : '' }}>
                             <label class="form-check-label" for="player{{ $player->id }}">{{ $player->name }}</label>
                         </div>

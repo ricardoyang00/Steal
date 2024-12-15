@@ -10,6 +10,24 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // Handle form-check-container click events
+    document.querySelectorAll('.form-check-container').forEach(function(container) {
+        container.addEventListener('click', function() {
+            const checkbox = container.querySelector('.form-check-input');
+            checkbox.checked = !checkbox.checked;
+            container.classList.toggle('active', checkbox.checked);
+            checkbox.dispatchEvent(new Event('change')); // Trigger change event to update filters
+        });
+    });
+
+    // Apply active class to form-check-container elements based on checked checkboxes
+    document.querySelectorAll('.form-check-input:checked').forEach(function(checkbox) {
+        const container = checkbox.closest('.form-check-container');
+        if (container) {
+            container.classList.add('active');
+        }
+    });
+
     // AJAX Filter checkboxes
     document.querySelectorAll('.form-check-input').forEach(function (checkbox) {
         checkbox.addEventListener('change', function () {

@@ -77,6 +77,7 @@
     margin-bottom: 10px;
 }
 
+/* Filter Type */
 .explore-page .filter-table .collapsible {
     cursor: pointer;
     user-select: none;
@@ -116,37 +117,43 @@
     transition: all 0.3s ease;
 }
 
-.explore-page .filter-table .content .form-check {
+/* Each Filter */
+.explore-page .filter-table .content .form-check-container {
     display: flex;
     align-items: center;
     gap: 8px;
     margin-bottom: 8px;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
-.explore-page .filter-table .content .form-check:nth-child(n+6) {
+.explore-page .filter-table .content .form-check-container input {
     display: none;
 }
 
-.explore-page .filter-table .content .form-check input {
-    cursor: pointer;
-    accent-color: var(--highlight-color);
-    width: 18px;
-    height: 18px;
+.explore-page .filter-table .content .form-check-container:nth-child(n+6) {
+    display: none;
 }
 
-.explore-page .filter-table .content .form-check label {
+.explore-page .filter-table .content .form-check-container label {
     cursor: pointer;
     color: var(--text-color);
     font-size: 1rem;
     transition: color 0.2s ease;
 }
 
-.explore-page .filter-table .content .form-check:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+.explore-page .filter-table .content .form-check-container:hover {
+    background-color: var(--secondary-background-color);
     border-radius: 4px;
 }
 
+.explore-page .filter-table .content .form-check-container.active {
+    background-color: var(--background-color);
+}
+
+/* See More/Less */
 .explore-page .filter-table button.btn-link {
     color: var(--secondary-color);
     font-size: 0.85rem;
