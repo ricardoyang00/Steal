@@ -60,8 +60,9 @@ class CheckoutController extends Controller
                 $prePurchasedItems[] = [
                     'game' => $game->id,
                     'gameName' => $game->name,
-                    'value' => 0.0,
+                    'value' => $game->price,
                 ];
+                $total += ($game->price * $cartItem->quantity);
                 continue;
             }
             $availableCDKs = $game->getAvailableCDKs();
