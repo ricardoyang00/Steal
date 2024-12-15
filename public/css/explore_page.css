@@ -7,7 +7,7 @@
 /* Filter Table Styling */
 .explore-page .filter-table {
     flex: 0 0 250px;
-    background-color: var(--explore-table-color);
+    background-color: var(--game-card-background);
     padding: 16px;
     border-radius: 8px;
     color: var(--text-color);
@@ -17,18 +17,132 @@
     gap: 16px;
 }
 
+/* Header */
+.explore-page .filter-table .filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+}
+
+/* Active filters */
+.active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.active-filters .game-tags {
+    background-color: var(--cart-control-button);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.active-filters .game-tags:hover {
+    background-color: var(--highlight-hover-color);
+}
+
+/* Choose Filters */
 .explore-page .filter-table .hidden-category {
     display: none;
+}
+
+.explore-page .filter-table .form-group {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid black;
+    margin-bottom: 10px;
 }
 
 .explore-page .filter-table .collapsible {
     cursor: pointer;
     user-select: none;
+    font-weight: bold;
+    color: var(--secondary-color);
+    padding: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.explore-page .filter-table .collapsible:hover {
+    color: var(--cart-control-button);
+}
+
+.explore-page .filter-table .collapsible.active {
+    color: var(--cart-control-button);
+}
+
+.explore-page .filter-table .collapsible::after {
+    content: '\25B2';
+    font-size: 0.8rem;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+}
+
+.explore-page .filter-table .collapsible.active::after {
+    transform: rotate(180deg);
 }
 
 .explore-page .filter-table .content {
     display: none;
     overflow: hidden;
+    padding: 8px 0 8px 10px;
+    transition: all 0.3s ease;
+}
+
+.explore-page .filter-table .content .form-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.explore-page .filter-table .content .form-check:nth-child(n+6) {
+    display: none;
+}
+
+.explore-page .filter-table .content .form-check input {
+    cursor: pointer;
+    accent-color: var(--highlight-color);
+    width: 18px;
+    height: 18px;
+}
+
+.explore-page .filter-table .content .form-check label {
+    cursor: pointer;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.explore-page .filter-table .content .form-check:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
+.explore-page .filter-table button.btn-link {
+    color: var(--highlight-color);
+    font-size: 0.9rem;
+    text-decoration: none;
+    padding: 0;
+}
+
+.explore-page .filter-table button.btn-link:hover {
+    text-decoration: underline;
 }
 
 

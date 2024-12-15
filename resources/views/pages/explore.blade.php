@@ -14,7 +14,15 @@
 
 <div class="explore-page">
     <div class="filter-table">
-        <h1>FILTERS</h1>
+        <div class="filter-header">
+            <h1>FILTERS</h1>
+            <button type="button" id="clear-filters" class="btn btn-secondary">Clear Filters</button>
+        </div>
+
+        <div class="active-filters">
+            <!-- AJAX to dinamically show active filters -->
+        </div>
+
         <form id="filter-form" action="{{ url('/explore') }}" method="GET" class="filter-form">
             <!-- Persist query -->
             @if(request('query'))
@@ -25,9 +33,6 @@
             @if(request('sort'))
                 <input type="hidden" name="sort" value="{{ request('sort') }}">
             @endif
-            
-            <button type="button" id="clear-filters" class="btn btn-secondary">Clear Filters</button>
-            
             <!-- Filters -->
             <div class="form-group">
                 <label class="collapsible">Category</label>

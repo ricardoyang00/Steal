@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(response => response.text())
                 .then(html => {
                     document.querySelector('.game-cards').innerHTML = html;
+                    updateActiveFilters();
                 })
                 .catch(error => console.error('Error:', error));
         });
@@ -94,4 +95,51 @@ document.addEventListener('DOMContentLoaded', function () {
     handleSeeMore('category');
     handleSeeMore('platform');
     handleSeeMore('language');
+
+    function updateActiveFilters() {
+        const activeFiltersContainer = document.querySelector('.active-filters');
+        activeFiltersContainer.innerHTML = ''; // Clear previous filters
+    
+        const filterNames = [];
+    
+        // Collect selected Categories
+        document.querySelectorAll('input[name="categories[]"]:checked').forEach(input => {
+            const label = document.querySelector(`label[for="${input.id}"]`).textContent.trim();
+            filterNames.push({ type: 'Category', value: label });
+        });
+    
+        // Collect selected Platforms
+        document.querySelectorAll('input[name="platforms[]"]:checked').forEach(input => {
+            const label = document.querySelector(`label[for="${input.id}"]`).textContent.trim();
+            filterNames.push({ type: 'Platform', value: label });
+        });
+    
+        // Collect selected Languages
+        document.querySelectorAll('input[name="languages[]"]:checked').forEach(input => {
+            const label = document.querySelector(`label[for="${input.id}"]`).textContent.trim();
+            filterNames.push({ type: 'Language', value: label });
+        });
+    
+        // Collect selected Players
+        document.querySelectorAll('input[name="players[]"]:checked').forEach(input => {
+            const label = document.querySelector(`label[for="${input.id}"]`).textContent.trim();
+            filterNames.push({ type: 'Player', value: label });
+        });
+    
+        // Append collected filters to the Active Filters section
+        if (filterNames.length === 0) {
+            activeFiltersContainer.innerHTML = '<span>No active filters</span>';
+        } else {
+            filterNames.forEach(filter => {
+                const filterElement = document.createElement('div');
+                filterElement.className = 'game-tags';
+                filterElement.textContent = filter.value; // Display the filter value
+                
+                // Append the filter element to the active filters container
+                activeFiltersContainer.appendChild(filterElement);
+            });                      
+        }
+    }
+
+    updateActiveFilters();
 });
