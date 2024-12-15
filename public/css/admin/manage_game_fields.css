@@ -85,6 +85,12 @@
     font-size: 1rem;
 }
 
+.game-fields-lists li .label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .game-fields-lists li.editing {
     border-left: 4px solid #bb86fc;
 }

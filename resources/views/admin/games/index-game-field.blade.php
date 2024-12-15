@@ -70,7 +70,10 @@
                 @foreach($platforms as $platform)
                     <li>
                         @include('partials.common.confirmation-modal')
-                        <span class="field-name">{{ $platform->name }}</span>
+                        <div class="label">
+                            <img src="{{ asset('images/platform_logos/' . $platform->id . '.svg') }}" alt="{{ $platform->name }} logo" class="img-fluid" style="width: 20px; height: 30px;">
+                            <span class="field-name">{{ $platform->name }}</span>
+                        </div>
                         <form action="{{ route('admin.updateGameField', ['type' => 'platform', 'id' => $platform->id]) }}" method="POST" class="edit-form" style="display: none;">
                             @csrf
                             @method('POST')
