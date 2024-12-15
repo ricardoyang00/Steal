@@ -18,10 +18,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
     disableDecrementButtons();
 
+    function disableIncrementButton(incBtn) {
+        if (parseInt(incBtn.previousElementSibling.textContent) === 10) {
+            incBtn.disabled = true;
+        }
+    }
+
+    const incrementButtons = document.querySelectorAll('.btn-increase');
+    incrementButtons.forEach(disableIncrementButton);
+
     productList.addEventListener('click', function (event) {
         if (event.target.classList.contains('btn-increase')) {
             const productId = event.target.getAttribute('data-id');
             updateQuantity(productId, 'increase');
+            // check if the quantities are bigger than 9 to disable the buttons
+            const productItem = document.getElementById(`product-${productId}`);
+            const quantityElement = productItem.querySelector('.prod_quantity');
+            const decreaseButton = productItem.querySelector('.btn-decrease');
+            if (parseInt(quantityElement.textContent) === 9) {
+                event.target.disabled = true;
+            }
         }
 
         if (event.target.classList.contains('btn-remove')) {
@@ -56,6 +72,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (event.target.classList.contains('btn-decrease')) {
             const productId = event.target.getAttribute('data-id');
             updateQuantity(productId, 'decrease');
+            // check if product quantity is smaller than 10 and enable the increase button
+            const productItem = document.getElementById(`product-${productId}`);
+            const quantityElement = productItem.querySelector('.prod_quantity');
+            const increaseButton = productItem.querySelector('.btn-increase');
+            if (parseInt(quantityElement.textContent) === 10) {
+                increaseButton.disabled = false;
+            }
         }
     });
 

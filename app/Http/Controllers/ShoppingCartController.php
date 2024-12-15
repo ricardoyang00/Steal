@@ -130,6 +130,9 @@ class ShoppingCartController extends Controller
 
             if (isset($shoppingCart[$gameId])) {
                 $shoppingCart[$gameId]['quantity'] += 1;
+                if ($shoppingCart[$gameId]['quantity'] >= 10) {
+                    $shoppingCart[$gameId]['quantity'] = 10;
+                }
             } else {
                 $game = Game::find($gameId);
                 if ($game) {
