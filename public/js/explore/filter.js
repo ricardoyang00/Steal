@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 showLessBtn.type = 'button';
                 showLessBtn.id = `show-less-btn-${section}`;
                 showLessBtn.className = 'btn btn-link';
-                showLessBtn.textContent = 'See Less';
+                showLessBtn.textContent = 'Show Less';
                 seeMoreBtn.parentNode.appendChild(showLessBtn);
 
                 // Add event listener to the "Show Less" button
@@ -163,6 +163,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     const checkbox = document.getElementById(filter.id);
                     if (checkbox) {
                         checkbox.checked = false;
+                        // Remove the active class from the container
+                        const container = checkbox.closest('.form-check-container');
+                        if (container) {
+                            container.classList.remove('active');
+                        }
                         // Trigger the filter change so the results update
                         const changeEvent = new Event('change');
                         checkbox.dispatchEvent(changeEvent);
@@ -178,7 +183,6 @@ document.addEventListener('DOMContentLoaded', function () {
             
         }
     }
-    
 
     updateActiveFilters();
 });
