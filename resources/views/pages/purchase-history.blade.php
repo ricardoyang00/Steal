@@ -150,19 +150,19 @@
                                 <!-- Second Line: Delivered and Pending Items Count -->
                                 <div class="purchase-history-order-card-body-secondLine">
                                     <div>
-                                        <strong>Delivered Items:</strong> {{ $deliveredCount }}
+                                        <strong>Delivered Games:</strong> {{ $deliveredCount }}
                                     </div>
                                     <div>
                                         <strong>Payment Method:</strong> {{ $history['payment'] }}
                                     </div>
                                     <div>
-                                        <strong>Pending Items:</strong> {{ $pendingCount }}
+                                        <strong>Pending Games:</strong> {{ $pendingCount }}
                                     </div>
                                 </div>
 
                                 <!-- View Details Button -->
                                 <div class="purchase-history-orderDetails">
-                                    <a href="{{ route('seller.purchases.details', ['id' => $history['order']->id]) }}" class="btn btn-primary btn-sm">
+                                    <a href="{{ route('orderDetails', ['id' => $history['order']->id]) }}" class="btn btn-primary btn-sm">
                                         View Details
                                     </a>
                                 </div>

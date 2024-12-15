@@ -1,0 +1,7 @@
+/* Image styling */
+.product-container img {
+    width: 70px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
