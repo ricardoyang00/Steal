@@ -4,10 +4,13 @@
 
 @section('content')
 
+<script src="{{ asset('js/admin/manage-game-fields.js') }}" defer></script>
+<script src="{{ asset('js/common/confirmation-modal.js') }}" defer></script>
+
 <div class="game-fields">
     <!-- Create New Game Field Form -->
     <div class="create-game-field">
-        <h2>Create New Game Field</h2>
+        <h2 class="title">Create New Game Field</h2>
         <form action="{{ route('admin.storeGameField') }}" method="POST">
             @csrf
             <div class="form-group">
@@ -29,10 +32,11 @@
     <div class="game-fields-lists">
         <!-- List of Categories -->
         <div class="game-categories">
-            <h2>Categories</h2>
+            <h2 class="title">Categories</h2>
             <ul>
                 @foreach($categories as $category)
                     <li>
+                        @include('partials.common.confirmation-modal')
                         <span class="field-name">{{ $category->name }}</span>
                         <form action="{{ route('admin.updateGameField', ['type' => 'category', 'id' => $category->id]) }}" method="POST" class="edit-form" style="display: none;">
                             @csrf
@@ -43,10 +47,15 @@
                         </form>
                         <div class="action-buttons">
                             <button class="edit-button"><i class="fas fa-pencil-alt"></i> Edit</button>
-                            <form action="{{ route('admin.destroyGameField', ['type' => 'category', 'id' => $category->id]) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('admin.destroyGameField', ['type' => 'category', 'id' => $category->id]) }}" method="POST" style="display:inline;" id="delete-category-form-{{ $category->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="delete-button"><i class="fas fa-trash-alt"></i> Delete</button>
+                                <button type="button" class="confirmation-btn delete-button"
+                                    data-title="Delete Category"
+                                    data-message="Are you sure you want to delete {{ $category->name }} ?"
+                                    data-form-id="delete-category-form-{{ $category->id }}">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
                             </form>
                         </div>
                     </li>
@@ -56,10 +65,11 @@
 
         <!-- List of Platforms -->
         <div class="game-platforms">
-            <h2>Platforms</h2>
+            <h2 class="title">Platforms</h2>
             <ul>
                 @foreach($platforms as $platform)
                     <li>
+                        @include('partials.common.confirmation-modal')
                         <span class="field-name">{{ $platform->name }}</span>
                         <form action="{{ route('admin.updateGameField', ['type' => 'platform', 'id' => $platform->id]) }}" method="POST" class="edit-form" style="display: none;">
                             @csrf
@@ -70,10 +80,15 @@
                         </form>
                         <div class="action-buttons">
                             <button class="edit-button"><i class="fas fa-pencil-alt"></i> Edit</button>
-                            <form action="{{ route('admin.destroyGameField', ['type' => 'platform', 'id' => $platform->id]) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('admin.destroyGameField', ['type' => 'platform', 'id' => $platform->id]) }}" method="POST" style="display:inline;" id="delete-platform-form-{{ $platform->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="delete-button"><i class="fas fa-trash-alt"></i> Delete</button>
+                                <button type="button" class="confirmation-btn delete-button"
+                                    data-title="Delete Platform"
+                                    data-message="Are you sure you want to delete {{ $platform->name }} ?"
+                                    data-form-id="delete-platform-form-{{ $platform->id }}">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
                             </form>
                         </div>
                     </li>
@@ -83,10 +98,11 @@
 
         <!-- List of Languages -->
         <div class="game-languages">
-            <h2>Languages</h2>
+            <h2 class="title">Languages</h2>
             <ul>
                 @foreach($languages as $language)
                     <li>
+                        @include('partials.common.confirmation-modal')
                         <span class="field-name">{{ $language->name }}</span>
                         <form action="{{ route('admin.updateGameField', ['type' => 'language', 'id' => $language->id]) }}" method="POST" class="edit-form" style="display: none;">
                             @csrf
@@ -97,10 +113,15 @@
                         </form>
                         <div class="action-buttons">
                             <button class="edit-button"><i class="fas fa-pencil-alt"></i> Edit</button>
-                            <form action="{{ route('admin.destroyGameField', ['type' => 'language', 'id' => $language->id]) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('admin.destroyGameField', ['type' => 'language', 'id' => $language->id]) }}" method="POST" style="display:inline;" id="delete-language-form-{{ $language->id }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="delete-button"><i class="fas fa-trash-alt"></i> Delete</button>
+                                <button type="button" class="confirmation-btn delete-button"
+                                    data-title="Delete Language"
+                                    data-message="Are you sure you want to delete {{ $language->name }} ?"
+                                    data-form-id="delete-language-form-{{ $language->id }}">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </button>
                             </form>
                         </div>
                     </li>
@@ -109,32 +130,5 @@
         </div>
     </div>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const editButtons = document.querySelectorAll('.edit-button');
-    const cancelButtons = document.querySelectorAll('.cancel-button');
-
-    editButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const li = this.closest('li');
-            li.classList.add('editing');
-            li.querySelector('.field-name').style.display = 'none';
-            li.querySelector('.edit-form').style.display = 'flex';
-            li.querySelector('.action-buttons').style.display = 'none';
-        });
-    });
-
-    cancelButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const li = this.closest('li');
-            li.classList.remove('editing');
-            li.querySelector('.field-name').style.display = 'inline';
-            li.querySelector('.edit-form').style.display = 'none';
-            li.querySelector('.action-buttons').style.display = 'flex';
-        });
-    });
-});
-</script>
 
 @endsection
