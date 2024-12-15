@@ -258,11 +258,13 @@ class GameController extends Controller
         $sellerId = auth()->user()->id;
         $games = Game::where('owner', $sellerId)
                     ->with(['platforms', 'categories', 'languages', 'players'])
-                    ->withCount(['getcdks as stock' => function ($query) {
-                        $query->whereDoesntHave('deliveredPurchase');
-                    }])
                     ->orderBy('name', 'asc')
                     ->paginate(10);
+        
+        $games->getCollection()->transform(function ($game) {
+            $game->stock = $game->stock;
+            return $game;
+        });   
     
         return view('seller.products', compact('games'));
     }
@@ -434,7 +436,8 @@ class GameController extends Controller
         $game = Game::findOrFail($id);
         $filter = $request->input('filter', 'all');
         
-        $totalAvailable = CDK::where('game', $id)->whereDoesntHave('deliveredPurchase')->count();
+        $totalAvailable = $game->stock;
+        $totalSold = $game->sold;
 
         $query = CDK::where('game', $id);
 
@@ -446,7 +449,7 @@ class GameController extends Controller
 
         $cdks = $query->orderBy('id', 'desc')->paginate(25);
 
-        return view('seller.game-cdks', compact('game', 'cdks', 'filter', 'totalAvailable'));
+        return view('seller.game-cdks', compact('game', 'cdks', 'filter', 'totalAvailable', 'totalSold'));
     }
 
     public function addCdks(Request $request, $id)

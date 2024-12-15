@@ -83,6 +83,16 @@ class Game extends Model
             ->get();
     }
 
+    public function getStockAttribute()
+    {
+        return $this->getAvailableCDKs()->count();
+    }
+
+    public function getSoldAttribute()
+    {
+        return $this->getCDKs()->count() - $this->getStockAttribute();
+    }
+
     public function deliveredPurchases()
     {
         return $this->hasManyThrough(DeliveredPurchase::class, CDK::class, 'game', 'cdk', 'id', 'id');

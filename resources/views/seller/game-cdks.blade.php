@@ -12,6 +12,7 @@
 
     <div class="mb-3">
         <p><strong>Available CDKs: </strong>{{ $totalAvailable }}</p>
+        <p><strong>Sold CDKs: </strong>{{ $totalSold }}</p>
         <form action="{{ route('games.cdks.add', $game->id) }}" method="POST">
             @csrf
             <div class="form-group">
