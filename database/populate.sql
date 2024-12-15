@@ -2,30 +2,40 @@ SET search_path TO lbaw2435;
 
 -- POPULATE DATABASE
 -- USERS
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('hbrellin0', 'Hamil Brellin', 'buyer@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('kpeschmann1', 'Kristo Peschmann', 'kpeschmann1@edublogs.org', '$2a$04$IAuigNcjKssEHMcHFqkTEeNUDoD3IEGVLxwKwIF0lbcoF67NUTM7i', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('nspikings2', 'Nickolas Spikings', 'nspikings2@yahoo.co.jp', '$2a$04$ujyEJ1LF7KZNvh4weCUKHuiuAlqYyrvKqC/zh.NFX0EA7iYK2F/Va', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('mbatson3', 'Myrilla Batson', 'mbatson3@home.pl', '$2a$04$zwkBwn8fRCLpHpMkuwjwJud/k7BuILroNu3D0NkHWj7NrlX22AB/O', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('mkinkade4', 'Mareah Kinkade', 'mkinkade4@slideshare.net', '$2a$04$GX/2zaYED08d0fsuarAVkerO5XEm4KwRvae72vRNC4Gq32KSBwMSy', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('jweagener5', 'Julina Weagener', 'jweagener5@ed.gov', '$2a$04$uKNjaZH6FmaEJRq/bObc..00KATPYnTCixdOul6KbtKJx.Qh6zBr6', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('cfaveryear6', 'Cristobal Faveryear', 'cfaveryear6@printfriendly.com', '$2a$04$Aoeyt3a/Y4kB6d2VSa9JV.Y3d2w.bcZcapaL0P7KNkZA7wafyW2sq', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('rarrigucci7', 'Rowena Arrigucci', 'rarrigucci7@photobucket.com', '$2a$04$rrFIgJjmvkFzm8GkaB6cjeXou1lg232iSN402rKm9sbqGlT0/NOpC', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('ttibbetts8', 'Tove Tibbetts', 'ttibbetts8@adobe.com', '$2a$04$5qfCo9iWFvY00jQlRju5z.1Vg4aC.ih7sRWDvMkvBLpvJ8WecviCO', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('fevelyn9', 'Franciskus Evelyn', 'fevelyn9@usda.gov', '$2a$04$egGz5KnFdRsAiHlLwNiw7.3ZS0Byg36Qvr581LGgxKBXxxQXaHNHG', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('rhaycrofta', 'Roseanne Haycroft', 'rhaycrofta@amazon.co.uk', '$2a$04$BQcEGGn8cVfdVUN5O97pi.KaMlurZE7cSWIg7n5hj8p9aEWL8Rle2', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('mhackwellb', 'Munroe Hackwell', 'mhackwellb@clickbank.net', '$2a$04$5A2hHi0FJ7UFeZXlVfWOcOGIMoqu5fA1nJeBLkE2gXf6ZwSUCElXa', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('qjeaffresonc', 'Querida Jeaffreson', 'qjeaffresonc@answers.com', '$2a$04$xBuH87DcCqRafcWpEkUeLewf5BtQrfd.tmm5C2ypK00VKvlyUU1sG', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('nmorewoodd', 'Nil Morewood', 'nmorewoodd@gov.uk', '$2a$04$8LbId5LFKFhiUQ9xq5umnuHjdOyp8bWI116VISsn.iVE75Ifrovhu', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('agustuse', 'Akim Gustus', 'agustuse@addthis.com', '$2a$04$2YuIE4my5xv2aIxUUVe8hu07IfGVV.tCWcIBVA7vdwSvbz3DStqv6', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('cpearcef', 'Chip Pearce', 'cpearcef@toplist.cz', '$2a$04$TkRg.rwUKuE6Vj83BYv1tuGj2O7vcWVOevd2emFltepTdRdtgCZxa', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('sdumbellowg', 'Stu Dumbellow', 'sdumbellowg@yahoo.co.jp', '$2a$04$CezMAYWtb/35/mGX1YgVUeINMJoe9GKGFx4mhAI286RxEiTZ6hyFa', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('hcornierh', 'Hewet Cornier', 'hcornierh@alibaba.com', '$2a$04$JpHqsPkrIoAeAjfNnAS64uhepmXO/NeL8fJkQcLwI7z/3RmiBA8Je', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('mmainstoni', 'Meaghan Mainston', 'mmainstoni@hao123.com', '$2a$04$z3Gtsn1B.Ds8o2Munu4ZreIrwjVdkkOEuIMG6S6EJ0bcSij8LYaKO', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('tschusterlj', 'Thacher Schusterl', 'seller@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png');
+insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values 
+('buyer1', 'Buyer One', 'buyer1@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer2', 'Buyer Two', 'buyer2@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer3', 'Buyer Three', 'buyer3@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer4', 'Buyer Four', 'buyer4@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer5', 'Buyer Five', 'buyer5@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer6', 'Buyer Six', 'buyer6@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer7', 'Buyer Seven', 'buyer7@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer8', 'Buyer Eight', 'buyer8@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer9', 'Buyer Nine', 'buyer9@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer10', 'Buyer Ten', 'buyer10@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller1', 'Nintendo', 'seller1@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller2', 'Sony', 'seller2@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller3', 'Microsoft', 'seller3@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller4', 'Ubisoft', 'seller4@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller5', 'Electronic Arts', 'seller5@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller6', 'Activision', 'seller6@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller7', 'Square Enix', 'seller7@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller8', 'Capcom', 'seller8@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller9', 'Bethesda', 'seller9@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller10', 'Rockstar Games', 'seller10@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller11', 'Blizzard Entertainment', 'seller11@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, true, 'images/profile_pictures/default-profile-picture.png'),
+('seller12', 'Bandai Namco', 'seller12@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrLWy9Sj/W', true, true, 'images/profile_pictures/default-profile-picture.png'),
+('Anonymous23', 'Anonymous', 'anonymous23mail', 'anonymous', false, false, null),
+('buyer12', 'Buyer Twelve', 'buyer12@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrLWy9Sj/W', true, true, 'images/profile_pictures/default-profile-picture.png'),
+('buyer13', 'Buyer Thirteen', 'buyer13@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrLWy9Sj/W', true, true, 'images/profile_pictures/default-profile-picture.png'),
+('buyer14', 'Buyer Fourteen', 'buyer14@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrLWy9Sj/W', true, true, 'images/profile_pictures/default-profile-picture.png'),
+('buyer15', 'Buyer Fifteen', 'buyer15@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrLWy9Sj/W', true, true, 'images/profile_pictures/default-profile-picture.png'),
+('buyer16', 'Buyer Sixteen', 'buyer16@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrLWy9Sj/W', true, true, 'images/profile_pictures/default-profile-picture.png'),
+('buyer17', 'Buyer Seventeen', 'buyer17@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrLWy9Sj/W', true, true, 'images/profile_pictures/default-profile-picture.png');
 
 
 -- ADMINISTRATOR
-insert into Administrator (username, name, email, password) values ('ajeavons0', 'Aryn Jeavons', 'admin@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W');
+insert into Administrator (username, name, email, password) values ('admin', 'Admin John', 'admin@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W');
 insert into Administrator (username, name, email, password) values ('sbeckson1', 'Saxon Beckson', 'sbeckson1@feedburner.com', '$2a$04$irfv6UVFd5wJseTyvBFEq.h6KZ6/EGyPuQuIMC.BvJCNYAyL5naqq');
 insert into Administrator (username, name, email, password) values ('apeffer2', 'Allix Peffer', 'apeffer2@nba.com', '$2a$04$DDqwRdaW5YbhOtfCzLWCVe2nxXZ5IQFD1eVE/UD1cZxNfe9Ouud9y');
 insert into Administrator (username, name, email, password) values ('ebaird3', 'Ely Baird', 'ebaird3@canalblog.com', '$2a$04$w2f140crfq6RhNHkSPbysOTuJbvVUbZxvH6kxGzXeWOcdJdfVYZGG');
@@ -43,6 +53,11 @@ insert into Buyer (id, nif, birth_date, coins) values (7, 258088894, '1958-07-06
 insert into Buyer (id, nif, birth_date, coins) values (8, 244749380, '1951-07-27', 183371);
 insert into Buyer (id, nif, birth_date, coins) values (9, 277064361, '1987-06-09', 87897);
 insert into Buyer (id, nif, birth_date, coins) values (10, 255313470, '1990-05-17', 321725);
+insert into Buyer (id, nif, birth_date, coins) values (23, 255311273, '1990-05-17', 0);
+insert into Buyer (id, nif, birth_date, coins) values (24, 255571273, '1990-05-17', 0);
+insert into Buyer (id, nif, birth_date, coins) values (25, 255411273, '1990-05-17', 0);
+insert into Buyer (id, nif, birth_date, coins) values (26, 241311273, '1990-05-17', 0);
+insert into Buyer (id, nif, birth_date, coins) values (27, 242311273, '1990-05-17', 0);
 
 
 -- SELLER
@@ -56,6 +71,8 @@ insert into Seller (id) values (17);
 insert into Seller (id) values (18);
 insert into Seller (id) values (19);
 insert into Seller (id) values (20);
+insert into Seller (id) values (21);
+insert into Seller (id) values (22);
 
 -- AGE
 insert into Age (minimum_age, name, description, image_path) values (0, 'PEGI 3', 'Suitable for all ages. Contains no violence, inappropriate language, or anything that could scare or harm young children. However, PEGI does recommend parental guidance for children under 3 years old, as the minimum age officially starts at 3. So while there’s no real restriction, the "PEGI 3" label still suggests an age starting point.', 'images/age/PEGI_3.svg');
