@@ -27,7 +27,11 @@ document.addEventListener('DOMContentLoaded', function () {
                         button.style.backgroundColor = '';
                     }, 1000);
                 } else {
-                    alert('An error occurred while adding the product to the cart.');
+                    if (data.quantity_limit){
+                        alert('The quantity of this product cannot exceed 10 in your cart.');
+                    } else {
+                        alert('An error occurred while adding the product to the cart.');
+                    }
                 }
             })
             .catch(error => {

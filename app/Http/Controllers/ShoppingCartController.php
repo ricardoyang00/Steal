@@ -74,7 +74,7 @@ class ShoppingCartController extends Controller
             }
 
             if (isset($shoppingCart[$gameId])) {
-                $shoppingCart[$gameId]['quantity'] += 1;
+                return $this->increaseQuantity($request);
             } else {
                 $game = Game::find($gameId);
                 if ($game) {
@@ -105,7 +105,15 @@ class ShoppingCartController extends Controller
                                             ->first();
 
             if ($shoppingCartItem) {
-                $shoppingCartItem->quantity += $quantity;
+                for ($i = 0; $i < $quantity; $i++) {
+                    if ($this->increaseQuantity($request)->getData()->success === false) {
+                        return response()->json([
+                            'success' => false,
+                            'quantity_limit' => true,
+                            'message' => 'You can only buy up to 10 copies of a game.'
+                        ]);
+                    }
+                }
                 $shoppingCartItem->save();
             } else {
                 $shoppingCartItem = new ShoppingCart();
@@ -129,10 +137,15 @@ class ShoppingCartController extends Controller
             $shoppingCart = $request->session()->get('shopping_cart', []);
 
             if (isset($shoppingCart[$gameId])) {
-                $shoppingCart[$gameId]['quantity'] += 1;
                 if ($shoppingCart[$gameId]['quantity'] >= 10) {
                     $shoppingCart[$gameId]['quantity'] = 10;
+                    return response()->json([
+                        'success' => false,
+                        'quantity_limit' => true,
+                        'message' => 'You can only buy up to 10 copies of a game.'
+                    ]);
                 }
+                $shoppingCart[$gameId]['quantity'] += 1;
             } else {
                 $game = Game::find($gameId);
                 if ($game) {
@@ -150,6 +163,7 @@ class ShoppingCartController extends Controller
             return response()->json([
                 'success' => true,
                 'new_quantity' => $shoppingCart[$gameId]['quantity'],
+                'quantity_limit' => false,
                 'new_total' => array_reduce($shoppingCart, function ($carry, $item) {
                     return $carry + ($item['price'] * $item['quantity']);
                 }, 0),
@@ -164,6 +178,13 @@ class ShoppingCartController extends Controller
                                             ->first();
 
             if ($shoppingCartItem) {
+                if ($shoppingCartItem->quantity >= 10) {
+                    return response()->json([
+                        'success' => false,
+                        'quantity_limit' => true,
+                        'message' => 'You can only buy up to 10 copies of a game.'
+                    ]);
+                }
                 $shoppingCartItem->quantity += 1;
                 $shoppingCartItem->save();
             }
@@ -178,6 +199,7 @@ class ShoppingCartController extends Controller
             return response()->json([
                 'success' => true,
                 'new_quantity' => $shoppingCartItem->quantity,
+                'quantity_limit' => false,
                 'new_total' => $newTotal,
             ]);
         }
