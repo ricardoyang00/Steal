@@ -61,31 +61,37 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // "See More" and "Show Less" buttons
-    const seeMoreBtn = document.getElementById('see-more-btn');
-    if (seeMoreBtn) {
-        seeMoreBtn.addEventListener('click', function () {
-            const hiddenCategories = document.querySelectorAll('.hidden-category');
-            hiddenCategories.forEach(function (category) {
-                category.style.display = 'block';
-            });
-            seeMoreBtn.style.display = 'none'; // Hide the "See More" button after clicking
-
-            // Create and insert the "Show Less" button
-            const showLessBtn = document.createElement('button');
-            showLessBtn.type = 'button';
-            showLessBtn.id = 'show-less-btn';
-            showLessBtn.className = 'btn btn-link';
-            showLessBtn.textContent = 'Show Less';
-            seeMoreBtn.parentNode.appendChild(showLessBtn);
-
-            // Add event listener to the "Show Less" button
-            showLessBtn.addEventListener('click', function () {
-                hiddenCategories.forEach(function (category) {
-                    category.style.display = 'none';
+    function handleSeeMore(section) {
+        const seeMoreBtn = document.getElementById(`see-more-btn-${section}`);
+        if (seeMoreBtn) {
+            seeMoreBtn.addEventListener('click', function () {
+                const hiddenItems = document.querySelectorAll(`.${section} .hidden-category`);
+                hiddenItems.forEach(function (item) {
+                    item.style.display = 'block';
                 });
-                seeMoreBtn.style.display = 'block'; // Show the "See More" button again
-                showLessBtn.remove(); // Remove the "Show Less" button
+                seeMoreBtn.style.display = 'none'; // Hide the "See More" button after clicking
+
+                // Create and insert the "Show Less" button
+                const showLessBtn = document.createElement('button');
+                showLessBtn.type = 'button';
+                showLessBtn.id = `show-less-btn-${section}`;
+                showLessBtn.className = 'btn btn-link';
+                showLessBtn.textContent = 'See Less';
+                seeMoreBtn.parentNode.appendChild(showLessBtn);
+
+                // Add event listener to the "Show Less" button
+                showLessBtn.addEventListener('click', function () {
+                    hiddenItems.forEach(function (item) {
+                        item.style.display = 'none';
+                    });
+                    seeMoreBtn.style.display = 'block'; // Show the "See More" button again
+                    showLessBtn.remove(); // Remove the "Show Less" button
+                });
             });
-        });
+        }
     }
+
+    handleSeeMore('category');
+    handleSeeMore('platform');
+    handleSeeMore('language');
 });

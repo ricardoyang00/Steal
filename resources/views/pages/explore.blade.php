@@ -31,7 +31,7 @@
             <!-- Filters -->
             <div class="form-group">
                 <label class="collapsible">Category</label>
-                <div class="content">
+                <div class="content category">
                     @foreach($categories as $category)
                         <div class="form-check {{ $loop->index >= 5 ? 'hidden-category' : '' }}">
                             <input type="checkbox" name="categories[]" value="{{ $category->id }}" class="form-check-input" id="category{{ $category->id }}" {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }}>
@@ -39,32 +39,38 @@
                         </div>
                     @endforeach
                     @if(count($categories) > 5)
-                        <button type="button" id="see-more-btn" class="btn btn-link">See More</button>
+                        <button type="button" id="see-more-btn-category" class="btn btn-link">See More</button>
                     @endif
                 </div>
             </div>
             
             <div class="form-group">
                 <label class="collapsible">Platform</label>
-                <div class="content">
+                <div class="content platform">
                     @foreach($platforms as $platform)
-                        <div class="form-check">
+                        <div class="form-check {{ $loop->index >= 5 ? 'hidden-category' : '' }}">
                             <input type="checkbox" name="platforms[]" value="{{ $platform->id }}" class="form-check-input" id="platform{{ $platform->id }}" {{ in_array($platform->id, request('platforms', [])) ? 'checked' : '' }}>
                             <label class="form-check-label" for="platform{{ $platform->id }}">{{ $platform->name }}</label>
                         </div>
                     @endforeach
+                    @if(count($platforms) > 5)
+                        <button type="button" id="see-more-btn-platform" class="btn btn-link">See More</button>
+                    @endif
                 </div>
             </div>
             
             <div class="form-group">
                 <label class="collapsible">Language</label>
-                <div class="content">
+                <div class="content language">
                     @foreach($languages as $language)
-                        <div class="form-check">
+                        <div class="form-check {{ $loop->index >= 5 ? 'hidden-category' : '' }}">
                             <input type="checkbox" name="languages[]" value="{{ $language->id }}" class="form-check-input" id="language{{ $language->id }}" {{ in_array($language->id, request('languages', [])) ? 'checked' : '' }}>
                             <label class="form-check-label" for="language{{ $language->id }}">{{ $language->name }}</label>
                         </div>
                     @endforeach
+                    @if(count($languages) > 5)
+                        <button type="button" id="see-more-btn-language" class="btn btn-link">See More</button>
+                    @endif
                 </div>
             </div>
             
