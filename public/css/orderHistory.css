@@ -1,0 +1,153 @@
+/* public/css/purchaseHistory.css */
+
+/* Container Styling */
+.purchase-history-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    color: #333; /* Set default text color */
+}
+
+/* Heading */
+.purchase-history-container h1 {
+    margin-bottom: 30px;
+    text-align: center;
+    color: #333; /* Ensure heading is dark */
+}
+
+/* Sort Options Styling */
+.sort-options {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.purchase-history-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.purchase-history-sort-dropdownButton {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff; /* White text for button */
+    cursor: pointer;
+}
+
+.purchase-history-sort-dropdownButton:hover {
+    background-color: #0056b3;
+}
+
+.purchase-history-select-order-options {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+    padding: 0;
+    margin-top: 5px;
+    list-style: none;
+}
+
+.purchase-history-dropdown:hover .purchase-history-select-order-options {
+    display: block;
+}
+
+.purchase-history-select-order-options li a {
+    color: #333; /* Dark text for dropdown items */
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.purchase-history-select-order-options li a:hover,
+.purchase-history-select-order-options li a.active {
+    background-color: #f1f1f1;
+    color: #007bff; /* Highlight color */
+}
+
+/* Order Card Styling */
+.purchase-history-order-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.purchase-history-order-card-body {
+    padding: 20px;
+    color: #333; /* Ensure text inside card is dark */
+}
+
+/* First Line: Date, Total Price, Status */
+.purchase-history-order-card-body-firstLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.purchase-history-order-card-body-firstLine div {
+    flex: 1;
+    text-align: center;
+}
+
+.purchase-history-order-card-body-firstLine div:first-child {
+    text-align: left;
+}
+
+.purchase-history-order-card-body-firstLine div:last-child {
+    text-align: right;
+}
+
+/* Second Line: Delivered and Pending Items */
+.purchase-history-order-card-body-secondLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.purchase-history-order-card-body-secondLine div {
+    flex: 1;
+    text-align: center;
+}
+
+.purchase-history-order-card-body-secondLine div:first-child {
+    text-align: left;
+}
+
+.purchase-history-order-card-body-secondLine div:last-child {
+    text-align: right;
+}
+
+/* View Details Button */
+.purchase-history-orderDetails {
+    text-align: right;
+}
+
+.purchase-history-orderDetails .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+/* No Orders Alert */
+.no-orders {
+    padding: 20px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    text-align: center;
+    color: #555;
+    margin-top: 20px;
+}
+
+

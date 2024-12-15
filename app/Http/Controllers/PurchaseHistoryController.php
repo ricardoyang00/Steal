@@ -23,8 +23,16 @@ class PurchaseHistoryController extends Controller
         $direction = $request->get('direction', 'desc');
 
         
-        $ordersQuery = Order::where('buyer', $buyerId)
-        ->whereHas('getPurchases.getDeliveredPurchase');
+        $ordersQuery = Order::with([
+            'getPayment.getPaymentMethod',
+            'getPurchases.getDeliveredPurchase.getCDK.getGame',
+            'getPurchases.getPrePurchase.getGame'
+        ])
+        ->where('buyer', $buyerId)
+        ->whereHas('getPurchases', function ($query) {
+            $query->whereHas('getDeliveredPurchase')
+                  ->orWhereHas('getPrePurchase');
+        });
 
         if ($sortBy === 'totalPrice') {
             $ordersQuery->select('orders.*', DB::raw('(SELECT SUM(purchase.value) FROM purchase WHERE purchase.order_ = orders.id) AS total_cost'))
