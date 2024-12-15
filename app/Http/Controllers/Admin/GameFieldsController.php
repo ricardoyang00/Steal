@@ -17,9 +17,9 @@ class GameFieldsController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
-        $platforms = Platform::all();
-        $languages = Language::all();
+        $categories = Category::orderBy('name', 'asc')->get();
+        $platforms = Platform::orderBy('name', 'asc')->get();
+        $languages = Language::orderBy('name', 'asc')->get();
 
         return view('admin.games.index-game-field', compact('categories', 'platforms', 'languages'));
     }
@@ -28,7 +28,7 @@ class GameFieldsController extends Controller
     {
         $request->validate([
             'type' => 'required|string|in:category,platform,language',
-            'name' => 'required|string|max:20',
+            'name' => ['required', 'string', 'max:20', 'regex:/^[A-Za-z\s]+$/'],
         ]);
 
         switch ($request->type) {
@@ -66,7 +66,7 @@ class GameFieldsController extends Controller
     public function update(Request $request, $type, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:20',
+            'name' => ['required', 'string', 'max:20', 'regex:/^[A-Za-z\s]+$/'],
         ]);
 
         switch ($type) {

@@ -1,0 +1,132 @@
+.game-fields a {
+    color: #bb86fc;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.game-fields a:hover {
+    color: #3700b3;
+}
+
+.game-fields h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+/* Top Form Styling */
+.game-fields .create-game-field {
+    width: 50%;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.game-fields .create-game-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.game-fields .create-game-field input,
+.game-fields .create-game-field select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #333;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+.game-fields .create-game-field button {
+    background-color: #bb86fc;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.game-fields .create-game-field button:hover {
+    background-color: var(--highlight-color);
+}
+
+/* Grid Layout for Tables */
+.game-fields .game-fields-lists {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.game-fields .game-categories, .game-fields .game-platforms, .game-fields .game-languages {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+
+    h2 {
+        color: #bb86fc;
+        margin-bottom: 15px;
+        text-align: left;
+    }
+}
+
+.game-fields-lists ul {
+    list-style: none;
+    padding: 0;
+}
+
+.game-fields-lists li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #333;
+    font-size: 1rem;
+}
+
+.game-fields-lists li .action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.game-fields-lists .delete-button {
+    background-color: var(--red);
+    color: var(--text-color);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.game-fields-lists .delete-button:hover {
+    background-color: var(--red-hover);
+}
+
+.game-fields-lists .edit-button {
+    background-color: var(--positive);
+    color: var(--text-color);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.game-fields-lists .edit-button:hover {
+    background-color: var(--positive-hover);
+    color: var(--text-color);
+}
