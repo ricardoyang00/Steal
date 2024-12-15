@@ -30,7 +30,7 @@ class PurchaseHistoryController extends Controller
             $ordersQuery->select('orders.*', DB::raw('(SELECT SUM(purchase.value) FROM purchase WHERE purchase.order_ = orders.id) AS total_cost'))
                 ->orderBy('total_cost', $direction);
         } else {
-            $ordersQuery->orderBy('time', $direction); // Default to sorting by time
+            $ordersQuery->orderBy('time', $direction);
         }
 
         $orders = $ordersQuery->paginate(5)->appends([
@@ -53,13 +53,25 @@ class PurchaseHistoryController extends Controller
                     ];
                 });
 
-            $totalPrice = $deliveredPurchases->sum('value');
+                $prePurchases = Purchase::where('order_', $order->id)
+                ->whereHas('getPrePurchase')
+                ->get()
+                ->map(function ($purchase) {
+                    $prePurchase = $purchase->getPrePurchase;
+                    return [
+                        'game' => $prePurchase->getGame->name ?? 'Unknown Game',
+                        'value' => $purchase->value,
+                    ];
+                });
+
+            $totalPrice = $deliveredPurchases->sum('value') + $prePurchases->sum('value');
             $formattedTime = $this->formatOrderTime($order->time);
 
             return [
                 'order' => $order,
                 'payment' => $paymentMethodName,
-                'purchases' => $deliveredPurchases,
+                'deliveredPurchases' => $deliveredPurchases,
+                'prePurchases' => $prePurchases,
                 'formattedTime' => $formattedTime,
                 'totalPrice' => $totalPrice,
             ];
