@@ -16,7 +16,9 @@
     <div class="filter-table">
         <div class="filter-header">
             <h1>FILTERS</h1>
-            <button type="button" id="clear-filters" class="btn btn-secondary">Clear Filters</button>
+            <button type="button" id="clear-filters" class="btn btn-secondary">
+                <i class="fa-solid fa-filter-circle-xmark"></i>
+            </button>
         </div>
 
         <div class="active-filters">

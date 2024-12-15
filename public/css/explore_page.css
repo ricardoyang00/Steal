@@ -25,9 +25,20 @@
     h1 {
         font-size: 1.5rem;
         margin-bottom: 10px;
-        border-bottom: 1px solid var(--border-color);
+        margin-top: 10px;
     }
 
+    #clear-filters {
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 1.2rem;
+        cursor: pointer;
+    }
+    
+    #clear-filters:hover {
+        color: var(--cart-control-button);
+    }
 }
 
 /* Active filters */
@@ -70,6 +81,7 @@
     cursor: pointer;
     user-select: none;
     font-weight: bold;
+    font-size: 1.2rem;
     color: var(--secondary-color);
     padding: 8px 0;
     display: flex;
@@ -90,6 +102,7 @@
     font-size: 0.8rem;
     transform: rotate(0deg);
     transition: transform 0.3s ease;
+    padding-top: 5px;
 }
 
 .explore-page .filter-table .collapsible.active::after {
@@ -125,7 +138,7 @@
 .explore-page .filter-table .content .form-check label {
     cursor: pointer;
     color: var(--text-color);
-    font-size: 0.9rem;
+    font-size: 1rem;
     transition: color 0.2s ease;
 }
 
@@ -135,16 +148,18 @@
 }
 
 .explore-page .filter-table button.btn-link {
-    color: var(--highlight-color);
-    font-size: 0.9rem;
+    color: var(--secondary-color);
+    font-size: 0.85rem;
     text-decoration: none;
-    padding: 0;
+    padding-top: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 .explore-page .filter-table button.btn-link:hover {
-    text-decoration: underline;
+    color: var(--cart-control-button);
 }
-
 
 /* Game Content Styling */
 .explore-page .game-content {
