@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
+    /* Create Platform */
+    const typeSelect = document.getElementById('type');
+    const platformLogoGroup = document.getElementById('platform-logo-group');
+
+    typeSelect.addEventListener('change', function() {
+        if (typeSelect.value === 'platform') {
+            platformLogoGroup.style.display = 'block';
+        } else {
+            platformLogoGroup.style.display = 'none';
+        }
+    });
+
+    /* Edit Action */
     const editButtons = document.querySelectorAll('.edit-button');
     const cancelButtons = document.querySelectorAll('.cancel-button');
 

@@ -11,7 +11,7 @@
     <!-- Create New Game Field Form -->
     <div class="create-game-field">
         <h2 class="title">Create New Game Field</h2>
-        <form action="{{ route('admin.storeGameField') }}" method="POST">
+        <form action="{{ route('admin.storeGameField') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="type">Type</label>
@@ -25,10 +25,14 @@
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="name" required maxlength="20" pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed">
             </div>
+            <div class="form-group" id="platform-logo-group" style="display: none;">
+                <label for="logo">Platform Logo (SVG)</label>
+                <input type="file" class="form-control" id="logo" name="logo" accept=".svg">
+            </div>
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
     </div>
-
+    
     <div class="game-fields-lists">
         <!-- List of Categories -->
         <div class="game-categories">
