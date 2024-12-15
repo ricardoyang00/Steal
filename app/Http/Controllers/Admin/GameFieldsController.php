@@ -46,23 +46,6 @@ class GameFieldsController extends Controller
         return redirect()->route('admin.indexGameField')->withSuccess(ucfirst($request->type) . ' created successfully.');
     }
 
-    public function edit($type, $id)
-    {
-        switch ($type) {
-            case 'category':
-                $entry = Category::findOrFail($id);
-                break;
-            case 'platform':
-                $entry = Platform::findOrFail($id);
-                break;
-            case 'language':
-                $entry = Language::findOrFail($id);
-                break;
-        }
-
-        return view('admin.games.edit-game-field', compact('entry', 'type'));
-    }
-
     public function update(Request $request, $type, $id)
     {
         $request->validate([

@@ -95,12 +95,34 @@
     font-size: 1rem;
 }
 
+.game-fields-lists li.editing {
+    border-left: 4px solid #bb86fc;
+}
+
+.game-fields .edit-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.game-fields .edit-form input {
+    width: auto;
+    padding: 0px 0;
+    margin-right: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background-color: #333;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
 .game-fields-lists li .action-buttons {
     display: flex;
     gap: 10px;
 }
 
-.game-fields-lists .delete-button {
+.game-fields-lists .delete-button,
+.game-fields-lists .cancel-button {
     background-color: var(--red);
     color: var(--text-color);
     border: none;
@@ -111,11 +133,13 @@
     transition: background-color 0.3s;
 }
 
-.game-fields-lists .delete-button:hover {
+.game-fields-lists .delete-button:hover,
+.game-fields-lists .cancel-button:hover {
     background-color: var(--red-hover);
 }
 
-.game-fields-lists .edit-button {
+.game-fields-lists .edit-button,
+.game-fields-lists .confirm-button {
     background-color: var(--positive);
     color: var(--text-color);
     border: none;
@@ -126,7 +150,8 @@
     transition: background-color 0.3s;
 }
 
-.game-fields-lists .edit-button:hover {
+.game-fields-lists .edit-button:hover,
+.game-fields-lists .confirm-button:hover {
     background-color: var(--positive-hover);
     color: var(--text-color);
 }
