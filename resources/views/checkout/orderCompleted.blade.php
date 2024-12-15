@@ -12,6 +12,18 @@
 
         <!-- Purchased Items Section -->
         <h3>Purchased Games</h3>
+
+        @if (count($prePurchasedItems) > 0)
+            <h3 class="mt-5 text-danger">Pre Purchased Games</h3>
+            <p>The following games were pre ordered:</p>
+            <ul>
+                @foreach ($prePurchasedItems as $item)
+                    <li>Game Name: {{ $item['gameName'] }}</li>
+                @endforeach
+            </ul>
+            <p>Their respective CDK's will be delivered as soon as the game is available:</p>
+        @endif
+
         @if (count($purchasedItems) > 0)
             <table class="table table-bordered">
                 <thead>

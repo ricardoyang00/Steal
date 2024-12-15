@@ -13,6 +13,7 @@ use App\Models\PaymentMethod;
 use App\Models\Order;
 use App\Models\Purchase;
 use App\Models\DeliveredPurchase;
+use App\Models\PrePurchase;
 use App\Models\CanceledPurchase;
 use App\Models\OrderNotification;
 use App\Http\Controllers\NotificationController;
@@ -46,6 +47,7 @@ class CheckoutController extends Controller
             return redirect()->route('home');
         }
         $products = [];
+        $prePurchasedItems = [];
         $purchasedItems = [];
         $canceledItems = [];
         $total = 0;
@@ -53,6 +55,14 @@ class CheckoutController extends Controller
             $game = Game::find($cartItem->game);
             if (!$game) {
                 return redirect()->route('shopping_cart')->withErrors('Some items are no longer available.');
+            }
+            if($game->getReleaseDate() === 'Not realeased yet'){
+                $prePurchasedItems[] = [
+                    'game' => $game->id,
+                    'gameName' => $game->name,
+                    'value' => 0.0,
+                ];
+                continue;
             }
             $availableCDKs = $game->getAvailableCDKs();
             if($availableCDKs->count() < $cartItem->quantity){
@@ -99,6 +109,16 @@ class CheckoutController extends Controller
                         'cdk' => $purchasedItem['cdk'],
                     ]);
                 }
+                foreach ($prePurchasedItems as $prePurchasedItem) {
+                    $purchase = Purchase::create([
+                        'value' => $prePurchasedItem['value'],
+                        'order_' => $order->id,
+                    ]);
+                    PrePurchase::create([
+                        'id' => $purchase->id,
+                        'game' => $prePurchasedItem['game'],
+                    ]);
+                }
                 foreach ($canceledItems as $canceledItem){
                     $purchase = Purchase::create([
                         'value' => $canceledItem['value'],
@@ -116,7 +136,7 @@ class CheckoutController extends Controller
                 ShoppingCart::where('buyer', $buyerId)->delete();
                 DB::commit();
                 $purchasedCDKs = [];
-                return view('checkout.orderCompleted', ['purchasedItems' => $purchasedItems, 'canceledItems' => $canceledItems, 'total' => $total]);
+                return view('checkout.orderCompleted', ['purchasedItems' => $purchasedItems, 'prePurchasedItems' => $prePurchasedItems, 'canceledItems' => $canceledItems, 'total' => $total]);
             }
             catch (\Exception $e) {
                 DB::rollBack();

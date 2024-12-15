@@ -242,8 +242,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 const dateP = document.createElement('p');
                 dateP.innerHTML = `<strong>Placed at:</strong> ${notification.orderDetails.date}`;
                 detailsContentDiv.appendChild(dateP);
-
-                const purchases = notification.orderDetails.purchases || [];
+                const purchasesObj = notification.orderDetails?.purchases || {};
+                const purchases = Array.isArray(purchasesObj) ? purchasesObj : Object.values(purchasesObj);
+                console.log('Notification orderDetails:', notification.orderDetails);
                 const deliveredGames = purchases.filter(p => p.type === 'Delivered');
                 const canceledGames = purchases.filter(p => p.type === 'Canceled');
 
