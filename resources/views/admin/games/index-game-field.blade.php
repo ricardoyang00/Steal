@@ -75,15 +75,23 @@
                     <li>
                         @include('partials.common.confirmation-modal')
                         <div class="label">
-                            <img src="{{ asset('images/platform_logos/' . $platform->id . '.svg') }}" alt="{{ $platform->name }} logo" class="img-fluid" style="width: 20px; height: 30px;">
+                            <img src="{{ asset('images/platform_logos/' . $platform->id . '.svg') }}" alt="{{ $platform->name }} logo" class="img-fluid platform-logo" style="width: 20px; height: 30px;">
                             <span class="field-name">{{ $platform->name }}</span>
                         </div>
-                        <form action="{{ route('admin.updateGameField', ['type' => 'platform', 'id' => $platform->id]) }}" method="POST" class="edit-form" style="display: none;">
+                        <form action="{{ route('admin.updateGameField', ['type' => 'platform', 'id' => $platform->id]) }}" method="POST" class="edit-form" enctype="multipart/form-data" style="display: none;">
                             @csrf
                             @method('POST')
-                            <input type="text" class="form-control" name="name" value="{{ $platform->name }}" required maxlength="20" pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed">
-                            <button type="submit" class="confirm-button">Confirm</button>
-                            <button type="button" class="cancel-button">Cancel</button>
+                            <div class="platform-form">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="name" value="{{ $platform->name }}" required maxlength="20" pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed">
+                                    <button type="submit" class="confirm-button">Confirm</button>
+                                    <button type="button" class="cancel-button">Cancel</button>
+                                </div>
+                                <div class="form-group-logo">
+                                    <input type="file" class="form-control small-input" id="logo" name="logo" accept=".svg">
+                                    <small class="form-text text-muted">Upload a .svg file</small>
+                                </div>
+                            </div>
                         </form>
                         <div class="action-buttons">
                             <button class="edit-button"><i class="fas fa-pencil-alt"></i> Edit</button>

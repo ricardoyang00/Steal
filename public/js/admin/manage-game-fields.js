@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const li = this.closest('li');
             li.classList.add('editing');
             li.querySelector('.field-name').style.display = 'none';
+            li.querySelector('.platform-logo').style.display = 'none';
             li.querySelector('.edit-form').style.display = 'flex';
             li.querySelector('.action-buttons').style.display = 'none';
         });
@@ -30,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const li = this.closest('li');
             li.classList.remove('editing');
             li.querySelector('.field-name').style.display = 'inline';
+            li.querySelector('.platform-logo').style.display = 'inline';
             li.querySelector('.edit-form').style.display = 'none';
             li.querySelector('.action-buttons').style.display = 'flex';
         });

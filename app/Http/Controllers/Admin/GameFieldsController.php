@@ -27,8 +27,11 @@ class GameFieldsController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate(['type' => 'required|string|in:category,platform,language',]);
-        $this->validateRequest($request);
+        $request->validate([
+            'type' => 'required|string|in:category,platform,language',
+            'logo' => 'required_if:type,platform|file|mimes:svg|max:2048',
+        ]);
+        $this->validateName($request);
 
         switch ($request->type) {
             case 'category':
@@ -52,7 +55,10 @@ class GameFieldsController extends Controller
 
     public function update(Request $request, $type, $id)
     {
-        $this->validateRequest($request, $id);
+        $this->validateName($request, $id);
+        $request->validate([
+            'logo' => 'nullable|file|mimes:svg|max:2048',
+        ]);
 
         switch ($type) {
             case 'category':
@@ -68,6 +74,18 @@ class GameFieldsController extends Controller
 
         $oldName = $entry->name;
         $entry->update(['name' => $request->name]);
+
+        if ($type === 'platform' && $request->hasFile('logo')) {
+            // Delete the old logo if it exists
+            $oldLogoPath = public_path('images/platform_logos/' . $entry->id . '.svg');
+            if (File::exists($oldLogoPath)) {
+                File::delete($oldLogoPath);
+            }
+    
+            // Store the new logo
+            $file = $request->file('logo');
+            $file->move(public_path('images/platform_logos'), $entry->id . '.svg');
+        }
 
         return redirect()->route('admin.indexGameField')->withSuccess(ucfirst($type) . ' "' . $oldName . '" changed to "' . $request->name . '" successfully.');
     }
@@ -103,7 +121,7 @@ class GameFieldsController extends Controller
         return redirect()->route('admin.indexGameField')->withSuccess(ucfirst($type) . ' "' . $name . '" deleted successfully.');
     }
 
-    private function validateRequest(Request $request, $id = null)
+    private function validateName(Request $request, $id = null)
     {
         $request->validate([
             'name' => [
@@ -132,7 +150,6 @@ class GameFieldsController extends Controller
                     }
                 },
             ],
-            'logo' => 'required_if:type,platform|file|mimes:svg|max:2048',
         ]);
     }
 }
