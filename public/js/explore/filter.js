@@ -105,25 +105,25 @@ document.addEventListener('DOMContentLoaded', function () {
         // Collect selected Categories
         document.querySelectorAll('input[name="categories[]"]:checked').forEach(input => {
             const label = document.querySelector(`label[for="${input.id}"]`).textContent.trim();
-            filterNames.push({ type: 'Category', value: label });
+            filterNames.push({ type: 'Category', value: label, id: input.id });
         });
     
         // Collect selected Platforms
         document.querySelectorAll('input[name="platforms[]"]:checked').forEach(input => {
             const label = document.querySelector(`label[for="${input.id}"]`).textContent.trim();
-            filterNames.push({ type: 'Platform', value: label });
+            filterNames.push({ type: 'Platform', value: label, id: input.id });
         });
     
         // Collect selected Languages
         document.querySelectorAll('input[name="languages[]"]:checked').forEach(input => {
             const label = document.querySelector(`label[for="${input.id}"]`).textContent.trim();
-            filterNames.push({ type: 'Language', value: label });
+            filterNames.push({ type: 'Language', value: label, id: input.id });
         });
     
         // Collect selected Players
         document.querySelectorAll('input[name="players[]"]:checked').forEach(input => {
             const label = document.querySelector(`label[for="${input.id}"]`).textContent.trim();
-            filterNames.push({ type: 'Player', value: label });
+            filterNames.push({ type: 'Player', value: label, id: input.id });
         });
     
         // Append collected filters to the Active Filters section
@@ -134,12 +134,33 @@ document.addEventListener('DOMContentLoaded', function () {
                 const filterElement = document.createElement('div');
                 filterElement.className = 'game-tags';
                 filterElement.textContent = filter.value; // Display the filter value
-                
+            
+                // Create the Font Awesome cross icon
+                const removeIcon = document.createElement('i');
+                removeIcon.className = 'fas fa-times remove-icon';
+                removeIcon.style.marginLeft = '8px'; // Add space between the text and the icon
+            
+                // Add an event listener to remove the filter and uncheck the corresponding checkbox
+                filterElement.addEventListener('click', function () {
+                    const checkbox = document.getElementById(filter.id);
+                    if (checkbox) {
+                        checkbox.checked = false;
+                        // Trigger the filter change so the results update
+                        const changeEvent = new Event('change');
+                        checkbox.dispatchEvent(changeEvent);
+                    }
+                });
+            
+                // Append the Font Awesome icon to the filter tag
+                filterElement.appendChild(removeIcon);
+            
                 // Append the filter element to the active filters container
                 activeFiltersContainer.appendChild(filterElement);
-            });                      
+            });
+            
         }
     }
+    
 
     updateActiveFilters();
 });
