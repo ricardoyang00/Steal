@@ -57,11 +57,13 @@ class CheckoutController extends Controller
                 return redirect()->route('shopping_cart')->withErrors('Some items are no longer available.');
             }
             if($game->getReleaseDate() === 'Not realeased yet'){
-                $prePurchasedItems[] = [
-                    'game' => $game->id,
-                    'gameName' => $game->name,
-                    'value' => $game->price,
-                ];
+                for ($i = 0; $i < $cartItem->quantity; $i++) {
+                    $prePurchasedItems[] = [
+                        'game' => $game->id,
+                        'gameName' => $game->name,
+                        'value' => $game->price,
+                    ];
+                }
                 $total += ($game->price * $cartItem->quantity);
                 continue;
             }
