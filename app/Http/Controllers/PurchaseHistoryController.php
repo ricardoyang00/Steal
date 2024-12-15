@@ -21,6 +21,7 @@ class PurchaseHistoryController extends Controller
 
         $sortBy = $request->get('sortBy', 'time');
         $direction = $request->get('direction', 'desc');
+        $filter = $request->input('filter', 'all');
 
         
         $ordersQuery = Order::with([
@@ -34,6 +35,12 @@ class PurchaseHistoryController extends Controller
                   ->orWhereHas('getPrePurchase');
         });
 
+        if ($filter === 'Completed') {
+            $ordersQuery->whereDoesntHave('getPurchases.getPrePurchase');
+        } elseif ($filter === 'ItemPending') {
+            $ordersQuery->whereHas('getPurchases.getPrePurchase');
+        }
+
         if ($sortBy === 'totalPrice') {
             $ordersQuery->select('orders.*', DB::raw('(SELECT SUM(purchase.value) FROM purchase WHERE purchase.order_ = orders.id) AS total_cost'))
                 ->orderBy('total_cost', $direction);
@@ -44,6 +51,7 @@ class PurchaseHistoryController extends Controller
         $orders = $ordersQuery->paginate(5)->appends([
             'sortBy' => $sortBy,
             'direction' => $direction,
+            'filter' => $filter,
         ]);
         
         $orderHistory = $orders->map(function ($order) {
