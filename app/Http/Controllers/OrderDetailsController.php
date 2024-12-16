@@ -18,7 +18,6 @@ class OrderDetailsController extends Controller {
         $validated = $request->validate([
             'pre_purchase_ids' => 'required|array|min:1',
             'pre_purchase_ids.*' => 'integer|exists:prepurchase,id', // Ensure table name matches your database
-            // Removed 'remove_order_count' as it's redundant
         ]);
 
         $prePurchaseIds = $validated['pre_purchase_ids'];
@@ -55,19 +54,17 @@ class OrderDetailsController extends Controller {
 
             // 5. Process each pre-purchase
             foreach ($prePurchases as $prePurchase) {
-                $purchase = $prePurchase->getPurchase; // Accessing as a property
+                $purchase = $prePurchase->getPurchase;
 
                 if (!$purchase) {
                     throw new \Exception("Purchase not found for PrePurchase ID: " . $prePurchase->id);
                 }
 
-                // 5.a. Create a CanceledPurchase record
                 CanceledPurchase::create([
                     'id' => $purchase->id,
                     'game' => $prePurchase->game,
                 ]);
 
-                // 5.b. Delete the PrePurchase record
                 $prePurchase->delete();
             }
 
