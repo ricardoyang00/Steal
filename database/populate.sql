@@ -173,7 +173,7 @@ INSERT INTO Game (name, description, price, overall_rating, owner, is_active, re
 
 -- Game Ratings
 UPDATE Game
-SET overall_rating = 75
+SET overall_rating = 93.33
 WHERE id = 1;
 
 UPDATE Game
@@ -1873,7 +1873,7 @@ insert into Review (title, description, positive, author, game) values ('Excelle
 insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 24, 1);
 insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 25, 1);
 insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 26, 1);
-insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 27, 1);
+insert into Review (title, description, positive, author, game) values ('Not my taste', 'The multiplayer mode is very fun and competitive, although, minecraft is better.', false, 27, 1);
 
 
 -- Review Like
