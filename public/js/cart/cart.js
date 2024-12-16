@@ -103,12 +103,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 // Update the total price
                 const totalPriceElement = document.getElementById('total_price');
-                totalPriceElement.textContent = (data.new_total).toFixed(2) + '€';
-
-                // Update the subtotal (same as total for now since no discounts applied)
-                const subtotalElement = document.getElementById('subtotal');
-                subtotalElement.textContent = (data.new_total).toFixed(2) + '€';
-                
+                totalPriceElement.textContent = '€ ' + data.new_total.toFixed(2);
+                    
+                // Update the subtotal and discount based on the number of coins used
+                updateDiscountAndSubtotal(data.new_total);
+        
                 // Disable the decrement button if quantity is 1
                 const decreaseButton = productItem.querySelector('.btn-decrease');
                 if (data.new_quantity === 1) {
@@ -151,7 +150,50 @@ document.addEventListener('DOMContentLoaded', function () {
                 checkoutButton.classList.add('disabled');
                 checkoutButton.disabled = true;
             }
+
+            // Hide the coins section
+            const coinsSection = document.querySelector('.coins-section');
+            if (coinsSection) {
+                coinsSection.style.display = 'none';
+            }
         }
+    }
+
+    // Add event listener to coins input to update discount and subtotal
+    const coinsInput = document.getElementById('coins_to_use');
+    if (coinsInput) {
+        coinsInput.addEventListener('input', function () {
+            // Ensure only valid numbers are input
+            let coinsToUse = parseInt(coinsInput.value) || 0;
+            const maxCoins = parseInt(coinsInput.getAttribute('max'));
+            const total = parseFloat(document.getElementById('total_price').textContent.replace('€', '').trim());
+
+            // Calculate the maximum coins that can be used without making the subtotal less than €0.01
+            const maxCoinsAllowed = Math.min(maxCoins, Math.floor((total - 0.01) * 100));
+
+            // Prevent negative values and values greater than maxCoinsAllowed
+            if (coinsToUse < 0) {
+                coinsToUse = 0;
+            } else if (coinsToUse > maxCoinsAllowed) {
+                coinsToUse = maxCoinsAllowed;
+            }
+
+            coinsInput.value = coinsToUse;
+
+            updateDiscountAndSubtotal(total);
+        });
+    }
+
+    function updateDiscountAndSubtotal(total) {
+        const coinsInput = document.getElementById('coins_to_use');
+        const discountElement = document.getElementById('discount');
+        const subtotalElement = document.getElementById('subtotal');
+        const coinsToUse = parseInt(coinsInput.value) || 0;
+        const discount = coinsToUse * 0.01; // 1 coin equals to 0.01 euro
+        const newSubtotal = total - discount;
+
+        discountElement.textContent = `- € ${discount.toFixed(2)}`;
+        subtotalElement.textContent = `€ ${newSubtotal.toFixed(2)}`;
     }
 });
 

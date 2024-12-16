@@ -223,3 +223,38 @@ CREATE TRIGGER check_age_before_prepurchase_insert
 BEFORE INSERT ON PrePurchase
 FOR EACH ROW
 EXECUTE FUNCTION check_age_requirement_prepurchase();
+
+/* Trigger to increase S-Coins upon purchases */
+CREATE FUNCTION add_scoin_on_purchase() RETURNS TRIGGER AS 
+$BODY$
+DECLARE
+    buyer_id INT;
+    purchase_value FLOAT;
+    scoin_reward INT;
+BEGIN
+    -- Find the buyer ID and purchase value for the new purchase
+    SELECT o.buyer, p.value INTO buyer_id, purchase_value
+    FROM Purchase p
+    JOIN Orders o ON p.order_ = o.id
+    WHERE p.id = NEW.id;
+
+    -- Only proceed if no SCoins were used in the Purchase
+    IF NEW.coins = 0 THEN
+        -- Calculate SCoins reward: 5 SCoins per 1 euro spent
+        scoin_reward := ROUND(purchase_value * 5);
+
+        -- Update the buyer's coins with the calculated SCoins
+        UPDATE Buyer
+        SET coins = coins + scoin_reward
+        WHERE id = buyer_id;
+    END IF;
+
+    RETURN NEW;
+END;
+$BODY$ 
+LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_add_scoin_on_purchase
+AFTER INSERT ON Purchase
+FOR EACH ROW
+EXECUTE FUNCTION add_scoin_on_purchase();

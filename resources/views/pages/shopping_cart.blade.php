@@ -59,9 +59,18 @@
         <div class="summary">
             <h2>Summary</h2>
             <div class="cart-summary">
+                @if (auth_user() && count($products) > 0)
+                    <!-- Section to choose number of coins to use -->
+                    <div class="coins-section">
+                        <label for="coins_to_use">Use S-Coins:</label>
+                        <input type="number" id="coins_to_use" name="coins_to_use" min="0" max="{{auth_user()->buyer->coins}}" value="0">
+                    </div>
+                @endif
+
                 <p class="price-item grey-text">Official price<span id="total_price">€ {{ $total }}</span></p>
                 <p class="price-item grey-text">Discount<span id="discount">- € 0.00</span></p>
-                <p class="price-item subtotal">Subtotal<span id="subtotal">€ {{ $total }}</span></p> <!-- Later change cart.js updateQuantity function so subtotal is calculated with discounts -->
+                <p class="price-item subtotal">Subtotal<span id="subtotal">€ {{ $total }}</span></p>
+                
                 @if (count($products) == 0)
                     <button id="checkout_button" class="disabled" data-authenticated="false" disabled>Checkout <span class="forward-symbol">&rsaquo;</span></button>
                 @else
