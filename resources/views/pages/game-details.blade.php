@@ -226,7 +226,7 @@
                             <form action="{{ route('reviews.delete', ['id' => $userReview->id]) }}" method="POST" id="remove-review-form" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="confirmation-btn btn-add-to-cart btn btn-primary" id="btn-review-remove"
+                                <button type="button" class="confirmation-btn btn btn-primary" id="btn-review-remove"
                                         data-title="Remove Review"
                                         data-message="Are you sure you want to remove your review?"
                                         data-form-id="remove-review-form">

@@ -478,6 +478,12 @@
         #btn-review-remove {
             color: var(--text-color);
             background-color: var(--negative);
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
         #btn-review-remove:hover {
             color: var(--text-color);
