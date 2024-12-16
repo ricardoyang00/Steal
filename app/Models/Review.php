@@ -33,4 +33,9 @@ class Review extends Model
     public function likes() {
         return $this->hasMany(ReviewLike::class, 'review');
     }
+
+    public function likesCount()
+    {
+        return $this->likes()->count();
+    }
 }

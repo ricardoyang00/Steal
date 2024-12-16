@@ -167,7 +167,8 @@ class GameController extends Controller
         // Fetch all other reviews excluding the logged-in user's review, ordered by ID in descending order
         $otherReviewsQuery = Review::where('game', $gameId)
                                     ->where('author', '!=', $userId)
-                                    ->orderBy('id', 'desc');
+                                    ->withCount('likes')
+                                    ->orderBy('likes_count', 'desc');
 
         // Determine the total reviews and calculate total pages
         $totalReviews = $otherReviewsQuery->count() + ($userReview ? 1 : 0);
