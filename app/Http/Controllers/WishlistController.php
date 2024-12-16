@@ -30,15 +30,18 @@ class WishlistController extends Controller
             $wishlistItems = Wishlist::where('buyer', Auth::user()->id)->get();
             foreach ($wishlistItems as $item) {
                 $game = Game::find($item->game);
-                if ($game) {
+                if ($game && $game->is_active) {
                     $products[] = [
                         'id' => $game->id,
                         'name' => $game->name,
                         'price' => $game->price,
                         'thumbnail_small_path' => $game->getThumbnailSmallPath()
                     ];
+                    $total += $game->price;
+                } else {
+                    // Remove inactive game from the wishlist
+                    $item->delete();
                 }
-                $total += $game->price;
             }
         }
 
@@ -51,6 +54,14 @@ class WishlistController extends Controller
         $gameId = $request->input('game_id');
         $buyerId = Auth::user()->id;
 
+        $game = Game::find($gameId);
+        if (!$game || !$game->is_active) {
+            return response()->json([
+                'success' => false,
+                'message' => 'This game is no longer available.'
+            ]);
+        }
+        
         $wishlistItem = Wishlist::where('buyer', $buyerId)
             ->where('game', $gameId)
             ->first();

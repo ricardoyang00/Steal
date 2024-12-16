@@ -21,29 +21,31 @@
                 @else
                     <ul id="product_list">
                         @foreach ($products as $product)
-                            <li id="product-{{ $product['id'] }}">
-                                <div class="product-container">
-                                    <a href="{{ route('game.details', ['id' => $product['id']]) }}">
-                                        <img src="{{ asset($product['thumbnail_small_path']) }}" class="img-fluid" alt="{{ $product['name'] }}">
-                                    </a>
-                                    <div class="product-details">
+                            @if ($product['is_active'])
+                                <li id="product-{{ $product['id'] }}">
+                                    <div class="product-container">
                                         <a href="{{ route('game.details', ['id' => $product['id']]) }}">
-                                            <p class="product-name">{{ $product['name'] }}</p>
+                                            <img src="{{ asset($product['thumbnail_small_path']) }}" class="img-fluid" alt="{{ $product['name'] }}">
                                         </a>
-                                        <button class="btn-remove" data-id="{{ $product['id'] }}">
-                                            <i class="far fa-trash-alt"></i> Remove
-                                        </button>
-                                    </div>
-                                    <div class="product-actions">
-                                        <p class="product-price">€{{ $product['price'] }}</p>
-                                        <div class="quantity-controls">
-                                            <button class="btn-decrease" data-id="{{ $product['id'] }}">-</button>
-                                            <span class="prod_quantity">{{ $product['quantity'] }}</span>
-                                            <button class="btn-increase" data-id="{{ $product['id'] }}">+</button>
+                                        <div class="product-details">
+                                            <a href="{{ route('game.details', ['id' => $product['id']]) }}">
+                                                <p class="product-name">{{ $product['name'] }}</p>
+                                            </a>
+                                            <button class="btn-remove" data-id="{{ $product['id'] }}">
+                                                <i class="far fa-trash-alt"></i> Remove
+                                            </button>
+                                        </div>
+                                        <div class="product-actions">
+                                            <p class="product-price">€{{ $product['price'] }}</p>
+                                            <div class="quantity-controls">
+                                                <button class="btn-decrease" data-id="{{ $product['id'] }}">-</button>
+                                                <span class="prod_quantity">{{ $product['quantity'] }}</span>
+                                                <button class="btn-increase" data-id="{{ $product['id'] }}">+</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
+                            @endif
                         @endforeach
                     </ul>
                 @endif
