@@ -1,13 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-
+    <script src="{{ asset('js/purchaseHistory/cancel_pending_order_items.js') }}" defer></script>
     <div class="order-details-container container mt-5">
         @if (auth()->check())
             @if (auth()->user()->buyer)
-
                 <h1>Order Details</h1>
-
+                
                 <!-- Purchased Items Section -->
                 <div class="order-purchases-details">
                     <h2>Purchased Items</h2>
@@ -54,6 +53,16 @@
                                             <strong>X</strong> {{ $prePurchase['purchase_count'] }}<br>
                                         </p>
                                         <div class="price">$ {{ number_format($prePurchase['base_price'], 2) }}</div>
+                                        <button 
+                                            type="button" 
+                                            class="btn btn-danger mt-3 delete-prepurchase-items-button" 
+                                            data-purchase-ids="{{ implode(',', $prePurchase['purchase_ids']) }}"
+                                            data-game="{{ $prePurchase['game_name'] }}"
+                                            data-count="{{ $prePurchase['purchase_count'] }}"
+                                            data-game-image="{{ asset($prePurchase['game_image']) }}"
+                                        >
+                                            Cancel Item Orders
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -73,5 +82,40 @@
         @endif
     </div>
 
+    <!-- Custom Delete PrePurchase Modal -->
+    <div class="custom-modal" id="deletePrePurchaseModal" role="dialog" aria-modal="true" aria-labelledby="deletePrePurchaseModalLabel">
+        <div class="custom-modal-content">
+            <span class="custom-modal-close" id="customModalClose" aria-label="Close Modal">&times;</span>
+            <h2 id="deletePrePurchaseModalLabel">Cancel PrePurchase Orders</h2>
+            <form method="POST" action="{{ route('prePurchases.delete') }}" id="deletePrePurchaseForm">
+                @csrf
+                @method('DELETE')
+                <div class="modal-body">
+                    <div class="modal-grid">
+                        <div class="modal-left">
+                            <img src="" alt="" class="modal-game-image" id="modal-game-image">
+                            <p id="modal-game-name"></p>
+                        </div>
+                        <div class="modal-middle">
+                            <div class="modal-buttons">
+                                <button type="button" class="btn btn-minus" id="decreaseOrder">-</button>
+                                <input type="number" id="remove_order_count" name="remove_order_count" min="1" readonly>
+                                <button type="button" class="btn btn-plus" id="increaseOrder">+</button>
+                            </div>
+                        </div>
+                        <div class="modal-right">
+                            <!-- Intentionally left blank, delete button will be absolutely positioned -->
+                        </div>
+                    </div>
+                    <input type="hidden" name="pre_purchase_ids" id="pre_purchase_ids" value="">
+                </div>
+                <!-- Delete button positioned absolutely at the bottom right -->
+                <button type="submit" class="btn btn-danger delete-button-abs" id="deleteButton">Delete</button>
+            </form>
+        </div>
+    </div>
 @endsection
+
+
+
 

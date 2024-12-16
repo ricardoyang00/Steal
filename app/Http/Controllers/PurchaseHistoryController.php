@@ -166,8 +166,9 @@ public function fetchOrderDetails($id)
                     'game_id' => $game->id,
                     'game_name' => $game->name ?? 'Unknown Game',
                     'game_image' => $game->thumbnail_small_path ?? null,
-                    'base_price' => $game->price ?? 0, // Ensure 'base_price' exists
+                    'base_price' => $game->price ?? 0,
                     'purchase_count' => $group->count(),
+                    'purchase_ids' => $group->pluck('id')->toArray(),
                 ];
             });
 

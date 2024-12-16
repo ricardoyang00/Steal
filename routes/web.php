@@ -92,6 +92,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/user/order-history', [PurchaseHistoryController::class, 'orderHistory'])->name('purchaseHistory');
     Route::get('/order-details/{id}', [PurchaseHistoryController::class, 'fetchOrderDetails'])->name('orderDetails');
     Route::get('/seller/purchases/{id}/details', [PurchaseHistoryController::class, 'sellerPurchaseDetails'])->name('seller.purchases.details');
+    Route::delete('/pre-purchases/delete', [PrePurchaseController::class, 'deletePrePurchases'])->name('prePurchases.delete')->middleware('auth');
 });
 
 // Notifications
