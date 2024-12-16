@@ -6,12 +6,6 @@
 
     <h2 class="my-4">Select Your Payment Method</h2>
 
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
-
     <form action="{{ route('checkout.confirmPayment') }}" method="POST">
         @csrf
 

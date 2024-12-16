@@ -224,37 +224,37 @@ BEFORE INSERT ON PrePurchase
 FOR EACH ROW
 EXECUTE FUNCTION check_age_requirement_prepurchase();
 
-/* Trigger to increase S-Coins upon purchases */
-CREATE FUNCTION add_scoin_on_purchase() RETURNS TRIGGER AS 
+
+/* Trigger to increase and decrease S-Coins upon orders */
+CREATE FUNCTION add_scoin_on_order() RETURNS TRIGGER AS 
 $BODY$
 DECLARE
     buyer_id INT;
-    purchase_value FLOAT;
+    total_spent FLOAT;
     scoin_reward INT;
+    coins_used INT;
 BEGIN
-    -- Find the buyer ID and purchase value for the new purchase
-    SELECT o.buyer, p.value INTO buyer_id, purchase_value
-    FROM Purchase p
-    JOIN Orders o ON p.order_ = o.id
-    WHERE p.id = NEW.id;
+    -- Find the buyer ID, total spent, and coins used for the new order
+    SELECT o.buyer, p.value, o.coins INTO buyer_id, total_spent, coins_used
+    FROM Orders o
+    JOIN Payment p ON o.payment = p.id
+    WHERE o.id = NEW.id;
 
-    -- Only proceed if no SCoins were used in the Purchase
-    IF NEW.coins = 0 THEN
-        -- Calculate SCoins reward: 5 SCoins per 1 euro spent
-        scoin_reward := ROUND(purchase_value * 5);
+    -- Calculate SCoins reward: 5 SCoins per 1 euro spent, rounding up
+    scoin_reward := CEIL(total_spent * 5);
 
-        -- Update the buyer's coins with the calculated SCoins
-        UPDATE Buyer
-        SET coins = coins + scoin_reward
-        WHERE id = buyer_id;
-    END IF;
+    -- Update the buyer's coins with the calculated SCoins and decrement the used coins
+    UPDATE Buyer
+    SET coins = coins + scoin_reward - coins_used
+    WHERE id = buyer_id;
 
     RETURN NEW;
 END;
 $BODY$ 
 LANGUAGE plpgsql;
 
-CREATE TRIGGER trg_add_scoin_on_purchase
-AFTER INSERT ON Purchase
+-- Trigger to invoke the function after inserting into Orders
+CREATE TRIGGER trg_add_scoin_on_order
+AFTER INSERT ON Orders
 FOR EACH ROW
-EXECUTE FUNCTION add_scoin_on_purchase();
+EXECUTE FUNCTION add_scoin_on_order();

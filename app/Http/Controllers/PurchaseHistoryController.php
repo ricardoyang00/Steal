@@ -53,7 +53,7 @@ class PurchaseHistoryController extends Controller
                     ];
                 });
 
-            $totalPrice = $deliveredPurchases->sum('value');
+            $totalPrice = $order->getPayment->value;
             $formattedTime = $this->formatOrderTime($order->time);
 
             return [
@@ -62,6 +62,7 @@ class PurchaseHistoryController extends Controller
                 'purchases' => $deliveredPurchases,
                 'formattedTime' => $formattedTime,
                 'totalPrice' => $totalPrice,
+                'coinsUsed' => $order->coins,
             ];
         });
 

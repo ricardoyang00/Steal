@@ -29,7 +29,7 @@ class CheckoutController extends Controller
     }
 
 
-    public function index(){
+    public function index(Request $request){
         if(auth_user()){
             if(auth_user()->buyer){
                 $buyerId = auth_user()->id;
@@ -49,6 +49,9 @@ class CheckoutController extends Controller
         $purchasedItems = [];
         $canceledItems = [];
         $total = 0;
+        $subtotal = 0;
+        $coinsUsed = session('coins_to_use', 0);
+        $coinsValue = $coinsUsed * 0.01;
         foreach ($shoppingCartItems as $cartItem) {
             $game = Game::find($cartItem->game);
             if (!$game) {
@@ -75,60 +78,72 @@ class CheckoutController extends Controller
                 ];
             }
         }
-            $paymentSuccessful = true;
-            if (!$paymentSuccessful) {
-                return redirect()->route('cart.index')->withErrors('Payment failed.');
-            }
-            DB::beginTransaction();
-            try {
-                $payment = Payment::create([
-                    'method' => session('payment_method'),
-                    'value' => $total,
+        // Calculate the subtotal after applying coins
+        $subtotal = $total - $coinsValue;
+        if ($subtotal < 0.01) {
+            $coinsUsed = floor(($total - 0.01) * 100);
+            $coinsValue = $coinsUsed * 0.01;
+            $subtotal = $total - $coinsValue;
+        }
+
+        $paymentSuccessful = true;
+        if (!$paymentSuccessful) {
+            session()->forget('coins_to_use');
+            return redirect()->route('cart.index')->withErrors('Payment failed.');
+        }
+        DB::beginTransaction();
+        try {
+            $payment = Payment::create([
+                'method' => session('payment_method'),
+                'value' => $subtotal,
+            ]);
+            $order = Order::create([
+                'buyer' => $buyerId,
+                'payment' => $payment->id,
+                'coins' => $coinsUsed,
+            ]);
+            foreach ($purchasedItems as $purchasedItem) {
+                $purchase = Purchase::create([
+                    'value' => $purchasedItem['value'],
+                    'order_' => $order->id,
                 ]);
-                $order = Order::create([
-                    'buyer' => $buyerId,
-                    'payment' => $payment->id,
+                DeliveredPurchase::create([
+                    'id' => $purchase->id,
+                    'cdk' => $purchasedItem['cdk'],
                 ]);
-                foreach ($purchasedItems as $purchasedItem) {
-                    $purchase = Purchase::create([
-                        'value' => $purchasedItem['value'],
-                        'order_' => $order->id,
-                    ]);
-                    DeliveredPurchase::create([
-                        'id' => $purchase->id,
-                        'cdk' => $purchasedItem['cdk'],
-                    ]);
-                }
-                foreach ($canceledItems as $canceledItem){
-                    $purchase = Purchase::create([
-                        'value' => $canceledItem['value'],
-                        'order_' => $order->id,
-                    ]);
-                    CanceledPurchase::create([
-                        'id' => $purchase->id,
-                        'game' => $canceledItem['game'],
-                    ]);
-                }
-                $order->refresh();
-                $this->notificationController->createOrderNotification($order, $purchasedItems, $canceledItems);
-                $this->notificationController->createGameNotifications($purchasedItems);
-                session()->forget('payment_method');
-                ShoppingCart::where('buyer', $buyerId)->delete();
-                DB::commit();
-                $purchasedCDKs = [];
-                return view('checkout.orderCompleted', ['purchasedItems' => $purchasedItems, 'canceledItems' => $canceledItems, 'total' => $total]);
             }
-            catch (\Exception $e) {
-                DB::rollBack();
-                Log::error('Error during checkout', [
-                    'message' => $e->getMessage(),
-                    'stack' => $e->getTraceAsString(),
+            foreach ($canceledItems as $canceledItem){
+                $purchase = Purchase::create([
+                    'value' => $canceledItem['value'],
+                    'order_' => $order->id,
                 ]);
-                if (strpos($e->getMessage(), 'Buyer does not meet the minimum age requirement for this game') !== false) {
-                    return redirect()->route('shopping_cart')->withErrors('You do not meet the age requirement for one or more items in your cart.');
-                }
-                return redirect()->route('shopping_cart')->withErrors('Something went wrong. Please try again.');
+                CanceledPurchase::create([
+                    'id' => $purchase->id,
+                    'game' => $canceledItem['game'],
+                ]);
             }
+            $order->refresh();
+            $this->notificationController->createOrderNotification($order, $purchasedItems, $canceledItems);
+            $this->notificationController->createGameNotifications($purchasedItems);
+            session()->forget('payment_method');
+            ShoppingCart::where('buyer', $buyerId)->delete();
+            DB::commit();
+            $purchasedCDKs = [];
+            session()->forget('coins_to_use');
+            return view('checkout.orderCompleted', ['purchasedItems' => $purchasedItems, 'canceledItems' => $canceledItems, 'subtotal' => $subtotal, 'coinsUsed' => $coinsUsed]);
+        }
+        catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Error during checkout', [
+                'message' => $e->getMessage(),
+                'stack' => $e->getTraceAsString(),
+            ]);
+            session()->forget('coins_to_use');
+            if (strpos($e->getMessage(), 'Buyer does not meet the minimum age requirement for this game') !== false) {
+                return redirect()->route('shopping_cart')->withErrors('You do not meet the age requirement for one or more items in your cart.');
+            }
+            return redirect()->route('shopping_cart')->withErrors('Something went wrong. Please try again.');
+        }
     }
 
     public function selectPaymentMethod()
@@ -148,8 +163,19 @@ class CheckoutController extends Controller
         return redirect()->route('checkout.index');
     }
 
-    
+    public function storeCoins(Request $request)
+    {
+        $request->validate([
+            'coins_to_use' => 'integer|min:0|max:' . auth()->user()->buyer->coins,
+        ]);
 
+        $coinsToUse = $request->input('coins_to_use');
+
+        // Store coins in the session
+        session(['coins_to_use' => $coinsToUse]);
+
+        return response()->json(['success' => true]);
+    }
 
 }
 

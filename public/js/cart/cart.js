@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(data => {
                 if (data.success) {
                     document.getElementById(`product-${productId}`).remove();
-                    document.getElementById('total_price').textContent = (data.new_total).toFixed(2) + '€';
-                    document.getElementById('subtotal').textContent = (data.new_total).toFixed(2) + '€';
+                    document.getElementById('total_price').textContent = '€ ' + data.new_total.toFixed(2);
+                    document.getElementById('subtotal').textContent = '€ ' + data.new_total.toFixed(2);
                     if (productList.childElementCount === 0) {
                         noProductsInCart();
                     }
@@ -180,6 +180,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             coinsInput.value = coinsToUse;
 
+                // Update the hidden input field value
+            const hiddenCoinsInput = document.getElementById('coins_to_use_hidden');
+            if (hiddenCoinsInput) {
+                hiddenCoinsInput.value = coinsToUse;
+            }
+
             updateDiscountAndSubtotal(total);
         });
     }
@@ -195,18 +201,33 @@ document.addEventListener('DOMContentLoaded', function () {
         discountElement.textContent = `- € ${discount.toFixed(2)}`;
         subtotalElement.textContent = `€ ${newSubtotal.toFixed(2)}`;
     }
-});
 
-const checkoutButton = document.getElementById('checkout_button');
-    if (checkoutButton) {
-        checkoutButton.addEventListener('click', function () {
-            const isAuthenticated = checkoutButton.getAttribute('data-authenticated') === 'true';
-
-            if (isAuthenticated) {
-                // Redirect to the payment method selection page
-                window.location.href = '/checkout/payment';
+    const checkoutButton = document.getElementById('checkout_button');
+    checkoutButton.addEventListener('click', function (event) {
+        const coinsToUse = parseInt(document.getElementById('coins_to_use').value) || 0;
+    
+        fetch('/checkout/store-coins', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify({ coins_to_use: coinsToUse }),
+        })
+        .then(response => {
+            if (response.ok) {
+                const isAuthenticated = checkoutButton.getAttribute('data-authenticated') === 'true';
+                if (isAuthenticated) {
+                    window.location.href = '/checkout/payment';
+                } else {
+                    window.location.href = '/login';
+                }
             } else {
-                window.location.href = '/login';
+                alert('Failed to store coins. Please try again.');
             }
+        })
+        .catch(error => {
+            console.error('Error:', error);
         });
-    }
+    });    
+});

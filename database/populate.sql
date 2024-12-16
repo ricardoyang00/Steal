@@ -1769,44 +1769,44 @@ insert into Payment (method, value) values (5, 24.99); -- order 14
 
 
 -- Orders
-insert into Orders (buyer, payment, time) values (1, 1, '2024-12-01 01:00:00'); -- 1
-insert into Orders (buyer, payment, time) values (1, 2, '2024-12-05 02:00:00'); -- 2
-insert into Orders (buyer, payment, time) values (1, 3, '2024-11-30 03:00:00'); -- 3
-insert into Orders (buyer, payment, time) values (1, 4, '2024-11-01 04:00:00'); -- 4
-insert into Orders (buyer, payment, time) values (1, 5, '2024-12-04 05:00:00'); -- 5
-insert into Orders (buyer, payment, time) values (1, 6, '2024-12-16 06:00:00'); -- 6
-insert into Orders (buyer, payment, time) values (2, 7, '2024-10-10 07:00:00'); -- 7
-insert into Orders (buyer, payment, time) values (3, 8, '2024-12-01 08:00:00'); -- 8
-insert into Orders (buyer, payment, time) values (4, 9, '2024-12-01 09:00:00'); -- 9
-insert into Orders (buyer, payment, time) values (5, 10, '2024-12-01 10:00:00'); -- 10
-insert into Orders (buyer, payment, time) values (6, 11, '2024-12-01 11:00:00'); -- 11
-insert into Orders (buyer, payment, time) values (7, 12, '2024-12-01 12:00:00'); -- 12
-insert into Orders (buyer, payment, time) values (8, 13, '2024-12-01 13:00:00'); -- 13
-insert into Orders (buyer, payment, time) values (9, 14, '2024-12-01 14:00:00'); -- 14
+insert into Orders (buyer, payment, time, coins) values (1, 1, '2024-12-01 01:00:00', 0); -- 1
+insert into Orders (buyer, payment, time, coins) values (1, 2, '2024-12-05 02:00:00', 0); -- 2
+insert into Orders (buyer, payment, time, coins) values (1, 3, '2024-11-30 03:00:00', 0); -- 3
+insert into Orders (buyer, payment, time, coins) values (1, 4, '2024-11-01 04:00:00', 0); -- 4
+insert into Orders (buyer, payment, time, coins) values (1, 5, '2024-12-04 05:00:00', 0); -- 5
+insert into Orders (buyer, payment, time, coins) values (1, 6, '2024-12-16 06:00:00', 0); -- 6
+insert into Orders (buyer, payment, time, coins) values (2, 7, '2024-10-10 07:00:00', 0); -- 7
+insert into Orders (buyer, payment, time, coins) values (3, 8, '2024-12-01 08:00:00', 0); -- 8
+insert into Orders (buyer, payment, time, coins) values (4, 9, '2024-12-01 09:00:00', 0); -- 9
+insert into Orders (buyer, payment, time, coins) values (5, 10, '2024-12-01 10:00:00', 0); -- 10
+insert into Orders (buyer, payment, time, coins) values (6, 11, '2024-12-01 11:00:00', 0); -- 11
+insert into Orders (buyer, payment, time, coins) values (7, 12, '2024-12-01 12:00:00', 0); -- 12
+insert into Orders (buyer, payment, time, coins) values (8, 13, '2024-12-01 13:00:00', 0); -- 13
+insert into Orders (buyer, payment, time, coins) values (9, 14, '2024-12-01 14:00:00', 0); -- 14
 
 
 -- Purchase (20)
-insert into Purchase (order_, value, coins) values (1, 49.99, 0); -- 1. game 1
-insert into Purchase (order_, value, coins) values (1, 34.99, 0); -- 2. game 2
-insert into Purchase (order_, value, coins) values (1, 19.99, 0); -- 3. game 3
-insert into Purchase (order_, value, coins) values (1, 59.99, 0); -- 4. game 4
-insert into Purchase (order_, value, coins) values (2, 49.99, 0); -- 5. game 1
-insert into Purchase (order_, value, coins) values (2, 49.99, 0); -- 6. game 1
-insert into Purchase (order_, value, coins) values (2, 49.99, 0); -- 7. game 1
-insert into Purchase (order_, value, coins) values (3, 49.99, 0); -- 8. game 1
-insert into Purchase (order_, value, coins) values (3, 24.99, 0); -- 9. game 20
-insert into Purchase (order_, value, coins) values (4, 49.99, 0); -- 10. game 1
-insert into Purchase (order_, value, coins) values (5, 24.99, 0); -- 11. game 20
-insert into Purchase (order_, value, coins) values (6, 49.99, 0); -- 12. game 1
-insert into Purchase (order_, value, coins) values (7, 49.99, 0); -- 13. game 1
-insert into Purchase (order_, value, coins) values (8, 49.99, 0); -- 14. game 1
-insert into Purchase (order_, value, coins) values (9, 49.99, 0); -- 15. game 1
-insert into Purchase (order_, value, coins) values (10, 19.99, 0); -- 16. game 3
-insert into Purchase (order_, value, coins) values (11, 34.99, 0); -- 17. game 2
-insert into Purchase (order_, value, coins) values (12, 39.99, 0); -- 18. game 5
-insert into Purchase (order_, value, coins) values (13, 19.99, 0); -- 19. game 10
-insert into Purchase (order_, value, coins) values (13, 24.99, 0); -- 20. game 20
-insert into Purchase (order_, value, coins) values (14, 24.99, 0); -- 21. game 20
+insert into Purchase (order_, value) values (1, 49.99); -- 1. game 1
+insert into Purchase (order_, value) values (1, 34.99); -- 2. game 2
+insert into Purchase (order_, value) values (1, 19.99); -- 3. game 3
+insert into Purchase (order_, value) values (1, 59.99); -- 4. game 4
+insert into Purchase (order_, value) values (2, 49.99); -- 5. game 1
+insert into Purchase (order_, value) values (2, 49.99); -- 6. game 1
+insert into Purchase (order_, value) values (2, 49.99); -- 7. game 1
+insert into Purchase (order_, value) values (3, 49.99); -- 8. game 1
+insert into Purchase (order_, value) values (3, 24.99); -- 9. game 20
+insert into Purchase (order_, value) values (4, 49.99); -- 10. game 1
+insert into Purchase (order_, value) values (5, 24.99); -- 11. game 20
+insert into Purchase (order_, value) values (6, 49.99); -- 12. game 1
+insert into Purchase (order_, value) values (7, 49.99); -- 13. game 1
+insert into Purchase (order_, value) values (8, 49.99); -- 14. game 1
+insert into Purchase (order_, value) values (9, 49.99); -- 15. game 1
+insert into Purchase (order_, value) values (10, 19.99); -- 16. game 3
+insert into Purchase (order_, value) values (11, 34.99); -- 17. game 2
+insert into Purchase (order_, value) values (12, 39.99); -- 18. game 5
+insert into Purchase (order_, value) values (13, 19.99); -- 19. game 10
+insert into Purchase (order_, value) values (13, 24.99); -- 20. game 20
+insert into Purchase (order_, value) values (14, 24.99); -- 21. game 20
 
 
 -- Delivered Purchase

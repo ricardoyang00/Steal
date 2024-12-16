@@ -91,6 +91,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout/payment', [CheckoutController::class, 'selectPaymentMethod'])->name('checkout.selectPaymentMethod');
     Route::post('/checkout/payment', [CheckoutController::class, 'confirmPaymentMethod'])->name('checkout.confirmPayment');
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+    Route::post('/checkout/store-coins', [CheckoutController::class, 'storeCoins'])->name('checkout.storeCoins');
 });
 
 // Purchase History

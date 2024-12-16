@@ -48,7 +48,8 @@
 
         <!-- Total Price -->
         <div class="total mt-4">
-            <h3>Total Price: €{{ number_format($total, 2) }}</h3>
+            <p>Coins Used: {{ $coinsUsed }}</p>
+            <h3>Total Price: €{{ number_format($subtotal, 2) }}</h3>
         </div>
     </div>
 

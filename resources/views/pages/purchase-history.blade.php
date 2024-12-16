@@ -95,6 +95,10 @@
                                 <td colspan="2" class="text-right"><strong>Total Price:</strong></td>
                                 <td><strong>€{{ number_format($history['totalPrice'], 2) }}</strong></td>
                             </tr>
+                            <tr>
+                                <td colspan="2" class="text-right"><strong>S-Coins Used:</strong></td>
+                                <td><strong>{{ $history['coinsUsed'] }}</strong></td>
+                            </tr>
                         </tfoot>
                     </table>
                 </div>
