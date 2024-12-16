@@ -32,31 +32,40 @@ class ShoppingCartController extends Controller
         if (auth_user()) {
             foreach ($shoppingCartItems as $item) {
                 $game = Game::find($item->game);
-                if ($game) {
+                if ($game && $game->is_active) {
                     $products[] = [
                         'id' => $game->id,
                         'name' => $game->name,
                         'price' => $game->price,
                         'quantity' => $item->quantity,
-                        'thumbnail_small_path' => $game->getThumbnailSmallPath()
+                        'thumbnail_small_path' => $game->getThumbnailSmallPath(),
+                        'is_active' => $game->is_active,
                     ];
+                    $total += $game->price * $item->quantity;
+                } else {
+                    // Remove inactive game from the shopping cart
+                    $item->delete();
                 }
-                $total += $game->price * $item->quantity;
             }
         } else {
-            foreach ($shoppingCart as $item) {
+            foreach ($shoppingCart as $key => $item) {
                 $game = Game::find($item['id']);
-                if ($game) {
+                if ($game && $game->is_active) {
                     $products[] = [
                         'id' => $item['id'],
                         'name' => $item['name'],
                         'price' => $item['price'],
                         'quantity' => $item['quantity'],
-                        'thumbnail_small_path' => $game->getThumbnailSmallPath()
+                        'thumbnail_small_path' => $game->getThumbnailSmallPath(),
+                        'is_active' => $game->is_active,
                     ];
                     $total += $item['price'] * $item['quantity'];
+                } else {
+                    // Remove inactive game from the session shopping cart
+                    unset($shoppingCart[$key]);
                 }
             }
+            session(['shopping_cart' => $shoppingCart]);
         }
 
         ksort($products);
@@ -71,6 +80,14 @@ class ShoppingCartController extends Controller
 
             if (!$gameId) {
                 $gameId = $request->input('game_id');
+            }
+
+            $game = Game::find($gameId);
+            if (!$game || !$game->is_active) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'This game is no longer available.'
+                ]);
             }
 
             if (isset($shoppingCart[$gameId])) {
@@ -98,6 +115,14 @@ class ShoppingCartController extends Controller
 
             if (!$gameId) {
                 $gameId = $request->input('game_id');
+            }
+
+            $game = Game::find($gameId);
+            if (!$game || !$game->is_active) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'This game is no longer available.'
+                ]);
             }
 
             $shoppingCartItem = ShoppingCart::where('buyer', $buyerId)
