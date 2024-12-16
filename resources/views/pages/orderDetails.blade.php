@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="order-details-container">
+    <div class="order-details-container container mt-5">
         @if (auth()->check())
             @if (auth()->user()->buyer)
 
@@ -15,22 +15,23 @@
                         @foreach ($deliveredPurchases as $delivered)
                             <div class="deliveredPurchase-card">
                                 <div class="game-card">
+                                    <img src="{{ asset($delivered['game_image']) }}" alt="{{ $delivered['game_name'] }}" class="game-image">
                                     <div class="game-card-body">
                                         <h5 class="game-card-title">{{ $delivered['game_name'] }}</h5>
                                         <p class="game-card-text">
-                                            <img src="{{ asset($delivered['game_image']) }}" class="card-img-top" alt="{{ $delivered['game_name'] }}">
-                                            <strong>Number of Purchases:</strong> {{ $delivered['purchase_count'] }}<br>
-                                            <strong>Base Price:</strong> ${{ number_format($delivered['base_price'], 2) }}
+                                            <strong>X</strong> {{ $delivered['purchase_count'] }}<br>
                                         </p>
+                                        <div class="price">$ {{ number_format($delivered['base_price'], 2) }}</div>
                                         @if(!empty($delivered['cdk_codes']))
-                                            <p class="cdks-card-text">
+                                            <button class="view-cdks-btn">View CDKs</button>
+                                            <div class="cdk-codes">
                                                 <strong>CDK Codes:</strong>
                                                 <ul>
                                                     @foreach($delivered['cdk_codes'] as $cdk)
                                                         <li>{{ $cdk }}</li>
                                                     @endforeach
                                                 </ul>
-                                            </p>
+                                            </div>
                                         @endif
                                     </div>
                                 </div>
@@ -42,17 +43,17 @@
                 <!-- Pending Items Section -->
                 <div class="order-prePurchases">
                     <h2>Pending Items</h2>
-                    <div class="row">
+                    <div class="order-prePurchases">
                         @foreach ($prePurchases as $prePurchase)
                             <div class="prePurchase-card">
                                 <div class="game-card">
+                                    <img src="{{ asset($prePurchase['game_image']) }}" alt="{{ $prePurchase['game_name'] }}" class="game-image">
                                     <div class="game-card-body">
                                         <h5 class="game-card-title">{{ $prePurchase['game_name'] }}</h5>
                                         <p class="game-card-text">
-                                            <img src="{{ asset($prePurchase['game_image']) }}" class="img-fluid" alt="{{ $prePurchase['game_name'] }}">
-                                            <strong>Number of Pre-Purchases:</strong> {{ $prePurchase['purchase_count'] }}<br>
-                                            <strong>Base Price:</strong> ${{ number_format($prePurchase['base_price'], 2) }}
+                                            <strong>X</strong> {{ $prePurchase['purchase_count'] }}<br>
                                         </p>
+                                        <div class="price">$ {{ number_format($prePurchase['base_price'], 2) }}</div>
                                     </div>
                                 </div>
                             </div>
@@ -71,4 +72,6 @@
             </div>
         @endif
     </div>
+
 @endsection
+

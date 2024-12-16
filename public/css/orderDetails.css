@@ -1,7 +1,142 @@
-/* Image styling */
-.product-container img {
-    width: 70px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 5px;
+/* 1. Container Styling */
+.order-details-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
+
+.order-details-container h1 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #333;
+}
+
+/* 2. Section Headings */
+.order-details-container .order-purchases-details h2,
+.order-details-container .order-prePurchases h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #555;
+}
+
+/* 3. Game Card Styling */
+.order-details-container .game-card {
+    display: flex;
+    align-items: flex-start;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+    position: relative;
+    transition: box-shadow 0.3s;
+    margin-bottom: 20px; /* Space between cards */
+    text-align: center;
+}
+
+.order-details-container .game-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 4. Image Styling */
+.order-details-container .game-card .game-image {
+    width: 70px; /* Adjusted to 100px width */
+    height: 100px; /* Adjusted to 70px height */
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+/* 5. Game Card Body */
+.order-details-container .game-card-body {
+    display: flex;
+    flex-direction: column; /* Stack text content */
+    align-items: center; /* Center text horizontally */
+    justify-content: center;
+    flex: 1;
+}
+
+/* 6. Game Title */
+.order-details-container .game-card-body .game-card-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* 7. Game Text */
+.order-details-container .game-card-body .game-card-text {
+    flex: 1;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.order-details-container .game-card-body .game-card-text strong {
+    font-weight: bold;
+    color: #333;
+}
+
+/* 8. Price Styling */
+.order-details-container .game-card-body .price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #28a745;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* 9. "View CDKs" Button Styling */
+.order-details-container .game-card-body .view-cdks-btn {
+    align-self: flex-end;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.order-details-container .game-card-body .view-cdks-btn:hover {
+    background-color: #0056b3;
+}
+
+/* 10. CDK Codes Styling */
+.order-details-container .game-card-body .cdk-codes {
+    display: none; /* Hidden by default */
+    margin-top: 10px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.order-details-container .game-card-body .cdk-codes ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.order-details-container .game-card-body .cdk-codes li {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* 11. Purchased and Pending Items Containers */
+.order-details-container .order-deliveredPurchases,
+.order-details-container .order-prePurchases .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* 12. Individual Cards */
+.order-details-container .deliveredPurchase-card,
+.order-details-container .prePurchase-card {
+    width: calc(33.333% - 20px); /* Three cards per row with gap */
+}
+
+/* 13. Alert Styling */
+.order-details-container .alert {
+    margin-top: 20px;
+}
+
