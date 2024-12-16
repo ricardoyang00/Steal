@@ -5,6 +5,21 @@ function scrollToSection(event, sectionId) {
     });
 }
 
+// Function to update the coins value
+function updateCoins() {
+    fetch('/api/coins')
+        .then(response => response.json())
+        .then(data => {
+            if (data.coins) {
+                const scoinsElement = document.getElementById('scoins');
+                if (scoinsElement) {
+                    scoinsElement.innerHTML = `<i class="fa-solid fa-coins"></i> <strong>${data.coins}</strong>`;
+                }
+            }
+        })
+        .catch(error => console.error('Error fetching coins:', error));
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     var successNotification = document.querySelector('.alert-success.notification-popup');
     var errorNotification = document.querySelector('.alert-error.notification-popup');
@@ -21,5 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(function() {
             errorNotification.style.display = 'none';
         }, 3000); // Hide after 3 seconds
+    }
+
+    if (window.location.pathname === '/checkout') {
+        updateCoins(); // Call function to update coins on page load
     }
 });

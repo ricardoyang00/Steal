@@ -36,6 +36,13 @@ use App\Http\Controllers\Admin\SalesReportController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Header Navbar
+Route::get('/api/coins', function () {
+    $user = auth_user(); // Get the authenticated user
+    return response()->json([
+        'coins' => $user->buyer ? $user->buyer->coins : 0 // Return the coins, or 0 if no buyer data
+    ]);
+});
 
 // Home
 Route::redirect('/', '/home');
