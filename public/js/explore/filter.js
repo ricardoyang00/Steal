@@ -31,24 +31,10 @@ document.addEventListener('DOMContentLoaded', function () {
     // AJAX Filter checkboxes
     document.querySelectorAll('.form-check-input').forEach(function (checkbox) {
         checkbox.addEventListener('change', function () {
-            const form = document.getElementById('filter-form');
-            const formData = new FormData(form);
-            const url = new URL(form.action, window.location.origin);
-            formData.forEach((value, key) => url.searchParams.append(key, value));
-            
-            // Use Fetch API for AJAX request
-            fetch(url, {
-                method: 'GET',
-                headers: { 'X-Requested-With': 'XMLHttpRequest' },
-            })
-                .then(response => response.text())
-                .then(html => {
-                    document.querySelector('.game-cards').innerHTML = html;
-                    updateActiveFilters();
-                })
-                .catch(error => console.error('Error:', error));
+            document.getElementById('filter-form').submit();
         });
     });
+
 
     // Clear Filters
     document.getElementById('clear-filters').addEventListener('click', function () {
