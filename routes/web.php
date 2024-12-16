@@ -62,6 +62,7 @@ Route::controller(GoogleController::class)->group(function () {
 // ShoppingCart
 Route::controller(ShoppingCartController::class)->group(function () {
     Route::get('/cart', 'index')->name('shopping_cart');
+    Route::get('/cart/count', 'getCartCount')->name('shopping_cart.count');
 });
 
 Route::post('/increase_quantity', [ShoppingCartController::class, 'increaseQuantity'])->name('increase_quantity');

@@ -93,6 +93,7 @@
                             @if (auth_user()->buyer)
                                 <a class="icon-button" href="{{ url('/cart') }}">
                                     <i class="fas fa-shopping-cart"></i>
+                                    <span id="cart-count" class="badge"></span>
                                 </a>
                             @endif
                             <a class="icon-button" href="{{ url('/notifications') }}">
@@ -106,6 +107,7 @@
                             <a class="button" href="{{ url('/register') }}">Sign Up</a>
                             <a class="icon-button" href="{{ url('/cart') }}">
                                 <i class="fas fa-shopping-cart"></i>
+                                <span id="cart-count" class="badge"></span>
                             </a>
                             <a class="icon-button">
                                 <i class="fa-regular fa-bell"></i>
