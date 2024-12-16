@@ -1,7 +1,7 @@
 // public/js/purchaseHistory/cancel_pending_order_items.js
 
 document.addEventListener('DOMContentLoaded', function () {
-    console.log('Script loaded: Attempting to initialize modal functionality.');
+    console.log('Script loaded: Initializing modal functionality.');
 
     // Get modal elements
     var modal = document.getElementById('deletePrePurchaseModal');
@@ -11,19 +11,23 @@ document.addEventListener('DOMContentLoaded', function () {
     var deleteCountInput = document.getElementById('remove_order_count');
     var modalGameName = document.getElementById('modal-game-name');
     var modalGameImage = document.getElementById('modal-game-image');
-    var modalPrePurchaseIds = document.getElementById('pre_purchase_ids');
+    var modalPrePurchaseIdsContainer = document.getElementById('pre_purchase_ids_container');
     var decreaseOrderBtn = document.getElementById('decreaseOrder');
     var increaseOrderBtn = document.getElementById('increaseOrder');
 
     var lastFocusedElement;
     var currentMax = 1; // Initialize to 1
+    var allPurchaseIds = []; // To store all purchase IDs for the modal
 
     // Function to open the modal and populate data
     function openModal(button) {
         console.log('openModal called for:', button);
+
         lastFocusedElement = button;
 
-        var purchaseIds = button.getAttribute('data-purchase-ids') ? button.getAttribute('data-purchase-ids').split(',') : [];
+        var purchaseIdsString = button.getAttribute('data-purchase-ids') || '';
+        allPurchaseIds = purchaseIdsString.split(',').map(function(id) { return id.trim(); }).filter(function(id) { return id !== ''; });
+
         var gameName = button.getAttribute('data-game') || '';
         var purchaseCount = parseInt(button.getAttribute('data-count')) || 1;
         var gameImage = button.getAttribute('data-game-image') || '';
@@ -38,25 +42,40 @@ document.addEventListener('DOMContentLoaded', function () {
             modalGameImage.alt = gameName;
         }
 
-        if (modalPrePurchaseIds) {
-            modalPrePurchaseIds.value = purchaseIds.join(',');
-        }
+        // Set the remove_order_count to purchaseCount or the number of available purchase IDs
+        currentMax = Math.min(purchaseCount, allPurchaseIds.length);
+        deleteCountInput.value = currentMax;
 
-        // Set the remove_order_count to purchaseCount
-        if (deleteCountInput) {
-            deleteCountInput.value = purchaseCount;
-            currentMax = purchaseCount;
-            deleteCountInput.setAttribute('data-max', purchaseCount);
-        }
+        // Populate the hidden inputs
+        populateHiddenInputs(currentMax);
 
         // Show the modal
         modal.style.display = 'block';
-        console.log('Modal displayed');
+        console.log('Modal displayed with', currentMax, 'pre-purchases.');
 
         // Set focus to the increase button for accessibility
         if (increaseOrderBtn) {
             increaseOrderBtn.focus();
         }
+    }
+
+    // Function to populate hidden inputs based on remove_order_count
+    function populateHiddenInputs(count) {
+        // Clear existing hidden inputs
+        modalPrePurchaseIdsContainer.innerHTML = '';
+
+        // Add hidden inputs for the first 'count' purchase IDs
+        for (var i = 0; i < count; i++) {
+            if (allPurchaseIds[i]) {
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'pre_purchase_ids[]';
+                input.value = allPurchaseIds[i];
+                modalPrePurchaseIdsContainer.appendChild(input);
+            }
+        }
+
+        console.log('Hidden inputs populated with', count, 'purchase IDs.');
     }
 
     // Function to close the modal
@@ -102,10 +121,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // Handle + button
     if (increaseOrderBtn && deleteCountInput) {
         increaseOrderBtn.addEventListener('click', function () {
-            var currentValue = parseInt(deleteCountInput.value) || 1;
-            var max = parseInt(deleteCountInput.getAttribute('data-max')) || 1;
-            if (currentValue < max) {
-                deleteCountInput.value = currentValue + 1;
+            if (currentMax < allPurchaseIds.length) {
+                currentMax += 1;
+                deleteCountInput.value = currentMax;
+                populateHiddenInputs(currentMax);
+            } else {
+                console.log('Maximum number of cancellations reached.');
             }
         });
     }
@@ -113,9 +134,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // Handle - button
     if (decreaseOrderBtn && deleteCountInput) {
         decreaseOrderBtn.addEventListener('click', function () {
-            var currentValue = parseInt(deleteCountInput.value) || 1;
-            if (currentValue > 1) {
-                deleteCountInput.value = currentValue - 1;
+            if (currentMax > 1) {
+                currentMax -= 1;
+                deleteCountInput.value = currentMax;
+                populateHiddenInputs(currentMax);
+            } else {
+                console.log('Minimum number of cancellations reached.');
             }
         });
     }
@@ -125,10 +149,11 @@ document.addEventListener('DOMContentLoaded', function () {
         deletePrePurchaseForm.addEventListener('submit', function () {
             deleteButton.disabled = true;
             deleteButton.textContent = 'Deleting...';
+            console.log('Form submitted: Deleting pre-purchases.');
         });
     }
 
-    console.log('Modal initialization complete');
+    console.log('Modal initialization complete.');
 });
 
 

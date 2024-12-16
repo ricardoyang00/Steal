@@ -104,10 +104,11 @@
                             </div>
                         </div>
                         <div class="modal-right">
-                            <!-- Intentionally left blank, delete button will be absolutely positioned -->
+                            <!-- Intentionally left blank; delete button will be absolutely positioned -->
                         </div>
                     </div>
-                    <input type="hidden" name="pre_purchase_ids" id="pre_purchase_ids" value="">
+                    <!-- Container for dynamic hidden inputs -->
+                    <div id="pre_purchase_ids_container"></div>
                 </div>
                 <!-- Delete button positioned absolutely at the bottom right -->
                 <button type="submit" class="btn btn-danger delete-button-abs" id="deleteButton">Delete</button>
@@ -115,6 +116,7 @@
         </div>
     </div>
 @endsection
+
 
 
 

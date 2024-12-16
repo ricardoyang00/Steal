@@ -14,6 +14,10 @@ Class PrePurchase extends Model{
 
     protected $fillable = ['id', 'game'];
 
+    public function getId(){
+        return $this->id;
+    }
+
     public function getGame(){
         return $this->belongsTo(Game::class, 'game', 'id');
     }

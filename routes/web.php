@@ -14,6 +14,7 @@ use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PurchaseHistoryController;
+use App\Http\Controllers\OrderDetailsController;
 use App\Http\Controllers\StaticPagesController;
 use App\Http\Controllers\AgeController;
 use App\Http\Controllers\NotificationController;
@@ -92,7 +93,7 @@ Route::middleware('auth')->group(function (){
     Route::get('/user/order-history', [PurchaseHistoryController::class, 'orderHistory'])->name('purchaseHistory');
     Route::get('/order-details/{id}', [PurchaseHistoryController::class, 'fetchOrderDetails'])->name('orderDetails');
     Route::get('/seller/purchases/{id}/details', [PurchaseHistoryController::class, 'sellerPurchaseDetails'])->name('seller.purchases.details');
-    Route::delete('/pre-purchases/delete', [PrePurchaseController::class, 'deletePrePurchases'])->name('prePurchases.delete')->middleware('auth');
+    Route::delete('/pre-purchases/delete', [OrderDetailsController::class, 'cancelPrePurchases'])->name('prePurchases.delete')->middleware('auth');
 });
 
 // Notifications
