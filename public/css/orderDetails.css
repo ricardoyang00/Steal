@@ -64,6 +64,7 @@
     flex: 1;
     position: relative; /* To position the price absolutely within this container */
     padding: 10px; /* Optional: Adds padding inside the game-card-body */
+    height: auto; /* Ensure height adjusts based on content */
 }
 
 /* 8. Game Title */
@@ -114,7 +115,25 @@
     background-color: #0056b3;
 }
 
-/* 12. CDK Codes Styling */
+/* 12. "Cancel Item Orders" Button Styling */
+.order-details-container .game-card-body .delete-prepurchase-items-button {
+    align-self: flex-end; /* Aligns the button to the end of the flex container */
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px; /* Ensures spacing between buttons if both are present */
+    transition: background-color 0.3s;
+}
+
+.order-details-container .game-card-body .delete-prepurchase-items-button:hover {
+    background-color: #c82333;
+}
+
+/* 13. CDK Codes Styling */
 .order-details-container .game-card-body .cdk-codes {
     display: none; /* Hidden by default */
     margin-top: 10px;
@@ -123,14 +142,15 @@
     border-radius: 3px;
     width: 100%; /* Ensure it spans the full width of the game-card-body */
     color: #333; /* Text color */
+    box-sizing: border-box; /* Ensures padding is included in width */
 }
 
-/* 13. CDK Codes Show Class for Toggling */
+/* 14. CDK Codes Show Class for Toggling */
 .order-details-container .game-card-body .cdk-codes.show {
     display: block; /* Show when .show class is added */
 }
 
-/* 14. CDK Codes List Styling */
+/* 15. CDK Codes List Styling */
 .order-details-container .game-card-body .cdk-codes ul {
     list-style-type: disc;
     padding-left: 20px;
@@ -142,7 +162,7 @@
     color: #333;
 }
 
-/* 15. Purchased and Pending Items Containers */
+/* 16. Purchased and Pending Items Containers */
 .order-details-container .order-deliveredPurchases,
 .order-details-container .order-prePurchases .row {
     display: flex;
@@ -150,18 +170,32 @@
     gap: 20px;
 }
 
-/* 16. Individual Cards */
+/* 17. Individual Cards */
 .order-details-container .deliveredPurchase-card,
 .order-details-container .prePurchase-card {
     width: calc(33.333% - 20px); /* Three cards per row with gap */
 }
 
-/* 17. Alert Styling */
+@media (max-width: 992px) {
+    .order-details-container .deliveredPurchase-card,
+    .order-details-container .prePurchase-card {
+        width: calc(50% - 20px); /* Two cards per row on medium screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .order-details-container .deliveredPurchase-card,
+    .order-details-container .prePurchase-card {
+        width: 100%; /* One card per row on small screens */
+    }
+}
+
+/* 18. Alert Styling */
 .order-details-container .alert {
     margin-top: 20px;
 }
 
-/* 18. Custom Modal Styling */
+/* 19. Custom Modal Styling */
 .custom-modal {
     display: none; 
     position: fixed;
@@ -305,35 +339,59 @@
     background-color: #c82333;
 }
 
-/* 19. "View CDKs" Button Styling (Consistent with Dark Theme) */
-/* Updated to position the button at the bottom right */
+/* 20. "View CDKs" Button Styling (Consistent with Dark Theme) */
 .btn.view-cdks-btn {
-    /* Remove previous margin-bottom to prevent overlapping */
-    margin-top: auto; /* Pushes the button to the bottom of the flex container */
+    /* Ensure the button is at the bottom right */
+    align-self: flex-end; /* Aligns to the end of the flex container */
     padding: 8px 16px;
     background-color: #0d6efd;
     color: white;
     border: none;
     border-radius: 4px;
-    align-self: flex-end;
     cursor: pointer;
+    margin-top: auto; /* Pushes the button to the bottom of the container */
 }
 
 .btn.view-cdks-btn:hover {
     opacity: 0.9;
 }
 
-/* 20. CDK Codes Styling */
-.cdk-codes {
-    margin-top: 10px;
-    margin-left: -10px;
-    display: none;
+/* 21. "Cancel Item Orders" Button Styling */
+.btn.delete-prepurchase-items-button {
+    /* Ensure the button is at the bottom right */
+    align-self: flex-end; /* Aligns to the end of the flex container */
+    padding: 8px 16px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px; /* Adds spacing from the above elements */
 }
 
-.cdk-codes ul {
-    list-style-type: disc;
-    padding-left: 20px;
-    color: #333; /* Ensures list items are readable */
+.btn.delete-prepurchase-items-button:hover {
+    background-color: #c82333;
+}
+
+/* 22. CDK Codes Styling */
+.cdk-codes {
+    margin-top: 10px;
+    display: none;
+    /* Removed margin-left to prevent overflow */
+    width: 100%; /* Ensure it spans the full width of the game-card-body */
+    box-sizing: border-box;
+}
+
+.order-details-container .game-card-body .cdk-codes ul {
+    list-style: none; /* Removes disc bullets */
+    padding-left: 0;   /* Removes left padding */
+    margin: 0;
+    color: #28a745;    /* Sets text color to green */
+}
+
+.order-details-container .game-card-body .cdk-codes li {
+    margin-bottom: 5px;
+    color: #28a745;    /* Sets text color to green */
 }
 
 

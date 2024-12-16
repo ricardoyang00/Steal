@@ -144,7 +144,7 @@ public function fetchOrderDetails($id)
                 return [
                     'game_id' => $game->id,
                     'game_name' => $game->name ?? 'Unknown Game',
-                    'game_image' => $game->thumbnail_small_path ?? null,
+                    'game_image' => $game->getThumbnailSmallPath() ?? null,
                     'base_price' => $game->price ?? 0,
                     'purchase_count' => $group->count(),
                     'cdk_codes' => $group->map(function ($purchase) {
