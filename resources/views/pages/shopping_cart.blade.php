@@ -62,7 +62,7 @@
                 @if (auth_user() && count($products) > 0)
                     <!-- Section to choose number of coins to use -->
                     <div class="coins-section">
-                        <label for="coins_to_use">Use S-Coins:</label>
+                        <label for="coins_to_use">Use S-Coins</label>
                         <input type="number" id="coins_to_use" name="coins_to_use" min="0" max="{{auth_user()->buyer->coins}}" value="0">
                     </div>
                 @endif

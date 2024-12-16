@@ -323,3 +323,38 @@
     position: relative;
     bottom: 3px;
 }
+
+/* Use S-Coins */
+.coins-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px 0;
+    border-radius: 8px;
+    width: 100%;
+    font-weight: bold;
+    color: var(--cart-control-button);
+    font-size: 1.2rem;
+}
+
+.coins-section input[type="number"] {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid var(--text-color);
+    border-radius: 5px;
+    background-color: var(--input-background-color);
+    color: var(--text-color);
+    text-align: right;
+    transition: border-color 0.3s ease-in-out; 
+}
+
+.coins-section input[type="number"]:focus {
+    border-color: var(--highlight-color);
+    outline: none;
+}
+
+.coins-section input[type="number"]::-webkit-outer-spin-button,
+.coins-section input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
