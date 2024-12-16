@@ -11,7 +11,6 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class ReviewsController extends Controller
 {
@@ -62,8 +61,6 @@ class ReviewsController extends Controller
     
             return redirect()->route('game.details', ['id' => $gameId])->withSuccess('Review removed successfully!');
         } catch (\Exception $e) {
-            Log::error('An error occurred while adding the review: ' . $e->getMessage(), ['exception' => $e]);
-
             return back()->withErrors(['error' => 'An error occurred while removing the review.']);
         }
     }
