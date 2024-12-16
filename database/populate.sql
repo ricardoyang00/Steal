@@ -1861,6 +1861,20 @@ insert into Review (title, description, positive, author, game) values ('Amazing
 insert into Review (title, description, positive, author, game) values ('Excellent Storyline', 'The storyline is captivating and well-written.', true, 8, 20);
 insert into Review (title, description, positive, author, game) values ('Too Many Bugs', 'The game has too many bugs and crashes often.', false, 9, 20);
 
+-- Game 1 Extra Fake
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 2, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 5, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 6, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 7, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 8, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 9, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 10, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 23, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 24, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 25, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 26, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 27, 1);
+
 
 -- Review Like
 insert into ReviewLike (review, author) values (1, 2);
