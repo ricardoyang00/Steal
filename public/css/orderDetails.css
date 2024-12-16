@@ -8,7 +8,7 @@
 .order-details-container h1 {
     margin-bottom: 30px;
     font-size: 2rem;
-    color: #333;
+    color: #fff; /* Updated for better contrast on dark background */
 }
 
 /* 2. Section Headings */
@@ -16,17 +16,18 @@
 .order-details-container .order-prePurchases h2 {
     margin-bottom: 20px;
     font-size: 1.5rem;
-    color: #555;
+    color: #fff; /* Updated for better contrast on dark background */
 }
 
 /* 3. Game Card Styling */
 .order-details-container .game-card {
     display: flex;
+    flex-wrap: wrap; /* Allows child elements to wrap to the next line */
     align-items: flex-start;
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 10px;
-    background-color: #fff;
+    background-color: #3b3b3b; /* Dark background */
     position: relative;
     transition: box-shadow 0.3s;
     margin-bottom: 20px; /* Space between cards */
@@ -39,53 +40,65 @@
 
 /* 4. Image Styling */
 .order-details-container .game-card .game-image {
-    width: 70px; /* Adjusted to 100px width */
-    height: 100px; /* Adjusted to 70px height */
+    width: 70px; /* Adjusted to 70px width */
+    height: 90px; /* Adjusted to 90px height */
     object-fit: cover;
     border-radius: 3px;
 }
 
-/* 5. Game Card Body */
-.order-details-container .game-card-body {
-    display: flex;
-    flex-direction: column; /* Stack text content */
-    align-items: center; /* Center text horizontally */
-    justify-content: center;
-    flex: 1;
+/* 6. X Quantity Styling */
+.order-details-container .x-quantity {
+    width: 100%; /* Makes the x-quantity take full width below the image */
+    text-align: center; /* Centers the text within the x-quantity div */
+    margin-top: 0px; /* Removes space above the quantity */
+    font-size: 1rem; /* Adjust font size as needed */
+    color: #fff; /* Updated text color for contrast */
 }
 
-/* 6. Game Title */
+/* 7. Game Card Body */
+.order-details-container .game-card-body {
+    display: flex;
+    flex-direction: column; /* Stack text content vertically */
+    align-items: flex-start; /* Align items to the start (left) */
+    justify-content: flex-start; /* Align items to the top */
+    flex: 1;
+    position: relative; /* To position the price absolutely within this container */
+    padding: 10px; /* Optional: Adds padding inside the game-card-body */
+}
+
+/* 8. Game Title */
 .order-details-container .game-card-body .game-card-title {
     font-size: 1.2rem;
     margin-bottom: 10px;
-    color: #333;
+    color: #fff; /* Updated for better contrast on dark background */
 }
 
-/* 7. Game Text */
+/* 9. Game Text */
 .order-details-container .game-card-body .game-card-text {
     flex: 1;
     margin-bottom: 10px;
-    color: #555;
+    color: #ddd; /* Lightened text color for readability */
 }
 
 .order-details-container .game-card-body .game-card-text strong {
     font-weight: bold;
-    color: #333;
+    color: #fff; /* Updated for better contrast */
 }
 
-/* 8. Price Styling */
+/* 10. Price Styling */
 .order-details-container .game-card-body .price {
     font-size: 1rem;
     font-weight: bold;
     color: #28a745;
-    position: absolute;
+    position: absolute; /* Keeps the price at the top right */
     top: 10px;
     right: 10px;
+    /* Removed margin-bottom to prevent spacing issues */
 }
 
-/* 9. "View CDKs" Button Styling */
+/* 11. "View CDKs" Button Styling */
 .order-details-container .game-card-body .view-cdks-btn {
-    align-self: flex-end;
+    align-self: flex-end; /* Aligns the button to the end of the flex container */
     padding: 5px 10px;
     font-size: 0.9rem;
     background-color: #007bff;
@@ -93,7 +106,7 @@
     border: none;
     border-radius: 3px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: auto; /* Pushes the button to the bottom of the container */
     transition: background-color 0.3s;
 }
 
@@ -101,15 +114,23 @@
     background-color: #0056b3;
 }
 
-/* 10. CDK Codes Styling */
+/* 12. CDK Codes Styling */
 .order-details-container .game-card-body .cdk-codes {
     display: none; /* Hidden by default */
     margin-top: 10px;
     background-color: #f8f9fa;
     padding: 10px;
     border-radius: 3px;
+    width: 100%; /* Ensure it spans the full width of the game-card-body */
+    color: #333; /* Text color */
 }
 
+/* 13. CDK Codes Show Class for Toggling */
+.order-details-container .game-card-body .cdk-codes.show {
+    display: block; /* Show when .show class is added */
+}
+
+/* 14. CDK Codes List Styling */
 .order-details-container .game-card-body .cdk-codes ul {
     list-style-type: disc;
     padding-left: 20px;
@@ -121,7 +142,7 @@
     color: #333;
 }
 
-/* 11. Purchased and Pending Items Containers */
+/* 15. Purchased and Pending Items Containers */
 .order-details-container .order-deliveredPurchases,
 .order-details-container .order-prePurchases .row {
     display: flex;
@@ -129,17 +150,18 @@
     gap: 20px;
 }
 
-/* 12. Individual Cards */
+/* 16. Individual Cards */
 .order-details-container .deliveredPurchase-card,
 .order-details-container .prePurchase-card {
     width: calc(33.333% - 20px); /* Three cards per row with gap */
 }
 
-/* 13. Alert Styling */
+/* 17. Alert Styling */
 .order-details-container .alert {
     margin-top: 20px;
 }
 
+/* 18. Custom Modal Styling */
 .custom-modal {
     display: none; 
     position: fixed;
@@ -283,13 +305,17 @@
     background-color: #c82333;
 }
 
+/* 19. "View CDKs" Button Styling (Consistent with Dark Theme) */
+/* Updated to position the button at the bottom right */
 .btn.view-cdks-btn {
-    margin-top: 10px;
+    /* Remove previous margin-bottom to prevent overlapping */
+    margin-top: auto; /* Pushes the button to the bottom of the flex container */
     padding: 8px 16px;
     background-color: #0d6efd;
     color: white;
     border: none;
     border-radius: 4px;
+    align-self: flex-end;
     cursor: pointer;
 }
 
@@ -297,17 +323,17 @@
     opacity: 0.9;
 }
 
+/* 20. CDK Codes Styling */
 .cdk-codes {
     margin-top: 10px;
+    margin-left: -10px;
     display: none;
 }
 
 .cdk-codes ul {
     list-style-type: disc;
     padding-left: 20px;
+    color: #333; /* Ensures list items are readable */
 }
-
-
-
 
 

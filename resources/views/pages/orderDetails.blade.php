@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+    <!-- Include the JavaScript files for handling CDK view toggling and cancellation functionality -->
     <script src="{{ asset('js/purchaseHistory/cancel_pending_order_items.js') }}" defer></script>
+    <script src="{{ asset('js/purchaseHistory/order_details.js') }}" defer></script>
+
     <div class="order-details-container container mt-5">
         @if (auth()->check())
             @if (auth()->user()->buyer)
@@ -11,62 +14,64 @@
                 <div class="order-purchases-details">
                     <h2>Purchased Items</h2>
                     <div class="order-deliveredPurchases">
-                        @foreach ($deliveredPurchases as $delivered)
-                            <div class="deliveredPurchase-card">
-                                <div class="game-card">
+                    @foreach ($deliveredPurchases as $delivered)
+                        <div class="deliveredPurchase-card">
+                            <div class="game-card">
+                                <div class="image-container">
                                     <img src="{{ asset($delivered['game_image']) }}" alt="{{ $delivered['game_name'] }}" class="game-image">
-                                    <div class="game-card-body">
-                                        <h5 class="game-card-title">{{ $delivered['game_name'] }}</h5>
-                                        <p class="game-card-text">
-                                            <strong>X</strong> {{ $delivered['purchase_count'] }}<br>
-                                        </p>
-                                        <div class="price">$ {{ number_format($delivered['base_price'], 2) }}</div>
-                                        @if(!empty($delivered['cdk_codes']))
-                                            <button class="view-cdks-btn">View CDKs</button>
-                                            <div class="cdk-codes">
-                                                <strong>CDK Codes:</strong>
-                                                <ul>
-                                                    @foreach($delivered['cdk_codes'] as $cdk)
-                                                        <li>{{ $cdk }}</li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        @endif
+                                    <div class="x-quantity">
+                                        <strong>x</strong> {{ $delivered['purchase_count'] }}
                                     </div>
                                 </div>
+                                
+                                <div class="game-card-body">
+                                    <h5 class="game-card-title">{{ $delivered['game_name'] }}</h5>
+                                    <div class="price">$ {{ number_format($delivered['base_price'], 2) }}</div>
+                                    
+                                    @if(!empty($delivered['cdk_codes']))
+                                        <button class="view-cdks-btn">View CDKs</button>
+                                        <div class="cdk-codes">
+                                            <strong>CDK Codes:</strong>
+                                            <ul>
+                                                @foreach($delivered['cdk_codes'] as $cdk)
+                                                    <li>{{ $cdk }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
+                                </div>
                             </div>
-                        @endforeach
-                    </div>
-                </div>
-
-                <!-- Pending Items Section -->
-                <div class="order-prePurchases">
-                    <h2>Pending Items</h2>
-                    <div class="order-prePurchases">
-                        @foreach ($prePurchases as $prePurchase)
-                            <div class="prePurchase-card">
-                                <div class="game-card">
+                        </div>
+                    @endforeach
+                    @foreach ($prePurchases as $prePurchase)
+                        <div class="prePurchase-card">
+                            <div class="game-card">
+                                <!-- New Wrapper Div for Image and X Quantity -->
+                                <div class="image-container">
                                     <img src="{{ asset($prePurchase['game_image']) }}" alt="{{ $prePurchase['game_name'] }}" class="game-image">
-                                    <div class="game-card-body">
-                                        <h5 class="game-card-title">{{ $prePurchase['game_name'] }}</h5>
-                                        <p class="game-card-text">
-                                            <strong>X</strong> {{ $prePurchase['purchase_count'] }}<br>
-                                        </p>
-                                        <div class="price">$ {{ number_format($prePurchase['base_price'], 2) }}</div>
-                                        <button 
-                                            type="button" 
-                                            class="btn btn-danger mt-3 delete-prepurchase-items-button" 
-                                            data-purchase-ids="{{ implode(',', $prePurchase['purchase_ids']) }}"
-                                            data-game="{{ $prePurchase['game_name'] }}"
-                                            data-count="{{ $prePurchase['purchase_count'] }}"
-                                            data-game-image="{{ asset($prePurchase['game_image']) }}"
-                                        >
-                                            Cancel Item Orders
-                                        </button>
+                                    <div class="x-quantity">
+                                        <strong>X</strong> {{ $prePurchase['purchase_count'] }}
                                     </div>
                                 </div>
+                                
+                                <div class="game-card-body">
+                                    <h5 class="game-card-title">{{ $prePurchase['game_name'] }}</h5>
+                                    <div class="price">$ {{ number_format($prePurchase['base_price'], 2) }}</div>
+                                    <button 
+                                        type="button" 
+                                        class="btn btn-danger mt-3 delete-prepurchase-items-button" 
+                                        data-purchase-ids="{{ implode(',', $prePurchase['purchase_ids']) }}"
+                                        data-game="{{ $prePurchase['game_name'] }}"
+                                        data-count="{{ $prePurchase['purchase_count'] }}"
+                                        data-game-image="{{ asset($prePurchase['game_image']) }}"
+                                    >
+                                        Cancel Item Orders
+                                    </button>
+                                </div>
                             </div>
-                        @endforeach
+                        </div>
+                    @endforeach
+
                     </div>
                 </div>
             @else
@@ -116,7 +121,6 @@
         </div>
     </div>
 @endsection
-
 
 
 
