@@ -55,7 +55,7 @@ class ShoppingCartController extends Controller
             }
         } else {
             foreach ($shoppingCart as $key => $item) {
-                $game = Game::find($item['id']);
+                $game = Game::with(['platforms'])->find($item['id']);
                 if ($game && $game->is_active) {
                     $products[] = [
                         'id' => $item['id'],
@@ -64,6 +64,12 @@ class ShoppingCartController extends Controller
                         'quantity' => $item['quantity'],
                         'thumbnail_small_path' => $game->getThumbnailSmallPath(),
                         'is_active' => $game->is_active,
+                        'platforms' => $game->platforms->map(function($platform) {
+                            return [
+                                'id' => $platform->id,
+                                'name' => $platform->name
+                            ];
+                        })->toArray(),
                     ];
                     $total += $item['price'] * $item['quantity'];
                 } else {
