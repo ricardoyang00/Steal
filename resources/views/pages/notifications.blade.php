@@ -103,7 +103,8 @@
                                                 @endforeach
                                             </ul>
                                         @endif
-                                        <p><strong>Total Price:</strong> €{{ $notification['orderDetails']['totalPrice'] ?? 0.0 }}</p>
+                                        <p><strong>Coins Used: </strong>{{ $notification['orderDetails']['coinsUsed'] ?? 0 }} S-Coins</p>
+                                        <p><strong>Total Price: </strong>€{{ $notification['orderDetails']['totalPrice'] ?? 0.0 }}</p>
                                     @elseif(in_array($notification['type'], ['Wishlist', 'ShoppingCart']))
                                         <p><strong>Game:</strong> 
                                             @if(isset($notification['parsedDetails']['game_id']))

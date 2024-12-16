@@ -310,7 +310,8 @@ class NotificationController extends Controller{
                     $notification->orderDetails = [
                         'date' => $formattedOrderDate,
                         'purchases' => $details->toArray(),
-                        'totalPrice' => $purchases->sum('value'),
+                        'totalPrice' => $order->getPayment->value,
+                        'coinsUsed' => $order->coins,
                     ];
                 }
     
