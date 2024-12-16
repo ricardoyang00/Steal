@@ -2,30 +2,40 @@ SET search_path TO lbaw2435;
 
 -- POPULATE DATABASE
 -- USERS
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('hbrellin0', 'Hamil Brellin', 'buyer@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('kpeschmann1', 'Kristo Peschmann', 'kpeschmann1@edublogs.org', '$2a$04$IAuigNcjKssEHMcHFqkTEeNUDoD3IEGVLxwKwIF0lbcoF67NUTM7i', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('nspikings2', 'Nickolas Spikings', 'nspikings2@yahoo.co.jp', '$2a$04$ujyEJ1LF7KZNvh4weCUKHuiuAlqYyrvKqC/zh.NFX0EA7iYK2F/Va', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('mbatson3', 'Myrilla Batson', 'mbatson3@home.pl', '$2a$04$zwkBwn8fRCLpHpMkuwjwJud/k7BuILroNu3D0NkHWj7NrlX22AB/O', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('mkinkade4', 'Mareah Kinkade', 'mkinkade4@slideshare.net', '$2a$04$GX/2zaYED08d0fsuarAVkerO5XEm4KwRvae72vRNC4Gq32KSBwMSy', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('jweagener5', 'Julina Weagener', 'jweagener5@ed.gov', '$2a$04$uKNjaZH6FmaEJRq/bObc..00KATPYnTCixdOul6KbtKJx.Qh6zBr6', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('cfaveryear6', 'Cristobal Faveryear', 'cfaveryear6@printfriendly.com', '$2a$04$Aoeyt3a/Y4kB6d2VSa9JV.Y3d2w.bcZcapaL0P7KNkZA7wafyW2sq', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('rarrigucci7', 'Rowena Arrigucci', 'rarrigucci7@photobucket.com', '$2a$04$rrFIgJjmvkFzm8GkaB6cjeXou1lg232iSN402rKm9sbqGlT0/NOpC', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('ttibbetts8', 'Tove Tibbetts', 'ttibbetts8@adobe.com', '$2a$04$5qfCo9iWFvY00jQlRju5z.1Vg4aC.ih7sRWDvMkvBLpvJ8WecviCO', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('fevelyn9', 'Franciskus Evelyn', 'fevelyn9@usda.gov', '$2a$04$egGz5KnFdRsAiHlLwNiw7.3ZS0Byg36Qvr581LGgxKBXxxQXaHNHG', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('rhaycrofta', 'Roseanne Haycroft', 'rhaycrofta@amazon.co.uk', '$2a$04$BQcEGGn8cVfdVUN5O97pi.KaMlurZE7cSWIg7n5hj8p9aEWL8Rle2', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('mhackwellb', 'Munroe Hackwell', 'mhackwellb@clickbank.net', '$2a$04$5A2hHi0FJ7UFeZXlVfWOcOGIMoqu5fA1nJeBLkE2gXf6ZwSUCElXa', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('qjeaffresonc', 'Querida Jeaffreson', 'qjeaffresonc@answers.com', '$2a$04$xBuH87DcCqRafcWpEkUeLewf5BtQrfd.tmm5C2ypK00VKvlyUU1sG', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('nmorewoodd', 'Nil Morewood', 'nmorewoodd@gov.uk', '$2a$04$8LbId5LFKFhiUQ9xq5umnuHjdOyp8bWI116VISsn.iVE75Ifrovhu', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('agustuse', 'Akim Gustus', 'agustuse@addthis.com', '$2a$04$2YuIE4my5xv2aIxUUVe8hu07IfGVV.tCWcIBVA7vdwSvbz3DStqv6', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('cpearcef', 'Chip Pearce', 'cpearcef@toplist.cz', '$2a$04$TkRg.rwUKuE6Vj83BYv1tuGj2O7vcWVOevd2emFltepTdRdtgCZxa', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('sdumbellowg', 'Stu Dumbellow', 'sdumbellowg@yahoo.co.jp', '$2a$04$CezMAYWtb/35/mGX1YgVUeINMJoe9GKGFx4mhAI286RxEiTZ6hyFa', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('hcornierh', 'Hewet Cornier', 'hcornierh@alibaba.com', '$2a$04$JpHqsPkrIoAeAjfNnAS64uhepmXO/NeL8fJkQcLwI7z/3RmiBA8Je', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('mmainstoni', 'Meaghan Mainston', 'mmainstoni@hao123.com', '$2a$04$z3Gtsn1B.Ds8o2Munu4ZreIrwjVdkkOEuIMG6S6EJ0bcSij8LYaKO', true, false, 'images/profile_pictures/default-profile-picture.png');
-insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values ('tschusterlj', 'Thacher Schusterl', 'seller@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png');
+insert into Users (username, name, email, password, is_active, is_blocked, profile_picture) values 
+('buyer1', 'Buyer One', 'buyer1@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer2', 'Buyer Two', 'buyer2@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer3', 'Buyer Three', 'buyer3@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer4', 'Buyer Four', 'buyer4@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer5', 'Buyer Five', 'buyer5@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer6', 'Buyer Six', 'buyer6@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer7', 'Buyer Seven', 'buyer7@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer8', 'Buyer Eight', 'buyer8@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer9', 'Buyer Nine', 'buyer9@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('buyer10', 'Buyer Ten', 'buyer10@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller1', 'Nintendo', 'seller1@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller2', 'Sony', 'seller2@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller3', 'Microsoft', 'seller3@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller4', 'Ubisoft', 'seller4@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller5', 'Electronic Arts', 'seller5@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller6', 'Activision', 'seller6@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller7', 'Square Enix', 'seller7@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller8', 'Capcom', 'seller8@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller9', 'Bethesda', 'seller9@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller10', 'Rockstar Games', 'seller10@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, false, 'images/profile_pictures/default-profile-picture.png'),
+('seller11', 'Blizzard Entertainment', 'seller11@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W', true, true, 'images/profile_pictures/default-profile-picture.png'),
+('seller12', 'Bandai Namco', 'seller12@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrLWy9Sj/W', true, true, 'images/profile_pictures/default-profile-picture.png'),
+('Anonymous23', 'Anonymous', 'anonymous23mail', 'anonymous', false, false, null),
+('buyer12', 'Buyer Twelve', 'buyer12@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrLWy9Sj/W', true, true, 'images/profile_pictures/default-profile-picture.png'),
+('buyer13', 'Buyer Thirteen', 'buyer13@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrLWy9Sj/W', true, true, 'images/profile_pictures/default-profile-picture.png'),
+('buyer14', 'Buyer Fourteen', 'buyer14@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrLWy9Sj/W', true, true, 'images/profile_pictures/default-profile-picture.png'),
+('buyer15', 'Buyer Fifteen', 'buyer15@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrLWy9Sj/W', true, true, 'images/profile_pictures/default-profile-picture.png'),
+('buyer16', 'Buyer Sixteen', 'buyer16@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrLWy9Sj/W', true, true, 'images/profile_pictures/default-profile-picture.png'),
+('buyer17', 'Buyer Seventeen', 'buyer17@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrLWy9Sj/W', true, true, 'images/profile_pictures/default-profile-picture.png');
 
 
 -- ADMINISTRATOR
-insert into Administrator (username, name, email, password) values ('ajeavons0', 'Aryn Jeavons', 'admin@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W');
+insert into Administrator (username, name, email, password) values ('admin', 'Admin John', 'admin@example.com', '$2y$10$HfzIhGCCaxqyaIdGgjARSuOKAcm1Uy82YfLuNaajn6JrjLWy9Sj/W');
 insert into Administrator (username, name, email, password) values ('sbeckson1', 'Saxon Beckson', 'sbeckson1@feedburner.com', '$2a$04$irfv6UVFd5wJseTyvBFEq.h6KZ6/EGyPuQuIMC.BvJCNYAyL5naqq');
 insert into Administrator (username, name, email, password) values ('apeffer2', 'Allix Peffer', 'apeffer2@nba.com', '$2a$04$DDqwRdaW5YbhOtfCzLWCVe2nxXZ5IQFD1eVE/UD1cZxNfe9Ouud9y');
 insert into Administrator (username, name, email, password) values ('ebaird3', 'Ely Baird', 'ebaird3@canalblog.com', '$2a$04$w2f140crfq6RhNHkSPbysOTuJbvVUbZxvH6kxGzXeWOcdJdfVYZGG');
@@ -33,16 +43,23 @@ insert into Administrator (username, name, email, password) values ('jbarnewell4
 
 
 -- BUYER
-insert into Buyer (id, nif, birth_date, coins) values (1, 204514179, '1962-06-28', 151297);
-insert into Buyer (id, nif, birth_date, coins) values (2, 202847662, '1996-10-12', 275623);
-insert into Buyer (id, nif, birth_date, coins) values (3, 263252425, '1985-11-05', 400930);
-insert into Buyer (id, nif, birth_date, coins) values (4, 209296387, '1974-06-09', 198817);
-insert into Buyer (id, nif, birth_date, coins) values (5, 235322905, '1962-06-01', 298200);
-insert into Buyer (id, nif, birth_date, coins) values (6, 237686039, '1978-02-19', 394376);
-insert into Buyer (id, nif, birth_date, coins) values (7, 258088894, '1958-07-06', 465452);
-insert into Buyer (id, nif, birth_date, coins) values (8, 244749380, '1951-07-27', 183371);
-insert into Buyer (id, nif, birth_date, coins) values (9, 277064361, '1987-06-09', 87897);
-insert into Buyer (id, nif, birth_date, coins) values (10, 255313470, '1990-05-17', 321725);
+insert into Buyer (id, nif, birth_date, coins) values (1, 204514179, '1962-06-28', 151);
+insert into Buyer (id, nif, birth_date, coins) values (2, 202847662, '1996-10-12', 27);
+insert into Buyer (id, nif, birth_date, coins) values (3, 263252425, '1985-11-05', 40);
+insert into Buyer (id, nif, birth_date, coins) values (4, 209296387, '1974-06-09', 17);
+insert into Buyer (id, nif, birth_date, coins) values (5, 235322905, '1962-06-01', 20);
+insert into Buyer (id, nif, birth_date, coins) values (6, 237686039, '1978-02-19', 0);
+insert into Buyer (id, nif, birth_date, coins) values (7, 258088894, '1958-07-06', 452);
+insert into Buyer (id, nif, birth_date, coins) values (8, 244749380, '1951-07-27', 71);
+insert into Buyer (id, nif, birth_date, coins) values (9, 277064361, '1987-06-09', 7);
+insert into Buyer (id, nif, birth_date, coins) values (10, 255313470, '1990-05-17', 35);
+insert into Buyer (id, nif, birth_date, coins) values (23, 255311273, '1990-05-17', 0);
+insert into Buyer (id, nif, birth_date, coins) values (24, 255571273, '1990-05-17', 0);
+insert into Buyer (id, nif, birth_date, coins) values (25, 255411273, '1990-05-17', 0);
+insert into Buyer (id, nif, birth_date, coins) values (26, 241311273, '1990-05-17', 0);
+insert into Buyer (id, nif, birth_date, coins) values (27, 242311273, '1990-05-17', 0);
+insert into Buyer (id, nif, birth_date, coins) values (28, 242311273, '1990-05-17', 0);
+insert into Buyer (id, nif, birth_date, coins) values (29, 242311273, '1990-05-17', 0);
 
 
 -- SELLER
@@ -56,6 +73,8 @@ insert into Seller (id) values (17);
 insert into Seller (id) values (18);
 insert into Seller (id) values (19);
 insert into Seller (id) values (20);
+insert into Seller (id) values (21);
+insert into Seller (id) values (22);
 
 -- AGE
 insert into Age (minimum_age, name, description, image_path) values (0, 'PEGI 3', 'Suitable for all ages. Contains no violence, inappropriate language, or anything that could scare or harm young children. However, PEGI does recommend parental guidance for children under 3 years old, as the minimum age officially starts at 3. So while there’s no real restriction, the "PEGI 3" label still suggests an age starting point.', 'images/age/PEGI_3.svg');
@@ -65,622 +84,960 @@ insert into Age (minimum_age, name, description, image_path) values (16, 'PEGI 1
 insert into Age (minimum_age, name, description, image_path) values (18, 'PEGI 18', 'Contains extreme violence, explicit sexual content, glamorization of drugs, or very offensive language. Suitable only for adults aged 18 and older.', 'images/age/PEGI_18.svg');
 
 -- GAME
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Stormborn Alliance', 'Rain delay postpones game', 110.53, 33, 11, true, '2021-03-15', 1);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Spectral Knights', 'Controversial call decides the outcome', 21.63, 6, 14, true, '2020-07-22', 2);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Rogue Galaxy', 'Pitcher throws a no-hitter', 59.65, 47, 11, true, '2022-01-10', 3);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Reckoning of Kings', 'Team hits 5 home runs in a single game', 69.55, 82, 15, true, '2021-11-05', 4);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Arcane Rivals', 'Controversial call decides the outcome', 43.35, 6, 16, true, '2020-05-18', 5);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Quantum Surge', 'Pitcher throws a no-hitter', 195.09, 27, 12, true, '2021-09-30', 1);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Echoes of Eternity', 'Exciting comeback win in extra innings', 24.09, 24, 11, true, '2022-04-25', 2);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Steel Vanguard', 'Rain delay postpones game', 156.87, 73, 15, true, '2021-06-12', 3);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Lost Horizon', 'Controversial call decides the outcome', 134.84, 18, 11, true, '2020-08-19', 4);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Lost Horizon', 'Pitcher throws a no-hitter', 22.36, 3, 11, true, '2021-02-14', 5);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Arcane Rivals', 'Controversial call decides the outcome', 128.95, 2, 13, true, '2022-03-07', 1);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Stellar Depths', 'Rain delay postpones game', 159.58, 56, 12, true, '2021-12-20', 2);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Stormborn Alliance', 'Rain delay postpones game', 199.81, 84, 17, true, '2020-11-11', 3);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Project Genesis', 'Exciting comeback win in extra innings', 175.92, 3, 11, true, '2022-05-03', 4);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Phantom Abyss', 'Rain delay postpones game', 101.03, 9, 13, true, '2021-07-27', 5);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Stellar Depths', 'Controversial call decides the outcome', 14.36, 7, 15, true, '2020-09-09', 1);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Nova Odyssey', 'Exciting comeback win in extra innings', 127.09, 23, 16, true, '2021-04-01', 2);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Solar Strike', 'Controversial call decides the outcome', 171.03, 9, 16, true, '2022-02-18', 3);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Soulbound Warriors', 'Rain delay postpones game', 36.92, 30, 15, true, '2020-06-05', 4);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Reckoning of Kings', 'Team hits 5 home runs in a single game', 58.93, 56, 20, true, '2021-10-23', 5);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Empire of Shadows', 'Pitcher throws a no-hitter', 18.07, 13, 17, true, '2020-12-30', 1);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Empire of Shadows', 'Rain delay postpones game', 37.12, 14, 15, true, '2021-08-15', 2);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Lost Horizon', 'Controversial call decides the outcome', 151.31, 57, 19, true, '2022-03-29', 3);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Celestial Order', 'Exciting comeback win in extra innings', 146.36, 59, 12, true, '2020-10-17', 4);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Veil of Shadows', 'Pitcher throws a no-hitter', 138.47, 6, 18, true, '2021-05-21', 5);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Vortex Assault', 'Team hits 5 home runs in a single game', 110.9, 4, 15, true, '2022-01-05', 1);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Titanfall Eclipse', 'Team hits 5 home runs in a single game', 83.41, 58, 11, true, '2020-07-01', 2);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Iron Rebellion', 'Exciting comeback win in extra innings', 133.58, 8, 12, true, '2021-11-30', 3);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Soulbound Warriors', 'Team hits 5 home runs in a single game', 41.92, 11, 15, true, '2022-04-11', 4);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('War of Realms', 'Exciting comeback win in extra innings', 120.12, 45, 13, true, '2020-09-25', 5);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Reckoning of Kings', 'Controversial call decides the outcome', 57.23, 9, 16, true, '2021-06-18', 1);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id, thumbnail_small_path, thumbnail_large_path) VALUES ('Aetherium Chronicles', 'In the ancient realm of Aetherium, a land of floating islands, mystical creatures, and powerful elemental magic, the balance of power is held by the Celestial Crown—a legendary artifact said to grant its wearer control over all the elements. For centuries, the crown has kept peace among the five Elemental Kingdoms: Fire, Water, Earth, Air, and Light.  But when the crown is shattered into five pieces by a betrayal from within, chaos erupts across the lands. The once-united kingdoms are plunged into war, each vying for control of the pieces. Amidst the turmoil, a prophecy emerges: a group of unlikely heroes, each from a different kingdom, must unite to restore the crown and bring peace back to Aetherium.', 151.65, 95, 20, true, '2022-02-02', 2, 'images/thumbnail_small/thumbnail_small.jpg', 'images/thumbnail_large/thumbnail_large.jpg');
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Eclipse Rising', 'Rain delay postpones game', 101.05, 82, 13, true, '2020-11-27', 3);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Solar Strike', 'Pitcher throws a no-hitter', 157.48, 36, 18, true, '2021-08-03', 4);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Iron Frontier', 'Exciting comeback win in extra innings', 8.45, 86, 17, true, '2022-05-19', 5);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Nova Odyssey', 'Rain delay postpones game', 144.74, 89, 13, true, '2021-03-02', 1);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Soulbound Warriors', 'Pitcher throws a no-hitter', 56.79, 36, 19, true, '2020-06-28', 2);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Mecha Legacy', 'Rain delay postpones game', 75.18, 88, 19, true, '2021-12-08', 3);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Veil of Shadows', 'Controversial call decides the outcome', 8.79, 0, 11, true, '2022-01-21', 4);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Project Genesis', 'Rain delay postpones game', 166.01, 21, 19, true, '2020-10-03', 5);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Eternal Nexus', 'Controversial call decides the outcome', 156.04, 91, 11, true, '2021-04-14', 1);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Fallen Stars', 'Controversial call decides the outcome', 154.81, 34, 13, true, '2022-03-12', 2);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Soulbound Warriors', 'Exciting comeback win in extra innings', 18.43, 45, 20, true, '2020-07-14', 3);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Quantum Surge', 'Team hits 5 home runs in a single game', 185.58, 42, 14, true, '2021-09-05', 4);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Iron Rebellion', 'Exciting comeback win in extra innings', 92.56, 30, 17, true, '2022-05-27', 5);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Kingdoms at War', 'Pitcher throws a no-hitter', 85.75, 52, 14, true, '2020-08-23', 1);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Veil of Shadows', 'Pitcher throws a no-hitter', 101.17, 97, 14, true, '2021-10-09', 2);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Astral Boundaries', 'Rain delay postpones game', 116.29, 74, 11, true, '2022-02-25', 3);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Solar Strike', 'Exciting comeback win in extra innings', 55.51, 3, 14, true, '2020-12-01', 4);
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES ('Galactic Forge', 'Exciting comeback win in extra innings', 56.69, 0, 18, true, '2020-12-01', 5);
+INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES
+-- Total 60 Games
+-- Seller 1
+('A Epic Odyssey', 'An immersive adventure game with stunning visuals.', 49.99, 0, 11, TRUE, '2024-03-15', 3),
+('Arcane Arena', 'Compete in a magical dueling tournament.', 34.99, 0, 15, TRUE, '2024-03-22', 2),
+('Haunted Secrets', 'Solve challenging puzzles in a haunted mansion.', 19.99, 0, 11, TRUE, '2024-07-10', 2),
+('Legend of Heroes', 'A captivating role-playing game with unique characters.', 59.99, 0, 11, TRUE, '2024-09-05', 5),
+('Night Riders', 'High-speed street racing with realistic physics.', 39.99, 0, 11, TRUE, '2024-11-22', 3),
+
+-- Seller 2
+('Space Crusade', 'A journey through space fighting alien invasions.', 44.99, 0, 12, TRUE, '2024-02-20', 3),
+('Cryptic Quest', 'Uncover mysteries in a dark and enigmatic world.', 24.99, 0, 12, TRUE, '2024-06-11', 2),
+('Steel Horizon', 'Navigate a post-apocalyptic wasteland to survive.', 34.99, 0, 12, TRUE, '2024-09-15', 4),
+('Solaris Rising', 'Explore a vibrant galaxy with endless possibilities.', 49.99, 0, 12, TRUE, '2024-11-05', 5),
+('Chaos Circuit', 'Battle robots in a high-tech arena.', 39.99, 0, 12, TRUE, '2024-12-12', 4),
+
+-- Seller 3
+('Phantom Realms', 'A dark fantasy RPG set in a shattered world.', 54.99, 0, 13, TRUE, '2023-01-20', 5),
+('Wasteland Chronicles', 'Survive in a barzxren and dangerous world.', 44.99, 0, 13, TRUE, '2023-03-11', 3),
+('Shadow Siege', 'Fight off hordes of enemies in a strategic shooter.', 29.99, 0, 13, TRUE, '2023-05-27', 4),
+('Puzzle Haven', 'Solve relaxing puzzles in a magical setting.', 19.99, 0, 13, TRUE, '2023-08-18', 2),
+('Cyber Rebellion', 'Rebel against the system in a cyberpunk future.', 49.99, 0, 13, TRUE, '2023-10-10', 3),
+
+-- Seller 4
+('Titan Conquest', 'Lead your army to victory in massive battles.', 39.99, 0, 14, TRUE, '2023-02-15', 1),
+('Neon Drift', 'Race through a neon-lit city in high-performance cars.', 29.99, 0, 14, TRUE, '2023-04-25', 3),
+('Mystic Valley', 'Explore a hidden valley filled with ancient secrets.', 49.99, 0, 14, TRUE, '2024-06-30', 5),
+('Dragon Ascent', 'Ride dragons and battle mythical creatures.', 59.99, 0, 14, TRUE, '2024-09-01', 4),
+('Frozen Legacy', 'Survive a harsh winter in a desolate land.', 24.99, 0, 14, TRUE, '2024-12-10', 2),
+
+-- Seller 5
+('Inferno Tactics', 'A strategy game set in a fiery underworld.', 39.99, 0, 15, TRUE, '2024-01-18', 4),
+('Galactic Blitz', 'A fast-paced sci-fi shooter set in a dystopian universe.', 29.99, 0, 11, TRUE, '2024-05-20', 4),
+('Blazing Trails', 'Embark on a daring journey across the wild.', 44.99, 0, 15, TRUE, '2024-05-15', 3),
+('Stellar Voyage', 'Pilot a spaceship and explore distant planets.', 54.99, 0, 15, TRUE, '2024-08-10', 5),
+('Iron Bastion', 'Defend your fortress from invading armies.', 29.99, 0, 15, TRUE, '2024-11-03', 1),
+
+-- Seller 6
+('Zombie Rising', 'Survive waves of the undead in a horror-filled town.', 24.99, 0, 16, TRUE, '2023-02-14', 4),
+('Galaxy Builders', 'Construct and manage a sprawling intergalactic empire.', 49.99, 0, 16, TRUE, '2024-05-30', 5),
+('Echoes of War', 'Relive epic battles from a distant past.', 34.99, 0, 16, TRUE, '2023-07-15', 1),
+('Tranquil Tiles', 'Solve serene puzzles to unwind.', 14.99, 0, 16, TRUE, '2023-10-21', 2),
+('Virtual Metropolis', 'Build and manage a futuristic city.', 54.99, 0, 16, TRUE, '2023-12-05', 3),
+
+-- Seller 7
+('Eternal Quest', 'A magical journey to save a kingdom from darkness.', 59.99, 0, 17, TRUE, '2024-01-12', 5),
+('Ocean Abyss', 'Explore the secrets of the deep sea.', 29.99, 0, 17, TRUE, '2024-03-05', 3),
+('Skyward Journey', 'Embark on an aerial adventure across floating islands.', 49.99, 0, 17, TRUE, '2024-05-19', 4),
+('Forgotten Sands', 'Survive in a harsh desert environment.', 34.99, 0, 17, TRUE, '2024-07-24', 2),
+('Ironclad Warriors', 'Command a fleet in naval warfare.', 44.99, 0, 17, TRUE, '2024-09-30', 1),
+
+-- Seller 8
+('Dark Dominion', 'Unleash power and conquer a fantasy realm.', 49.99, 0, 18, TRUE, '2024-02-14', 4),
+('Neon Storm', 'Fight through cyberpunk cityscapes.', 39.99, 0, 18, TRUE, '2024-04-18', 3),
+('Shadowline', 'A stealth-based action game in a sprawling city.', 29.99, 0, 18, TRUE, '2024-06-22', 2),
+('Crimson Throne', 'Claim the throne in a medieval war simulator.', 54.99, 0, 18, TRUE, '2024-08-17', 5),
+('Element Clash', 'Battle foes using elemental powers.', 34.99, 0, 18, TRUE, '2024-10-10', 3),
+
+-- Seller 9
+('Voidwalker', 'Traverse dimensions in this mind-bending platformer.', 44.99, 0, 19, TRUE, '2024-01-20', 4),
+('Frostbound', 'Explore a frozen wasteland in search of survivors.', 39.99, 0, 19, TRUE, '2024-03-25', 2),
+('Star Forge', 'Build and expand your interstellar empire.', 49.99, 0, 19, TRUE, '2024-05-15', 5),
+('Hidden Realms', 'Uncover hidden treasures in ancient ruins.', 24.99, 0, 19, TRUE, '2024-07-07', 1),
+('Battle Circuit', 'Test your skills in this fast-paced arena fighter.', 34.99, 0, 19, TRUE, '2024-09-12', 3),
+
+-- Seller 10
+('Primordial Rift', 'Unite factions in a land torn by magic.', 54.99, 0, 20, TRUE, '2024-02-01', 5),
+('Pixel Racers', 'Fast-paced arcade-style racing action.', 29.99, 0, 20, TRUE, '2024-04-10', 1),
+('Chrono Legacy', 'Time-traveling RPG with dynamic storytelling.', 49.99, 0, 20, TRUE, '2024-06-05', 4),
+('Rogue Marauder', 'Engage in thrilling heists across the galaxy.', 39.99, 0, 20, TRUE, '2024-08-23', 3),
+('Hollow Depths', 'Dive into a mysterious underground labyrinth.', 24.99, 0, 20, TRUE, '2024-11-02', 2),
+
+-- Seller 11 (Blocked)
+('Ancient Prophecy', 'Solve mysteries in a world of ancient gods.', 39.99, 0, 21, FALSE, '2024-03-14', 5),
+('Turbo Clash', 'Experience the thrill of high-speed combat.', 29.99, 0, 21, FALSE, '2024-05-11', 3),
+('Crystal Shores', 'Explore a breathtaking tropical paradise.', 44.99, 0, 21, FALSE, '2024-07-29', 4),
+('Iron Rebellion', 'Reclaim your homeland in a mech-filled future.', 59.99, 0, 21, FALSE, '2024-09-25', 1),
+('Nightfall Siege', 'Defend your base from nightly invasions.', 34.99, 0, 21, FALSE, '2024-12-12', 2),
+
+-- Seller 12 (Blocked)
+('Skyforge Arena', 'Compete in a battle royale set in the clouds.', 44.99, 0, 22, FALSE, '2024-01-18', 3),
+('Eclipse Bound', 'Save the world from eternal darkness.', 54.99, 0, 22, FALSE, '2024-03-21', 5),
+('Circuit Breaker', 'Solve complex puzzles with futuristic tech.', 34.99, 0, 22, FALSE, '2024-05-08', 2),
+('Cinderfall', 'Fight through a land covered in volcanic ash.', 39.99, 0, 22, FALSE, '2024-07-16', 4),
+('Astro Nexus', 'Build alliances in a multiplayer space sim.', 49.99, 0, 22, FALSE, '2024-10-04', 1);
+
+
+-- Game Ratings
+UPDATE Game
+SET overall_rating = 93.33
+WHERE id = 1;
+
+UPDATE Game
+SET overall_rating = 0
+WHERE id = 2;
+
+UPDATE Game
+SET overall_rating = 50
+WHERE id = 3;
+
+UPDATE Game
+SET overall_rating = 100
+WHERE id = 4;
+
+UPDATE Game
+SET overall_rating = 0
+WHERE id = 5;
+
+UPDATE Game
+SET overall_rating = 100
+WHERE id = 10;
+
+UPDATE Game
+SET overall_rating = 66.67
+WHERE id = 20;
 
 
 -- CDK
-insert into CDK (code, game) values ('bogpdonygAFJINTBUT080849020', 1);
-insert into CDK (code, game) values ('ishpdlupnXUFXTMMSW266019043', 1);
-insert into CDK (code, game) values ('khrdxauqgXYZABFHBQ435771672', 1);
-insert into CDK (code, game) values ('itbyksibcJSJSAGFEV116380003', 1);
-insert into CDK (code, game) values ('rmqanikasTFPANRKZD557999575', 1);
-insert into CDK (code, game) values ('aihaetazqOCVCALZPA803729945Cs', 1);
-insert into CDK (code, game) values ('zlmfwutlyBDMSCHZWC185074412={', 1);
-insert into CDK (code, game) values ('aodckyrdkMMWPGTXHL829272688y', 1);
-insert into CDK (code, game) values ('ncmlbvxrdIHCABVDGY579486039', 1);
-insert into CDK (code, game) values ('dwiiduvkaAUQKQNREK775319786', 1);
-insert into CDK (code, game) values ('bqydzvkvyUOJWOBBCO097829889`Rk', 2);
-insert into CDK (code, game) values ('ldhyrjgysTTCEIILCO698706532', 2);
-insert into CDK (code, game) values ('lcnwuetjjSGIMYAKYA076751155', 2);
-insert into CDK (code, game) values ('plcjfcldcOGFIBVUUU209645792<{', 2);
-insert into CDK (code, game) values ('sjyogxnmwDQDNCNEAQ328932046', 2);
-insert into CDK (code, game) values ('eiicphrvwPMRLACLEJ008536380', 2);
-insert into CDK (code, game) values ('ceordwikeDSAIXTGTX903563823', 3);
-insert into CDK (code, game) values ('cexzwiascRWVLXPAKW258112390', 3);
-insert into CDK (code, game) values ('xdonckvkzYHSLSWFCC513642659', 3);
-insert into CDK (code, game) values ('jputsckmcVBEXIDXLX966427309', 3);
-insert into CDK (code, game) values ('pfrgkzyptHCXZPOTGX706990660Np?', 3);
-insert into CDK (code, game) values ('itdpipmmfCVQHRODFU743695427*Yl', 3);
-insert into CDK (code, game) values ('urhxgmtkdPEMIOZMXX125848105', 3);
-insert into CDK (code, game) values ('imfevlirqJNKYISABW683959743', 3);
-insert into CDK (code, game) values ('kxniqxeeqMCMOHSCGH291976524', 3);
-insert into CDK (code, game) values ('amjezxtsgLUUGIWQOO302084474', 4);
-insert into CDK (code, game) values ('psozfhexqYOWODJAML757456171', 4);
-insert into CDK (code, game) values ('zacsnaedjUZGSKWHZR127625634', 4);
-insert into CDK (code, game) values ('zoghxhaanPVPOZGSXQ797095366', 4);
-insert into CDK (code, game) values ('ruvhuikkwWZHGHCCPJ085706261', 4);
-insert into CDK (code, game) values ('iwwgvxjimFSNOJBXHX913338000+"W', 4);
-insert into CDK (code, game) values ('ytuqmdgbxADUVLJSBT189627646', 4);
-insert into CDK (code, game) values ('vgemvzbmrNIWJXMFXG829604439', 4);
-insert into CDK (code, game) values ('rouxhnfwfSEJHFCRAX220912664f''s', 4);
-insert into CDK (code, game) values ('pgifczzeuVSKFCAVFO64002653008S', 4);
-insert into CDK (code, game) values ('pnymwrnijLYTNWQTKW705678696', 5);
-insert into CDK (code, game) values ('bwdyjfkejHCLHNXUHZ857583017', 5);
-insert into CDK (code, game) values ('kmqdqkqxhGBQOHEJKQ014541745', 5);
-insert into CDK (code, game) values ('ghelrynoyDTRMQRIAV801208219', 5);
-insert into CDK (code, game) values ('bwbaqbsacMBCWWFZCE836477207', 5);
-insert into CDK (code, game) values ('pqqgimoooGFEBGMULE115784063', 5);
-insert into CDK (code, game) values ('dxgnnatorTAGSUJCJG725200196', 5);
-insert into CDK (code, game) values ('cgfundvhoGRLRSONEP755851764', 5);
-insert into CDK (code, game) values ('dflajjxkzGOBVDICGU325542452', 5);
-insert into CDK (code, game) values ('glbwomgyrMHPNKQNKA965375266', 5);
-insert into CDK (code, game) values ('buygsnsbdJJGUNMUVW592749715', 5);
-insert into CDK (code, game) values ('bvipibdmkOEXKHMQQA237024598', 6);
-insert into CDK (code, game) values ('zaagufmhkWMMUYRMON926526878''', 6);
-insert into CDK (code, game) values ('cvmowsmtzESYFTKFSH248218697`', 6);
-insert into CDK (code, game) values ('yytlzwhatGNJEADNGA722024406s#', 6);
-insert into CDK (code, game) values ('cwkbiphnuDWPQPKJOT755860885', 6);
-insert into CDK (code, game) values ('oquwurrsaBVCGOFIUR663218855', 6);
-insert into CDK (code, game) values ('fuwzsnbilCHRHKENWD069567157', 6);
-insert into CDK (code, game) values ('gotiuobtkQCLWKIPKO079488916', 6);
-insert into CDK (code, game) values ('ztrjvaabyODXXLNMJD479913219', 6);
-insert into CDK (code, game) values ('kbtetjdfmRHZFZKLBO684607959T', 6);
-insert into CDK (code, game) values ('ojojbdqmhDJHRLMEOH592980938', 6);
-insert into CDK (code, game) values ('nxqmuphicUQLUZPDCQ020111312', 7);
-insert into CDK (code, game) values ('iggqxiilpNDDTDDETZ530738534g#U', 7);
-insert into CDK (code, game) values ('ipbnzrqaqVKPVDMHGT5756109572R', 7);
-insert into CDK (code, game) values ('hhljqjkoxKDVSWWRLS855415354m', 7);
-insert into CDK (code, game) values ('dubasqgyqDYMLSBPWY783497692', 7);
-insert into CDK (code, game) values ('hpgttslxjJTHJIOEED123099415', 7);
-insert into CDK (code, game) values ('woehsoesmTDIEXVUXA765452056|`', 7);
-insert into CDK (code, game) values ('fsmouavvrBCYXYMNPT480004407_jm', 7);
-insert into CDK (code, game) values ('gdswkrhqsEHAXBKLHA079501075', 8);
-insert into CDK (code, game) values ('hvwzkxxixKEWEAPPPI4463389314UD', 8);
-insert into CDK (code, game) values ('jguavelkoTMWQQBBXI990105870', 8);
-insert into CDK (code, game) values ('tmzdfxlxbRAMEGHGQM520466592oK>', 8);
-insert into CDK (code, game) values ('iabsyirhfFVIIFGMZY622966041', 2);
-insert into CDK (code, game) values ('skbvbaljmGFJKDGQEA120177584', 25);
-insert into CDK (code, game) values ('inlmnfdboAGBHILIAD417135240', 23);
-insert into CDK (code, game) values ('hrjmbsvflWQPFLVCGV635844205', 49);
-insert into CDK (code, game) values ('hekagjubpGLCQNFJPW645765300', 40);
-insert into CDK (code, game) values ('abrurslukOWPSEWAEH962720244', 4);
-insert into CDK (code, game) values ('vzmugueglELEDZZDVR512646201', 27);
-insert into CDK (code, game) values ('rngnlmykiLNMGNMBTT556036247o}', 10);
-insert into CDK (code, game) values ('pvunutscqEERFBJIKO429585871', 8);
-insert into CDK (code, game) values ('ispmuugqaAENFBMXZW571092941', 45);
-insert into CDK (code, game) values ('tpszsyezhORHKZACGG266055641', 41);
-insert into CDK (code, game) values ('pwycfsccmIMHFPYIXX332090687', 20);
-insert into CDK (code, game) values ('dmwcdhdgmZIWPGKSJJ513457596', 20);
-insert into CDK (code, game) values ('oscqgffftRLBHZFFRA061815439', 10);
-insert into CDK (code, game) values ('fkxknppkbJQAQDWWCE562822466', 33);
-insert into CDK (code, game) values ('pfntvyhyzPERLLGOOQ924483792p)', 21);
-insert into CDK (code, game) values ('tmgmjmhplSUQVAOOBJ459931025', 34);
-insert into CDK (code, game) values ('uxvylwvhlXLVMFNZFY446558257', 34);
-insert into CDK (code, game) values ('vqawrjkvqHBWQQEAYO674074910', 20);
-insert into CDK (code, game) values ('tqaknhybxCYGJQLWBW716573573"', 38);
-insert into CDK (code, game) values ('tdoywrxsvDHBXULLUN598890241', 35);
-insert into CDK (code, game) values ('wvnysglvpFDIJQYSTR817545689Hk~', 1);
-insert into CDK (code, game) values ('vyuelchkbEHJEYJYZK438062037', 48);
-insert into CDK (code, game) values ('cffstwbifDXYRKIUYC915108428', 21);
-insert into CDK (code, game) values ('iekjysgdjFQIDDIETE228452039', 1);
-insert into CDK (code, game) values ('impasaihnMEDPQOPAA1527298955T', 16);
-insert into CDK (code, game) values ('aqroqfnceEPVHCOAFW151478594', 20);
-insert into CDK (code, game) values ('udfkjctibDPNPAIJSL347024723', 23);
-insert into CDK (code, game) values ('cvepflrsxJADTIRHBJ039211122', 10);
-insert into CDK (code, game) values ('nxhzjknkjCJDJSJOWR926266113/', 1);
-insert into CDK (code, game) values ('mtyzjvvxgSYFWAIRTW445178503', 30);
-insert into CDK (code, game) values ('aqnmmkunfVHQVOWOFJ489605404', 6);
-insert into CDK (code, game) values ('dpvdbwrgnJJCMASDMT280201033', 1);
-insert into CDK (code, game) values ('hnvduotfxTKVAXLZMC572623512Q2q', 11);
-insert into CDK (code, game) values ('rvbxitjieJSIBWDDQN370061772}r8', 9);
-insert into CDK (code, game) values ('vtcgxnrcgAEWJUEBRJ879470925', 37);
-insert into CDK (code, game) values ('xqhntmbemMLWQCMRWF577517323', 25);
-insert into CDK (code, game) values ('icziyjihwCGDUWVQCO303585510', 49);
-insert into CDK (code, game) values ('xbmazemdaBZFLNJWKK149063496', 19);
-insert into CDK (code, game) values ('chjapqcpfLBSNBNNYA809752960', 15);
-insert into CDK (code, game) values ('lhbygbfjsJJMDJSFXD836418852', 40);
-insert into CDK (code, game) values ('bdeqtjounHJVJYEONC895426326', 14);
-insert into CDK (code, game) values ('bfepqukwwLGCEMAMFX481179403', 11);
-insert into CDK (code, game) values ('olbucnkgeKESOABJSF457701297', 22);
-insert into CDK (code, game) values ('hzgpodlxhQIAHTHKEJ304711072', 7);
-insert into CDK (code, game) values ('fzucbiyudWEWNFPJEN225190682', 20);
-insert into CDK (code, game) values ('mspngumzcKUWXWJJPY960309969', 11);
-insert into CDK (code, game) values ('ammfzgwhiLPRNSCMPR988557255', 32);
-insert into CDK (code, game) values ('barrtlqhlWPMRRJPWP694887786', 46);
-insert into CDK (code, game) values ('obucncsaaRMWEBHPLW926169139', 20);
-insert into CDK (code, game) values ('yldwjxpkzJBFKRANPT962985372', 14);
-insert into CDK (code, game) values ('ogsossshuXJRFASOPG222675887', 7);
-insert into CDK (code, game) values ('jvtiotiobESJMJVOTU548308509', 27);
-insert into CDK (code, game) values ('jauguvudvUMXCEJVQA165954491', 37);
-insert into CDK (code, game) values ('sombjprhvHYNWGPHYU474485366', 49);
-insert into CDK (code, game) values ('oukpzmptxDHRMKQPPD373180846', 20);
-insert into CDK (code, game) values ('kcnuupgkyXAHSYBTUC953891322', 33);
-insert into CDK (code, game) values ('ijmdifhubJPGRSSCPX388860871', 43);
-insert into CDK (code, game) values ('gjkejqnzwDDCQVPEZY411466343', 43);
-insert into CDK (code, game) values ('ajtnjvxmoKDSRGUULG871679749', 14);
-insert into CDK (code, game) values ('lacrpbbjxVMGODKQWX183208607', 33);
-insert into CDK (code, game) values ('reomlebhaVOLVIBUTM341333050', 36);
-insert into CDK (code, game) values ('tibmardoxYLGMDRXFP653056722', 35);
-insert into CDK (code, game) values ('pjltoclvzLRFYTJEIP852700226}q', 14);
-insert into CDK (code, game) values ('vvpzkqqsqEREJNDMJK018161436', 10);
-insert into CDK (code, game) values ('xesqikcizBRKGSISXY768978952', 41);
-insert into CDK (code, game) values ('ooyhwruseYYHNCXZQK120670339', 44);
-insert into CDK (code, game) values ('ikngbcyawSDTLRSSDK7188678987m', 34);
-insert into CDK (code, game) values ('mlalavamlKLOVNJDQQ300193843', 36);
-insert into CDK (code, game) values ('oahiyggeyXKVVHMYLT001872637', 4);
-insert into CDK (code, game) values ('gbdpuxryhAZBEZJJEU491963164', 49);
-insert into CDK (code, game) values ('ezapxovvcJJPVNWVOG799750719*', 49);
-insert into CDK (code, game) values ('flrupvikdZMEQUCTTG032887513', 44);
-insert into CDK (code, game) values ('korqztvqkAIAAZZXOY091118388', 37);
-insert into CDK (code, game) values ('rwwjntunhVEVDEKDCD158178384U"', 31);
-insert into CDK (code, game) values ('vwnxmcwhgBGBWAQRYY507579831', 38);
-insert into CDK (code, game) values ('aedapdjcvNNUJFMIXT522160867', 16);
-insert into CDK (code, game) values ('fooeikhtgUHZQKFZOV143982520', 40);
-insert into CDK (code, game) values ('jxzlgklooGICJLVATI448196293t', 17);
-insert into CDK (code, game) values ('glojfonyySWISTGFDS467131461', 13);
-insert into CDK (code, game) values ('xbodpegeiEBDIRFBHC135973210', 46);
-insert into CDK (code, game) values ('hrrmoybihLFXFMTMSX658723965', 22);
-insert into CDK (code, game) values ('qqgbyqzwhZPYDBJPNT995811783', 7);
-insert into CDK (code, game) values ('tfdyofaxjFLDOIFQYV183892120', 24);
-insert into CDK (code, game) values ('ruxksezduJCJPJMORT992207977L>', 24);
-insert into CDK (code, game) values ('kamqxxexkSNWEBQDPY859610393', 22);
-insert into CDK (code, game) values ('bduthtwktAQQTUHYBY851972375', 39);
-insert into CDK (code, game) values ('cluvxiudiHRRUWLYDO553476273', 36);
-insert into CDK (code, game) values ('cyoxrwqwuOIZCGLJXI292565632', 39);
-insert into CDK (code, game) values ('gujoratvvRJPZPZNHF758779795', 42);
-insert into CDK (code, game) values ('juiwuxdwvEZDSKLYJT323530005', 31);
-insert into CDK (code, game) values ('bxvktadbtRVYDPNAMF451206787', 16);
-insert into CDK (code, game) values ('kbiexlepfCOXSYXXJJ931994803', 33);
-insert into CDK (code, game) values ('achazyqnwBTXFHYAFY991906599LE', 27);
-insert into CDK (code, game) values ('hhbufqbwjFQOAJCCPE400485979', 1);
-insert into CDK (code, game) values ('jmmoczyoiCKFXTJJIW552021746', 10);
-insert into CDK (code, game) values ('uqlqxsrjsYLMORJMTE480234794', 30);
-insert into CDK (code, game) values ('zwezatshwRAXUGMAFA553624798', 14);
-insert into CDK (code, game) values ('aocpnyikkHLMCWDMUK035080960', 22);
-insert into CDK (code, game) values ('luhgecwzzTBYZWPEUE161985246', 16);
-insert into CDK (code, game) values ('vnadwmvuyUEXTROCZX874199409', 3);
-insert into CDK (code, game) values ('ldahswprqSEYIBYHEW275292884', 1);
-insert into CDK (code, game) values ('crjvgdqnoPYSZBQPKK717882950', 37);
-insert into CDK (code, game) values ('cloaumyjvEDEZIJYSN540094260)', 48);
-insert into CDK (code, game) values ('byrqfewjpTMWQKKAUT151473973', 31);
-insert into CDK (code, game) values ('exsqlzmixFNISCOHCA012068832', 38);
-insert into CDK (code, game) values ('bmfdtrlhzWYNGCJZTS301327448', 20);
-insert into CDK (code, game) values ('gbftpiohmFIWLOBGWP010495776', 38);
-insert into CDK (code, game) values ('bacdgzjpaSNSIXWKAL683116124Q', 20);
-insert into CDK (code, game) values ('iiiukdeoyHPEIUHIHP558455629', 13);
-insert into CDK (code, game) values ('mgnzwhijuHYJGXJQQJ519478478', 39);
-insert into CDK (code, game) values ('nsuihkomvTAEMSSHEU995907583', 6);
-insert into CDK (code, game) values ('tasntjnwvBBCXMRKKT252013155', 17);
-insert into CDK (code, game) values ('zcucqzkblMUQUJDOQP449175158', 9);
-insert into CDK (code, game) values ('dlwnjywktRBJIEJRUE504193697', 43);
-insert into CDK (code, game) values ('yrbacptefZQIKCZJHG227615217', 1);
-insert into CDK (code, game) values ('ptxysaiesASBGAHSYZ273845592', 2);
-insert into CDK (code, game) values ('rxypmyzcaJCFGCDZLK173686193', 37);
-insert into CDK (code, game) values ('iswyajunyNTVBVNAIS378672181/=', 48);
-insert into CDK (code, game) values ('fxtmaqpgpBVWRUKZWI532333854i', 17);
-insert into CDK (code, game) values ('djafappmrKAPHIFORZ008197153', 20);
-insert into CDK (code, game) values ('tevhbxzeqSWOKTIYYJ354463299', 25);
-insert into CDK (code, game) values ('mexzetyumCDCKRJNUX839456224', 17);
-insert into CDK (code, game) values ('pcafzuqgmMEOSNAZPZ687101830', 6);
-insert into CDK (code, game) values ('flbyximaxHKPUQPVTH878452257', 11);
-insert into CDK (code, game) values ('qvybqkmuhWZLZGSQIG277054160G7', 44);
-insert into CDK (code, game) values ('tlbwcrjnkKAKSSEWMH530225515', 34);
-insert into CDK (code, game) values ('qvituxpceCDFMZEGCJ701122906', 29);
-insert into CDK (code, game) values ('oskbtqpgfTJLXXKXWZ140427999', 47);
-insert into CDK (code, game) values ('lrmtxdtycMBUQSKBTV163992676', 33);
-insert into CDK (code, game) values ('tkrxjjvqhEGGJOIORJ760414261', 30);
-insert into CDK (code, game) values ('ckdyfvhvsZZXCFLFWF185215137', 38);
-insert into CDK (code, game) values ('oygszwephLDUUFDHXG402391324', 44);
-insert into CDK (code, game) values ('tsncsrzzzHQDDJSKTE308717373', 15);
-insert into CDK (code, game) values ('kilpdcnkjWJYGFOJFR139861740', 46);
-insert into CDK (code, game) values ('rrhgtkwbfQTDYIVFVA901570856', 38);
-insert into CDK (code, game) values ('ftosbnyozRQPLFYEWG436687849plP', 4);
-insert into CDK (code, game) values ('ymunzmxfkUIYBZIAYZ364673961OJ', 17);
-insert into CDK (code, game) values ('itdmxywyqKSLMDUFBG604611137', 35);
-insert into CDK (code, game) values ('btdovaxrkAZHXJQHOJ927459037', 14);
-insert into CDK (code, game) values ('ldtgguijaDHAJEWZRD304673563', 13);
-insert into CDK (code, game) values ('bgmssrqwrYKEOXLKRU994496899', 40);
-insert into CDK (code, game) values ('cvzloftqbLJPIEMFPW243712903', 1);
-insert into CDK (code, game) values ('fhouslgraXVQPPFPLY889661731''_', 42);
-insert into CDK (code, game) values ('gdhtqksupEBTIYDTOZ115714354', 23);
-insert into CDK (code, game) values ('wtfnagsylFRUBVQKJD142470461R', 40);
-insert into CDK (code, game) values ('vwbmmoehbJCDQWDKGG292890747', 36);
-insert into CDK (code, game) values ('gwiwmcytaJJTPUYJMW459719051I', 39);
-insert into CDK (code, game) values ('gubgpbmbdXQKDUFHJW848052150', 6);
-insert into CDK (code, game) values ('cfwulkadtHYPVKRSWD849838378', 21);
-insert into CDK (code, game) values ('uqiyrcmabSQIHAXAVQ951003513', 26);
-insert into CDK (code, game) values ('xcagoiryvWLKLMPEKZ770682827', 15);
-insert into CDK (code, game) values ('uinlrbovgEXXADHSCV866257811', 35);
-insert into CDK (code, game) values ('kvxkgzcufAOPEQAPOX901614213', 14);
-insert into CDK (code, game) values ('dhwnwdmpxCITMXMRUJ225956382', 12);
-insert into CDK (code, game) values ('uraqiwiyfUGCVMDGHR661169969wIN', 5);
-insert into CDK (code, game) values ('jcnpwtdaoSIOSGIYCY319753029', 26);
-insert into CDK (code, game) values ('ncnebwgxqBWEHYIVJT446706806', 48);
-insert into CDK (code, game) values ('doulvtuwtVBXISOEAE286086094', 39);
-insert into CDK (code, game) values ('dbkcwzdixDWQBAACOX312272519', 10);
-insert into CDK (code, game) values ('naoumngsnZCQJFMWMA011008970', 29);
-insert into CDK (code, game) values ('xaqynydeaBWHAAUDZP222384788', 38);
-insert into CDK (code, game) values ('djggovfcyRFKIOWMYY909712819', 6);
-insert into CDK (code, game) values ('yhhhgpcqvMPYWHFBLN889131921>m', 25);
-insert into CDK (code, game) values ('wabafkgzuVBKRXCNZM739698857', 11);
-insert into CDK (code, game) values ('bcrbpkokiYTJWIVYTV981041887', 15);
-insert into CDK (code, game) values ('acvciitiuJDPUEHBNZ839039342', 1);
-insert into CDK (code, game) values ('xglbfqhvwPHQMDRYXF578770794', 30);
-insert into CDK (code, game) values ('agrcmozvzIKJZCGNNM151922909*', 25);
-insert into CDK (code, game) values ('eviovplqlEGFYMCVTG831506857', 37);
-insert into CDK (code, game) values ('lwykcdhyfSGVGFFDRH898011834', 41);
-insert into CDK (code, game) values ('vzqlvxpvePVOTPUJFN012794610|M', 23);
-insert into CDK (code, game) values ('fuyzowuxyDLUBJCUHC551563262', 32);
-insert into CDK (code, game) values ('fxcribmkrHGPUPGWFL628831075', 12);
-insert into CDK (code, game) values ('kvswygbdrMSHVFFULP880015649', 3);
-insert into CDK (code, game) values ('bnhspfofuTYXDCFRKZ578022061', 38);
-insert into CDK (code, game) values ('wmysexocpYQRUMCMQW547904272aVh', 25);
-insert into CDK (code, game) values ('woorzliowFMJJPOGMK846884907', 10);
-insert into CDK (code, game) values ('srzaukhwgECPWREOWE202990667', 15);
-insert into CDK (code, game) values ('vigdncifgANAOKCJLU513697104', 30);
-insert into CDK (code, game) values ('zftofbgyxXHZNNSBTH533636596', 39);
-insert into CDK (code, game) values ('glhmmyxdvTWLHEXFJN612015751', 3);
-insert into CDK (code, game) values ('rcxrjxbogABSCBNDMK612826823VG', 43);
-insert into CDK (code, game) values ('dssaelgtwDVXHSERJX253879481', 19);
-insert into CDK (code, game) values ('tyrtkphpeUJRVLRSTR025673707U', 11);
-insert into CDK (code, game) values ('bryunheaeVGYZROTBD655624532', 7);
-insert into CDK (code, game) values ('fqkxefufqNPVDJPUFO478443725', 20);
-insert into CDK (code, game) values ('lvwumwseyHCSQVSCOX518466809', 45);
-insert into CDK (code, game) values ('ztqqksgayRQGLLXKAK837156013', 3);
-insert into CDK (code, game) values ('tchtqcqkiSEIQOXSGU687079089j8', 9);
-insert into CDK (code, game) values ('buwmaibgaQOPXNLESM785425458N', 1);
-insert into CDK (code, game) values ('bltftobomLNUBOALZD067744216', 23);
-insert into CDK (code, game) values ('pdzhvzevkBLWSJYLFN346201821', 22);
-insert into CDK (code, game) values ('gwxmrqolfIHEJRYWXY137942042', 42);
-insert into CDK (code, game) values ('qcdonqofrLJIGMYDHT318856350', 48);
-insert into CDK (code, game) values ('drbldltmmDJISZYLVM011648529Xei', 1);
-insert into CDK (code, game) values ('eptcribniHFOWESTLG979089821ph)', 24);
-insert into CDK (code, game) values ('kiohnzognNNIRTJCBF175427931i', 33);
-insert into CDK (code, game) values ('azwuverjcOGBPYJUMT442052859', 30);
-insert into CDK (code, game) values ('uqjrucoikOZUPMWDHL307729766', 32);
-insert into CDK (code, game) values ('lwarwvrttBMWHSJRKQ400987215', 25);
-insert into CDK (code, game) values ('kiirasimmOHUCYOKKH791817856', 11);
-insert into CDK (code, game) values ('abmkpwrcnKSEDUDDWB546447475', 20);
-insert into CDK (code, game) values ('kytqzkcgiCFJQEQGBU231826490', 37);
-insert into CDK (code, game) values ('qdcsrmqodQXIQGDLRU432721027', 40);
-insert into CDK (code, game) values ('woobdjchxVZEWAQDDY634470198', 21);
-insert into CDK (code, game) values ('ogvkagtfyHXPXEVEGA654452453', 42);
-insert into CDK (code, game) values ('pyocomrccEEJPTYPHY949035117', 8);
-insert into CDK (code, game) values ('tzgbdqpiqBYQNKIYWY191074309', 41);
-insert into CDK (code, game) values ('ghrahtvukGPIRAJWII344717805', 38);
-insert into CDK (code, game) values ('gtexasufsUKPKBZCLV702785272', 9);
-insert into CDK (code, game) values ('gierprueoLMZTKEYWX863008487', 5);
-insert into CDK (code, game) values ('edluupcomHKYVMVNYG430159436L8', 33);
-insert into CDK (code, game) values ('tmrqkxdccFHEDQUIKZ246672338', 29);
-insert into CDK (code, game) values ('lbtdqfdjvHAFNSNIHZ886932495', 20);
-insert into CDK (code, game) values ('cfxmrvzczCEWADRTIV853542346', 25);
-insert into CDK (code, game) values ('vztjlrucnEAVKMICEC088506592', 1);
-insert into CDK (code, game) values ('hxjfjojbwCYJURZLUI342907658&Q', 37);
-insert into CDK (code, game) values ('jodbxdvwhNSCPSDBHJ831528488', 8);
-insert into CDK (code, game) values ('quyjhluicZZKGZAJOY273247020', 22);
-insert into CDK (code, game) values ('hbljnrszwJOARFZYTP073042537', 4);
-insert into CDK (code, game) values ('kcjfchfylEXLFXNZZS575236636', 46);
-insert into CDK (code, game) values ('flirypyrqNSATZOSPV990106066', 37);
-insert into CDK (code, game) values ('cvofxabdrYXUGDVBTM471348242', 39);
-insert into CDK (code, game) values ('cpsxkemmoQTXXFVCKM774446970j', 21);
-insert into CDK (code, game) values ('mfwwpnzdzLLFWOMDUE755307618', 9);
-insert into CDK (code, game) values ('kfhixxsrtSIUVFSQPT635543171lTF', 47);
-insert into CDK (code, game) values ('dsjqkicycGZZSUXACZ259929559', 19);
-insert into CDK (code, game) values ('aljidbpwaBIDNVCRJR000767115', 16);
-insert into CDK (code, game) values ('qhdvmtdlvDPRVRYMYU408812647', 21);
-insert into CDK (code, game) values ('oogdktoacCTBQVWEZI820516516', 5);
-insert into CDK (code, game) values ('odabieswjEOPUOJQMU151308660', 46);
-insert into CDK (code, game) values ('qvfidxfeaKRXBIQXVJ973526174', 26);
-insert into CDK (code, game) values ('drsqkdwyuWHWPDEUAH897473452|', 29);
-insert into CDK (code, game) values ('ydckkdjsrFOSLEYCZX8479937424f', 21);
-insert into CDK (code, game) values ('ajxvsvibcVCFTPBFAM628235829', 44);
-insert into CDK (code, game) values ('kkxgtttdhLXEDGLFYY667444246', 12);
-insert into CDK (code, game) values ('qzgdwxsdtBRHCUBQVP936802290', 48);
-insert into CDK (code, game) values ('upwxkcyokMVSUHVTGL904441768', 49);
-insert into CDK (code, game) values ('fmzukuzzeXUOBUSDAT030730283', 35);
-insert into CDK (code, game) values ('sixwvdbzvXQAPCMQQT428194850', 26);
-insert into CDK (code, game) values ('wszyfqlscBAYTGYWDG328228047', 38);
-insert into CDK (code, game) values ('fqpuajoadPHQDDEZPY442959505', 12);
-insert into CDK (code, game) values ('tqffsipkgHUWYNSBXY758438583', 1);
-insert into CDK (code, game) values ('uxcowoydnYODPWOMUY854818738', 22);
-insert into CDK (code, game) values ('vfedjbjfeDTWGKFBZT107587214', 21);
-insert into CDK (code, game) values ('oktbpjqlpEHDTRIMHP876631196', 15);
-insert into CDK (code, game) values ('bcpkyncfoPPWJXPCYR636001367', 17);
-insert into CDK (code, game) values ('jcspworbdGGCCLDBDC663384672', 9);
-insert into CDK (code, game) values ('zycsqexgkWVBNQJSPG014223270', 10);
-insert into CDK (code, game) values ('ebksdbgapMKDEDAGBA636820484', 45);
-insert into CDK (code, game) values ('grmxvywypOOMHTHLKI238298145', 23);
-insert into CDK (code, game) values ('wzpouhiynMSYCDQEVM538654949', 45);
-insert into CDK (code, game) values ('viemkfapaPPJCDHEEJ907565247', 8);
-insert into CDK (code, game) values ('bfhejghamIZMBWRMUH052172519', 41);
-insert into CDK (code, game) values ('yivsluwpnCGWLHVLKG108745553', 36);
-insert into CDK (code, game) values ('eerbhrmirSAEXUVTSS887263502', 10);
-insert into CDK (code, game) values ('ctqhbnpaqRUMWJNLBB748817813', 24);
-insert into CDK (code, game) values ('bwxipufxnYNGIGGAYC677318698ozg', 28);
-insert into CDK (code, game) values ('nxxmwzdacRBXJITFTW534994502', 9);
-insert into CDK (code, game) values ('ohxaceihpTKFJHYMRS98081241225r', 39);
-insert into CDK (code, game) values ('rwmhqtzxkUBPIDQCUS907302792', 34);
-insert into CDK (code, game) values ('wdgtxhhtkSEVNUHGWJ459185076', 40);
-insert into CDK (code, game) values ('iyztzguuySAKDKJPAL925350500', 45);
-insert into CDK (code, game) values ('nburgcyqyMWTPQSLNY214452251', 14);
-insert into CDK (code, game) values ('tzxytbbpiMZUJFTNYE030540180', 41);
-insert into CDK (code, game) values ('xzlvhjvsoLTKILUFQR589138020', 47);
-insert into CDK (code, game) values ('exfjjmxxyDXLTJAXLC968538204<', 32);
-insert into CDK (code, game) values ('nrybqkvhbZYSHFPILN340736047', 6);
-insert into CDK (code, game) values ('ishzldhcnUKYHILHKA112883839', 31);
-insert into CDK (code, game) values ('qfdgcpdueJERVVMXSS209811762', 23);
-insert into CDK (code, game) values ('swzrlpjkzAVYLODKGE162468549', 35);
-insert into CDK (code, game) values ('czmpbdilqJVHZAWWZE715699718', 42);
-insert into CDK (code, game) values ('doillkbubAMWXRCRHB922294131YF', 35);
-insert into CDK (code, game) values ('vsfbrailjWITVPYOLR024819439', 3);
-insert into CDK (code, game) values ('xhnzuxrepMAONRXNHB298085990', 43);
-insert into CDK (code, game) values ('kxzrtookyXBTJOWNKW880706969', 26);
-insert into CDK (code, game) values ('tvtlbxpzoUBOPZJGXY376496565', 43);
-insert into CDK (code, game) values ('gxdniwoneFLEZGAJKD271614513', 16);
-insert into CDK (code, game) values ('bkjtnrfatFFAEJAJKI177597882', 30);
-insert into CDK (code, game) values ('slskkjwvdGYJBTEOTB531139833', 9);
-insert into CDK (code, game) values ('aslichxqhSQBRODMHA480088770g', 3);
-insert into CDK (code, game) values ('fojnfujkvCDLHVCMXC654087771', 9);
-insert into CDK (code, game) values ('uhiiuiabaSSVITXSEK085350214', 11);
-insert into CDK (code, game) values ('ayduuoxctVJYUMMMVM064301271', 39);
-insert into CDK (code, game) values ('bpgjlfmrzKVXPYBJQT273854318', 8);
-insert into CDK (code, game) values ('hjkhsljwfSCRXRXOKI096161657', 22);
-insert into CDK (code, game) values ('hdrhfnhheQQZVDJCFG710009430', 27);
-insert into CDK (code, game) values ('ouxukbfxxHQCQCXUAV970424016', 28);
-insert into CDK (code, game) values ('gjlyvzzhqNNTAVKZVU973540123', 47);
-insert into CDK (code, game) values ('cutliyhjxZMXIOCFUX190358917', 27);
-insert into CDK (code, game) values ('jxnwwfsmeAPJIZKAWR938242161', 48);
-insert into CDK (code, game) values ('ncivuhmadDPZCEABGA764563960r', 13);
-insert into CDK (code, game) values ('kfnxzdcygZXHGHKQHC772556629', 36);
-insert into CDK (code, game) values ('lmfjctuiuXRURHQPCH104644229', 12);
-insert into CDK (code, game) values ('nvulczvkfYWKKEXSYA061301916', 13);
-insert into CDK (code, game) values ('kirspytoiMWBIEXADX108462674', 29);
-insert into CDK (code, game) values ('kavxmpkfeLTDYJLPDH176115573', 16);
-insert into CDK (code, game) values ('kllnvawajLAZEMFMLU801512761nN', 35);
-insert into CDK (code, game) values ('awzfbzbmlMHBFZSMGG162703957', 9);
-insert into CDK (code, game) values ('uvxaltyntRKAYVKCLJ5672847803', 13);
-insert into CDK (code, game) values ('zzvkaxplxIGGPYGCKJ570768837l&M', 19);
-insert into CDK (code, game) values ('mhcjpsddqNWJIRHRUJ355711100', 24);
-insert into CDK (code, game) values ('myccmwnwtHIMIGAKFO0712372677', 1);
-insert into CDK (code, game) values ('igvyjmdizRNQHFSEBW367584992', 29);
-insert into CDK (code, game) values ('znthjdefrKXGOWNMTD0124563363_', 22);
-insert into CDK (code, game) values ('fdyedqdwqPGYJYSLFV445818875', 1);
-insert into CDK (code, game) values ('ooupkjaptLEKYHYAEV856334950', 6);
-insert into CDK (code, game) values ('modddpbjcLLYLJSZZF551705691*b', 37);
-insert into CDK (code, game) values ('qrqxtlfkkWTNAPDSOA329764176', 31);
-insert into CDK (code, game) values ('lxbvckfjvZSLMUJBQA832975583', 7);
-insert into CDK (code, game) values ('sdyentgndKRCGJJSRC169738024', 5);
-insert into CDK (code, game) values ('czfnqrugsWBFSJZHWF353493349', 27);
-insert into CDK (code, game) values ('sxypdxzhdWAUJPMXJU851970135!b', 10);
-insert into CDK (code, game) values ('cbphwiltnSEOPTDNIT069689747', 38);
-insert into CDK (code, game) values ('xjkqgkikeNHIDMXKTM979421016\GX', 14);
-insert into CDK (code, game) values ('ypwgznavcTBEDWQLNZ301601147!F', 46);
-insert into CDK (code, game) values ('whebuwhdlOYMXTHDGA963630571uuV', 8);
-insert into CDK (code, game) values ('ejonzylsvXOPBMOTJW825472219', 23);
-insert into CDK (code, game) values ('lgxhlzougAEDYTHBNL968753781', 13);
-insert into CDK (code, game) values ('agwbkeivkNMXDEISCD011911354/6', 7);
-insert into CDK (code, game) values ('dpjillxvqONWPAQXMA054073036', 8);
-insert into CDK (code, game) values ('nepkaaqdpVZVVXUBYK357336903', 2);
-insert into CDK (code, game) values ('vdkqxsbykEKAUMPCVR366148740', 27);
-insert into CDK (code, game) values ('dlcmspjooWTAWDAWLO516871277', 11);
-insert into CDK (code, game) values ('okkhwfvdvUDPAIUYTG394476051m9''', 41);
-insert into CDK (code, game) values ('ivzbtjfdxNQBROQBPK075555871', 6);
-insert into CDK (code, game) values ('qkjdcymzyXWCHYVOFF624174111', 21);
-insert into CDK (code, game) values ('vgvhlxcmmVQMKDKGFF660860504', 6);
-insert into CDK (code, game) values ('mtotexgozKFAHDRBQI139789634', 4);
-insert into CDK (code, game) values ('rtlkomrisDEFKKTBNJ001086108(,,', 45);
-insert into CDK (code, game) values ('lknheynnhHMDAIRSVV040354994./', 33);
-insert into CDK (code, game) values ('lrkmblsxiHKFNVFRJN788626184', 6);
-insert into CDK (code, game) values ('mdjeecwonIBISYCFQB436507812', 16);
-insert into CDK (code, game) values ('epjyixkroQRCNQBUGP226830410', 6);
-insert into CDK (code, game) values ('ocbvqdpwjRCRBKFZPC588089619', 28);
-insert into CDK (code, game) values ('dgwfvibnqQZLOVJUNE864009456', 2);
-insert into CDK (code, game) values ('ikvkpcbvtVTUBSCOBH057624614', 26);
-insert into CDK (code, game) values ('imidtsxwdFQDCJJMQL341512515', 13);
-insert into CDK (code, game) values ('sodcpglisIHDAFRWCK940635376', 49);
-insert into CDK (code, game) values ('hpzloeekpSIHQBIWNX247515632', 50);
-insert into CDK (code, game) values ('gzhfflxwzDFYEYYYJC071751976', 28);
-insert into CDK (code, game) values ('pompadqdiXRTFHLBTM113918956', 12);
-insert into CDK (code, game) values ('oebvbxiefRTBRMXXFC644976901z#t', 25);
-insert into CDK (code, game) values ('gzpajphdmSGCWAZMMJ930592717', 42);
-insert into CDK (code, game) values ('ppduzlopvLIYJFHXCE824449166', 4);
-insert into CDK (code, game) values ('aqvgnzxmqNMGJBOVGU849996717', 40);
-insert into CDK (code, game) values ('wxncavixkNVXHQFGQI010142588', 17);
-insert into CDK (code, game) values ('sekkewjymPLVGAGKLP304116306', 49);
-insert into CDK (code, game) values ('jzlzzozpfHPUALTLOX022672984wiq', 13);
-insert into CDK (code, game) values ('thamcdsjfUFYWFQHJC983925026+n', 11);
-insert into CDK (code, game) values ('rxmxkqufzUADKAJYWO251309047', 46);
-insert into CDK (code, game) values ('adpznmfueDNNDYTUFN589029578', 41);
-insert into CDK (code, game) values ('dtbwsssshXNGCFGZYV949327645', 17);
-insert into CDK (code, game) values ('vulfrqphgSCZZDUESV774408243', 2);
-insert into CDK (code, game) values ('fnkkuwpzbGRKZYXRLM426573685', 13);
-insert into CDK (code, game) values ('vjdttprpbOBSDJXBMX349419615', 36);
-insert into CDK (code, game) values ('brqmmmnrhEQHYDODCP488798098', 38);
-insert into CDK (code, game) values ('zzogieazhMHOQAKHUD449109836', 17);
-insert into CDK (code, game) values ('djenpbiqpTJBVLNQWR556779268', 1);
-insert into CDK (code, game) values ('ajjxqwzjuUCBXWFNWY622555971', 25);
-insert into CDK (code, game) values ('tcwizcmxuMKAQCRPPS613618533', 34);
-insert into CDK (code, game) values ('mjhkrhvslJQSFWIROV018838401', 44);
-insert into CDK (code, game) values ('cfrmevnorFIVPYXZMY708441657', 10);
-insert into CDK (code, game) values ('egerdzfkgDJOEDFNAM900603017', 25);
-insert into CDK (code, game) values ('rbyethfkuVNLEQZXUF477660425', 23);
-insert into CDK (code, game) values ('vcdlrkdopZHTEEEGEL705642006', 45);
-insert into CDK (code, game) values ('tsnohdbrlMGMZFIJDT448321470', 21);
-insert into CDK (code, game) values ('escqcbrhmCWFJGXCAB346986527', 13);
-insert into CDK (code, game) values ('qjjphsjwbVEKNTLJSX882086311', 9);
-insert into CDK (code, game) values ('spxjpsypvFKYMQSVRF821048051SM', 39);
-insert into CDK (code, game) values ('dzztqxeyhQORBERMJM411455011', 27);
-insert into CDK (code, game) values ('pmrgdxcwzDRZRJJEBO334339925', 49);
-insert into CDK (code, game) values ('xyrtxqhfpIQNWWEZWZ987297910', 42);
-insert into CDK (code, game) values ('lxmgkpycpULIAEJGGH400918763Rpc', 40);
-insert into CDK (code, game) values ('qyzpwhnupICSXZOTWS332859198', 30);
-insert into CDK (code, game) values ('uyxfonhbiSDFOZMZKC104729750', 16);
-insert into CDK (code, game) values ('iafhlwbovPMSMYWIIU271253099', 40);
-insert into CDK (code, game) values ('elthlasavLLPJUHAZT480229658bQ@', 17);
-insert into CDK (code, game) values ('otpnqjasjQZRTOQHXJ940594657', 26);
-insert into CDK (code, game) values ('zekzustfoUXZAMCWLO437737871', 37);
-insert into CDK (code, game) values ('yczmovvjmAICGJEZLO039597370', 28);
-insert into CDK (code, game) values ('cakvbtbamEUSTUXGFI960724030', 29);
-insert into CDK (code, game) values ('wtmangqbjCPYQRMZRK188342009', 2);
-insert into CDK (code, game) values ('xvtpafnyzHOHLGUJWM019866263$_', 8);
-insert into CDK (code, game) values ('hcxjyedakPPEXWYODG103372530', 40);
-insert into CDK (code, game) values ('afinsdhraOFTXCTUWC258249091', 18);
-insert into CDK (code, game) values ('ftcqsulpqYUDYRDXFS858044483', 27);
-insert into CDK (code, game) values ('ztwmupdhlHHEJPLLGL130912815J/m', 36);
-insert into CDK (code, game) values ('voimtaauoNNFRTVSLO118484926', 29);
-insert into CDK (code, game) values ('bfxtvxxalKOXRYXHSD109793243', 14);
-insert into CDK (code, game) values ('sknfjtgwwAPDTMJSUQ090527018QO', 19);
-insert into CDK (code, game) values ('dtucwmrnsATHIHGOXO529872928', 35);
-insert into CDK (code, game) values ('rwfamygxiSCSFBVKQT149258280', 21);
-insert into CDK (code, game) values ('rujajnsecFENACVWCP072980995', 41);
-insert into CDK (code, game) values ('cniazwhbwCPWGDGGUI112263452', 28);
-insert into CDK (code, game) values ('ppcwlwwrzBPBDZZMLI746806875', 29);
-insert into CDK (code, game) values ('nfdxkbwjpQKXJFWPGY750726939', 30);
-insert into CDK (code, game) values ('flexcpxbaAAKUDSQOF892535085P''', 9);
-insert into CDK (code, game) values ('lcdabzxpdRXAQOXSPK032743103', 25);
-insert into CDK (code, game) values ('xilaifojnICDYDXNRD917143371', 31);
-insert into CDK (code, game) values ('wtyxhhlrkRFFVEWKUL795842011', 3);
-insert into CDK (code, game) values ('ggswmdywpCBEEPGDQG484002862', 24);
-insert into CDK (code, game) values ('mruhtvokfHKOSJTTZM471525896Z(>', 45);
-insert into CDK (code, game) values ('yblonhuouMMYRSUQII850508408', 36);
-insert into CDK (code, game) values ('hdjxbdtzcYNCUGQPCQ728538285', 32);
-insert into CDK (code, game) values ('kiamnaieaOGYLRZWGY140781082', 12);
-insert into CDK (code, game) values ('cfgverqxaGTYIZRCMI117714832', 43);
-insert into CDK (code, game) values ('mqildntpuRKOXVIAYV051849681', 4);
-insert into CDK (code, game) values ('zstwzorebZUZMOMUKD221947709', 24);
-insert into CDK (code, game) values ('pofdfzlfpZZRFUTNFM545868638', 8);
-insert into CDK (code, game) values ('rlgvfxmwyWSEANPNXM0996138356', 46);
-insert into CDK (code, game) values ('gtgemzobxHRUJAGPGC246078670_', 1);
-insert into CDK (code, game) values ('docbtlzjkGSVDEVPZO073622166', 47);
-insert into CDK (code, game) values ('ifdmnpyaiBWOUEMPOJ198133648e', 33);
-insert into CDK (code, game) values ('wtdyqztvbNXZZJFJIS948785671', 28);
-insert into CDK (code, game) values ('uatmjntzsKPPAAEEQC061343293', 5);
-insert into CDK (code, game) values ('qncoulineXFGQQBWCQ278582377', 1);
-insert into CDK (code, game) values ('grlcebhqqHNYPTRACL791445321', 41);
-insert into CDK (code, game) values ('zafjpllbkEXNEWQHBS456719511', 44);
-insert into CDK (code, game) values ('cxluakqvkAXDFUQUIT066840144', 35);
-insert into CDK (code, game) values ('zaaottutyRJZRGVDKZ036875937', 31);
-insert into CDK (code, game) values ('retewuoasDJDBLQXFQ116236730EBi', 2);
-insert into CDK (code, game) values ('znpgmafepFZXHLDRDH398956949', 22);
-insert into CDK (code, game) values ('zehgllsbuHQLFWNSQQ053204629', 40);
-insert into CDK (code, game) values ('grzwmvcsbBZCBSBTVS195751137', 6);
-insert into CDK (code, game) values ('abodanvilTCDKRMTMG668575532V', 24);
-insert into CDK (code, game) values ('iugrqqbxdGPMAMACHO051245811', 22);
-insert into CDK (code, game) values ('arwtsemgbRUCETVCHW026517710', 6);
-insert into CDK (code, game) values ('zrnfxdfqxSQJZOAXQS381178119', 41);
-insert into CDK (code, game) values ('qdvlgkonfNHXSZZYUZ320410894', 34);
+INSERT INTO CDK (code, game) VALUES
+-- 10 codes per game
+-- Game 1 (20)
+('ZWTWQRAKXBV1JHLATPXKV112II', 1), -- sold
+('S32MXSVQRDSNXN79E76S01HVFD', 1), -- sold
+('DPWQ13S5XFPARMA0VEOU2IA4MN', 1), -- sold
+('N95JKOMMBIA3PV5SIWJB9NRE66', 1), -- sold
+('ANKBBME5P2BIMKU672L3VT7Q5D', 1), -- sold
+('PTPQ2KZY7DPNWCKYLIK22ZEFP6', 1), -- sold
+('Q7E5LV40X8CYJ3PSC5OZG2KS3L', 1), -- sold
+('R4XMASJLXMU1AIRHZJ1O9D4YF1', 1), -- sold
+('UO2W51HKCP5A7QMOJ4PLVEW0AM', 1), -- sold
+('QWO8FK8GBDEJC3X89COZCIAJFH', 1), -- sold (10)
+('AWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('BWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('CWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('DWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('EWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('FWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('GWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('HWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('IWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('JWO8FK8GBDEJC3X89COZCIAJFH', 1),
+-- Game 2
+('9H6JRU7AZ2QRX6TJ7815D9RZGN', 2), -- sold
+('7RV6UVGAG8X1PSD9J8V86COK9L', 2), -- sold (22)
+('RAMOI9DWYTD3B8YGVENT0O527T', 2),
+('QHC5BXL8HLX289GYFLXGFK4LHK', 2),
+('HCTIOZ64DTZCISAHK7E44KJK1S', 2),
+('8AZN7KC61FSH4E5GB0Q6J0LKWQ', 2),
+('P5RWOK8JI0QUOPH7T2R291KYF1', 2),
+('AGNMPPXZB8Y9WS8WGKT9KHUU85', 2),
+('S57BQ9QZPDHJ1FJGEXN3PHMF75', 2),
+('18I8T319HZIH9LEINHBAWRFPZC', 2),
+-- Game 3
+('4H9UOP8Z8RJ58SZTIUOXIMHU4N', 3), -- sold
+('7KF7URMJY37YQ9I1MVSSWNXD3P', 3), -- sold (32)
+('X2KFFV38Q0SDSDYLWL03GBXI4N', 3),
+('OQ2341NUQUSOQ2QOX5P55JT70J', 3),
+('STN1B3XVJ5ROIHD4FV51VILGZW', 3),
+('QB8UP0JLNWMR4EJQCLOA68FDWE', 3),
+('7NB63U2YQN5GTUDJVD21OEA210', 3),
+('E1CFK3LXBYNOZDCGPUBWQ792IW', 3),
+('H05UWIJ1QAESA3UM4IDK57B8X7', 3),
+('4NZAHH32567Y9J24GWZGJPHT3C', 3),
+-- Game 4
+('HVS8P3KVRV0P5FLZSI7LV2OVFE', 4),
+('KA9QLWPIL3J164OWPCGJ30AILF', 4),
+('10XAO28LLJOEECVN2IFY6S9VBG', 4),
+('X6412V3WIEMHQ6KCL7Y77MCT9H', 4),
+('LPM4CBEHEZ4E2QFJ9ODU6P0GG4', 4),
+('S3LCJCVK9XJ4RWEAGN144I3SAS', 4),
+('5MWAGASW6CENE62ER44IT0RN0N', 4),
+('MCR6AUVXFYHZBKN05MMWFEQ3FG', 4),
+('KNBFBWIAM74DRUO9GPC26GR5UH', 4),
+('0J1JF21B9X8NBII3H5BLMIPXKB', 4),
+-- Game 5
+('8QC1K9K9GPLAJMR0WVKE35ZYXQ', 5), -- sold (51)
+('YVQFF7KCYCJUYD2QSQ4TT8G3LA', 5),
+('V2846CAXWTEEI3X5PD8UZELHI1', 5),
+('KHUI1M8EZO978K5BCS5003TDMB', 5),
+('SH8KL8PJ5269YNLFRPF5P2COZJ', 5),
+('Q81W7IUZSIH3UPD4UMXLTTEHXZ', 5),
+('UM26AFU4PSIUJLCNIAM5NJCUOP', 5),
+('OUWEQXUHZGTI8ZBQOCG67PBP8M', 5),
+('GD5SZX66VSPZKUP7S8UNOSGYLX', 5),
+('F8W2E0H3R1MGYZV7N6QX7T060D', 5),
+-- Game 6
+('7JOXRYQHLOLKGM64OFSV17YA2M', 6),
+('QHVZCZ5I5O1U89Y1OCKDJCSYJT', 6),
+('BZWFP3GKY746WV2DTBSD5RYVOF', 6),
+('98ACWJF0ZMZOEK3H09A8WV3QXC', 6),
+('Q52LXTXQPFRM5571MVUTAWCL2H', 6),
+('8YWDFL4YW5LANZI9NAA5CEJF6A', 6),
+('ICAVTIY5OH80QVAD6Q63QO6GOQ', 6),
+('GSDZ7VFEA6RFIHL6CFJEVQEUMK', 6),
+('VA5W90JAIE93OGCIQP9ZP38A8Q', 6),
+('DDFNDYFKC9VYX50UYD5J7QT0J3', 6),
+-- Game 7
+('S6DAOIT3FMAWUF3QMNQI20W06Q', 7),
+('ES0Z7PDJZZNUBZVO5ZA25MDZE6', 7),
+('N3X5IU84BEYY7RX5OILTEK6BDG', 7),
+('K3QROPTFOAGDOADF0HRJW41S5M', 7),
+('9RIVQU1GGUMBE2MC54Q5CT7Q4A', 7),
+('HUSVJ165NVD1P298VCXDZWZY0P', 7),
+('CDTZNKGH28J85K5SLWGYC6PWP9', 7),
+('12S76N426U5966VYTY1Z6HJ1K2', 7),
+('WA25MIPG8EXYYS9FPMHW3BCRBL', 7),
+('6HJ09MD6CKP3GIP3IYTIRSC8SZ', 7),
+-- Game 8
+('GC8K774W667WZH9BRXIE9DZGTF', 8),
+('8T0WFJ1UJ8SDG1CVN81AFKZA95', 8),
+('XVJ5RV2AA2Q7F6ENQGUBN92SCS', 8),
+('DKCINO3YK1DXGH8Z7ZJGSAOFU8', 8),
+('KRD0ODYELT4EDFPHYSI2UIKUMI', 8),
+('YWMI3OOK2V4PHJXOGK2LLWZS97', 8),
+('2MBSQB7C08V308XABHJP9F9I6L', 8),
+('V6BTIPQF20LW2DK78UCLFI0OE5', 8),
+('R1HIMPSSOAATJVEF7OO23EOSMG', 8),
+('MDWX7PB57H6U9VIT3M62R7C3QT', 8),
+-- Game 9
+('TYF3FW79LYIXXLUP3DTX6RA0PG', 9),
+('45VRUAVO5N1FCH004ATJY0IGCS', 9),
+('SZ7NK52AR2BR3TVM49PFT8Y6V4', 9),
+('WUK9X5Z6ATYWR54QXBXSFMK7PT', 9),
+('7HOGNM6O2G496LH5ZTV8NC31F7', 9),
+('RFL4SV3KEIRFXCRPOWBJEX3KC9', 9),
+('J9M29O07F152ET2E7NXHJ1NT07', 9),
+('V4ROVUQ7DNU49Q357FTONCRE7K', 9),
+('W2PZ4E120OE0VRACV468A0BWQD', 9),
+('JNZ9IMIHDLY91759CSHDE0VKCQ', 9),
+-- Game 10
+('T2LEWHG70JLNLMSQ8XHNT8KJHD', 10),
+('IXHXSBUAYGPRSG01HOE48KHJ8Q', 10),
+('KH7IG1XC1FW0RWBTY3A92IT981', 10),
+('4I6K4ERVGEUE8GTL3IFWL6OS4D', 10),
+('H4XVA1JPB14MO81RAI5DXCRFMZ', 10),
+('5ZWM463PSMAW94QUA5RQPBXGRN', 10),
+('0NDZJXEDFI6K9RWBPOWCWLTN8V', 10),
+('TGPE7B88GUU5NZLPNV6RSLA6QF', 10),
+('IN8VA2S4W55NBY3SQXF08V0W5V', 10),
+('NZGJPMCP2Q34EIU84EU8SISILZ', 10),
+-- Game 11
+('GS6M05MBK81E0XHPGS13J434KG', 11),
+('JR57ZW0DEZYUOVEPTI6DM5LXHP', 11),
+('43J7U524XQKMUXVY9B7SM87ZS1', 11),
+('UE5KFZDKTGVNP2CJJ2ZA2QNKAO', 11),
+('K01EHBWWC98JRPU9ZPVP0VT4JX', 11),
+('QYY701HOTBOB8Q415GNPIECDMA', 11),
+('HYCJVTGTCWJSUVCIDHIG1EB5CJ', 11),
+('SSDDLBX9PUQNJTXPK89W5R2LOE', 11),
+('YQGOAYVOM4DK4JLPVBP9QLWLJV', 11),
+('X14KA9E5TL1M5Q7IHYB9BDWLB9', 11),
+-- Game 12
+('2VTJM41CRDJNOBF4MOI821N9FG', 12),
+('EKKVQ9LTGFZL4S8JOP43Q5CKE2', 12),
+('QZTCGIIVG4DZ95LCLA8WYWIUYJ', 12),
+('GBZUKN5G61CPXQV7YEM7GEE9PM', 12),
+('C9CYBYJ7RA7FG351QLF472WSZ7', 12),
+('KSG3JJ2BEMOW46X0MZ4Y5NK829', 12),
+('EJEDDAJ12EUWOG77VE33LB8MH3', 12),
+('DGHAU3Y5EV34HD7TWBQDL1W1FU', 12),
+('AF0Y9E53FWS9PAKCJCK9ZMV4N5', 12),
+('LWJMS8C4NJVMTI9ZOQYJ9WMETI', 12),
+-- Game 13
+('Q3MVGN7Y1MAKW7DK34L4IDBF3Y', 13),
+('UP2EE82EP4XYI82GIJMM8LEYZD', 13),
+('6R6AA20NZT1W1DRXENMPLH08L8', 13),
+('FFJL6I5T2PDD6SI1KL6FVMYAMZ', 13),
+('3HDO2WJ6Z2XEL3UOZYY3YGLA08', 13),
+('DLLOIPZKQOLIJSNYMC2TKHVMPV', 13),
+('14XVKHSZYZIF9HL6JZXKKVSBEN', 13),
+('GTHEONOX9XVC3SOJTCJVUGHW4J', 13),
+('I66HSMVF7YDYPLRHZOA42QPVXG', 13),
+('BZFMNLV1NCPYQKNR03DFOPAQJA', 13),
+-- Game 14
+('26371GN307ESGABU48QPMPNJHP', 14),
+('GAAOQEQVPTG4WIALYRZBR04UYU', 14),
+('SIMHPPNY9GWHOH1DNZ830Q55LJ', 14),
+('OP1M35VUGYI3VN0YN0Y9FXQ4DI', 14),
+('CKQGG071AD5R3NTBJ2UZBUI9JO', 14),
+('TF3WKB318VTICQDC6MAPWD1ORY', 14),
+('AMFNSADG9MOXT3ROC6XVHN1V1H', 14),
+('GFUSHIIUQV1KOL2L6GQR2I179G', 14),
+('3NYQCVPU4DIHST0OWODPW1YOEX', 14),
+('LHMO6V6PMHRBBBY1K3XSNX839B', 14),
+-- Game 15
+('Z47Z8DAN4VKLAQ9B9GZTWG1HA3', 15),
+('2BXJ82WDYUVXM7J7U8LKNSNHQ8', 15),
+('M23UFV5X8OSCDSU151QAQF9XM6', 15),
+('ANG5IW32EFVEVURULFQC1E5TPH', 15),
+('9QZNA9RZNG2KUFBSBE6NJEJF3W', 15),
+('R6AWDI5727RX1ACKPBB66IGEIJ', 15),
+('QUKSA5DZT3PF4VVDBILD68VI4B', 15),
+('YWWP2GJ83ZNTDRF39341B4F388', 15),
+('TRTOJ5JYQHEBTRQ9YFUCWOL62B', 15),
+('5PJSVZSKKZQ0T9RL5TDTJC0ZXC', 15),
+-- Game 16
+('7TULI3IKP2VU7ZKQV8O6L06DB4', 16),
+('7DF1RPHDUJULWOXYECQQX0325L', 16),
+('RRTD0C99SH4FJDKJ4UPJVFVVAI', 16),
+('5YEUF5XCJWX79FFN55GY37N68P', 16),
+('QSXODM839IQTTINFDM8HGQ8DG0', 16),
+('G4VPWFVXVDBGSS2EKGGMQWDZJ5', 16),
+('JL5OPDFMJFUHKJQ7G25IB97YUV', 16),
+('ERQTZHZGCV14UKKK5AWFQQ1AR8', 16),
+('5SAPUA3J7AMIU3MXZ966QWUNIY', 16),
+('52G80ZZFP5WMJB76WHMJ7A8X12', 16),
+-- Game 17
+('A111RELEAPX48S3Q4NAQAJ91UB', 17),
+('NO3J1RZF0SMTGTZJDF8MVO66WC', 17),
+('0O5S3WYOB6T5PNB8LYYWQR2U2K', 17),
+('YQVYKU22RYDQFXDC3W4A5QBWEP', 17),
+('876M8J7Y0D17I0NEDNT4YS6EGS', 17),
+('N0CV0I8WC1OR3VHH70JAX16OJL', 17),
+('0ZY5ZMUP8TBYQCXFBG44INDXKP', 17),
+('R02Z2EUOAVAER6209I0655V2EK', 17),
+('5I9Y7YONGH9T8QUY0TLPVTM2JQ', 17),
+('1IIG8W2H66Q0WMI5Y82W2ML6DF', 17),
+-- Game 18
+('PCFV24VYLCJSX4K7NTY7JSHCKL', 18),
+('X74U7UPXW6CR6KEUIM1GMN389I', 18),
+('3WRTR6X3TH2LBH50X1X931ADY7', 18),
+('E9ZO67CW8W1Y0CAERF3EQQZMPJ', 18),
+('51LD8B9QHHWCZCU9GGH5XTS5YF', 18),
+('2M8HPQHADMSJW3DJOC27PL9LLZ', 18),
+('ZLL2S97TSXPJP07EXYYQ4NKN44', 18),
+('LNXJMVFACLGZAQOZKWGWOVSS3K', 18),
+('UCTAVJBWG5ML7T7C7TS0L2I569', 18),
+('L6H57G9XMNO8WTH35PVO3HF6B8', 18),
+-- Game 19
+('SRPYJXY68AGMBS09D1CZ31OUB3', 19),
+('NQKD5F2MRV8938HC8ZIHQUNI42', 19),
+('P8TTMLS3NX17FW9J0XL9EQU2WN', 19),
+('273K8EWZO09MA7LMZX36W1SA4M', 19),
+('O9N2ZPSTMMIDKE2WU87HW5VUM5', 19),
+('EJN3A4GC22RPTTMYO3LIZ34TO2', 19),
+('KS7WXX45GBTP1UPSTRE0OF5MOM', 19),
+('75BHJM7MUOX3I9FWMC58WMH7R9', 19),
+('AS5PDH5BBTH5J6VJ5U8ECZIFJI', 19),
+('OIVNCHWQ500D7AWGWPTUCSTVLG', 19),
+-- Game 20
+('HUK56ONUJKL0BA702CZDT5L6MP', 20), -- sold (201)
+('UNG6LXNAZ92PLXDV3PTN9ZMCM2', 20), -- sold (202)
+('LQMNI2LWHUNA0CJ36KNFEFLQXP', 20), -- sold (203)
+('MZYGK8Y5V2SUN9Q05BUZPASWUQ', 20), -- sold (204)
+('99QNDI266RTLJTW2YFW2UTU8ZM', 20),
+('624CGBSC1EW1ENF1IL3LTKMAL4', 20),
+('IYMC5J39K7OF8HKFQO0QF8KLBE', 20),
+('NUYQXOLY0LY7RNDAD6FDD0F5K6', 20),
+('MT99WZNA5HFW1YP8C841JUPPFF', 20),
+('MY07VNLASYBQ7VHDEYNZZQ60W1', 20),
+-- Game 21
+('7SBXGVOVQSOJQVSRNKK4VHQJ6C', 21),
+('8NMRYLQBH24I6DP20NECB7BI6L', 21),
+('81F9NFKTHOMG3YU7PCMVV5MLBM', 21),
+('GMM32BL3KV9LNVC2ZF1O66OPQT', 21),
+('VTJPL2I3QL7USK5CPQO8K50TZC', 21),
+('0B319TVMTYECCEYHX6REE01HWE', 21),
+('KPTMFKROKBIODLVPWW0WD14PZC', 21),
+('65VDHE95G8N0HQAUSOV6SQ4BVQ', 21),
+('8TU77UHX1SD0IYQFYT2YUTYOR3', 21),
+('MXQ6EAPHI93EA5RS6RI6SSS2CN', 21),
+-- Game 22
+('7SP8MFBXJ57U4UM6OUUYACC7U6', 22),
+('5CV1VOSHB95UCDPD9TXL71XP47', 22),
+('HUF2VMO73CHWHEETSR1NHAZZCD', 22),
+('HQX5OZQWID9F9JE54WSEVD53O5', 22),
+('J0SHLHEZXM1VROSIT919ECD5J9', 22),
+('KH2MZQ7PXL2E0MGFKSN5HN24RZ', 22),
+('1U7YZLLQ164RAVIXRCUG45ED0A', 22),
+('E172JCEFTZMORUGG7LNEKRKSPH', 22),
+('33TWAI72CLPA0HTHIEJJAM5LPZ', 22),
+('8WS5J0BIZC8LM1P65KJMAFWMO5', 22),
+-- Game 23
+('279S0OMU0SH7RQHPU5PS4XEOCI', 23),
+('PMN4TISBMU5LS02Y5D0CE0MYLC', 23),
+('SX5F3MQWGAG3V4HYKIBRERK2A6', 23),
+('2BZ9XWKKSJVLVMVAPPAXTVFXMC', 23),
+('YFN6VCF6X0Q1FJ9VGLWGFPPLQR', 23),
+('4MURRJP52CL1JV386T825WYBSA', 23),
+('A0R83BOATPEOHK5P631J7HN5PL', 23),
+('8HOGUQA4O11FEUNR5C7JMVN9WX', 23),
+('27WGF5GOQ4BN4MOSOLPCF1Q26H', 23),
+('D1VBCAOOQFA5QHJFG53GFHB3I5', 23),
+-- Game 24
+('2MCJXZF3LZ3EH612LJ4YPPDOHR', 24),
+('00R63AB4YMD9550G2H1XBWNGOW', 24),
+('6B2U84CXMFBUQYERAE0JR9VZ8P', 24),
+('NX8JU06MWOABBXEQNS905DLQHL', 24),
+('6D0N0KQ8BS1TALD7RH8KSSF91N', 24),
+('RERD98VT2RRU7LS9Q8O8FBEJ81', 24),
+('RZA4V5YEB7FGFZZA57ES1HSE4V', 24),
+('RTMXX9WMY3XSHOV29SJ9DZLU6A', 24),
+('KN5HMAKNXWT6U0X9C64NBO6QOO', 24),
+('9LI0VOKTBBZCVLL0P8NTJPOPVW', 24),
+-- Game 25
+('V2NCX1TNJ2HBBPCH2T1WIAEJ9C', 25),
+('0BUWWJPOHMLQJARQJLNKCDWM0J', 25),
+('YSGSBZU0BVN1DML4V4AY1PU2EP', 25),
+('PMJZVKI77B8YY2UXUY4S8KT36R', 25),
+('T9RS0PKYOHREILVZ2FU4JR160M', 25),
+('QM194QIB7QHJ9OSQ2O0BMRXTM1', 25),
+('KNLPKYSTX5MEA8NTHVYH3VATWI', 25),
+('ODX2ENPISWBWBFHBXUUA73YZ51', 25),
+('GJJ3RNTBS1B7Y02SEEKLT4QJOL', 25),
+('ZEPYCB3ROUVLX8T22NHSY0KWCT', 25),
+-- Game 26
+('AJYCO2KAWGC0DMTX1RJPIQF3NZ', 26),
+('BDIS3KM37PJWYQIT72OCOZ95AG', 26),
+('5IW6GD0LCQOYV0XCPQP2O3CGYK', 26),
+('7IRXH3Z9QY1Z24GU20C3R6HQFE', 26),
+('3CCH63M2FZWJGOXJWRN785BZFE', 26),
+('I8OGZ7C6389U76YPQLZ8IN39V5', 26),
+('Q9SWQUIR0JBV4VISVT7YAGG7QA', 26),
+('N3L6JYY458XQYHLTR57ZRGVN9U', 26),
+('W52NM4T1WLH6RD0EUVKOBL2L1P', 26),
+('CNB6KBGCHJGAHC92DAL36240PR', 26),
+-- Game 27
+('URR3P9LXOBSOIX02I8TKDU9HEP', 27),
+('MMT0L8MPN00ASPOIRZF9M5QS1N', 27),
+('6J1L93IVL64HJEFDNSZ6H4IR8K', 27),
+('P7VK49KS20VW5HS5UJXOKH7J8J', 27),
+('41KFY4SUMFC15JJN7LWF4EXDB4', 27),
+('FSD9WDWCOXJQZWOMJ7TAMGVE8M', 27),
+('P5KQHMS6SJFO6H9WGQ8P0RX94X', 27),
+('L1O0TPEDF1OKBGSMOBG16COTOW', 27),
+('PM2WNVIJBGDVJR5LR5JGLOP19H', 27),
+('1ARDVQR52KRWPGZ1N9S2DYOYPG', 27),
+-- Game 28
+('XCNRTNEZL10MN179ZRPDG4I25L', 28),
+('FC078O8D9GR3N1UU0Y06J7CI04', 28),
+('VU35A2KEBQ8Z6ELPZ0EV3XC720', 28),
+('FXLI87TTOIT8KLXIU0JEZ6WZSA', 28),
+('UWBD95Q4C9YQ0073Y1UPL0FYI5', 28),
+('WG8ZY5SNWYGME6W5IX4KKFZ5NP', 28),
+('Z500RT82X7PETIVX198JXYXA1O', 28),
+('V4LTH4GSSX1O5DBYLXCWJOGTVK', 28),
+('5AV2PYCH40V0ZNIMM56541JU4H', 28),
+('61TIH5DVVULHL5T8VPHH23XBCK', 28),
+-- Game 29
+('8N7U168RU3JV0396WCG14QLXZD', 29),
+('70FM1MBPOKEKKKOWYTEQM889FB', 29),
+('5NUXVPUKJPC95HAEEB9YJIN9SG', 29),
+('C17FTEC2HG2CDZ9W3TWSSNZS6F', 29),
+('EOH95SLDDMPFE20CZCWP7UVVS7', 29),
+('4J2UQNX7SH4K0M3N6AHH6ARPG9', 29),
+('8UZB2B15XOOL5JZ7U51FNIFUQN', 29),
+('OSMPVRGNK3RR09W48F04K4B86A', 29),
+('5NX5EVMS19TIUHLYFG0W8VSXTF', 29),
+('NSEOLUVUO5XZSNCFB6O8I61XGU', 29),
+-- Game 30
+('Y0UUX7LUA62QSEQMRU6ZOG397Y', 30),
+('ACXIGKPQHKMK18L084B0E8R2KG', 30),
+('7TM6SQS7HL1U7Z0B5W93RMOF1Z', 30),
+('R5WUERNQQ4V1X0YZ086UPV6TNW', 30),
+('A2F9815WPFYU0EGQE5OGWYUCA0', 30),
+('3L9LXHWH2Y5GMAT5UU8JK9DDHK', 30),
+('09FTIABA3MDI38N1OIQ9FQOTR4', 30),
+('T90SGXCWPMH0CH430WUDQ1Q7OQ', 30),
+('6OG656CBPZ489ZSNV3CC0Z6LGV', 30),
+('R3ZLDZ1QW77ZQ9GEEM2DTB962V', 30),
+-- Game 31
+('DGIV9INLXMR4QCZO17N6Y2BF4U', 31),
+('JKLKLXM66Z4UPH3TZBJZJZ0A4P', 31),
+('W7P6HA1RBIS4SNLQKW9F99JLM0', 31),
+('S20V4Q5WOUQFFUAOR0BWQIZIZ9', 31),
+('EBCXPRQNNTY7BQZGLGAVHIAI68', 31),
+('GFZAV7B756FPVSV4NDZL4G8DP2', 31),
+('D8ZL0J5MIOC1BBDX6S3RKWOZWF', 31),
+('7IAO4FZR6WSXJMTYQVE0479GFM', 31),
+('FZ2ONM59H0K4Z5E8ZLN0RZUFS8', 31),
+('MYKTEA9CXZ9G9DYW1H83KCGJLR', 31),
+-- Game 32
+('LG1GOI5VWTANH3GG8ZF8W1Q91P', 32),
+('H21UUH450C0LQ8X56GF2QGO8X1', 32),
+('D4UL8N0OYROTQXOK5PS2QUVCN9', 32),
+('6TNS09FHO0520LBREXB3YL4VDC', 32),
+('6GNY7SAS8BQ1V0EDS7MXETQLN1', 32),
+('Z8BGIP1G8Y8F98HG0JCM2JVMDM', 32),
+('4OIB89FIZ7TZIL11VIO19MZCYH', 32),
+('YCZQ06LSFD892RAY2R8E5EIGP8', 32),
+('R2GC7XK6NOJA8WR1T6YBJ4KUPM', 32),
+('39WBQ0VZ9Y0OZFVIUVNIO6PIZV', 32),
+-- Game 33
+('0IKZVUYI66KIRS6I3NKJFA2262', 33),
+('PE98ZIBUNR056ET4QZY7H6I925', 33),
+('DWL7LOS48GZIROC48IRG6ONKOL', 33),
+('CGA80QYF66GUQMEM4OAV4AGL6V', 33),
+('4AHRMXYRSK6HVMWSRR0KB0CQZM', 33),
+('XK9KWQ8J1HOZC2N4OQ0IQ58FLI', 33),
+('G3U8GFRBQMOVYPE48YBKM2VNY1', 33),
+('YHUOA6ELWQWBQRZ12N67T763VR', 33),
+('S6M89RSV2ZJRVOG289RHR1VTVK', 33),
+('1GVBD7HH0RJ2DERM3YNNYRV27B', 33),
+-- Game 34
+('L2O8LHMEK3M73JILA0TL8SPB7K', 34),
+('M6V5EQ6GYT68D6SL9WQTIXUGMQ', 34),
+('6NL399G64KL95978ILPJPD2EHL', 34),
+('AIRLOTHOWKAK21TNLGAULIQCIC', 34),
+('EDPQL2JIBSBBW07JRMEN7S642D', 34),
+('OV63T4C9ADU3498HMJ0A5YPS71', 34),
+('471WF958T5PUOF3TL30EQ640N1', 34),
+('H9W4OC1UH1OWKJ76SSE0SEDHRV', 34),
+('XL4PRHYM9FDRT9A915UH7SWQ5C', 34),
+('8U47WAMV1FEM4FAY5EMBUQA7VE', 34),
+-- Game 35
+('QPV39D90FTN5DLYYSOEXFIKXRZ', 35),
+('99P9XTUKFHT3BYB9LSN3WEM1D8', 35),
+('FO5ZC2KJXM6S1VJ9LFOS4WE00J', 35),
+('0IEEBY4TA02Q6Q125XCKCP3SDM', 35),
+('U2UGIXBWKOPG8T4PNZITFKVLWK', 35),
+('I9AWW7H5B9ARKW2KCW1WJDASWN', 35),
+('PHZH1ZGRI9SQAMMCNNVAH0ECWU', 35),
+('9MF893H2F0L43A3GWTSO3X3B8O', 35),
+('RUQTKCKUBK34H8Z1Z1T95NN1HT', 35),
+('VYIADN52YNSU4VLPV1L1SI0X8G', 35),
+-- Game 36
+('96R9DOMG0T446AAPNJWMJAP6H0', 36),
+('2C6QBCRS0Q6YDV7784MM56QFAX', 36),
+('4U0PO1FEGQIK2C5SXPHF81MG6W', 36),
+('J78L33EB2K6SW2UDRL9QS8T8LG', 36),
+('58IYDZ45XZ8TQIBK0MM8ICIYU9', 36),
+('EN8R23F3C59DLRTRJLRL2JMRDL', 36),
+('RX5N9UGB86N4O89D1VNASYFHTK', 36),
+('HP439QBJRXZKA71LRA9TYEHCA2', 36),
+('YJ2K7R8FX3P1I4X514WSEV89EF', 36),
+('LFP6GN2W6SLK8DMDPLYOD4RHH5', 36),
+-- Game 37
+('Z27QXWLX7WL45LFTSCKDAI34NO', 37),
+('IPQ9CSLB60NJJ8FY2PTLKTU746', 37),
+('OFKPJQSYSXS9P51F1AA9NQ7LG3', 37),
+('XCJF2JMS0A2GMQ0HB90UM7GIUS', 37),
+('4ZN8U22BIKPSGQDSIRA7R85BFM', 37),
+('SGM6KAPA5O32CE3CNB1V0J2BLA', 37),
+('2DPC2PYYX93066YJF0EX6FP3PC', 37),
+('BW0FD8DTPLBNXIY6U8K2G81E40', 37),
+('H399XQCM1I1IITAN4XU5QK3B5G', 37),
+('RLHDYEAGU3JVHZCI77QV6UPEKA', 37),
+-- Game 38
+('A5D9NYE77LC50IR9VVQTR1MYHG', 38),
+('35QVY0U1UU1HEK3ZTR3QP0TLQC', 38),
+('RUFMKH0URBVQW0L12M4T4DIFH6', 38),
+('4ZIFHDIRJNWN46ZVFM3H77EW1J', 38),
+('Q3HCF82QAN27REQSO1ARS7AYI8', 38),
+('N3AJD5AA1PYT9V2M9NJCAXZCRJ', 38),
+('2V65HMO93TZ2I7VFUOK58ZJZ8J', 38),
+('9V167WXZ64J35RETKNOIFMOWYX', 38),
+('5J96EEY2V4L0MD6N7O6XVHMLQB', 38),
+('ENX0Y3IA6MPAV51F8SG8YPW6ZC', 38),
+-- Game 39
+('NYSTBF31CZ9HC3JZ21AVU3AP44', 39),
+('GQ4S7A9PO5GB0R6LNNXSX2WQCX', 39),
+('G4E2FXX92IJQVKCLXXG3UVDPMZ', 39),
+('560KZPT4XCT2BFMPIOE3UVZBJF', 39),
+('J1V2T19YLIVXQOAVR2R94PNEJU', 39),
+('IXZDJ7YRPZZ51LD4EYBGCWWLB9', 39),
+('G2LMT5G0SRHWIVYRXM0BSNGQ5Z', 39),
+('PRB7FETTIVVV5CQ6I0KP2N1CSD', 39),
+('Y2KSQ5CAKUIIOJ81BYLW6KQD0O', 39),
+('2QQH8GHBD06ZNBVCS03VRYN1C2', 39),
+-- Game 40
+('FTJY11IV7LHPDLAFE3EGZ8UEEG', 40),
+('IWCROXBB4YKRITZLONN5DHV7DQ', 40),
+('WHXW6EHD56DPDH0NY2D2QIRVB5', 40),
+('DHN850U7ZX7JN245C1J4E8D5X0', 40),
+('MM0LVERPNVQZM4Q45T1RS7RYU1', 40),
+('W6QZEQWMD9Z7MH1G9KOCIZBSOZ', 40),
+('Z944IDWS6OBSARXNYTL33160MM', 40),
+('RC23D58HUWHF6NGN232ISZPWKB', 40),
+('ELI6YU9Q8249MCN9FOCBHL2R7A', 40),
+('XY46TBTLE30FTMLY48TGGBHX7O', 40),
+-- Game 41
+('AGM2L5JU0PLRM92VQWOPIIBZXA', 41),
+('MLQT1RE9TLA5HB66SVTPT4XPTQ', 41),
+('QC0UGBOJA1XFT2SGJW1SHSZDWM', 41),
+('0B081OJ9E3KN9YWHCWNBZGDA8J', 41),
+('MJRVBKNQGG70ZWXTZQVPYXZJLM', 41),
+('8P1CJ7AG95FFX7B6AP7DNHNBVZ', 41),
+('YRAIQTZGWISHJAZNA525VFOO87', 41),
+('J9NTFPR0H5Y8DZKHGZFZ3BDZ6Z', 41),
+('MFQ07B7MWTNXFX5VTQ6L86WON0', 41),
+('MUVRQ5D27MJG4Q35HHP8ZVHSHX', 41),
+-- Game 42
+('6F2WBBZXODG65EN4ZAIHTMP689', 42),
+('QBH03IXH2NB6HVZI1LSJMKC38N', 42),
+('ARWNUUWGBLAI9K3QBUJ1XYML4F', 42),
+('6CUPZZCTY3VWBN5KGAZYJFBAP9', 42),
+('1XKA6UX7YIU9MPQVI8NMQXU6NE', 42),
+('SJP1RUB5NFSR71PTEJ8VVGEZQ0', 42),
+('YEI5FFNVMO1EIJ27JK49V8UJW3', 42),
+('FGBNBFH4TXZ01LONEWT1G8PEX4', 42),
+('FI4J70NIGXIKUK7WYV18XO88JC', 42),
+('5F3LH6HNQRQXR8CN5GQPVF120Z', 42),
+-- Game 43
+('3BR8PNUWRZYPO7FDJQIEPN7KC6', 43),
+('0A3T32M7X6UWNXZ0EDX8QY1BOT', 43),
+('5GOVIT8W3ST0BUSM9VKUTC07XI', 43),
+('61TV0M3P767H74PLX7BEAPYABC', 43),
+('G115B4Y7RK7AWHFMXOW0LINSCR', 43),
+('RJ7FCE5UJX9J9IAMJFJCWFHQJR', 43),
+('3Y53QUJN995OVOS9S4KXYHS8WN', 43),
+('FEIWZDL84P5NH2S0NN3GRBNEIU', 43),
+('JRNGH2W7DFADHY26RT3DIREC7K', 43),
+('972AEL2XORUG9KHSQWX30FX2HC', 43),
+-- Game 44
+('88FQHQZ7PDS4G0JCP0NNSRV5ZW', 44),
+('2ATYWE54LW7PIWXVFPJNTRL6LB', 44),
+('JLBISDO3T3A996I3EGCB6HUEUK', 44),
+('Z9897D581WGQHB73F1FXU6DQMC', 44),
+('OFALN1GXBYL12AM5YWV7X7JZ0F', 44),
+('7TDHTM18KHMM4JMCSF9H746SXV', 44),
+('8TZ52OQ4A0J4DNX8K2RI3BVV76', 44),
+('4F9IMRWOGHMZR71225UFPR31ED', 44),
+('M0H5WQQL8PCMMIUV7F7S6CNVB7', 44),
+('14LFZKI7XOXWX2FQ3S0HGG65XK', 44),
+-- Game 45
+('YN9VVSG7MHH18T4RV48PL47CAZ', 45),
+('L7WQKDHSABBY6YSIHNW47T563T', 45),
+('W8SW55IXBPARJJE19UG4FVYXPO', 45),
+('YE0WNZ6KRI7MBI4L2E9K7TO851', 45),
+('VP8UC4JB8G1MCFC9SAEW0P8V2E', 45),
+('WY1GV4TIRVUHNIOIBIRGYZKB17', 45),
+('3HNZ0142UCT5IU96M671Q0K48D', 45),
+('9V4FF0I9LSZ9E1MB647OMIY0H6', 45),
+('VFH9NW4CP8BYHTDURNV6MN6YI6', 45),
+('NM0PU3I633R4EQKVSTQIPCATWM', 45),
+-- Game 46
+('SQ7AGOCXIXLYYNZ1ZQSOLQK8N2', 46),
+('HPQLOKAOYC0LZX8RDCG9EATQQB', 46),
+('CMY8YJ3MX8SNN1QBODX7TW6AAQ', 46),
+('U4Q9ABWTCNKUGPKAC7A4ZRRC9Q', 46),
+('0LLMILW4WY5AMB0KHR8L3XGP5K', 46),
+('7YW8X5HU89LWVMGLYEFNPE4I0F', 46),
+('GMZRJUVVTNHVVE8YF3QB5AJGDJ', 46),
+('YN2E91ZO2XFTSO5Y3GYS7OD4TS', 46),
+('BTFUNRMUNOYW86INWP2NPY5CMI', 46),
+('Q3FMTAQ05VRWQELY6WGF2CIO9S', 46),
+-- Game 47
+('6502G192147P3EY6VFIMQTED2I', 47),
+('ZFDL0IADL53B3FZ1GK8VW2XYWD', 47),
+('DSO1C22WP79ZWO7EX5ARTBZP99', 47),
+('J7MAPZ1H0URW8VTTHK644N007B', 47),
+('ZJE9E65KRTZT8MXEBCNIKJPNDC', 47),
+('EL3OWMBKZZVBDTS2GSXNFCTYQM', 47),
+('S76RDSGO7FPWZN44FQMJQTW110', 47),
+('0O6UC2JLDO83TJNTD9ZK0ZZ71E', 47),
+('3031XGDQBYA0H64T376IRSCN99', 47),
+('LVJ2NS6EJHZXBGO9EWROOJBZEX', 47),
+-- Game 48
+('9FYQJCZWXNAHZWKUA2L63EYVEK', 48),
+('6FFRJ4OT2HLY81SI2K00OY5K6D', 48),
+('4MWWNS57NGD085SKLO74WL3W09', 48),
+('MWQIFV981FX6LXEOVWTNLU3YAN', 48),
+('ZDL0AVJQ49BH1G9PIN116SBIJA', 48),
+('1WF1SH7X105G51VUAMDZQ1W6F0', 48),
+('0QXKB4K0IU0MFFZHVG6V731S4K', 48),
+('TPRUUMWHFBMYWV7XLHYR0J3N63', 48),
+('ZJIZGVRJB8M1DSN0093DAI159N', 48),
+('T4PXE8IPOWG58483P36PC0K5SC', 48),
+-- Game 49
+('9YDIEXAIIQ4R8LZ7FMKZHYCYJ9', 49),
+('Q07X1NJ79FWCUZ9JQFVO82800B', 49),
+('VSOD4A0BFBBZUTWMCR0RXX6YNY', 49),
+('DE9WG434XALED7WZP5CWNENAXM', 49),
+('B00DCVIZHYIQHY49R47ZJTSA4A', 49),
+('VZBQEMCWFZPKYN21FA52BW6E87', 49),
+('T4HQV4B49EPLY8WR8UWCJVFAEU', 49),
+('FPOZ1K351L8O0RY1QH9NXHXSGI', 49),
+('XI3JBAVTKEDD0D4LS4TSOIAPZT', 49),
+('G99IM7HKYYH81ZQQHEW3AZJMFP', 49),
+-- Game 50
+('FQLVH8TJQZWYNXF3RT8SYCGEE2', 50),
+('3SZR4R4AGI5GFCYAZN464H0FD5', 50),
+('OUPD947V2KBDN4SF31AGP4EXBD', 50),
+('O7WNR7VXA5BNK1OT6PWLJB4AZ0', 50),
+('0PAEL55GQUNA9EU31QJGN4KMWN', 50),
+('V1WPV26BW4REVINHMNA9WD35O7', 50),
+('7RVP15ZPIILO10PWZ8N2BYYTMO', 50),
+('KM5VZP19MU2IAIMJM8OGG8WO40', 50),
+('6TN8IS591YOX08L5TQXP371EC8', 50),
+('GJFGBLC5SY367ITK4HQBLJ8MZC', 50),
+-- Game 51
+('HFUIPRKA60UXOI9BYNEOS8LAHX', 51),
+('TAZ0ZSISA654C636UH1O9DHRAT', 51),
+('UM00OF6347W4EI47ZKD3B31B1K', 51),
+('JXD7ACRVYW3PP01THJ2OJG3MSY', 51),
+('TBB40Y3MV56854T7E7PVFVPTK5', 51),
+('FL9LY4C7V4X0ZXD48ATDJ86C89', 51),
+('VBUMQZ5FPA67M4V3XVKCUEKSBQ', 51),
+('G7IPCLF1AWB7JOLCYWO2SI675P', 51),
+('7I3BEQQKPJG1NBUU4IKZ315GGJ', 51),
+('I4Y02RXOZWAU66W98WCK7U7HYI', 51),
+-- Game 52
+('PJQZ0PYU47IOII4NHWPNON3Q1E', 52),
+('EITD16L02RATWAI1YWY7Q1DFBU', 52),
+('FT10SWONGA753ZMZXJTFZLXBF4', 52),
+('WS6Z617OXAOJVPN7VBY12TVKFY', 52),
+('Q2TEALIITXM67TXFY3I6O4U19Z', 52),
+('5241VMRZS2AAKXZS2IU8WT8761', 52),
+('B9EJ005C8IAZUWGKY6NZ12Y50D', 52),
+('76AUSEVHJIY5ULYZQFO2YC777C', 52),
+('3KEC63GYVMMEJ0V71XWY9CD2YH', 52),
+('35OXHB0C6YEKLJ2ND9U093RP51', 52),
+-- Game 53
+('QKTXXTVKQ8FMHRI1CR7M9512JG', 53),
+('GIQV4JH7WTJT8E46W18EB3X6X8', 53),
+('H1HGT1G1RFAYL05L1ZCMXRBKPJ', 53),
+('7NN7WNSRUJWXEEKAQA5ZSG9DOJ', 53),
+('YGBWG8KGAWDQO0AIERNCTUJYSH', 53),
+('R7SBZI46LWWL3WRE0YM40TQ880', 53),
+('FC5R5S26EBYY35LLV9IIIWM6ZH', 53),
+('8FTB1469TP74PDCREY5XASZC5D', 53),
+('EL7AV0KBP8JC33HWW34W6C973K', 53),
+('TCG5QQYHG4BYQPEIFHNHQ1O4U4', 53),
+-- Game 54
+('BOER39MQ79UIZAN7TI1FLILST5', 54),
+('BH9DQ1XNMRKHJR12A8KJB29PJH', 54),
+('WNCTLRCGGUBASYQKJCC3M23Z71', 54),
+('KKJJ54V2NL9MMC8FJZNQIY1SZ3', 54),
+('NF20OEI5K0DI4UXK1TFC7UYNWB', 54),
+('0J4XTVA7QM4WAQG7BVISSKXXHK', 54),
+('D3F35RYVAY2TLYT9VHMKIL9DMR', 54),
+('30DDPU2BSF668WAHAUD65YC2C0', 54),
+('5FW5C9O06K3NSQAIPUXHC934TL', 54),
+('2X9R03CCFS44W347ONN12Y6M7S', 54),
+-- Game 55
+('9926XGRJOVS1GODQVFITZN1RWU', 55),
+('WPIJS5IT0OCCXEKPULBVZVOT8O', 55),
+('5GCEQ4L6EHMFHU13RHUUJ1A7TI', 55),
+('99SRE6RIIW4BSKCK5DATZOQ1RT', 55),
+('M1EUE5PQ45LU8BTDFLTDYSKZ3S', 55),
+('KJBO8SP80Q94AMQEYH3CTDAXYK', 55),
+('BGBNXGDKMT64QIYN2OKKN6T2H3', 55),
+('NVCYAL6H9J1W53JSCG25T1UP19', 55),
+('JPSFJRKMZ85VGB2R3YC2LDKL7N', 55),
+('74FUDO3YXLI9XR9FBZAZ5XRRAZ', 55),
+-- Game 56
+('0456FV3YXKX5V1LQV8HKGDRI4V', 56),
+('6CGIHRBAJ73GLVI8709PLAFPDA', 56),
+('JXI6QEJHSXV39HWL2IFZRNYFDN', 56),
+('P2M0H617MDXBXM7N8MYVTGE3PA', 56),
+('186266W37MGZ1WR90GMMFGH0IK', 56),
+('UYYM7IRJ0X6NYTRVCGK1AH804Q', 56),
+('NEKOFXDITM7RT2AVDR9B6X32W7', 56),
+('E58VTHT44WE78FWHARUJR2BTRQ', 56),
+('YX8VDIYL765RORGXL79HLBSS13', 56),
+('KYGX9P6ZSRBVDT1CVTN0NUS8FN', 56),
+-- Game 57
+('ARFX5LMNWJ2FR9EDWFK6LAKPCM', 57),
+('WL58HBUA6V66BYN1ZBEGQN67VT', 57),
+('42EK4R2CN04VWZ9IFEDCTB3Y73', 57),
+('CR5OGGM8CSL0PM71BCTI0BOTFS', 57),
+('OF5E7GISV9L1OHK7NK5P315OTT', 57),
+('22T3N5C7AGN4MBLSMZ0IRKS842', 57),
+('I35PF8A3LU0FY69HLA3T2G1AC9', 57),
+('1A7I3XYMYHR9SR4XKHWMN8YGF9', 57),
+('4YMZLBQ09F9X2X5WHHXTKXNVCI', 57),
+('9ZB96D3LKFYQ7VL81I3X9MJTPH', 57),
+-- Game 58
+('13W851HLQHT0C8WVKBWI7TXBY4', 58),
+('1D6HA7VAUJMY3T7BYONFB85FGD', 58),
+('8Y16C7SYT7H7N7UTP0XMWV5U3P', 58),
+('DBBMRR0RQW0XH6SEZOIBGVDQ6R', 58),
+('H8QJGHWWE8C50OZW1HW6VE4I6A', 58),
+('X9WQC82K1YMW5HTR5PHQIN9HJA', 58),
+('1LT92OJC4QBKKM2LMQOPB361LN', 58),
+('0DSBBKBKDN5B3C57WNHTSY74MN', 58),
+('4UQGOYCMND1W0X2GWZ4J6D7L0M', 58),
+('LBIJDFOB2FONIBR578S1TS6NXX', 58),
+-- Game 59
+('LS6NEH0F9IP3HC8FPMHQV5I91I', 59),
+('NR7XDUYKHH4Q796LQHHUCE839E', 59),
+('B9O0ZUN1R4ZSFMGS75HUIYOOY6', 59),
+('B0ZFFBIY92UHNOKOWEQOAEE36B', 59),
+('C12Q3IDW4GI3ZX547RLJ1AK6SR', 59),
+('DK45RVTBRATWZ74UEYP7C2LKQ9', 59),
+('PVEOQQY748HSSDVEUGNGAJV2MM', 59),
+('RO6S3K17061F8EVIXX525DKCY2', 59),
+('85BIUB1NRG3ABNB2S97UMRU1ML', 59),
+('ZY2LJ09PC8C9GKM4XHZRWFSRW0', 59),
+-- Game 60
+('QASQHAUILRW2COFZRVJNAJ7BGY', 60),
+('LJAOOO3B0Y4HYLCFT8FA5C65AQ', 60),
+('JHEPWOW4A4CGPRTZRLU32YRQX7', 60),
+('6P2JOUBOQLYDTUSWITASJA43CE', 60),
+('EKNVDQZESODW84BLQTGPYA5608', 60),
+('FTZ7SBNZR946JSA85BP7543ZH8', 60),
+('FX18UUYIGID5J1AQTC3ZY5I85G', 60),
+('JKL41A3Q2VPFT11TA33XLIQGES', 60),
+('9O5AFQRUDQLNQSN75QH6J1ARE6', 60),
+('H6JLASERPTELO9CQD7E7T9607H', 60);
 
-
--- GAME STOCK
-insert into GameStock (game, quantity) values (1, 20);
-insert into GameStock (game, quantity) values (2, 25);
-insert into GameStock (game, quantity) values (3, 12);
-insert into GameStock (game, quantity) values (4, 15);
-insert into GameStock (game, quantity) values (5, 9);
-insert into GameStock (game, quantity) values (6, 27);
-insert into GameStock (game, quantity) values (7, 28);
-insert into GameStock (game, quantity) values (8, 20);
-insert into GameStock (game, quantity) values (9, 19);
-insert into GameStock (game, quantity) values (10, 27);
-insert into GameStock (game, quantity) values (11, 4);
-insert into GameStock (game, quantity) values (12, 18);
-insert into GameStock (game, quantity) values (13, 9);
-insert into GameStock (game, quantity) values (14, 19);
-insert into GameStock (game, quantity) values (15, 0);
-insert into GameStock (game, quantity) values (16, 7);
-insert into GameStock (game, quantity) values (17, 19);
-insert into GameStock (game, quantity) values (18, 20);
-insert into GameStock (game, quantity) values (19, 4);
-insert into GameStock (game, quantity) values (20, 15);
-insert into GameStock (game, quantity) values (21, 4);
-insert into GameStock (game, quantity) values (22, 24);
-insert into GameStock (game, quantity) values (23, 30);
-insert into GameStock (game, quantity) values (24, 23);
-insert into GameStock (game, quantity) values (25, 27);
-insert into GameStock (game, quantity) values (26, 24);
-insert into GameStock (game, quantity) values (27, 22);
-insert into GameStock (game, quantity) values (28, 17);
-insert into GameStock (game, quantity) values (29, 28);
-insert into GameStock (game, quantity) values (30, 20);
-insert into GameStock (game, quantity) values (31, 24);
-insert into GameStock (game, quantity) values (32, 27);
-insert into GameStock (game, quantity) values (33, 25);
-insert into GameStock (game, quantity) values (34, 10);
-insert into GameStock (game, quantity) values (35, 29);
-insert into GameStock (game, quantity) values (36, 3);
-insert into GameStock (game, quantity) values (37, 16);
-insert into GameStock (game, quantity) values (38, 2);
-insert into GameStock (game, quantity) values (39, 24);
-insert into GameStock (game, quantity) values (40, 14);
-insert into GameStock (game, quantity) values (41, 1);
-insert into GameStock (game, quantity) values (42, 17);
-insert into GameStock (game, quantity) values (43, 6);
-insert into GameStock (game, quantity) values (44, 3);
-insert into GameStock (game, quantity) values (45, 3);
-insert into GameStock (game, quantity) values (46, 4);
-insert into GameStock (game, quantity) values (47, 14);
-insert into GameStock (game, quantity) values (48, 16);
-insert into GameStock (game, quantity) values (49, 20);
-insert into GameStock (game, quantity) values (50, 0);
-
+/*
 -- GAME MEDIA
 insert into GameMedia (path, game) values ('images/gamemedia/gamemedia_1.jpg', 32);
 insert into GameMedia (path, game) values ('images/gamemedia/gamemedia_2.jpg', 32);
+*/
 
 -- PLATFORM
 insert into Platform (name) values ('Steam');
 insert into Platform (name) values ('EA');
 insert into Platform (name) values ('UbiSoft');
 insert into Platform (name) values ('Epic Games');
+
+
+-- GAME PLAFORM
+INSERT INTO GamePlatform (game, platform) VALUES (1, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (1, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (1, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (1, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (2, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (2, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (3, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (3, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (4, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (4, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (5, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (5, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (6, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (6, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (6, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (7, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (7, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (7, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (8, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (8, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (8, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (9, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (9, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (10, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (10, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (10, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (11, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (11, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (11, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (12, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (12, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (13, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (13, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (14, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (14, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (14, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (15, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (15, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (16, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (16, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (17, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (17, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (18, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (18, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (19, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (19, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (20, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (20, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (20, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (21, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (21, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (21, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (22, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (22, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (22, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (22, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (23, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (23, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (23, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (24, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (24, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (24, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (25, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (25, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (26, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (26, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (27, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (27, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (28, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (28, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (29, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (29, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (29, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (30, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (30, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (31, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (31, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (31, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (32, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (32, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (33, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (33, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (34, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (34, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (34, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (35, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (35, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (36, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (36, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (37, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (37, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (37, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (38, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (38, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (39, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (39, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (39, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (40, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (40, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (41, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (41, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (42, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (42, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (42, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (43, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (43, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (43, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (44, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (44, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (44, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (45, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (45, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (46, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (46, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (46, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (47, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (47, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (47, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (48, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (48, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (49, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (49, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (49, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (50, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (50, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (50, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (51, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (51, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (52, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (52, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (52, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (53, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (53, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (53, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (54, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (54, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (55, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (55, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (55, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (56, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (56, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (57, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (57, 3);
+INSERT INTO GamePlatform (game, platform) VALUES (58, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (58, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (59, 2);
+INSERT INTO GamePlatform (game, platform) VALUES (59, 4);
+INSERT INTO GamePlatform (game, platform) VALUES (60, 1);
+INSERT INTO GamePlatform (game, platform) VALUES (60, 3);
 
 
 -- CATEGORY (33)
@@ -719,6 +1076,271 @@ insert into Category (name) values ('PvE');
 insert into Category (name) values ('Co-op');
 
 
+-- GAME CATEGORY
+INSERT INTO GameCategory (game, category) VALUES (1, 17);
+INSERT INTO GameCategory (game, category) VALUES (1, 15);
+INSERT INTO GameCategory (game, category) VALUES (1, 27);
+INSERT INTO GameCategory (game, category) VALUES (1, 2);
+INSERT INTO GameCategory (game, category) VALUES (1, 33);
+INSERT INTO GameCategory (game, category) VALUES (1, 14);
+INSERT INTO GameCategory (game, category) VALUES (2, 11);
+INSERT INTO GameCategory (game, category) VALUES (2, 21);
+INSERT INTO GameCategory (game, category) VALUES (2, 32);
+INSERT INTO GameCategory (game, category) VALUES (2, 2);
+INSERT INTO GameCategory (game, category) VALUES (2, 10);
+INSERT INTO GameCategory (game, category) VALUES (2, 28);
+INSERT INTO GameCategory (game, category) VALUES (3, 13);
+INSERT INTO GameCategory (game, category) VALUES (3, 33);
+INSERT INTO GameCategory (game, category) VALUES (3, 30);
+INSERT INTO GameCategory (game, category) VALUES (3, 1);
+INSERT INTO GameCategory (game, category) VALUES (3, 5);
+INSERT INTO GameCategory (game, category) VALUES (3, 4);
+INSERT INTO GameCategory (game, category) VALUES (4, 13);
+INSERT INTO GameCategory (game, category) VALUES (4, 1);
+INSERT INTO GameCategory (game, category) VALUES (4, 24);
+INSERT INTO GameCategory (game, category) VALUES (4, 28);
+INSERT INTO GameCategory (game, category) VALUES (5, 18);
+INSERT INTO GameCategory (game, category) VALUES (5, 25);
+INSERT INTO GameCategory (game, category) VALUES (5, 10);
+INSERT INTO GameCategory (game, category) VALUES (5, 16);
+INSERT INTO GameCategory (game, category) VALUES (5, 17);
+INSERT INTO GameCategory (game, category) VALUES (6, 8);
+INSERT INTO GameCategory (game, category) VALUES (6, 18);
+INSERT INTO GameCategory (game, category) VALUES (6, 21);
+INSERT INTO GameCategory (game, category) VALUES (6, 16);
+INSERT INTO GameCategory (game, category) VALUES (6, 9);
+INSERT INTO GameCategory (game, category) VALUES (6, 13);
+INSERT INTO GameCategory (game, category) VALUES (7, 31);
+INSERT INTO GameCategory (game, category) VALUES (7, 28);
+INSERT INTO GameCategory (game, category) VALUES (7, 3);
+INSERT INTO GameCategory (game, category) VALUES (7, 12);
+INSERT INTO GameCategory (game, category) VALUES (8, 9);
+INSERT INTO GameCategory (game, category) VALUES (8, 22);
+INSERT INTO GameCategory (game, category) VALUES (8, 24);
+INSERT INTO GameCategory (game, category) VALUES (9, 20);
+INSERT INTO GameCategory (game, category) VALUES (9, 30);
+INSERT INTO GameCategory (game, category) VALUES (9, 22);
+INSERT INTO GameCategory (game, category) VALUES (9, 12);
+INSERT INTO GameCategory (game, category) VALUES (9, 17);
+INSERT INTO GameCategory (game, category) VALUES (9, 21);
+INSERT INTO GameCategory (game, category) VALUES (10, 6);
+INSERT INTO GameCategory (game, category) VALUES (10, 7);
+INSERT INTO GameCategory (game, category) VALUES (10, 11);
+INSERT INTO GameCategory (game, category) VALUES (11, 19);
+INSERT INTO GameCategory (game, category) VALUES (11, 28);
+INSERT INTO GameCategory (game, category) VALUES (11, 3);
+INSERT INTO GameCategory (game, category) VALUES (11, 23);
+INSERT INTO GameCategory (game, category) VALUES (11, 30);
+INSERT INTO GameCategory (game, category) VALUES (12, 22);
+INSERT INTO GameCategory (game, category) VALUES (12, 32);
+INSERT INTO GameCategory (game, category) VALUES (13, 9);
+INSERT INTO GameCategory (game, category) VALUES (13, 12);
+INSERT INTO GameCategory (game, category) VALUES (13, 10);
+INSERT INTO GameCategory (game, category) VALUES (13, 18);
+INSERT INTO GameCategory (game, category) VALUES (13, 28);
+INSERT INTO GameCategory (game, category) VALUES (14, 7);
+INSERT INTO GameCategory (game, category) VALUES (14, 19);
+INSERT INTO GameCategory (game, category) VALUES (14, 5);
+INSERT INTO GameCategory (game, category) VALUES (15, 21);
+INSERT INTO GameCategory (game, category) VALUES (15, 24);
+INSERT INTO GameCategory (game, category) VALUES (15, 18);
+INSERT INTO GameCategory (game, category) VALUES (15, 30);
+INSERT INTO GameCategory (game, category) VALUES (15, 19);
+INSERT INTO GameCategory (game, category) VALUES (16, 20);
+INSERT INTO GameCategory (game, category) VALUES (16, 31);
+INSERT INTO GameCategory (game, category) VALUES (16, 26);
+INSERT INTO GameCategory (game, category) VALUES (16, 30);
+INSERT INTO GameCategory (game, category) VALUES (16, 25);
+INSERT INTO GameCategory (game, category) VALUES (17, 17);
+INSERT INTO GameCategory (game, category) VALUES (17, 14);
+INSERT INTO GameCategory (game, category) VALUES (17, 6);
+INSERT INTO GameCategory (game, category) VALUES (17, 3);
+INSERT INTO GameCategory (game, category) VALUES (18, 10);
+INSERT INTO GameCategory (game, category) VALUES (18, 26);
+INSERT INTO GameCategory (game, category) VALUES (18, 2);
+INSERT INTO GameCategory (game, category) VALUES (18, 30);
+INSERT INTO GameCategory (game, category) VALUES (18, 7);
+INSERT INTO GameCategory (game, category) VALUES (18, 9);
+INSERT INTO GameCategory (game, category) VALUES (19, 12);
+INSERT INTO GameCategory (game, category) VALUES (19, 29);
+INSERT INTO GameCategory (game, category) VALUES (19, 9);
+INSERT INTO GameCategory (game, category) VALUES (19, 5);
+INSERT INTO GameCategory (game, category) VALUES (19, 19);
+INSERT INTO GameCategory (game, category) VALUES (19, 11);
+INSERT INTO GameCategory (game, category) VALUES (20, 25);
+INSERT INTO GameCategory (game, category) VALUES (20, 27);
+INSERT INTO GameCategory (game, category) VALUES (21, 31);
+INSERT INTO GameCategory (game, category) VALUES (21, 13);
+INSERT INTO GameCategory (game, category) VALUES (21, 3);
+INSERT INTO GameCategory (game, category) VALUES (21, 26);
+INSERT INTO GameCategory (game, category) VALUES (21, 2);
+INSERT INTO GameCategory (game, category) VALUES (21, 29);
+INSERT INTO GameCategory (game, category) VALUES (22, 17);
+INSERT INTO GameCategory (game, category) VALUES (22, 14);
+INSERT INTO GameCategory (game, category) VALUES (22, 32);
+INSERT INTO GameCategory (game, category) VALUES (22, 12);
+INSERT INTO GameCategory (game, category) VALUES (23, 6);
+INSERT INTO GameCategory (game, category) VALUES (23, 4);
+INSERT INTO GameCategory (game, category) VALUES (23, 29);
+INSERT INTO GameCategory (game, category) VALUES (23, 20);
+INSERT INTO GameCategory (game, category) VALUES (23, 26);
+INSERT INTO GameCategory (game, category) VALUES (24, 29);
+INSERT INTO GameCategory (game, category) VALUES (24, 1);
+INSERT INTO GameCategory (game, category) VALUES (25, 11);
+INSERT INTO GameCategory (game, category) VALUES (25, 24);
+INSERT INTO GameCategory (game, category) VALUES (25, 17);
+INSERT INTO GameCategory (game, category) VALUES (25, 19);
+INSERT INTO GameCategory (game, category) VALUES (25, 14);
+INSERT INTO GameCategory (game, category) VALUES (26, 9);
+INSERT INTO GameCategory (game, category) VALUES (26, 5);
+INSERT INTO GameCategory (game, category) VALUES (26, 30);
+INSERT INTO GameCategory (game, category) VALUES (26, 29);
+INSERT INTO GameCategory (game, category) VALUES (26, 8);
+INSERT INTO GameCategory (game, category) VALUES (26, 13);
+INSERT INTO GameCategory (game, category) VALUES (27, 29);
+INSERT INTO GameCategory (game, category) VALUES (27, 30);
+INSERT INTO GameCategory (game, category) VALUES (27, 20);
+INSERT INTO GameCategory (game, category) VALUES (28, 14);
+INSERT INTO GameCategory (game, category) VALUES (28, 26);
+INSERT INTO GameCategory (game, category) VALUES (28, 32);
+INSERT INTO GameCategory (game, category) VALUES (28, 4);
+INSERT INTO GameCategory (game, category) VALUES (28, 5);
+INSERT INTO GameCategory (game, category) VALUES (29, 32);
+INSERT INTO GameCategory (game, category) VALUES (29, 9);
+INSERT INTO GameCategory (game, category) VALUES (29, 29);
+INSERT INTO GameCategory (game, category) VALUES (30, 8);
+INSERT INTO GameCategory (game, category) VALUES (30, 20);
+INSERT INTO GameCategory (game, category) VALUES (30, 2);
+INSERT INTO GameCategory (game, category) VALUES (31, 28);
+INSERT INTO GameCategory (game, category) VALUES (31, 9);
+INSERT INTO GameCategory (game, category) VALUES (31, 7);
+INSERT INTO GameCategory (game, category) VALUES (31, 6);
+INSERT INTO GameCategory (game, category) VALUES (31, 31);
+INSERT INTO GameCategory (game, category) VALUES (32, 21);
+INSERT INTO GameCategory (game, category) VALUES (32, 33);
+INSERT INTO GameCategory (game, category) VALUES (32, 32);
+INSERT INTO GameCategory (game, category) VALUES (32, 23);
+INSERT INTO GameCategory (game, category) VALUES (32, 29);
+INSERT INTO GameCategory (game, category) VALUES (33, 2);
+INSERT INTO GameCategory (game, category) VALUES (33, 6);
+INSERT INTO GameCategory (game, category) VALUES (33, 25);
+INSERT INTO GameCategory (game, category) VALUES (34, 16);
+INSERT INTO GameCategory (game, category) VALUES (34, 2);
+INSERT INTO GameCategory (game, category) VALUES (34, 13);
+INSERT INTO GameCategory (game, category) VALUES (34, 15);
+INSERT INTO GameCategory (game, category) VALUES (34, 14);
+INSERT INTO GameCategory (game, category) VALUES (34, 4);
+INSERT INTO GameCategory (game, category) VALUES (35, 11);
+INSERT INTO GameCategory (game, category) VALUES (35, 30);
+INSERT INTO GameCategory (game, category) VALUES (35, 25);
+INSERT INTO GameCategory (game, category) VALUES (35, 22);
+INSERT INTO GameCategory (game, category) VALUES (36, 29);
+INSERT INTO GameCategory (game, category) VALUES (36, 22);
+INSERT INTO GameCategory (game, category) VALUES (36, 16);
+INSERT INTO GameCategory (game, category) VALUES (37, 9);
+INSERT INTO GameCategory (game, category) VALUES (37, 32);
+INSERT INTO GameCategory (game, category) VALUES (37, 15);
+INSERT INTO GameCategory (game, category) VALUES (37, 19);
+INSERT INTO GameCategory (game, category) VALUES (37, 3);
+INSERT INTO GameCategory (game, category) VALUES (37, 1);
+INSERT INTO GameCategory (game, category) VALUES (38, 12);
+INSERT INTO GameCategory (game, category) VALUES (38, 16);
+INSERT INTO GameCategory (game, category) VALUES (38, 7);
+INSERT INTO GameCategory (game, category) VALUES (38, 29);
+INSERT INTO GameCategory (game, category) VALUES (39, 11);
+INSERT INTO GameCategory (game, category) VALUES (39, 28);
+INSERT INTO GameCategory (game, category) VALUES (39, 10);
+INSERT INTO GameCategory (game, category) VALUES (40, 26);
+INSERT INTO GameCategory (game, category) VALUES (40, 23);
+INSERT INTO GameCategory (game, category) VALUES (41, 20);
+INSERT INTO GameCategory (game, category) VALUES (41, 4);
+INSERT INTO GameCategory (game, category) VALUES (41, 2);
+INSERT INTO GameCategory (game, category) VALUES (41, 14);
+INSERT INTO GameCategory (game, category) VALUES (41, 16);
+INSERT INTO GameCategory (game, category) VALUES (41, 13);
+INSERT INTO GameCategory (game, category) VALUES (42, 28);
+INSERT INTO GameCategory (game, category) VALUES (42, 12);
+INSERT INTO GameCategory (game, category) VALUES (42, 3);
+INSERT INTO GameCategory (game, category) VALUES (43, 11);
+INSERT INTO GameCategory (game, category) VALUES (43, 1);
+INSERT INTO GameCategory (game, category) VALUES (43, 30);
+INSERT INTO GameCategory (game, category) VALUES (44, 20);
+INSERT INTO GameCategory (game, category) VALUES (44, 19);
+INSERT INTO GameCategory (game, category) VALUES (44, 3);
+INSERT INTO GameCategory (game, category) VALUES (44, 10);
+INSERT INTO GameCategory (game, category) VALUES (44, 30);
+INSERT INTO GameCategory (game, category) VALUES (45, 26);
+INSERT INTO GameCategory (game, category) VALUES (45, 13);
+INSERT INTO GameCategory (game, category) VALUES (45, 23);
+INSERT INTO GameCategory (game, category) VALUES (46, 7);
+INSERT INTO GameCategory (game, category) VALUES (46, 31);
+INSERT INTO GameCategory (game, category) VALUES (46, 2);
+INSERT INTO GameCategory (game, category) VALUES (46, 14);
+INSERT INTO GameCategory (game, category) VALUES (46, 10);
+INSERT INTO GameCategory (game, category) VALUES (46, 25);
+INSERT INTO GameCategory (game, category) VALUES (47, 1);
+INSERT INTO GameCategory (game, category) VALUES (47, 32);
+INSERT INTO GameCategory (game, category) VALUES (48, 26);
+INSERT INTO GameCategory (game, category) VALUES (48, 13);
+INSERT INTO GameCategory (game, category) VALUES (48, 28);
+INSERT INTO GameCategory (game, category) VALUES (48, 16);
+INSERT INTO GameCategory (game, category) VALUES (48, 27);
+INSERT INTO GameCategory (game, category) VALUES (49, 16);
+INSERT INTO GameCategory (game, category) VALUES (49, 26);
+INSERT INTO GameCategory (game, category) VALUES (49, 29);
+INSERT INTO GameCategory (game, category) VALUES (49, 6);
+INSERT INTO GameCategory (game, category) VALUES (49, 30);
+INSERT INTO GameCategory (game, category) VALUES (50, 18);
+INSERT INTO GameCategory (game, category) VALUES (50, 15);
+INSERT INTO GameCategory (game, category) VALUES (50, 6);
+INSERT INTO GameCategory (game, category) VALUES (50, 9);
+INSERT INTO GameCategory (game, category) VALUES (50, 5);
+INSERT INTO GameCategory (game, category) VALUES (51, 32);
+INSERT INTO GameCategory (game, category) VALUES (51, 28);
+INSERT INTO GameCategory (game, category) VALUES (51, 25);
+INSERT INTO GameCategory (game, category) VALUES (51, 17);
+INSERT INTO GameCategory (game, category) VALUES (52, 25);
+INSERT INTO GameCategory (game, category) VALUES (52, 12);
+INSERT INTO GameCategory (game, category) VALUES (52, 6);
+INSERT INTO GameCategory (game, category) VALUES (52, 3);
+INSERT INTO GameCategory (game, category) VALUES (52, 4);
+INSERT INTO GameCategory (game, category) VALUES (52, 27);
+INSERT INTO GameCategory (game, category) VALUES (53, 33);
+INSERT INTO GameCategory (game, category) VALUES (53, 9);
+INSERT INTO GameCategory (game, category) VALUES (53, 4);
+INSERT INTO GameCategory (game, category) VALUES (53, 27);
+INSERT INTO GameCategory (game, category) VALUES (54, 29);
+INSERT INTO GameCategory (game, category) VALUES (54, 13);
+INSERT INTO GameCategory (game, category) VALUES (54, 5);
+INSERT INTO GameCategory (game, category) VALUES (54, 23);
+INSERT INTO GameCategory (game, category) VALUES (54, 16);
+INSERT INTO GameCategory (game, category) VALUES (54, 30);
+INSERT INTO GameCategory (game, category) VALUES (55, 3);
+INSERT INTO GameCategory (game, category) VALUES (55, 13);
+INSERT INTO GameCategory (game, category) VALUES (55, 32);
+INSERT INTO GameCategory (game, category) VALUES (55, 7);
+INSERT INTO GameCategory (game, category) VALUES (55, 25);
+INSERT INTO GameCategory (game, category) VALUES (56, 10);
+INSERT INTO GameCategory (game, category) VALUES (56, 29);
+INSERT INTO GameCategory (game, category) VALUES (56, 22);
+INSERT INTO GameCategory (game, category) VALUES (57, 7);
+INSERT INTO GameCategory (game, category) VALUES (57, 30);
+INSERT INTO GameCategory (game, category) VALUES (57, 10);
+INSERT INTO GameCategory (game, category) VALUES (57, 14);
+INSERT INTO GameCategory (game, category) VALUES (57, 21);
+INSERT INTO GameCategory (game, category) VALUES (57, 16);
+INSERT INTO GameCategory (game, category) VALUES (58, 22);
+INSERT INTO GameCategory (game, category) VALUES (58, 13);
+INSERT INTO GameCategory (game, category) VALUES (58, 10);
+INSERT INTO GameCategory (game, category) VALUES (58, 7);
+INSERT INTO GameCategory (game, category) VALUES (58, 6);
+INSERT INTO GameCategory (game, category) VALUES (59, 16);
+INSERT INTO GameCategory (game, category) VALUES (59, 1);
+INSERT INTO GameCategory (game, category) VALUES (59, 12);
+INSERT INTO GameCategory (game, category) VALUES (60, 1);
+INSERT INTO GameCategory (game, category) VALUES (60, 5);
+
+
 -- LANGUAGE (22)
 insert into Language (name) values ('English');
 insert into Language (name) values ('Spanish');
@@ -744,385 +1366,380 @@ insert into Language (name) values ('Hungarian');
 insert into Language (name) values ('Other');
 
 
+-- GAME LANGUAGE
+INSERT INTO GameLanguage (game, language) VALUES (1, 17);
+INSERT INTO GameLanguage (game, language) VALUES (2, 14);
+INSERT INTO GameLanguage (game, language) VALUES (2, 16);
+INSERT INTO GameLanguage (game, language) VALUES (2, 7);
+INSERT INTO GameLanguage (game, language) VALUES (2, 12);
+INSERT INTO GameLanguage (game, language) VALUES (2, 8);
+INSERT INTO GameLanguage (game, language) VALUES (2, 10);
+INSERT INTO GameLanguage (game, language) VALUES (3, 7);
+INSERT INTO GameLanguage (game, language) VALUES (3, 20);
+INSERT INTO GameLanguage (game, language) VALUES (3, 11);
+INSERT INTO GameLanguage (game, language) VALUES (3, 16);
+INSERT INTO GameLanguage (game, language) VALUES (3, 21);
+INSERT INTO GameLanguage (game, language) VALUES (4, 21);
+INSERT INTO GameLanguage (game, language) VALUES (4, 5);
+INSERT INTO GameLanguage (game, language) VALUES (4, 1);
+INSERT INTO GameLanguage (game, language) VALUES (4, 10);
+INSERT INTO GameLanguage (game, language) VALUES (4, 2);
+INSERT INTO GameLanguage (game, language) VALUES (4, 9);
+INSERT INTO GameLanguage (game, language) VALUES (5, 5);
+INSERT INTO GameLanguage (game, language) VALUES (5, 22);
+INSERT INTO GameLanguage (game, language) VALUES (5, 4);
+INSERT INTO GameLanguage (game, language) VALUES (5, 2);
+INSERT INTO GameLanguage (game, language) VALUES (5, 3);
+INSERT INTO GameLanguage (game, language) VALUES (5, 11);
+INSERT INTO GameLanguage (game, language) VALUES (6, 8);
+INSERT INTO GameLanguage (game, language) VALUES (6, 14);
+INSERT INTO GameLanguage (game, language) VALUES (6, 5);
+INSERT INTO GameLanguage (game, language) VALUES (6, 16);
+INSERT INTO GameLanguage (game, language) VALUES (6, 21);
+INSERT INTO GameLanguage (game, language) VALUES (6, 18);
+INSERT INTO GameLanguage (game, language) VALUES (6, 1);
+INSERT INTO GameLanguage (game, language) VALUES (6, 3);
+INSERT INTO GameLanguage (game, language) VALUES (7, 8);
+INSERT INTO GameLanguage (game, language) VALUES (7, 13);
+INSERT INTO GameLanguage (game, language) VALUES (7, 6);
+INSERT INTO GameLanguage (game, language) VALUES (7, 9);
+INSERT INTO GameLanguage (game, language) VALUES (8, 9);
+INSERT INTO GameLanguage (game, language) VALUES (8, 14);
+INSERT INTO GameLanguage (game, language) VALUES (9, 20);
+INSERT INTO GameLanguage (game, language) VALUES (9, 17);
+INSERT INTO GameLanguage (game, language) VALUES (9, 6);
+INSERT INTO GameLanguage (game, language) VALUES (9, 3);
+INSERT INTO GameLanguage (game, language) VALUES (10, 11);
+INSERT INTO GameLanguage (game, language) VALUES (10, 18);
+INSERT INTO GameLanguage (game, language) VALUES (11, 5);
+INSERT INTO GameLanguage (game, language) VALUES (11, 3);
+INSERT INTO GameLanguage (game, language) VALUES (11, 7);
+INSERT INTO GameLanguage (game, language) VALUES (12, 21);
+INSERT INTO GameLanguage (game, language) VALUES (12, 11);
+INSERT INTO GameLanguage (game, language) VALUES (13, 18);
+INSERT INTO GameLanguage (game, language) VALUES (13, 15);
+INSERT INTO GameLanguage (game, language) VALUES (14, 17);
+INSERT INTO GameLanguage (game, language) VALUES (14, 12);
+INSERT INTO GameLanguage (game, language) VALUES (14, 5);
+INSERT INTO GameLanguage (game, language) VALUES (14, 20);
+INSERT INTO GameLanguage (game, language) VALUES (15, 15);
+INSERT INTO GameLanguage (game, language) VALUES (15, 17);
+INSERT INTO GameLanguage (game, language) VALUES (15, 12);
+INSERT INTO GameLanguage (game, language) VALUES (15, 1);
+INSERT INTO GameLanguage (game, language) VALUES (15, 7);
+INSERT INTO GameLanguage (game, language) VALUES (15, 16);
+INSERT INTO GameLanguage (game, language) VALUES (15, 5);
+INSERT INTO GameLanguage (game, language) VALUES (15, 9);
+INSERT INTO GameLanguage (game, language) VALUES (16, 3);
+INSERT INTO GameLanguage (game, language) VALUES (16, 5);
+INSERT INTO GameLanguage (game, language) VALUES (16, 10);
+INSERT INTO GameLanguage (game, language) VALUES (16, 4);
+INSERT INTO GameLanguage (game, language) VALUES (16, 11);
+INSERT INTO GameLanguage (game, language) VALUES (16, 9);
+INSERT INTO GameLanguage (game, language) VALUES (16, 6);
+INSERT INTO GameLanguage (game, language) VALUES (16, 18);
+INSERT INTO GameLanguage (game, language) VALUES (17, 15);
+INSERT INTO GameLanguage (game, language) VALUES (17, 21);
+INSERT INTO GameLanguage (game, language) VALUES (17, 6);
+INSERT INTO GameLanguage (game, language) VALUES (17, 5);
+INSERT INTO GameLanguage (game, language) VALUES (17, 7);
+INSERT INTO GameLanguage (game, language) VALUES (18, 15);
+INSERT INTO GameLanguage (game, language) VALUES (19, 19);
+INSERT INTO GameLanguage (game, language) VALUES (19, 17);
+INSERT INTO GameLanguage (game, language) VALUES (19, 21);
+INSERT INTO GameLanguage (game, language) VALUES (19, 22);
+INSERT INTO GameLanguage (game, language) VALUES (19, 12);
+INSERT INTO GameLanguage (game, language) VALUES (19, 9);
+INSERT INTO GameLanguage (game, language) VALUES (19, 20);
+INSERT INTO GameLanguage (game, language) VALUES (19, 2);
+INSERT INTO GameLanguage (game, language) VALUES (20, 15);
+INSERT INTO GameLanguage (game, language) VALUES (21, 8);
+INSERT INTO GameLanguage (game, language) VALUES (21, 16);
+INSERT INTO GameLanguage (game, language) VALUES (21, 2);
+INSERT INTO GameLanguage (game, language) VALUES (21, 22);
+INSERT INTO GameLanguage (game, language) VALUES (21, 10);
+INSERT INTO GameLanguage (game, language) VALUES (21, 13);
+INSERT INTO GameLanguage (game, language) VALUES (21, 9);
+INSERT INTO GameLanguage (game, language) VALUES (22, 3);
+INSERT INTO GameLanguage (game, language) VALUES (22, 10);
+INSERT INTO GameLanguage (game, language) VALUES (23, 9);
+INSERT INTO GameLanguage (game, language) VALUES (23, 3);
+INSERT INTO GameLanguage (game, language) VALUES (23, 1);
+INSERT INTO GameLanguage (game, language) VALUES (23, 11);
+INSERT INTO GameLanguage (game, language) VALUES (23, 6);
+INSERT INTO GameLanguage (game, language) VALUES (24, 17);
+INSERT INTO GameLanguage (game, language) VALUES (24, 19);
+INSERT INTO GameLanguage (game, language) VALUES (24, 15);
+INSERT INTO GameLanguage (game, language) VALUES (25, 20);
+INSERT INTO GameLanguage (game, language) VALUES (25, 5);
+INSERT INTO GameLanguage (game, language) VALUES (25, 14);
+INSERT INTO GameLanguage (game, language) VALUES (26, 5);
+INSERT INTO GameLanguage (game, language) VALUES (26, 19);
+INSERT INTO GameLanguage (game, language) VALUES (26, 14);
+INSERT INTO GameLanguage (game, language) VALUES (26, 13);
+INSERT INTO GameLanguage (game, language) VALUES (26, 6);
+INSERT INTO GameLanguage (game, language) VALUES (26, 11);
+INSERT INTO GameLanguage (game, language) VALUES (27, 20);
+INSERT INTO GameLanguage (game, language) VALUES (27, 18);
+INSERT INTO GameLanguage (game, language) VALUES (27, 16);
+INSERT INTO GameLanguage (game, language) VALUES (27, 6);
+INSERT INTO GameLanguage (game, language) VALUES (28, 6);
+INSERT INTO GameLanguage (game, language) VALUES (28, 17);
+INSERT INTO GameLanguage (game, language) VALUES (28, 18);
+INSERT INTO GameLanguage (game, language) VALUES (29, 21);
+INSERT INTO GameLanguage (game, language) VALUES (29, 14);
+INSERT INTO GameLanguage (game, language) VALUES (30, 12);
+INSERT INTO GameLanguage (game, language) VALUES (30, 4);
+INSERT INTO GameLanguage (game, language) VALUES (31, 6);
+INSERT INTO GameLanguage (game, language) VALUES (31, 17);
+INSERT INTO GameLanguage (game, language) VALUES (31, 14);
+INSERT INTO GameLanguage (game, language) VALUES (31, 5);
+INSERT INTO GameLanguage (game, language) VALUES (31, 16);
+INSERT INTO GameLanguage (game, language) VALUES (32, 16);
+INSERT INTO GameLanguage (game, language) VALUES (32, 13);
+INSERT INTO GameLanguage (game, language) VALUES (32, 10);
+INSERT INTO GameLanguage (game, language) VALUES (32, 11);
+INSERT INTO GameLanguage (game, language) VALUES (32, 4);
+INSERT INTO GameLanguage (game, language) VALUES (32, 21);
+INSERT INTO GameLanguage (game, language) VALUES (32, 15);
+INSERT INTO GameLanguage (game, language) VALUES (32, 3);
+INSERT INTO GameLanguage (game, language) VALUES (33, 16);
+INSERT INTO GameLanguage (game, language) VALUES (33, 13);
+INSERT INTO GameLanguage (game, language) VALUES (34, 9);
+INSERT INTO GameLanguage (game, language) VALUES (34, 17);
+INSERT INTO GameLanguage (game, language) VALUES (34, 20);
+INSERT INTO GameLanguage (game, language) VALUES (34, 22);
+INSERT INTO GameLanguage (game, language) VALUES (35, 11);
+INSERT INTO GameLanguage (game, language) VALUES (35, 1);
+INSERT INTO GameLanguage (game, language) VALUES (35, 19);
+INSERT INTO GameLanguage (game, language) VALUES (35, 6);
+INSERT INTO GameLanguage (game, language) VALUES (36, 17);
+INSERT INTO GameLanguage (game, language) VALUES (36, 7);
+INSERT INTO GameLanguage (game, language) VALUES (37, 10);
+INSERT INTO GameLanguage (game, language) VALUES (37, 18);
+INSERT INTO GameLanguage (game, language) VALUES (37, 21);
+INSERT INTO GameLanguage (game, language) VALUES (37, 8);
+INSERT INTO GameLanguage (game, language) VALUES (37, 7);
+INSERT INTO GameLanguage (game, language) VALUES (37, 12);
+INSERT INTO GameLanguage (game, language) VALUES (38, 21);
+INSERT INTO GameLanguage (game, language) VALUES (38, 22);
+INSERT INTO GameLanguage (game, language) VALUES (38, 12);
+INSERT INTO GameLanguage (game, language) VALUES (38, 2);
+INSERT INTO GameLanguage (game, language) VALUES (38, 5);
+INSERT INTO GameLanguage (game, language) VALUES (39, 14);
+INSERT INTO GameLanguage (game, language) VALUES (39, 12);
+INSERT INTO GameLanguage (game, language) VALUES (39, 7);
+INSERT INTO GameLanguage (game, language) VALUES (40, 11);
+INSERT INTO GameLanguage (game, language) VALUES (41, 11);
+INSERT INTO GameLanguage (game, language) VALUES (41, 13);
+INSERT INTO GameLanguage (game, language) VALUES (41, 12);
+INSERT INTO GameLanguage (game, language) VALUES (41, 19);
+INSERT INTO GameLanguage (game, language) VALUES (41, 18);
+INSERT INTO GameLanguage (game, language) VALUES (41, 20);
+INSERT INTO GameLanguage (game, language) VALUES (41, 7);
+INSERT INTO GameLanguage (game, language) VALUES (42, 14);
+INSERT INTO GameLanguage (game, language) VALUES (42, 11);
+INSERT INTO GameLanguage (game, language) VALUES (42, 21);
+INSERT INTO GameLanguage (game, language) VALUES (42, 15);
+INSERT INTO GameLanguage (game, language) VALUES (42, 5);
+INSERT INTO GameLanguage (game, language) VALUES (42, 17);
+INSERT INTO GameLanguage (game, language) VALUES (42, 19);
+INSERT INTO GameLanguage (game, language) VALUES (42, 6);
+INSERT INTO GameLanguage (game, language) VALUES (43, 18);
+INSERT INTO GameLanguage (game, language) VALUES (43, 19);
+INSERT INTO GameLanguage (game, language) VALUES (43, 22);
+INSERT INTO GameLanguage (game, language) VALUES (43, 17);
+INSERT INTO GameLanguage (game, language) VALUES (43, 3);
+INSERT INTO GameLanguage (game, language) VALUES (43, 2);
+INSERT INTO GameLanguage (game, language) VALUES (44, 9);
+INSERT INTO GameLanguage (game, language) VALUES (44, 22);
+INSERT INTO GameLanguage (game, language) VALUES (44, 4);
+INSERT INTO GameLanguage (game, language) VALUES (44, 14);
+INSERT INTO GameLanguage (game, language) VALUES (44, 1);
+INSERT INTO GameLanguage (game, language) VALUES (44, 20);
+INSERT INTO GameLanguage (game, language) VALUES (44, 7);
+INSERT INTO GameLanguage (game, language) VALUES (44, 2);
+INSERT INTO GameLanguage (game, language) VALUES (45, 6);
+INSERT INTO GameLanguage (game, language) VALUES (45, 11);
+INSERT INTO GameLanguage (game, language) VALUES (45, 20);
+INSERT INTO GameLanguage (game, language) VALUES (45, 5);
+INSERT INTO GameLanguage (game, language) VALUES (45, 4);
+INSERT INTO GameLanguage (game, language) VALUES (45, 14);
+INSERT INTO GameLanguage (game, language) VALUES (45, 12);
+INSERT INTO GameLanguage (game, language) VALUES (45, 10);
+INSERT INTO GameLanguage (game, language) VALUES (46, 10);
+INSERT INTO GameLanguage (game, language) VALUES (46, 4);
+INSERT INTO GameLanguage (game, language) VALUES (46, 15);
+INSERT INTO GameLanguage (game, language) VALUES (46, 11);
+INSERT INTO GameLanguage (game, language) VALUES (46, 1);
+INSERT INTO GameLanguage (game, language) VALUES (46, 3);
+INSERT INTO GameLanguage (game, language) VALUES (46, 16);
+INSERT INTO GameLanguage (game, language) VALUES (46, 19);
+INSERT INTO GameLanguage (game, language) VALUES (47, 10);
+INSERT INTO GameLanguage (game, language) VALUES (47, 18);
+INSERT INTO GameLanguage (game, language) VALUES (47, 15);
+INSERT INTO GameLanguage (game, language) VALUES (47, 11);
+INSERT INTO GameLanguage (game, language) VALUES (47, 16);
+INSERT INTO GameLanguage (game, language) VALUES (47, 21);
+INSERT INTO GameLanguage (game, language) VALUES (48, 1);
+INSERT INTO GameLanguage (game, language) VALUES (48, 20);
+INSERT INTO GameLanguage (game, language) VALUES (48, 14);
+INSERT INTO GameLanguage (game, language) VALUES (48, 12);
+INSERT INTO GameLanguage (game, language) VALUES (48, 22);
+INSERT INTO GameLanguage (game, language) VALUES (49, 12);
+INSERT INTO GameLanguage (game, language) VALUES (50, 19);
+INSERT INTO GameLanguage (game, language) VALUES (50, 8);
+INSERT INTO GameLanguage (game, language) VALUES (50, 4);
+INSERT INTO GameLanguage (game, language) VALUES (50, 16);
+INSERT INTO GameLanguage (game, language) VALUES (50, 10);
+INSERT INTO GameLanguage (game, language) VALUES (50, 11);
+INSERT INTO GameLanguage (game, language) VALUES (51, 1);
+INSERT INTO GameLanguage (game, language) VALUES (51, 20);
+INSERT INTO GameLanguage (game, language) VALUES (51, 2);
+INSERT INTO GameLanguage (game, language) VALUES (51, 10);
+INSERT INTO GameLanguage (game, language) VALUES (52, 9);
+INSERT INTO GameLanguage (game, language) VALUES (52, 18);
+INSERT INTO GameLanguage (game, language) VALUES (52, 17);
+INSERT INTO GameLanguage (game, language) VALUES (52, 16);
+INSERT INTO GameLanguage (game, language) VALUES (52, 21);
+INSERT INTO GameLanguage (game, language) VALUES (52, 10);
+INSERT INTO GameLanguage (game, language) VALUES (52, 1);
+INSERT INTO GameLanguage (game, language) VALUES (53, 7);
+INSERT INTO GameLanguage (game, language) VALUES (53, 20);
+INSERT INTO GameLanguage (game, language) VALUES (53, 18);
+INSERT INTO GameLanguage (game, language) VALUES (53, 14);
+INSERT INTO GameLanguage (game, language) VALUES (54, 17);
+INSERT INTO GameLanguage (game, language) VALUES (54, 4);
+INSERT INTO GameLanguage (game, language) VALUES (54, 3);
+INSERT INTO GameLanguage (game, language) VALUES (54, 15);
+INSERT INTO GameLanguage (game, language) VALUES (54, 16);
+INSERT INTO GameLanguage (game, language) VALUES (55, 6);
+INSERT INTO GameLanguage (game, language) VALUES (55, 17);
+INSERT INTO GameLanguage (game, language) VALUES (55, 11);
+INSERT INTO GameLanguage (game, language) VALUES (55, 1);
+INSERT INTO GameLanguage (game, language) VALUES (55, 4);
+INSERT INTO GameLanguage (game, language) VALUES (55, 22);
+INSERT INTO GameLanguage (game, language) VALUES (56, 9);
+INSERT INTO GameLanguage (game, language) VALUES (56, 21);
+INSERT INTO GameLanguage (game, language) VALUES (56, 10);
+INSERT INTO GameLanguage (game, language) VALUES (56, 2);
+INSERT INTO GameLanguage (game, language) VALUES (56, 17);
+INSERT INTO GameLanguage (game, language) VALUES (56, 1);
+INSERT INTO GameLanguage (game, language) VALUES (56, 20);
+INSERT INTO GameLanguage (game, language) VALUES (57, 7);
+INSERT INTO GameLanguage (game, language) VALUES (57, 17);
+INSERT INTO GameLanguage (game, language) VALUES (57, 3);
+INSERT INTO GameLanguage (game, language) VALUES (57, 10);
+INSERT INTO GameLanguage (game, language) VALUES (57, 9);
+INSERT INTO GameLanguage (game, language) VALUES (57, 20);
+INSERT INTO GameLanguage (game, language) VALUES (57, 1);
+INSERT INTO GameLanguage (game, language) VALUES (57, 22);
+INSERT INTO GameLanguage (game, language) VALUES (58, 8);
+INSERT INTO GameLanguage (game, language) VALUES (58, 9);
+INSERT INTO GameLanguage (game, language) VALUES (58, 15);
+INSERT INTO GameLanguage (game, language) VALUES (58, 22);
+INSERT INTO GameLanguage (game, language) VALUES (58, 7);
+INSERT INTO GameLanguage (game, language) VALUES (58, 6);
+INSERT INTO GameLanguage (game, language) VALUES (58, 21);
+INSERT INTO GameLanguage (game, language) VALUES (58, 5);
+INSERT INTO GameLanguage (game, language) VALUES (59, 5);
+INSERT INTO GameLanguage (game, language) VALUES (60, 16);
+
+
 -- PLAYER
 insert into Player (name) values ('SinglePlayer');
 insert into Player (name) values ('MultiPlayer');
 
 
--- GAME PLAFORM
-insert into GamePlatform (game, platform) values (1, 2);
-insert into GamePlatform (game, platform) values (2, 1);
-insert into GamePlatform (game, platform) values (3, 4);
-insert into GamePlatform (game, platform) values (4, 4);
-insert into GamePlatform (game, platform) values (5, 4);
-insert into GamePlatform (game, platform) values (6, 2);
-insert into GamePlatform (game, platform) values (7, 4);
-insert into GamePlatform (game, platform) values (8, 3);
-insert into GamePlatform (game, platform) values (9, 4);
-insert into GamePlatform (game, platform) values (10, 3);
-insert into GamePlatform (game, platform) values (11, 2);
-insert into GamePlatform (game, platform) values (12, 2);
-insert into GamePlatform (game, platform) values (13, 4);
-insert into GamePlatform (game, platform) values (14, 1);
-insert into GamePlatform (game, platform) values (15, 4);
-insert into GamePlatform (game, platform) values (16, 3);
-insert into GamePlatform (game, platform) values (17, 3);
-insert into GamePlatform (game, platform) values (18, 3);
-insert into GamePlatform (game, platform) values (19, 3);
-insert into GamePlatform (game, platform) values (20, 2);
-insert into GamePlatform (game, platform) values (21, 3);
-insert into GamePlatform (game, platform) values (22, 2);
-insert into GamePlatform (game, platform) values (23, 1);
-insert into GamePlatform (game, platform) values (24, 2);
-insert into GamePlatform (game, platform) values (25, 3);
-insert into GamePlatform (game, platform) values (26, 3);
-insert into GamePlatform (game, platform) values (27, 2);
-insert into GamePlatform (game, platform) values (28, 3);
-insert into GamePlatform (game, platform) values (29, 4);
-insert into GamePlatform (game, platform) values (30, 2);
-insert into GamePlatform (game, platform) values (31, 2);
-insert into GamePlatform (game, platform) values (32, 3);
-insert into GamePlatform (game, platform) values (33, 4);
-insert into GamePlatform (game, platform) values (34, 2);
-insert into GamePlatform (game, platform) values (35, 1);
-insert into GamePlatform (game, platform) values (36, 3);
-insert into GamePlatform (game, platform) values (37, 1);
-insert into GamePlatform (game, platform) values (38, 4);
-insert into GamePlatform (game, platform) values (39, 2);
-insert into GamePlatform (game, platform) values (40, 3);
-insert into GamePlatform (game, platform) values (41, 3);
-insert into GamePlatform (game, platform) values (42, 4);
-insert into GamePlatform (game, platform) values (43, 1);
-insert into GamePlatform (game, platform) values (44, 3);
-insert into GamePlatform (game, platform) values (45, 1);
-insert into GamePlatform (game, platform) values (46, 3);
-insert into GamePlatform (game, platform) values (47, 4);
-insert into GamePlatform (game, platform) values (48, 3);
-insert into GamePlatform (game, platform) values (49, 3);
-insert into GamePlatform (game, platform) values (50, 3);
-insert into GamePlatform (game, platform) values (1, 3);
-insert into GamePlatform (game, platform) values (2, 2);
-insert into GamePlatform (game, platform) values (3, 1);
-insert into GamePlatform (game, platform) values (4, 2);
-insert into GamePlatform (game, platform) values (5, 2);
-insert into GamePlatform (game, platform) values (6, 1);
-insert into GamePlatform (game, platform) values (7, 1);
-insert into GamePlatform (game, platform) values (8, 2);
-insert into GamePlatform (game, platform) values (9, 1);
-insert into GamePlatform (game, platform) values (10, 2);
-insert into GamePlatform (game, platform) values (11, 1);
-insert into GamePlatform (game, platform) values (12, 4);
-insert into GamePlatform (game, platform) values (13, 2);
-insert into GamePlatform (game, platform) values (14, 4);
-insert into GamePlatform (game, platform) values (15, 1);
-insert into GamePlatform (game, platform) values (16, 2);
-insert into GamePlatform (game, platform) values (17, 2);
-insert into GamePlatform (game, platform) values (18, 2);
-insert into GamePlatform (game, platform) values (19, 1);
-insert into GamePlatform (game, platform) values (20, 1);
-insert into GamePlatform (game, platform) values (21, 4);
-insert into GamePlatform (game, platform) values (22, 3);
-insert into GamePlatform (game, platform) values (23, 3);
-insert into GamePlatform (game, platform) values (24, 3);
-insert into GamePlatform (game, platform) values (25, 2);
-insert into GamePlatform (game, platform) values (26, 2);
-insert into GamePlatform (game, platform) values (27, 1);
-insert into GamePlatform (game, platform) values (28, 1);
-insert into GamePlatform (game, platform) values (29, 2);
-insert into GamePlatform (game, platform) values (30, 3);
-insert into GamePlatform (game, platform) values (31, 1);
-insert into GamePlatform (game, platform) values (32, 1);
-insert into GamePlatform (game, platform) values (32, 2);
-insert into GamePlatform (game, platform) values (32, 4);
-insert into GamePlatform (game, platform) values (33, 3);
-insert into GamePlatform (game, platform) values (34, 3);
-insert into GamePlatform (game, platform) values (35, 2);
-insert into GamePlatform (game, platform) values (36, 4);
-insert into GamePlatform (game, platform) values (37, 2);
-insert into GamePlatform (game, platform) values (38, 3);
-insert into GamePlatform (game, platform) values (39, 1);
-insert into GamePlatform (game, platform) values (40, 1);
-insert into GamePlatform (game, platform) values (41, 2);
-insert into GamePlatform (game, platform) values (42, 1);
-insert into GamePlatform (game, platform) values (43, 2);
-insert into GamePlatform (game, platform) values (44, 2);
-insert into GamePlatform (game, platform) values (45, 2);
-insert into GamePlatform (game, platform) values (46, 4);
-insert into GamePlatform (game, platform) values (47, 2);
-insert into GamePlatform (game, platform) values (48, 2);
-insert into GamePlatform (game, platform) values (49, 1);
-insert into GamePlatform (game, platform) values (50, 4);
-
-
--- GAME CATEGORY
-insert into GameCategory (game, category) values (1, 21);
-insert into GameCategory (game, category) values (2, 17);
-insert into GameCategory (game, category) values (3, 4);
-insert into GameCategory (game, category) values (4, 2);
-insert into GameCategory (game, category) values (5, 14);
-insert into GameCategory (game, category) values (6, 25);
-insert into GameCategory (game, category) values (7, 28);
-insert into GameCategory (game, category) values (8, 27);
-insert into GameCategory (game, category) values (9, 22);
-insert into GameCategory (game, category) values (10, 8);
-insert into GameCategory (game, category) values (11, 3);
-insert into GameCategory (game, category) values (12, 12);
-insert into GameCategory (game, category) values (13, 26);
-insert into GameCategory (game, category) values (14, 11);
-insert into GameCategory (game, category) values (15, 23);
-insert into GameCategory (game, category) values (16, 24);
-insert into GameCategory (game, category) values (17, 11);
-insert into GameCategory (game, category) values (18, 30);
-insert into GameCategory (game, category) values (19, 24);
-insert into GameCategory (game, category) values (20, 4);
-insert into GameCategory (game, category) values (21, 7);
-insert into GameCategory (game, category) values (22, 4);
-insert into GameCategory (game, category) values (23, 21);
-insert into GameCategory (game, category) values (24, 6);
-insert into GameCategory (game, category) values (25, 18);
-insert into GameCategory (game, category) values (26, 24);
-insert into GameCategory (game, category) values (27, 4);
-insert into GameCategory (game, category) values (28, 13);
-insert into GameCategory (game, category) values (29, 26);
-insert into GameCategory (game, category) values (30, 18);
-insert into GameCategory (game, category) values (31, 25);
-insert into GameCategory (game, category) values (32, 30);
-insert into GameCategory (game, category) values (33, 22);
-insert into GameCategory (game, category) values (34, 13);
-insert into GameCategory (game, category) values (35, 22);
-insert into GameCategory (game, category) values (36, 13);
-insert into GameCategory (game, category) values (37, 18);
-insert into GameCategory (game, category) values (38, 2);
-insert into GameCategory (game, category) values (39, 25);
-insert into GameCategory (game, category) values (40, 18);
-insert into GameCategory (game, category) values (41, 32);
-insert into GameCategory (game, category) values (42, 13);
-insert into GameCategory (game, category) values (43, 18);
-insert into GameCategory (game, category) values (44, 27);
-insert into GameCategory (game, category) values (45, 6);
-insert into GameCategory (game, category) values (46, 27);
-insert into GameCategory (game, category) values (47, 31);
-insert into GameCategory (game, category) values (48, 3);
-insert into GameCategory (game, category) values (49, 28);
-insert into GameCategory (game, category) values (50, 28);
-insert into GameCategory (game, category) values (1, 11);
-insert into GameCategory (game, category) values (2, 8);
-insert into GameCategory (game, category) values (3, 15);
-insert into GameCategory (game, category) values (4, 24);
-insert into GameCategory (game, category) values (5, 33);
-insert into GameCategory (game, category) values (6, 17);
-insert into GameCategory (game, category) values (7, 17);
-insert into GameCategory (game, category) values (8, 19);
-insert into GameCategory (game, category) values (9, 3);
-insert into GameCategory (game, category) values (10, 4);
-insert into GameCategory (game, category) values (11, 13);
-insert into GameCategory (game, category) values (12, 21);
-insert into GameCategory (game, category) values (13, 21);
-insert into GameCategory (game, category) values (14, 12);
-insert into GameCategory (game, category) values (15, 14);
-insert into GameCategory (game, category) values (16, 18);
-insert into GameCategory (game, category) values (17, 25);
-insert into GameCategory (game, category) values (18, 32);
-insert into GameCategory (game, category) values (19, 12);
-insert into GameCategory (game, category) values (20, 8);
-insert into GameCategory (game, category) values (21, 2);
-insert into GameCategory (game, category) values (22, 13);
-insert into GameCategory (game, category) values (23, 9);
-insert into GameCategory (game, category) values (24, 33);
-insert into GameCategory (game, category) values (25, 24);
-insert into GameCategory (game, category) values (26, 3);
-insert into GameCategory (game, category) values (27, 6);
-insert into GameCategory (game, category) values (28, 15);
-insert into GameCategory (game, category) values (29, 30);
-insert into GameCategory (game, category) values (30, 19);
-insert into GameCategory (game, category) values (31, 11);
-insert into GameCategory (game, category) values (32, 13);
-insert into GameCategory (game, category) values (33, 16);
-insert into GameCategory (game, category) values (34, 26);
-insert into GameCategory (game, category) values (35, 25);
-insert into GameCategory (game, category) values (36, 17);
-insert into GameCategory (game, category) values (37, 23);
-insert into GameCategory (game, category) values (38, 16);
-insert into GameCategory (game, category) values (39, 9);
-insert into GameCategory (game, category) values (40, 26);
-insert into GameCategory (game, category) values (41, 29);
-insert into GameCategory (game, category) values (42, 26);
-insert into GameCategory (game, category) values (43, 25);
-insert into GameCategory (game, category) values (44, 18);
-insert into GameCategory (game, category) values (45, 7);
-insert into GameCategory (game, category) values (46, 19);
-insert into GameCategory (game, category) values (47, 24);
-insert into GameCategory (game, category) values (48, 5);
-insert into GameCategory (game, category) values (49, 8);
-insert into GameCategory (game, category) values (50, 12);
-
-
--- GAME LANGUAGE
-insert into GameLanguage (game, language) values (1, 4);
-insert into GameLanguage (game, language) values (2, 17);
-insert into GameLanguage (game, language) values (3, 6);
-insert into GameLanguage (game, language) values (4, 8);
-insert into GameLanguage (game, language) values (5, 11);
-insert into GameLanguage (game, language) values (6, 13);
-insert into GameLanguage (game, language) values (7, 16);
-insert into GameLanguage (game, language) values (8, 8);
-insert into GameLanguage (game, language) values (9, 6);
-insert into GameLanguage (game, language) values (10, 6);
-insert into GameLanguage (game, language) values (11, 19);
-insert into GameLanguage (game, language) values (12, 4);
-insert into GameLanguage (game, language) values (13, 20);
-insert into GameLanguage (game, language) values (14, 9);
-insert into GameLanguage (game, language) values (15, 10);
-insert into GameLanguage (game, language) values (16, 14);
-insert into GameLanguage (game, language) values (17, 15);
-insert into GameLanguage (game, language) values (18, 14);
-insert into GameLanguage (game, language) values (19, 11);
-insert into GameLanguage (game, language) values (20, 21);
-insert into GameLanguage (game, language) values (21, 22);
-insert into GameLanguage (game, language) values (22, 6);
-insert into GameLanguage (game, language) values (23, 15);
-insert into GameLanguage (game, language) values (24, 13);
-insert into GameLanguage (game, language) values (25, 8);
-insert into GameLanguage (game, language) values (26, 14);
-insert into GameLanguage (game, language) values (27, 13);
-insert into GameLanguage (game, language) values (28, 5);
-insert into GameLanguage (game, language) values (29, 22);
-insert into GameLanguage (game, language) values (30, 17);
-insert into GameLanguage (game, language) values (31, 17);
-insert into GameLanguage (game, language) values (32, 4);
-insert into GameLanguage (game, language) values (33, 21);
-insert into GameLanguage (game, language) values (34, 4);
-insert into GameLanguage (game, language) values (35, 13);
-insert into GameLanguage (game, language) values (36, 19);
-insert into GameLanguage (game, language) values (37, 6);
-insert into GameLanguage (game, language) values (38, 9);
-insert into GameLanguage (game, language) values (39, 9);
-insert into GameLanguage (game, language) values (40, 20);
-insert into GameLanguage (game, language) values (41, 7);
-insert into GameLanguage (game, language) values (42, 11);
-insert into GameLanguage (game, language) values (43, 5);
-insert into GameLanguage (game, language) values (44, 22);
-insert into GameLanguage (game, language) values (45, 12);
-insert into GameLanguage (game, language) values (46, 13);
-insert into GameLanguage (game, language) values (47, 10);
-insert into GameLanguage (game, language) values (48, 12);
-insert into GameLanguage (game, language) values (49, 7);
-insert into GameLanguage (game, language) values (50, 1);
-insert into GameLanguage (game, language) values (1, 16);
-insert into GameLanguage (game, language) values (2, 13);
-insert into GameLanguage (game, language) values (3, 11);
-insert into GameLanguage (game, language) values (4, 21);
-insert into GameLanguage (game, language) values (5, 9);
-insert into GameLanguage (game, language) values (6, 1);
-insert into GameLanguage (game, language) values (7, 3);
-insert into GameLanguage (game, language) values (8, 21);
-insert into GameLanguage (game, language) values (9, 20);
-insert into GameLanguage (game, language) values (10, 15);
-insert into GameLanguage (game, language) values (11, 6);
-insert into GameLanguage (game, language) values (12, 13);
-insert into GameLanguage (game, language) values (13, 17);
-insert into GameLanguage (game, language) values (14, 2);
-insert into GameLanguage (game, language) values (15, 19);
-insert into GameLanguage (game, language) values (16, 12);
-insert into GameLanguage (game, language) values (17, 1);
-insert into GameLanguage (game, language) values (18, 8);
-insert into GameLanguage (game, language) values (19, 14);
-insert into GameLanguage (game, language) values (20, 7);
-insert into GameLanguage (game, language) values (21, 14);
-insert into GameLanguage (game, language) values (22, 14);
-insert into GameLanguage (game, language) values (23, 10);
-insert into GameLanguage (game, language) values (24, 11);
-insert into GameLanguage (game, language) values (25, 20);
-insert into GameLanguage (game, language) values (26, 12);
-insert into GameLanguage (game, language) values (27, 21);
-insert into GameLanguage (game, language) values (28, 12);
-insert into GameLanguage (game, language) values (29, 8);
-insert into GameLanguage (game, language) values (30, 2);
-insert into GameLanguage (game, language) values (31, 10);
-insert into GameLanguage (game, language) values (32, 1);
-insert into GameLanguage (game, language) values (33, 19);
-insert into GameLanguage (game, language) values (34, 16);
-insert into GameLanguage (game, language) values (35, 19);
-insert into GameLanguage (game, language) values (36, 9);
-insert into GameLanguage (game, language) values (37, 16);
-insert into GameLanguage (game, language) values (38, 8);
-insert into GameLanguage (game, language) values (39, 7);
-insert into GameLanguage (game, language) values (40, 3);
-insert into GameLanguage (game, language) values (41, 6);
-insert into GameLanguage (game, language) values (42, 12);
-insert into GameLanguage (game, language) values (43, 6);
-insert into GameLanguage (game, language) values (44, 5);
-insert into GameLanguage (game, language) values (45, 19);
-insert into GameLanguage (game, language) values (46, 12);
-insert into GameLanguage (game, language) values (47, 9);
-insert into GameLanguage (game, language) values (48, 7);
-insert into GameLanguage (game, language) values (49, 10);
-insert into GameLanguage (game, language) values (50, 7);
-
-
 -- GAME PLAYER
-insert into GamePlayer (game, player) values (1, 1);
-insert into GamePlayer (game, player) values (2, 2);
-insert into GamePlayer (game, player) values (3, 2);
-insert into GamePlayer (game, player) values (4, 1);
-insert into GamePlayer (game, player) values (5, 2);
-insert into GamePlayer (game, player) values (6, 1);
-insert into GamePlayer (game, player) values (7, 2);
-insert into GamePlayer (game, player) values (8, 2);
-insert into GamePlayer (game, player) values (9, 1);
-insert into GamePlayer (game, player) values (10, 2);
-insert into GamePlayer (game, player) values (11, 2);
-insert into GamePlayer (game, player) values (12, 1);
-insert into GamePlayer (game, player) values (13, 1);
-insert into GamePlayer (game, player) values (14, 1);
-insert into GamePlayer (game, player) values (15, 2);
-insert into GamePlayer (game, player) values (16, 1);
-insert into GamePlayer (game, player) values (17, 1);
-insert into GamePlayer (game, player) values (18, 1);
-insert into GamePlayer (game, player) values (19, 1);
-insert into GamePlayer (game, player) values (20, 1);
-insert into GamePlayer (game, player) values (21, 1);
-insert into GamePlayer (game, player) values (21, 2);
-insert into GamePlayer (game, player) values (22, 2);
-insert into GamePlayer (game, player) values (22, 1);
-insert into GamePlayer (game, player) values (23, 2);
-insert into GamePlayer (game, player) values (23, 1);
-insert into GamePlayer (game, player) values (24, 2);
-insert into GamePlayer (game, player) values (24, 1);
-insert into GamePlayer (game, player) values (25, 2);
-insert into GamePlayer (game, player) values (25, 1);
-insert into GamePlayer (game, player) values (26, 2);
-insert into GamePlayer (game, player) values (26, 1);
-insert into GamePlayer (game, player) values (27, 2);
-insert into GamePlayer (game, player) values (27, 1);
-insert into GamePlayer (game, player) values (28, 2);
-insert into GamePlayer (game, player) values (28, 1);
-insert into GamePlayer (game, player) values (29, 2);
-insert into GamePlayer (game, player) values (29, 1);
-insert into GamePlayer (game, player) values (30, 1);
-insert into GamePlayer (game, player) values (31, 2);
-insert into GamePlayer (game, player) values (32, 1);
-insert into GamePlayer (game, player) values (33, 1);
-insert into GamePlayer (game, player) values (34, 2);
-insert into GamePlayer (game, player) values (35, 1);
-insert into GamePlayer (game, player) values (36, 2);
-insert into GamePlayer (game, player) values (37, 1);
-insert into GamePlayer (game, player) values (38, 2);
-insert into GamePlayer (game, player) values (39, 1);
-insert into GamePlayer (game, player) values (40, 1);
-insert into GamePlayer (game, player) values (41, 1);
-insert into GamePlayer (game, player) values (42, 2);
-insert into GamePlayer (game, player) values (43, 1);
-insert into GamePlayer (game, player) values (44, 2);
-insert into GamePlayer (game, player) values (45, 1);
-insert into GamePlayer (game, player) values (46, 2);
-insert into GamePlayer (game, player) values (47, 2);
-insert into GamePlayer (game, player) values (48, 2);
-insert into GamePlayer (game, player) values (49, 1);
-insert into GamePlayer (game, player) values (50, 2);
+INSERT INTO GamePlayer (game, player) VALUES (1, 2);
+INSERT INTO GamePlayer (game, player) VALUES (2, 1);
+INSERT INTO GamePlayer (game, player) VALUES (2, 2);
+INSERT INTO GamePlayer (game, player) VALUES (3, 2);
+INSERT INTO GamePlayer (game, player) VALUES (3, 1);
+INSERT INTO GamePlayer (game, player) VALUES (4, 1);
+INSERT INTO GamePlayer (game, player) VALUES (4, 2);
+INSERT INTO GamePlayer (game, player) VALUES (5, 1);
+INSERT INTO GamePlayer (game, player) VALUES (5, 2);
+INSERT INTO GamePlayer (game, player) VALUES (6, 2);
+INSERT INTO GamePlayer (game, player) VALUES (6, 1);
+INSERT INTO GamePlayer (game, player) VALUES (7, 2);
+INSERT INTO GamePlayer (game, player) VALUES (7, 1);
+INSERT INTO GamePlayer (game, player) VALUES (8, 1);
+INSERT INTO GamePlayer (game, player) VALUES (9, 1);
+INSERT INTO GamePlayer (game, player) VALUES (10, 2);
+INSERT INTO GamePlayer (game, player) VALUES (11, 1);
+INSERT INTO GamePlayer (game, player) VALUES (11, 2);
+INSERT INTO GamePlayer (game, player) VALUES (12, 1);
+INSERT INTO GamePlayer (game, player) VALUES (13, 2);
+INSERT INTO GamePlayer (game, player) VALUES (14, 2);
+INSERT INTO GamePlayer (game, player) VALUES (15, 1);
+INSERT INTO GamePlayer (game, player) VALUES (16, 1);
+INSERT INTO GamePlayer (game, player) VALUES (17, 2);
+INSERT INTO GamePlayer (game, player) VALUES (17, 1);
+INSERT INTO GamePlayer (game, player) VALUES (18, 2);
+INSERT INTO GamePlayer (game, player) VALUES (19, 2);
+INSERT INTO GamePlayer (game, player) VALUES (19, 1);
+INSERT INTO GamePlayer (game, player) VALUES (20, 2);
+INSERT INTO GamePlayer (game, player) VALUES (21, 1);
+INSERT INTO GamePlayer (game, player) VALUES (22, 2);
+INSERT INTO GamePlayer (game, player) VALUES (23, 1);
+INSERT INTO GamePlayer (game, player) VALUES (24, 2);
+INSERT INTO GamePlayer (game, player) VALUES (24, 1);
+INSERT INTO GamePlayer (game, player) VALUES (25, 2);
+INSERT INTO GamePlayer (game, player) VALUES (25, 1);
+INSERT INTO GamePlayer (game, player) VALUES (26, 1);
+INSERT INTO GamePlayer (game, player) VALUES (27, 2);
+INSERT INTO GamePlayer (game, player) VALUES (27, 1);
+INSERT INTO GamePlayer (game, player) VALUES (28, 1);
+INSERT INTO GamePlayer (game, player) VALUES (29, 1);
+INSERT INTO GamePlayer (game, player) VALUES (30, 1);
+INSERT INTO GamePlayer (game, player) VALUES (31, 1);
+INSERT INTO GamePlayer (game, player) VALUES (32, 2);
+INSERT INTO GamePlayer (game, player) VALUES (33, 1);
+INSERT INTO GamePlayer (game, player) VALUES (34, 1);
+INSERT INTO GamePlayer (game, player) VALUES (34, 2);
+INSERT INTO GamePlayer (game, player) VALUES (35, 1);
+INSERT INTO GamePlayer (game, player) VALUES (36, 2);
+INSERT INTO GamePlayer (game, player) VALUES (36, 1);
+INSERT INTO GamePlayer (game, player) VALUES (37, 1);
+INSERT INTO GamePlayer (game, player) VALUES (37, 2);
+INSERT INTO GamePlayer (game, player) VALUES (38, 1);
+INSERT INTO GamePlayer (game, player) VALUES (38, 2);
+INSERT INTO GamePlayer (game, player) VALUES (39, 2);
+INSERT INTO GamePlayer (game, player) VALUES (39, 1);
+INSERT INTO GamePlayer (game, player) VALUES (40, 2);
+INSERT INTO GamePlayer (game, player) VALUES (41, 1);
+INSERT INTO GamePlayer (game, player) VALUES (41, 2);
+INSERT INTO GamePlayer (game, player) VALUES (42, 1);
+INSERT INTO GamePlayer (game, player) VALUES (42, 2);
+INSERT INTO GamePlayer (game, player) VALUES (43, 2);
+INSERT INTO GamePlayer (game, player) VALUES (44, 2);
+INSERT INTO GamePlayer (game, player) VALUES (44, 1);
+INSERT INTO GamePlayer (game, player) VALUES (45, 2);
+INSERT INTO GamePlayer (game, player) VALUES (46, 1);
+INSERT INTO GamePlayer (game, player) VALUES (47, 1);
+INSERT INTO GamePlayer (game, player) VALUES (47, 2);
+INSERT INTO GamePlayer (game, player) VALUES (48, 1);
+INSERT INTO GamePlayer (game, player) VALUES (49, 2);
+INSERT INTO GamePlayer (game, player) VALUES (50, 2);
+INSERT INTO GamePlayer (game, player) VALUES (51, 1);
+INSERT INTO GamePlayer (game, player) VALUES (51, 2);
+INSERT INTO GamePlayer (game, player) VALUES (52, 1);
+INSERT INTO GamePlayer (game, player) VALUES (53, 2);
+INSERT INTO GamePlayer (game, player) VALUES (53, 1);
+INSERT INTO GamePlayer (game, player) VALUES (54, 1);
+INSERT INTO GamePlayer (game, player) VALUES (55, 1);
+INSERT INTO GamePlayer (game, player) VALUES (55, 2);
+INSERT INTO GamePlayer (game, player) VALUES (56, 2);
+INSERT INTO GamePlayer (game, player) VALUES (56, 1);
+INSERT INTO GamePlayer (game, player) VALUES (57, 2);
+INSERT INTO GamePlayer (game, player) VALUES (58, 1);
+INSERT INTO GamePlayer (game, player) VALUES (59, 2);
+INSERT INTO GamePlayer (game, player) VALUES (60, 2);
 
 
--- PaymentMethod
+-- PaymentMethod (9)
 insert into PaymentMethod (name, image_path) values ('Alipay', 'images/payment/alipay.svg');
 insert into PaymentMethod (name, image_path) values ('American Express', 'images/payment/american_express.svg');
 insert into PaymentMethod (name, image_path) values ('Apple Pay', 'images/payment/applepay.svg');
@@ -1135,59 +1752,154 @@ insert into PaymentMethod (name, image_path) values ('Multibanco', 'images/payme
 
 
 -- Payment
-insert into Payment (method, value) values (1, 304.71);
+insert into Payment (method, value) values (1, 164.96); -- order 1
+insert into Payment (method, value) values (2, 149.97); -- order 2
+insert into Payment (method, value) values (3, 74.98); -- order 3
+insert into Payment (method, value) values (4, 49.99); -- order 4
+insert into Payment (method, value) values (5, 24.99); -- order 5
+insert into Payment (method, value) values (6, 49.99); -- order 6
+insert into Payment (method, value) values (7, 49.99); -- order 7
+insert into Payment (method, value) values (8, 49.99); -- order 8
+insert into Payment (method, value) values (9, 49.99); -- order 9
+insert into Payment (method, value) values (1, 19.99); -- order 10
+insert into Payment (method, value) values (2, 34.99); -- order 11
+insert into Payment (method, value) values (3, 39.99); -- order 12
+insert into Payment (method, value) values (4, 44.98); -- order 13
+insert into Payment (method, value) values (5, 24.99); -- order 14
 
 
 -- Orders
-insert into Orders (buyer, payment, time) values (1, 1, '2024-12-01 12:00:00');
+insert into Orders (buyer, payment, time) values (1, 1, '2024-12-01 01:00:00'); -- 1
+insert into Orders (buyer, payment, time) values (1, 2, '2024-12-05 02:00:00'); -- 2
+insert into Orders (buyer, payment, time) values (1, 3, '2024-11-30 03:00:00'); -- 3
+insert into Orders (buyer, payment, time) values (1, 4, '2024-11-01 04:00:00'); -- 4
+insert into Orders (buyer, payment, time) values (1, 5, '2024-12-04 05:00:00'); -- 5
+insert into Orders (buyer, payment, time) values (1, 6, '2024-12-16 06:00:00'); -- 6
+insert into Orders (buyer, payment, time) values (2, 7, '2024-10-10 07:00:00'); -- 7
+insert into Orders (buyer, payment, time) values (3, 8, '2024-12-01 08:00:00'); -- 8
+insert into Orders (buyer, payment, time) values (4, 9, '2024-12-01 09:00:00'); -- 9
+insert into Orders (buyer, payment, time) values (5, 10, '2024-12-01 10:00:00'); -- 10
+insert into Orders (buyer, payment, time) values (6, 11, '2024-12-01 11:00:00'); -- 11
+insert into Orders (buyer, payment, time) values (7, 12, '2024-12-01 12:00:00'); -- 12
+insert into Orders (buyer, payment, time) values (8, 13, '2024-12-01 13:00:00'); -- 13
+insert into Orders (buyer, payment, time) values (9, 14, '2024-12-01 14:00:00'); -- 14
 
 
--- Purchase
-insert into Purchase (value, order_, coins) values (110.53, 1, 0);
-insert into Purchase (value, order_, coins) values (21.63, 1, 0);
-insert into Purchase (value, order_, coins) values (59.65, 1, 0);
-insert into Purchase (value, order_, coins) values (69.55, 1, 0);
-insert into Purchase (value, order_, coins) values (43.35, 1, 0);
+-- Purchase (20)
+insert into Purchase (order_, value, coins) values (1, 49.99, 0); -- 1. game 1
+insert into Purchase (order_, value, coins) values (1, 34.99, 0); -- 2. game 2
+insert into Purchase (order_, value, coins) values (1, 19.99, 0); -- 3. game 3
+insert into Purchase (order_, value, coins) values (1, 59.99, 0); -- 4. game 4
+insert into Purchase (order_, value, coins) values (2, 49.99, 0); -- 5. game 1
+insert into Purchase (order_, value, coins) values (2, 49.99, 0); -- 6. game 1
+insert into Purchase (order_, value, coins) values (2, 49.99, 0); -- 7. game 1
+insert into Purchase (order_, value, coins) values (3, 49.99, 0); -- 8. game 1
+insert into Purchase (order_, value, coins) values (3, 24.99, 0); -- 9. game 20
+insert into Purchase (order_, value, coins) values (4, 49.99, 0); -- 10. game 1
+insert into Purchase (order_, value, coins) values (5, 24.99, 0); -- 11. game 20
+insert into Purchase (order_, value, coins) values (6, 49.99, 0); -- 12. game 1
+insert into Purchase (order_, value, coins) values (7, 49.99, 0); -- 13. game 1
+insert into Purchase (order_, value, coins) values (8, 49.99, 0); -- 14. game 1
+insert into Purchase (order_, value, coins) values (9, 49.99, 0); -- 15. game 1
+insert into Purchase (order_, value, coins) values (10, 19.99, 0); -- 16. game 3
+insert into Purchase (order_, value, coins) values (11, 34.99, 0); -- 17. game 2
+insert into Purchase (order_, value, coins) values (12, 39.99, 0); -- 18. game 5
+insert into Purchase (order_, value, coins) values (13, 19.99, 0); -- 19. game 10
+insert into Purchase (order_, value, coins) values (13, 24.99, 0); -- 20. game 20
+insert into Purchase (order_, value, coins) values (14, 24.99, 0); -- 21. game 20
 
 
 -- Delivered Purchase
 insert into DeliveredPurchase (id, cdk) values (1, 1);
-insert into DeliveredPurchase (id, cdk) values (2, 11);
-insert into DeliveredPurchase (id, cdk) values (3, 17);
-insert into DeliveredPurchase (id, cdk) values (4, 26);
-insert into DeliveredPurchase (id, cdk) values (5, 32);
+insert into DeliveredPurchase (id, cdk) values (2, 21);
+insert into DeliveredPurchase (id, cdk) values (3, 31);
+insert into DeliveredPurchase (id, cdk) values (4, 41);
+insert into DeliveredPurchase (id, cdk) values (5, 2);
+insert into DeliveredPurchase (id, cdk) values (6, 3);
+insert into DeliveredPurchase (id, cdk) values (7, 4);
+insert into DeliveredPurchase (id, cdk) values (8, 5);
+insert into DeliveredPurchase (id, cdk) values (9, 201);
+insert into DeliveredPurchase (id, cdk) values (10, 6);
+insert into DeliveredPurchase (id, cdk) values (11, 202);
+insert into DeliveredPurchase (id, cdk) values (12, 7);
+insert into DeliveredPurchase (id, cdk) values (13, 8);
+insert into DeliveredPurchase (id, cdk) values (14, 9);
+insert into DeliveredPurchase (id, cdk) values (15, 10);
+insert into DeliveredPurchase (id, cdk) values (16, 32);
+insert into DeliveredPurchase (id, cdk) values (17, 22);
+insert into DeliveredPurchase (id, cdk) values (18, 51);
+insert into DeliveredPurchase (id, cdk) values (19, 101);
+insert into DeliveredPurchase (id, cdk) values (20, 203);
+insert into DeliveredPurchase (id, cdk) values (21, 204);
 
 
 -- Review
-insert into Review (title, description, positive, author, game) values ('Amazing Gameplay', 'The gameplay is smooth and engaging. Highly recommend!', true, 3, 1);
-insert into Review (title, description, positive, author, game) values ('Not Worth the Price', 'The game is overpriced for the content it offers.', false, 2, 1);
-insert into Review (title, description, positive, author, game) values ('Great Graphics', 'The graphics are stunning and very detailed.', true, 1, 3);
-insert into Review (title, description, positive, author, game) values ('Boring Storyline', 'The storyline is very predictable and boring.', false, 1, 4);
-insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 4, 5);
-insert into Review (title, description, positive, author, game) values ('Too Many Bugs', 'The game has too many bugs and crashes often.', false, 1, 6);
-insert into Review (title, description, positive, author, game) values ('Immersive Experience', 'The game provides an immersive experience with its detailed world.', true, 1, 7);
-insert into Review (title, description, positive, author, game) values ('Lack of Content', 'The game lacks content and gets repetitive quickly.', false, 1, 8);
-insert into Review (title, description, positive, author, game) values ('Fun and Addictive', 'The game is very fun and addictive. Cannot stop playing!', true, 1, 9);
-insert into Review (title, description, positive, author, game) values ('Poor Controls', 'The controls are not responsive and hard to use.', false, 1, 10);
-insert into Review (title, description, positive, author, game) values ('Great Graphics', 'The graphics are stunning and very detailed.', true, 2, 10);
-insert into Review (title, description, positive, author, game) values ('Boring Gameplay', 'The gameplay is repetitive and gets boring quickly.', false, 3, 10);
-insert into Review (title, description, positive, author, game) values ('Excellent Storyline', 'The storyline is captivating and well-written.', true, 4, 10);
-insert into Review (title, description, positive, author, game) values ('Too Many Bugs', 'The game has too many bugs and crashes often.', false, 5, 10);
-insert into Review (title, description, positive, author, game) values ('Amazing Soundtrack', 'The soundtrack is amazing and fits the game perfectly.', true, 6, 10);
-insert into Review (title, description, positive, author, game) values ('Lack of Content', 'The game lacks content and feels incomplete.', false, 7, 10);
-insert into Review (title, description, positive, author, game) values ('Fun Multiplayer', 'The multiplayer mode is fun and engaging.', true, 8, 10);
-insert into Review (title, description, positive, author, game) values ('Pay to Win', 'The game is pay to win and not enjoyable without spending money.', false, 9, 10);
-insert into Review (title, description, positive, author, game) values ('Great Replay Value', 'The game has great replay value and keeps you coming back.', true, 10, 10);
+-- Game 1
+insert into Review (title, description, positive, author, game) values ('Amazing Gameplay', 'The gameplay is smooth and engaging. Highly recommend!', true, 1, 1);
+insert into Review (title, description, positive, author, game) values ('Great Graphics', 'The graphics are stunning and very detailed.', true, 3, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 4, 1);
+
+-- Game 2
+insert into Review (title, description, positive, author, game) values ('Boring Storyline', 'The storyline is very predictable and boring.', false, 1, 2);
+insert into Review (title, description, positive, author, game) values ('Too Many Bugs', 'The game has too many bugs and crashes often.', false, 6, 2);
+
+-- Game 3
+insert into Review (title, description, positive, author, game) values ('Immersive Experience', 'The game provides an immersive experience with its detailed world.', true, 1, 3);
+insert into Review (title, description, positive, author, game) values ('Lack of Content', 'The game lacks content and gets repetitive quickly.', false, 5, 3);
+
+-- Game 4
+insert into Review (title, description, positive, author, game) values ('Fun and Addictive', 'The game is very fun and addictive. Cannot stop playing!', true, 1, 4);
+
+-- Game 5
+insert into Review (title, description, positive, author, game) values ('Poor Controls', 'The controls are not responsive and hard to use.', false, 7, 5);
+
+-- Game 10
+insert into Review (title, description, positive, author, game) values ('Great Graphics', 'The graphics are stunning and very detailed.', true, 8, 10);
+
+-- Game 20
+insert into Review (title, description, positive, author, game) values ('Amazing Soundtrack', 'The soundtrack is amazing and fits the game perfectly.', true, 1, 20);
+insert into Review (title, description, positive, author, game) values ('Excellent Storyline', 'The storyline is captivating and well-written.', true, 8, 20);
+insert into Review (title, description, positive, author, game) values ('Too Many Bugs', 'The game has too many bugs and crashes often.', false, 9, 20);
+
+-- Game 1 Extra Fake
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 2, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 5, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 6, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 7, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 8, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 9, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 10, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 23, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 24, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 25, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 26, 1);
+insert into Review (title, description, positive, author, game) values ('Not my taste', 'The multiplayer mode is very fun and competitive, although, minecraft is better.', false, 27, 1);
+
 
 -- Review Like
-insert into ReviewLike (review, author) values (10, 2);
-insert into ReviewLike (review, author) values (10, 3);
-insert into ReviewLike (review, author) values (10, 4);
-insert into ReviewLike (review, author) values (10, 5);
-insert into ReviewLike (review, author) values (10, 6);
-insert into ReviewLike (review, author) values (10, 7);
-insert into ReviewLike (review, author) values (10, 8);
+insert into ReviewLike (review, author) values (1, 2);
+insert into ReviewLike (review, author) values (1, 10);
+insert into ReviewLike (review, author) values (1, 3);
+insert into ReviewLike (review, author) values (1, 5);
+insert into ReviewLike (review, author) values (2, 3);
+insert into ReviewLike (review, author) values (2, 1);
+insert into ReviewLike (review, author) values (2, 6);
+insert into ReviewLike (review, author) values (3, 4);
+insert into ReviewLike (review, author) values (5, 2);
+insert into ReviewLike (review, author) values (5, 3);
+insert into ReviewLike (review, author) values (5, 4);
+insert into ReviewLike (review, author) values (5, 5);
+insert into ReviewLike (review, author) values (5, 6);
+insert into ReviewLike (review, author) values (5, 7);
+insert into ReviewLike (review, author) values (5, 8);
+insert into ReviewLike (review, author) values (6, 1);
+insert into ReviewLike (review, author) values (7, 8);
+insert into ReviewLike (review, author) values (7, 10);
+insert into ReviewLike (review, author) values (9, 9);
 insert into ReviewLike (review, author) values (10, 9);
+insert into ReviewLike (review, author) values (11, 9);
+insert into ReviewLike (review, author) values (12, 9);
+insert into ReviewLike (review, author) values (13, 9);
 
 
 -- Reason
