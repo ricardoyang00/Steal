@@ -397,7 +397,7 @@ INSERT INTO CDK (code, game) VALUES
 ('HUK56ONUJKL0BA702CZDT5L6MP', 20), -- sold (201)
 ('UNG6LXNAZ92PLXDV3PTN9ZMCM2', 20), -- sold (202)
 ('LQMNI2LWHUNA0CJ36KNFEFLQXP', 20), -- sold (203)
-('MZYGK8Y5V2SUN9Q05BUZPASWUQ', 20),
+('MZYGK8Y5V2SUN9Q05BUZPASWUQ', 20), -- sold (204)
 ('99QNDI266RTLJTW2YFW2UTU8ZM', 20),
 ('624CGBSC1EW1ENF1IL3LTKMAL4', 20),
 ('IYMC5J39K7OF8HKFQO0QF8KLBE', 20),
@@ -1734,7 +1734,7 @@ insert into Payment (method, value) values (9, 49.99); -- order 9
 insert into Payment (method, value) values (1, 19.99); -- order 10
 insert into Payment (method, value) values (2, 34.99); -- order 11
 insert into Payment (method, value) values (3, 39.99); -- order 12
-insert into Payment (method, value) values (4, 19.99); -- order 13
+insert into Payment (method, value) values (4, 44.98); -- order 13
 insert into Payment (method, value) values (5, 24.99); -- order 14
 
 
@@ -1775,7 +1775,8 @@ insert into Purchase (order_, value, coins) values (10, 19.99, 0); -- 16. game 3
 insert into Purchase (order_, value, coins) values (11, 34.99, 0); -- 17. game 2
 insert into Purchase (order_, value, coins) values (12, 39.99, 0); -- 18. game 5
 insert into Purchase (order_, value, coins) values (13, 19.99, 0); -- 19. game 10
-insert into Purchase (order_, value, coins) values (14, 24.99, 0); -- 20. game 20
+insert into Purchase (order_, value, coins) values (13, 24.99, 0); -- 20. game 20
+insert into Purchase (order_, value, coins) values (14, 24.99, 0); -- 21. game 20
 
 
 -- Delivered Purchase
@@ -1799,38 +1800,62 @@ insert into DeliveredPurchase (id, cdk) values (17, 22);
 insert into DeliveredPurchase (id, cdk) values (18, 51);
 insert into DeliveredPurchase (id, cdk) values (19, 101);
 insert into DeliveredPurchase (id, cdk) values (20, 203);
+insert into DeliveredPurchase (id, cdk) values (21, 204);
 
 
 -- Review
-insert into Review (title, description, positive, author, game) values ('Amazing Gameplay', 'The gameplay is smooth and engaging. Highly recommend!', true, 3, 1);
-insert into Review (title, description, positive, author, game) values ('Not Worth the Price', 'The game is overpriced for the content it offers.', false, 2, 1);
-insert into Review (title, description, positive, author, game) values ('Great Graphics', 'The graphics are stunning and very detailed.', true, 1, 3);
-insert into Review (title, description, positive, author, game) values ('Boring Storyline', 'The storyline is very predictable and boring.', false, 1, 4);
-insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 4, 5);
-insert into Review (title, description, positive, author, game) values ('Too Many Bugs', 'The game has too many bugs and crashes often.', false, 1, 6);
-insert into Review (title, description, positive, author, game) values ('Immersive Experience', 'The game provides an immersive experience with its detailed world.', true, 1, 7);
-insert into Review (title, description, positive, author, game) values ('Lack of Content', 'The game lacks content and gets repetitive quickly.', false, 1, 8);
-insert into Review (title, description, positive, author, game) values ('Fun and Addictive', 'The game is very fun and addictive. Cannot stop playing!', true, 1, 9);
-insert into Review (title, description, positive, author, game) values ('Poor Controls', 'The controls are not responsive and hard to use.', false, 1, 10);
-insert into Review (title, description, positive, author, game) values ('Great Graphics', 'The graphics are stunning and very detailed.', true, 2, 10);
-insert into Review (title, description, positive, author, game) values ('Boring Gameplay', 'The gameplay is repetitive and gets boring quickly.', false, 3, 10);
-insert into Review (title, description, positive, author, game) values ('Excellent Storyline', 'The storyline is captivating and well-written.', true, 4, 10);
-insert into Review (title, description, positive, author, game) values ('Too Many Bugs', 'The game has too many bugs and crashes often.', false, 5, 10);
-insert into Review (title, description, positive, author, game) values ('Amazing Soundtrack', 'The soundtrack is amazing and fits the game perfectly.', true, 6, 10);
-insert into Review (title, description, positive, author, game) values ('Lack of Content', 'The game lacks content and feels incomplete.', false, 7, 10);
-insert into Review (title, description, positive, author, game) values ('Fun Multiplayer', 'The multiplayer mode is fun and engaging.', true, 8, 10);
-insert into Review (title, description, positive, author, game) values ('Pay to Win', 'The game is pay to win and not enjoyable without spending money.', false, 9, 10);
-insert into Review (title, description, positive, author, game) values ('Great Replay Value', 'The game has great replay value and keeps you coming back.', true, 10, 10);
+-- Game 1
+insert into Review (title, description, positive, author, game) values ('Amazing Gameplay', 'The gameplay is smooth and engaging. Highly recommend!', true, 1, 1);
+insert into Review (title, description, positive, author, game) values ('Great Graphics', 'The graphics are stunning and very detailed.', true, 3, 1);
+insert into Review (title, description, positive, author, game) values ('Excellent Multiplayer', 'The multiplayer mode is very fun and competitive.', true, 4, 1);
+
+-- Game 2
+insert into Review (title, description, positive, author, game) values ('Boring Storyline', 'The storyline is very predictable and boring.', false, 1, 2);
+insert into Review (title, description, positive, author, game) values ('Too Many Bugs', 'The game has too many bugs and crashes often.', false, 6, 2);
+
+-- Game 3
+insert into Review (title, description, positive, author, game) values ('Immersive Experience', 'The game provides an immersive experience with its detailed world.', true, 1, 3);
+insert into Review (title, description, positive, author, game) values ('Lack of Content', 'The game lacks content and gets repetitive quickly.', false, 5, 3);
+
+-- Game 4
+insert into Review (title, description, positive, author, game) values ('Fun and Addictive', 'The game is very fun and addictive. Cannot stop playing!', true, 1, 4);
+
+-- Game 5
+insert into Review (title, description, positive, author, game) values ('Poor Controls', 'The controls are not responsive and hard to use.', false, 7, 5);
+
+-- Game 10
+insert into Review (title, description, positive, author, game) values ('Great Graphics', 'The graphics are stunning and very detailed.', true, 8, 10);
+
+-- Game 20
+insert into Review (title, description, positive, author, game) values ('Amazing Soundtrack', 'The soundtrack is amazing and fits the game perfectly.', true, 1, 20);
+insert into Review (title, description, positive, author, game) values ('Excellent Storyline', 'The storyline is captivating and well-written.', true, 8, 20);
+insert into Review (title, description, positive, author, game) values ('Too Many Bugs', 'The game has too many bugs and crashes often.', false, 9, 20);
+
 
 -- Review Like
-insert into ReviewLike (review, author) values (10, 2);
-insert into ReviewLike (review, author) values (10, 3);
-insert into ReviewLike (review, author) values (10, 4);
-insert into ReviewLike (review, author) values (10, 5);
-insert into ReviewLike (review, author) values (10, 6);
-insert into ReviewLike (review, author) values (10, 7);
-insert into ReviewLike (review, author) values (10, 8);
+insert into ReviewLike (review, author) values (1, 2);
+insert into ReviewLike (review, author) values (1, 10);
+insert into ReviewLike (review, author) values (1, 3);
+insert into ReviewLike (review, author) values (1, 5);
+insert into ReviewLike (review, author) values (2, 3);
+insert into ReviewLike (review, author) values (2, 1);
+insert into ReviewLike (review, author) values (2, 6);
+insert into ReviewLike (review, author) values (3, 4);
+insert into ReviewLike (review, author) values (5, 2);
+insert into ReviewLike (review, author) values (5, 3);
+insert into ReviewLike (review, author) values (5, 4);
+insert into ReviewLike (review, author) values (5, 5);
+insert into ReviewLike (review, author) values (5, 6);
+insert into ReviewLike (review, author) values (5, 7);
+insert into ReviewLike (review, author) values (5, 8);
+insert into ReviewLike (review, author) values (6, 1);
+insert into ReviewLike (review, author) values (7, 8);
+insert into ReviewLike (review, author) values (7, 10);
+insert into ReviewLike (review, author) values (9, 9);
 insert into ReviewLike (review, author) values (10, 9);
+insert into ReviewLike (review, author) values (11, 9);
+insert into ReviewLike (review, author) values (12, 9);
+insert into ReviewLike (review, author) values (13, 9);
 
 
 -- Reason
