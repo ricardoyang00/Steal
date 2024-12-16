@@ -88,7 +88,7 @@ class RegisterController extends Controller
                     'id' => $user->id,
                     'nif' => null,
                     'birth_date' => $request->birth_date,
-                    'coins' => 0,
+                    'coins' => 500,
                 ]);
             } else if ($request->user_type == 'seller') {
                 $user->seller()->create([

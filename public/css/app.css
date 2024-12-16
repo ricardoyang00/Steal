@@ -87,6 +87,11 @@ header .profile-buttons, header .auth-buttons {
   .button[href*="/register"]:hover, .profile-link:hover {
     background-color: var(--highlight-hover-color);
   }
+  #scoins {
+    color: var(--highlight-color);
+    background-color: var(--text-color);
+    font-size: 14px;
+  }
 }
 
 header .button, header .profile-link {

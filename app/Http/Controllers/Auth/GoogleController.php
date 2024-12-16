@@ -66,7 +66,7 @@ class GoogleController extends Controller
                 'id' => $new_user->id,
                 'nif' => null,
                 'birth_date' => '2000-01-01',
-                'coins' => 0,
+                'coins' => 500,
             ]);
             
             Auth::login($new_user);

@@ -54,7 +54,7 @@
                     <div class="detail-info">{{ auth_user()->buyer->birth_date }}</div>
                 </div>
                 <div class="detail-box">
-                    <div class="detail-label"><strong>Coins</strong></div>
+                    <div class="detail-label"><strong>S-Coins</strong></div>
                     <div class="detail-info">{{ auth_user()->buyer->coins }}</div>
                 </div>
             @endif

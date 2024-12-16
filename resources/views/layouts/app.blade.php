@@ -67,9 +67,12 @@
                     </h1>
                     @if (auth_user())
                         <div class="profile-buttons">
+                            @if (auth_user()->buyer)
+                                <a class="button" id="scoins"><i class="fa-solid fa-coins"></i> <strong>{{ auth_user()->buyer->coins }}</strong></a>
+                            @endif
                             <div class="dropdown">
                                 <a class="profile-link" href="{{ url('/profile') }}" role="button" id="profileDropdown">
-                                    <i class="fas fa-user"></i> <span>{{ auth_user()->username }}</span>
+                                    <i class="fas fa-user"></i> <span><strong>{{ auth_user()->username }}</strong></span>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="profileDropdown">
                                     <a class="dropdown-item" href="{{ url('/profile') }}">View Profile</a>

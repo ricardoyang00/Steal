@@ -118,7 +118,7 @@
                     <div class="detail-info">{{ $user->buyer->birth_date }}</div>
                 </div>
                 <div class="detail-box">
-                    <div class="detail-label"><strong>Coins</strong></div>
+                    <div class="detail-label"><strong>S-Coins</strong></div>
                     <div class="detail-info">
                         <span id="coins-display">{{ $user->buyer->coins }}</span>
                         @if ($user->is_active)
