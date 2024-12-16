@@ -171,6 +171,36 @@ INSERT INTO Game (name, description, price, overall_rating, owner, is_active, re
 ('Astro Nexus', 'Build alliances in a multiplayer space sim.', 49.99, 0, 22, FALSE, '2024-10-04', 1);
 
 
+-- Game Ratings
+UPDATE Game
+SET overall_rating = 75
+WHERE id = 1;
+
+UPDATE Game
+SET overall_rating = 0
+WHERE id = 2;
+
+UPDATE Game
+SET overall_rating = 50
+WHERE id = 3;
+
+UPDATE Game
+SET overall_rating = 100
+WHERE id = 4;
+
+UPDATE Game
+SET overall_rating = 0
+WHERE id = 5;
+
+UPDATE Game
+SET overall_rating = 100
+WHERE id = 10;
+
+UPDATE Game
+SET overall_rating = 66.67
+WHERE id = 20;
+
+
 -- CDK
 INSERT INTO CDK (code, game) VALUES
 -- 10 codes per game
