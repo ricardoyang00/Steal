@@ -29,13 +29,16 @@ class WishlistController extends Controller
         if (Auth::user()) {
             $wishlistItems = Wishlist::where('buyer', Auth::user()->id)->get();
             foreach ($wishlistItems as $item) {
-                $game = Game::find($item->game);
+                $game = Game::with(['categories', 'players'])->find($item->game);
                 if ($game && $game->is_active) {
                     $products[] = [
                         'id' => $game->id,
                         'name' => $game->name,
                         'price' => $game->price,
-                        'thumbnail_small_path' => $game->getThumbnailSmallPath()
+                        'thumbnail_large_path' => $game->getThumbnailLargePath(),
+                        'is_active' => $game->is_active,
+                        'categories' => $game->categories->pluck('name')->toArray(),
+                        'players' => $game->players->pluck('name')->toArray(),
                     ];
                     $total += $game->price;
                 } else {

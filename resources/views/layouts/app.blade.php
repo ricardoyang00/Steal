@@ -130,7 +130,7 @@
                     </div>
                     @if (auth_user() && auth_user()->buyer)
                         <div class="wishlist">
-                            <a class="btn btn-link" href="{{ url('/wishlist') }}">
+                            <a class="btn btn-link {{ request()->is('wishlist') ? 'active' : '' }}" href="{{ url('/wishlist') }}">
                                 Wishlist
                             </a>
                         </div>
