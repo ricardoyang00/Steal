@@ -100,4 +100,43 @@ AFTER DELETE ON NotificationOrder
 FOR EACH ROW
 EXECUTE PROCEDURE delete_notification_after_specific_notification_delete();
 
+/* Trigger to clear cart and wishlist after delivery */
+CREATE OR REPLACE FUNCTION clear_cart_and_wishlist_after_delivery()
+RETURNS TRIGGER AS
+$BODY$
+DECLARE
+    game_id INT;
+    buyer_id INT;
+BEGIN
+    -- Retrieve the game associated with the delivered CDK
+    SELECT Game.id INTO game_id
+    FROM Game
+    JOIN CDK ON CDK.game = Game.id
+    WHERE CDK.id = NEW.cdk;
 
+    -- Retrieve the buyer associated with the order
+    SELECT Orders.buyer INTO buyer_id
+    FROM Orders
+    JOIN Purchase ON Purchase.order_ = Orders.id
+    WHERE Purchase.id = NEW.id;
+
+    -- Delete the game from the buyer's ShoppingCart
+    DELETE FROM ShoppingCart
+    WHERE buyer = buyer_id
+        AND game = game_id;
+
+    -- Delete the game from the buyer's Wishlist
+    DELETE FROM Wishlist
+    WHERE buyer = buyer_id
+        AND game = game_id;
+
+    RETURN NEW;
+END;
+$BODY$
+LANGUAGE plpgsql;
+
+-- Create the trigger to invoke the function after an insert on DeliveredPurchase
+CREATE TRIGGER trg_clear_cart_and_wishlist_after_delivery
+AFTER INSERT ON DeliveredPurchase
+FOR EACH ROW
+EXECUTE FUNCTION clear_cart_and_wishlist_after_delivery();
