@@ -31,7 +31,7 @@ class ShoppingCartController extends Controller
 
         if (auth_user()) {
             foreach ($shoppingCartItems as $item) {
-                $game = Game::find($item->game);
+                $game = Game::with(['platforms'])->find($item->game);
                 if ($game && $game->is_active) {
                     $products[] = [
                         'id' => $game->id,
@@ -40,6 +40,12 @@ class ShoppingCartController extends Controller
                         'quantity' => $item->quantity,
                         'thumbnail_small_path' => $game->getThumbnailSmallPath(),
                         'is_active' => $game->is_active,
+                        'platforms' => $game->platforms->map(function($platform) {
+                            return [
+                                'id' => $platform->id,
+                                'name' => $platform->name
+                            ];
+                        })->toArray(),
                     ];
                     $total += $game->price * $item->quantity;
                 } else {

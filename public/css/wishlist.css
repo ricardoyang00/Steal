@@ -1,4 +1,53 @@
 /* Wishlist Styling */
+.wishlist .wishlist-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    i {
+        font-size: 1.5rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
+.empty-wishlist-message {
+    text-align: center;
+    color: var(--text-color);
+    padding: 20px;
+}
+
+.empty-wishlist-message i {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.empty-wishlist-message #primary-empty-message{
+    margin: 20px 0;
+    font-size: 1.2rem;
+}
+
+.empty-wishlist-message #secondary-empty-message{
+    margin-top: 20px;
+    margin-bottom: 50px;
+    font-size: 0.9rem;
+    color: var(--secondary-text-color);
+}
+
+.empty-wishlist-message .btn {
+    padding: 10px 20px;
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+    background-color: transparent;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.empty-wishlist-message .btn:hover {
+    background-color: var(--hover-background-color);
+}
 
 /* Add to Cart Button */
 .wishlist .btn-add-to-cart {
@@ -16,9 +65,54 @@
     background-color: var(--buy-button-hover-color);
 }
 
-.wishlist {
-    max-width: 1500px;
-    margin: 0 auto;
+/* Not Empty Wishlist */
+.wishlist-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+#wishlist #product_list {
+    list-style-type: none;
+    width: 1000px;
+    padding: 20px;
+    background-color: var(--background-color);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
+#wishlist #product_list li {
+    width: 100%;
+    padding-top: 20px;
+}
+
+/* Image styling */
+#wishlist .product-container img {
+    width: 200px;
+    height: 128px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Details */
+#wishlist .product-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex: 1;
+    height: 100%;
+    .product-name {
+        font-size: 1.3rem;
+        justify-content: flex-start;
+        margin-bottom: 10px;
+    }
+    .game-tags {
+        margin-bottom: 50px;
+    }
+    .btn-remove {
+        margin-top: auto;
+        align-self: flex-start;
+        font-size: 1rem;
+    }
+}

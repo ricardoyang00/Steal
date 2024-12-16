@@ -31,6 +31,11 @@
                                             <a href="{{ route('game.details', ['id' => $product['id']]) }}">
                                                 <p class="product-name">{{ $product['name'] }}</p>
                                             </a>
+                                            <div class="platforms">
+                                                @foreach($product['platforms'] as $platform)
+                                                    <img src="{{ asset('images/platform_logos/' . $platform['id'] . '.svg') }}" alt="{{ $platform['name'] }} logo" class="img-fluid" style="width: 20px; height: 30px; margin: 0 2px; object-fit: contain;">
+                                                @endforeach
+                                            </div>
                                             <button class="btn-remove" data-id="{{ $product['id'] }}">
                                                 <i class="far fa-trash-alt"></i> Remove
                                             </button>

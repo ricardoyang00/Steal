@@ -311,7 +311,7 @@
     transition: background-color 0.2s;
 }
 
-.tag:hover {
+.explore-page .tag:hover {
     background-color: var(--highlight-color);
 }
 

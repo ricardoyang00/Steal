@@ -35,13 +35,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function noProductsInWishlist() {
     const wishlistItems = document.getElementById('wishlist_id');
+    wishlistItems.innerHTML = ''; // Clear existing content
+
     const noProducts = document.createElement('div');
     noProducts.classList.add('empty-wishlist-message');
     noProducts.innerHTML = `
         <i class="fas fa-heart"></i>
         <p id="primary-empty-message">Your wishlist is empty.</p>
-        <p id="secondary-empty-message">You have no item in your wishlist yet. Browse the website to find amazing deals!</p>
+        <p id="secondary-empty-message">Time to fill it up with epic deals! Browse now and snag your next favorite game at an unbeatable price!</p>
         <a href="/explore" class="btn">Explore games</a>
     `;
     wishlistItems.appendChild(noProducts);
+
+    // Remove the wishlist header
+    const wishlistHeader = document.querySelector('.wishlist-header');
+    if (wishlistHeader) {
+        wishlistHeader.remove();
+    }
 }
