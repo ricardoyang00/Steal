@@ -140,3 +140,44 @@ CREATE TRIGGER trg_clear_cart_and_wishlist_after_delivery
 AFTER INSERT ON DeliveredPurchase
 FOR EACH ROW
 EXECUTE FUNCTION clear_cart_and_wishlist_after_delivery();
+
+/* Trigger to check age upon checkout */
+-- Function to check age requirement before insert
+CREATE OR REPLACE FUNCTION check_age_requirement() 
+RETURNS TRIGGER AS $$
+DECLARE
+    buyer_birth_date DATE;
+    game_minimum_age INT;
+    buyer_age INT;
+BEGIN
+    -- Get the buyer's birth date
+    SELECT birth_date INTO buyer_birth_date
+    FROM Buyer
+    JOIN Orders ON Orders.buyer = Buyer.id
+    JOIN Purchase ON Purchase.order_ = Orders.id
+    WHERE Purchase.id = NEW.id;
+
+    -- Get the minimum age of the game from the Age table
+    SELECT minimum_age INTO game_minimum_age
+    FROM Age
+    JOIN Game ON Game.age_id = Age.id
+    JOIN CDK ON CDK.game = Game.id
+    WHERE CDK.id = NEW.cdk;
+
+    -- Calculate buyer's age
+    buyer_age := DATE_PART('year', CURRENT_DATE) - DATE_PART('year', buyer_birth_date);
+
+    -- Check if the buyer is old enough
+    IF buyer_age < game_minimum_age THEN
+        RAISE EXCEPTION 'Buyer does not meet the minimum age requirement for this game';
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Trigger to invoke the function before inserting into DeliveredPurchase
+CREATE TRIGGER check_age_before_insert
+BEFORE INSERT ON DeliveredPurchase
+FOR EACH ROW
+EXECUTE FUNCTION check_age_requirement();

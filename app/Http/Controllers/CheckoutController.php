@@ -124,9 +124,11 @@ class CheckoutController extends Controller
                     'message' => $e->getMessage(),
                     'stack' => $e->getTraceAsString(),
                 ]);
+                if (strpos($e->getMessage(), 'Buyer does not meet the minimum age requirement for this game') !== false) {
+                    return redirect()->route('shopping_cart')->withErrors('You do not meet the age requirement for one or more items in your cart.');
+                }
                 return redirect()->route('shopping_cart')->withErrors('Something went wrong. Please try again.');
             }
-
     }
 
     public function selectPaymentMethod()
