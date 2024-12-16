@@ -1722,37 +1722,37 @@ insert into PaymentMethod (name, image_path) values ('Multibanco', 'images/payme
 
 
 -- Payment
-insert into Payment (method, value) values (1, 304.71); -- order 1
-insert into Payment (method, value) values (2, 304.71); -- order 2
-insert into Payment (method, value) values (3, 304.71); -- order 3
-insert into Payment (method, value) values (4, 304.71); -- order 4
-insert into Payment (method, value) values (5, 304.71); -- order 5
-insert into Payment (method, value) values (6, 304.71); -- order 6
-insert into Payment (method, value) values (7, 304.71); -- order 7
-insert into Payment (method, value) values (8, 304.71); -- order 8
-insert into Payment (method, value) values (9, 304.71); -- order 9
-insert into Payment (method, value) values (1, 304.71); -- order 10
-insert into Payment (method, value) values (2, 304.71); -- order 11
-insert into Payment (method, value) values (3, 304.71); -- order 12
-insert into Payment (method, value) values (4, 304.71); -- order 13
-insert into Payment (method, value) values (5, 304.71); -- order 14
+insert into Payment (method, value) values (1, 164.96); -- order 1
+insert into Payment (method, value) values (2, 149.97); -- order 2
+insert into Payment (method, value) values (3, 74.98); -- order 3
+insert into Payment (method, value) values (4, 49.99); -- order 4
+insert into Payment (method, value) values (5, 24.99); -- order 5
+insert into Payment (method, value) values (6, 49.99); -- order 6
+insert into Payment (method, value) values (7, 49.99); -- order 7
+insert into Payment (method, value) values (8, 49.99); -- order 8
+insert into Payment (method, value) values (9, 49.99); -- order 9
+insert into Payment (method, value) values (1, 19.99); -- order 10
+insert into Payment (method, value) values (2, 34.99); -- order 11
+insert into Payment (method, value) values (3, 39.99); -- order 12
+insert into Payment (method, value) values (4, 19.99); -- order 13
+insert into Payment (method, value) values (5, 24.99); -- order 14
 
 
 -- Orders
-insert into Orders (buyer, payment, time) values (1, 1, '2024-12-01 12:00:00'); -- 1
-insert into Orders (buyer, payment, time) values (1, 2, '2024-12-05 12:00:00'); -- 2
-insert into Orders (buyer, payment, time) values (1, 3, '2024-11-30 12:00:00'); -- 3
-insert into Orders (buyer, payment, time) values (1, 4, '2024-11-01 12:00:00'); -- 4
-insert into Orders (buyer, payment, time) values (1, 5, '2024-12-04 12:00:00'); -- 5
-insert into Orders (buyer, payment, time) values (1, 6, '2023-12-01 12:00:00'); -- last year
-insert into Orders (buyer, payment, time) values (2, 7, '2024-10-10 12:00:00'); -- 7
-insert into Orders (buyer, payment, time) values (3, 8, '2024-12-01 12:00:00'); -- 8
-insert into Orders (buyer, payment, time) values (4, 9, '2024-12-01 12:00:00'); -- 9
-insert into Orders (buyer, payment, time) values (5, 10, '2024-12-01 12:00:00'); -- 10
-insert into Orders (buyer, payment, time) values (6, 11, '2024-12-01 12:00:00'); -- 11
+insert into Orders (buyer, payment, time) values (1, 1, '2024-12-01 01:00:00'); -- 1
+insert into Orders (buyer, payment, time) values (1, 2, '2024-12-05 02:00:00'); -- 2
+insert into Orders (buyer, payment, time) values (1, 3, '2024-11-30 03:00:00'); -- 3
+insert into Orders (buyer, payment, time) values (1, 4, '2024-11-01 04:00:00'); -- 4
+insert into Orders (buyer, payment, time) values (1, 5, '2024-12-04 05:00:00'); -- 5
+insert into Orders (buyer, payment, time) values (1, 6, '2024-12-16 06:00:00'); -- 6
+insert into Orders (buyer, payment, time) values (2, 7, '2024-10-10 07:00:00'); -- 7
+insert into Orders (buyer, payment, time) values (3, 8, '2024-12-01 08:00:00'); -- 8
+insert into Orders (buyer, payment, time) values (4, 9, '2024-12-01 09:00:00'); -- 9
+insert into Orders (buyer, payment, time) values (5, 10, '2024-12-01 10:00:00'); -- 10
+insert into Orders (buyer, payment, time) values (6, 11, '2024-12-01 11:00:00'); -- 11
 insert into Orders (buyer, payment, time) values (7, 12, '2024-12-01 12:00:00'); -- 12
-insert into Orders (buyer, payment, time) values (8, 13, '2024-12-01 12:00:00'); -- 13
-insert into Orders (buyer, payment, time) values (9, 14, '2024-12-01 12:00:00'); -- 14
+insert into Orders (buyer, payment, time) values (8, 13, '2024-12-01 13:00:00'); -- 13
+insert into Orders (buyer, payment, time) values (9, 14, '2024-12-01 14:00:00'); -- 14
 
 
 -- Purchase (20)
