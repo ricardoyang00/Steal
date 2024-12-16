@@ -99,8 +99,6 @@ CREATE TABLE Game(
     description TEXT NOT NULL,
     price FLOAT NOT NULL CHECK(price > 0.0),
     overall_rating INT NOT NULL CHECK(overall_rating >= 0 AND overall_rating <= 100) DEFAULT 0,
-    positive_reviews INT NOT NULL CHECK(positive_reviews >= 0) DEFAULT 0,
-    negative_reviews INT NOT NULL CHECK(negative_reviews >= 0) DEFAULT 0,
     owner INT NOT NULL REFERENCES Seller(id) ON UPDATE CASCADE,
     is_active BOOLEAN DEFAULT TRUE,
     block_reason TEXT,
@@ -240,7 +238,7 @@ CREATE TABLE Review(
 
 CREATE TABLE ReviewLike(
     id SERIAL PRIMARY KEY,
-    review INT NOT NULL REFERENCES Review(id) ON UPDATE CASCADE,
+    review INT NOT NULL REFERENCES Review(id) ON UPDATE CASCADE ON DELETE CASCADE,
     author INT NOT NULL REFERENCES Buyer(id) ON UPDATE CASCADE,
     CONSTRAINT review_author_pair_unique UNIQUE (review, author)
 );
