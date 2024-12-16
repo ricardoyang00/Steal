@@ -93,6 +93,7 @@
                             @if (auth_user()->buyer)
                                 <a class="icon-button" href="{{ url('/cart') }}">
                                     <i class="fas fa-shopping-cart"></i>
+                                    <span id="cart-count" class="badge"></span>
                                 </a>
                             @endif
                             <a class="icon-button" href="{{ url('/notifications') }}">

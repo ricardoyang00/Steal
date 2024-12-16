@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
+                    fetchCartCount();
                     button.textContent = "Added to cart";
                     button.disabled = true;
                     button.style.backgroundColor = '#4e13a3';

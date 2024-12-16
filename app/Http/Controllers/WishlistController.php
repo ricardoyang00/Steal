@@ -109,6 +109,11 @@ class WishlistController extends Controller
     }
 
     public function isInWishlist(Request $request) {
+        if (!Auth::user()) {
+            return response()->json([
+                'is_in_wishlist' => false
+            ]);
+        }
         $gameId = $request->input('game_id');
         $buyerId = Auth::user()->id;
 
