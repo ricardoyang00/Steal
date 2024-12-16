@@ -39,7 +39,6 @@ class ReviewsController extends Controller
 
             $gameId = $request->input('game_id');
             $game = Game::find($gameId);
-            $game->updateRatings();
             $game->save();
 
 
@@ -58,7 +57,6 @@ class ReviewsController extends Controller
             $review->delete();
     
             $game = Game::findOrFail($gameId);
-            $game->updateRatings();
             $game->save();
     
             return redirect()->route('game.details', ['id' => $gameId])->withSuccess('Review removed successfully!');
@@ -87,7 +85,6 @@ class ReviewsController extends Controller
             $review->save();
 
             $game = Game::find($gameId);
-            $game->updateRatings();
             $game->save();
 
         } catch (\Exception $e) {

@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
+                    fetchCartCount();
                     document.getElementById(`product-${productId}`).remove();
                     document.getElementById('total_price').textContent = '€ ' + data.new_total.toFixed(2);
                     document.getElementById('subtotal').textContent = '€ ' + data.new_total.toFixed(2);
@@ -98,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(data => {
             console.log("Response data: ", data.text);
             if (data.success) {
+                fetchCartCount();
                 const productItem = document.getElementById(`product-${productId}`);
                 productItem.querySelector('.prod_quantity').textContent = data.new_quantity;
 

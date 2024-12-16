@@ -351,4 +351,27 @@ class ShoppingCartController extends Controller
             $this->addProduct($request, $product['id'], $product['quantity']);
         }
     }
+
+    public function getCartCount(Request $request)
+    {
+        if (!auth_user()){
+            $shoppingCart = $request->session()->get('shopping_cart', []);
+            $count = array_reduce($shoppingCart, function ($carry, $item) {
+                return $carry + $item['quantity'];
+            }, 0);
+            return response()->json([
+                'count' => $count,
+            ]);
+        }
+        if (auth_user()->buyer) {
+            $buyerId = auth_user()->id;
+            $count = ShoppingCart::where('buyer', $buyerId)->sum('quantity');
+        } else {
+            $count = 0;
+        }
+
+        return response()->json([
+            'count' => $count,
+        ]);
+    }
 }

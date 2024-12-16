@@ -258,3 +258,49 @@ CREATE TRIGGER trg_add_scoin_on_order
 AFTER INSERT ON Orders
 FOR EACH ROW
 EXECUTE FUNCTION add_scoin_on_order();
+CREATE FUNCTION update_game_rating_after_review() RETURNS TRIGGER AS
+$BODY$
+DECLARE
+    total_reviews INT;
+    positive_reviews INT;
+    rating_percentage INT;
+    game_id INT;
+BEGIN
+    -- Determine the game ID based on the operation
+    IF TG_OP = 'DELETE' THEN
+        game_id := OLD.game;
+    ELSE
+        game_id := NEW.game;
+    END IF;
+
+    -- Calculate the total number of reviews for the game
+    SELECT COUNT(*) INTO total_reviews
+    FROM Review
+    WHERE game = game_id;
+
+    -- Calculate the number of positive reviews (positive = TRUE) for the game
+    SELECT COUNT(*) INTO positive_reviews
+    FROM Review
+    WHERE game = game_id AND positive = TRUE;
+
+    -- Calculate the positive percentage and round to the nearest integer
+    IF total_reviews > 0 THEN
+        rating_percentage := ROUND((positive_reviews * 100.0) / total_reviews);
+    ELSE
+        rating_percentage := 0;  -- If no reviews, set rating to 0
+    END IF;
+
+    -- Update the overall_rating in the game table
+    UPDATE Game
+    SET overall_rating = rating_percentage
+    WHERE id = game_id;
+
+    RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_update_game_rating_after_review
+AFTER INSERT OR UPDATE OR DELETE ON Review
+FOR EACH ROW
+EXECUTE FUNCTION update_game_rating_after_review();

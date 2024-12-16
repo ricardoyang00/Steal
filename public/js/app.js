@@ -5,6 +5,27 @@ function scrollToSection(event, sectionId) {
     });
 }
 
+function fetchCartCount() {
+    fetch('/cart/count', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data?.count !== undefined) {
+                const countElement = document.getElementById('cart-count');
+                if (countElement) {
+                    countElement.textContent = data.count > 0 ? data.count : '';
+                    countElement.style.display = data.count > 0 ? 'inline-block' : 'none';
+                }
+            }
+        })
+        .catch(error => console.error('Error fetching cart count.', error));
+}
+
 // Function to update the coins value
 function updateCoins() {
     fetch('/api/coins')
@@ -41,4 +62,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (window.location.pathname === '/checkout') {
         updateCoins(); // Call function to update coins on page load
     }
+
+    fetchCartCount();
 });
