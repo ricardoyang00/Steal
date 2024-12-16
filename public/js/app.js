@@ -43,6 +43,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000); // Hide after 3 seconds
     }
 
-
     fetchCartCount();
 });

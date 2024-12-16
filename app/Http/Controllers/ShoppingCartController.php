@@ -354,15 +354,20 @@ class ShoppingCartController extends Controller
 
     public function getCartCount(Request $request)
     {
+        if (!auth_user()){
+            $shoppingCart = $request->session()->get('shopping_cart', []);
+            $count = array_reduce($shoppingCart, function ($carry, $item) {
+                return $carry + $item['quantity'];
+            }, 0);
+            return response()->json([
+                'count' => $count,
+            ]);
+        }
         if (auth_user()->buyer) {
             $buyerId = auth_user()->id;
             $count = ShoppingCart::where('buyer', $buyerId)->sum('quantity');
         } else {
-            $shoppingCart = $request->session()->get('shopping_cart', []);
             $count = 0;
-            for ($i = 0; $i < count($shoppingCart); $i++) {
-                $count += $shoppingCart[$i]['quantity'];
-            }
         }
 
         return response()->json([
