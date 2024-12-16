@@ -25,9 +25,9 @@ class OrderDetailsController extends Controller {
         $removeCount = count($prePurchaseIds); // Since each ID represents a cancellation
 
         // 2. Get the current authenticated user
-        $user = Auth::user(); // Correct user retrieval
+        $user = auth_user(); // Correct user retrieval
 
-        if (!$user || !$user->buyer) {
+        if (!auth_user() || !auth_user()->buyer) {
             return response()->json([
                 'message' => 'Unauthorized.'
             ], 401);
@@ -36,19 +36,21 @@ class OrderDetailsController extends Controller {
         DB::beginTransaction();
 
         try {
+
             // 3. Fetch the pre-purchase records to be canceled that belong to the current user
             $prePurchases = PrePurchase::whereIn('id', $prePurchaseIds)
                 ->whereHas('getPurchase.getOrder', function ($query) use ($user) {
-                    $query->where('buyer', $user->id); // Assuming 'buyer' is the user ID
+                    $query->where('buyer', auth_user()->id);
                 })
                 ->get();
+
+            $order = $prePurchases->first()->getPurchase->getOrder->id;    
 
             // 4. Check if all provided pre_purchases belong to the user
             if ($prePurchases->count() !== $removeCount) {
                 DB::rollBack();
-                return response()->json([
-                    'message' => 'Some pre-purchases do not belong to you or do not exist.'
-                ], 400);
+                return redirect()->route('orderDetails', ['id' => $order])
+                ->with('error', 'An error occured when trying to cancel the selected purchases!');
             }
 
             // 5. Process each pre-purchase
@@ -71,9 +73,8 @@ class OrderDetailsController extends Controller {
 
             DB::commit();
 
-            return response()->json([
-                'message' => 'Selected pre-purchases have been canceled successfully.'
-            ], 200);
+            return redirect()->route('orderDetails', ['id' => $order])
+                ->with('success', 'Selected pre-purchases have been canceled successfully.');
 
         } catch (\Exception $e) {
             DB::rollBack();
