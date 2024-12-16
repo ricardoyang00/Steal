@@ -88,7 +88,7 @@ INSERT INTO Game (name, description, price, overall_rating, owner, is_active, re
 -- Total 60 Games
 -- Seller 1
 ('A Epic Odyssey', 'An immersive adventure game with stunning visuals.', 49.99, 0, 11, TRUE, '2024-03-15', 3),
-('Galactic Blitz', 'A fast-paced sci-fi shooter set in a dystopian universe.', 29.99, 0, 11, TRUE, '2024-05-20', 4),
+('Arcane Arena', 'Compete in a magical dueling tournament.', 34.99, 0, 15, TRUE, '2024-03-22', 2),
 ('Haunted Secrets', 'Solve challenging puzzles in a haunted mansion.', 19.99, 0, 11, TRUE, '2024-07-10', 2),
 ('Legend of Heroes', 'A captivating role-playing game with unique characters.', 59.99, 0, 11, TRUE, '2024-09-05', 5),
 ('Night Riders', 'High-speed street racing with realistic physics.', 39.99, 0, 11, TRUE, '2024-11-22', 3),
@@ -116,7 +116,7 @@ INSERT INTO Game (name, description, price, overall_rating, owner, is_active, re
 
 -- Seller 5
 ('Inferno Tactics', 'A strategy game set in a fiery underworld.', 39.99, 0, 15, TRUE, '2024-01-18', 4),
-('Arcane Arena', 'Compete in a magical dueling tournament.', 34.99, 0, 15, TRUE, '2024-03-22', 2),
+('Galactic Blitz', 'A fast-paced sci-fi shooter set in a dystopian universe.', 29.99, 0, 11, TRUE, '2024-05-20', 4),
 ('Blazing Trails', 'Embark on a daring journey across the wild.', 44.99, 0, 15, TRUE, '2024-05-15', 3),
 ('Stellar Voyage', 'Pilot a spaceship and explore distant planets.', 54.99, 0, 15, TRUE, '2024-08-10', 5),
 ('Iron Bastion', 'Defend your fortress from invading armies.', 29.99, 0, 15, TRUE, '2024-11-03', 1),
@@ -174,20 +174,30 @@ INSERT INTO Game (name, description, price, overall_rating, owner, is_active, re
 -- CDK
 INSERT INTO CDK (code, game) VALUES
 -- 10 codes per game
--- Game 1
-('ZWTWQRAKXBV1JHLATPXKV112II', 1),
-('S32MXSVQRDSNXN79E76S01HVFD', 1),
-('DPWQ13S5XFPARMA0VEOU2IA4MN', 1),
-('N95JKOMMBIA3PV5SIWJB9NRE66', 1),
-('ANKBBME5P2BIMKU672L3VT7Q5D', 1),
-('PTPQ2KZY7DPNWCKYLIK22ZEFP6', 1),
-('Q7E5LV40X8CYJ3PSC5OZG2KS3L', 1),
-('R4XMASJLXMU1AIRHZJ1O9D4YF1', 1),
-('UO2W51HKCP5A7QMOJ4PLVEW0AM', 1),
-('QWO8FK8GBDEJC3X89COZCIAJFH', 1),
+-- Game 1 (20)
+('ZWTWQRAKXBV1JHLATPXKV112II', 1), -- sold
+('S32MXSVQRDSNXN79E76S01HVFD', 1), -- sold
+('DPWQ13S5XFPARMA0VEOU2IA4MN', 1), -- sold
+('N95JKOMMBIA3PV5SIWJB9NRE66', 1), -- sold
+('ANKBBME5P2BIMKU672L3VT7Q5D', 1), -- sold
+('PTPQ2KZY7DPNWCKYLIK22ZEFP6', 1), -- sold
+('Q7E5LV40X8CYJ3PSC5OZG2KS3L', 1), -- sold
+('R4XMASJLXMU1AIRHZJ1O9D4YF1', 1), -- sold
+('UO2W51HKCP5A7QMOJ4PLVEW0AM', 1), -- sold
+('QWO8FK8GBDEJC3X89COZCIAJFH', 1), -- sold (10)
+('AWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('BWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('CWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('DWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('EWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('FWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('GWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('HWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('IWO8FK8GBDEJC3X89COZCIAJFH', 1),
+('JWO8FK8GBDEJC3X89COZCIAJFH', 1),
 -- Game 2
-('9H6JRU7AZ2QRX6TJ7815D9RZGN', 2),
-('7RV6UVGAG8X1PSD9J8V86COK9L', 2),
+('9H6JRU7AZ2QRX6TJ7815D9RZGN', 2), -- sold
+('7RV6UVGAG8X1PSD9J8V86COK9L', 2), -- sold (22)
 ('RAMOI9DWYTD3B8YGVENT0O527T', 2),
 ('QHC5BXL8HLX289GYFLXGFK4LHK', 2),
 ('HCTIOZ64DTZCISAHK7E44KJK1S', 2),
@@ -197,8 +207,8 @@ INSERT INTO CDK (code, game) VALUES
 ('S57BQ9QZPDHJ1FJGEXN3PHMF75', 2),
 ('18I8T319HZIH9LEINHBAWRFPZC', 2),
 -- Game 3
-('4H9UOP8Z8RJ58SZTIUOXIMHU4N', 3),
-('7KF7URMJY37YQ9I1MVSSWNXD3P', 3),
+('4H9UOP8Z8RJ58SZTIUOXIMHU4N', 3), -- sold
+('7KF7URMJY37YQ9I1MVSSWNXD3P', 3), -- sold (32)
 ('X2KFFV38Q0SDSDYLWL03GBXI4N', 3),
 ('OQ2341NUQUSOQ2QOX5P55JT70J', 3),
 ('STN1B3XVJ5ROIHD4FV51VILGZW', 3),
@@ -219,7 +229,7 @@ INSERT INTO CDK (code, game) VALUES
 ('KNBFBWIAM74DRUO9GPC26GR5UH', 4),
 ('0J1JF21B9X8NBII3H5BLMIPXKB', 4),
 -- Game 5
-('8QC1K9K9GPLAJMR0WVKE35ZYXQ', 5),
+('8QC1K9K9GPLAJMR0WVKE35ZYXQ', 5), -- sold (51)
 ('YVQFF7KCYCJUYD2QSQ4TT8G3LA', 5),
 ('V2846CAXWTEEI3X5PD8UZELHI1', 5),
 ('KHUI1M8EZO978K5BCS5003TDMB', 5),
@@ -384,9 +394,9 @@ INSERT INTO CDK (code, game) VALUES
 ('AS5PDH5BBTH5J6VJ5U8ECZIFJI', 19),
 ('OIVNCHWQ500D7AWGWPTUCSTVLG', 19),
 -- Game 20
-('HUK56ONUJKL0BA702CZDT5L6MP', 20),
-('UNG6LXNAZ92PLXDV3PTN9ZMCM2', 20),
-('LQMNI2LWHUNA0CJ36KNFEFLQXP', 20),
+('HUK56ONUJKL0BA702CZDT5L6MP', 20), -- sold (201)
+('UNG6LXNAZ92PLXDV3PTN9ZMCM2', 20), -- sold (202)
+('LQMNI2LWHUNA0CJ36KNFEFLQXP', 20), -- sold (203)
 ('MZYGK8Y5V2SUN9Q05BUZPASWUQ', 20),
 ('99QNDI266RTLJTW2YFW2UTU8ZM', 20),
 ('624CGBSC1EW1ENF1IL3LTKMAL4', 20),
@@ -1699,7 +1709,7 @@ INSERT INTO GamePlayer (game, player) VALUES (59, 2);
 INSERT INTO GamePlayer (game, player) VALUES (60, 2);
 
 
--- PaymentMethod
+-- PaymentMethod (9)
 insert into PaymentMethod (name, image_path) values ('Alipay', 'images/payment/alipay.svg');
 insert into PaymentMethod (name, image_path) values ('American Express', 'images/payment/american_express.svg');
 insert into PaymentMethod (name, image_path) values ('Apple Pay', 'images/payment/applepay.svg');
@@ -1712,27 +1722,83 @@ insert into PaymentMethod (name, image_path) values ('Multibanco', 'images/payme
 
 
 -- Payment
-insert into Payment (method, value) values (1, 304.71);
+insert into Payment (method, value) values (1, 304.71); -- order 1
+insert into Payment (method, value) values (2, 304.71); -- order 2
+insert into Payment (method, value) values (3, 304.71); -- order 3
+insert into Payment (method, value) values (4, 304.71); -- order 4
+insert into Payment (method, value) values (5, 304.71); -- order 5
+insert into Payment (method, value) values (6, 304.71); -- order 6
+insert into Payment (method, value) values (7, 304.71); -- order 7
+insert into Payment (method, value) values (8, 304.71); -- order 8
+insert into Payment (method, value) values (9, 304.71); -- order 9
+insert into Payment (method, value) values (1, 304.71); -- order 10
+insert into Payment (method, value) values (2, 304.71); -- order 11
+insert into Payment (method, value) values (3, 304.71); -- order 12
+insert into Payment (method, value) values (4, 304.71); -- order 13
+insert into Payment (method, value) values (5, 304.71); -- order 14
 
 
 -- Orders
-insert into Orders (buyer, payment, time) values (1, 1, '2024-12-01 12:00:00');
+insert into Orders (buyer, payment, time) values (1, 1, '2024-12-01 12:00:00'); -- 1
+insert into Orders (buyer, payment, time) values (1, 2, '2024-12-05 12:00:00'); -- 2
+insert into Orders (buyer, payment, time) values (1, 3, '2024-11-30 12:00:00'); -- 3
+insert into Orders (buyer, payment, time) values (1, 4, '2024-11-01 12:00:00'); -- 4
+insert into Orders (buyer, payment, time) values (1, 5, '2024-12-04 12:00:00'); -- 5
+insert into Orders (buyer, payment, time) values (1, 6, '2023-12-01 12:00:00'); -- last year
+insert into Orders (buyer, payment, time) values (2, 7, '2024-10-10 12:00:00'); -- 7
+insert into Orders (buyer, payment, time) values (3, 8, '2024-12-01 12:00:00'); -- 8
+insert into Orders (buyer, payment, time) values (4, 9, '2024-12-01 12:00:00'); -- 9
+insert into Orders (buyer, payment, time) values (5, 10, '2024-12-01 12:00:00'); -- 10
+insert into Orders (buyer, payment, time) values (6, 11, '2024-12-01 12:00:00'); -- 11
+insert into Orders (buyer, payment, time) values (7, 12, '2024-12-01 12:00:00'); -- 12
+insert into Orders (buyer, payment, time) values (8, 13, '2024-12-01 12:00:00'); -- 13
+insert into Orders (buyer, payment, time) values (9, 14, '2024-12-01 12:00:00'); -- 14
 
 
--- Purchase
-insert into Purchase (value, order_, coins) values (110.53, 1, 0);
-insert into Purchase (value, order_, coins) values (21.63, 1, 0);
-insert into Purchase (value, order_, coins) values (59.65, 1, 0);
-insert into Purchase (value, order_, coins) values (69.55, 1, 0);
-insert into Purchase (value, order_, coins) values (43.35, 1, 0);
+-- Purchase (20)
+insert into Purchase (order_, value, coins) values (1, 49.99, 0); -- 1. game 1
+insert into Purchase (order_, value, coins) values (1, 34.99, 0); -- 2. game 2
+insert into Purchase (order_, value, coins) values (1, 19.99, 0); -- 3. game 3
+insert into Purchase (order_, value, coins) values (1, 59.99, 0); -- 4. game 4
+insert into Purchase (order_, value, coins) values (2, 49.99, 0); -- 5. game 1
+insert into Purchase (order_, value, coins) values (2, 49.99, 0); -- 6. game 1
+insert into Purchase (order_, value, coins) values (2, 49.99, 0); -- 7. game 1
+insert into Purchase (order_, value, coins) values (3, 49.99, 0); -- 8. game 1
+insert into Purchase (order_, value, coins) values (3, 24.99, 0); -- 9. game 20
+insert into Purchase (order_, value, coins) values (4, 49.99, 0); -- 10. game 1
+insert into Purchase (order_, value, coins) values (5, 24.99, 0); -- 11. game 20
+insert into Purchase (order_, value, coins) values (6, 49.99, 0); -- 12. game 1
+insert into Purchase (order_, value, coins) values (7, 49.99, 0); -- 13. game 1
+insert into Purchase (order_, value, coins) values (8, 49.99, 0); -- 14. game 1
+insert into Purchase (order_, value, coins) values (9, 49.99, 0); -- 15. game 1
+insert into Purchase (order_, value, coins) values (10, 19.99, 0); -- 16. game 3
+insert into Purchase (order_, value, coins) values (11, 34.99, 0); -- 17. game 2
+insert into Purchase (order_, value, coins) values (12, 39.99, 0); -- 18. game 5
+insert into Purchase (order_, value, coins) values (13, 19.99, 0); -- 19. game 10
+insert into Purchase (order_, value, coins) values (14, 24.99, 0); -- 20. game 20
 
 
 -- Delivered Purchase
 insert into DeliveredPurchase (id, cdk) values (1, 1);
-insert into DeliveredPurchase (id, cdk) values (2, 11);
-insert into DeliveredPurchase (id, cdk) values (3, 17);
-insert into DeliveredPurchase (id, cdk) values (4, 26);
-insert into DeliveredPurchase (id, cdk) values (5, 32);
+insert into DeliveredPurchase (id, cdk) values (2, 21);
+insert into DeliveredPurchase (id, cdk) values (3, 31);
+insert into DeliveredPurchase (id, cdk) values (4, 41);
+insert into DeliveredPurchase (id, cdk) values (5, 2);
+insert into DeliveredPurchase (id, cdk) values (6, 3);
+insert into DeliveredPurchase (id, cdk) values (7, 4);
+insert into DeliveredPurchase (id, cdk) values (8, 5);
+insert into DeliveredPurchase (id, cdk) values (9, 201);
+insert into DeliveredPurchase (id, cdk) values (10, 6);
+insert into DeliveredPurchase (id, cdk) values (11, 202);
+insert into DeliveredPurchase (id, cdk) values (12, 7);
+insert into DeliveredPurchase (id, cdk) values (13, 8);
+insert into DeliveredPurchase (id, cdk) values (14, 9);
+insert into DeliveredPurchase (id, cdk) values (15, 10);
+insert into DeliveredPurchase (id, cdk) values (16, 32);
+insert into DeliveredPurchase (id, cdk) values (17, 22);
+insert into DeliveredPurchase (id, cdk) values (18, 51);
+insert into DeliveredPurchase (id, cdk) values (19, 101);
+insert into DeliveredPurchase (id, cdk) values (20, 203);
 
 
 -- Review
