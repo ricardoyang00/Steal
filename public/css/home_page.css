@@ -131,7 +131,7 @@
 }
 
 .home-game-card .game-title a:hover {
-    color: var(--buy-button-color);
+    color: var(--secondary-text-color);
 }
 
 /* Game tags */
