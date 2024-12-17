@@ -214,17 +214,23 @@ class ShoppingCartController extends Controller
                                             ->where('game', $gameId)
                                             ->first();
 
-            if ($shoppingCartItem) {
-                if ($shoppingCartItem->quantity >= 10) {
-                    return response()->json([
-                        'success' => false,
-                        'quantity_limit' => true,
-                        'message' => 'You can only buy up to 10 copies of a game.'
-                    ]);
-                }
-                $shoppingCartItem->quantity += 1;
-                $shoppingCartItem->save();
+            if (!$shoppingCartItem) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Item not found in the shopping cart.'
+                ]);
             }
+    
+            if ($shoppingCartItem->quantity >= 10) {
+                return response()->json([
+                    'success' => false,
+                    'quantity_limit' => true,
+                    'message' => 'You can only buy up to 10 copies of a game.'
+                ]);
+            }
+    
+            $shoppingCartItem->quantity += 1;
+            $shoppingCartItem->save();
 
             $shoppingCart = ShoppingCart::where('buyer', $buyerId)->get();
             $newTotal = 0;
