@@ -111,11 +111,22 @@ class GameController extends Controller
         $platforms = $request->input('platforms', []);
         $languages = $request->input('languages', []);
         $players = $request->input('players', []);
+        $minPrice = $request->input('min_price');
+        $maxPrice = $request->input('max_price');
     
         $gamesQuery = Game::query()->where('is_active', true);
     
         $this->applySearchQuery($gamesQuery, $query);
         $this->applyFilters($gamesQuery, $categories, $platforms, $languages, $players);
+        
+        // Apply price range filter
+        if ($minPrice !== null) {
+            $gamesQuery->where('price', '>=', $minPrice);
+        }
+        if ($maxPrice !== null) {
+            $gamesQuery->where('price', '<=', $maxPrice);
+        }
+
         $this->applySorting($gamesQuery, $sort);
     
         $games = $gamesQuery->with('platforms')->paginate(6);
@@ -136,7 +147,7 @@ class GameController extends Controller
             return view('partials.explore.game-cards', compact('games'))->render();
         }
     
-        return view('pages.explore', compact('games', 'query', 'sort', 'categories', 'platforms', 'languages', 'players'));
+        return view('pages.explore', compact('games', 'query', 'sort', 'categories', 'platforms', 'languages', 'players', 'minPrice', 'maxPrice'));
     }    
 
     public function show($id)

@@ -92,6 +92,19 @@
                     @endforeach
                 </div>
             </div>
+
+            <!-- Price Range Filter -->
+            <div class="form-group">
+                <label class="collapsible">Price</label>
+                <div class="content price-range">
+                    <div class="price-input-row">
+                        <input type="number" name="min_price" class="price-input" placeholder="min" value="{{ request('min_price') }}" min="0" max="10000" step="1">
+                        <span>to</span>
+                        <input type="number" name="max_price" class="price-input" placeholder="max" value="{{ request('max_price') }}" min="0" max="10000" step="1">
+                    </div>
+                    <button type="button" id="apply-price-filter" class="apply-button">Apply</button>
+                </div>
+            </div>
         </form>
     </div>
 
@@ -121,6 +134,11 @@
                 @foreach(request('players', []) as $player)
                     <input type="hidden" name="players[]" value="{{ $player }}">
                 @endforeach
+
+                <!-- Persist price range -->
+                <input type="hidden" name="min_price" value="{{ request('min_price') }}">
+                <input type="hidden" name="max_price" value="{{ request('max_price') }}">
+
 
                 <!-- Sort -->
                 <div class="links" role="group" aria-label="Game Sorting">

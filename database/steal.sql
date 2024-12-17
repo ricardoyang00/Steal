@@ -336,3 +336,5 @@ CREATE TRIGGER game_search_update
     EXECUTE FUNCTION game_search_update();
 
 CREATE INDEX search_idx ON game USING GIN (tsvectors); 
+
+CREATE INDEX idx_game_active_price ON games (is_active, price);
