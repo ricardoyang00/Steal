@@ -17,7 +17,7 @@
             @else
                     
                 @foreach($games as $game)
-                    @include('partials.game-card-seller-listing', ['game' => $game])
+                    @include('partials.seller.game-card-seller-listing', ['game' => $game])
                 @endforeach
 
                 <!-- Pagination Links -->
