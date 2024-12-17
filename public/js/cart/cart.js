@@ -107,8 +107,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 const totalPriceElement = document.getElementById('total_price');
                 totalPriceElement.textContent = '€ ' + data.new_total.toFixed(2);
                     
-                // Update the subtotal and discount based on the number of coins used
-                updateDiscountAndSubtotal(data.new_total);
+                // Check if the user is a guest
+                const isGuest = !document.querySelector('meta[name="auth-user"]');
+                if (isGuest) {
+                    // Update the subtotal directly for guests
+                    updateSubtotal(data.new_total);
+                } else {
+                    // Update the subtotal and discount based on the number of coins used
+                    updateDiscountAndSubtotal(data.new_total);
+                }
         
                 // Disable the decrement button if quantity is 1
                 const decreaseButton = productItem.querySelector('.btn-decrease');
@@ -203,33 +210,41 @@ document.addEventListener('DOMContentLoaded', function () {
         discountElement.textContent = `- € ${discount.toFixed(2)}`;
         subtotalElement.textContent = `€ ${newSubtotal.toFixed(2)}`;
     }
+    
+    function updateSubtotal(total) {
+        const subtotalElement = document.getElementById('subtotal');
+        subtotalElement.textContent = `€ ${total.toFixed(2)}`;
+    }
 
     const checkoutButton = document.getElementById('checkout_button');
-    checkoutButton.addEventListener('click', function (event) {
-        const coinsToUse = parseInt(document.getElementById('coins_to_use').value) || 0;
-    
-        fetch('/checkout/store-coins', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-            },
-            body: JSON.stringify({ coins_to_use: coinsToUse }),
-        })
-        .then(response => {
-            if (response.ok) {
-                const isAuthenticated = checkoutButton.getAttribute('data-authenticated') === 'true';
-                if (isAuthenticated) {
-                    window.location.href = '/checkout/payment';
+    if (checkoutButton) {
+        checkoutButton.addEventListener('click', function (event) {
+            const coinsInput = document.getElementById('coins_to_use');
+            const coinsToUse = coinsInput ? parseInt(coinsInput.value) || 0 : 0;
+
+            fetch('/checkout/store-coins', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                },
+                body: JSON.stringify({ coins_to_use: coinsToUse }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    const isAuthenticated = checkoutButton.getAttribute('data-authenticated') === 'true';
+                    if (isAuthenticated) {
+                        window.location.href = '/checkout/payment';
+                    } else {
+                        window.location.href = '/login';
+                    }
                 } else {
-                    window.location.href = '/login';
+                    alert('Failed to store coins. Please try again.');
                 }
-            } else {
-                alert('Failed to store coins. Please try again.');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         });
-    });    
+    }
 });

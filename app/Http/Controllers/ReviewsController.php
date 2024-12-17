@@ -7,6 +7,8 @@ use App\Models\Review;
 use App\Models\ReviewLike;
 use App\Models\User;
 use App\Models\Game;
+use App\Models\Reason;
+use \App\Models\Report;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Validator;
@@ -123,5 +125,33 @@ class ReviewsController extends Controller
         \Log::info("Review {$reviewId} now has {$likesCount} likes");
     
         return response()->json(['success' => true, 'likes_count' => $likesCount]);
+    }
+
+    public function reportReview(Request $request)
+    {
+        $request->validate([
+            'review_id' => 'required|integer',
+            'reason_id' => 'required|integer',
+        ]);
+
+        try {
+            $reviewId = $request->input('review_id');
+            $reasonId = $request->input('reason_id');
+
+            $review = Review::findOrFail($reviewId);
+            $reason = Reason::findOrFail($reasonId);
+
+            // Create a new report
+            Report::create([
+                'buyer' => auth()->id(),
+                'review' => $reviewId,
+                'reason' => $reasonId,
+                'description' => $request->input('description'),
+            ]);
+
+            return back()->withSuccess('Review reported successfully!');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'An error occurred while reporting the review.']);
+        }
     }
 }

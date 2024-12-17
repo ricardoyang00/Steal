@@ -48,17 +48,29 @@ class GoogleController extends Controller
         // If the user does not exist, create one
         if (!$user) {
 
+            $sanitized_name = $this->sanitizeName($google_user->getName());
             // Generate a unique username based on the user's name or email
-            $username = $this->generateUniqueUsername($google_user->getName());
+            $username = $this->generateUniqueUsername($sanitized_name);
+
+            // Retrieve the user's Google profile picture URL
+            $profile_picture_url = $google_user->getAvatar();
+
+            // Define the path where the profile picture will be stored
+            $profile_picture_path = 'images/profile_pictures/' . uniqid() . '.png';
+
+            // Download and save the profile picture
+            $image_content = file_get_contents($profile_picture_url);
+            file_put_contents(public_path($profile_picture_path), $image_content);
 
             // Store the provided name, email, and Google ID in the database
             $new_user = User::create([
                 'username' => $username,
-                'name' => $google_user->getName(),
+                'name' => $sanitized_name,
                 'email' => $google_user->getEmail(),
                 'is_active' => true,
                 'is_blocked' => false,
                 'google_id' => $google_user->getId(),
+                'profile_picture' => $profile_picture_path,
             ]);
 
             // Create a buyer record for the new user
@@ -101,15 +113,29 @@ class GoogleController extends Controller
      */
     private function generateUniqueUsername($name)
     {
-        $base_username = strtolower(str_replace(' ', '_', $name));
+        // Remove everything that isn't a character or number
+        $base_username = strtolower(preg_replace('/[^a-zA-Z0-9]/', '', $name));
+        // Ensure the base username does not exceed 15 characters
+        $base_username = substr($base_username, 0, 15);
         $username = $base_username;
         $counter = 1;
-
+    
         while (User::where('username', $username)->exists()) {
-            $username = $base_username . '_' . $counter;
+            $username = substr($base_username, 0, 15 - strlen((string)$counter)) . $counter;
             $counter++;
         }
-
+    
         return $username;
+    }
+
+    /**
+     * Sanitize the provided name to only contain characters, numbers, and spaces.
+     */
+    private function sanitizeName($name)
+    {
+        // Remove everything that isn't a character, number, or space
+        $sanitized_name = preg_replace('/[^a-zA-Z0-9 ]/', '', $name);
+        // Ensure the sanitized name does not exceed 30 characters
+        return substr($sanitized_name, 0, 30);
     }
 }
