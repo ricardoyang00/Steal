@@ -22,7 +22,7 @@
                             <div class="notification-header">
                                 @if(in_array($notification['type'], ['Order', 'ShoppingCart', 'Wishlist']))
                                     <h5 class="notification-title">
-                                        @if($notification['type'] === 'Order')
+                                        @if($notification['type'] === 'OrderCompleted' || $notification['type'] === 'Status Changed')
                                             <a href="{{ route('purchaseHistory') }}" class="notification-title-link">
                                                 {{ $notification['title'] }}
                                             </a>
@@ -57,17 +57,17 @@
                             </div>
                             <div class="notifications-collapse collapse" id="details-{{ $notification['id'] }}">
                                 <div class="notification-details">
-                                    @if($notification['type'] === 'Order')
+                                    @if($notification['type'] === 'Order Completed' || $notification['type'] === 'Status Change')
                                         <p><strong>Placed at:</strong> {{ $notification['orderDetails']['date'] }}</p>
                                         @php
                                             $purchasedGames = collect($notification['orderDetails']['purchases'])->filter(fn($purchase) => $purchase['type'] === 'Delivered');
                                             $prePurchasedGames = collect($notification['orderDetails']['purchases'])->filter(fn($purchase) => $purchase['type'] === 'Ordered');
                                         @endphp
-                                        @if($purchasedGames->isNotEmpty() || $prePurchasedGames->isNotEmpty())
-                                            <h6>Purchased Games:</h6>
+                                        @if($prePurchasedGames->isNotEmpty())
+                                        <h6>Ordered Games:</h6>
                                             <ul>
                                                 @foreach($notification['orderDetails']['purchases'] as $purchase)
-                                                    @if($purchase['type'] === 'Delivered')
+                                                    @if($purchase['type'] === 'Ordered')
                                                         <li>@if(isset($purchase['gameId']))
                                                                 <a href="{{ route('game.details', ['id' => $purchase['gameId']]) }}">
                                                                     {{ $purchase['gameName'] }}
@@ -78,7 +78,14 @@
                                                              - ${{ number_format($purchase['value'], 2) }}
                                                         </li>
                                                     @endif
-                                                    @if($purchase['type'] === 'Ordered')
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                        @if($purchasedGames->isNotEmpty())
+                                            <h6>Delivered Games:</h6>
+                                            <ul>
+                                                @foreach($notification['orderDetails']['purchases'] as $purchase)
+                                                    @if($purchase['type'] === 'Delivered')
                                                         <li>@if(isset($purchase['gameId']))
                                                                 <a href="{{ route('game.details', ['id' => $purchase['gameId']]) }}">
                                                                     {{ $purchase['gameName'] }}

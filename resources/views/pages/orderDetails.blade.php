@@ -93,36 +93,38 @@
     </div>
 
     <!-- Custom Delete PrePurchase Modal -->
-    <div class="custom-modal" id="deletePrePurchaseModal" role="dialog" aria-modal="true" aria-labelledby="deletePrePurchaseModalLabel">
-        <div class="custom-modal-content">
-            <span class="custom-modal-close" id="customModalClose" aria-label="Close Modal">&times;</span>
-            <h2 id="deletePrePurchaseModalLabel">Cancel PrePurchase Orders</h2>
-            <form method="POST" action="{{ route('prePurchases.delete') }}" id="deletePrePurchaseForm">
-                @csrf
-                @method('DELETE')
-                <div class="modal-body">
-                    <div class="modal-grid">
-                        <div class="modal-left">
-                            <img src="" alt="" class="modal-game-image" id="modal-game-image">
-                            <p id="modal-game-name"></p>
-                        </div>
-                        <div class="modal-middle">
-                            <div class="modal-buttons">
-                                <button type="button" class="btn btn-minus" id="decreaseOrder">-</button>
-                                <input type="number" id="remove_order_count" name="remove_order_count" min="1" readonly>
-                                <button type="button" class="btn btn-plus" id="increaseOrder">+</button>
+    <div class ="cancel-order-container"> 
+        <div class="custom-modal" id="deletePrePurchaseModal" role="dialog" aria-modal="true" aria-labelledby="deletePrePurchaseModalLabel">
+            <div class="custom-modal-content">
+                <span class="custom-modal-close" id="customModalClose" aria-label="Close Modal">&times;</span>
+                <h2 id="deletePrePurchaseModalLabel">Cancel PrePurchase Orders</h2>
+                <form method="POST" action="{{ route('prePurchases.delete') }}" id="deletePrePurchaseForm">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-body">
+                        <div class="modal-grid">
+                            <div class="modal-left">
+                                <img src="" alt="" class="modal-game-image" id="modal-game-image">
+                                <p id="modal-game-name"></p>
+                            </div>
+                            <div class="modal-middle">
+                                <div class="modal-buttons">
+                                    <button type="button" class="btn btn-minus" id="decreaseOrder">-</button>
+                                    <input type="number" id="remove_order_count" name="remove_order_count" min="1" readonly>
+                                    <button type="button" class="btn btn-plus" id="increaseOrder">+</button>
+                                </div>
+                            </div>
+                            <div class="modal-right">
+                                <!-- Intentionally left blank; delete button will be absolutely positioned -->
                             </div>
                         </div>
-                        <div class="modal-right">
-                            <!-- Intentionally left blank; delete button will be absolutely positioned -->
-                        </div>
+                        <!-- Container for dynamic hidden inputs -->
+                        <div id="pre_purchase_ids_container"></div>
                     </div>
-                    <!-- Container for dynamic hidden inputs -->
-                    <div id="pre_purchase_ids_container"></div>
-                </div>
-                <!-- Delete button positioned absolutely at the bottom right -->
-                <button type="submit" class="btn btn-danger delete-button-abs" id="deleteButton">Delete</button>
-            </form>
+                    <!-- Delete button positioned absolutely at the bottom right -->
+                    <button type="submit" class="btn btn-danger delete-button-abs" id="deleteButton">Delete</button>
+                </form>
+            </div>
         </div>
     </div>
 @endsection

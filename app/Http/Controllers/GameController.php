@@ -428,6 +428,9 @@ class GameController extends Controller
             $cdk->save();
         }
 
+        $quantity = $request->quantity;
+        $this->notificationController->createOrderStatusChangeNotification($game, $quantity);
+
         return redirect()->route('games.cdks', $game->id)->with('success', 'CDKs added successfully.');
     }
 
