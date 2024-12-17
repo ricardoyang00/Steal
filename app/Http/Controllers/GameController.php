@@ -329,9 +329,6 @@ class GameController extends Controller
         if ($request->hasFile('additional_images')) {
             // Delete existing images
             foreach ($game->images as $media) {
-                if (File::exists(public_path($media->path))) {
-                    File::delete(public_path($media->path));
-                }
                 $media->delete();
             }
 
