@@ -1,5 +1,9 @@
+function reportReviewForm(reviewId) {
+    console.log("reportReviewForm appears!");
+    console.log("reviewId: ", reviewId);
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM fully loaded and parsed');
 
     /* Images Carousel */
     const carouselInner = document.querySelector('.carousel-inner');
@@ -74,4 +78,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     reviewTitle.addEventListener('input', restrictInput);
     reviewDescription.addEventListener('input', restrictInput);
+
+    /* Report Review */
+    const reportReviewButtons = document.querySelectorAll('.btn-report');
+    reportReviewButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const reviewId = button.getAttribute('data-review-id');
+            reportReviewForm(reviewId);
+        });
+    });
 });
