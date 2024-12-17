@@ -139,8 +139,8 @@
                     @if (auth_user() && auth_user()->buyer)
                         <div class="wishlist">
                             <a class="btn btn-link {{ request()->is('wishlist') ? 'active' : '' }}" href="{{ url('/wishlist') }}">
-                                Wishlist
-                                <span id="wishlist-count" class="badge" style="display: none;"></span>
+                                <div>Wishlist</div>
+                                <div id="w_count_div"><span id="wishlist-count" class="badge" style="display: none;"></span></div>
                             </a>
                         </div>
                     @endif
