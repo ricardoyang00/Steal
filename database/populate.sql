@@ -43,23 +43,23 @@ insert into Administrator (username, name, email, password) values ('jbarnewell4
 
 
 -- BUYER
-insert into Buyer (id, nif, birth_date, coins) values (1, 204514179, '1962-06-28', 151);
-insert into Buyer (id, nif, birth_date, coins) values (2, 202847662, '1996-10-12', 27);
-insert into Buyer (id, nif, birth_date, coins) values (3, 263252425, '1985-11-05', 40);
-insert into Buyer (id, nif, birth_date, coins) values (4, 209296387, '1974-06-09', 17);
-insert into Buyer (id, nif, birth_date, coins) values (5, 235322905, '1962-06-01', 20);
-insert into Buyer (id, nif, birth_date, coins) values (6, 237686039, '1978-02-19', 0);
-insert into Buyer (id, nif, birth_date, coins) values (7, 258088894, '1958-07-06', 452);
-insert into Buyer (id, nif, birth_date, coins) values (8, 244749380, '1951-07-27', 71);
-insert into Buyer (id, nif, birth_date, coins) values (9, 277064361, '1987-06-09', 7);
-insert into Buyer (id, nif, birth_date, coins) values (10, 255313470, '1990-05-17', 35);
-insert into Buyer (id, nif, birth_date, coins) values (23, 255311273, '1990-05-17', 0);
-insert into Buyer (id, nif, birth_date, coins) values (24, 255571273, '1990-05-17', 0);
-insert into Buyer (id, nif, birth_date, coins) values (25, 255411273, '1990-05-17', 0);
-insert into Buyer (id, nif, birth_date, coins) values (26, 241311273, '1990-05-17', 0);
-insert into Buyer (id, nif, birth_date, coins) values (27, 242311273, '1990-05-17', 0);
-insert into Buyer (id, nif, birth_date, coins) values (28, 242311273, '1990-05-17', 0);
-insert into Buyer (id, nif, birth_date, coins) values (29, 242311273, '1990-05-17', 0);
+insert into Buyer (id, nif, birth_date, coins) values (1, 204514179, '1962-06-28', 3075);
+insert into Buyer (id, nif, birth_date, coins) values (2, 202847662, '1996-10-12', 750);
+insert into Buyer (id, nif, birth_date, coins) values (3, 263252425, '1985-11-05', 750);
+insert into Buyer (id, nif, birth_date, coins) values (4, 209296387, '1974-06-09', 750);
+insert into Buyer (id, nif, birth_date, coins) values (5, 235322905, '1962-06-01', 600);
+insert into Buyer (id, nif, birth_date, coins) values (6, 237686039, '1978-02-19', 675);
+insert into Buyer (id, nif, birth_date, coins) values (7, 258088894, '1958-07-06', 700);
+insert into Buyer (id, nif, birth_date, coins) values (8, 244749380, '1951-07-27', 725);
+insert into Buyer (id, nif, birth_date, coins) values (9, 277064361, '1987-06-09', 625);
+insert into Buyer (id, nif, birth_date, coins) values (10, 255313470, '1990-05-17', 500);
+insert into Buyer (id, nif, birth_date, coins) values (23, 255311273, '1990-05-17', 500);
+insert into Buyer (id, nif, birth_date, coins) values (24, 255571273, '1990-05-17', 500);
+insert into Buyer (id, nif, birth_date, coins) values (25, 255411273, '1990-05-17', 500);
+insert into Buyer (id, nif, birth_date, coins) values (26, 241311273, '1990-05-17', 500);
+insert into Buyer (id, nif, birth_date, coins) values (27, 242311273, '1990-05-17', 500);
+insert into Buyer (id, nif, birth_date, coins) values (28, 242311273, '1990-05-17', 500);
+insert into Buyer (id, nif, birth_date, coins) values (29, 242311273, '1990-05-17', 500);
 
 
 -- SELLER

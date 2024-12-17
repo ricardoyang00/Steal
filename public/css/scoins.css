@@ -9,11 +9,33 @@
     border: 1px solid var(--highlight-color)
 }
 
+.scoins-header {
+    position: relative;
+    text-align: center;
+}
+
 .scoins-title {
     font-size: 2.8rem;
     color: var(--text-color);
     text-align: center;
     margin-bottom: 20px;
+}
+
+.scoins-history-link {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    text-decoration: none;
+    background-color: var(--cart-control-button);
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.scoins-history-link:hover {
+    color: var(--highlight-color);
+    background-color: var(--text-color);
 }
 
 .scoins-lead {
@@ -78,4 +100,67 @@
 
 .scoins-button:hover {
     background-color: var(--highlight-hover-color);
+}
+
+/* SCoins History Page */
+.scoins-history-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--background-color);
+    border-radius: 8px;
+}
+
+.scoins-back-link {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    text-decoration: none;
+}
+
+.scoins-back-link:hover {
+    color: var(--highlight-color);
+}
+
+.scoins-title {
+    font-size: 2rem;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.scoins-history {
+    margin-top: 30px;
+}
+
+.scoins-history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.scoins-history-table th, .scoins-history-table td {
+    border: 1px solid var(--highlight-color);
+    padding: 10px;
+    text-align: center;
+    background-color: var(--cart-control-button);
+}
+
+.scoins-history-table th {
+    background-color: var(--highlight-color);
+    color: var(--text-color);
+}
+
+#used-coins {
+    background-color: var(--negative);
+}
+
+#gained-coins {
+    background-color: var(--positive);
+}
+
+#coins-balance {
+    font-size: 1.2rem;
 }

@@ -5,7 +5,12 @@
 @section('content')
 
 <div class="scoins-container">
-    <h1 class="scoins-title">S-Coins</h1>
+    <div class="scoins-header">
+        <h1 class="scoins-title">S-Coins</h1>
+        <a href="{{ route('scoins.history') }}" class="scoins-history-link">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+        </a>
+    </div>
     <p class="scoins-lead">Manage your S-Coins and learn how they work.</p>
 
     <div class="scoins-info">
