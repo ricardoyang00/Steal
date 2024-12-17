@@ -108,16 +108,19 @@ class ReviewsController extends Controller
         if ($existingLike) {
             // Unlike the review
             $existingLike->delete();
+            \Log::info("User {$user->id} unliked review {$reviewId}");
         } else {
             // Create a new like
             ReviewLike::create([
                 'review' => $reviewId,
                 'author' => $user->id,
             ]);
+            \Log::info("User {$user->id} liked review {$reviewId}");
         }
     
         // Get the updated likes count
         $likesCount = $review->likes()->count();
+        \Log::info("Review {$reviewId} now has {$likesCount} likes");
     
         return response()->json(['success' => true, 'likes_count' => $likesCount]);
     }

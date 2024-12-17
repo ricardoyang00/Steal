@@ -130,6 +130,7 @@ Route::get('/profile/deactivate', function () {
 
 // Authenticated User
 Route::controller(ProfileController::class)->group(function () {
+    Route::get('/scoins', 'showSCoins')->name('scoins');
     Route::get('/profile', 'showProfile')->name('profile');
     Route::put('/profile/edit', 'update')->name('profile.update');
     Route::put('/profile', 'updatePassword')->name('profile.updatePassword');
