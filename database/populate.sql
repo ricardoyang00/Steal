@@ -150,11 +150,11 @@ INSERT INTO Game (name, description, price, overall_rating, owner, is_active, re
 ('Battle Circuit', 'Test your skills in this fast-paced arena fighter.', 34.99, 0, 19, TRUE, '2024-09-12', 3),
 
 -- Seller 10
-('Primordial Rift', 'Unite factions in a land torn by magic.', 54.99, 0, 20, TRUE, '2024-02-01', 5),
-('Pixel Racers', 'Fast-paced arcade-style racing action.', 29.99, 0, 20, TRUE, '2024-04-10', 1),
+('Primordial Rift', 'Unite factions in a land torn by magic.', 54.99, 0, 20, TRUE, '2024-02-01', 5), -- no thumbnails
+('Pixel Racers', 'Fast-paced arcade-style racing action.', 29.99, 0, 20, TRUE, '2024-04-10', 1), -- no thumbnails
 ('Chrono Legacy', 'Time-traveling RPG with dynamic storytelling.', 49.99, 0, 20, TRUE, '2024-06-05', 4),
-('Rogue Marauder', 'Engage in thrilling heists across the galaxy.', 39.99, 0, 20, TRUE, '2024-08-23', 3),
-('Hollow Depths', 'Dive into a mysterious underground labyrinth.', 24.99, 0, 20, TRUE, '2024-11-02', 2),
+('Rogue Marauder', 'Engage in thrilling heists across the galaxy.', 39.99, 0, 20, TRUE, '2024-08-23', 3), -- no thumbnails
+('Hollow Depths', 'Dive into a mysterious underground labyrinth.', 24.99, 0, 20, TRUE, '2024-11-02', 2), -- no thumbnails
 
 -- Seller 11 (Blocked)
 ('Ancient Prophecy', 'Solve mysteries in a world of ancient gods.', 39.99, 0, 21, FALSE, '2024-03-14', 5),
@@ -204,8 +204,8 @@ WHERE id = 5;
 
 UPDATE Game
 SET
-thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_6.jpg',
-thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_6.png'
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_6.png',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_6.jpg'
 WHERE id = 6;
 
 UPDATE Game
@@ -323,6 +323,84 @@ thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_25.jpg'
 WHERE id = 25;
 
 UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_26.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_26.jpg'
+WHERE id = 26;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_27.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_27.jpg'
+WHERE id = 27;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_28.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_28.jpg'
+WHERE id = 28;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_29.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_29.jpg'
+WHERE id = 29;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_30.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_30.jpg'
+WHERE id = 30;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_31.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_31.jpg'
+WHERE id = 31;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_32.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_32.jpg'
+WHERE id = 32;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_33.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_33.jpg'
+WHERE id = 33;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_34.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_34.jpg'
+WHERE id = 34;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_35.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_35.jpg'
+WHERE id = 35;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_36.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_36.jpg'
+WHERE id = 36;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_37.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_37.jpg'
+WHERE id = 37;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_38.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_38.jpg'
+WHERE id = 38;
+
+UPDATE Game
 SET 
 thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_39.jpg',
 thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_39.jpg'
@@ -332,6 +410,30 @@ UPDATE Game
 SET 
 thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_40.jpg'
 WHERE id = 40;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_41.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_41.jpg'
+WHERE id = 41;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_42.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_42.jpg'
+WHERE id = 42;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_43.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_43.jpg'
+WHERE id = 43;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_44.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_44.jpg'
+WHERE id = 44;
 
 UPDATE Game
 SET 
