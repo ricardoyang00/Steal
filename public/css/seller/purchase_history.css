@@ -135,7 +135,7 @@
     margin-bottom: 10px;
 }
 
-.admin-sales-report-page .table {
+.admin-sales-report-page .table-sales-report {
     width: 100%;
     border-collapse: collapse;
     background-color: #23272a;
@@ -143,29 +143,25 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.admin-sales-report-page .table thead {
+.admin-sales-report-page .table-sales-report thead {
     background-color: #681fcf;
     color: white;
 }
 
-.admin-sales-report-page .table th,
-.admin-sales-report-page .table td {
+.admin-sales-report-page .table-sales-report th,
+.admin-sales-report-page .table-sales-report td {
     padding: 12px 15px;
     text-align: left;
     border: 1px solid #444;
     color: white;
 }
 
-.admin-sales-report-page .table tr:nth-child(even) {
+.admin-sales-report-page .table-sales-report tr:nth-child(even) {
     background-color: #2c2f33;
 }
 
-.admin-sales-report-page .table th:hover {
-    background-color: #3a3f44;
-}
-
 /* Action Button */
-.admin-sales-report-page .table .btn {
+.admin-sales-report-page .table-sales-report .btn {
     text-decoration: none;
     padding: 6px 12px;
     color: white;
@@ -173,11 +169,11 @@
     transition: background-color 0.3s ease;
 }
 
-.admin-sales-report-page .table .btn-info {
+.admin-sales-report-page .table-sales-report .btn-info {
     background-color: var(--cart-control-button);
 }
 
-.admin-sales-report-page .table .btn-info:hover {
+.admin-sales-report-page .table-sales-report .btn-info:hover {
     background-color: var(--buy-button-color);
 }
 
@@ -201,6 +197,10 @@
     text-align: center;
     font-size: 16px;
     color: #bfc1c8;
+}
+
+.admin-sales-report-page .table-sales-report tbody tr:hover {
+    background-color: #4d4d4d;
 }
 
 
