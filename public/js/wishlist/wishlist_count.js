@@ -1,5 +1,4 @@
 function updateWishlistCount() {
-    console.log('updated wishlist count');
     fetch('/wishlist/w_count', {
         method: 'GET',
         headers: {
@@ -22,7 +21,6 @@ function updateWishlistCount() {
                         countDiv.style.display = 'none';
                     }
                 }
-                console.log('wishlist count: ', data.count);
             }
         })
         .catch(error => console.error('Error fetching wishlist count.', error));

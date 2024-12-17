@@ -51,7 +51,7 @@
     </div>
 
     @if (!$isOwnReview)
-        <button class="btn-report" data-id="{{ $review->id }}">
+        <button class="btn-report" data-review-id="{{ $review->id }}">
             <i class="fas fa-exclamation-triangle"></i> Report
         </button>
     @endif
