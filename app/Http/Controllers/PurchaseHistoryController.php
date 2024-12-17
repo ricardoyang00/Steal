@@ -69,7 +69,7 @@ class PurchaseHistoryController extends Controller
                     'game_id' => $game->id,
                     'game_name' => $game->name ?? 'Unknown Game',
                     'game_image' => $game->thumbnail_small_path ?? null,
-                    'game_price' => $purchase->value ?? 0,
+                    'game_price' => $group->first()->value ?? 0,
                     'purchase_count' => $group->count(),
                     'cdk_codes' => $group->map(function ($purchase) {
                         return $purchase->getDeliveredPurchase->getCDK->code ?? 'No CDK';
@@ -90,13 +90,13 @@ class PurchaseHistoryController extends Controller
                     'game_id' => $game->id,
                     'game_name' => $game->name ?? 'Unknown Game',
                     'game_image' => $game->thumbnail_small_path ?? null,
-                    'game_price' => $purchase->value ?? 0, // Assuming 'base_price' exists
+                    'game_price' => $group->first()->value ?? 0,
                     'purchase_count' => $group->count(),
                 ];
             });
 
-        $totalPrice = $deliveredPurchasesGrouped->sum('base_price') * $deliveredPurchasesGrouped->sum('purchase_count') 
-                     + $prePurchasesGrouped->sum('base_price') * $prePurchasesGrouped->sum('purchase_count');
+        $totalPrice = $deliveredPurchasesGrouped->sum('game_price') * $deliveredPurchasesGrouped->sum('purchase_count') 
+                     + $prePurchasesGrouped->sum('game_price') * $prePurchasesGrouped->sum('purchase_count');
         $formattedTime = $this->formatOrderTime($order->time);
 
         return [

@@ -102,7 +102,7 @@
     align-self: flex-end; /* Aligns the button to the end of the flex container */
     padding: 5px 10px;
     font-size: 0.9rem;
-    background-color: #007bff;
+    background-color: #6419cc;
     color: #fff;
     border: none;
     border-radius: 3px;
@@ -120,7 +120,7 @@
     align-self: flex-end; /* Aligns the button to the end of the flex container */
     padding: 5px 10px;
     font-size: 0.9rem;
-    background-color: #dc3545;
+    background-color: #6419cc;
     color: #fff;
     border: none;
     border-radius: 3px;
@@ -337,19 +337,6 @@
 
 .delete-button-abs:hover {
     background-color: #c82333;
-}
-
-/* 20. "View CDKs" Button Styling (Consistent with Dark Theme) */
-.btn.view-cdks-btn {
-    /* Ensure the button is at the bottom right */
-    align-self: flex-end; /* Aligns to the end of the flex container */
-    padding: 8px 16px;
-    background-color: #0d6efd;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: auto; /* Pushes the button to the bottom of the container */
 }
 
 .btn.view-cdks-btn:hover {
