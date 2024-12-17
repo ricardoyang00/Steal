@@ -185,24 +185,71 @@ thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_2.png'
 WHERE id = 2;
 
 UPDATE Game
-SET overall_rating = 50
+SET overall_rating = 50,
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_3.png',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_3.jpg'
 WHERE id = 3;
 
 UPDATE Game
-SET overall_rating = 100
+SET overall_rating = 100,
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_4.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_4.jpg'
 WHERE id = 4;
 
 UPDATE Game
-SET overall_rating = 0
+SET overall_rating = 0,
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_5.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_5.jpg'
 WHERE id = 5;
 
 UPDATE Game
-SET overall_rating = 100
+SET overall_rating = 100,
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_10.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_10.jpg'
 WHERE id = 10;
 
 UPDATE Game
-SET overall_rating = 66.67
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_13.jpeg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_13.jpeg'
+WHERE id = 13;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_14.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_14.jpg'
+WHERE id = 14;
+
+UPDATE Game
+SET overall_rating = 66.67,
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_20.jpeg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_20.png'
 WHERE id = 20;
+
+UPDATE Game
+SET 
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_22.jpeg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_22.png'
+WHERE id = 22;
+
+UPDATE Game
+SET 
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_23.jpeg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_23.jpg'
+WHERE id = 23;
+
+UPDATE Game
+SET 
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_45.png',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_45.jpg'
+WHERE id = 45;
+
+UPDATE Game
+SET 
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_48.png',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_48.jpg'
+WHERE id = 48;
+
 
 -- GAME MEDIA
 insert into GameMedia (game, path) values (1, 'images/gamemedia/extra_1_1.jpg');
@@ -213,6 +260,22 @@ insert into GameMedia (game, path) values (2, 'images/gamemedia/extra_2_1.jpg');
 insert into GameMedia (game, path) values (2, 'images/gamemedia/extra_2_2.png');
 insert into GameMedia (game, path) values (2, 'images/gamemedia/extra_2_3.jpg');
 insert into GameMedia (game, path) values (2, 'images/gamemedia/extra_2_4.jpg');
+
+insert into GameMedia (game, path) values (20, 'images/gamemedia/extra_20_1.jpg');
+insert into GameMedia (game, path) values (20, 'images/gamemedia/extra_20_2.png');
+
+insert into GameMedia (game, path) values (22, 'images/gamemedia/extra_22_1.jpg');
+insert into GameMedia (game, path) values (22, 'images/gamemedia/extra_22_2.jpeg');
+
+insert into GameMedia (game, path) values (23, 'images/gamemedia/extra_23_1.jpg');
+insert into GameMedia (game, path) values (23, 'images/gamemedia/extra_23_2.jpg');
+
+insert into GameMedia (game, path) values (45, 'images/gamemedia/extra_45_1.jpg');
+insert into GameMedia (game, path) values (45, 'images/gamemedia/extra_45_2.png');
+insert into GameMedia (game, path) values (45, 'images/gamemedia/extra_45_3.jpg');
+
+insert into GameMedia (game, path) values (48, 'images/gamemedia/extra_48_1.jpg');
+insert into GameMedia (game, path) values (48, 'images/gamemedia/extra_48_2.jpg');
 
 
 -- CDK
