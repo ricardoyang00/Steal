@@ -100,12 +100,48 @@ document.addEventListener('DOMContentLoaded', function () {
     handleSeeMore('platform');
     handleSeeMore('language');
 
+    // Event listeners for price range inputs
+    document.querySelectorAll('input[name="min_price"], input[name="max_price"]').forEach(function (input) {
+        input.addEventListener('change', function () {
+            // Ensure the value is within the allowed range
+            if (input.value < 0) {
+                input.value = 0;
+            } else if (input.value > 10000) {
+                input.value = 10000;
+            }
+        });
+    
+        // Restrict input to digits only and a maximum of 5 digits
+        input.addEventListener('input', function () {
+            let value = input.value;
+            const regex = /^\d{0,5}$/;
+            if (!regex.test(value)) {
+                input.value = value.slice(0, -1); // Remove the last character if it doesn't match the regex
+            }
+        });
+    });
+
+    // Apply price filter on confirm button click
+    document.getElementById('apply-price-filter').addEventListener('click', function () {
+        document.getElementById('filter-form').submit();
+    });
+
     function updateActiveFilters() {
         const activeFiltersContainer = document.querySelector('.active-filters');
         activeFiltersContainer.innerHTML = ''; // Clear previous filters
     
         const filterNames = [];
-    
+        
+        // Collect Price Range
+        const minPrice = document.querySelector('input[name="min_price"]').value;
+        const maxPrice = document.querySelector('input[name="max_price"]').value;
+        if (minPrice) {
+            filterNames.push({ type: 'Price', value: `Min Price: ${minPrice} €`, id: 'min_price' });
+        }
+        if (maxPrice) {
+            filterNames.push({ type: 'Price', value: `Max Price: ${maxPrice} €`, id: 'max_price' });
+        }
+
         // Collect selected Categories
         document.querySelectorAll('input[name="categories[]"]:checked').forEach(input => {
             const label = document.querySelector(`label[for="${input.id}"]`).textContent.trim();
@@ -146,18 +182,24 @@ document.addEventListener('DOMContentLoaded', function () {
             
                 // Add an event listener to remove the filter and uncheck the corresponding checkbox
                 filterElement.addEventListener('click', function () {
-                    const checkbox = document.getElementById(filter.id);
-                    if (checkbox) {
-                        checkbox.checked = false;
-                        // Remove the active class from the container
-                        const container = checkbox.closest('.form-check-container');
-                        if (container) {
-                            container.classList.remove('active');
+                    if (filter.id === 'min_price' || filter.id === 'max_price') {
+                        document.querySelector(`input[name="${filter.id}"]`).value = '';
+                    } else {
+                        const checkbox = document.getElementById(filter.id);
+                        if (checkbox) {
+                            checkbox.checked = false;
+                            // Remove the active class from the container
+                            const container = checkbox.closest('.form-check-container');
+                            if (container) {
+                                container.classList.remove('active');
+                            }
+                            // Trigger the filter change so the results update
+                            const changeEvent = new Event('change');
+                            checkbox.dispatchEvent(changeEvent);
                         }
-                        // Trigger the filter change so the results update
-                        const changeEvent = new Event('change');
-                        checkbox.dispatchEvent(changeEvent);
                     }
+                    updateActiveFilters(); // Update the active filters display
+                    document.getElementById('filter-form').submit(); // Submit the form to update the results
                 });
             
                 // Append the Font Awesome icon to the filter tag

@@ -184,6 +184,7 @@
 
 /* Edit Button */
 .seller-product-list .buttons .game-edit-button .btn-edit-game {
+    margin-top: 10px;
     background-color: var(--edit-button-color);
     color: var(--text-color);
 }

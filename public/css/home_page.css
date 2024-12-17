@@ -131,7 +131,7 @@
 }
 
 .home-game-card .game-title a:hover {
-    color: var(--buy-button-color);
+    color: var(--secondary-text-color);
 }
 
 /* Game tags */
@@ -177,7 +177,8 @@
 }
 
 /* Add to cart button */
-.home-game-card .btn-add-to-cart {
+.home-game-card .btn-add-to-cart,
+.home-game-card #block-game {
     padding: 8px 16px;
     background-color: var(--buy-button-color);
     color: var(--text-color);
@@ -191,6 +192,14 @@
 
 .home-game-card .btn-add-to-cart:hover {
     background-color: var(--buy-button-hover-color);
+}
+
+.home-game-card #block-game {
+    background-color: var(--red);
+}
+
+.home-game-card #block-game:hover {
+    background-color: var(--red-hover);
 }
 
 .pagination-controls {
