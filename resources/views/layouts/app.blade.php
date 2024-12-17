@@ -35,6 +35,7 @@
         <link href="{{ url('css/forgot_password.css') }}" rel="stylesheet">
         <link href="{{ url('css/password_reset.css') }}" rel="stylesheet">
         <link href="{{ url('css/modal.css') }}" rel="stylesheet">
+        <link href="{{ url('css/scoins.css') }}" rel="stylesheet">
         <script type="text/javascript">
             // Fix for Firefox autofocus CSS bug
             // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
@@ -68,7 +69,7 @@
                     @if (auth_user())
                         <div class="profile-buttons">
                             @if (auth_user()->buyer)
-                                <a class="button" id="scoins"><i class="fa-solid fa-coins"></i> <strong>{{ auth_user()->buyer->coins }}</strong></a>
+                                <a class="button" id="scoins" href="{{ url('/scoins') }}"><i class="fa-solid fa-coins"></i> <strong>{{ auth_user()->buyer->coins }}</strong></a>
                             @endif
                             <div class="dropdown">
                                 <a class="profile-link" href="{{ url('/profile') }}" role="button" id="profileDropdown">

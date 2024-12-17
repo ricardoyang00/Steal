@@ -91,6 +91,11 @@ header .profile-buttons, header .auth-buttons {
     color: var(--highlight-color);
     background-color: var(--text-color);
     font-size: 14px;
+    transition: background-color 0.5s;
+    cursor: pointer;
+  }
+  #scoins:hover {
+    background-color: var(--secondary-text-color);
   }
 }
 
