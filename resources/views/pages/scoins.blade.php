@@ -30,4 +30,31 @@
     </div>
 </div>
 
+    <div class="scoins-history">
+        <h2>S-Coins History</h2>
+        <table class="scoins-history-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Coins Used</th>
+                    <th>Coins Gained</th>
+                    <th>Subtotal (€)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($orders as $order)
+                    @php
+                        $coinsGained = ceil($order->getPayment->value * 5);
+                    @endphp
+                    <tr>
+                        <td>{{ $order->time }}</td>
+                        <td>{{ $order->coins }}</td>
+                        <td>{{ $coinsGained }}</td>
+                        <td>{{ number_format($order->getPayment->value, 2) }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+
 @endsection

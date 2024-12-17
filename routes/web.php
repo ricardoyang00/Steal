@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\PasswordResetController;
+use App\Http\Controllers\Auth\ScoinsController;
 
 use App\Http\Controllers\Admin\GameFieldsController;
 use App\Http\Controllers\Admin\UserController;
@@ -130,12 +131,14 @@ Route::get('/profile/deactivate', function () {
 
 // Authenticated User
 Route::controller(ProfileController::class)->group(function () {
-    Route::get('/scoins', 'showSCoins')->name('scoins');
     Route::get('/profile', 'showProfile')->name('profile');
     Route::put('/profile/edit', 'update')->name('profile.update');
     Route::put('/profile', 'updatePassword')->name('profile.updatePassword');
     Route::post('/profile/deactivate', 'deactivateUser')->name('profile.deactivate');
 });
+
+// SCoins
+Route::get('/scoins', [ScoinsController::class, 'index'])->name('scoins.index');
 
 // Admin
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
