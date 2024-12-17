@@ -39,10 +39,12 @@
             // Fix for Firefox autofocus CSS bug
             // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
         </script>
-        <script type="text/javascript" src={{ url('js/app.js') }} defer>
-        </script>
+        <script type="text/javascript" src={{ url('js/app.js') }} defer></script>
         @if (auth_user())
             <script src="{{ asset('js/notifications/notifications.js') }}" defer></script>
+            @if (auth_user()->buyer)
+                <script src="{{ asset('js/wishlist/wishlist_count.js') }}" defer></script>
+            @endif
         @endif
     </head>
     <body>
@@ -137,6 +139,7 @@
                         <div class="wishlist">
                             <a class="btn btn-link {{ request()->is('wishlist') ? 'active' : '' }}" href="{{ url('/wishlist') }}">
                                 Wishlist
+                                <span id="wishlist-count" class="badge" style="display: none;"></span>
                             </a>
                         </div>
                     @endif

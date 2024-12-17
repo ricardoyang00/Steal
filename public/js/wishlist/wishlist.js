@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
+                    updateWishlistCount();
                     document.getElementById(`product-${productId}`).remove();
                     if (document.getElementById('product_list').childElementCount < 1) {
                         noProductsInWishlist();

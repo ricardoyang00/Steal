@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             if (data.is_in_wishlist) {
-                console.log("Product is in wishlist");
                 heartBtnActive(button);
                 button.removeEventListener('click', addProductToWishlist);
                 button.addEventListener('click', removeProductFromWishlist);
@@ -78,6 +77,7 @@ function addProductToWishlist(event) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            updateWishlistCount();
             heartBtnActive(button);
             button.removeEventListener('click', addProductToWishlist);
             button.addEventListener('click', removeProductFromWishlist);
@@ -106,6 +106,7 @@ function removeProductFromWishlist(event) {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            updateWishlistCount();
             heartBtnInactive(button);
             button.removeEventListener('click', removeProductFromWishlist);
             button.addEventListener('click', addProductToWishlist);

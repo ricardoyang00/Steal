@@ -125,4 +125,18 @@ class WishlistController extends Controller
             'is_in_wishlist' => $wishlistItem ? true : false
         ]);
     }
+
+    public function getWishlistCount() {
+        if (!Auth::user()) {
+            return response()->json([
+                'count' => null
+            ]);
+        }
+        $buyerId = Auth::user()->id;
+        $count = Wishlist::where('buyer', $buyerId)->count();
+
+        return response()->json([
+            'count' => $count
+        ]);
+    }
 }

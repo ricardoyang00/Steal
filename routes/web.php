@@ -81,6 +81,7 @@ Route::post('/remove_product', [ShoppingCartController::class, 'removeProduct'])
 // Wishlist
 Route::controller(WishlistController::class)->group(function () {
     Route::get('/wishlist', 'index')->name('wishlist');
+    Route::get('/wishlist/w_count', 'getWishlistCount')->name('wishlist.count');
 });
 
 Route::post('/wishlist/remove', [WishlistController::class, 'removeProduct'])->name('wishlist.remove');

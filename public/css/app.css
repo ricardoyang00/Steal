@@ -205,10 +205,22 @@ header .icon-button:hover {
 /* Wishlist */
 .navbar .wishlist {
   display: flex;
-  align-items: center;
   color: var(--text-color);
   font-size: 1em;
-  gap: 10px;
+  gap: 20px;
+  #wishlist-count {
+    background-color: var(--highlight-color);
+    color: var(--button-highlight-color);
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-size: 0.8em;
+    margin-left: 5px;
+  }
+}
+
+.navbar .wishlist .btn.active #wishlist-count {
+  background-color: var(--text-color);
+  color: var(--highlight-color);
 }
 
 /* Content Section */
