@@ -154,7 +154,7 @@ class NotificationController extends Controller{
         }
     }
 
-    public function createGameNotifications($purchasedItems) {
+    public function createGameNotifications($prePurchasedItems, $purchasedItems) {
         try {
             $gamePurchases = [];
     
@@ -173,16 +173,45 @@ class NotificationController extends Controller{
     
                 $gamePurchases[$gameId]['quantity'] += 1;
                 $gamePurchases[$gameId]['totalValue'] += $value;
+                $gamePurchases[$gameId]['type'] = 'Delivered';
+            }
+
+            foreach ($prePurchasedItems as $item) {
+                $game = $item['game'];
+                $value = $item['value'];
+                $gameId = $game->id;
+    
+                if (!isset($gamePurchases[$gameId])) {
+                    $gamePurchases[$gameId] = [
+                        'game' => $game,
+                        'quantity' => 0,
+                        'totalValue' => 0.0,
+                    ];
+                }
+    
+                $gamePurchases[$gameId]['quantity'] += 1;
+                $gamePurchases[$gameId]['totalValue'] += $value;
+                $gamePurchases[$gameId]['type'] = 'Ordered';
             }
     
             foreach ($gamePurchases as $data) {
                 $game = $data['game'];
                 $quantity = $data['quantity'];
                 $totalValue = $data['totalValue'];
+                $type = $data['type'];
+
+                if($type === 'Delivered'){
+                    $title = "Game Sold";
+                    $description = "One of your games has been purchased. GameName: {$game->name}, quantity: {$quantity}, totalPrice: {$totalValue}";
+                }
+                elseif($type === 'Ordered'){
+                    $title = "Game Ordered";
+                    $description = "One of your games has been ordered. GameName: {$game->name}, quantity: {$quantity}, totalPrice: {$totalValue}";
+                }
     
                 $notification = Notification::create([
-                    'title' => "Game Sold",
-                    'description' => "One of your games has been purchased. GameName: {$game->name}, quantity: {$quantity}, totalPrice: {$totalValue}",
+                    'title' => $title,
+                    'description' => $description,
                     'time' => now(),
                     'is_read' => false,
                 ]);

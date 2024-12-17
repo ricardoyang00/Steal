@@ -59,7 +59,8 @@ class CheckoutController extends Controller
             if($game->getReleaseDate() === 'Not realeased yet'){
                 for ($i = 0; $i < $cartItem->quantity; $i++) {
                     $prePurchasedItems[] = [
-                        'game' => $game->id,
+                        'game' => $game,
+                        'gameId' => $game->id,
                         'gameName' => $game->name,
                         'value' => $game->price,
                     ];
@@ -119,7 +120,7 @@ class CheckoutController extends Controller
                     ]);
                     PrePurchase::create([
                         'id' => $purchase->id,
-                        'game' => $prePurchasedItem['game'],
+                        'game' => $prePurchasedItem['gameId'],
                     ]);
                 }
                 foreach ($canceledItems as $canceledItem){
@@ -134,7 +135,7 @@ class CheckoutController extends Controller
                 }
                 $order->refresh();
                 $this->notificationController->createOrderNotification($order, $prePurchasedItems, $purchasedItems, $canceledItems);
-                $this->notificationController->createGameNotifications($purchasedItems);
+                $this->notificationController->createGameNotifications($prePurchasedItems, $purchasedItems);
                 session()->forget('payment_method');
                 ShoppingCart::where('buyer', $buyerId)->delete();
                 DB::commit();
