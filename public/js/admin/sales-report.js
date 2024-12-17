@@ -1,6 +1,8 @@
 function loadContent(type) {
     const url = new URL(window.location);
     url.searchParams.set('type', type);
+    url.searchParams.delete('start_date'); 
+    url.searchParams.delete('end_date'); 
     window.history.pushState({}, '', url);
 
     fetch(`/admin/sales-report/${type}`)

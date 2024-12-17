@@ -18,7 +18,11 @@ class SalesReportController extends Controller
         $sales = DeliveredPurchase::with(['getpurchase.getorder', 'getcdk.getgame'])
             ->whereHas('getpurchase.getorder', function ($query) {
                 $query->whereDate('time', Carbon::today());
-            })->get();
+            })
+            ->get()
+            ->sortByDesc(function ($sale) {
+                return $sale->getPurchase->getOrder->time;
+            });
 
         $total = $sales->sum(function ($sale) {
             return $sale->getpurchase->value;
@@ -33,7 +37,11 @@ class SalesReportController extends Controller
         $sales = DeliveredPurchase::with(['getpurchase.getorder', 'getcdk.getgame'])
             ->whereHas('getpurchase.getorder', function ($query) {
                 $query->whereDate('time', Carbon::today());
-            })->get();
+            })
+            ->get()
+            ->sortByDesc(function ($sale) {
+                return $sale->getPurchase->getOrder->time;
+            });
 
         $total = $sales->sum(function ($sale) {
             return $sale->getpurchase->value;
@@ -47,7 +55,11 @@ class SalesReportController extends Controller
         $sales = DeliveredPurchase::with(['getpurchase.getorder', 'getcdk.getgame'])
             ->whereHas('getpurchase.getorder', function ($query) {
                 $query->whereBetween('time', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()]);
-            })->get();
+            })
+            ->get()
+            ->sortByDesc(function ($sale) {
+                return $sale->getPurchase->getOrder->time;
+            });
         $total = $sales->sum(function ($sale) {
             return $sale->getpurchase->value;
         });
@@ -59,7 +71,11 @@ class SalesReportController extends Controller
         $sales = DeliveredPurchase::with(['getpurchase.getorder', 'getcdk.getgame'])
             ->whereHas('getpurchase.getorder', function ($query) {
                 $query->whereMonth('time', Carbon::now()->month());
-            })->get();
+            })
+            ->get()
+            ->sortByDesc(function ($sale) {
+                return $sale->getPurchase->getOrder->time;
+            });
         $total = $sales->sum(function ($sale) {
             return $sale->getpurchase->value;
         });
@@ -74,7 +90,11 @@ class SalesReportController extends Controller
         $sales = DeliveredPurchase::with(['getpurchase.getorder', 'getcdk.getgame'])
             ->whereHas('getpurchase.getorder', function ($query) use ($startDate, $endDate) {
                 $query->whereBetween('time', [$startDate, $endDate]);
-            })->get();
+            })
+            ->get()
+            ->sortByDesc(function ($sale) {
+                return $sale->getPurchase->getOrder->time;
+            });
 
         $total = $sales->sum(function ($sale) {
             return $sale->getpurchase->value;
