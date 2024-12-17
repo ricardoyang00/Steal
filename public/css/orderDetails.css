@@ -1,0 +1,384 @@
+/* 1. Container Styling */
+.order-details-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.order-details-container h1 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #fff; /* Updated for better contrast on dark background */
+}
+
+/* 2. Section Headings */
+.order-details-container .order-purchases-details h2,
+.order-details-container .order-prePurchases h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #fff; /* Updated for better contrast on dark background */
+}
+
+/* 3. Game Card Styling */
+.order-details-container .game-card {
+    display: flex;
+    flex-wrap: wrap; /* Allows child elements to wrap to the next line */
+    align-items: flex-start;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #3b3b3b; /* Dark background */
+    position: relative;
+    transition: box-shadow 0.3s;
+    margin-bottom: 20px; /* Space between cards */
+    text-align: center;
+}
+
+.order-details-container .game-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 4. Image Styling */
+.order-details-container .game-card .game-image {
+    width: 70px; /* Adjusted to 70px width */
+    height: 90px; /* Adjusted to 90px height */
+    object-fit: cover;
+    border-radius: 3px;
+}
+
+/* 6. X Quantity Styling */
+.order-details-container .x-quantity {
+    width: 100%; /* Makes the x-quantity take full width below the image */
+    text-align: center; /* Centers the text within the x-quantity div */
+    margin-top: 0px; /* Removes space above the quantity */
+    font-size: 1rem; /* Adjust font size as needed */
+    color: #fff; /* Updated text color for contrast */
+}
+
+/* 7. Game Card Body */
+.order-details-container .game-card-body {
+    display: flex;
+    flex-direction: column; /* Stack text content vertically */
+    align-items: flex-start; /* Align items to the start (left) */
+    justify-content: flex-start; /* Align items to the top */
+    flex: 1;
+    position: relative; /* To position the price absolutely within this container */
+    padding: 10px; /* Optional: Adds padding inside the game-card-body */
+    height: auto; /* Ensure height adjusts based on content */
+}
+
+/* 8. Game Title */
+.order-details-container .game-card-body .game-card-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #fff; /* Updated for better contrast on dark background */
+}
+
+/* 9. Game Text */
+.order-details-container .game-card-body .game-card-text {
+    flex: 1;
+    margin-bottom: 10px;
+    color: #ddd; /* Lightened text color for readability */
+}
+
+.order-details-container .game-card-body .game-card-text strong {
+    font-weight: bold;
+    color: #fff; /* Updated for better contrast */
+}
+
+/* 10. Price Styling */
+.order-details-container .game-card-body .price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #28a745;
+    position: absolute; /* Keeps the price at the top right */
+    top: 10px;
+    right: 10px;
+    /* Removed margin-bottom to prevent spacing issues */
+}
+
+/* 11. "View CDKs" Button Styling */
+.order-details-container .game-card-body .view-cdks-btn {
+    align-self: flex-end; /* Aligns the button to the end of the flex container */
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    background-color: #6419cc;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: auto; /* Pushes the button to the bottom of the container */
+    transition: background-color 0.3s;
+}
+
+.order-details-container .game-card-body .view-cdks-btn:hover {
+    background-color: #0056b3;
+}
+
+/* 12. "Cancel Item Orders" Button Styling */
+.order-details-container .game-card-body .delete-prepurchase-items-button {
+    align-self: flex-end; /* Aligns the button to the end of the flex container */
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    background-color: #6419cc;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 10px; /* Ensures spacing between buttons if both are present */
+    transition: background-color 0.3s;
+}
+
+.order-details-container .game-card-body .delete-prepurchase-items-button:hover {
+    background-color: #c82333;
+}
+
+/* 13. CDK Codes Styling */
+.order-details-container .game-card-body .cdk-codes {
+    display: none; /* Hidden by default */
+    margin-top: 10px;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 3px;
+    width: 100%; /* Ensure it spans the full width of the game-card-body */
+    color: #333; /* Text color */
+    box-sizing: border-box; /* Ensures padding is included in width */
+}
+
+/* 14. CDK Codes Show Class for Toggling */
+.order-details-container .game-card-body .cdk-codes.show {
+    display: block; /* Show when .show class is added */
+}
+
+/* 15. CDK Codes List Styling */
+.order-details-container .game-card-body .cdk-codes ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.order-details-container .game-card-body .cdk-codes li {
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* 16. Purchased and Pending Items Containers */
+.order-details-container .order-deliveredPurchases,
+.order-details-container .order-prePurchases .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* 17. Individual Cards */
+.order-details-container .deliveredPurchase-card,
+.order-details-container .prePurchase-card {
+    width: calc(33.333% - 20px); /* Three cards per row with gap */
+}
+
+@media (max-width: 992px) {
+    .order-details-container .deliveredPurchase-card,
+    .order-details-container .prePurchase-card {
+        width: calc(50% - 20px); /* Two cards per row on medium screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .order-details-container .deliveredPurchase-card,
+    .order-details-container .prePurchase-card {
+        width: 100%; /* One card per row on small screens */
+    }
+}
+
+/* 18. Alert Styling */
+.order-details-container .alert {
+    margin-top: 20px;
+}
+
+/* 19. Custom Modal Styling */
+.cancel-order-container .custom-modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cancel-order-container .custom-modal-content {
+    background-color: #3b3b3b;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    max-width: 700px;
+    border-radius: 8px;
+    position: relative;
+    height: 400px; /* Fixed height for consistent vertical alignment */
+    display: flex;
+    flex-direction: column;
+}
+
+.cancel-order-container .custom-modal-close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cancel-order-container .custom-modal-close:hover,
+.custom-modal-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cancel-order-container .modal-body {
+    flex: 1;
+    display: flex;
+    position: relative;
+}
+
+.cancel-order-container .modal-grid {
+    display: grid;
+    grid-template-columns: 30% auto auto;
+    grid-template-rows: 1fr;
+    height: 100%;
+    width: 100%;
+    gap: 20px;
+}
+
+.cancel-order-container .modal-left {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.cancel-order-container .modal-game-image {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+#modal-game-name {
+    font-size: 18px;
+    font-weight: bold;
+    /* The name sits below the image, occupying the remaining 30% height */
+}
+
+.cancel-order-container .modal-middle {
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    height: 100%;
+}
+
+.cancel-order-container .modal-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cancel-order-container .btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.cancel-order-container .btn-plus,
+.cancel-order-container .btn-minus {
+    background-color: #0d6efd;
+    color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cancel-order-container .btn-plus:hover,
+.cancel-order-container .btn-minus:hover {
+    background-color: #0b5ed7;
+}
+
+.cancel-order-container #remove_order_count {
+    width: 60px;
+    text-align: center;
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+}
+
+/* Delete button absolutely at the bottom right */
+.cancel-order-container .delete-button-abs {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancel-order-container .delete-button-abs:hover {
+    background-color: #c82333;
+}
+
+.cancel-order-container .btn.view-cdks-btn:hover {
+    opacity: 0.9;
+}
+
+/* 21. "Cancel Item Orders" Button Styling */
+.cancel-order-container .btn.delete-prepurchase-items-button {
+    /* Ensure the button is at the bottom right */
+    align-self: flex-end; /* Aligns to the end of the flex container */
+    padding: 8px 16px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px; /* Adds spacing from the above elements */
+}
+
+.cancel-order-container .btn.delete-prepurchase-items-button:hover {
+    background-color: #c82333;
+}
+
+/* 22. CDK Codes Styling */
+.cdk-codes {
+    margin-top: 10px;
+    display: none;
+    /* Removed margin-left to prevent overflow */
+    width: 100%; /* Ensure it spans the full width of the game-card-body */
+    box-sizing: border-box;
+}
+
+.order-details-container .game-card-body .cdk-codes ul {
+    list-style: none; /* Removes disc bullets */
+    padding-left: 0;   /* Removes left padding */
+    margin: 0;
+    color: #28a745;    /* Sets text color to green */
+}
+
+.order-details-container .game-card-body .cdk-codes li {
+    margin-bottom: 5px;
+    color: #28a745;    /* Sets text color to green */
+}
+
+

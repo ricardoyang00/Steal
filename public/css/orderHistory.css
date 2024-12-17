@@ -1,0 +1,264 @@
+/* public/css/purchaseHistory.css */
+
+/* Container Styling */
+.purchase-history-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #1c1c1c;
+    color: #333; /* Set default text color */
+}
+
+/* Heading */
+.purchase-history-container h1 {
+    margin-bottom: 30px;
+    text-align: center;
+    color: #fff; /* Ensure heading is dark */
+}
+
+/* public/css/purchaseHistory/sort_menu.css */
+
+/* Dropdown container */
+.purchase-history-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Sort button styling */
+.purchase-history-sort-dropdownButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    cursor: pointer;
+    background-color: #007bff; /* Bootstrap primary color */
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.purchase-history-sort-dropdownButton:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+/* Arrow styling */
+.purchase-history-dropdown .arrow {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when dropdown is open */
+.purchase-history-dropdown.open .arrow {
+    transform: rotate(180deg);
+}
+
+/* Dropdown menu hidden by default */
+.purchase-history-select-order-options {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 4px;
+    padding: 0;
+    margin-top: 5px;
+    list-style: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Show dropdown menu when 'show' class is added */
+.purchase-history-select-order-options.show {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Style dropdown items */
+.purchase-history-select-order-options li a {
+    color: #333333;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Highlight dropdown items on hover or when active */
+.purchase-history-select-order-options li a:hover,
+.purchase-history-select-order-options li a.active {
+    background-color: #f1f1f1;
+    color: #007bff;
+}
+
+/* Optional: Adjust button styling for better alignment */
+.purchase-history-dropdown .purchase-history-sort-dropdownButton {
+    white-space: nowrap;
+}
+
+.sort-options {
+    margin-bottom: 30px; /* Adjust the value as needed */
+}
+
+/* public/css/purchaseHistory/filter_menu.css */
+
+/* Filter Dropdown container */
+.purchase-history-filter-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Filter button styling */
+.purchase-history-filter-dropdownButton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    white-space: nowrap;
+    cursor: pointer;
+    background-color: #6c757d; /* Bootstrap secondary color */
+    color: #ffffff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.purchase-history-filter-dropdownButton:hover {
+    background-color: #5a6268; /* Darker shade on hover */
+}
+
+/* Arrow styling */
+.purchase-history-filter-dropdown .arrow {
+    margin-left: 8px;
+    transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when dropdown is open */
+.purchase-history-filter-dropdown.open .arrow {
+    transform: rotate(180deg);
+}
+
+/* Dropdown menu hidden by default */
+.purchase-history-select-filter-options {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-radius: 4px;
+    padding: 0;
+    margin-top: 5px;
+    list-style: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Show dropdown menu when 'show' class is added */
+.purchase-history-select-filter-options.show {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Style filter items */
+.purchase-history-select-filter-options li a {
+    color: #333333;
+    padding: 10px 16px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Highlight filter items on hover or when active */
+.purchase-history-select-filter-options li a:hover,
+.purchase-history-select-filter-options li a.active {
+    background-color: #f1f1f1;
+    color: #6c757d;
+}
+
+/* Order Card Styling */
+.purchase-history-order-card {
+    background-color: #3b3b3b;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.purchase-history-order-card-body {
+    padding: 20px;
+    color: #fff; 
+}
+
+/* First Line: Date, Total Price, Status */
+.purchase-history-order-card-body-firstLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.purchase-history-order-card-body-firstLine div {
+    flex: 1;
+    text-align: center;
+}
+
+.purchase-history-order-card-body-firstLine div:first-child {
+    text-align: left;
+}
+
+.purchase-history-order-card-body-firstLine div:last-child {
+    text-align: right;
+}
+
+/* Second Line: Delivered and Pending Items */
+.purchase-history-order-card-body-secondLine {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.purchase-history-order-card-body-secondLine div {
+    flex: 1;
+    text-align: center;
+}
+
+.purchase-history-order-card-body-secondLine div:first-child {
+    text-align: left;
+}
+
+.purchase-history-order-card-body-secondLine div:last-child {
+    text-align: right;
+}
+
+/* View Details Button */
+.purchase-history-orderDetails {
+    text-align: right;
+}
+
+.purchase-history-orderDetails .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+}
+
+/* No Orders Alert */
+.no-orders {
+    padding: 20px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    text-align: center;
+    color: #555;
+    margin-top: 20px;
+}
+
+

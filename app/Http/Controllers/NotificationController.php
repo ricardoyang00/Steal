@@ -15,7 +15,9 @@ use App\Models\WishlistNotification;
 use App\Models\ShoppingCartNotification;
 use App\Models\GameNotification;
 use App\Models\ReviewNotification;
+use App\Models\PrePurchase;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Exception;
 
 class NotificationController extends Controller{
@@ -42,13 +44,11 @@ class NotificationController extends Controller{
         }
     }
     
-    
-
-    public function createOrderNotification($order, $purchasedItems, $canceledItems) {
+    public function createOrderNotification($order, $prePurchasedItems, $purchasedItems, $canceledItems) {
         $title = 'Order Processed';
         $description = '';
     
-        if (empty($purchasedItems) && !empty($canceledItems)) {
+        if (empty($purchasedItems) && empty($prePurchasedItems) && !empty($canceledItems)) {
             $description = 'Your order could not be completed. ';
             $description .= 'Unfortunately, none of the items in your order were available due to insufficient stock.';
         } elseif (empty($canceledItems)) {
@@ -154,7 +154,7 @@ class NotificationController extends Controller{
         }
     }
 
-    public function createGameNotifications($purchasedItems) {
+    public function createGameNotifications($prePurchasedItems, $purchasedItems) {
         try {
             $gamePurchases = [];
     
@@ -173,16 +173,45 @@ class NotificationController extends Controller{
     
                 $gamePurchases[$gameId]['quantity'] += 1;
                 $gamePurchases[$gameId]['totalValue'] += $value;
+                $gamePurchases[$gameId]['type'] = 'Delivered';
+            }
+
+            foreach ($prePurchasedItems as $item) {
+                $game = $item['game'];
+                $value = $item['value'];
+                $gameId = $game->id;
+    
+                if (!isset($gamePurchases[$gameId])) {
+                    $gamePurchases[$gameId] = [
+                        'game' => $game,
+                        'quantity' => 0,
+                        'totalValue' => 0.0,
+                    ];
+                }
+    
+                $gamePurchases[$gameId]['quantity'] += 1;
+                $gamePurchases[$gameId]['totalValue'] += $value;
+                $gamePurchases[$gameId]['type'] = 'Ordered';
             }
     
             foreach ($gamePurchases as $data) {
                 $game = $data['game'];
                 $quantity = $data['quantity'];
                 $totalValue = $data['totalValue'];
+                $type = $data['type'];
+
+                if($type === 'Delivered'){
+                    $title = "Game Sold";
+                    $description = "One of your games has been purchased. GameName: {$game->name}, quantity: {$quantity}, totalPrice: {$totalValue}";
+                }
+                elseif($type === 'Ordered'){
+                    $title = "Game Ordered";
+                    $description = "One of your games has been ordered. GameName: {$game->name}, quantity: {$quantity}, totalPrice: {$totalValue}";
+                }
     
                 $notification = Notification::create([
-                    'title' => "Game Sold",
-                    'description' => "One of your games has been purchased. GameName: {$game->name}, quantity: {$quantity}, totalPrice: {$totalValue}",
+                    'title' => $title,
+                    'description' => $description,
                     'time' => now(),
                     'is_read' => false,
                 ]);
@@ -220,6 +249,88 @@ class NotificationController extends Controller{
             \Log::error("Error creating review notification: " . $e->getMessage());
         }
     }
+
+    public function createOrderStatusChangeNotification($game, $quantity)
+    {
+        $title = 'Order Status Updated';
+        $description = "One of your ordered items has been delivered. Game: {$game->name}, Quantity:{$quantity}";
+
+        try {
+            // Start a database transaction
+            DB::beginTransaction();
+
+            // 1. Fetch PrePurchases linked to the game, sorted by time ascending, limited by quantity
+            $prePurchases = PrePurchase::where('game', $game->id)
+            ->whereHas('getPurchase.getOrder')
+            ->with(['getPurchase.getOrder']) // Eager load the Order relationship
+            ->join('purchase', 'prepurchase.id', '=', 'purchase.id')
+            ->join('orders', 'purchase.order_', '=', 'orders.id')
+            ->orderBy('orders.time', 'asc') // Sort by Order's time attribute
+            ->select('prepurchase.*') 
+            ->take($quantity)
+            ->get();
+
+            if ($prePurchases->isEmpty()) {
+                Log::info("No PrePurchases found for Game ID: {$game->id}");
+                DB::rollBack();
+                return;
+            }
+
+            $orderIds = $prePurchases->pluck('getPurchase.getOrder.id')->unique();
+
+            if ($orderIds->isEmpty()) {
+                Log::info("No associated Orders found for the selected PrePurchases.");
+                DB::rollBack();
+                return;
+            }
+
+            // 3. Fetch Orders along with their Buyers
+            $orders = Order::whereIn('id', $orderIds)
+                ->with('getBuyer')
+                ->get();
+
+            if ($orders->isEmpty()) {
+                Log::info("No Orders found for Order IDs: " . implode(', ', $orderIds->toArray()));
+                DB::rollBack();
+                return;
+            }
+
+            foreach ($orders as $order) {
+                $buyer = $order->buyer;
+
+                if (!$buyer) {
+                    Log::warning("Order ID {$order->id} has no associated Buyer.");
+                    continue;
+                }
+
+                // Create the base notification
+                $notification = Notification::create([
+                    'title' => $title,
+                    'description' => $description,
+                    'time' => now(),
+                    'is_read' => false,
+                ]);
+
+                OrderNotification::create([
+                    'id' => $notification->id, // Assuming 'id' is the primary key in Notification and a foreign key in OrderNotification
+                    'order_' => $order->id,
+                ]);
+            }
+
+            DB::commit();
+
+            Log::info("Order status change notifications created successfully for Game ID: {$game->id}");
+
+        } catch (\Exception $e) {
+            // Rollback the transaction in case of errors
+            DB::rollBack();
+
+            // Log the error for debugging purposes
+            Log::error("Error creating order status change notifications: " . $e->getMessage());
+
+        }
+    }
+
     
     
     private function getNotifications() {
@@ -266,7 +377,8 @@ class NotificationController extends Controller{
             ->with([
                 'getNotification', 
                 'getOrder.getPurchases.getDeliveredPurchase.getCDK.getGame', 
-                'getOrder.getPurchases.getCanceledPurchase.getGame'
+                'getOrder.getPurchases.getCanceledPurchase.getGame',
+                'getOrder.getPurchases.getPrePurchase.getGame'
             ])
             ->get();
     
@@ -279,7 +391,28 @@ class NotificationController extends Controller{
                 $notification->time = $notification->getNotification->time;
                 $notification->is_read = $notification->getNotification->is_read;
     
-                $notification->type = 'Order';
+                $notification->type = 'Order Completed';
+
+                if ($notification->title === 'Order Status Updated') {
+                    // Set type to 'Status Change'
+                    $notification->type = 'Status Change';
+    
+    
+                    // Use regex to parse 'GameName' and 'Quantity' from the description
+                    $pattern = '/Game:\s*(.+?),\s*Quantity:\s*(\d+)/';
+                    if (preg_match($pattern, $notification->description, $matches)) {
+                        // Extracted values
+                        $gameName = $matches[1];
+                        $quantity = (int)$matches[2];
+    
+                        // Add parsed attributes to the notification
+                        $notification->gameName = $gameName;
+                        $notification->quantity = $quantity;
+    
+                        // Remove the parsed part from the description
+                        $notification->description = preg_replace($pattern, '', $notification->description);
+                    }
+                }
     
                 $order = $notification->getOrder;
                 if ($order) {
@@ -299,6 +432,15 @@ class NotificationController extends Controller{
                             $game = $purchase->getCanceledPurchase->getGame ?? null;
                             return [
                                 'type' => 'Canceled',
+                                'gameId' => $game->id,
+                                'gameName' => $game->name ?? 'Unknown Game',
+                                'value' => $purchase->getValue(),
+                            ];
+                        }
+                        elseif ($purchase->getPrePurchase) {
+                            $game = $purchase->getPrePurchase->getGame ?? null;
+                            return [
+                                'type' => 'Ordered',
                                 'gameId' => $game->id,
                                 'gameName' => $game->name ?? 'Unknown Game',
                                 'value' => $purchase->getValue(),

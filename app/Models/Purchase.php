@@ -28,6 +28,11 @@ Class Purchase extends Model
         return $this->hasOne(DeliveredPurchase::class, 'id', 'id');
     }
 
+    public function getPrePurchase()
+    {
+        return $this->hasOne(PrePurchase::class, 'id', 'id');
+    }
+
     public function getCanceledPurchase()
     {
         return $this->hasOne(CanceledPurchase::class, 'id', 'id');

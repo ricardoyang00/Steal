@@ -100,6 +100,41 @@ AFTER DELETE ON NotificationOrder
 FOR EACH ROW
 EXECUTE PROCEDURE delete_notification_after_specific_notification_delete();
 
+
+CREATE OR REPLACE FUNCTION assign_cdk_to_prepurchase()
+RETURNS TRIGGER AS $$
+DECLARE
+    prepurchase_id INT;
+BEGIN
+
+    SELECT pp.id INTO prepurchase_id
+    FROM PrePurchase pp
+    JOIN Purchase p ON pp.id = p.id
+    JOIN Orders o ON p.order_ = o.id
+    WHERE pp.game = NEW.game
+    ORDER BY o.time ASC
+    LIMIT 1
+    FOR UPDATE SKIP LOCKED;
+
+    
+    IF prepurchase_id IS NOT NULL THEN
+        INSERT INTO DeliveredPurchase (id, cdk)
+        VALUES (prepurchase_id, NEW.id);
+        
+        DELETE FROM PrePurchase
+        WHERE id = prepurchase_id;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER assign_cdk_trigger
+AFTER INSERT ON CDK
+FOR EACH ROW
+EXECUTE FUNCTION assign_cdk_to_prepurchase();
+
+
 /* Trigger to clear cart and wishlist after delivery */
 CREATE OR REPLACE FUNCTION clear_cart_and_wishlist_after_delivery()
 RETURNS TRIGGER AS
@@ -203,8 +238,7 @@ BEGIN
     SELECT minimum_age INTO game_minimum_age
     FROM Age
     JOIN Game ON Game.age_id = Age.id
-    JOIN CDK ON CDK.game = Game.id
-    WHERE CDK.id = NEW.cdk;
+    WHERE Game.id = NEW.game;
 
     -- Calculate buyer's age
     buyer_age := DATE_PART('year', CURRENT_DATE) - DATE_PART('year', buyer_birth_date);

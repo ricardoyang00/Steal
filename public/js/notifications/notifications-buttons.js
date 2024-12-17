@@ -222,8 +222,8 @@ document.addEventListener('DOMContentLoaded', function () {
             // Set button text based on type
             if (['Wishlist', 'ShoppingCart'].includes(notification.type)) {
                 detailsButton.textContent = 'View Details';
-            } else if (notification.type === 'Order') {
-                detailsButton.textContent = 'View Order Details';
+            } else if (notification.type === 'Order Completed' || notification.type === 'Status Change') {
+                detailsButton.textContent = 'View Details';
             } else if (notification.type === 'Game' || notification.type === 'Review') {
                 detailsButton.textContent = 'View Details';
             }
@@ -238,18 +238,38 @@ document.addEventListener('DOMContentLoaded', function () {
             detailsContentDiv.classList.add('notification-details');
 
             // Populate details based on notification.type
-            if (notification.type === 'Order' && notification.orderDetails) {
+            if ((notification.type === 'Order Completed' || notification.type == 'Status Change') && notification.orderDetails) {
                 const dateP = document.createElement('p');
                 dateP.innerHTML = `<strong>Placed at:</strong> ${notification.orderDetails.date}`;
                 detailsContentDiv.appendChild(dateP);
-
-                const purchases = notification.orderDetails.purchases || [];
+                const purchasesObj = notification.orderDetails?.purchases || {};
+                const purchases = Array.isArray(purchasesObj) ? purchasesObj : Object.values(purchasesObj);
+                console.log('Notification orderDetails:', notification.orderDetails);
                 const deliveredGames = purchases.filter(p => p.type === 'Delivered');
                 const canceledGames = purchases.filter(p => p.type === 'Canceled');
+                const prePurchasedGames = purchases.filter( p => p.type === 'Ordered');
+
+                if (prePurchasedGames.length > 0) {
+                    const purchasedTitle = document.createElement('h6');
+                    purchasedTitle.textContent = 'Ordered Games:';
+                    detailsContentDiv.appendChild(purchasedTitle);
+
+                    const ulprePurchased = document.createElement('ul');
+                    prePurchasedGames.forEach(p => {
+                        const li = document.createElement('li');
+                        if (p.gameId) {
+                            li.innerHTML = `<a href="/game/${p.gameId}">${p.gameName}</a> - $${p.value}`;
+                        } else {
+                            li.textContent = `${p.gameName} - $${p.value}`;
+                        }
+                        ulprePurchased.appendChild(li);
+                    });
+                    detailsContentDiv.appendChild(ulprePurchased);
+                }
 
                 if (deliveredGames.length > 0) {
                     const purchasedTitle = document.createElement('h6');
-                    purchasedTitle.textContent = 'Purchased Games:';
+                    purchasedTitle.textContent = 'Delivered Games:';
                     detailsContentDiv.appendChild(purchasedTitle);
 
                     const ulPurchased = document.createElement('ul');
