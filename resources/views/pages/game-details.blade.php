@@ -7,6 +7,7 @@
 @if (!auth_user() || auth_user()->buyer)
     <script src="{{ asset('js/wishlist/add-to-wishlist.js') }}" defer></script>
     <script src="{{ asset('js/cart/add-to-cart.js') }}" defer ></script>
+    <script src="{{ asset('js/reviews/report_review.js') }}" defer ></script>
 @endif
 
 <script src="{{ asset('js/game_details/game_details.js') }}" defer></script>
@@ -306,6 +307,34 @@
                         {{ $reviews->links() }}
                     </div>
                 @endif
+            </div>
+            <div id="report-review-modal" class="modal">
+                <div class="modal-content">
+                    <span class="close report-review-close-button">&times;</span>
+                    <div class="modal-header">
+                        <h2>Report Review</h2>
+                    </div>
+                    <div class="modal-body report-review-body">
+                        <form id="report-review-form" action="{{ route('reviews.report') }}" method="POST">
+                            @csrf
+                            <input id="review-id-input" type="hidden" name="review_id" value="{{ $review->id }}">
+                            <div class="form-group">
+                                <label for="report-reason">Reason</label>
+                                <select id="report-reason" name="reason" class="form-control" required>
+                                    <option value="">Select a reason</option>
+                                    <option value="spam">Spam</option>
+                                    <option value="abuse">Abuse</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="report-description">Description</label>
+                                <textarea id="report-description" name="description" class="form-control" rows="3" maxlength="500" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-report-submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

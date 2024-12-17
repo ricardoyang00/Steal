@@ -51,7 +51,7 @@
     </div>
 
     @if (!$isOwnReview && auth_user() && auth_user()->buyer)
-        <button class="btn-report" data-review-id="{{ $review->id }}">
+        <button class="btn-report" data-review-id="{{ $review->id }}" data-author-id="{{ $review->getAuthor->user->username }}">
             <i class="fas fa-exclamation-triangle"></i> Report
         </button>
     @endif
