@@ -116,7 +116,7 @@
                     </div>
                 </div>
 
-                <!-- Display Order History -->
+                <!-- Display Order History as Tables -->
                 <div id="order-history-list">
                     @forelse ($orderHistory as $history)
                         @php
@@ -127,47 +127,44 @@
                             $pendingCount = $history['prePurchases']->count();
                         @endphp
 
-                        <div class="purchase-history-order-card" data-status="{{ $status }}">
-                            <div class="purchase-history-order-card-body">
-                                <!-- First Line: Date, Total Price, Status -->
-                                <div class="purchase-history-order-card-body-firstLine">
-                                    <div>
-                                        <strong>Date:</strong> {{ $history['formattedTime'] }}
-                                    </div>
-                                    <div>
-                                        <strong>Total Price:</strong> ${{ number_format($history['totalPrice'], 2) }}
-                                    </div>
-                                    <div>
+                        <table class="purchase-history-order-card" data-status="{{ $status }}">
+                            <thead>
+                                <tr>
+                                    <th colspan="3">Order Details</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- First Row: Date, Total Price, Status -->
+                                <tr class="purchase-history-order-card-body-firstLine">
+                                    <td><strong>Date:</strong> {{ $history['formattedTime'] }}</td>
+                                    <td><strong>Total Price:</strong> ${{ number_format($history['totalPrice'], 2) }}</td>
+                                    <td>
                                         <strong>Status:</strong>
                                         @if ($status === 'Completed')
                                             <span class="badge bg-success">{{ $status }}</span>
                                         @else
                                             <span class="badge bg-warning text-dark">{{ $status }}</span>
                                         @endif
-                                    </div>
-                                </div>
+                                    </td>
+                                </tr>
 
-                                <!-- Second Line: Delivered and Pending Items Count -->
-                                <div class="purchase-history-order-card-body-secondLine">
-                                    <div>
-                                        <strong>Delivered Games:</strong> {{ $deliveredCount }}
-                                    </div>
-                                    <div>
-                                        <strong>Payment Method:</strong> {{ $history['payment'] }}
-                                    </div>
-                                    <div>
-                                        <strong>Pending Games:</strong> {{ $pendingCount }}
-                                    </div>
-                                </div>
+                                <!-- Second Row: Delivered and Pending Items Count -->
+                                <tr class="purchase-history-order-card-body-secondLine">
+                                    <td><strong>Delivered Games:</strong> {{ $deliveredCount }}</td>
+                                    <td><strong>Payment Method:</strong> {{ $history['payment'] }}</td>
+                                    <td><strong>Pending Games:</strong> {{ $pendingCount }}</td>
+                                </tr>
 
-                                <!-- View Details Button -->
-                                <div class="purchase-history-orderDetails">
-                                    <a href="{{ route('orderDetails', ['id' => $history['order']->id]) }}" class="btn btn-primary btn-sm">
-                                        View Details
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                                <!-- Third Row: View Details Button -->
+                                <tr class="purchase-history-orderDetails">
+                                    <td colspan="3">
+                                        <a href="{{ route('orderDetails', ['id' => $history['order']->id]) }}" class="btn btn-primary btn-sm">
+                                            View Details
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     @empty
                         <div class="no-orders" role="alert">
                             No orders found.
@@ -190,4 +187,6 @@
             </div>
         @endif
     </div>
+
 @endsection
+

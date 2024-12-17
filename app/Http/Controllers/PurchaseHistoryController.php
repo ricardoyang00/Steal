@@ -36,7 +36,7 @@ class PurchaseHistoryController extends Controller
 
     if ($filter === 'Completed') {
         $ordersQuery->whereDoesntHave('getPurchases.getPrePurchase');
-    } elseif ($filter === 'Item Pending') { // Ensure consistency in filter naming
+    } elseif ($filter === 'ItemPending') { // Ensure consistency in filter naming
         $ordersQuery->whereHas('getPurchases.getPrePurchase');
     }
 
