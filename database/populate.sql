@@ -88,7 +88,7 @@ INSERT INTO Game (name, description, price, overall_rating, owner, is_active, re
 -- Total 60 Games
 -- Seller 1
 ('A Epic Odyssey', 'An immersive adventure game with stunning visuals.', 49.99, 0, 11, TRUE, '2024-03-15', 3),
-('Arcane Arena', 'Compete in a magical dueling tournament.', 34.99, 0, 15, TRUE, '2024-03-22', 2),
+('Galactic Blitz', 'A fast-paced sci-fi shooter set in a dystopian universe.', 34.99, 0, 11, TRUE, '2024-05-20', 4),
 ('Haunted Secrets', 'Solve challenging puzzles in a haunted mansion.', 19.99, 0, 11, TRUE, '2024-07-10', 2),
 ('Legend of Heroes', 'A captivating role-playing game with unique characters.', 59.99, 0, 11, TRUE, '2024-09-05', 5),
 ('Night Riders', 'High-speed street racing with realistic physics.', 39.99, 0, 11, TRUE, '2024-11-22', 3),
@@ -116,7 +116,7 @@ INSERT INTO Game (name, description, price, overall_rating, owner, is_active, re
 
 -- Seller 5
 ('Inferno Tactics', 'A strategy game set in a fiery underworld.', 39.99, 0, 15, TRUE, '2024-01-18', 4),
-('Galactic Blitz', 'A fast-paced sci-fi shooter set in a dystopian universe.', 29.99, 0, 11, TRUE, '2024-05-20', 4),
+('Arcane Arena', 'Compete in a magical dueling tournament.', 34.99, 0, 15, TRUE, '2024-03-22', 2),
 ('Blazing Trails', 'Embark on a daring journey across the wild.', 44.99, 0, 15, TRUE, '2024-05-15', 3),
 ('Stellar Voyage', 'Pilot a spaceship and explore distant planets.', 54.99, 0, 15, TRUE, '2024-08-10', 5),
 ('Iron Bastion', 'Defend your fortress from invading armies.', 29.99, 0, 15, TRUE, '2024-11-03', 1),
@@ -150,11 +150,11 @@ INSERT INTO Game (name, description, price, overall_rating, owner, is_active, re
 ('Battle Circuit', 'Test your skills in this fast-paced arena fighter.', 34.99, 0, 19, TRUE, '2024-09-12', 3),
 
 -- Seller 10
-('Primordial Rift', 'Unite factions in a land torn by magic.', 54.99, 0, 20, TRUE, '2024-02-01', 5),
-('Pixel Racers', 'Fast-paced arcade-style racing action.', 29.99, 0, 20, TRUE, '2024-04-10', 1),
+('Primordial Rift', 'Unite factions in a land torn by magic.', 54.99, 0, 20, TRUE, '2024-02-01', 5), -- no thumbnails
+('Pixel Racers', 'Fast-paced arcade-style racing action.', 29.99, 0, 20, TRUE, '2024-04-10', 1), -- no thumbnails
 ('Chrono Legacy', 'Time-traveling RPG with dynamic storytelling.', 49.99, 0, 20, TRUE, '2024-06-05', 4),
-('Rogue Marauder', 'Engage in thrilling heists across the galaxy.', 39.99, 0, 20, TRUE, '2024-08-23', 3),
-('Hollow Depths', 'Dive into a mysterious underground labyrinth.', 24.99, 0, 20, TRUE, '2024-11-02', 2),
+('Rogue Marauder', 'Engage in thrilling heists across the galaxy.', 39.99, 0, 20, TRUE, '2024-08-23', 3), -- no thumbnails
+('Hollow Depths', 'Dive into a mysterious underground labyrinth.', 24.99, 0, 20, TRUE, '2024-11-02', 2), -- no thumbnails
 
 -- Seller 11 (Blocked)
 ('Ancient Prophecy', 'Solve mysteries in a world of ancient gods.', 39.99, 0, 21, FALSE, '2024-03-14', 5),
@@ -173,32 +173,601 @@ INSERT INTO Game (name, description, price, overall_rating, owner, is_active, re
 
 -- Game Ratings
 UPDATE Game
-SET overall_rating = 93.33
+SET overall_rating = 93.33,
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_1.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_1.jpg'
 WHERE id = 1;
 
 UPDATE Game
-SET overall_rating = 0
+SET overall_rating = 0,
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_2.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_2.png'
 WHERE id = 2;
 
 UPDATE Game
-SET overall_rating = 50
+SET overall_rating = 50,
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_3.png',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_3.jpg'
 WHERE id = 3;
 
 UPDATE Game
-SET overall_rating = 100
+SET overall_rating = 100,
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_4.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_4.jpg'
 WHERE id = 4;
 
 UPDATE Game
-SET overall_rating = 0
+SET overall_rating = 0,
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_5.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_5.jpg'
 WHERE id = 5;
 
 UPDATE Game
-SET overall_rating = 100
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_6.png',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_6.jpg'
+WHERE id = 6;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_7.jpeg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_7.jpg'
+WHERE id = 7;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_8.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_8.jpg'
+WHERE id = 8;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_9.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_9.jpg'
+WHERE id = 9;
+
+UPDATE Game
+SET overall_rating = 100,
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_10.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_10.jpg'
 WHERE id = 10;
 
 UPDATE Game
-SET overall_rating = 66.67
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_11.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_11.jpg'
+WHERE id = 11;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_12.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_12.jpg'
+WHERE id = 12;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_13.jpeg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_13.jpeg'
+WHERE id = 13;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_14.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_14.jpg'
+WHERE id = 14;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_15.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_15.jpg'
+WHERE id = 15;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_16.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_16.jpg'
+WHERE id = 16;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_17.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_17.jpg'
+WHERE id = 17;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_18.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_18.jpg'
+WHERE id = 18;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_19.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_19.jpg'
+WHERE id = 19;
+
+UPDATE Game
+SET overall_rating = 66.67,
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_20.jpeg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_20.png'
 WHERE id = 20;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_21.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_21.jpg'
+WHERE id = 21;
+
+UPDATE Game
+SET 
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_22.jpeg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_22.png'
+WHERE id = 22;
+
+UPDATE Game
+SET 
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_23.jpeg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_23.jpg'
+WHERE id = 23;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_24.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_24.jpg'
+WHERE id = 24;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_25.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_25.jpg'
+WHERE id = 25;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_26.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_26.jpg'
+WHERE id = 26;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_27.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_27.jpg'
+WHERE id = 27;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_28.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_28.jpg'
+WHERE id = 28;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_29.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_29.jpg'
+WHERE id = 29;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_30.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_30.jpg'
+WHERE id = 30;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_31.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_31.jpg'
+WHERE id = 31;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_32.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_32.jpg'
+WHERE id = 32;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_33.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_33.jpg'
+WHERE id = 33;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_34.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_34.jpg'
+WHERE id = 34;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_35.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_35.jpg'
+WHERE id = 35;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_36.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_36.jpg'
+WHERE id = 36;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_37.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_37.jpg'
+WHERE id = 37;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_38.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_38.jpg'
+WHERE id = 38;
+
+UPDATE Game
+SET 
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_39.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_39.jpg'
+WHERE id = 39;
+
+UPDATE Game
+SET 
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_40.jpg'
+WHERE id = 40;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_41.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_41.jpg'
+WHERE id = 41;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_42.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_42.jpg'
+WHERE id = 42;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_43.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_43.jpg'
+WHERE id = 43;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_44.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_44.jpg'
+WHERE id = 44;
+
+UPDATE Game
+SET 
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_45.png',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_45.jpg'
+WHERE id = 45;
+
+UPDATE Game
+SET 
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_48.png',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_48.jpg'
+WHERE id = 48;
+
+
+-- GAME MEDIA
+insert into GameMedia (game, path) values (1, 'images/gamemedia/extra_1_1.jpg');
+insert into GameMedia (game, path) values (1, 'images/gamemedia/extra_1_2.jpg');
+insert into GameMedia (game, path) values (1, 'images/gamemedia/extra_1_3.jpg');
+insert into GameMedia (game, path) values (2, 'images/gamemedia/extra_2_1.jpg');
+insert into GameMedia (game, path) values (2, 'images/gamemedia/extra_2_2.png');
+insert into GameMedia (game, path) values (2, 'images/gamemedia/extra_2_3.jpg');
+insert into GameMedia (game, path) values (2, 'images/gamemedia/extra_2_4.jpg');
+insert into GameMedia (game, path) values (20, 'images/gamemedia/extra_20_1.jpg');
+insert into GameMedia (game, path) values (20, 'images/gamemedia/extra_20_2.png');
+insert into GameMedia (game, path) values (22, 'images/gamemedia/extra_22_1.jpg');
+insert into GameMedia (game, path) values (22, 'images/gamemedia/extra_22_2.jpeg');
+insert into GameMedia (game, path) values (23, 'images/gamemedia/extra_23_1.jpg');
+insert into GameMedia (game, path) values (23, 'images/gamemedia/extra_23_2.jpg');
+insert into GameMedia (game, path) values (45, 'images/gamemedia/extra_45_1.jpg');
+insert into GameMedia (game, path) values (45, 'images/gamemedia/extra_45_2.png');
+insert into GameMedia (game, path) values (45, 'images/gamemedia/extra_45_3.jpg');
+insert into GameMedia (game, path) values (48, 'images/gamemedia/extra_48_1.jpg');
+insert into GameMedia (game, path) values (48, 'images/gamemedia/extra_48_2.jpg');
+
+INSERT INTO GameMedia (game, path) VALUES (1, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (1, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (1, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (1, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (1, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (2, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (2, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (2, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (2, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (2, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (3, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (3, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (3, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (3, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (3, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (4, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (4, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (4, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (4, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (4, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (5, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (5, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (5, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (5, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (5, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (6, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (6, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (6, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (6, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (6, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (7, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (7, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (7, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (7, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (7, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (8, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (8, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (8, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (8, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (8, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (9, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (9, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (9, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (9, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (9, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (10, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (10, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (10, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (10, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (10, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (11, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (11, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (11, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (11, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (11, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (12, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (12, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (12, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (12, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (12, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (13, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (13, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (13, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (13, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (13, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (14, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (14, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (14, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (14, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (14, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (15, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (15, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (15, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (15, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (15, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (16, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (16, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (16, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (16, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (16, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (17, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (17, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (17, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (17, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (17, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (18, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (18, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (18, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (18, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (18, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (19, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (19, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (19, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (19, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (19, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (20, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (20, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (20, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (20, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (20, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (21, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (21, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (21, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (21, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (21, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (22, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (22, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (22, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (22, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (22, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (23, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (23, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (23, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (23, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (23, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (24, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (24, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (24, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (24, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (24, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (25, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (25, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (25, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (25, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (25, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (26, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (26, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (26, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (26, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (26, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (27, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (27, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (27, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (27, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (27, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (28, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (28, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (28, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (28, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (28, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (29, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (29, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (29, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (29, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (29, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (30, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (30, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (30, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (30, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (30, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (31, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (31, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (31, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (31, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (31, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (32, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (32, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (32, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (32, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (32, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (33, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (33, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (33, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (33, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (33, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (34, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (34, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (34, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (34, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (34, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (35, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (35, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (35, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (35, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (35, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (36, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (36, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (36, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (36, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (36, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (37, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (37, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (37, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (37, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (37, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (38, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (38, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (38, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (38, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (38, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (39, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (39, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (39, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (39, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (39, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (40, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (40, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (40, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (40, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (40, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (41, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (41, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (41, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (41, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (41, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (42, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (42, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (42, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (42, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (42, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (43, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (43, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (43, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (43, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (43, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (44, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (44, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (44, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (44, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (44, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (45, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (45, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (45, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (45, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (45, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (46, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (46, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (46, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (46, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (46, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (47, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (47, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (47, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (47, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (47, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (48, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (48, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (48, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (48, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (48, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (49, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (49, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (49, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (49, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (49, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (50, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (50, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (50, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (50, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (50, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (51, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (51, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (51, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (51, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (51, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (52, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (52, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (52, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (52, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (52, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (53, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (53, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (53, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (53, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (53, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (54, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (54, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (54, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (54, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (54, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (55, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (55, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (55, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (55, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (55, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (56, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (56, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (56, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (56, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (56, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (57, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (57, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (57, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (57, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (57, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (58, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (58, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (58, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (58, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (58, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (59, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (59, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (59, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (59, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (59, 'images/gamemedia/extra_all_5.jpg');
+INSERT INTO GameMedia (game, path) VALUES (60, 'images/gamemedia/extra_all_1.jpg');
+INSERT INTO GameMedia (game, path) VALUES (60, 'images/gamemedia/extra_all_2.jpg');
+INSERT INTO GameMedia (game, path) VALUES (60, 'images/gamemedia/extra_all_3.jpg');
+INSERT INTO GameMedia (game, path) VALUES (60, 'images/gamemedia/extra_all_4.jpg');
+INSERT INTO GameMedia (game, path) VALUES (60, 'images/gamemedia/extra_all_5.jpg');
 
 
 -- CDK
@@ -875,11 +1444,6 @@ INSERT INTO CDK (code, game) VALUES
 ('9O5AFQRUDQLNQSN75QH6J1ARE6', 60),
 ('H6JLASERPTELO9CQD7E7T9607H', 60);
 
-/*
--- GAME MEDIA
-insert into GameMedia (path, game) values ('images/gamemedia/gamemedia_1.jpg', 32);
-insert into GameMedia (path, game) values ('images/gamemedia/gamemedia_2.jpg', 32);
-*/
 
 -- PLATFORM
 insert into Platform (name) values ('Steam');
