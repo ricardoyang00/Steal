@@ -1,9 +1,9 @@
 
 @if($sales->isNotEmpty())
-    <div class="mb-3">
+    <div class="sales-report-template">
         <h3>Total Sales: € {{ $total }}</h3>
     </div>
-    <table class="table table-bordered">
+    <table class="table">
         <thead>
             <tr>
                 <th>Game</th>

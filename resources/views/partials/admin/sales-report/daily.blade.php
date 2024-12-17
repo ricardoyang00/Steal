@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="sales-report">
     <h2>Daily Sales Report</h2>
     @include ('partials.admin.sales-report.template')
 

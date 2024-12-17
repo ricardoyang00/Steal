@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="sales-report">
     <h2>Sales Report from {{ \Carbon\Carbon::parse($startDate)->format('d/m/Y') }} 
         to {{ \Carbon\Carbon::parse($endDate)->format('d/m/Y') }}</h2>
     

@@ -1,0 +1,106 @@
+/* Purchase Details Page Styles */
+.puchase-details-page {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #2c2f33;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    color: #dcdfe4;
+}
+
+.puchase-details-page h1 {
+    font-size: 28px;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.purchase-details p, .purchase-details a {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #dcdfe4;
+}
+
+.purchase-details a {
+    font-weight: bold;
+}
+
+.purchase-details a:hover {
+    color: #ad15ff;
+}
+
+
+.purchase-details p strong {
+    color: #ffffff;
+    flex-basis: 40%;
+}
+
+.purchase-details img {
+    width: 50px;
+    height: auto;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.payment-method {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Space between name and image */
+    margin-left: 8px; /* Small space from the strong label */
+}
+
+.payment-method img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--buy-button-color);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 6px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+    background-color: #4e13a3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .puchase-details-page {
+        padding: 15px;
+    }
+
+    .puchase-details-page h1 {
+        font-size: 24px;
+    }
+
+    .purchase-details p {
+        font-size: 14px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .purchase-details img {
+        width: 40px;
+    }
+
+    .back-btn {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+}
