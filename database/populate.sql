@@ -203,6 +203,18 @@ thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_5.jpg'
 WHERE id = 5;
 
 UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_6.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_6.png'
+WHERE id = 6;
+
+UPDATE Game
+SET
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_9.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_9.jpg'
+WHERE id = 9;
+
+UPDATE Game
 SET overall_rating = 100,
 thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_10.jpg',
 thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_10.jpg'
@@ -237,6 +249,17 @@ SET
 thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_23.jpeg',
 thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_23.jpg'
 WHERE id = 23;
+
+UPDATE Game
+SET 
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_39.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_39.jpg'
+WHERE id = 39;
+
+UPDATE Game
+SET 
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_40.jpg'
+WHERE id = 40;
 
 UPDATE Game
 SET 
