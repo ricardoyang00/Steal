@@ -10,6 +10,7 @@ use App\Models\Player;
 use App\Models\Age;
 use App\Models\GameMedia;
 use App\Models\Review;
+use App\Models\Reason;
 use App\Models\CDK;
 use App\Http\Controllers\NotificationController;
 
@@ -170,7 +171,10 @@ class GameController extends Controller
         // Fetch reviews and handle pagination
         $reviews = $this->fetchReviews($game->id, $userId, $userReview);
 
-        return view('pages.game-details', compact('game', 'reviews', 'userReview'));
+        // Fetch the reasons for report
+        $reportReasons = Reason::all();
+
+        return view('pages.game-details', compact('game', 'reviews', 'userReview', 'reportReasons'));
     }
 
     private function fetchReviews($gameId, $userId, $userReview)

@@ -315,16 +315,15 @@
                         <h2>Report Review</h2>
                     </div>
                     <div class="modal-body report-review-body">
-                        <form id="report-review-form" action="{{ route('reviews.report') }}" method="POST">
+                        <form id="report-review-form" action="/reviews/report" method="POST">
                             @csrf
                             <input id="review-id-input" type="hidden" name="review_id" value="{{ $review->id }}">
                             <div class="form-group">
                                 <label for="report-reason">Reason</label>
                                 <select id="report-reason" name="reason" class="form-control" required>
-                                    <option value="">Select a reason</option>
-                                    <option value="spam">Spam</option>
-                                    <option value="abuse">Abuse</option>
-                                    <option value="other">Other</option>
+                                    @foreach ($reportReasons as $reason)
+                                        <option value="{{ $reason->id }}">{{ $reason->description }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
