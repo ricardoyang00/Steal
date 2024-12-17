@@ -50,7 +50,7 @@
         <p>{{ $review->description }}</p>
     </div>
 
-    @if (!$isOwnReview)
+    @if (!$isOwnReview && auth_user() && auth_user()->buyer)
         <button class="btn-report" data-review-id="{{ $review->id }}">
             <i class="fas fa-exclamation-triangle"></i> Report
         </button>
