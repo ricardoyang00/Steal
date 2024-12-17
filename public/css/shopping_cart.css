@@ -102,8 +102,8 @@
 
 /* Image styling */
 .product-container img {
-    width: 70px;
-    height: 100px;
+    width: 75px;
+    height: 110px;
     object-fit: cover;
     border-radius: 5px;
 }
@@ -125,12 +125,19 @@
     flex-grow: 1;
 }
 
+.stock-details {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--red-hover);
+    margin-top: -5px;
+}
+
 .btn-remove {
     background-color: transparent;
     color: var(--red);
     border: none;
     cursor: pointer;
-    margin-top: 30px;
+    margin-top: 5px;
 }
 
 .btn-remove:hover {

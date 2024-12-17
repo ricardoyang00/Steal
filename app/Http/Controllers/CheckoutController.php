@@ -59,7 +59,7 @@ class CheckoutController extends Controller
             if (!$game) {
                 return redirect()->route('shopping_cart')->withErrors('Some items are no longer available.');
             }
-            if($game->getReleaseDate() === 'Not realeased yet'){
+            if($game->getReleaseDate() === 'Not realeased yet' || $game->getStockAttribute() === 0){
                 for ($i = 0; $i < $cartItem->quantity; $i++) {
                     $prePurchasedItems[] = [
                         'game' => $game,
@@ -72,16 +72,8 @@ class CheckoutController extends Controller
                 continue;
             }
             $availableCDKs = $game->getAvailableCDKs();
-            if($availableCDKs->count() < $cartItem->quantity){
-                $canceledItems[] = [
-                    'game' => $game->id,
-                    'gameName' => $game->name,
-                    'value' => 0.0,
-                ];
-                continue;
-            }
             $availableCDKs = $availableCDKs->slice(0, $cartItem->quantity);
-            $total += ($game->price * $cartItem->quantity);
+            $total += ($game->price * $availableCDKs->count());
             foreach ($availableCDKs as $cdk) {
                 $purchasedItems[] = [
                     'game' => $game,
@@ -90,6 +82,17 @@ class CheckoutController extends Controller
                     'cdkCode' => $cdk->code,
                     'value' => $game->price,
                 ];
+            }
+            if($availableCDKs->count() < $cartItem->quantity){
+                $numberOfCanceledPurchases = $cartItem->quantity - $availableCDKs->count();
+                while($numberOfCanceledPurchases > 0){
+                    $canceledItems[] = [
+                        'game' => $game->id,
+                        'gameName' => $game->name,
+                        'value' => $game->price,
+                    ];
+                    $numberOfCanceledPurchases--;
+                }
             }
         }
         // Calculate the subtotal after applying coins
