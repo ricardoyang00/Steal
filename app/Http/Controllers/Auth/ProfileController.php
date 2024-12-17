@@ -16,17 +16,6 @@ use App\Models\User;
 
 class ProfileController extends Controller
 {
-    public function showSCoins()
-    {
-        if (auth_user()) {
-            if (auth_user()->buyer) {
-                return view('pages.scoins');
-            } else {
-                return redirect()->route('home');
-            }
-        }
-    }
-
     public function showProfile()
     {
         if (auth_user()) {
