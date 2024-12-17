@@ -5,7 +5,12 @@
 @section('content')
 
 <div class="scoins-container">
-    <h1 class="scoins-title">S-Coins</h1>
+    <div class="scoins-header">
+        <h1 class="scoins-title">S-Coins</h1>
+        <a href="{{ route('scoins.history') }}" class="scoins-history-link">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+        </a>
+    </div>
     <p class="scoins-lead">Manage your S-Coins and learn how they work.</p>
 
     <div class="scoins-info">
@@ -29,32 +34,5 @@
         <a href="{{ route('home') }}" class="scoins-button">Back to Home</a>
     </div>
 </div>
-
-    <div class="scoins-history">
-        <h2>S-Coins History</h2>
-        <table class="scoins-history-table">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Coins Used</th>
-                    <th>Coins Gained</th>
-                    <th>Subtotal (€)</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($orders as $order)
-                    @php
-                        $coinsGained = ceil($order->getPayment->value * 5);
-                    @endphp
-                    <tr>
-                        <td>{{ $order->time }}</td>
-                        <td>{{ $order->coins }}</td>
-                        <td>{{ $coinsGained }}</td>
-                        <td>{{ number_format($order->getPayment->value, 2) }}</td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
 
 @endsection

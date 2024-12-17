@@ -139,6 +139,7 @@ Route::controller(ProfileController::class)->group(function () {
 
 // SCoins
 Route::get('/scoins', [ScoinsController::class, 'index'])->name('scoins.index');
+Route::get('/scoins/history', [ScoinsController::class, 'history'])->name('scoins.history');
 
 // Admin
 Route::prefix('admin')->middleware('auth:admin')->group(function () {
