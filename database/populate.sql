@@ -88,7 +88,7 @@ INSERT INTO Game (name, description, price, overall_rating, owner, is_active, re
 -- Total 60 Games
 -- Seller 1
 ('A Epic Odyssey', 'An immersive adventure game with stunning visuals.', 49.99, 0, 11, TRUE, '2024-03-15', 3),
-('Arcane Arena', 'Compete in a magical dueling tournament.', 34.99, 0, 15, TRUE, '2024-03-22', 2),
+('Galactic Blitz', 'A fast-paced sci-fi shooter set in a dystopian universe.', 34.99, 0, 11, TRUE, '2024-05-20', 4),
 ('Haunted Secrets', 'Solve challenging puzzles in a haunted mansion.', 19.99, 0, 11, TRUE, '2024-07-10', 2),
 ('Legend of Heroes', 'A captivating role-playing game with unique characters.', 59.99, 0, 11, TRUE, '2024-09-05', 5),
 ('Night Riders', 'High-speed street racing with realistic physics.', 39.99, 0, 11, TRUE, '2024-11-22', 3),
@@ -116,7 +116,7 @@ INSERT INTO Game (name, description, price, overall_rating, owner, is_active, re
 
 -- Seller 5
 ('Inferno Tactics', 'A strategy game set in a fiery underworld.', 39.99, 0, 15, TRUE, '2024-01-18', 4),
-('Galactic Blitz', 'A fast-paced sci-fi shooter set in a dystopian universe.', 29.99, 0, 11, TRUE, '2024-05-20', 4),
+('Arcane Arena', 'Compete in a magical dueling tournament.', 34.99, 0, 15, TRUE, '2024-03-22', 2),
 ('Blazing Trails', 'Embark on a daring journey across the wild.', 44.99, 0, 15, TRUE, '2024-05-15', 3),
 ('Stellar Voyage', 'Pilot a spaceship and explore distant planets.', 54.99, 0, 15, TRUE, '2024-08-10', 5),
 ('Iron Bastion', 'Defend your fortress from invading armies.', 29.99, 0, 15, TRUE, '2024-11-03', 1),
@@ -179,7 +179,9 @@ thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_1.jpg'
 WHERE id = 1;
 
 UPDATE Game
-SET overall_rating = 0
+SET overall_rating = 0,
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_2.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_2.png'
 WHERE id = 2;
 
 UPDATE Game
@@ -206,6 +208,12 @@ WHERE id = 20;
 insert into GameMedia (game, path) values (1, 'images/gamemedia/extra_1_1.jpg');
 insert into GameMedia (game, path) values (1, 'images/gamemedia/extra_1_2.jpg');
 insert into GameMedia (game, path) values (1, 'images/gamemedia/extra_1_3.jpg');
+
+insert into GameMedia (game, path) values (2, 'images/gamemedia/extra_2_1.jpg');
+insert into GameMedia (game, path) values (2, 'images/gamemedia/extra_2_2.png');
+insert into GameMedia (game, path) values (2, 'images/gamemedia/extra_2_3.jpg');
+insert into GameMedia (game, path) values (2, 'images/gamemedia/extra_2_4.jpg');
+
 
 -- CDK
 INSERT INTO CDK (code, game) VALUES
