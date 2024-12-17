@@ -354,6 +354,16 @@
 }
 
 /* Admin "Add to Cart" Button */
+#block-game, #btn-unblock {
+    color: var(--text-color);
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
 #block-game {
     background-color: var(--red);
 }

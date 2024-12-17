@@ -164,12 +164,12 @@
                         @include('partials.admin.block-modal')
                         <form action="{{ route('admin.games.block', $game->id) }}" method="POST" style="display:inline;">
                             @csrf
-                            <button type="button" class="btn-add-to-cart btn btn-primary" id="block-game" onclick="showBlockModal({{ $game->id }})">Block</button>
+                            <button type="button" class="btn btn-primary" id="block-game" onclick="showBlockModal({{ $game->id }})">Block</button>
                     @else
                         @include('partials.common.confirmation-modal')
                         <form action="{{ route('admin.games.unblock', $game->id) }}" method="POST" style="display:inline;" id="unblock-game-form">
                             @csrf
-                            <button type="button" class="confirmation-btn btn-add-to-cart btn btn-primary" id="btn-unblock"
+                            <button type="button" class="confirmation-btn btn btn-primary" id="btn-unblock"
                                     data-title="Unblock Game"
                                     data-message="Are you sure you want to unblock {{ $game->name }} ?"
                                     data-form-id="unblock-game-form">
