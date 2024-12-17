@@ -190,6 +190,11 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
+        // Delete the old profile picture if it exists and is not the default one
+        if ($user->profile_picture && $user->profile_picture !== 'images/profile_pictures/default-profile-picture.png' && File::exists(public_path($user->profile_picture))) {
+            File::delete(public_path($user->profile_picture));
+        }
+
         $user->is_active = false;
         $user->save();
 

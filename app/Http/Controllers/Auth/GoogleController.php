@@ -52,6 +52,16 @@ class GoogleController extends Controller
             // Generate a unique username based on the user's name or email
             $username = $this->generateUniqueUsername($sanitized_name);
 
+            // Retrieve the user's Google profile picture URL
+            $profile_picture_url = $google_user->getAvatar();
+
+            // Define the path where the profile picture will be stored
+            $profile_picture_path = 'images/profile_pictures/' . uniqid() . '.png';
+
+            // Download and save the profile picture
+            $image_content = file_get_contents($profile_picture_url);
+            file_put_contents(public_path($profile_picture_path), $image_content);
+
             // Store the provided name, email, and Google ID in the database
             $new_user = User::create([
                 'username' => $username,
@@ -60,6 +70,7 @@ class GoogleController extends Controller
                 'is_active' => true,
                 'is_blocked' => false,
                 'google_id' => $google_user->getId(),
+                'profile_picture' => $profile_picture_path,
             ]);
 
             // Create a buyer record for the new user

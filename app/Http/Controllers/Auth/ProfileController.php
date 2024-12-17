@@ -107,6 +107,11 @@ class ProfileController extends Controller
     {
         $user = auth_user();
 
+        // Delete the old profile picture if it exists and is not the default one
+        if ($user->profile_picture && $user->profile_picture !== 'images/profile_pictures/default-profile-picture.png' && File::exists(public_path($user->profile_picture))) {
+            File::delete(public_path($user->profile_picture));
+        }
+
         // Set is_active to false to trigger the anonymization
         $user->is_active = false;
         $user->save();
