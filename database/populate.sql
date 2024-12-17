@@ -173,7 +173,9 @@ INSERT INTO Game (name, description, price, overall_rating, owner, is_active, re
 
 -- Game Ratings
 UPDATE Game
-SET overall_rating = 93.33
+SET overall_rating = 93.33,
+thumbnail_small_path = 'images/thumbnail_small/thumbnail_s_1.jpg',
+thumbnail_large_path = 'images/thumbnail_large/thumbnail_l_1.jpg'
 WHERE id = 1;
 
 UPDATE Game
@@ -200,6 +202,10 @@ UPDATE Game
 SET overall_rating = 66.67
 WHERE id = 20;
 
+-- GAME MEDIA
+insert into GameMedia (game, path) values (1, 'images/gamemedia/extra_1_1.jpg');
+insert into GameMedia (game, path) values (1, 'images/gamemedia/extra_1_2.jpg');
+insert into GameMedia (game, path) values (1, 'images/gamemedia/extra_1_3.jpg');
 
 -- CDK
 INSERT INTO CDK (code, game) VALUES
@@ -875,11 +881,6 @@ INSERT INTO CDK (code, game) VALUES
 ('9O5AFQRUDQLNQSN75QH6J1ARE6', 60),
 ('H6JLASERPTELO9CQD7E7T9607H', 60);
 
-/*
--- GAME MEDIA
-insert into GameMedia (path, game) values ('images/gamemedia/gamemedia_1.jpg', 32);
-insert into GameMedia (path, game) values ('images/gamemedia/gamemedia_2.jpg', 32);
-*/
 
 -- PLATFORM
 insert into Platform (name) values ('Steam');
