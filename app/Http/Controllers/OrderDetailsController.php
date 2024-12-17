@@ -60,6 +60,9 @@ class OrderDetailsController extends Controller {
                     throw new \Exception("Purchase not found for PrePurchase ID: " . $prePurchase->id);
                 }
 
+                $purchase->value = 0;
+                $purchase->save();
+
                 CanceledPurchase::create([
                     'id' => $purchase->id,
                     'game' => $prePurchase->game,

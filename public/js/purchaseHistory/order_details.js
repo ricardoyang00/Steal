@@ -8,9 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // Initialize ARIA attribute
         button.setAttribute('aria-expanded', 'false');
 
-        // Add visual indicator (arrow) based on initial state
-        button.insertAdjacentHTML('beforeend', ' ▼'); // Down arrow for collapsed state
-
         button.addEventListener('click', function () {
             const cdkSection = this.nextElementSibling; // Assuming .cdk-codes is the next sibling
 
@@ -21,10 +18,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Update ARIA attribute and button text
                 if (cdkSection.classList.contains('show')) {
                     this.setAttribute('aria-expanded', 'true');
-                    this.innerHTML = 'Hide CDKs ▲'; // Up arrow for expanded state
+                    this.innerHTML = 'Hide CDKs'; // Up arrow for expanded state
                 } else {
                     this.setAttribute('aria-expanded', 'false');
-                    this.innerHTML = 'View CDKs ▼'; // Down arrow for collapsed state
+                    this.innerHTML = 'View CDKs'; // Down arrow for collapsed state
                 }
             } else {
                 console.warn('CDK Codes section not found for the clicked button.');

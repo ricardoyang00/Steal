@@ -61,12 +61,24 @@
                                         <p><strong>Placed at:</strong> {{ $notification['orderDetails']['date'] }}</p>
                                         @php
                                             $purchasedGames = collect($notification['orderDetails']['purchases'])->filter(fn($purchase) => $purchase['type'] === 'Delivered');
+                                            $prePurchasedGames = collect($notification['orderDetails']['purchases'])->filter(fn($purchase) => $purchase['type'] === 'Ordered');
                                         @endphp
-                                        @if($purchasedGames->isNotEmpty())
+                                        @if($purchasedGames->isNotEmpty() || $prePurchasedGames->isNotEmpty())
                                             <h6>Purchased Games:</h6>
                                             <ul>
                                                 @foreach($notification['orderDetails']['purchases'] as $purchase)
                                                     @if($purchase['type'] === 'Delivered')
+                                                        <li>@if(isset($purchase['gameId']))
+                                                                <a href="{{ route('game.details', ['id' => $purchase['gameId']]) }}">
+                                                                    {{ $purchase['gameName'] }}
+                                                                </a>
+                                                            @else
+                                                                {{ $purchase['gameName'] }}
+                                                            @endif
+                                                             - ${{ number_format($purchase['value'], 2) }}
+                                                        </li>
+                                                    @endif
+                                                    @if($purchase['type'] === 'Ordered')
                                                         <li>@if(isset($purchase['gameId']))
                                                                 <a href="{{ route('game.details', ['id' => $purchase['gameId']]) }}">
                                                                     {{ $purchase['gameName'] }}

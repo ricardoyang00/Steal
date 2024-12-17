@@ -44,11 +44,11 @@ class NotificationController extends Controller{
     
     
 
-    public function createOrderNotification($order, $purchasedItems, $canceledItems) {
+    public function createOrderNotification($order, $prePurchasedItems, $purchasedItems, $canceledItems) {
         $title = 'Order Processed';
         $description = '';
     
-        if (empty($purchasedItems) && !empty($canceledItems)) {
+        if (empty($purchasedItems) && empty($prePurchasedItems) && !empty($canceledItems)) {
             $description = 'Your order could not be completed. ';
             $description .= 'Unfortunately, none of the items in your order were available due to insufficient stock.';
         } elseif (empty($canceledItems)) {
@@ -266,7 +266,8 @@ class NotificationController extends Controller{
             ->with([
                 'getNotification', 
                 'getOrder.getPurchases.getDeliveredPurchase.getCDK.getGame', 
-                'getOrder.getPurchases.getCanceledPurchase.getGame'
+                'getOrder.getPurchases.getCanceledPurchase.getGame',
+                'getOrder.getPurchases.getPrePurchase.getGame'
             ])
             ->get();
     
@@ -299,6 +300,15 @@ class NotificationController extends Controller{
                             $game = $purchase->getCanceledPurchase->getGame ?? null;
                             return [
                                 'type' => 'Canceled',
+                                'gameId' => $game->id,
+                                'gameName' => $game->name ?? 'Unknown Game',
+                                'value' => $purchase->getValue(),
+                            ];
+                        }
+                        elseif ($purchase->getPrePurchase) {
+                            $game = $purchase->getPrePurchase->getGame ?? null;
+                            return [
+                                'type' => 'Ordered',
                                 'gameId' => $game->id,
                                 'gameName' => $game->name ?? 'Unknown Game',
                                 'value' => $purchase->getValue(),

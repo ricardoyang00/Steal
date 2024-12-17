@@ -247,14 +247,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('Notification orderDetails:', notification.orderDetails);
                 const deliveredGames = purchases.filter(p => p.type === 'Delivered');
                 const canceledGames = purchases.filter(p => p.type === 'Canceled');
+                const prePurchasedGames = purchases.filter( p => p.type === 'Ordered');
 
-                if (deliveredGames.length > 0) {
+                if (deliveredGames.length > 0 || prePurchasedGames.length > 0) {
                     const purchasedTitle = document.createElement('h6');
                     purchasedTitle.textContent = 'Purchased Games:';
                     detailsContentDiv.appendChild(purchasedTitle);
 
                     const ulPurchased = document.createElement('ul');
                     deliveredGames.forEach(p => {
+                        const li = document.createElement('li');
+                        if (p.gameId) {
+                            li.innerHTML = `<a href="/game/${p.gameId}">${p.gameName}</a> - $${p.value}`;
+                        } else {
+                            li.textContent = `${p.gameName} - $${p.value}`;
+                        }
+                        ulPurchased.appendChild(li);
+                    });
+                    prePurchasedGames.forEach(p => {
                         const li = document.createElement('li');
                         if (p.gameId) {
                             li.innerHTML = `<a href="/game/${p.gameId}">${p.gameName}</a> - $${p.value}`;
