@@ -37,6 +37,8 @@
         <link href="{{ url('css/password_reset.css') }}" rel="stylesheet">
         <link href="{{ url('css/modal.css') }}" rel="stylesheet">
         <link href="{{ url('css/scoins.css') }}" rel="stylesheet">
+        <link href="{{ url('css/select_payment_method.css') }}" rel="stylesheet">
+        <link href="{{ url('css/order_completed.css') }}" rel="stylesheet">
         <link href="{{ url('css/orderHistory.css') }}" rel="stylesheet">
         <link href="{{ url('css/orderDetails.css') }}" rel="stylesheet">
         <script type="text/javascript">

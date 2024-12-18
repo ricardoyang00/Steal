@@ -1,264 +1,284 @@
-/* public/css/purchaseHistory.css */
+/* public/css/purchase-history.css */
 
 /* Container Styling */
 .purchase-history-container {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
-    background-color: #1c1c1c;
-    color: #333; /* Set default text color */
+    background-color: #121212; /* Dark container background */
+    color: #f1f1f1; /* Light text color for contrast */
+    min-height: 100vh; /* Ensure full viewport height */
 }
 
 /* Heading */
 .purchase-history-container h1 {
     margin-bottom: 30px;
     text-align: center;
-    color: #fff; /* Ensure heading is dark */
+    font-size: 2.5rem;
+    color: #ffffff; /* White color for heading */
 }
 
-/* public/css/purchaseHistory/sort_menu.css */
-
-/* Dropdown container */
-.purchase-history-dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-/* Sort button styling */
-.purchase-history-sort-dropdownButton {
+/* Controls (Sort & Filter) */
+.controls {
+    margin-bottom: 30px;
     display: flex;
+    justify-content: space-between; /* Align sort to left and filter to right */
     align-items: center;
-    justify-content: space-between;
-    white-space: nowrap;
-    cursor: pointer;
-    background-color: #007bff; /* Bootstrap primary color */
-    color: #ffffff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    flex-wrap: wrap;
+    gap: 15px; /* Maintain gap between elements */
 }
 
-.purchase-history-sort-dropdownButton:hover {
-    background-color: #0056b3; /* Darker shade on hover */
-}
-
-/* Arrow styling */
-.purchase-history-dropdown .arrow {
-    margin-left: 8px;
-    transition: transform 0.3s ease;
-}
-
-/* Rotate arrow when dropdown is open */
-.purchase-history-dropdown.open .arrow {
-    transform: rotate(180deg);
-}
-
-/* Dropdown menu hidden by default */
-.purchase-history-select-order-options {
-    display: none;
-    position: absolute;
-    background-color: #ffffff;
-    min-width: 200px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1000;
-    border-radius: 4px;
-    padding: 0;
-    margin-top: 5px;
-    list-style: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    opacity: 0;
-    visibility: hidden;
-}
-
-/* Show dropdown menu when 'show' class is added */
-.purchase-history-select-order-options.show {
-    display: block;
-    opacity: 1;
-    visibility: visible;
-}
-
-/* Style dropdown items */
-.purchase-history-select-order-options li a {
-    color: #333333;
-    padding: 10px 16px;
-    text-decoration: none;
-    display: block;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-/* Highlight dropdown items on hover or when active */
-.purchase-history-select-order-options li a:hover,
-.purchase-history-select-order-options li a.active {
-    background-color: #f1f1f1;
-    color: #007bff;
-}
-
-/* Optional: Adjust button styling for better alignment */
-.purchase-history-dropdown .purchase-history-sort-dropdownButton {
-    white-space: nowrap;
-}
-
-.sort-options {
-    margin-bottom: 30px; /* Adjust the value as needed */
-}
-
-/* public/css/purchaseHistory/filter_menu.css */
-
-/* Filter Dropdown container */
+.purchase-history-dropdown,
 .purchase-history-filter-dropdown {
     position: relative;
     display: inline-block;
 }
 
-/* Filter button styling */
+.purchase-history-dropdownButton,
 .purchase-history-filter-dropdownButton {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    white-space: nowrap;
+    background-color: #1f1f1f; /* Dark button background */
+    color: #f1f1f1; /* Light text color */
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: 1px solid #444; /* Dark border */
+    border-radius: 5px;
     cursor: pointer;
-    background-color: #6c757d; /* Bootstrap secondary color */
-    color: #ffffff;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    width: 200px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s, color 0.3s;
 }
 
+.purchase-history-dropdownButton:hover,
 .purchase-history-filter-dropdownButton:hover {
-    background-color: #5a6268; /* Darker shade on hover */
+    background-color: #333333; /* Slightly lighter on hover */
 }
 
-/* Arrow styling */
-.purchase-history-filter-dropdown .arrow {
-    margin-left: 8px;
-    transition: transform 0.3s ease;
-}
-
-/* Rotate arrow when dropdown is open */
-.purchase-history-filter-dropdown.open .arrow {
-    transform: rotate(180deg);
-}
-
-/* Dropdown menu hidden by default */
+.purchase-history-select-order-options,
 .purchase-history-select-filter-options {
     display: none;
     position: absolute;
-    background-color: #ffffff;
-    min-width: 180px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1000;
-    border-radius: 4px;
-    padding: 0;
-    margin-top: 5px;
-    list-style: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    opacity: 0;
-    visibility: hidden;
+    background-color: #1f1f1f; /* Dark dropdown background */
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(255,255,255,0.1); /* Subtle shadow */
+    z-index: 1;
+    border: 1px solid #444; /* Dark border */
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
-/* Show dropdown menu when 'show' class is added */
-.purchase-history-select-filter-options.show {
+.purchase-history-dropdown.active .purchase-history-select-order-options,
+.purchase-history-filter-dropdown.active .purchase-history-select-filter-options {
     display: block;
-    opacity: 1;
-    visibility: visible;
 }
 
-/* Style filter items */
-.purchase-history-select-filter-options li a {
-    color: #333333;
-    padding: 10px 16px;
+.purchase-history-select-order-options,
+.purchase-history-select-filter-options {
+    display: none; /* Initially hidden */
+    position: absolute;
+    background-color: #1f1f1f; /* Dark dropdown background */
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(255,255,255,0.1); /* Subtle shadow */
+    z-index: 1;
+    border: 1px solid #444; /* Dark border */
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.purchase-history-select-order-options li,
+.purchase-history-select-filter-options li {
+    list-style: none;
+}
+
+.purchase-history-select-order-options a,
+.purchase-history-select-filter-options a {
+    color: #f1f1f1; /* Light text color */
+    padding: 10px 20px;
     text-decoration: none;
     display: block;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Highlight filter items on hover or when active */
-.purchase-history-select-filter-options li a:hover,
-.purchase-history-select-filter-options li a.active {
-    background-color: #f1f1f1;
-    color: #6c757d;
-}
 
-/* Order Card Styling */
+/* Order Table Styling */
 .purchase-history-order-card {
-    background-color: #3b3b3b;
-    border: 1px solid #ddd;
+    border: 1px solid #444; /* Dark border */
     border-radius: 5px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(255,255,255,0.05); /* Subtle shadow */
+    background-color: #1e1e1e; /* Dark table background */
 }
 
-.purchase-history-order-card-body {
-    padding: 20px;
-    color: #fff; 
+.purchase-history-order-card thead th {
+    padding: 15px;
+    font-size: 1.2rem;
+    color: #fff; /* White text for headers */
+    border-bottom: 1px solid #444; /* Dark border */
+    background-color: #6419cc;
 }
 
-/* First Line: Date, Total Price, Status */
-.purchase-history-order-card-body-firstLine {
+.purchase-history-order-card thead th > div {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #eaeaea;
-    padding-bottom: 10px;
-    margin-bottom: 15px;
+    width: 100%;
 }
 
-.purchase-history-order-card-body-firstLine div {
-    flex: 1;
+.purchase-history-order-card tbody tr:first-child td {
+    background-color: #1e1e1e; /* Maintain dark background */
+    padding: 15px;
+    border-bottom: 1px solid #444;
+}
+
+.purchase-history-order-card tbody tr.secondLine td {
+    background-color: #2a2a2a; /* Slightly lighter for differentiation */
+    padding: 10px 15px;
+    border-bottom: 1px solid #444;
+}
+
+.purchase-history-order-card tbody tr.purchase-history-orderDetails td {
+    padding: 10px 15px;
     text-align: center;
 }
 
-.purchase-history-order-card-body-firstLine div:first-child {
+.purchase-history-order-card tbody td {
+    vertical-align: top;
+}
+
+/* Nested Games Table */
+.purchase-history-order-card .table {
+    margin-bottom: 0;
+    background-color: #1e1e1e; /* Dark background for nested table */
+    color: #f1f1f1; /* Light text color */
+}
+
+.purchase-history-order-card .table th,
+.purchase-history-order-card .table td {
+    padding: 10px 15px;
+    border-top: 1px solid #444;
+    font-size: 1rem;
+}
+
+.purchase-history-order-card .table th {
+    background-color: #2a2a2a; /* Dark header for nested table */
+    color: #ffffff;
     text-align: left;
 }
 
-.purchase-history-order-card-body-firstLine div:last-child {
-    text-align: right;
+.purchase-history-order-card .table tbody tr:hover {
+    background-color: #333333; /* Highlight on row hover */
 }
 
-/* Second Line: Delivered and Pending Items */
-.purchase-history-order-card-body-secondLine {
+/* Footer Styling */
+.purchase-history-order-card tfoot td {
+    padding: 15px;
+    background-color: #2a2a2a; /* Dark footer background */
+    border-top: 1px solid #444;
+}
+
+.purchase-history-order-card tfoot div {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* Space between footer elements */
     align-items: center;
-    margin-bottom: 15px;
+    flex-wrap: wrap;
 }
 
-.purchase-history-order-card-body-secondLine div {
-    flex: 1;
-    text-align: center;
+.purchase-history-order-card tfoot div > div {
+    margin: 5px 0;
+    flex: 1; /* Allow footer items to grow */
 }
 
-.purchase-history-order-card-body-secondLine div:first-child {
-    text-align: left;
+/* Specific styling for the Manage Orders button */
+.purchase-history-order-card tfoot div > div.manage-orders-button {
+    flex: 0 0 auto; /* Prevent it from growing */
+    margin-left: auto; /* Push the button to the far right */
 }
 
-.purchase-history-order-card-body-secondLine div:last-child {
-    text-align: right;
+/* Adjust the button styling if necessary */
+.purchase-history-order-card tfoot div > div.manage-orders-button a.btn {
+    padding: 8px 20px; /* Increase padding for better visibility */
+    font-size: 1rem; /* Adjust font size if needed */
+    background-color: #6419cc;
+}
+
+/* Adjust spacing between labels and values in footer */
+.purchase-history-order-card tfoot div > div strong {
+    margin-right: 15px; /* Further increase spacing */
+    color: #ffffff; /* Ensure labels are white */
+}
+
+
+/* Badges */
+.badge {
+    font-size: 0.9rem;
+    padding: 0.5em 0.75em;
+    border-radius: 0.25rem;
+}
+
+.badge.bg-success {
+    background-color: #28a745 !important; /* Green for success */
+}
+
+.badge.bg-warning {
+    background-color: #ffc107 !important; /* Yellow for warnings */
+    color: #212529 !important; /* Dark text for contrast */
+}
+
+.badge.bg-danger {
+    background-color: #dc3545 !important; /* Red for danger */
+}
+
+.badge.bg-info {
+    background-color: #17a2b8 !important; /* Blue for info */
+}
+
+.badge.bg-secondary {
+    background-color: #6c757d !important; /* Gray for secondary */
 }
 
 /* View Details Button */
-.purchase-history-orderDetails {
-    text-align: right;
+.purchase-history-order-card a.btn {
+    font-size: 0.9rem;
+    padding: 8px 15px;
+    background-color: #007bff; /* Bootstrap primary color */
+    color: #ffffff; /* White text */
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-.purchase-history-orderDetails .btn {
-    padding: 8px 16px;
-    font-size: 14px;
+.purchase-history-order-card a.btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
 }
 
 /* No Orders Alert */
 .no-orders {
-    padding: 20px;
-    background-color: #e9ecef;
-    border-radius: 5px;
     text-align: center;
-    color: #555;
-    margin-top: 20px;
+    padding: 50px 0;
+    font-size: 1.2rem;
+    color: #6c757d; /* Muted color */
 }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .purchase-history-order-card tfoot div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .purchase-history-order-card tfoot div > div {
+        flex: 1 1 100%;
+    }
+
+    .purchase-history-dropdownButton,
+    .purchase-history-filter-dropdownButton {
+        width: 100%;
+    }
+}
+
 
 

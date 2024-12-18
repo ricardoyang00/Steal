@@ -1,0 +1,169 @@
+
+/* Container Card Styling */
+.payment-method-selection-container {
+    margin:auto;
+    background: #333; /* Purple background */
+    padding: 20px 15px; /* Reduced padding for a smaller form */
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Increased max-width to accommodate 3 cards per row */
+    width: 100%;
+    color: #fff; /* Default text color */
+}
+
+.payment-method-selection-container h2::after {
+    content: '';
+    width: 40px; /* Slightly smaller underline */
+    height: 3px;
+    background-color: #007bff;
+    display: block;
+    margin: 8px auto 0;
+    border-radius: 1.5px;
+}
+
+.payment-method-selection-container .payment-method-form p{
+    font-size: 1.5rem;
+    font-style: bold;
+    color: #fff;
+}
+
+/* Payment Method Cards */
+.payment-method-form .card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+    background-color: #6419cc; /* Dark card background */
+    padding-bottom: 10px;
+    padding-top: 0px;
+    text-align: center;
+    color: #fff; /* Ensure text inside cards is white */
+}
+
+.payment-method-form .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2);
+}
+
+.payment-method-form .card img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    transition: transform 0.3s;
+}
+
+.payment-method-form .card:hover img {
+    transform: scale(1.1);
+}
+
+.payment-method-form .card-title {
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+/* Radio Buttons */
+.form-check-input {
+    accent-color: #007bff;
+    transform: scale(1.2);
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.form-check-label {
+    font-size: 0.95rem;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+/* Submission Buttons */
+.payment-method-submission .btn-primary,
+.payment-method-submission .btn-secondary {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+    transition: background-color 0.3s, transform 0.3s;
+    min-width: 140px;
+}
+
+.payment-method-submission .btn-primary {
+    background-color: #6419cc;
+    border-color: #6419cc;
+    color: #fff;
+    margin-top: 30px;
+    margin-right: 10px;
+}
+
+.payment-method-submission .btn-primary:hover {
+    background-color: #6419cc;
+    transform: scale(1.05);
+}
+
+.payment-method-submission .btn-secondary {
+    background-color: #ff4d4d;
+    border-color: #ff4d4d;
+    color: #fff;
+    margin-top: 30px;
+}
+
+.payment-method-submission .btn-secondary:hover {
+    background-color: #ff4d4d;
+    transform: scale(1.05);
+}
+
+/* Payment Method Cards Layout */
+.payment-method-form .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Adjust gap between cards */
+}
+
+.payment-method-form .col-md-4 {
+    flex: 0 0 32%; /* Approximately 3 per row with some gap */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .payment-method-form .col-md-4 {
+        flex: 0 0 48%; /* 2 per row on medium screens */
+    }
+}
+
+@media (max-width: 575.98px) {
+    .payment-method-selection-container {
+        padding: 15px 10px;
+        max-width: 500px; /* Further reduce max-width on small screens */
+    }
+
+    .payment-method-selection-container h1 {
+        font-size: 1.75rem;
+    }
+
+    .payment-method-selection-container h2 {
+        font-size: 1.3rem;
+    }
+
+    .payment-method-form .card {
+        padding: 10px;
+    }
+
+    .payment-method-form .card img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .payment-method-submission .btn-primary,
+    .payment-method-submission .btn-secondary {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .payment-method-submission .btn-primary {
+        margin-right: 0;
+    }
+
+    .payment-method-form .col-md-4 {
+        flex: 0 0 100%; /* 1 per row on extra small screens */
+    }
+}

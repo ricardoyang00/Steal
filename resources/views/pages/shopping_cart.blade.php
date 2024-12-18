@@ -36,6 +36,21 @@
                                                     <img src="{{ asset('images/platform_logos/' . $platform['id'] . '.svg') }}" alt="{{ $platform['name'] }} logo" class="img-fluid" style="width: 20px; height: 30px; margin: 0 2px; object-fit: contain;">
                                                 @endforeach
                                             </div>
+                                            <div class="stock-details">
+                                                @if ($product['release_date'] === null)
+                                                    <p>Unreleased Game</p>
+                                                @elseif ($product['stock'] < 10)
+                                                    @if ($product['stock'] === 0)
+                                                        <p>Sold Out</p>
+                                                    @else
+                                                        @if($product['stock'] === 1)
+                                                            <p>Only {{$product['stock']}} CDK remaining!</p>
+                                                        @else
+                                                            <p>Only {{$product['stock']}} CDKs remaining!</p>
+                                                        @endif       
+                                                    @endif
+                                                @endif
+                                            </div>
                                             <button class="btn-remove" data-id="{{ $product['id'] }}">
                                                 <i class="far fa-trash-alt"></i> Remove
                                             </button>

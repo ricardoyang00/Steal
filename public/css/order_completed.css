@@ -1,0 +1,211 @@
+/* Overall Container Styling */
+.order-checkout-completed-container {
+    max-width: 600px; /* Adjusted max-width as per user request */
+    margin: 50px auto; /* Center horizontally with top margin */
+    padding: 30px 40px; /* Retained padding for spacing */
+    border-radius: 15px; /* Retained rounded corners */
+}
+
+/* Heading Styles */
+.order-checkout-completed-container h1 {
+    color: #28a745; /* Bootstrap's success color */
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.order-checkout-completed-container p.lead {
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 25px;
+    color: #ffffff;
+}
+
+/* Main Table Styling */
+.receipt-main-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.receipt-main-table td {
+    padding: 0; /* Remove default padding to manage spacing via subtables */
+    vertical-align: top;
+}
+
+/* Subtable Container */
+.subtable-container {
+    margin-bottom: 30px; /* Margin between subtables */
+}
+
+/* Subtable Styling */
+.subtable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto; /* Center subtable if it's smaller than main table */
+}
+
+.subtable thead tr {
+    background-color: #6419cc;
+}
+
+.subtable th {
+    padding: 12px;
+    text-align: left;
+    font-size: 1rem;
+    color: #ffffff;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.subtable tbody tr.purchase-type-header {
+    background-color: #6419cc;
+}
+
+.subtable tbody tr.purchase-type-header td {
+    padding: 10px 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.subtable tbody tr.purchase-items td {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    color: #ffffff;
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Align Price to the Right in Ordered and Canceled Purchases */
+.subtable.ordered-games tbody tr.purchase-items td:nth-child(2),
+.subtable.canceled-purchases tbody tr.purchase-items td:nth-child(2) {
+    text-align: right;
+}
+
+/* Adjusting Columns for Delivered Games */
+.subtable.delivered-games tbody tr.purchase-items td:nth-child(3) {
+    text-align: right;
+}
+
+/* Receipt Footer Styling */
+.receipt-main-table tfoot tr.receipt-footer {
+    background-color:#6419cc;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.receipt-main-table tfoot tr.receipt-footer td {
+    padding: 12px;
+    border-top: 2px solid #dee2e6;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+}
+
+.receipt-footer .footer-left {
+    text-align: left;
+}
+
+.receipt-footer .footer-right {
+    text-align: right;
+}
+
+/* Action Buttons Styling */
+.back-to-home-button {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.back-to-home-button .btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.back-to-home-button .btn-primary {
+    background-color:#6419cc;
+    border-color: #6419cc;
+    color: #fff;
+}
+
+.back-to-home-button .btn-primary:hover {
+    background-color:#6419cc;
+    transform: scale(1.05);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .order-checkout-completed-container {
+        padding: 20px 25px;
+        margin: 30px 15px;
+    }
+
+    .order-checkout-completed-container h1 {
+        font-size: 1.75rem;
+    }
+
+    .order-checkout-completed-container p.lead {
+        font-size: 1rem;
+    }
+
+    .subtable th, 
+    .subtable td {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .receipt-footer .footer-left,
+    .receipt-footer .footer-right {
+        display: block;
+        text-align: center;
+    }
+
+    .receipt-footer .footer-right {
+        margin-top: 10px;
+    }
+
+    .back-to-home-button .btn {
+        width: 100%;
+        padding: 10px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .order-checkout-completed-container {
+        padding: 15px 20px;
+        margin: 20px 10px;
+    }
+
+    .order-checkout-completed-container h1 {
+        font-size: 1.5rem;
+    }
+
+    .order-checkout-completed-container p.lead {
+        font-size: 0.95rem;
+    }
+
+    .subtable th, 
+    .subtable td {
+        padding: 6px;
+        font-size: 0.85rem;
+    }
+
+    .back-to-home-button .btn {
+        font-size: 0.95rem;
+        padding: 8px 0;
+    }
+}
+
+/* Additional Creative Elements */
+
+/* Enhance Accessibility */
+.subtable th, 
+.subtable td {
+    padding: 12px 15px;
+}
+
+.back-to-home-button .btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
