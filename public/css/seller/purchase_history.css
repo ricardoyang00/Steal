@@ -211,6 +211,12 @@
         padding: 15px;
     }
 
+    .seller-purchase-history-page .table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+
     .admin-sales-report-page .button-group {
         flex-direction: column;
     }

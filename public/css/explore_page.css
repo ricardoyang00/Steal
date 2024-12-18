@@ -492,31 +492,7 @@
     background-color: var(--buy-button-hover-color);
 }
 
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .explore-page {
-        flex-direction: column;
-    }
-    .explore-page .filter-table {
-        width: 100%;
-        margin-bottom: 16px;
-    }
-    .explore-page .game-card {
-        flex-direction: column;
-        align-items: flex-start;
-        max-width: 100%;
-    }
-    .explore-page .game-price-add-cart {
-        position: static;
-        align-items: flex-start;
-        margin-top: 16px;
-    }
-    .explore-page .game-thumbnail img {
-        width: 100%;
-    }
-}
-
+/* Pagination */
 .pagination-nav {
     display: flex;
     margin-top: 20px;
@@ -560,4 +536,109 @@
     color: var(--buy-button-hover-color);
     background-color: var(--page-link-bg-color);
     border-color: var(--page-link-hover-color);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .explore-page {
+        flex-direction: column;
+    }
+    .explore-page .filter-table {
+        width: 80%;
+        margin-bottom: 16px;
+    }
+    .explore-page .game-card {
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 100%;
+    }
+    .explore-page .game-price-add-cart {
+        position: static;
+        align-items: flex-start;
+        margin-top: 16px;
+        .game-price {
+            margin-top: 10px;
+        }
+    }
+    .explore-page .game-thumbnail img {
+        width: 100%;
+    }
+}
+
+@media (max-width: 992px) {
+    .explore-page {
+        flex-direction: column;
+    }
+    .explore-page .filter-table {
+        width: 85%;
+        margin-bottom: 16px;
+    }
+    .explore-page .game-card {
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 100%;
+    }
+    .explore-page .game-price-add-cart {
+        position: static;
+        align-items: flex-start;
+        margin-top: 16px;
+        .game-price {
+            margin-top: 10px;
+        }
+    }
+    .explore-page .game-thumbnail img {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .explore-page {
+        flex-direction: column;
+    }
+    .explore-page .filter-table {
+        width: 90%;
+        margin-bottom: 16px;
+    }
+    .explore-page .game-card {
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 100%;
+    }
+    .explore-page .game-price-add-cart {
+        position: static;
+        align-items: flex-start;
+        margin-top: 16px;
+        .game-price {
+            margin-top: 10px;
+        }
+    }
+    .explore-page .game-thumbnail img {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .explore-page {
+        flex-direction: column;
+    }
+    .explore-page .filter-table {
+        width: 95%;
+        margin-bottom: 16px;
+    }
+    .explore-page .game-card {
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 100%;
+    }
+    .explore-page .game-price-add-cart {
+        position: static;
+        align-items: flex-start;
+        margin-top: 16px;
+        .game-price {
+            margin-top: 10px;
+        }
+    }
+    .explore-page .game-thumbnail img {
+        width: 100%;
+    }
 }

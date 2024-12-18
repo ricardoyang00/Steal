@@ -116,3 +116,96 @@
         font-size: 1rem;
     }
 }
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    #wishlist #product_list {
+        width: 800px;
+    }
+}
+
+@media (max-width: 992px) {
+    #wishlist #product_list {
+        width: 600px;
+    }
+    .wishlist .wishlist-header i,
+    .wishlist .wishlist-header h2 {
+        font-size: 1.2rem;
+    }
+    .empty-wishlist-message i {
+        font-size: 2.5rem;
+    }
+    .empty-wishlist-message #primary-empty-message {
+        font-size: 1rem;
+    }
+    .empty-wishlist-message #secondary-empty-message {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #wishlist #product_list {
+        width: 90%;
+        padding: 10px;  
+        align-items: center;
+        margin: auto;
+    }
+    .wishlist .wishlist-header {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .wishlist .wishlist-header i,
+    .wishlist .wishlist-header h2 {
+        font-size: 1rem;
+    }
+    .empty-wishlist-message i {
+        font-size: 2rem;
+    }
+    .empty-wishlist-message #primary-empty-message {
+        font-size: 0.9rem;
+    }
+    .empty-wishlist-message #secondary-empty-message {
+        font-size: 0.7rem;
+    }
+    .empty-wishlist-message .btn {
+        padding: 8px 16px;
+    }
+    .wishlist .btn-add-to-cart {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+    .product-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .product-details {
+        align-items: center;
+        text-align: center;
+    }
+    .product-actions {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 576px) {
+    .wishlist .wishlist-header i,
+    .wishlist .wishlist-header h2 {
+        font-size: 0.9rem;
+    }
+    .empty-wishlist-message i {
+        font-size: 1.5rem;
+    }
+    .empty-wishlist-message #primary-empty-message {
+        font-size: 0.8rem;
+    }
+    .empty-wishlist-message #secondary-empty-message {
+        font-size: 0.6rem;
+    }
+    .empty-wishlist-message .btn {
+        padding: 6px 12px;
+    }
+    .wishlist .btn-add-to-cart {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
+}

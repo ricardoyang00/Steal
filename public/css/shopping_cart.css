@@ -358,3 +358,16 @@
 .coins-section input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
+
+/* Media Queries */
+@media (max-width: 992px) {
+    .cart-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .summary {
+        position: static;
+        width: 100%;
+        margin-top: 20px;
+    }
+}
