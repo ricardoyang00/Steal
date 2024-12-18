@@ -3,73 +3,72 @@
 @section('title', 'Order Receipt')
 
 @section('content')
-<div class="container mt-5">
+
+<div class="order-checkout-completed-container">
     <h1 class="text-success">Order Completed Successfully!</h1>
     <p class="lead">Thank you for your purchase! Here is your receipt:</p>
 
-    <div class="receipt mt-4">
-        <h2 class="mb-3">Receipt Details</h2>
-
-        <!-- Purchased Items Section -->
-
-        @if (count($prePurchasedItems) > 0)
-            <h3 class="mt-5 text-danger">Pre Purchased Games</h3>
-            <p>The following games were pre ordered:</p>
-            <ul>
+    <table class="receipt-main-table">
+        <thead>
+            <tr>
+                <th colspan="2">Receipt Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Ordered Games Section -->
+            @if (count($prePurchasedItems) > 0)
+                <tr class="purchase-type-header">
+                    <td colspan="2">Ordered Games</td>
+                </tr>
                 @foreach ($prePurchasedItems as $item)
-                    <li>Game Name: {{ $item['gameName'] }}</li>
-                @endforeach
-            </ul>
-            <p>Their respective CDK's will be delivered as soon as the game is available:</p>
-        @endif
-
-
-        <h3>Purchased Games</h3>
-
-        @if (count($purchasedItems) > 0)
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Game Name</th>
-                        <th>CDK Code</th>
-                        <th>Price</th>
+                    <tr class="purchase-items">
+                        <td>{{ $item['gameName'] ?? 'Unknown' }}</td>
+                        <td>€{{ number_format($item['value'], 2) }}</td>
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach ($purchasedItems as $item)
-                        <tr>
-                            <td>{{ $item['gameName'] ?? 'Unknown' }}</td>
-                            <td>{{ $item['cdkCode'] ?? 'Unknown' }}</td>
-                            <td>€{{ number_format($item['value'], 2) }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        @endif
-
-        <!-- Canceled Items Section -->
-        @if (count($canceledItems) > 0)
-            <h3 class="mt-5 text-danger">Canceled Games</h3>
-            <p>The following games could not be purchased due to insufficient stock:</p>
-            <ul>
-                @foreach ($canceledItems as $item)
-                    <li>Game Name: {{ $item['gameName'] }}</li>
                 @endforeach
-            </ul>
-        @endif
+            @endif
 
-        <!-- Total Price -->
-        <div class="total mt-4">
-            <p>Coins Used: {{ $coinsUsed }}</p>
-            <h3>Total Price: €{{ number_format($subtotal, 2) }}</h3>
-        </div>
-    </div>
+            <!-- Delivered Games Section -->
+            @if (count($purchasedItems) > 0)
+                <tr class="purchase-type-header">
+                    <td colspan="2">Delivered Games</td>
+                </tr>
+                @foreach ($purchasedItems as $item)
+                    <tr class="purchase-items">
+                        <td>{{ $item['gameName'] ?? 'Unknown' }}</td>
+                        <td>{{ $item['cdkCode'] ?? 'Unknown' }}</td>
+                        <td>€{{ number_format($item['value'], 2) }}</td>
+                    </tr>
+                @endforeach
+            @endif
+
+            <!-- Canceled Purchases Section -->
+            @if (count($canceledItems) > 0)
+                <tr class="purchase-type-header">
+                    <td colspan="2">Canceled Purchases</td>
+                </tr>
+                @foreach ($canceledItems as $item)
+                    <tr class="purchase-items">
+                        <td>{{ $item['gameName'] ?? 'Unknown' }}</td>
+                        <td>€{{ number_format($item['value'], 2) }}</td>
+                    </tr>
+                @endforeach
+            @endif
+        </tbody>
+        <tfoot>
+            <tr class="receipt-footer">
+                <td class="footer-left">Coins Used: {{ $coinsUsed }}</td>
+                <td class="footer-right">Total Price: €{{ number_format($subtotal, 2) }}</td>
+            </tr>
+        </tfoot>
+    </table>
 
     <!-- Action Buttons -->
-    <div class="mt-5">
+    <div class="back-to-home-button">
         <a href="{{ route('home') }}" class="btn btn-primary">Back to Home</a>
     </div>
 </div>
 @endsection
+
 
 

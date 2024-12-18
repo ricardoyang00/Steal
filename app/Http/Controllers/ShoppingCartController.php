@@ -65,7 +65,7 @@ class ShoppingCartController extends Controller
                         'price' => $item['price'],
                         'stock' => $game->getStockAttribute(),
                         'quantity' => $item['quantity'],
-                        'release_date' => $item['release_date'],
+                        'release_date' => $game->getReleaseDate(),
                         'thumbnail_small_path' => $game->getThumbnailSmallPath(),
                         'is_active' => $game->is_active,
                         'platforms' => $game->platforms->map(function($platform) {

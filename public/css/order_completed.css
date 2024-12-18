@@ -1,0 +1,130 @@
+/* Container Styling */
+.order-checkout-completed-container {
+    max-width: 1000px;
+    margin: 0 auto; /* Center the container on the page */
+    padding: 30px 20px;
+    text-align: left; /* Align all content to the left */
+}
+
+/* Success Message Styling */
+.order-checkout-completed-container h1.text-success {
+    color: #28a745;
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-align: center; /* Keep the main title centered */
+}
+
+.order-checkout-completed-container p.lead {
+    font-size: 1.2em;
+    color: #555;
+    text-align: left; /* Align lead paragraph to the left */
+}
+
+/* Main Receipt Table Styling */
+.receipt-main-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 30px;
+}
+
+/* Main Table Header */
+.receipt-main-table th {
+    background-color: #6419cc;
+    color: #fff;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid #ddd;
+}
+
+/* Purchase Type Header Row */
+.purchase-type-header {
+    background-color: #f0f0f0;
+}
+
+.purchase-type-header td {
+    padding: 12px 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+/* Purchase Items Rows */
+.purchase-items tr {
+    background-color: #333;
+}
+
+.purchase-items td {
+    color: #fff;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+}
+
+/* Footer Styling */
+.receipt-footer {
+    background-color: #f9f9f9;
+    border-top: 2px solid #ddd;
+}
+
+.receipt-footer td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.receipt-footer .footer-left {
+    background-color: #6419cc;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    width: 50%;
+}
+
+.receipt-footer .footer-right {
+    background-color: #6419cc;
+    color: #333;
+    width: 50%;
+    text-align: right;
+    font-weight: bold;
+}
+
+/* Action Button */
+.back-to-home-button {
+    text-align: left; /* Align the button to the left */
+    margin-top: 20px;
+}
+
+.back-to-home-button .btn {
+    padding: 10px 20px;
+    font-size: 1em;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .receipt-main-table, .receipt-footer {
+        font-size: 0.9em;
+    }
+
+    .receipt-main-table th, .purchase-type-header td, .receipt-footer .footer-left, .receipt-footer .footer-right {
+        font-size: 0.95em;
+    }
+
+    .receipt-main-table td, .purchase-items td, .receipt-footer .footer-left, .receipt-footer .footer-right {
+        padding: 8px 10px;
+    }
+
+    .order-checkout-completed-container h1.text-success {
+        font-size: 1.5em;
+    }
+
+    .order-checkout-completed-container p.lead {
+        font-size: 1em;
+    }
+}
+
+

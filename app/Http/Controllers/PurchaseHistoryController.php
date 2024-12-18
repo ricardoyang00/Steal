@@ -93,7 +93,7 @@ class PurchaseHistoryController extends Controller
             });
 
         // **Merge Delivered and Pending Purchases**
-        $games = $deliveredPurchasesGrouped->merge($prePurchasesGrouped);
+        $games = $deliveredPurchasesGrouped->concat($prePurchasesGrouped);
 
         $totalPrice = $order->getPayment->value;
         $formattedTime = $this->formatOrderTime($order->time);
