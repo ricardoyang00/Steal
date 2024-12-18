@@ -2,7 +2,7 @@
 /* Container Card Styling */
 .payment-method-selection-container {
     margin:auto;
-    background: #6419cc; /* Purple background */
+    background: #333; /* Purple background */
     padding: 20px 15px; /* Reduced padding for a smaller form */
     border-radius: 20px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
@@ -24,8 +24,7 @@
 .payment-method-selection-container .payment-method-form p{
     font-size: 1.5rem;
     font-style: bold;
-    text-transform: uppercase;
-    color: #ff4d4d;
+    color: #fff;
 }
 
 /* Payment Method Cards */
@@ -33,8 +32,9 @@
     transition: transform 0.3s, box-shadow 0.3s;
     border: 1px solid #e0e0e0;
     border-radius: 15px;
-    background-color: #333; /* Dark card background */
-    padding: 15px;
+    background-color: #6419cc; /* Dark card background */
+    padding-bottom: 10px;
+    padding-top: 0px;
     text-align: center;
     color: #fff; /* Ensure text inside cards is white */
 }
@@ -57,7 +57,7 @@
 }
 
 .payment-method-form .card-title {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #fff;
     margin-bottom: 10px;
 }
@@ -88,25 +88,27 @@
 }
 
 .payment-method-submission .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #6419cc;
+    border-color: #6419cc;
     color: #fff;
+    margin-top: 30px;
     margin-right: 10px;
 }
 
 .payment-method-submission .btn-primary:hover {
-    background-color: #0056b3;
+    background-color: #6419cc;
     transform: scale(1.05);
 }
 
 .payment-method-submission .btn-secondary {
-    background-color: #6c757d;
-    border-color: #6c757d;
+    background-color: #ff4d4d;
+    border-color: #ff4d4d;
     color: #fff;
+    margin-top: 30px;
 }
 
 .payment-method-submission .btn-secondary:hover {
-    background-color: #5a6268;
+    background-color: #ff4d4d;
     transform: scale(1.05);
 }
 
