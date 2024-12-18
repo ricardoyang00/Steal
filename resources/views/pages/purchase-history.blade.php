@@ -119,54 +119,84 @@
                 <!-- Display Order History as Tables -->
                 <div id="order-history-list">
                     @forelse ($orderHistory as $history)
-                        @php
-                            // Determine Order Status
-                            $status = ($history['prePurchases']->count() > 0) ? 'Item Pending' : 'Completed';
-                            // Count Delivered and Pending Items
-                            $deliveredCount = $history['deliveredPurchases']->count();
-                            $pendingCount = $history['prePurchases']->count();
-                        @endphp
-
-                        <table class="purchase-history-order-card" data-status="{{ $status }}">
-                            <thead>
+                        <table class="purchase-history-order-card">
+                            <!-- Header Section -->
+                            <thead class="bg-light">
                                 <tr>
-                                    <th colspan="3">Order Details</th>
+                                    <th colspan="3" class="text-start">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <strong>Order Date:</strong> {{ $history['formattedTime'] }}
+                                            </div>
+                                            <div>
+                                                <strong>Status:</strong>
+                                                @if ($history['status'] === 'Completed')
+                                                    <span class="badge bg-success">{{ $history['status'] }}</span>
+                                                @else
+                                                    <span class="badge bg-warning text-dark">{{ $history['status'] }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </th>
                                 </tr>
                             </thead>
+
+                            <!-- Details Section -->
                             <tbody>
-                                <!-- First Row: Date, Total Price, Status -->
-                                <tr class="purchase-history-order-card-body-firstLine">
-                                    <td><strong>Date:</strong> {{ $history['formattedTime'] }}</td>
-                                    <td><strong>Total Price:</strong> ${{ number_format($history['totalPrice'], 2) }}</td>
-                                    <td>
-                                        <strong>Status:</strong>
-                                        @if ($status === 'Completed')
-                                            <span class="badge bg-success">{{ $status }}</span>
-                                        @else
-                                            <span class="badge bg-warning text-dark">{{ $status }}</span>
-                                        @endif
-                                    </td>
-                                </tr>
-
-                                <!-- Second Row: Delivered and Pending Items Count -->
-                                <tr class="purchase-history-order-card-body-secondLine">
-                                    <td><strong>Delivered Games:</strong> {{ $deliveredCount }}</td>
-                                    <td><strong>Payment Method:</strong> {{ $history['payment'] }}</td>
-                                    <td><strong>Pending Games:</strong> {{ $pendingCount }}</td>
-                                </tr>
-
-                                <!-- Third Row: View Details Button -->
-                                <tr class="purchase-history-orderDetails">
+                                <tr>
                                     <td colspan="3">
-                                        <a href="{{ route('orderDetails', ['id' => $history['order']->id]) }}" class="btn btn-primary btn-sm">
-                                            View Details
-                                        </a>
+                                        <table class="table mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Game Name</th>
+                                                    <th>Quantity</th>
+                                                    <th>Unit Price</th>
+                                                    <th>Delivery Status</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($history['games'] as $game)
+                                                    <tr>
+                                                        <td>{{ $game['game_name'] }}</td>
+                                                        <td>{{ $game['quantity'] }}</td>
+                                                        <td>${{ number_format($game['unit_price'], 2) }}</td>
+                                                        <td>
+                                                            @if ($game['delivery_status'] === 'Delivered')
+                                                                <span class="badge bg-success">{{ $game['delivery_status'] }}</span>
+                                                            @else
+                                                                <span class="badge bg-warning text-dark">{{ $game['delivery_status'] }}</span>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </td>
                                 </tr>
                             </tbody>
+
+                            <!-- Footer Section -->
+                            <tfoot class="bg-light">
+                                <tr>
+                                    <td colspan="3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <strong>Payment Method:</strong> {{ $history['payment'] }}
+                                            </div>
+                                            <div>
+                                                <strong>Payment Status:</strong>
+                                                <span class="badge bg-success">Approved</span>
+                                            </div>
+                                            <div>
+                                                <strong>Total Price:</strong> ${{ number_format($history['totalPrice'], 2) }}
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tfoot>
                         </table>
                     @empty
-                        <div class="no-orders" role="alert">
+                        <div class="no-orders alert alert-info" role="alert">
                             No orders found.
                         </div>
                     @endforelse
@@ -187,6 +217,5 @@
             </div>
         @endif
     </div>
-
 @endsection
 
