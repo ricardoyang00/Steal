@@ -15,7 +15,7 @@
 
 #### 2.1. Administration Credentials
 
-> Administration URL: URL  
+> Administration URL: &lt;URL&gt;  
 
 | Username | Password |
 | -------- | -------- |
@@ -45,14 +45,15 @@
 
 ### 6. HTML & CSS Validation
 
-> Provide the results of the validation of the HTML and CSS code using the following tools. Include the results as PDF files in the group's repository. Add individual links to those files here.
+> Provide HTML and CSS validation results for the central page of your product (e.g., auction page, event page, product page).
+> Use the following tools and upload the reports as PDFs to the group’s repository and link them here.
 >   
 > HTML: https://validator.w3.org/nu/  
 > CSS: https://jigsaw.w3.org/css-validator/  
 
 ### 7. Revisions to the Project
 
-> Describe the revisions made to the project since the requirements specification stage.  
+> List significant revisions made since the initial project specification, highlighting key improvements and fixes.  
 
 
 ### 8. Implementation Details
@@ -89,13 +90,12 @@
 
 > Brief presentation of the product and its main features (2 paragraphs max).  
 >
-> Slides used during the presentation should be added, as a PDF file, to the group's repository and linked to here.
-
+> Groups are expected to present the product using the delivered version.
+> No presentation slides are required.
 
 ### 2. Video presentation
 
 > Screenshot of the video plus the link to the lbawYYgg.mp4 file.
-
 > - Upload the lbawYYgg.mp4 file to Moodle.
 > - The video must not exceed 2 minutes.
 
