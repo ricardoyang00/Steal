@@ -772,4 +772,10 @@
     .game-info {
         width: 100%;
     }
+    .rating-container p{
+        display: none;
+    }
+    .game-price-add-cart-div {
+        width: 100%;
+    }
 }
