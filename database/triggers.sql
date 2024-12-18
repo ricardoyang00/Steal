@@ -338,3 +338,24 @@ CREATE TRIGGER trg_update_game_rating_after_review
 AFTER INSERT OR UPDATE OR DELETE ON Review
 FOR EACH ROW
 EXECUTE FUNCTION update_game_rating_after_review();
+
+CREATE OR REPLACE FUNCTION update_game_release_date() RETURNS TRIGGER AS $$
+BEGIN
+    -- Check if the game's release_date is NULL
+    IF (SELECT release_date FROM game WHERE id = NEW.game) IS NULL THEN
+        -- Update the game's release_date to the current date
+        UPDATE game
+        SET release_date = CURRENT_DATE
+        WHERE id = NEW.game;
+    END IF;
+    
+    -- Return the new CDK row unmodified
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- 2. Create the Trigger
+CREATE TRIGGER set_release_date_on_cdk_insert
+    AFTER INSERT ON cdk
+    FOR EACH ROW
+    EXECUTE FUNCTION update_game_release_date();
