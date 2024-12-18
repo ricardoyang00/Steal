@@ -4,51 +4,53 @@ document.addEventListener('DOMContentLoaded', function () {
     // Select the filter button by its ID
     const filterButton = document.getElementById('purchase-history-filter-dropdownButton');
 
-    // Select the filter menu by its class
-    const filterMenu = document.querySelector('.purchase-history-select-filter-options');
-
-    // Select the filter container to toggle the 'open' class for arrow rotation
+    // Select the filter container to toggle the 'active' class
     const filterContainer = document.querySelector('.purchase-history-filter-dropdown');
-
-    // Function to open the filter dropdown
-    function openFilterDropdown() {
-        filterMenu.classList.add('show');           // Show the filter menu
-        filterContainer.classList.add('open');      // Rotate the arrow
-    }
-
-    // Function to close the filter dropdown
-    function closeFilterDropdown() {
-        filterMenu.classList.remove('show');        // Hide the filter menu
-        filterContainer.classList.remove('open');    // Reset the arrow rotation
-    }
 
     // Function to toggle the filter dropdown
     function toggleFilterDropdown() {
-        if (filterMenu.classList.contains('show')) {
-            closeFilterDropdown();
-        } else {
-            openFilterDropdown();
-        }
+        filterContainer.classList.toggle('active'); // Toggle the 'active' class
+        const isActive = filterContainer.classList.contains('active');
+
+        // Update ARIA attribute for accessibility
+        filterButton.setAttribute('aria-expanded', isActive);
     }
 
     // Event listener for the filter button click
     filterButton.addEventListener('click', function (e) {
         e.stopPropagation(); // Prevent the click from propagating to the window
         toggleFilterDropdown(); // Toggle the filter dropdown
+
+        // Optional: Close the sort dropdown if it's open
+        const sortContainer = document.querySelector('.purchase-history-dropdown.active');
+        if (sortContainer && sortContainer !== filterContainer) {
+            sortContainer.classList.remove('active');
+            const sortButton = sortContainer.querySelector('.purchase-history-dropdownButton');
+            if (sortButton) {
+                sortButton.setAttribute('aria-expanded', false);
+            }
+        }
     });
 
-    // Event listener for clicks outside the filter dropdown to close it
+    // Optional: Close the filter dropdown when clicking outside
+    // If you have a separate 'dropdown_close.js', consider removing this block to prevent redundancy
     window.addEventListener('click', function (e) {
-        if (!filterContainer.contains(e.target)) { // If the click is outside the filter dropdown
-            closeFilterDropdown();                // Close the filter dropdown
+        if (!filterContainer.contains(e.target) && !filterButton.contains(e.target)) {
+            if (filterContainer.classList.contains('active')) {
+                filterContainer.classList.remove('active');
+                filterButton.setAttribute('aria-expanded', false);
+            }
         }
     });
 
     // Optional: Close filter dropdown when pressing the Escape key
     window.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && filterMenu.classList.contains('show')) {
-            closeFilterDropdown();
+        if (e.key === 'Escape' && filterContainer.classList.contains('active')) {
+            filterContainer.classList.remove('active');
+            filterButton.setAttribute('aria-expanded', false);
+            filterButton.focus(); // Return focus to the filter button
         }
     });
 });
+
 
