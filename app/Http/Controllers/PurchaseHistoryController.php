@@ -41,8 +41,9 @@ class PurchaseHistoryController extends Controller
     }
 
     if ($sortBy === 'totalPrice') {
-        $ordersQuery->select('orders.*', DB::raw('(SELECT SUM(purchase.value) FROM purchase WHERE purchase.order_ = orders.id) AS total_cost'))
-            ->orderBy('total_cost', $direction);
+        $ordersQuery->select('orders.*', 'payment.value as total_cost')
+        ->join('payment', 'orders.payment', '=', 'payment.id')
+        ->orderBy('payment.value', $direction);
     } else {
         $ordersQuery->orderBy('time', $direction);
     }
