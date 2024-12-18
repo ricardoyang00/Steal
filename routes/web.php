@@ -171,6 +171,10 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::post('/games/{id}/unblock', 'unblock')->name('admin.games.unblock');
         Route::get('/games/blocked', 'listBlockedGames')->name('admin.games.blocked-games');
     });
+
+    Route::controller(PurchaseHistoryController::class)->group(function () {
+        Route::get('/buyers/{buyerId}/order-history', 'adminOrderHistory')->name('admin.buyer.orderHistory');
+    }); 
 });
 
 // Redirect GET /admin/games/store-game-field to /admin/games/index-game-field

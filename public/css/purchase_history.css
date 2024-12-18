@@ -1,3 +1,19 @@
+/* Admin Back to Users Profile */
+#back-to-user-profile {
+    position: relative;
+    top: 0;
+    left: 0;
+
+    a {
+        display: inline-block;
+        color: var(--button-highlight-color);
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+}
+
 /* Purchase Details Page Styles */
 .puchase-details-page {
     max-width: 700px;

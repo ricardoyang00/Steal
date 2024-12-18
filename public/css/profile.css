@@ -398,6 +398,22 @@
     color: var(--secondary-text-color);
 }
 
+/* Admin View User Purchase History */
+.buyer-order-history {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.buyer-order-history a {
+    display: inline-block;
+    color: var(--button-highlight-color);
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
 /* Media Queries */
 @media (max-width: 1200px) {
     #edit-profile, #change-password {

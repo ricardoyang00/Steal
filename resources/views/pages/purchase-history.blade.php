@@ -7,15 +7,24 @@
 
     <div class="purchase-history-container">
         @if (auth()->check())
-            @if (auth()->user()->buyer)
+            @if (auth()->user()->buyer || is_admin())
                 @php
-                    $buyerId = auth()->user()->buyer->id;
                     $currentSortBy = request('sortBy', 'time');
                     $currentDirection = request('direction', 'desc');
                     $currentFilter = request('filter', 'all');
                 @endphp
 
-                <h1>Purchase History</h1>
+                @if (is_admin() && isset($buyerUsername))
+                    <!-- Back Button -->
+                    <div id="back-to-user-profile">
+                        <a href="{{ route('admin.users.profile', ['id' => $buyerId]) }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to {{ $buyerUsername }}'s profile
+                        </a>
+                    </div>
+                    <h1>{{ $buyerUsername }}'s Purchase History</h1>
+                @else
+                    <h1>My Purchase History</h1> 
+                @endif
 
                 <!-- Sort and Filter Controls -->
                 <div class="controls d-flex justify-content-between align-items-center mb-4">
@@ -160,12 +169,14 @@
                                     </div>
                                 </div>
 
-                                <!-- View Details Button -->
-                                <div class="purchase-history-orderDetails">
-                                    <a href="{{ route('orderDetails', ['id' => $history['order']->id]) }}" class="btn btn-primary btn-sm">
-                                        View Details
-                                    </a>
-                                </div>
+                                @if (auth()->user()->buyer)
+                                    <!-- View Details Button -->
+                                    <div class="purchase-history-orderDetails">
+                                        <a href="{{ route('orderDetails', ['id' => $history['order']->id]) }}" class="btn btn-primary btn-sm">
+                                            View Details
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     @empty
