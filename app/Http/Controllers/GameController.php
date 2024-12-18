@@ -62,6 +62,8 @@ class GameController extends Controller
         $totalSimilarGames = 0;
         $maxSimilarGames = 16;
     
+        $addedGameIds = collect(); // Initialize a collection to keep track of added game IDs
+
         foreach ($topSellersChunks as $chunkIndex => $topSellersChunk) {
             foreach ($topSellersChunk as $topSeller) {
                 if ($totalSimilarGames >= $maxSimilarGames) {
@@ -74,6 +76,7 @@ class GameController extends Controller
                         $query->whereIn('category.id', $topSeller->categories->pluck('id'));
                     })
                     ->whereNotIn('id', $topSellers->pluck('id'))
+                    ->whereNotIn('id', $addedGameIds) // Ensure games are not repeated
                     ->take(4)
                     ->get();
                 
@@ -86,6 +89,7 @@ class GameController extends Controller
                         })
                         ->whereNotIn('id', $topSellers->pluck('id'))
                         ->whereNotIn('id', $games->pluck('id'))
+                        ->whereNotIn('id', $addedGameIds) // Ensure games are not repeated
                         ->orderBy('overall_rating', 'desc')
                         ->take(4 - $games->count())
                         ->get();
@@ -98,6 +102,9 @@ class GameController extends Controller
                 $gamesToAdd = $games->take($remainingSlots);
                 $similarGames = $similarGames->merge($gamesToAdd);
                 $totalSimilarGames += $gamesToAdd->count();
+                
+                // Add the IDs of the added games to the set
+                $addedGameIds = $addedGameIds->merge($gamesToAdd->pluck('id'));
             }
         }
     
