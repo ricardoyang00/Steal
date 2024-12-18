@@ -150,11 +150,11 @@ class CheckoutController extends Controller
                 ]);
             }
             $order->refresh();
-            $this->notificationController->createOrderNotification($order, $prePurchasedItems, $purchasedItems, $canceledItems);
-            $this->notificationController->createGameNotifications($prePurchasedItems, $purchasedItems);
             session()->forget('payment_method');
             ShoppingCart::where('buyer', $buyerId)->delete();
             DB::commit();
+            $this->notificationController->createOrderNotification($order, $prePurchasedItems, $purchasedItems, $canceledItems);
+            $this->notificationController->createGameNotifications($prePurchasedItems, $purchasedItems);
             $purchasedCDKs = [];
             session()->forget('coins_to_use');
             return view('checkout.orderCompleted', ['purchasedItems' => $purchasedItems, 'prePurchasedItems' => $prePurchasedItems, 'canceledItems' => $canceledItems, 'subtotal' => $subtotal, 'coinsUsed' => $coinsUsed]);
