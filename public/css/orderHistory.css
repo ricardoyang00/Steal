@@ -175,21 +175,35 @@
 
 .purchase-history-order-card tfoot div {
     display: flex;
-    justify-content: baseline;
+    justify-content: flex-start; /* Space between footer elements */
     align-items: center;
     flex-wrap: wrap;
 }
 
 .purchase-history-order-card tfoot div > div {
     margin: 5px 0;
-    flex: 1 1 30%;
+    flex: 1; /* Allow footer items to grow */
 }
 
-/* Added margin between labels and values in footer */
+/* Specific styling for the Manage Orders button */
+.purchase-history-order-card tfoot div > div.manage-orders-button {
+    flex: 0 0 auto; /* Prevent it from growing */
+    margin-left: auto; /* Push the button to the far right */
+}
+
+/* Adjust the button styling if necessary */
+.purchase-history-order-card tfoot div > div.manage-orders-button a.btn {
+    padding: 8px 20px; /* Increase padding for better visibility */
+    font-size: 1rem; /* Adjust font size if needed */
+    background-color: #6419cc;
+}
+
+/* Adjust spacing between labels and values in footer */
 .purchase-history-order-card tfoot div > div strong {
-    margin-right: 10px; /* Adjust as needed for desired spacing */
+    margin-right: 15px; /* Further increase spacing */
     color: #ffffff; /* Ensure labels are white */
 }
+
 
 /* Badges */
 .badge {

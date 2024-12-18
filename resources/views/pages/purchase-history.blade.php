@@ -22,7 +22,7 @@
                     <!-- Sort Dropdown -->
                     <div class="sort-options">
                         <div class="purchase-history-dropdown">
-                            <button id="purchase-history-sort-dropdownButton" class="purchase-history-sort-dropdownButton" type="button" aria-haspopup="true" aria-expanded="false">
+                            <button id="purchase-history-sort-dropdownButton" class="purchase-history-dropdownButton" type="button" aria-haspopup="true" aria-expanded="false">
                                 Sort By:
                                 <span id="selected-sort-option">
                                     @if ($currentSortBy === 'time' && $currentDirection === 'asc')
@@ -190,6 +190,10 @@
                                             <div>
                                                 <strong>Total Price:</strong> ${{ number_format($history['totalPrice'], 2) }}
                                             </div>
+                                            <!-- Manage Orders Button -->
+                                            <div class="manage-orders-button">
+                                                <a href="{{ route('orderDetails', ['id' => $history['order']->id]) }}" class="btn btn-primary">Manage Orders</a>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
@@ -218,4 +222,5 @@
         @endif
     </div>
 @endsection
+
 
