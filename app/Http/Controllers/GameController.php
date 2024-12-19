@@ -533,6 +533,9 @@ class GameController extends Controller
 
         $game = Game::findOrFail($id);
 
+        $quantity = $request->quantity;
+        $this->notificationController->createOrderStatusChangeNotification($game, $quantity);
+
         for ($i = 0; $i < $request->quantity; $i++) {
             $cdk = new CDK();
             $cdk->code = $this->generateUniqueCode(26);
@@ -540,8 +543,6 @@ class GameController extends Controller
             $cdk->save();
         }
 
-        $quantity = $request->quantity;
-        $this->notificationController->createOrderStatusChangeNotification($game, $quantity);
 
         return redirect()->route('games.cdks', $game->id)->with('success', 'CDKs added successfully.');
     }
