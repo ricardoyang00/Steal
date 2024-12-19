@@ -131,15 +131,20 @@ class ReviewsController extends Controller
     {
         $request->validate([
             'review_id' => 'required|integer',
-            'reason_id' => 'required|integer',
+            'reason_id' => 'nullable|integer',
+            'description' => 'nullable|string',
         ]);
+
+        if (is_null($request->input('reason_id')) && is_null($request->input('description'))) {
+            return back()->withErrors(['error' => 'You must provide either a reason or a description.']);
+        }
 
         try {
             $reviewId = $request->input('review_id');
             $reasonId = $request->input('reason_id');
 
             $review = Review::findOrFail($reviewId);
-            $reason = Reason::findOrFail($reasonId);
+            $reason = $reasonId ? Reason::findOrFail($reasonId) : null;
 
             // Create a new report
             Report::create([
