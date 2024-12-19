@@ -12,6 +12,10 @@
         text-decoration: none;
         transition: background-color 0.3s;
     }
+
+    a:hover {
+        color: var(--secondary-text-color);
+    }
 }
 
 /* Basic Table Styling */
