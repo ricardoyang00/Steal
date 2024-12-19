@@ -95,7 +95,7 @@
 
             <!-- Price Range Filter -->
             <div class="form-group">
-                <label class="collapsible">Price</label>
+                <label class="collapsible">Price €</label>
                 <div class="content price-range">
                     <div class="price-input-row">
                         <input type="number" name="min_price" class="price-input" placeholder="min" value="{{ request('min_price') }}" min="0" max="10000" step="1">
