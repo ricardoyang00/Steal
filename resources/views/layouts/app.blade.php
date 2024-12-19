@@ -78,6 +78,7 @@
                             @if (auth_user()->buyer)
                                 <a class="button" id="scoins" href="{{ url('/scoins') }}"><i class="fa-solid fa-coins"></i> <strong>{{ auth_user()->buyer->coins }}</strong></a>
                             @endif
+                            
                             <div class="dropdown">
                                 <a class="profile-link" href="{{ url('/profile') }}" role="button" id="profileDropdown">
                                     <i class="fas fa-user"></i> <span><strong>{{ auth_user()->username }}</strong></span>
@@ -101,16 +102,12 @@
                                 </div>
                             </div>
 
-                            @if (auth_user()->buyer)
+                            @if (auth_user()->buyer || auth_user()->seller)
                                 <a class="icon-button" href="{{ url('/cart') }}">
                                     <i class="fas fa-shopping-cart"></i>
                                     <span id="cart-count" class="badge"></span>
                                 </a>
                             @endif
-                            <a class="icon-button" href="{{ url('/notifications') }}">
-                                <i class="fas fa-bell"></i>
-                                <span id="notification-count" class="badge"></span>
-                            </a>
                         </div>
                     @else
                         <div class="auth-buttons">
