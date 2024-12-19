@@ -2,6 +2,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const reportReviewButtons = document.querySelectorAll('.btn-report');    const reportReviewForm = document.getElementById('report-review-form');
     const reportReviewCloseButton = document.querySelector('.report-review-close-button');
 
+    document.getElementById('report-reason').addEventListener('change', function() {
+        var descriptionField = document.getElementById('report-description');
+        if (this.options[this.selectedIndex].text === 'Other') {
+            descriptionField.setAttribute('required', 'required');
+        } else {
+            descriptionField.removeAttribute('required');
+        }
+    });
+
     reportReviewButtons.forEach(button => {
         button.addEventListener('click', function() {
             showModal(
