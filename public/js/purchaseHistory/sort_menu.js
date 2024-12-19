@@ -2,65 +2,63 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     // Select the sort button by its ID
-    const dropdownButton = document.getElementById('purchase-history-sort-dropdownButton');
+    const sortButton = document.getElementById('purchase-history-sort-dropdownButton');
 
-    // Select the dropdown menu by its class
-    const dropdownMenu = document.querySelector('.purchase-history-select-order-options');
+    // Select the sort container to toggle the 'active' class
+    const sortContainer = document.querySelector('.purchase-history-dropdown');
 
-    // Select the dropdown container to toggle the 'open' class for arrow rotation
-    const dropdownContainer = document.querySelector('.purchase-history-dropdown');
+    // Function to toggle the sort dropdown
+    function toggleSortDropdown() {
+        sortContainer.classList.toggle('active'); // Toggle the 'active' class
+        const isActive = sortContainer.classList.contains('active');
 
-    // Flag to track the dropdown state
-    let isOpen = false;
-
-    // Function to open the dropdown
-    function openDropdown() {
-        dropdownMenu.classList.add('show');          // Show the dropdown menu
-        dropdownContainer.classList.add('open');      // Rotate the arrow
-        isOpen = true;                                // Update the flag
-    }
-
-    // Function to close the dropdown
-    function closeDropdown() {
-        dropdownMenu.classList.remove('show');       // Hide the dropdown menu
-        dropdownContainer.classList.remove('open');   // Reset the arrow rotation
-        isOpen = false;                               // Update the flag
-    }
-
-    // Function to toggle the dropdown state
-    function toggleDropdown() {
-        if (isOpen) {
-            closeDropdown();
-        } else {
-            openDropdown();
-        }
+        // Update ARIA attribute for accessibility
+        sortButton.setAttribute('aria-expanded', isActive);
     }
 
     // Event listener for the sort button click
-    dropdownButton.addEventListener('click', function (e) {
+    sortButton.addEventListener('click', function (e) {
         e.stopPropagation(); // Prevent the click from propagating to the window
-        toggleDropdown();   // Toggle the dropdown
+        toggleSortDropdown(); // Toggle the sort dropdown
+
+        // Close the filter dropdown if it's open
+        const filterContainer = document.querySelector('.purchase-history-filter-dropdown.active');
+        if (filterContainer && filterContainer !== sortContainer) {
+            filterContainer.classList.remove('active');
+            const filterButton = filterContainer.querySelector('.purchase-history-filter-dropdownButton');
+            if (filterButton) {
+                filterButton.setAttribute('aria-expanded', false);
+            }
+        }
     });
 
-    // Event listener for clicks on dropdown menu items
-    dropdownMenu.addEventListener('click', function (e) {
+    // Event listener for clicks on sort menu items
+    const sortMenu = sortContainer.querySelector('.purchase-history-select-order-options');
+    sortMenu.addEventListener('click', function (e) {
         if (e.target.tagName === 'A') { // Ensure an <a> tag was clicked
-            closeDropdown();            // Close the dropdown
+            sortContainer.classList.remove('active'); // Close the dropdown
+            sortButton.setAttribute('aria-expanded', false);
         }
     });
 
-    // Event listener for clicks outside the dropdown to close it
+    // Event listener for clicks outside the sort dropdown to close it
     window.addEventListener('click', function (e) {
-        if (!dropdownContainer.contains(e.target)) { // If the click is outside the dropdown
-            closeDropdown();                        // Close the dropdown
+        if (!sortContainer.contains(e.target) && !sortButton.contains(e.target)) {
+            if (sortContainer.classList.contains('active')) {
+                sortContainer.classList.remove('active');
+                sortButton.setAttribute('aria-expanded', false);
+            }
         }
     });
 
-    // Optional: Close dropdown when pressing the Escape key
+    // Optional: Close sort dropdown when pressing the Escape key
     window.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && isOpen) { // If Escape is pressed and dropdown is open
-            closeDropdown();                 // Close the dropdown
+        if (e.key === 'Escape' && sortContainer.classList.contains('active')) {
+            sortContainer.classList.remove('active');
+            sortButton.setAttribute('aria-expanded', false);
+            sortButton.focus(); // Return focus to the sort button
         }
     });
 });
+
 

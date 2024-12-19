@@ -37,7 +37,9 @@ class ShoppingCartController extends Controller
                         'id' => $game->id,
                         'name' => $game->name,
                         'price' => $game->price,
+                        'stock' => $game->getStockAttribute(),
                         'quantity' => $item->quantity,
+                        'release_date' => $game->release_date,
                         'thumbnail_small_path' => $game->getThumbnailSmallPath(),
                         'is_active' => $game->is_active,
                         'platforms' => $game->platforms->map(function($platform) {
@@ -61,7 +63,9 @@ class ShoppingCartController extends Controller
                         'id' => $item['id'],
                         'name' => $item['name'],
                         'price' => $item['price'],
+                        'stock' => $game->getStockAttribute(),
                         'quantity' => $item['quantity'],
+                        'release_date' => $game->getReleaseDate(),
                         'thumbnail_small_path' => $game->getThumbnailSmallPath(),
                         'is_active' => $game->is_active,
                         'platforms' => $game->platforms->map(function($platform) {
