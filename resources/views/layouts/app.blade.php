@@ -41,6 +41,8 @@
         <link href="{{ url('css/order_completed.css') }}" rel="stylesheet">
         <link href="{{ url('css/orderHistory.css') }}" rel="stylesheet">
         <link href="{{ url('css/orderDetails.css') }}" rel="stylesheet">
+        <link href="{{ url('css/age_info.css') }}" rel="stylesheet">
+
         <script type="text/javascript">
             // Fix for Firefox autofocus CSS bug
             // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951

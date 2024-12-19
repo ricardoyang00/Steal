@@ -1,0 +1,46 @@
+.age-info-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--background-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.age-info-container h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
+
+.age-info-container p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.age-info-container p strong {
+    color: var(--text-color);
+}
+
+.age-info-container img {
+    max-width: 40%;
+    height: auto;
+    display: block;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.age-info-container a {
+    color: var(--text-color);
+    text-decoration: none;
+    background-color: var(--highlight-color);
+    padding: 2px 4px;
+    border-radius: 5px;
+}
+
+.age-info-container a:hover {
+    text-decoration: none;
+    background-color: var(--text-color);
+    color: var(--highlight-color);
+}

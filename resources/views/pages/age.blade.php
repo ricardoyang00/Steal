@@ -3,7 +3,7 @@
 @section('title', $age->name)
 
 @section('content')
-<div class="container mt-5">
+<div class="age-info-container">
     <h1>{{ $age->name }}</h1>
     <p><strong>Minimum Age:</strong> {{ $age->minimum_age }}</p>
     <p><strong>Description:</strong> {{ $age->description }}</p>
