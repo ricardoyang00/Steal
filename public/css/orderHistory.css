@@ -43,12 +43,16 @@
     border: 1px solid #444; /* Dark border */
     border-radius: 5px;
     cursor: pointer;
-    width: 200px;
+    width: auto;
     text-align: left;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: background-color 0.3s, color 0.3s;
+
+    span {
+        margin-left: 10px;
+    }
 }
 
 .purchase-history-dropdownButton:hover,
