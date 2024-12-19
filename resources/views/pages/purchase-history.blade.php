@@ -25,6 +25,12 @@
                 @else
                     <h1>My Purchase History</h1> 
                 @endif
+                
+                <!-- For Both Filters -->
+                @php
+                    $routeName = is_admin() ? 'admin.buyer.orderHistory' : 'purchaseHistory';
+                    $routeParams = is_admin() ? ['buyerId' => $buyerId] : [];
+                @endphp
 
                 <!-- Sort and Filter Controls -->
                 <div class="controls d-flex justify-content-between align-items-center mb-4">
@@ -51,25 +57,29 @@
                             <ul class="purchase-history-select-order-options" id="purchase-history-select-order-options" aria-labelledby="purchase-history-sort-dropdownButton">
                                 {{-- Order Time Asc --}}
                                 <li>
-                                    <a class="dropdown-item @if ($currentSortBy === 'time' && $currentDirection === 'asc') active @endif" href="{{ route('purchaseHistory', array_merge(request()->all(), ['sortBy' => 'time', 'direction' => 'asc'])) }}">
+                                    <a class="dropdown-item @if ($currentSortBy === 'time' && $currentDirection === 'asc') active @endif" 
+                                        href="{{ route($routeName, array_merge(request()->all(), $routeParams, ['sortBy' => 'time', 'direction' => 'asc'])) }}">
                                         Order Time (Asc)
                                     </a>
                                 </li>
                                 {{-- Order Time Desc --}}
                                 <li>
-                                    <a class="dropdown-item @if ($currentSortBy === 'time' && $currentDirection === 'desc') active @endif" href="{{ route('purchaseHistory', array_merge(request()->all(), ['sortBy' => 'time', 'direction' => 'desc'])) }}">
+                                    <a class="dropdown-item @if ($currentSortBy === 'time' && $currentDirection === 'desc') active @endif" 
+                                        href="{{ route($routeName, array_merge(request()->all(), $routeParams, ['sortBy' => 'time', 'direction' => 'desc'])) }}">
                                         Order Time (Desc)
                                     </a>
                                 </li>
                                 {{-- Total Price Asc --}}
                                 <li>
-                                    <a class="dropdown-item @if ($currentSortBy === 'totalPrice' && $currentDirection === 'asc') active @endif" href="{{ route('purchaseHistory', array_merge(request()->all(), ['sortBy' => 'totalPrice', 'direction' => 'asc'])) }}">
+                                    <a class="dropdown-item @if ($currentSortBy === 'totalPrice' && $currentDirection === 'asc') active @endif" 
+                                        href="{{ route($routeName, array_merge(request()->all(), $routeParams, ['sortBy' => 'totalPrice', 'direction' => 'asc'])) }}">
                                         Total Price (Asc)
                                     </a>
                                 </li>
                                 {{-- Total Price Desc --}}
                                 <li>
-                                    <a class="dropdown-item @if ($currentSortBy === 'totalPrice' && $currentDirection === 'desc') active @endif" href="{{ route('purchaseHistory', array_merge(request()->all(), ['sortBy' => 'totalPrice', 'direction' => 'desc'])) }}">
+                                    <a class="dropdown-item @if ($currentSortBy === 'totalPrice' && $currentDirection === 'desc') active @endif" 
+                                        href="{{ route($routeName, array_merge(request()->all(), $routeParams, ['sortBy' => 'totalPrice', 'direction' => 'desc'])) }}">
                                         Total Price (Desc)
                                     </a>
                                 </li>
@@ -105,17 +115,20 @@
                                 </button>
                                 <ul class="purchase-history-select-filter-options" id="purchase-history-select-filter-options" aria-labelledby="purchase-history-filter-dropdownButton">
                                     <li>
-                                        <a class="filter-item @if ($currentFilter === 'all') active @endif" href="{{ route('purchaseHistory', array_merge(request()->all(), ['filter' => 'all'])) }}">
+                                        <a class="filter-item @if ($currentFilter === 'all') active @endif" 
+                                            href="{{ route($routeName, array_merge(request()->all(), $routeParams, ['filter' => 'all'])) }}">
                                             All
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="filter-item @if ($currentFilter === 'Completed') active @endif" href="{{ route('purchaseHistory', array_merge(request()->all(), ['filter' => 'Completed'])) }}">
+                                        <a class="filter-item @if ($currentFilter === 'Completed') active @endif" 
+                                            href="{{ route($routeName, array_merge(request()->all(), $routeParams, ['filter' => 'Completed'])) }}">
                                             Completed
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="filter-item @if ($currentFilter === 'ItemPending') active @endif" href="{{ route('purchaseHistory', array_merge(request()->all(), ['filter' => 'ItemPending'])) }}">
+                                        <a class="filter-item @if ($currentFilter === 'ItemPending') active @endif" 
+                                            href="{{ route($routeName, array_merge(request()->all(), $routeParams, ['filter' => 'ItemPending'])) }}">
                                             Item Pending
                                         </a>
                                     </li>
