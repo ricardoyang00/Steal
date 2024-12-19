@@ -14,6 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
     reportReviewCloseButton.addEventListener('click', function() {
         closeModal();
     });
+
+    window.addEventListener('click', function(event) {
+        const modal = document.getElementById('report-review-modal');
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
 });
 
 function showModal(reviewId, authorId) {
