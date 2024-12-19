@@ -8,7 +8,7 @@
     <div class="order-details-container container mt-5">
         @if (auth()->check())
             @if (auth()->user()->buyer)
-                <h1>Order Details</h1>
+                <h1><a href="{{ url('/user/order-history') }}"><i class="fa-solid fa-chevron-left" style="color: white;"></i></a> Order Details</h1>
                 @if(count($deliveredPurchases) !== 0)
                     <!-- Purchased Items Section -->
                     <div class="order-purchases-details">
@@ -26,7 +26,7 @@
                                     
                                     <div class="game-card-body">
                                         <h5 class="game-card-title">{{ $delivered['game_name'] }}</h5>
-                                        <div class="price">$ {{ number_format($delivered['base_price'], 2) }}</div>
+                                        <div class="price">€{{ number_format($delivered['base_price'], 2) }}</div>
                                         
                                         @if(!empty($delivered['cdk_codes']))
                                             <button class="view-cdks-btn">View CDKs</button>
@@ -61,7 +61,7 @@
                                     
                                     <div class="game-card-body">
                                         <h5 class="game-card-title">{{ $prePurchase['game_name'] }}</h5>
-                                        <div class="price">$ {{ number_format($prePurchase['base_price'], 2) }}</div>
+                                        <div class="price">€{{ number_format($prePurchase['base_price'], 2) }}</div>
                                         <button 
                                             type="button" 
                                             class="btn btn-danger mt-3 delete-prepurchase-items-button" 

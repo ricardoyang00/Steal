@@ -248,15 +248,15 @@
 .purchase-history-order-card a.btn {
     font-size: 0.9rem;
     padding: 8px 15px;
-    background-color: #007bff; /* Bootstrap primary color */
-    color: #ffffff; /* White text */
+    background-color: #9c58fb;
+    color: #ffffff; 
     border: none;
     border-radius: 5px;
     transition: background-color 0.3s;
 }
 
 .purchase-history-order-card a.btn:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #6419cc;
 }
 
 /* No Orders Alert */

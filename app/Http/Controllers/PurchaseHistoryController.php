@@ -12,112 +12,114 @@ use Illuminate\Support\Facades\DB;
 class PurchaseHistoryController extends Controller
 {
     public function orderHistory(Request $request)
-{
-    if (!auth_user() || !auth_user()->buyer) {
-        return redirect()->route('login');
+    {
+        if (!auth_user() || !auth_user()->buyer) {
+            return redirect()->route('login');
+        }
+
+        $buyerId = auth_user()->buyer->id;
+
+        $sortBy = $request->get('sortBy', 'time');
+        $direction = $request->get('direction', 'desc');
+        $filter = $request->input('filter', 'all');
+
+        $ordersQuery = Order::with([
+            'getPayment.getPaymentMethod',
+            'getPurchases.getDeliveredPurchase.getCDK.getGame',
+            'getPurchases.getPrePurchase.getGame'
+        ])
+        ->where('buyer', $buyerId)
+        ->whereHas('getPurchases', function ($query) {
+            $query->whereHas('getDeliveredPurchase')
+                ->orWhereHas('getPrePurchase');
+        });
+
+        if ($filter === 'Completed') {
+            $ordersQuery->whereDoesntHave('getPurchases.getPrePurchase');
+        } elseif ($filter === 'ItemPending') { // Ensure consistency in filter naming
+            $ordersQuery->whereHas('getPurchases.getPrePurchase');
+        }
+
+        if ($sortBy === 'totalPrice') {
+            $ordersQuery->select('orders.*', 'payment.value as total_cost')
+            ->join('payment', 'orders.payment', '=', 'payment.id')
+            ->orderBy('payment.value', $direction);
+        } else {
+            $ordersQuery->orderBy('time', $direction);
+        }
+
+        $orders = $ordersQuery->paginate(5)->appends([
+            'sortBy' => $sortBy,
+            'direction' => $direction,
+            'filter' => $filter,
+        ]);
+
+        $orderHistory = $orders->map(function ($order) {
+            $paymentMethodName = $order->getPayment->getPaymentMethod->name ?? 'Unknown';
+            $paymentMethodImage= $order->getPayment->getPaymentMethod->image_path ?? '';
+
+            // **Delivered Purchases Grouped by Game**
+            $deliveredPurchasesGrouped = Purchase::where('order_', $order->id)
+                ->whereHas('getDeliveredPurchase')
+                ->get()
+                ->groupBy(function ($purchase) {
+                    return $purchase->getDeliveredPurchase->getCDK->getGame->id;
+                })
+                ->map(function ($group) {
+                    $game = $group->first()->getDeliveredPurchase->getCDK->getGame;
+                    return [
+                        'game_id' => $game->id,
+                        'game_name' => $game->name ?? 'Unknown Game',
+                        'quantity' => $group->count(),
+                        'unit_price' => $group->first()->value ?? 0,
+                        'delivery_status' => 'Delivered',
+                    ];
+                });
+
+            // **Pre Purchases Grouped by Game**
+            $prePurchasesGrouped = Purchase::where('order_', $order->id)
+                ->whereHas('getPrePurchase')
+                ->get()
+                ->groupBy(function ($purchase) {
+                    return $purchase->getPrePurchase->getGame->id;
+                })
+                ->map(function ($group) {
+                    $game = $group->first()->getPrePurchase->getGame;
+                    return [
+                        'game_id' => $game->id,
+                        'game_name' => $game->name ?? 'Unknown Game',
+                        'quantity' => $group->count(),
+                        'unit_price' => $group->first()->value ?? 0,
+                        'delivery_status' => 'Pending',
+                    ];
+                });
+
+            // **Merge Delivered and Pending Purchases**
+            $games = $deliveredPurchasesGrouped->concat($prePurchasesGrouped);
+
+            $totalPrice = $order->getPayment->value;
+            $formattedTime = $this->formatOrderTime($order->time);
+
+            // **Determine Order Status**
+            $status = ($prePurchasesGrouped->count() > 0) ? 'Item Pending' : 'Completed';
+
+            return [
+                'order' => $order,
+                'payment' => $paymentMethodName,
+                'paymentImage' => $paymentMethodImage,
+                'games' => $games,
+                'formattedTime' => $formattedTime,
+                'totalPrice' => $totalPrice,
+                'status' => $status,
+            ];
+        });
+
+        return view('pages.purchase-history', compact('orderHistory', 'orders'));
     }
 
-    $buyerId = auth_user()->buyer->id;
-
-    $sortBy = $request->get('sortBy', 'time');
-    $direction = $request->get('direction', 'desc');
-    $filter = $request->input('filter', 'all');
-
-    $ordersQuery = Order::with([
-        'getPayment.getPaymentMethod',
-        'getPurchases.getDeliveredPurchase.getCDK.getGame',
-        'getPurchases.getPrePurchase.getGame'
-    ])
-    ->where('buyer', $buyerId)
-    ->whereHas('getPurchases', function ($query) {
-        $query->whereHas('getDeliveredPurchase')
-              ->orWhereHas('getPrePurchase');
-    });
-
-    if ($filter === 'Completed') {
-        $ordersQuery->whereDoesntHave('getPurchases.getPrePurchase');
-    } elseif ($filter === 'ItemPending') { // Ensure consistency in filter naming
-        $ordersQuery->whereHas('getPurchases.getPrePurchase');
-    }
-
-    if ($sortBy === 'totalPrice') {
-        $ordersQuery->select('orders.*', 'payment.value as total_cost')
-        ->join('payment', 'orders.payment', '=', 'payment.id')
-        ->orderBy('payment.value', $direction);
-    } else {
-        $ordersQuery->orderBy('time', $direction);
-    }
-
-    $orders = $ordersQuery->paginate(5)->appends([
-        'sortBy' => $sortBy,
-        'direction' => $direction,
-        'filter' => $filter,
-    ]);
-
-    $orderHistory = $orders->map(function ($order) {
-        $paymentMethodName = $order->getPayment->getPaymentMethod->name ?? 'Unknown';
-
-        // **Delivered Purchases Grouped by Game**
-        $deliveredPurchasesGrouped = Purchase::where('order_', $order->id)
-            ->whereHas('getDeliveredPurchase')
-            ->get()
-            ->groupBy(function ($purchase) {
-                return $purchase->getDeliveredPurchase->getCDK->getGame->id;
-            })
-            ->map(function ($group) {
-                $game = $group->first()->getDeliveredPurchase->getCDK->getGame;
-                return [
-                    'game_id' => $game->id,
-                    'game_name' => $game->name ?? 'Unknown Game',
-                    'quantity' => $group->count(),
-                    'unit_price' => $group->first()->value ?? 0,
-                    'delivery_status' => 'Delivered',
-                ];
-            });
-
-        // **Pre Purchases Grouped by Game**
-        $prePurchasesGrouped = Purchase::where('order_', $order->id)
-            ->whereHas('getPrePurchase')
-            ->get()
-            ->groupBy(function ($purchase) {
-                return $purchase->getPrePurchase->getGame->id;
-            })
-            ->map(function ($group) {
-                $game = $group->first()->getPrePurchase->getGame;
-                return [
-                    'game_id' => $game->id,
-                    'game_name' => $game->name ?? 'Unknown Game',
-                    'quantity' => $group->count(),
-                    'unit_price' => $group->first()->value ?? 0,
-                    'delivery_status' => 'Pending',
-                ];
-            });
-
-        // **Merge Delivered and Pending Purchases**
-        $games = $deliveredPurchasesGrouped->concat($prePurchasesGrouped);
-
-        $totalPrice = $order->getPayment->value;
-        $formattedTime = $this->formatOrderTime($order->time);
-
-        // **Determine Order Status**
-        $status = ($prePurchasesGrouped->count() > 0) ? 'Item Pending' : 'Completed';
-
-        return [
-            'order' => $order,
-            'payment' => $paymentMethodName,
-            'games' => $games,
-            'formattedTime' => $formattedTime,
-            'totalPrice' => $totalPrice,
-            'status' => $status,
-        ];
-    });
-
-    return view('pages.purchase-history', compact('orderHistory', 'orders'));
-}
 
 
-
-public function fetchOrderDetails($id)
+    public function fetchOrderDetails($id)
     {
         // Ensure the user is authenticated and is a buyer
         if (!auth_user() || !auth_user()->buyer) {

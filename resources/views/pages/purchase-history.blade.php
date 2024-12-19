@@ -159,7 +159,7 @@
                                                     <tr>
                                                         <td>{{ $game['game_name'] }}</td>
                                                         <td>{{ $game['quantity'] }}</td>
-                                                        <td>${{ number_format($game['unit_price'], 2) }}</td>
+                                                        <td>€{{ number_format($game['unit_price'], 2) }}</td>
                                                         <td>
                                                             @if ($game['delivery_status'] === 'Delivered')
                                                                 <span class="badge bg-success">{{ $game['delivery_status'] }}</span>
@@ -181,14 +181,16 @@
                                     <td colspan="3">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
-                                                <strong>Payment Method:</strong> {{ $history['payment'] }}
+                                                <strong>Payment Method:</strong> 
+                                                <img src="{{ asset($history['paymentImage']) }}" style="margin-right:2px;">
+                                                {{ $history['payment'] }}
                                             </div>
                                             <div>
                                                 <strong>Payment Status:</strong>
                                                 <span class="badge bg-success">Approved</span>
                                             </div>
                                             <div>
-                                                <strong>Total Price:</strong> ${{ number_format($history['totalPrice'], 2) }}
+                                                <strong>Total Price:</strong> €{{ number_format($history['totalPrice'], 2) }}
                                             </div>
                                             <!-- Manage Orders Button -->
                                             <div class="manage-orders-button">
