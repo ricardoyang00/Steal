@@ -414,6 +414,10 @@
     transition: background-color 0.3s;
 }
 
+.buyer-order-history a:hover {
+    color: var(--secondary-text-color);
+}
+
 /* Media Queries */
 @media (max-width: 1200px) {
     #edit-profile, #change-password {
