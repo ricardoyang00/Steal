@@ -107,8 +107,12 @@
                                             Completed
                                         @elseif ($currentFilter === 'ItemPending')
                                             Item Pending
+                                        @elseif ($currentFilter === 'Partially Completed')
+                                            Partially Completed
+                                        @elseif ($currentFilter === 'Canceled')
+                                            Canceled
                                         @else
-                                            All
+                                            All       
                                         @endif
                                     </span>
                                     <span class="arrow">&#9662;</span>
@@ -130,6 +134,18 @@
                                         <a class="filter-item @if ($currentFilter === 'ItemPending') active @endif" 
                                             href="{{ route($routeName, array_merge(request()->all(), $routeParams, ['filter' => 'ItemPending'])) }}">
                                             Item Pending
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="filter-item @if ($currentFilter === 'PartiallyCompleted') active @endif" 
+                                            href="{{ route($routeName, array_merge(request()->all(), $routeParams, ['filter' => 'PartiallyCompleted'])) }}">
+                                            Partially Completed
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="filter-item @if ($currentFilter === 'Canceled') active @endif" 
+                                            href="{{ route($routeName, array_merge(request()->all(), $routeParams, ['filter' => 'Canceled'])) }}">
+                                            Canceled
                                         </a>
                                     </li>
                                 </ul>

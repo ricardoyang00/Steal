@@ -58,9 +58,18 @@ class PurchaseHistoryController extends Controller
         });
     
         if ($filter === 'Completed') {
-            $ordersQuery->whereDoesntHave('getPurchases.getPrePurchase');
-        } elseif ($filter === 'ItemPending') { // Ensure consistency in filter naming
+            $ordersQuery->whereDoesntHave('getPurchases.getPrePurchase')
+                       ->whereDoesntHave('getPurchases.getCanceledPurchase');
+        } elseif ($filter === 'ItemPending') {
             $ordersQuery->whereHas('getPurchases.getPrePurchase');
+        } elseif ($filter === 'Canceled') {
+            $ordersQuery->whereHas('getPurchases.getCanceledPurchase')
+                       ->whereDoesntHave('getPurchases.getPrePurchase')
+                       ->whereDoesntHave('getPurchases.getDeliveredPurchase');
+        } elseif ($filter === 'PartiallyCompleted') {
+            $ordersQuery->whereHas('getPurchases.getCanceledPurchase')
+                       ->whereHas('getPurchases.getDeliveredPurchase')
+                       ->whereDoesntHave('getPurchases.getPrePurchase');
         }
     
         if ($sortBy === 'totalPrice') {
