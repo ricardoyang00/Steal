@@ -104,10 +104,16 @@
                                 </div>
                             </div>
 
-                            @if (auth_user()->buyer || auth_user()->seller)
+                            @if (auth_user()->buyer)
                                 <a class="icon-button" href="{{ url('/cart') }}">
                                     <i class="fas fa-shopping-cart"></i>
                                     <span id="cart-count" class="badge"></span>
+                                </a>
+                            @endif
+                            @if (auth_user()->buyer || auth_user()->seller)
+                                <a class="icon-button" href="{{ url('/notifications') }}">
+                                    <i class="fas fa-bell"></i>
+                                    <span id="notification-count" class="badge"></span>
                                 </a>
                             @endif
                         </div>
