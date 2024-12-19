@@ -89,7 +89,7 @@ class CheckoutController extends Controller
                     $canceledItems[] = [
                         'game' => $game->id,
                         'gameName' => $game->name,
-                        'value' => $game->price,
+                        'value' => 0,
                     ];
                     $numberOfCanceledPurchases--;
                 }

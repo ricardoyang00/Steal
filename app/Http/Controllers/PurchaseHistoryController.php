@@ -47,12 +47,14 @@ class PurchaseHistoryController extends Controller
         $ordersQuery = Order::with([
             'getPayment.getPaymentMethod',
             'getPurchases.getDeliveredPurchase.getCDK.getGame',
-            'getPurchases.getPrePurchase.getGame'
+            'getPurchases.getPrePurchase.getGame',
+            'getPurchases.getCanceledPurchase.getGame'
         ])
         ->where('buyer', $buyerId)
         ->whereHas('getPurchases', function ($query) {
             $query->whereHas('getDeliveredPurchase')
-                  ->orWhereHas('getPrePurchase');
+                  ->orWhereHas('getPrePurchase')
+                  ->orWhereHas('getCanceledPurchase');
         });
     
         if ($filter === 'Completed') {
@@ -106,23 +108,54 @@ class PurchaseHistoryController extends Controller
                 })
                 ->map(function ($group) {
                     $game = $group->first()->getPrePurchase->getGame;
+                    $deliveryStatus = ($game->getReleaseDate() === 'Not realeased yet') ? 'Unreleased' : 'Sold Out';
                     return [
                         'game_id' => $game->id,
                         'game_name' => $game->name ?? 'Unknown Game',
                         'quantity' => $group->count(),
                         'unit_price' => $group->first()->value ?? 0,
-                        'delivery_status' => 'Pending',
+                        'delivery_status' => $deliveryStatus,
                     ];
                 });
+
+                $canceledPurchasesGrouped = Purchase::where('order_', $order->id)
+                ->whereHas('getCanceledPurchase')
+                ->get()
+                ->groupBy(function ($purchase) {
+                    return $purchase->getCanceledPurchase->getGame->id;
+                })
+                ->map(function ($group) {
+                    $game = $group->first()->getCanceledPurchase->getGame;
+                    return [
+                        'game_id' => $game->id,
+                        'game_name' => $game->name ?? 'Unknown Game',
+                        'quantity' => $group->count(),
+                        'unit_price' => $group->first()->value ?? 0,
+                        'delivery_status' => 'Canceled',
+                    ];
+                });    
     
             // **Merge Delivered and Pending Purchases**
-            $games = $deliveredPurchasesGrouped->concat($prePurchasesGrouped);
+            $games = $deliveredPurchasesGrouped->concat($prePurchasesGrouped)->concat($canceledPurchasesGrouped);
     
             $totalPrice = $order->getPayment->value;
             $formattedTime = $this->formatOrderTime($order->time);
     
             // **Determine Order Status**
-            $status = ($prePurchasesGrouped->count() > 0) ? 'Item Pending' : 'Completed';
+            if($prePurchasesGrouped->count() > 0){
+                $status = 'Item Pending';
+            }
+            elseif($canceledPurchasesGrouped->count() > 0){
+                if($deliveredPurchasesGrouped->count() == 0){
+                    $status = 'Canceled';
+                }
+                else{
+                    $status = 'Partially Completed';
+                }
+            }
+            else{
+                $status = 'Completed';
+            }
     
             return [
                 'order' => $order,

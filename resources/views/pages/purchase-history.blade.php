@@ -154,8 +154,10 @@
                                                 <strong>Status:</strong>
                                                 @if ($history['status'] === 'Completed')
                                                     <span class="badge bg-success">{{ $history['status'] }}</span>
+                                                @elseif ($history['status'] === 'Canceled')
+                                                    <span class="badge bg-danger">{{ $history['status'] }}</span>
                                                 @else
-                                                    <span class="badge bg-warning text-dark">{{ $history['status'] }}</span>
+                                                    <span class="badge bg-warning">{{ $history['status'] }}</span>    
                                                 @endif
                                             </div>
                                         </div>
@@ -185,8 +187,10 @@
                                                         <td>
                                                             @if ($game['delivery_status'] === 'Delivered')
                                                                 <span class="badge bg-success">{{ $game['delivery_status'] }}</span>
+                                                            @elseif ($game['delivery_status'] === 'Canceled')
+                                                                <span class="badge bg-danger">{{ $game['delivery_status'] }}</span>
                                                             @else
-                                                                <span class="badge bg-warning text-dark">{{ $game['delivery_status'] }}</span>
+                                                                <span class="badge bg-warning">{{ $game['delivery_status'] }}</span>
                                                             @endif
                                                         </td>
                                                     </tr>

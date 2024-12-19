@@ -55,10 +55,18 @@ class OrderDetailsController extends Controller {
             // 5. Process each pre-purchase
             foreach ($prePurchases as $prePurchase) {
                 $purchase = $prePurchase->getPurchase;
+                $payment = $prePurchase->getPurchase->getOrder->getPayment;
 
                 if (!$purchase) {
                     throw new \Exception("Purchase not found for PrePurchase ID: " . $prePurchase->id);
                 }
+
+                if (!$payment) {
+                    throw new \Exception("Payment not found for PrePurchase ID: " . $prePurchase->id);
+                }
+
+                $payment->value -= $purchase->value;
+                $payment->save();
 
                 $purchase->value = 0;
                 $purchase->save();
