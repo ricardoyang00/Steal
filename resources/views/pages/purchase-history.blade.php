@@ -190,7 +190,8 @@
                                     <td colspan="3">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
-                                                <strong>Payment Method:</strong> {{ $history['payment'] }}
+                                                <strong>Payment Method:</strong> 
+                                                <img src="{{ asset($history['paymentImage']) }}" alt="{{ $history['payment'] }}">
                                             </div>
                                             <div>
                                                 <strong>Payment Status:</strong>

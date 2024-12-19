@@ -77,6 +77,7 @@ class PurchaseHistoryController extends Controller
     
         $orderHistory = $orders->map(function ($order) {
             $paymentMethodName = $order->getPayment->getPaymentMethod->name ?? 'Unknown';
+            $paymentMethodImage= $order->getPayment->getPaymentMethod->image_path ?? '';
     
             // **Delivered Purchases Grouped by Game**
             $deliveredPurchasesGrouped = Purchase::where('order_', $order->id)
@@ -126,6 +127,7 @@ class PurchaseHistoryController extends Controller
             return [
                 'order' => $order,
                 'payment' => $paymentMethodName,
+                'paymentImage' => $paymentMethodImage,
                 'games' => $games,
                 'formattedTime' => $formattedTime,
                 'totalPrice' => $totalPrice,
@@ -138,8 +140,7 @@ class PurchaseHistoryController extends Controller
     }
 
 
-
-public function fetchOrderDetails($id)
+    public function fetchOrderDetails($id)
     {
         // Ensure the user is authenticated and is a buyer
         if (!auth_user() || !auth_user()->buyer) {
