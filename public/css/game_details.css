@@ -750,6 +750,8 @@
             border: 1px solid var(--text-color);
             background-color: var(--game-card-background);
             color: var(--text-color);
+            height: 6rem;
+            resize: none;
         }
     }
     .btn-report-submit {
