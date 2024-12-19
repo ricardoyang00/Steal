@@ -107,7 +107,7 @@
                                             Completed
                                         @elseif ($currentFilter === 'ItemPending')
                                             Item Pending
-                                        @elseif ($currentFilter === 'Partially Completed')
+                                        @elseif ($currentFilter === 'PartiallyCompleted')
                                             Partially Completed
                                         @elseif ($currentFilter === 'Canceled')
                                             Canceled
