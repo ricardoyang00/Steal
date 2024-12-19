@@ -130,6 +130,7 @@ class PurchaseHistoryController extends Controller
                 'formattedTime' => $formattedTime,
                 'totalPrice' => $totalPrice,
                 'status' => $status,
+                'coinsUsed' => $order->coins,
             ];
         });    
 

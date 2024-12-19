@@ -137,7 +137,8 @@
     color: var(--red);
     border: none;
     cursor: pointer;
-    margin-top: 5px;
+    margin-top: auto;
+    margin-bottom: 0px;
 }
 
 .btn-remove:hover {

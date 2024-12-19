@@ -225,7 +225,7 @@ header .icon-button:hover {
     background-color: var(--highlight-color);
     color: var(--button-highlight-color);
     padding: 2px 6px;
-    border-radius: 50%;
+    border-radius: 10%;
     font-size: 1.2rem;
   }
 }
