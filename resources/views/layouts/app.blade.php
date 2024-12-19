@@ -120,9 +120,6 @@
                                 <i class="fas fa-shopping-cart"></i>
                                 <span id="cart-count" class="badge"></span>
                             </a>
-                            <a class="icon-button">
-                                <i class="fa-regular fa-bell"></i>
-                            </a>
                         </div>
                     @endif
                 </header>
