@@ -75,7 +75,7 @@
                                                             @else
                                                                 {{ $purchase['gameName'] }}
                                                             @endif
-                                                             - ${{ number_format($purchase['value'], 2) }}
+                                                             - €{{ number_format($purchase['value'], 2) }}
                                                         </li>
                                                     @endif
                                                 @endforeach

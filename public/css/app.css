@@ -219,12 +219,13 @@ header .icon-button:hover {
   #w_count_div {
     padding: 0 0 1px 0;
     text-align: center;
+    margin-right: 0;
   }
   #wishlist-count {
     background-color: var(--highlight-color);
     color: var(--button-highlight-color);
     padding: 2px 6px;
-    border-radius: 50%;
+    border-radius: 10%;
     font-size: 1.2rem;
   }
 }
@@ -378,4 +379,50 @@ header .icon-button:hover {
 
 .profile-buttons #logout:hover {
   color: var(--red-hover);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar .wishlist {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .navbar .wishlist .btn-link {
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .navbar .wishlist #wishlist-count {
+    font-size: 1rem;
+    padding: 1px 4px;
+  }
+
+  .search-container {
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar .wishlist .btn-link {
+    flex-direction: row;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .navbar .wishlist #wishlist-count {
+    font-size: 0.9rem;
+    padding: 1px 3px;
+  }
+
+  .search-container {
+    margin-top: 5px;
+  }
 }

@@ -15,6 +15,38 @@
     gap: 10px;
 }
 
+/* Section Title */
+.section-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--secondary-text-color);
+    text-align: center;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+#similar-games, #interests {
+    margin-top: 5%;
+}
+
+/* Thin Underline Effect */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(to right, var(--highlight-color), var(--cart-control-button));
+    margin: 8px auto 0;
+    transition: width 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.section-title:hover::after {
+    width: 1000px;
+}
+
 /* Container for the game card */
 .home-game-card {
     box-sizing: border-box;
@@ -230,12 +262,15 @@
 }
 
 /* Container for the grid */
-.similar-game-cards {
-    margin-top: 5%;
+.similar-game-cards, .recommended-game-cards{
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 games per line */
     gap: 20px;
     padding: 20px 200px;
+}
+
+.recommended-game-cards {
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .home-small-game-card {
@@ -256,6 +291,10 @@
     height: 130px;
     border-radius: 5px;
     object-fit: cover;
+}
+
+.recommended-game-card .game-small-thumbnail img {
+    height: 323px;
 }
 
 .home-small-game-card .game-price {
@@ -286,4 +325,41 @@
 
 .home-small-game-card:hover .game-title {
     display: block;
+}
+
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .similar-game-cards, .recommended-game-cards {
+        grid-template-columns: repeat(3, 1fr); /* 3 games per line */
+        padding: 20px 100px;
+    }
+}
+
+@media (max-width: 992px) {
+    .similar-game-cards, .recommended-game-cards {
+        grid-template-columns: repeat(2, 1fr); /* 2 games per line */
+        padding: 20px 50px;
+    }
+    .top-sellers-section {
+        flex-direction: column;
+        align-items: center;
+    }
+    .section-title:hover::after {
+        width: 700px;
+    }
+}
+
+@media (max-width: 768px) {
+    .similar-game-cards, .recommended-game-cards {
+        grid-template-columns: 1fr; /* 1 game per line */
+        padding: 20px 20px;
+    }
+    .top-sellers-section {
+        flex-direction: column;
+        align-items: center;
+    }
+    .section-title:hover::after {
+        width: 300px;
+    }
 }

@@ -397,3 +397,65 @@
 .back-button a:hover {
     color: var(--secondary-text-color);
 }
+
+/* Admin View User Purchase History */
+.buyer-order-history {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.buyer-order-history a {
+    display: inline-block;
+    color: var(--button-highlight-color);
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    #edit-profile, #change-password {
+        width: 90%;
+    }
+    body {
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 992px) {
+    #edit-profile, #change-password {
+        width: 80%;
+    }
+    .profile-card, .profile-card-password {
+        width: 100%;
+    }
+    body {
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 768px) {
+    #edit-profile, #change-password {
+        width: 100%;
+        padding: 10px;
+    }
+    .profile-card, .profile-card-password {
+        width: 100%;
+        padding: 10px;
+    }
+    body {
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 576px) {
+    .profile-card, .profile-card-password {
+        width: 100%;
+        padding: 10px;
+    }
+    body {
+        overflow-x: hidden;
+    }
+}

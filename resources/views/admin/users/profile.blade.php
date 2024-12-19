@@ -25,6 +25,15 @@
             </a>
         </div>
 
+        @if ($user->buyer)
+            <!-- Order History -->
+            <div class="buyer-order-history">
+                <a href="{{ route('admin.buyer.orderHistory', ['buyerId' => $user->buyer->id]) }}">
+                    View {{ $user->username }}'s Purchase History <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        @endif
+
         <!-- Profile Picture -->
         <div class="profile-picture-admin-view">
             <img src="{{ $profilePicture }}" alt="Profile Picture" id="editable-profile-picture">

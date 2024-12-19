@@ -769,3 +769,57 @@
         background-color: var(--buy-button-hover-color);
     }
 }
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .game-box {
+        flex-direction: column;
+        height: auto;
+    }
+    .game-images-carousel {
+        height: 400px;
+        
+    }
+    .game-images-carousel .carousel-item img {
+        height: 400px;
+    }
+}
+
+@media (max-width: 992px) {
+    .game-box {
+        flex-direction: column;
+        height: auto;
+    }
+    .game-images-carousel {
+        height: 300px;
+    }
+    .game-images-carousel .carousel-item img {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .game-box {
+        flex-direction: column;
+        height: auto;
+    }
+    .game-info {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .game-box {
+        flex-direction: column;
+        height: auto;
+    }
+    .game-info {
+        width: 100%;
+    }
+    .rating-container p{
+        display: none;
+    }
+    .game-price-add-cart-div {
+        width: 100%;
+    }
+}

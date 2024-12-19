@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalChunks = parseInt(paginationControls.getAttribute('data-total-chunks'), 10);
     let currentChunkIndex = 0;
     let intervalId;
-
+    
     // Add fade-in class to start the fade-in effect on initial load
     container.classList.add('fade-in');
 

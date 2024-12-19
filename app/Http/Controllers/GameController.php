@@ -28,11 +28,61 @@ class GameController extends Controller
         $this->notificationController = $notificationController;
     }
 
+    /* Home Page */
     public function home()
     {
         [$topSellersChunks, $similarGames] = $this->getTopSellersAndSimilarGames();
+        $recommendedGames = $this->getRecommendedGamesForUser();
 
-        return view('pages.home', compact('topSellersChunks', 'similarGames'));
+        return view('pages.home', compact('topSellersChunks', 'similarGames', 'recommendedGames'));
+    }
+
+    private function getRecommendedGamesForUser()
+    {
+        $user = auth()->user();
+
+        if (!$user || !$user->buyer) {
+            return collect(); // Return an empty collection if the user is not a buyer
+        }
+
+        // Get the last order of the user
+        $lastOrder = DB::table('orders')
+            ->where('buyer', $user->id)
+            ->orderBy('time', 'desc')
+            ->first();
+
+        if (!$lastOrder) {
+            return collect(); // Return an empty collection if the user has no orders
+        }
+
+        // Get the categories of the games in the last order
+        $categories = DB::table('deliveredpurchase')
+            ->join('cdk', 'deliveredpurchase.cdk', '=', 'cdk.id')
+            ->join('game', 'cdk.game', '=', 'game.id')
+            ->join('gamecategory', 'game.id', '=', 'gamecategory.game')
+            ->where('deliveredpurchase.id', $lastOrder->id)
+            ->pluck('gamecategory.category')
+            ->unique();
+        
+        // Get the IDs of the games the user has purchased
+        $purchasedGameIds = DB::table('deliveredpurchase')
+            ->join('cdk', 'deliveredpurchase.cdk', '=', 'cdk.id')
+            ->join('purchase', 'deliveredpurchase.id', '=', 'purchase.id')
+            ->join('orders', 'purchase.order_', '=', 'orders.id')
+            ->where('orders.buyer', $user->id)
+            ->pluck('cdk.game');
+
+        // Get 6 games in the same categories that the user has not purchased
+        $recommendedGames = Game::query()
+            ->where('is_active', true)
+            ->whereHas('categories', function ($query) use ($categories) {
+                $query->whereIn('category.id', $categories);
+            })
+            ->whereNotIn('id', $purchasedGameIds)
+            ->take(6)
+            ->get();
+
+        return $recommendedGames;
     }
 
     public function loadChunk($chunkIndex)
@@ -62,6 +112,8 @@ class GameController extends Controller
         $totalSimilarGames = 0;
         $maxSimilarGames = 16;
     
+        $addedGameIds = collect(); // Initialize a collection to keep track of added game IDs
+
         foreach ($topSellersChunks as $chunkIndex => $topSellersChunk) {
             foreach ($topSellersChunk as $topSeller) {
                 if ($totalSimilarGames >= $maxSimilarGames) {
@@ -74,6 +126,7 @@ class GameController extends Controller
                         $query->whereIn('category.id', $topSeller->categories->pluck('id'));
                     })
                     ->whereNotIn('id', $topSellers->pluck('id'))
+                    ->whereNotIn('id', $addedGameIds) // Ensure games are not repeated
                     ->take(4)
                     ->get();
                 
@@ -86,6 +139,7 @@ class GameController extends Controller
                         })
                         ->whereNotIn('id', $topSellers->pluck('id'))
                         ->whereNotIn('id', $games->pluck('id'))
+                        ->whereNotIn('id', $addedGameIds) // Ensure games are not repeated
                         ->orderBy('overall_rating', 'desc')
                         ->take(4 - $games->count())
                         ->get();
@@ -98,12 +152,16 @@ class GameController extends Controller
                 $gamesToAdd = $games->take($remainingSlots);
                 $similarGames = $similarGames->merge($gamesToAdd);
                 $totalSimilarGames += $gamesToAdd->count();
+                
+                // Add the IDs of the added games to the set
+                $addedGameIds = $addedGameIds->merge($gamesToAdd->pluck('id'));
             }
         }
     
         return [$topSellersChunks, $similarGames];
     }
 
+    /* Explore Page */
     public function explore(Request $request)
     {
         $query = $request->input('query');
@@ -151,6 +209,7 @@ class GameController extends Controller
         return view('pages.explore', compact('games', 'query', 'sort', 'categories', 'platforms', 'languages', 'players', 'minPrice', 'maxPrice'));
     }    
 
+    /* Game-Details Page*/
     public function show($id)
     {
         $game = Game::with(['seller', 'platforms', 'categories', 'languages', 'players'])
@@ -221,6 +280,7 @@ class GameController extends Controller
         );
     }
 
+    /* Explore Page Filters */
     protected function applySearchQuery($gamesQuery, $query)
     {
         if ($query) {

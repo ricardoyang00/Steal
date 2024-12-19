@@ -7,15 +7,24 @@
 
     <div class="purchase-history-container">
         @if (auth()->check())
-            @if (auth()->user()->buyer)
+            @if (auth()->user()->buyer || is_admin())
                 @php
-                    $buyerId = auth()->user()->buyer->id;
                     $currentSortBy = request('sortBy', 'time');
                     $currentDirection = request('direction', 'desc');
                     $currentFilter = request('filter', 'all');
                 @endphp
 
-                <h1>Purchase History</h1>
+                @if (is_admin() && isset($buyerUsername))
+                    <!-- Back Button -->
+                    <div id="back-to-user-profile">
+                        <a href="{{ route('admin.users.profile', ['id' => $buyerId]) }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Back to {{ $buyerUsername }}'s profile
+                        </a>
+                    </div>
+                    <h1>{{ $buyerUsername }}'s Purchase History</h1>
+                @else
+                    <h1>My Purchase History</h1> 
+                @endif
 
                 <!-- Sort and Filter Controls -->
                 <div class="controls d-flex justify-content-between align-items-center mb-4">
@@ -159,7 +168,7 @@
                                                     <tr>
                                                         <td>{{ $game['game_name'] }}</td>
                                                         <td>{{ $game['quantity'] }}</td>
-                                                        <td>${{ number_format($game['unit_price'], 2) }}</td>
+                                                        <td>€{{ number_format($game['unit_price'], 2) }}</td>
                                                         <td>
                                                             @if ($game['delivery_status'] === 'Delivered')
                                                                 <span class="badge bg-success">{{ $game['delivery_status'] }}</span>
@@ -181,19 +190,25 @@
                                     <td colspan="3">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
-                                                <strong>Payment Method:</strong> {{ $history['payment'] }}
+                                                <strong>Payment Method:</strong> 
+                                                <img src="{{ asset($history['paymentImage']) }}" alt="{{ $history['payment'] }}">
                                             </div>
                                             <div>
                                                 <strong>Payment Status:</strong>
                                                 <span class="badge bg-success">Approved</span>
                                             </div>
                                             <div>
-                                                <strong>Total Price:</strong> ${{ number_format($history['totalPrice'], 2) }}
+                                                <strong>Coins Used:</strong> {{ $history['coinsUsed'] }}
                                             </div>
-                                            <!-- Manage Orders Button -->
-                                            <div class="manage-orders-button">
-                                                <a href="{{ route('orderDetails', ['id' => $history['order']->id]) }}" class="btn btn-primary">Manage Orders</a>
+                                            <div>
+                                                <strong>Total Price:</strong> €{{ number_format($history['totalPrice'], 2) }}
                                             </div>
+                                            @if (auth_user()->buyer)
+                                                <!-- Manage Orders Button -->
+                                                <div class="manage-orders-button">
+                                                    <a href="{{ route('orderDetails', ['id' => $history['order']->id]) }}" class="btn btn-primary">Manage Orders</a>
+                                                </div>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>
