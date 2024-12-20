@@ -39,7 +39,7 @@
         <!-- release date -->
         <div class="form-group">
             <label for="release_date">Release Date</label>
-            <input type="date" name="release_date" class="form-control">
+            <input type="date" name="release_date" class="form-control" max="{{ date('Y-m-d') }}">
         </div>
         <div class="form-group">
             <input type="checkbox" class="form-check-input" id="pre_release" name="pre_release">

@@ -39,7 +39,8 @@
         <!-- release date -->
         <div class="form-group">
             <label for="release_date">Release Date</label>
-            <input type="date" name="release_date" class="form-control" value="{{ $game->release_date }}" required>
+            <input type="date" name="release_date" class="form-control" value="{{ $game->release_date }}" disabled>
+            <input type="hidden" name="release_date" value="{{ $game->release_date }}">
         </div>
         <!-- age restriction -->
         <div class="form-group">
