@@ -22,16 +22,16 @@ class Report extends Model
 
     public function buyer()
     {
-        return $this->belongsTo(Buyer::class, 'buyer_id');
+        return $this->belongsTo(Buyer::class, 'buyer');
     }
     
     public function review()
     {
-        return $this->belongsTo(Review::class, 'review_id');
+        return $this->belongsTo(Review::class, 'review');
     }
     
     public function reason()
     {
-        return $this->belongsTo(Reason::class, 'reason_id');
+        return $this->belongsTo(Reason::class, 'reason');
     }    
 }
