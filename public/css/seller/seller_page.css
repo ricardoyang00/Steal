@@ -29,6 +29,10 @@
     cursor: pointer;
 }
 
+.seller-product-list #blocked-game-card {
+    background-color: rgb(148, 1, 1);
+}
+
 .seller-product-list .game-card:hover {
     background-color: var(--hover-background-color);
     box-shadow: 0 4px 8px var(--shadow-color);

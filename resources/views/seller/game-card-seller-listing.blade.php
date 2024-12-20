@@ -1,4 +1,4 @@
-<div class="game-card" data-url="{{ route('game.details', ['id' => $game->id]) }}">
+<div class="game-card" data-url="{{ route('game.details', ['id' => $game->id]) }}" @if ($game->block_reason !== null && $game->block_time !== null) id="blocked-game-card" @endif>
     <!-- Game Thumbnail -->
     <div class="game-thumbnail">
         <a href="{{ route('game.details', ['id' => $game->id]) }}">
@@ -17,19 +17,19 @@
         <!-- Game Tags (Categories, Platforms, Languages, and Players) -->
         <div class="game-tags">
             @foreach($game->categories as $category)
-                <a href="javascript:void(0);" class="tag">{{ $category->name }}</a>
+                <span class="tag">{{ $category->name }}</span>
             @endforeach
 
             @foreach($game->platforms as $platform)
-            <a href="javascript:void(0);" class="tag">{{ $platform->name }}</a>
+                <span class="tag">{{ $platform->name }}</span>
             @endforeach
 
             @foreach($game->languages as $language)
-                <a href="javascript:void(0);" class="tag">{{ $language->name }}</a>
+                <span class="tag">{{ $language->name }}</span>
             @endforeach
 
             @foreach($game->players as $player)
-                <a href="javascript:void(0);" class="tag">{{ $player->name }}</a>
+                <span class="tag">{{ $player->name }}</span>
             @endforeach
         </div>
         
@@ -59,7 +59,11 @@
         </div>
 
         <!-- Stock Warning -->
-        @if ($game->stock == 0)
+        @if ($game->block_reason !== null && $game->block_time !== null)
+            <div class="stock-warning out-of-stock">
+                <p class="text-warning"><i class="fa fa-exclamation-triangle"></i> Game was blocked, for further information please contact us.</p>
+            </div>
+        @elseif ($game->stock == 0)
             <div class="stock-warning out-of-stock">
                 <p class="text-warning"><i class="fa fa-exclamation-triangle"></i> Out of Stock!</p>
             </div>

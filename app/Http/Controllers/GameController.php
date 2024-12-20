@@ -533,6 +533,10 @@ class GameController extends Controller
 
         $game = Game::findOrFail($id);
 
+        if ($game->block_reason !== null && $game->block_time !== null) {
+            return redirect()->route('games.cdks', $game->id)->withErrors('You cannot add CDKs for a blocked game');
+        }
+
         $quantity = $request->quantity;
         $this->notificationController->createOrderStatusChangeNotification($game, $quantity);
 
