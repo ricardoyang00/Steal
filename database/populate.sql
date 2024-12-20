@@ -84,91 +84,91 @@ insert into Age (minimum_age, name, description, image_path) values (16, 'PEGI 1
 insert into Age (minimum_age, name, description, image_path) values (18, 'PEGI 18', 'Contains extreme violence, explicit sexual content, glamorization of drugs, or very offensive language. Suitable only for adults aged 18 and older.', 'images/age/PEGI_18.svg');
 
 -- GAME
-INSERT INTO Game (name, description, price, overall_rating, owner, is_active, release_date, age_id) VALUES
+INSERT INTO Game (name, description, price, overall_rating, owner, is_active, block_reason, block_time, release_date, age_id) VALUES
 -- Total 60 Games
 -- Seller 1
-('A Epic Odyssey', 'An immersive adventure game with stunning visuals.', 49.99, 0, 11, TRUE, '2024-03-15', 3),
-('Galactic Blitz', 'A fast-paced sci-fi shooter set in a dystopian universe.', 34.99, 0, 11, TRUE, '2024-05-20', 4),
-('Haunted Secrets', 'Solve challenging puzzles in a haunted mansion.', 19.99, 0, 11, TRUE, '2024-07-10', 2),
-('Legend of Heroes', 'A captivating role-playing game with unique characters.', 59.99, 0, 11, TRUE, '2024-09-05', 5),
-('Night Riders', 'High-speed street racing with realistic physics.', 39.99, 0, 11, TRUE, '2024-11-22', 3),
+('A Epic Odyssey', 'An immersive adventure game with stunning visuals.', 49.99, 0, 11, TRUE, NULL, NULL, '2024-03-15', 3),
+('Galactic Blitz', 'A fast-paced sci-fi shooter set in a dystopian universe.', 34.99, 0, 11, TRUE, NULL, NULL, '2024-05-20', 4),
+('Haunted Secrets', 'Solve challenging puzzles in a haunted mansion.', 19.99, 0, 11, TRUE, NULL, NULL, '2024-07-10', 2),
+('Legend of Heroes', 'A captivating role-playing game with unique characters.', 59.99, 0, 11, TRUE, NULL, NULL, '2024-09-05', 5),
+('Night Riders', 'High-speed street racing with realistic physics.', 39.99, 0, 11, TRUE, NULL, NULL, '2024-11-22', 3),
 
 -- Seller 2
-('Space Crusade', 'A journey through space fighting alien invasions.', 44.99, 0, 12, TRUE, '2024-02-20', 3),
-('Cryptic Quest', 'Uncover mysteries in a dark and enigmatic world.', 24.99, 0, 12, TRUE, '2024-06-11', 2),
-('Steel Horizon', 'Navigate a post-apocalyptic wasteland to survive.', 34.99, 0, 12, TRUE, '2024-09-15', 4),
-('Solaris Rising', 'Explore a vibrant galaxy with endless possibilities.', 49.99, 0, 12, TRUE, '2024-11-05', 5),
-('Chaos Circuit', 'Battle robots in a high-tech arena.', 39.99, 0, 12, TRUE, '2024-12-12', 4),
+('Space Crusade', 'A journey through space fighting alien invasions.', 44.99, 0, 12, TRUE, NULL, NULL, '2024-02-20', 3),
+('Cryptic Quest', 'Uncover mysteries in a dark and enigmatic world.', 24.99, 0, 12, TRUE, NULL, NULL, '2024-06-11', 2),
+('Steel Horizon', 'Navigate a post-apocalyptic wasteland to survive.', 34.99, 0, 12, TRUE, NULL, NULL, '2024-09-15', 4),
+('Solaris Rising', 'Explore a vibrant galaxy with endless possibilities.', 49.99, 0, 12, TRUE, NULL, NULL, '2024-11-05', 5),
+('Chaos Circuit', 'Battle robots in a high-tech arena.', 39.99, 0, 12, TRUE, NULL, NULL, '2024-12-12', 4),
 
 -- Seller 3
-('Phantom Realms', 'A dark fantasy RPG set in a shattered world.', 54.99, 0, 13, TRUE, '2023-01-20', 5),
-('Wasteland Chronicles', 'Survive in a barzxren and dangerous world.', 44.99, 0, 13, TRUE, '2023-03-11', 3),
-('Shadow Siege', 'Fight off hordes of enemies in a strategic shooter.', 29.99, 0, 13, TRUE, '2023-05-27', 4),
-('Puzzle Haven', 'Solve relaxing puzzles in a magical setting.', 19.99, 0, 13, TRUE, '2023-08-18', 2),
-('Cyber Rebellion', 'Rebel against the system in a cyberpunk future.', 49.99, 0, 13, TRUE, '2023-10-10', 3),
+('Phantom Realms', 'A dark fantasy RPG set in a shattered world.', 54.99, 0, 13, TRUE, NULL, NULL, '2023-01-20', 5),
+('Wasteland Chronicles', 'Survive in a barzxren and dangerous world.', 44.99, 0, 13, TRUE, NULL, NULL, '2023-03-11', 3),
+('Shadow Siege', 'Fight off hordes of enemies in a strategic shooter.', 29.99, 0, 13, TRUE, NULL, NULL, '2023-05-27', 4),
+('Puzzle Haven', 'Solve relaxing puzzles in a magical setting.', 19.99, 0, 13, TRUE, NULL, NULL, '2023-08-18', 2),
+('Cyber Rebellion', 'Rebel against the system in a cyberpunk future.', 49.99, 0, 13, TRUE, NULL, NULL, '2023-10-10', 3),
 
 -- Seller 4
-('Titan Conquest', 'Lead your army to victory in massive battles.', 39.99, 0, 14, TRUE, '2023-02-15', 1),
-('Neon Drift', 'Race through a neon-lit city in high-performance cars.', 29.99, 0, 14, TRUE, '2023-04-25', 3),
-('Mystic Valley', 'Explore a hidden valley filled with ancient secrets.', 49.99, 0, 14, TRUE, '2024-06-30', 5),
-('Dragon Ascent', 'Ride dragons and battle mythical creatures.', 59.99, 0, 14, TRUE, '2024-09-01', 4),
-('Frozen Legacy', 'Survive a harsh winter in a desolate land.', 24.99, 0, 14, TRUE, '2024-12-10', 2),
+('Titan Conquest', 'Lead your army to victory in massive battles.', 39.99, 0, 14, TRUE, NULL, NULL, '2023-02-15', 1),
+('Neon Drift', 'Race through a neon-lit city in high-performance cars.', 29.99, 0, 14, TRUE, NULL, NULL, '2023-04-25', 3),
+('Mystic Valley', 'Explore a hidden valley filled with ancient secrets.', 49.99, 0, 14, TRUE, NULL, NULL, '2024-06-30', 5),
+('Dragon Ascent', 'Ride dragons and battle mythical creatures.', 59.99, 0, 14, TRUE, NULL, NULL, '2024-09-01', 4),
+('Frozen Legacy', 'Survive a harsh winter in a desolate land.', 24.99, 0, 14, TRUE, NULL, NULL, '2024-12-10', 2),
 
 -- Seller 5
-('Inferno Tactics', 'A strategy game set in a fiery underworld.', 39.99, 0, 15, TRUE, '2024-01-18', 4),
-('Arcane Arena', 'Compete in a magical dueling tournament.', 34.99, 0, 15, TRUE, '2024-03-22', 2),
-('Blazing Trails', 'Embark on a daring journey across the wild.', 44.99, 0, 15, TRUE, '2024-05-15', 3),
-('Stellar Voyage', 'Pilot a spaceship and explore distant planets.', 54.99, 0, 15, TRUE, '2024-08-10', 5),
-('Iron Bastion', 'Defend your fortress from invading armies.', 29.99, 0, 15, TRUE, '2024-11-03', 1),
+('Inferno Tactics', 'A strategy game set in a fiery underworld.', 39.99, 0, 15, TRUE, NULL, NULL, '2024-01-18', 4),
+('Arcane Arena', 'Compete in a magical dueling tournament.', 34.99, 0, 15, TRUE, NULL, NULL, '2024-03-22', 2),
+('Blazing Trails', 'Embark on a daring journey across the wild.', 44.99, 0, 15, TRUE, NULL, NULL, '2024-05-15', 3),
+('Stellar Voyage', 'Pilot a spaceship and explore distant planets.', 54.99, 0, 15, TRUE, NULL, NULL, '2024-08-10', 5),
+('Iron Bastion', 'Defend your fortress from invading armies.', 29.99, 0, 15, TRUE, NULL, NULL, '2024-11-03', 1),
 
 -- Seller 6
-('Zombie Rising', 'Survive waves of the undead in a horror-filled town.', 24.99, 0, 16, TRUE, '2023-02-14', 4),
-('Galaxy Builders', 'Construct and manage a sprawling intergalactic empire.', 49.99, 0, 16, TRUE, '2024-05-30', 5),
-('Echoes of War', 'Relive epic battles from a distant past.', 34.99, 0, 16, TRUE, '2023-07-15', 1),
-('Tranquil Tiles', 'Solve serene puzzles to unwind.', 14.99, 0, 16, TRUE, '2023-10-21', 2),
-('Virtual Metropolis', 'Build and manage a futuristic city.', 54.99, 0, 16, TRUE, '2023-12-05', 3),
+('Zombie Rising', 'Survive waves of the undead in a horror-filled town.', 24.99, 0, 16, TRUE, NULL, NULL, '2023-02-14', 4),
+('Galaxy Builders', 'Construct and manage a sprawling intergalactic empire.', 49.99, 0, 16, TRUE, NULL, NULL, '2024-05-30', 5),
+('Echoes of War', 'Relive epic battles from a distant past.', 34.99, 0, 16, TRUE, NULL, NULL, '2023-07-15', 1),
+('Tranquil Tiles', 'Solve serene puzzles to unwind.', 14.99, 0, 16, TRUE, NULL, NULL, '2023-10-21', 2),
+('Virtual Metropolis', 'Build and manage a futuristic city.', 54.99, 0, 16, TRUE, NULL, NULL, '2023-12-05', 3),
 
 -- Seller 7
-('Eternal Quest', 'A magical journey to save a kingdom from darkness.', 59.99, 0, 17, TRUE, '2024-01-12', 5),
-('Ocean Abyss', 'Explore the secrets of the deep sea.', 29.99, 0, 17, TRUE, '2024-03-05', 3),
-('Skyward Journey', 'Embark on an aerial adventure across floating islands.', 49.99, 0, 17, TRUE, '2024-05-19', 4),
-('Forgotten Sands', 'Survive in a harsh desert environment.', 34.99, 0, 17, TRUE, '2024-07-24', 2),
-('Ironclad Warriors', 'Command a fleet in naval warfare.', 44.99, 0, 17, TRUE, '2024-09-30', 1),
+('Eternal Quest', 'A magical journey to save a kingdom from darkness.', 59.99, 0, 17, TRUE, NULL, NULL, '2024-01-12', 5),
+('Ocean Abyss', 'Explore the secrets of the deep sea.', 29.99, 0, 17, TRUE, NULL, NULL, '2024-03-05', 3),
+('Skyward Journey', 'Embark on an aerial adventure across floating islands.', 49.99, 0, 17, TRUE, NULL, NULL, '2024-05-19', 4),
+('Forgotten Sands', 'Survive in a harsh desert environment.', 34.99, 0, 17, TRUE, NULL, NULL, '2024-07-24', 2),
+('Ironclad Warriors', 'Command a fleet in naval warfare.', 44.99, 0, 17, TRUE, NULL, NULL, '2024-09-30', 1),
 
 -- Seller 8
-('Dark Dominion', 'Unleash power and conquer a fantasy realm.', 49.99, 0, 18, TRUE, '2024-02-14', 4),
-('Neon Storm', 'Fight through cyberpunk cityscapes.', 39.99, 0, 18, TRUE, '2024-04-18', 3),
-('Shadowline', 'A stealth-based action game in a sprawling city.', 29.99, 0, 18, TRUE, '2024-06-22', 2),
-('Crimson Throne', 'Claim the throne in a medieval war simulator.', 54.99, 0, 18, TRUE, '2024-08-17', 5),
-('Element Clash', 'Battle foes using elemental powers.', 34.99, 0, 18, TRUE, '2024-10-10', 3),
+('Dark Dominion', 'Unleash power and conquer a fantasy realm.', 49.99, 0, 18, TRUE, NULL, NULL, '2024-02-14', 4),
+('Neon Storm', 'Fight through cyberpunk cityscapes.', 39.99, 0, 18, TRUE, NULL, NULL, '2024-04-18', 3),
+('Shadowline', 'A stealth-based action game in a sprawling city.', 29.99, 0, 18, TRUE, NULL, NULL, '2024-06-22', 2),
+('Crimson Throne', 'Claim the throne in a medieval war simulator.', 54.99, 0, 18, TRUE, NULL, NULL, '2024-08-17', 5),
+('Element Clash', 'Battle foes using elemental powers.', 34.99, 0, 18, TRUE, NULL, NULL, '2024-10-10', 3),
 
 -- Seller 9
-('Voidwalker', 'Traverse dimensions in this mind-bending platformer.', 44.99, 0, 19, TRUE, '2024-01-20', 4),
-('Frostbound', 'Explore a frozen wasteland in search of survivors.', 39.99, 0, 19, TRUE, '2024-03-25', 2),
-('Star Forge', 'Build and expand your interstellar empire.', 49.99, 0, 19, TRUE, '2024-05-15', 5),
-('Hidden Realms', 'Uncover hidden treasures in ancient ruins.', 24.99, 0, 19, TRUE, '2024-07-07', 1),
-('Battle Circuit', 'Test your skills in this fast-paced arena fighter.', 34.99, 0, 19, TRUE, '2024-09-12', 3),
+('Voidwalker', 'Traverse dimensions in this mind-bending platformer.', 44.99, 0, 19, TRUE, NULL, NULL, '2024-01-20', 4),
+('Frostbound', 'Explore a frozen wasteland in search of survivors.', 39.99, 0, 19, TRUE, NULL, NULL, '2024-03-25', 2),
+('Star Forge', 'Build and expand your interstellar empire.', 49.99, 0, 19, TRUE, NULL, NULL, '2024-05-15', 5),
+('Hidden Realms', 'Uncover hidden treasures in ancient ruins.', 24.99, 0, 19, TRUE, NULL, NULL, '2024-07-07', 1),
+('Battle Circuit', 'Test your skills in this fast-paced arena fighter.', 34.99, 0, 19, TRUE, NULL, NULL, '2024-09-12', 3),
 
 -- Seller 10
-('Primordial Rift', 'Unite factions in a land torn by magic.', 54.99, 0, 20, TRUE, '2024-02-01', 5), -- no thumbnails
-('Pixel Racers', 'Fast-paced arcade-style racing action.', 29.99, 0, 20, TRUE, '2024-04-10', 1), -- no thumbnails
-('Chrono Legacy', 'Time-traveling RPG with dynamic storytelling.', 49.99, 0, 20, TRUE, '2024-06-05', 4),
-('Rogue Marauder', 'Engage in thrilling heists across the galaxy.', 39.99, 0, 20, TRUE, '2024-08-23', 3), -- no thumbnails
-('Hollow Depths', 'Dive into a mysterious underground labyrinth.', 24.99, 0, 20, TRUE, '2024-11-02', 2), -- no thumbnails
+('Primordial Rift', 'Unite factions in a land torn by magic.', 54.99, 0, 20, TRUE, NULL, NULL, '2024-02-01', 5), -- no thumbnails
+('Pixel Racers', 'Fast-paced arcade-style racing action.', 29.99, 0, 20, TRUE, NULL, NULL, '2024-04-10', 1), -- no thumbnails
+('Chrono Legacy', 'Time-traveling RPG with dynamic storytelling.', 49.99, 0, 20, TRUE, NULL, NULL, '2024-06-05', 4),
+('Rogue Marauder', 'Engage in thrilling heists across the galaxy.', 39.99, 0, 20, TRUE, NULL, NULL, '2024-08-23', 3), -- no thumbnails
+('Hollow Depths', 'Dive into a mysterious underground labyrinth.', 24.99, 0, 20, TRUE, NULL, NULL, '2024-11-02', 2), -- no thumbnails
 
 -- Seller 11 (Blocked)
-('Ancient Prophecy', 'Solve mysteries in a world of ancient gods.', 39.99, 0, 21, FALSE, '2024-03-14', 5),
-('Turbo Clash', 'Experience the thrill of high-speed combat.', 29.99, 0, 21, FALSE, '2024-05-11', 3),
-('Crystal Shores', 'Explore a breathtaking tropical paradise.', 44.99, 0, 21, FALSE, '2024-07-29', 4),
-('Iron Rebellion', 'Reclaim your homeland in a mech-filled future.', 59.99, 0, 21, FALSE, '2024-09-25', 1),
-('Nightfall Siege', 'Defend your base from nightly invasions.', 34.99, 0, 21, FALSE, '2024-12-12', 2),
+('Ancient Prophecy', 'Solve mysteries in a world of ancient gods.', 39.99, 0, 21, FALSE, 'Blocked due to incorrect product description and missing key details', '2024-05-01 10:15:00', '2024-03-14', 5),
+('Turbo Clash', 'Experience the thrill of high-speed combat.', 29.99, 0, 21, FALSE, 'Blocked due to invalid CDK codes provided', '2024-06-01 12:30:00', '2024-05-11', 3),
+('Crystal Shores', 'Explore a breathtaking tropical paradise.', 44.99, 0, 21, FALSE, 'Blocked due to price mismatch and unauthorized distribution', '2024-08-01 09:45:00', '2024-07-29', 4),
+('Iron Rebellion', 'Reclaim your homeland in a mech-filled future.', 59.99, 0, 21, FALSE, 'Blocked due to expired distribution agreement with the publisher', '2024-10-01 14:00:00', '2024-09-25', 1),
+('Nightfall Siege', 'Defend your base from nightly invasions.', 34.99, 0, 21, FALSE, 'Blocked due to missing or invalid regional license', '2024-12-15 08:30:00', '2024-12-12', 2),
 
 -- Seller 12 (Blocked)
-('Skyforge Arena', 'Compete in a battle royale set in the clouds.', 44.99, 0, 22, FALSE, '2024-01-18', 3),
-('Eclipse Bound', 'Save the world from eternal darkness.', 54.99, 0, 22, FALSE, '2024-03-21', 5),
-('Circuit Breaker', 'Solve complex puzzles with futuristic tech.', 34.99, 0, 22, FALSE, '2024-05-08', 2),
-('Cinderfall', 'Fight through a land covered in volcanic ash.', 39.99, 0, 22, FALSE, '2024-07-16', 4),
-('Astro Nexus', 'Build alliances in a multiplayer space sim.', 49.99, 0, 22, FALSE, '2024-10-04', 1);
+('Skyforge Arena', 'Compete in a battle royale set in the clouds.', 44.99, 0, 22, FALSE, 'Blocked due to invalid CDK activation region mismatch', '2024-02-01 11:00:00', '2024-01-18', 3),
+('Eclipse Bound', 'Save the world from eternal darkness.', 54.99, 0, 22, FALSE, 'Blocked due to missing key codes from the supplier', '2024-04-01 16:45:00', '2024-03-21', 5),
+('Circuit Breaker', 'Solve complex puzzles with futuristic tech.', 34.99, 0, 22, FALSE, 'Blocked due to outdated product listing and pricing errors', '2024-06-01 13:25:00', '2024-05-08', 2),
+('Cinderfall', 'Fight through a land covered in volcanic ash.', 39.99, 0, 22, FALSE, 'Blocked due to unauthorized product code distribution', '2024-09-01 17:20:00', '2024-07-16', 4),
+('Astro Nexus', 'Build alliances in a multiplayer space sim.', 49.99, 0, 22, FALSE, 'Blocked due to invalid or missing activation keys from distributor', '2024-11-01 20:10:00', '2024-10-04', 1);
 
 
 -- Game Ratings

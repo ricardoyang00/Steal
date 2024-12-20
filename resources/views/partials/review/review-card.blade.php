@@ -6,7 +6,7 @@
     $profilePicture = $review->getAuthor->user->profile_picture && file_exists($profilePictureFullPath) 
         ? asset($profilePicturePath) 
         : asset('images/profile_pictures/default-profile-picture.png');
-    $isOwnReview = auth_user() && auth_user()->id === $review->author;
+    $isOwnReview = auth_user() && auth_user()->email === $review->getAuthor->email;
     $isLikedByUser = auth_user() && $review->likes->contains('author', auth_user()->id);
 @endphp
 
