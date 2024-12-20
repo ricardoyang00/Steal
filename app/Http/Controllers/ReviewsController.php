@@ -132,7 +132,7 @@ class ReviewsController extends Controller
         $request->validate([
             'review_id' => 'required|integer',
             'reason_id' => 'nullable|integer',
-            'description' => 'nullable|string',
+            'description' => 'nullable|string|max:500',
         ]);
 
         if (is_null($request->input('reason_id')) && is_null($request->input('description'))) {

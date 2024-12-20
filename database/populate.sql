@@ -2467,14 +2467,14 @@ insert into ReviewLike (review, author) values (13, 9);
 
 
 -- Reason
-insert into Reason (description) values ('Inappropriate behavior');
-insert into Reason (description) values ('Spamming');
-insert into Reason (description) values ('Harassment');
-insert into Reason (description) values ('Cheating');
+insert into Reason (description) values ('Inappropriate content');
+insert into Reason (description) values ('Spam or misleading');
+insert into Reason (description) values ('Harassment or bullying');
 insert into Reason (description) values ('Offensive language');
-insert into Reason (description) values ('Impersonation');
-insert into Reason (description) values ('Violation of terms of service');
+insert into Reason (description) values ('Impersonation or fake account');
+insert into Reason (description) values ('Violation of community guidelines');
 insert into Reason (description) values ('Posting illegal content');
+insert into Reason (description) values ('False information');
 
 
 -- FAQ

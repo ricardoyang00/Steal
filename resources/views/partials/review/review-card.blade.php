@@ -14,7 +14,12 @@
     <div class="review-header">
         <div class="icon-and-username">
             <img src="{{ $profilePicture }}" alt="Profile Picture" id="review-profile-picture">
-            <span class="username">{{ $review->getAuthor->user->username }}</span>
+            <span class="username">
+                {{ $review->getAuthor->user->username }}
+                @if ($isOwnReview)
+                    (My Review)
+                @endif
+            </span>
         </div>
         <div class="review-likes">
             @if ($isOwnReview || (auth_user() && auth_user()->seller) || is_admin())

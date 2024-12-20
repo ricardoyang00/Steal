@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function showModal(reviewId, authorId) {
     const modal = document.getElementById('report-review-modal');
     const modalContent = modal.querySelector('.modal-content h2');
-    modalContent.textContent = `Report Review by ${authorId}`;
+    modalContent.textContent = `Report ${authorId}'s Review`;
     if (modal) {
         modal.style.display = 'block';
         modal.querySelector('#review-id-input').value = reviewId;
