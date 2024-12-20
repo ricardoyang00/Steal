@@ -8,7 +8,7 @@ use App\Models\ReviewLike;
 use App\Models\User;
 use App\Models\Game;
 use App\Models\Reason;
-use \App\Models\Report;
+use App\Models\Report;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Validator;
@@ -148,7 +148,7 @@ class ReviewsController extends Controller
 
             // Create a new report
             Report::create([
-                'buyer' => auth()->id(),
+                'buyer' => auth_user()->id(),
                 'review' => $reviewId,
                 'reason' => $reasonId,
                 'description' => $request->input('description'),

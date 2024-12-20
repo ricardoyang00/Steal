@@ -19,4 +19,19 @@ class Report extends Model
         'reason',
         'description',
     ];
+
+    public function buyer()
+    {
+        return $this->belongsTo(Buyer::class, 'buyer_id');
+    }
+    
+    public function review()
+    {
+        return $this->belongsTo(Review::class, 'review_id');
+    }
+    
+    public function reason()
+    {
+        return $this->belongsTo(Reason::class, 'reason_id');
+    }    
 }

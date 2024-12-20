@@ -92,6 +92,7 @@
                                         <a class="dropdown-item" href="{{ route('admin.users.search') }}">Manage Users</a>
                                         <a class="dropdown-item" href="{{ route('admin.indexGameField') }}">Manage Game Fields</a>
                                         <a class="dropdown-item" href="{{ route('admin.games.blocked-games') }}">Manage Blocked Games</a>
+                                        <a class="dropdown-item" href="{{ route('admin.reviews.index') }}">Manage Reported Reviews</a>
                                         <a class="dropdown-item" href="{{ route('admin.salesReport') }}">Sales Report</a>
                                     @endif
                                     @if (auth_user()->seller)

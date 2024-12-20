@@ -2476,6 +2476,13 @@ insert into Reason (description) values ('Violation of community guidelines');
 insert into Reason (description) values ('Posting illegal content');
 insert into Reason (description) values ('False information');
 
+-- Reports
+insert into Report (buyer, review, reason, description) values (1, 2, 1, 'Innapropriate comment');
+insert into Report (buyer, review, reason, description) values (1, 3, 3, 'This review appears to be targeting other users who enjoy the game by suggesting Minecraft is better.');
+insert into Report (buyer, review, reason, description) values (1, 5, 8, 'The claim about the game crashing too often seems exaggerated and misleading.');
+insert into Report (buyer, review, reason, description) values (7, 7, 4, 'The language used in the review is inappropriate and offensive.');
+insert into Report (buyer, review, reason, description) values (8, 1, 6, 'The excessive number of similar reviews for the same game appears to violate community guidelines on spam.');
+insert into Report (buyer, review, reason, description) values (9, 1, 2, 'The reviews appear repetitive and misleading, likely spam.');
 
 -- FAQ
 insert into FAQ (question, answer) values ('How do I redeem a CDK?', 'To redeem a CDK, you must go to the platform where the game is available and enter the code in the corresponding section.');

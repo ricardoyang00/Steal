@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\ScoinsController;
 use App\Http\Controllers\Admin\GameFieldsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ReportedReviewController;
 
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\ShoppingCartController;
@@ -175,6 +176,11 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::controller(PurchaseHistoryController::class)->group(function () {
         Route::get('/buyers/{buyerId}/order-history', 'adminOrderHistory')->name('admin.buyer.orderHistory');
     }); 
+    
+    Route::controller(ReportedReviewController::class)->group(function () {
+        Route::get('/reviews/reported', 'index')->name('admin.reviews.index');
+        Route::delete('/reviews/{id}', 'destroy')->name('admin.reviews.destroy');
+    });
 });
 
 // Redirect GET /admin/games/store-game-field to /admin/games/index-game-field

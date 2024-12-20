@@ -16,4 +16,9 @@ class Reason extends Model
     ];
 
     protected $table = 'reason';
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class, 'reason');
+    }
 }
