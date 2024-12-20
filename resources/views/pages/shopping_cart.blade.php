@@ -85,7 +85,7 @@
                 <p class="price-item grey-text">Official price<span id="total_price">€ {{ $total }}</span></p>
                 <p class="price-item grey-text">Discount<span id="discount">- € 0.00</span></p>
                 <p class="price-item subtotal">Subtotal<span id="subtotal">€ {{ $total }}</span></p>
-                
+
                 @if (count($products) == 0)
                     <button id="checkout_button" class="disabled" data-authenticated="false" disabled>Checkout <span class="forward-symbol">&rsaquo;</span></button>
                 @else

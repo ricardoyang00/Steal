@@ -85,29 +85,14 @@
     margin-top: 50px;
 }
 
-.view-details-button {
-    margin-top: 10px;
-    color: #007bff;
-    text-decoration: underline;
-    font-size: 0.9rem;
-}
 
 .view-details-button:hover {
     text-decoration: none;
 }
 
-.notification-details {
-    background-color: #f8f9fa;
-    padding: 10px;
-    border-left: 3px solid #007bff;
-    margin-top: 10px;
-    border-radius: 5px;
-}
-
 .notification-details p {
     margin: 5px 0;
     font-size: 0.9rem;
-    color: #555;
 }
 
 .notifications-collapse {
@@ -182,7 +167,7 @@
 }
 
 .view-notification-details:hover {
-    background-color: #6419cc;
+    background-color: var(--highlight-hover-color);
     color: #fff;
 }
 
@@ -202,5 +187,8 @@
     text-decoration: underline;
 }
 
+.fa-trash:hover {
+    color: var(--red);
+}
 
 

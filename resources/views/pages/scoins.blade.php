@@ -20,14 +20,19 @@
 
         <h2>How S-Coins Work</h2>
         <ul>
-            <li>1 S-Coin = € 0.01.</li>
+            <li><strong>1 S-Coin = € 0.01</strong></li>
             <li>For each euro spent, you receive <strong>5 S-Coins</strong>.</li>
-            <li>Upon registering, you receive <strong>500</strong> S-Coins as a welcome bonus.</li>
+            <li>Upon registering, you receive <strong>500 S-Coins</strong> as a welcome bonus.</li>
             <li>You can use S-Coins to get discounts when buying games.</li>
         </ul>
 
         <h2>Using S-Coins</h2>
         <p>When you purchase games, you can apply your S-Coins to get a discount on the total price. The more S-Coins you have, the bigger the discount you can get!</p>
+
+        <br>
+        <br>
+        <h2><i class="fa-solid fa-triangle-exclamation"></i> Note:</h2>
+        <p id="scoins-note"><strong>S-Coins CANNOT be refunded</strong></p>
     </div>
 
     <div class="scoins-back-button">

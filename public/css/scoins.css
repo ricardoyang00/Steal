@@ -178,6 +178,11 @@
     color: var(--highlight-color);
 }
 
+#scoins-note {
+    font-size: 1.2rem;
+    text-decoration: underline;
+}
+
 /* Media Queries */
 @media (max-width: 1200px) {
     .scoins-container, .scoins-history-container {
