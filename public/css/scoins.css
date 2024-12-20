@@ -153,6 +153,10 @@
     color: var(--text-color);
 }
 
+#zero-used-coins {
+    background-color: var(--cart-control-button);
+}
+
 #used-coins {
     background-color: var(--negative);
 }
@@ -163,6 +167,15 @@
 
 #coins-balance {
     font-size: 1.2rem;
+}
+
+#view-details a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+#view-details a:hover {
+    color: var(--highlight-color);
 }
 
 /* Media Queries */
