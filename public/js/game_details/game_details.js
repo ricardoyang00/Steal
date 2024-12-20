@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
             reviewFormToggle.textContent = 'Cancel';
             reviewFormToggle.classList.add('cancel-mode');
         } else if (reviewForm.classList.contains('edit')) {
-            reviewFormToggle.textContent = 'Edit review';
+            reviewFormToggle.textContent = 'Edit My review';
             reviewFormToggle.classList.remove('cancel-mode');
         } else {
             reviewFormToggle.textContent = 'Add review';

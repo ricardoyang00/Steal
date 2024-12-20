@@ -222,16 +222,16 @@
                         </p>
                     @elseif ($game->hasReviewedGame(auth()->user()))
                         <div class="review-buttons">
-                            <button class="btn-review-form-toggle">Edit Review</button>
+                            <button class="btn-review-form-toggle">Edit My Review</button>
                             @include('partials.common.confirmation-modal')
                             <form action="{{ route('reviews.delete', ['id' => $userReview->id]) }}" method="POST" id="remove-review-form" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" class="confirmation-btn btn btn-primary" id="btn-review-remove"
-                                        data-title="Remove Review"
+                                        data-title="Remove My Review"
                                         data-message="Are you sure you want to remove your review?"
                                         data-form-id="remove-review-form">
-                                    Remove Review
+                                    Remove My Review
                                 </button>
                             </form>
                         </div>
@@ -255,7 +255,7 @@
         
             <div class="add-review-container {{ $isAuthor ? 'edit' : '' }}" style="display: none;">
                 <div class="btn-close-div">
-                    <h3>{{ $isAuthor ? 'Edit Review' : 'Add Review' }}</h3>
+                    <h3>{{ $isAuthor ? 'Edit My Review' : 'Add Review' }}</h3>
                 </div>
                 <form class="{{ $isAuthor ? 'edit-review-form' : 'add-review-form' }}" action="{{ url($isAuthor ? 'reviews/update' : 'reviews/add') }}" method="POST">
                     @csrf
