@@ -21,7 +21,8 @@
                     <th>Subtotal (€)</th>
                     <th>Coins Used</th>
                     <th>Coins Gained</th>
-                    <th>Balance</th>
+                    <th>Coins Balance</th>
+                    <th>Details</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,9 +34,16 @@
                         <td>{{ \Carbon\Carbon::parse($order->time)->format('H:i:s') }}</td>
                         <td>{{ \Carbon\Carbon::parse($order->time)->format('Y-m-d') }}</td>
                         <td>{{ number_format($order->getPayment->value, 2) }}</td>
-                        <td id="used-coins">- {{ $order->coins }}</td>
+                        @if ($order->coins == 0)
+                            <td id="zero-used-coins">{{ $order->coins }}</td>
+                        @else
+                            <td id="used-coins">- {{ $order->coins }}</td>
+                        @endif
                         <td id="gained-coins">+ {{ $coinsGained }}</td>
                         <td id="coins-balance"><strong>{{ $calculatedBalances[$order->id] }}</strong></td>
+                        <td id="view-details">
+                            <a href="{{ route('orderDetails', ['id' => $order->id]) }}" class="btn btn-primary">View Details</a>
+                        </td>
                     </tr>
                 @endforeach
                 @if ($orders->currentPage() == $orders->lastPage())
@@ -46,6 +54,7 @@
                         <td>--</td>
                         <td id="gained-coins">+ 500</td>
                         <td id="coins-balance"><strong>500</strong></td>
+                        <td>--</td>
                     </tr>
                 @endif
             </tbody>
