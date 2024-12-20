@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+<script src="{{ asset('js/cart/select-payment-method.js') }}" defer></script>
+
 <div class="payment-method-selection-container">
     
     <form action="{{ route('checkout.confirmPayment') }}" method="POST">
@@ -11,7 +14,7 @@
             <div class="row">
                 @foreach ($paymentMethods as $method)
                     <div class="col-12 col-md-4">
-                        <div class="card">
+                        <div class="card payment-method-card" data-method-id="{{ $method->id }}">
                             <div class="card-body d-flex flex-column align-items-center">
                                 <h5 class="card-title">{{ $method->name }}</h5>
                                 <img src="{{ asset($method->image_path) }}" alt="{{ $method->name }}">
