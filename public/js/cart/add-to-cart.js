@@ -21,9 +21,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     fetchCartCount();
                     button.textContent = "Added to cart";
                     button.disabled = true;
-                    button.style.backgroundColor = '#4e13a3';
+                    button.style.backgroundColor = '#fff';
+                    button.style.color = '#4e13a3';
                     setTimeout(() => {
                         button.textContent = "Add to cart";
+                        button.style.color = '#fff';
                         button.disabled = false;
                         button.style.backgroundColor = '';
                     }, 1000);
