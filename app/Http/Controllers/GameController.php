@@ -536,6 +536,8 @@ class GameController extends Controller
         $quantity = $request->quantity;
         $this->notificationController->createOrderStatusChangeNotification($game, $quantity);
 
+        $initialReleaseDate = $game->release_date;
+
         for ($i = 0; $i < $request->quantity; $i++) {
             $cdk = new CDK();
             $cdk->code = $this->generateUniqueCode(26);
@@ -543,8 +545,14 @@ class GameController extends Controller
             $cdk->save();
         }
 
+        $game->refresh();
 
-        return redirect()->route('games.cdks', $game->id)->with('success', 'CDKs added successfully.');
+        $message = 'CDKs added successfully.';
+        if ($initialReleaseDate === null && $game->release_date !== null) {
+            $message .= ' The game has been released.';
+        }
+
+        return redirect()->route('games.cdks', $game->id)->with('success', $message);
     }
 
     private function generateUniqueCode($length = 26)
