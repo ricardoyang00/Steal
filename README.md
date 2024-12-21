@@ -64,12 +64,12 @@ The application will be available at `http://localhost:8001`
 
 > We primarily provide assistance through error messages when users encounter issues, but we have also implemented some static pages to help users in some specific problems, like FAQs or about our feature S-Coins.
 
-![FAQs](artifacts/application_help/faq.png)
-![SCoins_Help](artifacts/application_help/scoins.png)
+![FAQs](artifacts/application_help/faq.jpeg)
+![SCoins_Help](artifacts/application_help/scoins.jpeg)
 
-> We also have info icons to help users know what needs to be done in specific sections.
+> We also have info icons to help users know what needs to be done in specific sections. Users can check by hovering the cursor over the icons
 
-![Seller_Help](artifacts/application_help/seller.png)
+![Seller_Help](artifacts/application_help/seller.jpeg)
 
 ### 4. Input Validation
 
