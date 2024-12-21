@@ -199,15 +199,12 @@ We also didn't try to optimize the contents for mobile, as our project focused m
 
 
 ## A10: Presentation
- 
-> This artifact corresponds to the presentation of the product.
 
 ### 1. Product presentation
 
-> Brief presentation of the product and its main features (2 paragraphs max).  
->
-> Groups are expected to present the product using the delivered version.
-> No presentation slides are required.
+STEAL! is an innovative online marketplace designed to revolutionize the purchase of game Content Distribution Keys (CDKs). Our platform offers a secure, user-friendly environment for gamers seeking affordable game keys. With a focus on affordability and ease of use, STEAL! aims to become the top destination for accessible, high-quality digital gaming.
+
+The platform features advanced game recommendations based on user preferences, robust search and filtering options, real-time notifications for wishlisted items, and personalized user profiles. Additionally, STEAL! includes a reward system where buyers earn S coins as cashback, multiple checkout options, and comprehensive account management tools for administrators to ensure a high-quality user experience.
 
 ### 2. Video presentation
 
@@ -226,8 +223,9 @@ Changes made to the first submission:
 1. ..
 
 ***
-GROUPYYgg, DD/MM/20YY
+GROUP2435, 21/12/2024
 
-* Group member 1 name, email (Editor)
-* Group member 2 name, email
-* ...
+* Bruno Huang, up202207517@up.pt (Editor)
+* Daniel Basílio, up201806838@up.pt
+* Francisco Magalhães, up202007945@up.pt
+* Ricardo Yang, up202208465@up.pt
