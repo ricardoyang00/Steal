@@ -103,9 +103,9 @@ We also didn't try to optimize the contents for mobile, as our project focused m
 
 ### 6. HTML & CSS Validation
 
-> HTML: [Game Details Page](artifacts/html_css/game-details-html.pdf) ([view file here](resources/views/pages/game-details.blade.php))
+> HTML: [Game Details Page Report](artifacts/html_css/game-details-html.pdf) ([view file here](resources/views/pages/game-details.blade.php))
 
-> CSS: [Game Details Page CSS](artifacts/html_css/game-details-css.pdf) ([view file here](public/css/game_details.css))
+> CSS: [Game Details Page CSS Report](artifacts/html_css/game-details-css.pdf) ([view file here](public/css/game_details.css))
 
 ### 7. Revisions to the Project
 
