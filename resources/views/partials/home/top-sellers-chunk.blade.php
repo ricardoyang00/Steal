@@ -21,7 +21,9 @@
             <div class="overlay">
                 <!-- Game Small Image -->
                 <div class="top-media">
-                    <img src="{{ asset($game->getThumbnailLargePath()) }}" alt="{{ $game->name }}">
+                    <a href="{{ route('game.details', ['id' => $game->id]) }}">
+                        <img src="{{ asset($game->getThumbnailLargePath()) }}" alt="{{ $game->name }}">
+                    </a>
                 </div>
                 <!-- Game Details -->
                 <div class="game-details">

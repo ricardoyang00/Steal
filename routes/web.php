@@ -179,7 +179,8 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     
     Route::controller(ReportedReviewController::class)->group(function () {
         Route::get('/reviews/reported', 'index')->name('admin.reviews.index');
-        Route::delete('/reviews/{id}', 'destroy')->name('admin.reviews.destroy');
+        Route::delete('/reviews/{id}', 'destroyReview')->name('admin.reviews.destroyReview');
+        Route::delete('/reports/{id}', 'destroyReport')->name('admin.reports.destroyReport');
     });
 });
 

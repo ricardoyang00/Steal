@@ -1,0 +1,41 @@
+.reported-reviews-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.reported-reviews-actions form {
+    display: inline;
+}
+
+.reported-reviews-actions button {
+    display: inline-block;
+    margin: 0;
+}
+
+/* Action button styles */
+.reported-reviews-actions #btn-delete-report,
+.reported-reviews-actions #btn-delete-review {
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reported-reviews-actions #btn-delete-report {
+    background-color: var(--cart-control-button);
+}
+
+.reported-reviews-actions #btn-delete-review {
+    background-color: var(--red);
+}
+
+.reported-reviews-actions #btn-delete-report:hover {
+    background-color: var(--highlight-color);
+}
+
+.reported-reviews-actions #btn-delete-review:hover {
+    background-color: var(--red-hover);
+}
