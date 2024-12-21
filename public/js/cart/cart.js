@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             coinsInput.value = coinsToUse;
 
-                // Update the hidden input field value
+            // Update the hidden input field value
             const hiddenCoinsInput = document.getElementById('coins_to_use_hidden');
             if (hiddenCoinsInput) {
                 hiddenCoinsInput.value = coinsToUse;

@@ -62,11 +62,30 @@ The application will be available at `http://localhost:8001`
 
 ### 3. Application Help
 
-> Describe where help has been implemented, pointing to working examples.  
+> We primarily provide assistance through error messages when users encounter issues, but we have also implemented some static pages to help users in some specific problems, like FAQs or about our feature S-Coins.
+
+![FAQs](artifacts/application_help/faq.png)
+![SCoins_Help](artifacts/application_help/scoins.png)
+
+> We also have info icons to help users know what needs to be done in specific sections.
+
+![Seller_Help](artifacts/application_help/seller.png)
 
 ### 4. Input Validation
 
-> Describe how input data was validated, and provide examples to scenarios using both client-side and server-side validation.  
+> We ensure robust data validation by implementing both client-side and server-side validation techniques. Additionally, we use JavaScript to restrict input in specific cases.
+
+#### Validate S-Coins input before shopping cart checkout
+![Scoins_Input](artifacts/input_validation/scoins.png)
+
+![Scoins_Input_JS](artifacts/input_validation/scoins_js.png)
+
+#### Validate attributes before updating profile
+
+![Update_Profile](artifacts/input_validation/update_profile.png)
+
+
+**Note:** For profile pictures or game media, we ensure proper image substitution by deleting the old image when updating with a new one. Additionally, if an image is deleted directly from the database (in this project's case,  from the file system), our system checks if the file exists. If the file is missing, it will automatically use the path of the default image for display.
 
 ### 5. Check Accessibility and Usability
 

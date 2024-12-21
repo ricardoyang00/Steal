@@ -53,7 +53,7 @@
                             <a href="{{ route('admin.users.profile', $buyer->id) }}" class="user-card">
                                 <div class="user-card-content {{ $status }}" id="user-{{ $buyer->id }}">
                                     <div class="avatar">
-                                        <img src="{{ $profilePicture }}" alt="{{ $buyer->username }}">
+                                        <img src="{{ $profilePicture }}" alt="{{ $buyer->username }} profile picture">
                                     </div>
                                     <span class="username">{{ $buyer->username }}</span>
                                 </div>
@@ -90,7 +90,7 @@
                             <a href="{{ route('admin.users.profile', $seller->id) }}" class="user-card">
                                 <div class="user-card-content {{ $status }}" id="user-{{ $seller->id }}">
                                     <div class="avatar">
-                                        <img src="{{ $profilePicture }}" alt="{{ $seller->username }}">
+                                        <img src="{{ $profilePicture }}" alt="{{ $seller->username }} profile picture">
                                     </div>
                                     <span class="username">{{ $seller->username }}</span>
                                 </div>
