@@ -102,7 +102,7 @@ class CheckoutController extends Controller
             $coinsValue = $coinsUsed * 0.01;
             $subtotal = $total - $coinsValue;
         }
-
+        $subtotal = round($subtotal,2);
         $paymentSuccessful = true;
         if (!$paymentSuccessful) {
             session()->forget('coins_to_use');
