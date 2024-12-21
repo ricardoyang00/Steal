@@ -24,6 +24,7 @@ table.purchase-history-order-card {
     border-collapse: collapse;
     margin-bottom: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow-x: auto;
 }
 
 table.purchase-history-order-card th {
@@ -68,36 +69,6 @@ table.purchase-history-order-card td {
 .badge.bg-warning {
     background-color: #ffc107;
     color: #212529;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    table.purchase-history-order-card th, 
-    table.purchase-history-order-card td {
-        display: block;
-        width: 100%;
-    }
-
-    table.purchase-history-order-card tr {
-        margin-bottom: 15px;
-    }
-
-    table.purchase-history-order-card td {
-        text-align: right;
-        padding-left: 50%;
-        position: relative;
-    }
-
-    table.purchase-history-order-card td::before {
-        content: attr(data-label);
-        position: absolute;
-        left: 10px;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
-        text-align: left;
-        font-weight: bold;
-    }
 }
 
 /* Purchase Details Page Styles */
