@@ -18,6 +18,11 @@ class Report extends Model
         'review',
         'reason',
         'description',
+        'report_time',
+    ];
+
+    protected $casts = [
+        'report_time' => 'datetime',
     ];
 
     public function buyer()

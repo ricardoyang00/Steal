@@ -13,6 +13,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                <th>Date</th>
                 <th>Reporter</th>
                 <th>Report Reason</th>
                 <th>Report Description</th>
@@ -26,6 +27,7 @@
         <tbody>
             @foreach ($reportedReviews as $report)
                 <tr>
+                    <td>{{ $report->formatted_report_time ?? 'N/A' }}</td>
                     <td>
                         <a href="{{ route('admin.users.profile', $report->buyer_id) }}">
                             {{ $report->buyer_username ?? 'N/A' }}

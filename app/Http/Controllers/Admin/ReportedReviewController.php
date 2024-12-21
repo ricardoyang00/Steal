@@ -23,6 +23,7 @@ class ReportedReviewController extends Controller {
         ->join('game', 'review.game', '=', 'game.id')
         ->select(
             'report.id as report_id',
+            DB::raw('TO_CHAR(report.report_time, \'YYYY-MM-DD HH24:MI:SS\') as formatted_report_time'),
             'users.id as buyer_id',
             'users.username as buyer_username',
             'reason.description as reason_description',

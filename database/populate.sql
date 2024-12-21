@@ -2477,12 +2477,12 @@ insert into Reason (description) values ('Posting illegal content');
 insert into Reason (description) values ('False information');
 
 -- Reports
-insert into Report (buyer, review, reason, description) values (1, 2, 1, 'Innapropriate comment');
-insert into Report (buyer, review, reason, description) values (1, 3, 3, 'This review appears to be targeting other users who enjoy the game by suggesting Minecraft is better.');
-insert into Report (buyer, review, reason, description) values (1, 5, 8, 'The claim about the game crashing too often seems exaggerated and misleading.');
-insert into Report (buyer, review, reason, description) values (7, 7, 4, 'The language used in the review is inappropriate and offensive.');
-insert into Report (buyer, review, reason, description) values (8, 1, 6, 'The excessive number of similar reviews for the same game appears to violate community guidelines on spam.');
-insert into Report (buyer, review, reason, description) values (9, 1, 2, 'The reviews appear repetitive and misleading, likely spam.');
+insert into Report (buyer, review, reason, description, report_time) values (1, 2, 1, 'Innapropriate comment', '2024-12-10 10:15:00');
+insert into Report (buyer, review, reason, description, report_time) values (1, 3, 3, 'This review appears to be targeting other users who enjoy the game by suggesting Minecraft is better.', '2024-12-11 11:10:00');
+insert into Report (buyer, review, reason, description, report_time) values (1, 5, 8, 'The claim about the game crashing too often seems exaggerated and misleading.', '2024-12-09 10:47:00');
+insert into Report (buyer, review, reason, description, report_time) values (7, 7, 4, 'The language used in the review is inappropriate and offensive.', '2024-12-11 12:15:00');
+insert into Report (buyer, review, reason, description, report_time) values (8, 1, 6, 'The excessive number of similar reviews for the same game appears to violate community guidelines on spam.', '2024-12-20 10:35:00');
+insert into Report (buyer, review, reason, description, report_time) values (9, 1, 2, 'The reviews appear repetitive and misleading, likely spam.', '2024-12-21 09:15:00');
 
 -- FAQ
 insert into FAQ (question, answer) values ('How do I redeem a CDK?', 'To redeem a CDK, you must go to the platform where the game is available and enter the code in the corresponding section.');

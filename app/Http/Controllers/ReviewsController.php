@@ -13,6 +13,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class ReviewsController extends Controller
 {
@@ -144,14 +145,24 @@ class ReviewsController extends Controller
             $reasonId = $request->input('reason_id');
 
             $review = Review::findOrFail($reviewId);
-            $reason = $reasonId ? Reason::findOrFail($reasonId) : null;
+            $buyerId = auth()->id();
+
+            // Check if a report already exists
+            $existingReport = Report::where('buyer', $buyerId)
+                ->where('review', $reviewId)
+                ->first();
+    
+            if ($existingReport) {
+                return back()->withErrors(['error' => 'You have already reported this review.']);
+            }
 
             // Create a new report
             Report::create([
-                'buyer' => auth_user()->id(),
+                'buyer' => auth()->id(),
                 'review' => $reviewId,
                 'reason' => $reasonId,
                 'description' => $request->input('description'),
+                'report_time' => Carbon::now(),
             ]);
 
             return back()->withSuccess('Review reported successfully!');

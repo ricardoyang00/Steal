@@ -1,3 +1,15 @@
+.reported-reviews-container {
+    overflow-x: auto;
+}
+
+.reported-reviews-container h1 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #ffffff;
+}
+
 .reported-reviews-actions {
     display: flex;
     gap: 10px;

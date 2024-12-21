@@ -287,6 +287,7 @@ CREATE TABLE Report(
     review INT NOT NULL REFERENCES Review(id) ON UPDATE CASCADE,
     reason INT REFERENCES Reason(id) ON UPDATE CASCADE,
     description TEXT,
+    report_time TIMESTAMP,
     CONSTRAINT reason_or_description_not_null CHECK (reason IS NOT NULL OR description IS NOT NULL)
 );
 
