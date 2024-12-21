@@ -258,9 +258,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     prePurchasedGames.forEach(p => {
                         const li = document.createElement('li');
                         if (p.gameId) {
-                            li.innerHTML = `<a href="/game/${p.gameId}">${p.gameName}</a> - $${p.value}`;
+                            let gamePrice = Number(p.value);
+                            li.innerHTML = `<a href="/game/${p.gameId}">${p.gameName}</a> - €${gamePrice.toFixed(2)}`;
                         } else {
-                            li.textContent = `${p.gameName} - $${p.value}`;
+                            li.textContent = `${p.gameName} - €${p.value}`;
                         }
                         ulprePurchased.appendChild(li);
                     });
@@ -276,9 +277,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     deliveredGames.forEach(p => {
                         const li = document.createElement('li');
                         if (p.gameId) {
-                            li.innerHTML = `<a href="/game/${p.gameId}">${p.gameName}</a> - $${p.value}`;
+                            let gamePrice = Number(p.value); 
+                            li.innerHTML = `<a href="/game/${p.gameId}">${p.gameName}</a> - €${gamePrice.toFixed(2)}`;
                         } else {
-                            li.textContent = `${p.gameName} - $${p.value}`;
+                            li.textContent = `${p.gameName} - €${p.value}`;
                         }
                         ulPurchased.appendChild(li);
                     });
@@ -294,17 +296,21 @@ document.addEventListener('DOMContentLoaded', function () {
                     canceledGames.forEach(p => {
                         const li = document.createElement('li');
                         if (p.gameId) {
-                            li.innerHTML = `<a href="/game/${p.gameId}">${p.gameName}</a> - $${p.value}`;
+                            let gamePrice = Number(p.value); 
+                            li.innerHTML = `<a href="/game/${p.gameId}">${p.gameName}</a> - €${gamePrice.toFixed(2)}`;
                         } else {
-                            li.textContent = `${p.gameName} - $${p.value}`;
+                            li.textContent = `${p.gameName} - €${p.value}`;
                         }
                         ulCanceled.appendChild(li);
                     });
                     detailsContentDiv.appendChild(ulCanceled);
                 }
 
+                const usedCoinsP = document.createElement('p');
                 const totalPriceP = document.createElement('p');
-                totalPriceP.innerHTML = `<strong>Total Price:</strong> $${notification.orderDetails.totalPrice ?? 0.0}`;
+                usedCoinsP.innerHTML = `<strong>Coins Used:</strong> ${notification.orderDetails.coinsUsed ?? 0.0} S-Coins`;
+                totalPriceP.innerHTML = `<strong>Total Price:</strong> €${notification.orderDetails.totalPrice ?? 0.0}`;
+                detailsContentDiv.appendChild(usedCoinsP);
                 detailsContentDiv.appendChild(totalPriceP);
 
             } else if ((notification.type === 'Wishlist' || notification.type === 'ShoppingCart') && notification.parsedDetails) {
@@ -318,11 +324,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (notification.parsedDetails.specific_type === 'Price') {
                     const oldPriceP = document.createElement('p');
-                    oldPriceP.innerHTML = `<strong>Old Price:</strong> $${notification.parsedDetails.old_price ?? 'N/A'}`;
+                    oldPriceP.innerHTML = `<strong>Old Price:</strong> €${notification.parsedDetails.old_price ?? 'N/A'}`;
                     detailsContentDiv.appendChild(oldPriceP);
 
                     const newPriceP = document.createElement('p');
-                    newPriceP.innerHTML = `<strong>New Price:</strong> $${notification.parsedDetails.new_price ?? 'N/A'}`;
+                    newPriceP.innerHTML = `<strong>New Price:</strong> €${notification.parsedDetails.new_price ?? 'N/A'}`;
                     detailsContentDiv.appendChild(newPriceP);
                 } else if (notification.parsedDetails.specific_type === 'Stock') {
                     const updateP = document.createElement('p');
