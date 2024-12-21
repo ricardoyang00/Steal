@@ -23,18 +23,18 @@
         <tbody>
             @foreach ($reportedReviews as $report)
                 <tr>
-                    <td>{{ $report->buyer }}</td>
-                    <td>{{ $report->reason }}</td>
-                    <td>{{ $report->review }}</td>
-                    <td>{{ $report->description }}</td>
+                    <td>{{ $report->buyer_name ?? 'N/A' }}</td>
+                    <td>{{ $report->reason_description ?? 'N/A' }}</td>
+                    <td>{{ $report->review_title ?? 'N/A' }}</td>
+                    <td>{{ $report->report_description ?? 'N/A' }}</td>
                     <td>
-                        <form action="{{ route('admin.reviews.destroy', $report->review) }}" method="POST" style="display:inline;" id="delete-review-form">
+                        <form action="{{ route('admin.reviews.destroy', $report->review_id ?? 0) }}" method="POST" style="display:inline;" id="delete-review-form-{{ $report->review_id ?? 0 }}">
                             @csrf
                             @method('DELETE')
                             <button type="button" class="confirmation-btn" id="btn-delete"
                                     data-title="Delete Review"
                                     data-message="Are you sure you want to delete this review and all related data?"
-                                    data-form-id="delete-review-form">
+                                    data-form-id="delete-review-form-{{ $report->review_id ?? 0 }}">
                                 Delete
                             </button>
                         </form>
@@ -45,6 +45,5 @@
     </table>
 
     {{ $reportedReviews->links() }}
-    <pre>{{ print_r($reportedReviews->toArray(), true) }}</pre>
 </div>
 @endsection
