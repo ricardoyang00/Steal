@@ -18,10 +18,8 @@
 
         <h2>Main Features</h2>
         <p>
-            STEAL! offers a powerful search and filtering system that helps users easily find the games they want. You can manage your selections with a shopping cart and enjoy a personalized profile that keeps track of your purchase history and wishlist. If you're unsure what to play next, we also provide tailored game recommendations based on your preferences. Additionally, users can leave reviews for games they've purchased to help others make informed decisions.
+            STEAL! offers an advanced search and filtering system, allowing users to quickly find the games they’re looking for. Manage your selections effortlessly with a shopping cart, and enjoy a personalized profile that tracks your purchase history, wishlist, and supports profile pictures. The platform provides tailored game recommendations based on your purchases, and users can leave reviews to help others make informed decisions. A report system is also in place to ensure reviews remain helpful, accurate, and appropriate
         </p>
-
-
 
         <p>
             We've partnered with multiple game companies to list their titles directly on our platform, offering a wide and diverse selection of games. Users can sign in using their STEAL! account or log in via Google for a seamless authentication process.
@@ -40,7 +38,7 @@
         </p>
 
         <p>
-            Our dedicated staff is actively involved in managing the site and monitoring user activity. If any suspicious behavior or inappropriate content is detected, whether in reviews or elsewhere, our team takes swift action to maintain a safe and healthy community. We also offer a help section where users can reach out to staff or administrators for assistance or to report any concerns. Any doubts or questions, feel free to <a href="{{ url('/contact') }}">contact us</a>.
+            Our dedicated staff is actively involved in managing the site and monitoring user activity. If any suspicious behavior or inappropriate content is detected, whether in reviews or elsewhere, our team takes swift action to maintain a safe and healthy community. Any doubts or questions, feel free to <a href="{{ url('/contact') }}">contact us</a>.
         </p>
 
     </section>

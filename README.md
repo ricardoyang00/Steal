@@ -1,32 +1,64 @@
 # PA: Product and Presentation
 
-> Project vision.
+**Project Vision**
+
+**STEAL!** is an online marketplace focused on selling Content Distribution Keys (CDKs). It offers a secure, user-friendly platform for gamers seeking affordable game keys, aiming to become the top destination for accessible, high-quality digital gaming.
+
+> **"SO AFFORDABLE IT'S LIKE STEALING!"** 
 
 ## A9: Product
 
-> Brief presentation of the product developed.  
+We developed **STEAL!**, an innovative online platform designed to revolutionize the purchase of game CDKs (Content Distribution Keys). Our goal was to create an affordable, user-friendly marketplace that competes with industry giants like Steam, Uplay, and Origin.
+
+### Key Features:
+1. **Game Recommendations:** The system suggests games basesd on user’s past orders, and also the top-seller games, enhancing discovery based on interests.
+    
+2. **Filters and Search:** Users can easily find games with advanced filtering by category, platform, language, player modes and price, alongside a robust full-text search feature.
+
+3. **Wishlist and Notifications:** Users are notified in real time when their wishlisted items go on sale or are restocked.
+
+4. **Personalized Profiles:** Customizable user profiles allow users to tailor their experience, complete with profile pictures and purchase histories.
+
+5. **Reward System:** Buyers earn S coins as cashback from purchases, which can be used for discounts on future purchases.
+
+6. **Checkout Options:** Buyers can purchase a single game or an entire shopping cart, supporting multiple payment methods.
+
+7. **Account Management:** Administrators can manage user activity by blocking/unblocking or deleting accounts for security and compliance. They also oversee games, categories, and other metadata to ensure accurate listings and a high-quality user experience.
 
 ### 1. Installation
 
 > Link to the release with the final version of the source code in the group's Git repository.  
-> Include the full Docker command to start the image available at the group's GitLab Container Registry using the production database.  
+
+To start the Docker image available at the group's GitLab Container Registry using the production database, use the following command:
+
+```bash
+docker run -d --name lbaw2435 -p 8001:80 gitlab.up.pt:5050/lbaw/lbaw2425/lbaw2435
+```
+
+For **ARM** users (e.g., Apple Silicon Macs), Docker Desktop supports architecture emulation using `qemu`. You can run the image with:
+
+```bash
+docker run --platform linux/amd64 -d --name lbaw2435 -p 8001:80 gitlab.up.pt:5050/lbaw/lbaw2425/lbaw2435
+```
+
+The application will be available at `http://localhost:8001`
 
 ### 2. Usage
 
 #### 2.1. Administration Credentials
 
-> Administration URL: &lt;URL&gt;  
+> Administration URL: http://localhost:8001/profile
 
-| Username | Password |
-| -------- | -------- |
-| admin    | password |
+| Username | Email | Password |
+| -------- | -------- | -------- |
+| admin    | admin@example.com | 1234
 
 #### 2.2. User Credentials
 
-| Type          | Username  | Password |
-| ------------- | --------- | -------- |
-| basic account | user 1    | password |
-| news editor   | user 1    | password |
+| Type | Username | Email | Password |
+| -------- | --------- | -------- | -------- |
+| Buyer Account | buyer1 | buyer1@example.com | 1234 |
+| Seller Account | seller1 | seller1@example.com | 1234 |
 
 ### 3. Application Help
 
