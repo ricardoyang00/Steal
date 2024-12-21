@@ -58,6 +58,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById(`product-${productId}`).remove();
                     document.getElementById('total_price').textContent = '€ ' + data.new_total.toFixed(2);
                     document.getElementById('subtotal').textContent = '€ ' + data.new_total.toFixed(2);
+                    
+                    // Reset the coins input
+                    resetCoinsInput();
+
                     if (productList.childElementCount === 0) {
                         noProductsInCart();
                     }
@@ -107,6 +111,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 const totalPriceElement = document.getElementById('total_price');
                 totalPriceElement.textContent = '€ ' + data.new_total.toFixed(2);
                     
+                // Reset the coins input
+                resetCoinsInput();
+
                 // Check if the user is a guest
                 const isGuest = !document.querySelector('meta[name="auth-user"]');
                 if (isGuest) {
@@ -178,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const total = parseFloat(document.getElementById('total_price').textContent.replace('€', '').trim());
 
             // Calculate the maximum coins that can be used without making the subtotal less than €0.01
-            const maxCoinsAllowed = Math.min(maxCoins, Math.floor((total - 0.01) * 100));
+            const maxCoinsAllowed = Math.min(maxCoins, Math.round((total - 0.01) * 100));
 
             // Prevent negative values and values greater than maxCoinsAllowed
             if (coinsToUse < 0) {
@@ -199,6 +206,23 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function resetCoinsInput() {
+        const coinsInput = document.getElementById('coins_to_use');
+        if (coinsInput) {
+            coinsInput.value = 0;
+    
+            // Update the hidden input field value
+            const hiddenCoinsInput = document.getElementById('coins_to_use_hidden');
+            if (hiddenCoinsInput) {
+                hiddenCoinsInput.value = 0;
+            }
+    
+            // Update the discount and subtotal
+            const total = parseFloat(document.getElementById('total_price').textContent.replace('€', '').trim());
+            updateDiscountAndSubtotal(total);
+        }
+    }
+    
     function updateDiscountAndSubtotal(total) {
         const coinsInput = document.getElementById('coins_to_use');
         const discountElement = document.getElementById('discount');
