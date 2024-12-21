@@ -35,12 +35,6 @@ To start the Docker image available at the group's GitLab Container Registry usi
 docker run -d --name lbaw2435 -p 8001:80 gitlab.up.pt:5050/lbaw/lbaw2425/lbaw2435
 ```
 
-For **ARM** users (e.g., Apple Silicon Macs), Docker Desktop supports architecture emulation using `qemu`. You can run the image with:
-
-```bash
-docker run --platform linux/amd64 -d --name lbaw2435 -p 8001:80 gitlab.up.pt:5050/lbaw/lbaw2425/lbaw2435
-```
-
 The application will be available at `http://localhost:8001`
 
 ### 2. Usage
@@ -59,6 +53,12 @@ The application will be available at `http://localhost:8001`
 | -------- | --------- | -------- | -------- |
 | Buyer Account | buyer1 | buyer1@example.com | 1234 |
 | Seller Account | seller1 | seller1@example.com | 1234 |
+
+#### 2.3. Mailtrap Credentials
+
+| Gmail | Password |
+| - | - |
+| lbaw2435steal@gmail.com | steal12345 |
 
 ### 3. Application Help
 
