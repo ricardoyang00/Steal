@@ -179,7 +179,7 @@ We also didn't try to optimize the contents for mobile, as our project focused m
 | US24 | Review Purchased Product | Buyer | Medium | **Daniel Basílio** | 100% |
 | US25 | Edit or Remove Review | Buyer | Medium | **Daniel Basílio** | 100% |
 | US26 | Cancel Order | Buyer | Medium | **Francisco Magalhães** | 100% |
-| US27 | Report Inappropriate Reviews | Buyer | Medium | **Daniel Basílio** | 100% |
+| US27 | Report Inappropriate Reviews | Buyer | Medium | **Daniel Basílio**, Bruno Huang | 100% |
 | US28 | Receive Price Notifications | Buyer | Medium | **Francisco Magalhães** | 100% |
 | US29 | Multiple Payment Options | Buyer | Low | **Francisco Magalhães** | 100% |
 | US30 | Pay With S Coins | Buyer | Low | **Bruno Huang** | 100% |

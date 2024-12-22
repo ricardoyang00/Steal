@@ -42,7 +42,7 @@
                         <td id="gained-coins">+ {{ $coinsGained }}</td>
                         <td id="coins-balance"><strong>{{ $calculatedBalances[$order->id] }}</strong></td>
                         <td id="view-details">
-                            <a href="{{ route('orderDetails', ['id' => $order->id]) }}" class="btn btn-primary">View Details</a>
+                            <a href="{{ route('orderDetails', ['id' => $order->id]) }}" class="btn btn-primary">View Order</a>
                         </td>
                     </tr>
                 @endforeach

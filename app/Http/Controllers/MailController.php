@@ -66,6 +66,11 @@ class MailController extends Controller
             return back()->withErrors('No user found with this email address.');
         }
 
+        // Check if the user has a Google ID
+        if ($user instanceof User && $user->google_id) {
+            return back()->withErrors('We cannot handle Google account passwords. Please use Google sign-in.');
+        }
+
         // Generate a password reset token
         $token = Str::random(60);
 
