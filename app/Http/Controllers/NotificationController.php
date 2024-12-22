@@ -55,9 +55,7 @@ class NotificationController extends Controller{
             $description = 'Your order was successfully completed. All items have been purchased.';
         } else {
             $description = 'Your order was partially completed. ';
-            $description .= 'Unfortunately, some items could not be purchased, due to insufficient stock: ';
-            $canceledGameNames = array_column($canceledItems, 'gameName');
-            $description .= implode(', ', $canceledGameNames) . '.';
+            $description .= 'Unfortunately, some items could not be purchased, due to insufficient stock. ';
         }
     
         try {
@@ -126,27 +124,47 @@ class NotificationController extends Controller{
     }    
     
 
-    public function createStockWishlistNotifications($game, $soldOut) {
+    public function createStockNotifications($game, $soldOut) {
         try {
             $wishlists = DB::table('wishlist')
                 ->where('game', $game->id)
                 ->pluck('id');
     
-            if ($wishlists->isEmpty()) {
-                return;
+            if($soldOut === 'sold_out'){
+                $description = "{$game->name} has just sold out. Type: Stock";
+            }
+            elseif($soldOut === 'available'){
+                $description = "Good news! {$game->name} is now available for purchase! Type: Stock";
             }
     
-            $description = $soldOut
-                ? "A game on your wishlist has just sold out. '{$game->name}'"
-                : "Good news! A game on your wishlist is now available again. Game Name:'{$game->name}', Type: Stock";
-    
             foreach ($wishlists as $wishlist) {
-                WishlistNotification::create([
-                    'title' => "Stock Update for game on wishlist",
+                $notification = Notification::create([
+                    'title' => "Stock Update Wishlist",
                     'description' => $description,
                     'time' => now(),
                     'is_read' => false,
+                ]);
+                WishlistNotification::create([
+                    'id' => $notification->id,
                     'wishlist' => $wishlist,
+                ]);
+            }
+
+            $shoppingCarts = DB::table('shoppingcart')
+                ->where('game', $game->id)
+                ->pluck('id');
+    
+    
+            foreach ($shoppingCarts as $shoopingCart) {
+                $notification = Notification::create([
+                    'title' => "Stock Update on Shopping Cart",
+                    'description' => $description,
+                    'time' => now(),
+                    'is_read' => false,
+                ]);
+                ShoppingCartNotification::create([
+                    'id' => $notification->id,
+                    'shopping_cart' => $shoopingCart,
                 ]);
             }
         } catch (\Exception $e) {
@@ -628,6 +646,9 @@ class NotificationController extends Controller{
     
                 } elseif (strpos($desc, 'Type: Stock') !== false) {
                     $parsedNotification['specific_type'] = 'Stock';
+                    $desc = preg_replace('/Type:\s*([^.]*)\.?$/i', '', $desc);
+                    $desc = trim($desc);
+                    $notification->description = $desc;
                 }
     
                 // Add the parsed details to the notification
@@ -694,6 +715,9 @@ class NotificationController extends Controller{
     
                 } elseif (strpos($desc, 'Type: Stock') !== false) {
                     $parsedNotification['specific_type'] = 'Stock';
+                    $desc = preg_replace('/Type:\s*([^.]*)\.?$/i', '', $desc);
+                    $desc = trim($desc);
+                    $notification->description = $desc;
                 }
     
                 // Add the parsed details to the notification

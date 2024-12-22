@@ -51,9 +51,17 @@
                                 @if(!$notification['is_read'])
                                     <span class="unread-notification-indicator"></span>
                                 @endif
-                                <button class="view-notification-details" type="button" data-toggle="collapse" data-target="#details-{{ $notification['id'] }}" aria-expanded="false" aria-controls="details-{{ $notification['id'] }}">
+                                @if(in_array($notification['type'], ['Wishlist', 'ShoppingCart']))
+                                    @if(($notification['parsedDetails']['specific_type'] === 'Price'))
+                                        <button class="view-notification-details" type="button" data-toggle="collapse" data-target="#details-{{ $notification['id'] }}" aria-expanded="false" aria-controls="details-{{ $notification['id'] }}">
+                                        {{ in_array($notification['type'], ['Wishlist', 'ShoppingCart']) ? 'View Details' : ($notification['type'] === 'Order' ? 'View Order Details' : 'View Details') }}
+                                        </button>
+                                    @endif
+                                @else
+                                    <button class="view-notification-details" type="button" data-toggle="collapse" data-target="#details-{{ $notification['id'] }}" aria-expanded="false" aria-controls="details-{{ $notification['id'] }}">
                                     {{ in_array($notification['type'], ['Wishlist', 'ShoppingCart']) ? 'View Details' : ($notification['type'] === 'Order' ? 'View Order Details' : 'View Details') }}
-                                </button>
+                                    </button>  
+                                @endif             
                             </div>
                             <div class="notifications-collapse collapse" id="details-{{ $notification['id'] }}">
                                 <div class="notification-details">
@@ -137,8 +145,6 @@
                                         @if($notification['parsedDetails']['specific_type'] === 'Price')
                                             <p><strong>Old Price:</strong> €{{ $notification['parsedDetails']['old_price'] ?? 'N/A' }}</p>
                                             <p><strong>New Price:</strong> €{{ $notification['parsedDetails']['new_price'] ?? 'N/A' }}</p>
-                                        @elseif($notification['parsedDetails']['specific_type'] === 'Stock')
-                                            <p><strong>Update:</strong> {{ $notification['description'] }}</p>
                                         @endif
                                     @endif
                                 </div>

@@ -532,6 +532,7 @@ class GameController extends Controller
         ]);
 
         $game = Game::findOrFail($id);
+        $previousStock = $game->getStockAttribute();
 
         if ($game->block_reason !== null && $game->block_time !== null) {
             return redirect()->route('games.cdks', $game->id)->withErrors('You cannot add CDKs for a blocked game');
@@ -550,6 +551,10 @@ class GameController extends Controller
         }
 
         $game->refresh();
+
+        if($previousStock === 0){
+            $this->notificationController->createStockNotifications($game, 'available');
+        }
 
         $message = 'CDKs added successfully.';
         if ($initialReleaseDate === null && $game->release_date !== null) {
