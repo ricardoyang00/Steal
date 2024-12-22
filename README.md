@@ -34,6 +34,11 @@ To start the Docker image available at the group's GitLab Container Registry usi
 ```bash
 docker run -d --name lbaw2435 -p 8001:80 gitlab.up.pt:5050/lbaw/lbaw2425/lbaw2435
 ```
+For ARM users (e.g., Apple Silicon Macs) you can run the image with:
+
+```bash
+docker run --platform linux/arm64 -d --name lbaw2435 -p 8001:80 gitlab.up.pt:5050/lbaw/lbaw2425/lbaw2435
+```
 
 The application will be available at `http://localhost:8001`
 
