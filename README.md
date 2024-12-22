@@ -27,6 +27,8 @@ We developed **STEAL!**, an innovative online platform designed to revolutionize
 
 ### 1. Installation
 
+[PA Release](https://gitlab.up.pt/lbaw/lbaw2425/lbaw2435/-/releases/PA)
+
 To start the Docker image available at the group's GitLab Container Registry using the production database, use the following command:
 
 ```bash
