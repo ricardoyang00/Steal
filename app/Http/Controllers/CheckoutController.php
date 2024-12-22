@@ -50,6 +50,7 @@ class CheckoutController extends Controller
         $prePurchasedItems = [];
         $purchasedItems = [];
         $canceledItems = [];
+        $games = [];
         $total = 0;
         $subtotal = 0;
         $coinsUsed = session('coins_to_use', 0);
@@ -59,6 +60,10 @@ class CheckoutController extends Controller
             if (!$game) {
                 return redirect()->route('shopping_cart')->withErrors('Some items are no longer available.');
             }
+            $games[] = [
+                'game' => $game,
+                'stock' => $game->getStockAttribute()
+            ];
             if($game->getReleaseDate() === 'Not realeased yet' || $game->getStockAttribute() === 0){
                 for ($i = 0; $i < $cartItem->quantity; $i++) {
                     $prePurchasedItems[] = [
@@ -155,6 +160,7 @@ class CheckoutController extends Controller
             DB::commit();
             $this->notificationController->createOrderNotification($order, $prePurchasedItems, $purchasedItems, $canceledItems);
             $this->notificationController->createGameNotifications($prePurchasedItems, $purchasedItems);
+            $this->soldOutNotifications($games);
             $purchasedCDKs = [];
             session()->forget('coins_to_use');
             return view('checkout.orderCompleted', ['purchasedItems' => $purchasedItems, 'prePurchasedItems' => $prePurchasedItems, 'canceledItems' => $canceledItems, 'subtotal' => $subtotal, 'coinsUsed' => $coinsUsed]);
@@ -175,6 +181,32 @@ class CheckoutController extends Controller
             }         
         }
     }
+
+    function soldOutNotifications(array $games)
+    {
+        
+        $uniqueGames = collect($games)
+            ->unique(function ($item) {
+                return $item['game']->id;
+            })
+            ->values()
+            ->all();
+
+        foreach ($uniqueGames as $gameData) {
+            $game = $gameData['game'];
+            $originalStock = $gameData['stock'];
+
+            
+            $currentStock = $game->getStockAttribute();
+
+            // Step 3: Check if original stock > 0 and current stock == 0
+            if ($originalStock > 0 && $currentStock == 0) {
+                $this->notificationController->createStockNotifications($game, 'sold_out');
+                echo "Notification triggered for game ID: {$game->id}\n";
+            }
+        }
+    }
+
 
     public function selectPaymentMethod()
     {

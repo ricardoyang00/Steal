@@ -139,7 +139,7 @@ class NotificationController extends Controller{
     
             foreach ($wishlists as $wishlist) {
                 $notification = Notification::create([
-                    'title' => "Stock Update Wishlist",
+                    'title' => "Stock Update on Wishlist",
                     'description' => $description,
                     'time' => now(),
                     'is_read' => false,
