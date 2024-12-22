@@ -211,6 +211,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 bodyDiv.appendChild(unreadSpan);
             }
 
+            
+            
             const detailsButton = document.createElement('button');
             detailsButton.classList.add('view-notification-details');
             detailsButton.setAttribute('type', 'button');
@@ -218,24 +220,35 @@ document.addEventListener('DOMContentLoaded', function () {
             detailsButton.setAttribute('data-target', '#details-' + notification.id);
             detailsButton.setAttribute('aria-expanded', 'false');
             detailsButton.setAttribute('aria-controls', 'details-' + notification.id);
+              
 
             // Set button text based on type
             if (['Wishlist', 'ShoppingCart'].includes(notification.type)) {
-                detailsButton.textContent = 'View Details';
+                if(notification.parsedDetails && notification.parsedDetails.specific_type == 'Price'){
+                    detailsButton.textContent = 'View Details';
+                }
             } else if (notification.type === 'Order Completed' || notification.type === 'Status Change') {
                 detailsButton.textContent = 'View Details';
             } else if (notification.type === 'Game' || notification.type === 'Review') {
                 detailsButton.textContent = 'View Details';
             }
 
-            bodyDiv.appendChild(detailsButton);
+            if(['Wishlist', 'ShoppingCart'].includes(notification.type)){
+                if(notification.parsedDetails && notification.parsedDetails.specific_type == 'Price'){
+                    bodyDiv.appendChild(detailsButton);
+                }
+            }
+            else if(notification.type === 'Order Completed' || notification.type === 'Status Change' || notification.type === 'Game' || notification.type === 'Review'){
+                bodyDiv.appendChild(detailsButton);
+            }
             cardDiv.appendChild(bodyDiv);
-
+            
             const collapseDiv = document.createElement('div');
             collapseDiv.classList.add('notifications-collapse', 'collapse');
             collapseDiv.id = 'details-' + notification.id;
             const detailsContentDiv = document.createElement('div');
             detailsContentDiv.classList.add('notification-details');
+            
 
             // Populate details based on notification.type
             if ((notification.type === 'Order Completed' || notification.type == 'Status Change') && notification.orderDetails) {
@@ -330,11 +343,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     const newPriceP = document.createElement('p');
                     newPriceP.innerHTML = `<strong>New Price:</strong> €${notification.parsedDetails.new_price ?? 'N/A'}`;
                     detailsContentDiv.appendChild(newPriceP);
-                } else if (notification.parsedDetails.specific_type === 'Stock') {
-                    const updateP = document.createElement('p');
-                    updateP.innerHTML = `<strong>Update:</strong> ${notification.description}`;
-                    detailsContentDiv.appendChild(updateP);
                 }
+
             } else if (notification.type === 'Game' && notification.parsedDetails) {
                 const gameNameP = document.createElement('p');
                 if (notification.gameId) {
@@ -354,11 +364,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 detailsContentDiv.appendChild(quantityP);
 
                 const gamePriceP = document.createElement('p');
-                gamePriceP.innerHTML = `<strong>Unit Price:</strong> $${unitPrice.toFixed(2)}`;
+                gamePriceP.innerHTML = `<strong>Unit Price:</strong> €${unitPrice.toFixed(2)}`;
                 detailsContentDiv.appendChild(gamePriceP);
 
                 const totalPriceP = document.createElement('p');
-                totalPriceP.innerHTML = `<strong>Total Price:</strong> $${totalPrice.toFixed(2)}`;
+                totalPriceP.innerHTML = `<strong>Total Price:</strong> €${totalPrice.toFixed(2)}`;
                 detailsContentDiv.appendChild(totalPriceP);
             } else if (notification.type === 'Review' && notification.parsedDetails) {
                 const gameNameP = document.createElement('p');
@@ -411,7 +421,6 @@ document.addEventListener('DOMContentLoaded', function () {
             return response.json();
         })
         .then(data => {
-            // 'data' should contain the latest notifications including review notifications
             updateNotificationsList(data.notifications);
         })
         .catch(error => console.error('Error fetching new notifications:', error));
