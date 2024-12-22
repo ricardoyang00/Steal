@@ -552,7 +552,7 @@ class GameController extends Controller
 
         $game->refresh();
 
-        if($previousStock === 0){
+        if($previousStock === 0 && $game->getStockAttribute() > 0){
             $this->notificationController->createStockNotifications($game, 'available');
         }
 
