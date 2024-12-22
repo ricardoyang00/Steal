@@ -144,12 +144,6 @@ We also didn't try to optimize the contents for mobile, as our project focused m
 
 #### 8.2 User Stories
 
-> This subsection should include all high and medium priority user stories, sorted by order of implementation. Implementation should be sequential according to the order identified below. 
->
-> If there are new user stories, also include them in this table. 
-> The owner of the user story should have the name in **bold**.
-> This table should be updated when a user story is completed and another one started. 
-
 | US Identifier | Name | Module | Priority | Team Members | State |
 | - | - | - | - | - | - |
 | US01 | Browse Marketplace | Anonymous User | High | **Ricardo Yang**, Bruno Huang | 100% |
