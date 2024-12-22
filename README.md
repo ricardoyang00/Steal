@@ -27,8 +27,6 @@ We developed **STEAL!**, an innovative online platform designed to revolutionize
 
 ### 1. Installation
 
-> Link to the release with the final version of the source code in the group's Git repository.  
-
 To start the Docker image available at the group's GitLab Container Registry using the production database, use the following command:
 
 ```bash
