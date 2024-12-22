@@ -33,6 +33,17 @@ document.addEventListener('DOMContentLoaded', function () {
     function reattachEventHandlers() {
         // View notification details toggling
         document.querySelectorAll('.view-notification-details').forEach(button => {
+            const targetId = button.getAttribute('data-target');
+            const targetElement = document.querySelector(targetId);
+            
+            // Set initial button text based on the state of the target element
+            if (targetElement && targetElement.classList.contains('show')) {
+                button.textContent = 'Hide Details';
+                previouslyOpen.add(targetId);
+            } else {
+                button.textContent = 'View Details';
+            }
+            
             button.addEventListener('click', function () {
                 const targetId = this.getAttribute('data-target');
                 const targetElement = document.querySelector(targetId);
@@ -40,8 +51,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     targetElement.classList.toggle('show');
                     if (targetElement.classList.contains('show')) {
                         previouslyOpen.add(targetId);
+                        this.textContent = 'Hide Details';
                     } else {
                         previouslyOpen.delete(targetId);
+                        this.textContent = 'View Details';
                     }
                 }
             });
@@ -404,51 +417,17 @@ document.addEventListener('DOMContentLoaded', function () {
             if (el) {
                 el.classList.add('show');
             }
-        });
-    }
-
-    function updatePaginationLinks(pagination) {
-        const paginationContainer = document.querySelector('.pagination-links');
-        if (!paginationContainer) return;
-
-        paginationContainer.innerHTML = '';
-
-
-        for (let page = 1; page <= pagination.last_page; page++) {
-            const li = document.createElement('li');
-            li.classList.add('page-item');
-            if (page === pagination.current_page) {
-                li.classList.add('active');
+            const button = document.querySelector(`button[data-target="${selector}"]`);
+            console.log(selector);
+            if (button) {
+                button.textContent = 'Hide Details';
             }
-
-            const a = document.createElement('a');
-            a.classList.add('page-link');
-            a.href = '#';
-            a.dataset.page = page;
-            a.textContent = page;
-
-            li.appendChild(a);
-            paginationContainer.appendChild(li);
-        }
-
-        attachPaginationEventListeners();
-    }
-
-    function attachPaginationEventListeners() {
-        document.querySelectorAll('.pagination-links .page-link').forEach(link => {
-            link.addEventListener('click', function (e) {
-                e.preventDefault();
-                const selectedPage = parseInt(this.dataset.page);
-                if (!isNaN(selectedPage) && selectedPage !== currentPage) {
-                    currentPage = selectedPage;
-                    fetchNotifications(currentPage);
-                }
-            });
         });
+
     }
 
-    function fetchNewNotifications(page = 1) {
-        fetch('/notifications/fetchNotifications?page=${page}', {
+    function fetchNewNotifications() {
+        fetch('/notifications/fetchNotifications', {
             method: 'GET',
             headers: {
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
