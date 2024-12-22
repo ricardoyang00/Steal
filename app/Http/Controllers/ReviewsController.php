@@ -57,6 +57,13 @@ class ReviewsController extends Controller
         try {
             $review = Review::findOrFail($id);
             $gameId = $review->game;
+
+            // Delete related reports
+            Report::where('review', $id)->delete();
+
+            // Delete related likes
+            ReviewLike::where('review', $id)->delete();
+
             $review->delete();
     
             $game = Game::findOrFail($gameId);
@@ -72,7 +79,7 @@ class ReviewsController extends Controller
     {
         $request->validate([
             'title' => 'required|string|max:100|regex:/^[a-zA-Z0-9\s,\.]+$/',
-            'description' => 'required|string|max:500|regex:/^[a-zA-Z0-9\s,\.]+$/',
+            'description' => 'required|string|max:500|regex:/^[a-zA-Z0-9\s,\.!]+$/',
         ]);        
 
         try {

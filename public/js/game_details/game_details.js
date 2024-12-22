@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const reviewDescription = document.getElementById('review-description');
 
     function restrictInput(event) {
-        const regex = /[^a-zA-Z0-9\s,\.]/g;
+        const regex = /[^a-zA-Z0-9\s,\.!]/g;
         event.target.value = event.target.value.replace(regex, '');
     }
 
