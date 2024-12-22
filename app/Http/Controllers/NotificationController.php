@@ -371,7 +371,7 @@ class NotificationController extends Controller{
         });
     
         // Pagination
-        $perPage = 6; // Number of notifications per page
+        $perPage = 8; // Number of notifications per page
         $currentPage = request()->get('page', 1); // Get the current page from the request, default to 1
         $currentItems = array_slice($notifications, ($currentPage - 1) * $perPage, $perPage);
 
