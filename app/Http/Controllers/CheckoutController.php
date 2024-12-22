@@ -202,7 +202,6 @@ class CheckoutController extends Controller
             // Step 3: Check if original stock > 0 and current stock == 0
             if ($originalStock > 0 && $currentStock == 0) {
                 $this->notificationController->createStockNotifications($game, 'sold_out');
-                echo "Notification triggered for game ID: {$game->id}\n";
             }
         }
     }
