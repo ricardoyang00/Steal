@@ -407,8 +407,48 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    function fetchNewNotifications() {
-        fetch('/notifications/fetchNotifications', {
+    function updatePaginationLinks(pagination) {
+        const paginationContainer = document.querySelector('.pagination-links');
+        if (!paginationContainer) return;
+
+        paginationContainer.innerHTML = '';
+
+
+        for (let page = 1; page <= pagination.last_page; page++) {
+            const li = document.createElement('li');
+            li.classList.add('page-item');
+            if (page === pagination.current_page) {
+                li.classList.add('active');
+            }
+
+            const a = document.createElement('a');
+            a.classList.add('page-link');
+            a.href = '#';
+            a.dataset.page = page;
+            a.textContent = page;
+
+            li.appendChild(a);
+            paginationContainer.appendChild(li);
+        }
+
+        attachPaginationEventListeners();
+    }
+
+    function attachPaginationEventListeners() {
+        document.querySelectorAll('.pagination-links .page-link').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const selectedPage = parseInt(this.dataset.page);
+                if (!isNaN(selectedPage) && selectedPage !== currentPage) {
+                    currentPage = selectedPage;
+                    fetchNotifications(currentPage);
+                }
+            });
+        });
+    }
+
+    function fetchNewNotifications(page = 1) {
+        fetch('/notifications/fetchNotifications?page=${page}', {
             method: 'GET',
             headers: {
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
