@@ -104,23 +104,24 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('input[name="min_price"], input[name="max_price"]').forEach(function (input) {
         input.addEventListener('change', function () {
             // Ensure the value is within the allowed range
-            if (input.value < 0) {
+            let value = parseFloat(input.value);
+            if (value < 0) {
                 input.value = 0;
-            } else if (input.value > 10000) {
-                input.value = 10000;
+            } else if (value > 9999.99) {
+                input.value = 9999.99;
             }
         });
-    
-        // Restrict input to digits only and a maximum of 5 digits
+
+        // Restrict input to digits only, allowing up to two decimal places
         input.addEventListener('input', function () {
             let value = input.value;
-            const regex = /^\d{0,5}$/;
+            const regex = /^\d{0,4}(\.\d{0,2})?$/;
             if (!regex.test(value)) {
                 input.value = value.slice(0, -1); // Remove the last character if it doesn't match the regex
             }
         });
     });
-
+    
     // Apply price filter on confirm button click
     document.getElementById('apply-price-filter').addEventListener('click', function () {
         document.getElementById('filter-form').submit();
