@@ -207,9 +207,9 @@ The platform features advanced game recommendations based on user preferences, r
 
 ### 2. Video presentation
 
-> Screenshot of the video plus the link to the lbawYYgg.mp4 file.
-> - Upload the lbawYYgg.mp4 file to Moodle.
-> - The video must not exceed 2 minutes.
+![alt text](artifacts/a10/video_shot.png)
+
+Video Available at https://youtu.be/bTJrHXjnlQc
 
 
 ---
