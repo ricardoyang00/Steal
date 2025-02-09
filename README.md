@@ -37,7 +37,7 @@ To **start the container**, from the project root run the following command:
 ```bash
 docker compose up -d
 ```
-Open your browser and navigate to [http://localhost:4321](localhost:4321) to access pgAdmin4.
+Open your browser and navigate to [http://localhost:4321](http://localhost:4321) to access pgAdmin4.
 
 
 In pgAdmin4, **Add New Server**:
@@ -77,7 +77,7 @@ php artisan db:seed
 php artisan serve
 ```
 
-Access to [localhost:8000](localhost:8000).
+Access to [http://localhost:8000](http://localhost:8000).
 
 
 > [!IMPORTANT]  
@@ -98,13 +98,15 @@ php artisan key:generate
 ## Demo
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/bTJrHXjnlQc/0.jpg)](https://www.youtube.com/watch?v=bTJrHXjnlQc)
 
+## Artifacts
+The artifacts can be found [here](docs/artifacts).
 
 ## Contributors
 
-* Bruno Huang (202207517)
-* Daniel Basílio (201806838)
-* Francisco Magalhães (202007945)
-* Ricardo Yang (202208465)
+* [Bruno Huang](https://github.com/YZ1GO)
+* [Daniel Basílio](https://github.com/danielcbasilio)
+* [Francisco Magalhães](https://github.com/frankie02m2023)
+* [Ricardo Yang](https://github.com/ricardoyang00)
 
 
-This project was developed for [LBAW](https://sigarra.up.pt/feup/en/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=541888) course unit at FEUP.
+This project was developed for [LBAW](https://sigarra.up.pt/feup/en/UCURR_GERAL.FICHA_UC_VIEW?pv_ocorrencia_id=541888) course unit at @FEUP.
